@@ -170,6 +170,56 @@ public:
 };
 ```
 
+## 9. Palindrome Number
+
+```C++
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if (x < 0) return false;
+        int div = 1;
+        while (x / div >= 10) div *= 10;
+        while (x > 0) {
+            int left = x / div;
+            int right = x % 10;
+            if (left != right) return false;
+            x = (x % div) / 10;
+            div /= 100;
+        }
+        return true;
+    }
+};
+```
+
+## 10. Regular Expression Matching
+
+解题思路
+
+1. 正则匹配：(1) sp 和 pp 都到了末尾，表示匹配结束 (2) 如果 p[pp+1] 为 *，
+
+```C++
+// Runtime: 24 ms, faster than 23.92% of C++ online submissions for Regular Expression Matching.
+// Memory Usage: 6.1 MB, less than 97.79% of C++ online submissions for Regular Expression Matching.
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        return helper(s, p, 0, 0);
+    }
+    
+    bool helper(string& s, string& p, int sp, int pp) {
+        if(sp == s.size() && pp == p.size()) return true;
+        if(pp+1 < p.size() && p[pp+1] == '*') {
+            if(sp < s.size() && (p[pp] == '.' || p[pp]==s[sp])) {
+                if(helper(s, p, sp+1, pp)) return true;
+            }
+            return helper(s, p, sp, pp+2);
+        }
+        if(sp < s.size() && (p[pp] == '.' || p[pp] == s[sp])) return helper(s, p, sp+1, pp+1);
+        else return false;
+    }
+};
+```
+
 ## 11. Container With Most Water
 
 ```C++
@@ -190,7 +240,6 @@ public:
     }
 };
 ```
-
 
 ## 12. Integer to Roman ($$$)
 ## 13. Roman to Integer ($$$)
@@ -521,6 +570,26 @@ public:
             num -= k;
         }
         return dummy->next;
+    }
+};
+```
+
+## 26. Remove Duplicates from Sorted Array
+
+解题思路
+
+1. 给定一个排序数组，就地删除重复项，以便每个元素只出现一次，并返回新长度
+
+```C++
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int pre = 0, cur = 0, n = nums.size();
+        while (cur < n) {
+            if (nums[pre] == nums[cur]) ++cur;
+            else nums[++pre] = nums[cur++];
+        }
+        return nums.empty() ? 0 : (pre + 1);
     }
 };
 ```
@@ -1021,6 +1090,82 @@ public:
 };
 ```
 
+## 61. Rotate List
+
+解题思路
+
+1. 旋转链表
+2. 遍历整个链表获得链表长度n，然后此时把链表头和尾链接起来，在往后走 n - k%n 个节点就到达新链表的头结点前一个点，这时断开链表
+
+```C++
+class Solution {
+public:
+    ListNode *rotateRight(ListNode *head, int k) {
+        if (!head) return NULL;
+        int n = 1;
+        ListNode *cur = head;
+        while (cur->next) {
+            ++n;
+            cur = cur->next;
+        }
+        cur->next = head;
+        int m = n - k % n;
+        for (int i = 0; i < m; ++i) {
+            cur = cur->next;
+        }
+        ListNode *newhead = cur->next;
+        cur->next = NULL;
+        return newhead;
+    }
+};
+```
+
+## 62. Unique Paths
+
+解题思路
+
+1. 从左上角到右下角，有多少种行走路径
+
+```C++
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        vector<int> dp(n, 1);
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j) {
+                dp[j] += dp[j - 1]; 
+            }
+        }
+        return dp[n - 1];
+    }
+};
+```
+
+## 63. Unique Paths II
+
+解题思路
+
+1. 从左上角到右下角，有多少种行走路径，而且有些位置有障碍物
+
+```C++
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        if (obstacleGrid.empty() || obstacleGrid[0].empty() || obstacleGrid[0][0] == 1) return 0;
+        int m = obstacleGrid.size(), n = obstacleGrid[0].size();
+        vector<long> dp(n, 0);
+        dp[0] = 1;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (obstacleGrid[i][j] == 1) dp[j] = 0;
+                else if (j > 0) dp[j] += dp[j - 1];
+            }
+        }
+        return dp[n - 1];
+    }
+};
+```
+
 ## 64. Minimum Path Sum
 
 ```C++
@@ -1203,14 +1348,131 @@ public:
     }
 };
 
-1.  Minimum Window Substring
-解题思路：滑动窗口。注意可以只用一个哈希表，存储t的频率，当右边界遍历到减1，左边界遍历到加1。另外需要一个计数变量，当频率大于0时（因为非法字符最大频率为0，合法字符最小频率为0）计数变量cnt加1，从而可以判断是否已经包含所有合法字符。
-边界条件：t长度可能为0（测试样例没有考虑到）
 
+## 70. Climbing Stairs
+
+```C++
+class Solution {
+public:
+    int climbStairs(int n) {
+        int a = 1, b = 1;
+        for(int i = 0; i < n-1; i++) {
+            auto temp = b;
+            b = a + b;
+            a = temp;
+        }
+        return b;
+    }
+};
+```
+
+## 71. Simplify Path
+
+解题思路
+
+1. 简化路径: "/../" 返回 "/"
+
+```C++
+class Solution {
+public:
+    string simplifyPath(string path) {
+        string res, t;
+        stringstream ss(path);
+        vector<string> v;
+        while (getline(ss, t, '/')) {
+            if (t == "" || t == ".") continue;
+            if (t == ".." && !v.empty()) v.pop_back();
+            else if (t != "..") v.push_back(t);
+        }
+        for (string s : v) res += "/" + s;
+        return res.empty() ? "/" : res;
+    }
+};
+```
+
+## 73. Set Matrix Zeroes
+
+解题思路
+
+1. 给定一个矩阵，如果一个元素为 0，则将其整个行和列设置为 0。需求 in-place
+
+```C++
+class Solution {
+public:
+    void setZeroes(vector<vector<int> > &matrix) {
+        if (matrix.empty() || matrix[0].empty()) return;
+        int m = matrix.size(), n = matrix[0].size();
+        bool rowZero = false, colZero = false;
+        for (int i = 0; i < m; ++i) {
+            if (matrix[i][0] == 0) colZero = true;
+        }
+        for (int i = 0; i < n; ++i) {
+            if (matrix[0][i] == 0) rowZero = true;
+        } 
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j) {
+                if (matrix[i][j] == 0) {
+                    matrix[0][j] = 0;
+                    matrix[i][0] = 0;
+                }
+            }
+        }
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j) {
+                if (matrix[0][j] == 0 || matrix[i][0] == 0) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        if (rowZero) {
+            for (int i = 0; i < n; ++i) matrix[0][i] = 0;
+        }
+        if (colZero) {
+            for (int i = 0; i < m; ++i) matrix[i][0] = 0;
+        }
+    }
+};
+```
+
+## 75. Sort Colors
+
+```C++
+// Runtime: 4 ms, faster than 47.31% of C++ online submissions for Sort Colors.
+// Memory Usage: 8.3 MB, less than 63.84% of C++ online submissions for Sort Colors.
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        if(nums.size() < 2) return;
+        int l = 0, r = (int)nums.size()-1;
+        int pivot = -1;
+        while (l < r) {
+            while (l < r && nums[l] == 0) l++;
+            while (l < r && nums[r] == 2) r--;
+            if (nums[l] == 2) swap(nums[l], nums[r]);
+            else if (nums[l] == 1) {
+                pivot = l;
+                while(pivot <= r && nums[pivot] == 1) ++pivot;
+                if (pivot <= r) swap(nums[pivot], nums[l]);
+                else l = r;
+            }
+        }
+    }
+};
+```
+
+## 76. Minimum Window Substring
+
+解题思路
+
+1. 滑动窗口。注意可以只用一个哈希表，存储t的频率，当右边界遍历到减1，左边界遍历到加1。另外需要一个计数变量，当频率大于0时（因为非法字符最大频率为0，合法字符最小频率为0）计数变量cnt加1，从而可以判断是否已经包含所有合法字符。
+
+边界条件
+1. t长度可能为0（测试样例没有考虑到）
+
+```C++
 // 2020-07-17 submission
 // Runtime: 32 ms, faster than 67.64% of C++ online submissions
 // Memory Usage: 55.6 MB, less than 5.05% of C++ online submissions
-
 class Solution {
 public:
     string minWindow(string s, string t) {
@@ -1244,28 +1506,25 @@ public:
         return res;
     }
 };
+```
 
-## 75. Sort Colors
+## 77. Combinations
 
 ```C++
-// Runtime: 4 ms, faster than 47.31% of C++ online submissions for Sort Colors.
-// Memory Usage: 8.3 MB, less than 63.84% of C++ online submissions for Sort Colors.
 class Solution {
 public:
-    void sortColors(vector<int>& nums) {
-        if(nums.size() < 2) return;
-        int l = 0, r = (int)nums.size()-1;
-        int pivot = -1;
-        while (l < r) {
-            while (l < r && nums[l] == 0) l++;
-            while (l < r && nums[r] == 2) r--;
-            if (nums[l] == 2) swap(nums[l], nums[r]);
-            else if (nums[l] == 1) {
-                pivot = l;
-                while(pivot <= r && nums[pivot] == 1) ++pivot;
-                if (pivot <= r) swap(nums[pivot], nums[l]);
-                else l = r;
-            }
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> res;
+        vector<int> out;
+        helper(n, k, 1, out, res);
+        return res;
+    }
+    void helper(int n, int k, int level, vector<int>& out, vector<vector<int>>& res) {
+        if (out.size() == k) {res.push_back(out); return;}
+        for (int i = level; i <= n; ++i) {
+            out.push_back(i);
+            helper(n, k, i + 1, out, res);
+            out.pop_back();
         }
     }
 };
