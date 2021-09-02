@@ -934,6 +934,157 @@ public:
 };
 ```
 
+## 51. N-Queens
+
+返回所有解法
+
+```C++
+// 2019-04-14 submission
+// Runtime: 8 ms, faster than 63.24% of C++ online submissions for N-Queens.
+// Memory Usage: 7.4 MB, less than 61.04% of C++ online submissions for N-Queens.
+class Solution {
+public:
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<int>> result;
+        vector<vector<string>> chess_results;
+        vector<int> temp(n, 0);
+        if(n == 1) {
+            chess_results.push_back(vector<string>{"Q"});
+            return chess_results;
+        }
+        else if(n >= 4) {
+            place(0, n, temp, result);
+            print_chess(result, chess_results);
+        }
+        return chess_results;
+    }
+    
+    bool find(int row, int col, vector<int>& curr) {
+        for(int i = 0; i < row; i++) {
+            if(curr[i]==col || abs(i-row)==abs(col-curr[i])) return false;
+        }
+        return true;
+    }
+    
+    void place(int k, int n, vector<int>& curr, vector<vector<int>>& result) {
+        for(int i = 0; i < n; i++) {
+            if(find(k, i, curr)) {
+                curr[k] = i;
+                if(k == n-1) result.push_back(curr);
+                else place(k+1, n, curr, result);
+            }
+        }
+    }
+    
+    void print_chess(vector<vector<int>>& result, vector<vector<string>>& chess_results) {
+        int col = 0;
+        string temp = "";
+        for(int i = 0; i < result.size(); i++) {
+            int n = result[i].size();
+            chess_results.push_back(vector<string>{});
+            for(int j = 0; j < n; j++) {
+                col = result[i][j];
+                temp = "";
+                for(int k = 0; k < col; k++) temp += '.';
+                temp += 'Q';
+                for(int k = col+1; k < n; k++) temp += '.';
+                chess_results[i].push_back(temp);
+            }
+        }
+    }
+};
+```
+
+## 52. N-Queens II
+
+返回解法数量
+
+```C++
+// 2019-04-14 submission
+// Runtime: 4 ms, faster than 82.73% of C++ online submissions for N-Queens II.
+// Memory Usage: 6 MB, less than 90.16% of C++ online submissions for N-Queens II.
+class Solution {
+public:
+    int totalNQueens(int n) {
+        int success = 0;
+        vector<int> temp(n, 0);
+        place(0, n, temp, success);
+        return success;
+    }
+    
+    bool find(int row, int col, vector<int>& curr) {
+        for(int i = 0; i < row; i++) {
+            if(curr[i] == col || abs(i-row) == abs(curr[i]-col))
+                return false;
+        }
+        return true;
+    }
+    
+    void place(int k, int n, vector<int>& curr, int &success) {
+        for(int i = 0; i < n; i++) {
+            if(find(k, i, curr)) {
+                curr[k] = i;
+                if(k == n-1) success++;
+                else place(k+1, n, curr, success);
+            }
+        }
+    }
+    
+};
+```
+
+## 53. Maximum Subarray
+
+最大连续子数组
+
+```C++
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxSum = INT_MIN;
+        int currSum = 0;
+        for(auto num : nums) {
+            if(currSum >= 0) currSum += num;
+            else currSum = num;
+            maxSum = max(currSum, maxSum);
+        }
+        return maxSum;
+    }
+};
+```
+
+## 54. Spiral Matrix
+
+打印螺旋数组
+
+```C++
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        if (matrix.empty() || matrix[0].empty()) return vector<int>{};
+        int rows = matrix.size(), cols = matrix[0].size();
+        vector<int> traj;
+        int left = 0, right = cols - 1, top = 0, bottom = rows - 1;
+        while (traj.size() < rows * cols) {
+            for (int i = left; i <= right; i++) {
+                traj.push_back(matrix[top][i]);
+            }
+            for (int i = top+1; i <= bottom; i++) {
+                traj.push_back(matrix[i][right]);
+            }
+            for (int i = right-1; i >= left && top < bottom; i--) {
+                traj.push_back(matrix[bottom][i]);
+            }
+            for (int i = bottom-1; i > top && left < right; i--) {
+                traj.push_back(matrix[i][left]);
+            }
+            ++left;--right;++top;--bottom;
+        }
+        return traj;
+    }
+};
+```
+
 ## 55. Jump Game
 
 解题思路
@@ -1060,7 +1211,30 @@ public:
     }
 };
 
+## 58. Length of Last Word
+
+返回字符串中最后一个单词的长度
+
+```C++
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int len = s.length();
+        int validNum = 0;
+        int index = len - 1;
+        while(s[index] == ' ') index--;
+        for(; index >= 0; index--) {
+            if(isalpha(s[index])) validNum++;
+            else break;
+        }
+        return validNum;
+    }
+};
+```
+
 ## 59. Spiral Matrix II
+
+生成螺旋数组
 
 解题思路
 
@@ -1086,6 +1260,32 @@ public:
             res[x][y] = i;
         }
         return res;
+    }
+};
+```
+
+## 60. Permutation Sequence
+
+全排列中的第 k 个
+
+```C++
+// 2019-09-01 submission
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Permutation Sequence.
+// Memory Usage: 6 MB, less than 78.79% of C++ online submissions for Permutation Sequence.
+class Solution {
+public:
+    string getPermutation(int n, int k) {
+        vector<int> frac(n, 1);
+        string nums = "123456789";
+        string ret = "";
+        for(int i = 1; i < n; i++) frac[i] = frac[i-1]*i;
+        --k;
+        for(int i = n-1; i >= 0; i--) {
+            ret += nums[k / frac[i]];
+            nums.erase(k / frac[i], 1);
+            k %= frac[i];
+        }
+        return ret;
     }
 };
 ```
@@ -1237,6 +1437,60 @@ public:
         return cur == 8;
     }
 };
+
+## 66. Plus One
+
+数字以数组形式存在，+1 返回
+
+```C++
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        vector<int> result;
+        int carry = 1;
+        for(int i=digits.size()-1; i >= 0; i--) {
+            if(carry == 1 && digits[i] == 9) {
+                result.push_back(0);
+                carry = 1;
+            }
+            else {
+                result.push_back(digits[i]+carry);
+                carry = 0;
+            }
+        }
+        if(carry == 1) result.push_back(1);
+        reverse(result.begin(), result.end());
+        return result;
+    }
+    
+};
+```
+
+## 67. Add Binary
+
+给定两个二进制字符串a 和 b，将它们的和作为二进制字符串返回
+
+```C++
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        string ret;
+        int alen = a.length();
+        int blen = b.length();
+        int maxlen = max(alen, blen);
+        if(alen >= blen) b = string(alen-blen, '0') + b;
+        else a = string(blen-alen, '0') + a;
+        int carry  = 0;
+        for(int i = 1; i <= maxlen; i++) {
+            int sum = a[maxlen-i]-'0' + b[maxlen-i]-'0' + carry;
+            carry = sum / 2;
+            ret = (sum%2==0 ? "0" : "1") + ret;
+        }
+        if(carry) ret = "1" + ret;
+        return ret;
+    }
+};
+```
 
 ## 68. Text Justification
 
@@ -1434,6 +1688,29 @@ public:
 };
 ```
 
+## 74. Search a 2D Matrix
+
+搜索 2D 矩阵
+每行中的整数从左到右排序。每行的第一个整数大于前一行的最后一个整数。
+
+```C++
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if (matrix.empty() || matrix[0].empty()) return false;
+        int m = matrix.size(), n = matrix[0].size();
+        int left = 0, right = m * n;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (matrix[mid / n][mid % n] == target) return true;
+            if (matrix[mid / n][mid % n] < target) left = mid + 1;
+            else right = mid;
+        }
+        return false;
+    }
+};
+```
+
 ## 75. Sort Colors
 
 ```C++
@@ -1582,6 +1859,37 @@ public:
         return res;
     }
 };
+```
+
+## 82. Remove Duplicates from Sorted List II
+
+给定一个已排序的链表，删除所有具有重复数字的节点
+
+```C++
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode *dummy = new ListNode(-1), *pre = dummy;
+        dummy->next = head;
+        while (pre->next) {
+            ListNode *cur = pre->next;
+            while (cur->next && cur->next->val == cur->val) {
+                cur = cur->next;
+            }
+            if (cur != pre->next) pre->next = cur->next;
+            else pre = pre->next;
+        }
+        return dummy->next;
+    }
+};
+```
+
+## 83. Remove Duplicates from Sorted List
+
+
+```C++
+
 ```
 
 ## 84. Largest Rectangle in Histogram
@@ -2000,21 +2308,125 @@ public:
 };
 ```
 
+## 100. Same Tree
+
+```C++
+class Solution {
+public:
+    bool isSameTree(TreeNode *p, TreeNode *q) {
+        if (!p && !q) return true;
+        if ((p && !q) || (!p && q) || (p->val != q->val)) return false;
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    }
+};
+```
+
+## 101. Symmetric Tree
+
+对称二叉树
+
+```C++
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(root == NULL) return true;
+        return checkLeftRight(root->left, root->right);
+    }
+    
+    bool checkLeftRight(TreeNode* left, TreeNode* right) {
+        if(left==NULL && right==NULL) return true;
+        if(left==NULL || right==NULL || left->val!=right->val) return false;
+        return checkLeftRight(left->left, right->right) && 
+            checkLeftRight(left->right, right->left);
+    }
+};
+```
+
+## 102. Binary Tree Level Order Traversal
+
+层序遍历
+
+1. 递归
+2. 迭代: 队列
+
+```C++
+// 2018-07-12 submission
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Binary Tree Level Order Traversal.
+// Memory Usage: 13.3 MB, less than 13.96% of C++ online submissions for Binary Tree Level Order Traversal.
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> vec;
+        pushOrder(root, vec, 0);
+        return vec;
+    }
+    
+    void pushOrder(TreeNode*root, vector<vector<int>>& vec, int depth) {
+        if(root == NULL) return;
+        if (vec.size() == level) vec.push_back({});
+        vec[depth].push_back(root->val);
+        pushOrder(root->left, vec, depth+1);
+        pushOrder(root->right, vec, depth+1);
+    }
+};
+```
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        if (!root) return {};
+        vector<vector<int>> res;
+        queue<TreeNode*> q{{root}};
+        while (!q.empty()) {
+            vector<int> oneLevel;
+            for (int i = q.size(); i > 0; --i) {
+                TreeNode *t = q.front(); q.pop();
+                oneLevel.push_back(t->val);
+                if (t->left) q.push(t->left);
+                if (t->right) q.push(t->right);
+            }
+            res.push_back(oneLevel);
+        }
+        return res;
+    }
+};
+```
+
+## 103. Binary Tree Zigzag Level Order Traversal
+
+之形层序遍历
+
+```C++
+// Runtime: 3 ms, faster than 63.81% of C++ online submissions for Binary Tree Zigzag Level Order Traversal.
+// Memory Usage: 11.9 MB, less than 99.36% of C++ online submissions for Binary Tree Zigzag Level Order Traversal.
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> vec;
+        pushOrder(root, vec, 0);
+        for(int i = 1; i < vec.size(); i+=2) {
+            reverse(vec[i].begin(), vec[i].end());
+        }
+        return vec;
+    }
+    
+    void pushOrder(TreeNode*root, vector<vector<int>>& vec, int depth) {
+        if(root == NULL) return;
+        if(vec.size() - depth <= 0) vec.resize(depth+1);
+        vec[depth].push_back(root->val);
+        pushOrder(root->left, vec, depth+1);
+        pushOrder(root->right, vec, depth+1);
+    }
+};
+```
+
 ## 104. Maximum Depth of Binary Tree
 
 ```C++
 // 2018-07-21 submission
 // Runtime: 12 ms, faster than 60.67% of C++ online submissions for Maximum Depth of Binary Tree.
 // Memory Usage: 19.6 MB, less than 24.21% of C++ online submissions for Maximum Depth of Binary Tree.
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
@@ -2022,6 +2434,59 @@ public:
         int left_depth = maxDepth(root->left);
         int right_depth = maxDepth(root->right);
         return max(left_depth, right_depth) + 1;
+    }
+};
+```
+
+## 105. Construct Binary Tree from Preorder and Inorder Traversal
+
+前序遍历+中序遍历，构建二叉树
+
+```C++
+// 2018-07-21 submission
+// Runtime: 71 ms, faster than 7.64% of C++ online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
+// Memory Usage: 26 MB, less than 56.32% of C++ online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        return helper(preorder, 0, preorder.size()-1, inorder, 0, inorder.size() - 1);
+    }
+    
+    TreeNode* helper(vector<int>& pre, int pre_l, int pre_r, vector<int>& vin, int vin_l, int vin_r) {
+        if (pre_r - pre_l < 0) return nullptr;
+        TreeNode* root = new TreeNode(pre[pre_l]);
+        for (int pivot = vin_l; pivot <= vin_r; ++pivot) {
+            if (vin[pivot] == pre[pre_l]) {
+                root->left = helper(pre, pre_l+1, pre_l+pivot-vin_l, vin, vin_l, pivot-1);
+                root->right = helper(pre, pre_l+pivot-vin_l+1, pre_r, vin, pivot+1, vin_r);
+                break;
+            }
+        }
+        return root;
+    } 
+};
+```
+
+## 107. Binary Tree Level Order Traversal II
+
+层序遍历(自底向上)
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        vector<vector<int>> vec;
+        pushOrder(root, vec, 0);
+        reverse(vec.begin(), vec.end());
+        return vec;
+    }
+    
+    void pushOrder(TreeNode*root, vector<vector<int>>& vec, int depth) {
+        if(root == NULL) return;
+        if(vec.size() - depth <= 0) vec.resize(depth+1);
+        vec[depth].push_back(root->val);
+        pushOrder(root->left, vec, depth+1);
+        pushOrder(root->right, vec, depth+1);
     }
 };
 ```
@@ -2385,6 +2850,175 @@ public:
 };
 ```
 
+## 118. Pascal's Triangle
+
+杨辉三角生成
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> ret;
+        if(numRows == 0) return ret;
+        ret.push_back(vector<int>{1});
+        if(numRows == 1) return ret;
+        
+        ret.push_back(vector<int>{1, 1});
+        for(int i = numRows - 2; i > 0; i--) {
+            ret.push_back(getNext(ret.back()));
+        }
+        return ret;
+    }
+    
+    vector<int> getNext(vector<int>& curr) {
+        vector<int> ret;
+        ret.push_back(1);
+        for(size_t i = 0; i < curr.size()-1; i++) {
+            ret.push_back(curr[i] + curr[i+1]);
+        }
+        ret.push_back(1);
+        return ret;
+    }
+};
+```
+
+## 119. Pascal's Triangle II
+
+给出第 n 行杨辉三角
+
+```C++
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> ret{1};
+        for(int num = 1; num < rowIndex + 1; num++) {
+            int64_t last = ret.back();
+            int64_t to_push = last * (rowIndex+1-num) / num;
+            ret.push_back(to_push);
+        }
+        return ret;
+    }
+};
+```
+
+## 120. Triangle
+
+三角形从上到下最小路径和
+
+解题思路
+
+1. 复制三角形最后一行，作为用来更新的一位数组。然后逐个遍历这个DP数组，对于每个数字，和它之后的元素比较选择较小的再加上面一行相邻位置的元素做为新的元素，然后一层一层的向上扫描
+
+```C++
+// 2021-09-01 submission
+// Runtime: 8 ms, faster than 32.16% of C++ online submissions for Triangle.
+// Memory Usage: 8.5 MB, less than 49.67% of C++ online submissions for Triangle.
+class Solution {
+public:
+    int minimumTotal(vector<vector<int>>& triangle) {
+        vector<int> dp(triangle.back().begin(), triangle.back().end());
+        for (int k = dp.size()-2; k >= 0; k--) {
+            for (int i = 0; i <= k; i++) {
+                dp[i] = min(dp[i], dp[i+1]) + triangle[k][i];
+            }
+        }
+        return dp[0];
+    }
+};
+```
+
+## 121. Best Time to Buy and Sell Stock ##
+
+解题思路：
+
+1. 题目描述：买进前必须卖出手头已有的；只允许一次交易
+2. 遍历每天的股价，存储遍历到当前位置的最小值，然后用当前值减去最小值即可得到如果当天卖出得到最大的利润。
+3. 注意利润值可能为负数，这时候可以不交易保证不亏本（即返回最小为0）
+
+```C++
+// 2020-01-01 submission
+// Runtime: 8 ms, faster than 97.15% of C++ online submissions for Best Time to Buy and Sell Stock.
+// Memory Usage: 13.3 MB, less than 11.11% of C++ online submissions for Best Time to Buy and Sell Stock.
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        if(prices.empty()) return 0;
+        int minPrice = prices[0];
+        int maxPro = INT_MIN;
+        for(int i = 1; i < prices.size(); i++) {
+            maxPro = max(maxPro, prices[i] - minPrice);
+            minPrice = min(minPrice, prices[i]);
+        }
+        return maxPro > 0 ? maxPro : 0;
+    }
+};
+```
+
+## 122. Best Time to Buy and Sell Stock II ##
+
+解题思路：
+
+1. 题目描述：买进前必须卖出手头已有的；允许无数次交易
+2. 只要前后两数呈递增关系，则可以进行交易。
+
+```C++
+// 2020-01-01 submission
+// Runtime: 12 ms, faster than 76.16% of C++ online submissions for Best Time to Buy and Sell Stock II.
+// Memory Usage: 13.1 MB, less than 63.22% of C++ online submissions for Best Time to Buy and Sell Stock II.
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int maxValue = 0;
+        for(int i = 1; i < prices.size(); i++) {
+            if(prices[i] > prices[i-1])
+                maxValue += (prices[i]-prices[i-1]);
+        }
+        return maxValue;
+    }
+};
+```
+
+## 123. Best Time to Buy and Sell Stock III
+
+解题思路：
+
+1. 题目描述：买进前必须卖出手头已有的；允许最多两次交易
+2. 在数组中间画条线，在左边进行第一次交易，在右边进行第二次交易，来计算两次交易的最大收益和。这样，就将问题简化为只进行一次交易的问题了。
+3. 维护两个数组，分别存储截止到第$x$日交易的最大利润和第$x$日之后交易的最大利润。
+
+```C++
+// 2020-07-23 submission
+// Runtime: 24 ms, faster than 23.09% of C++ online submissions for Best Time to Buy and Sell Stock III.
+// Memory Usage: 13.5 MB, less than 31.24% of C++ online submissions for Best Time to Buy and Sell Stock III.
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        if (prices.empty()) return 0;
+        int days = prices.size();
+        vector<int> front(days, 0), latter(days, 0);
+        
+        int min_price = prices[0], max_price = prices[days-1];
+        for (int i = 1; i < days; i++) {
+            min_price = min(min_price, prices[i]);
+            front[i] = max(front[i-1], prices[i]-min_price);
+            // cout << "front " << prices[i] << " " << front[i] << endl;
+        }
+        for (int i = days - 2; i >= 0; i--) {
+            max_price = max(max_price, prices[i]);
+            latter[i] = max(latter[i+1], max_price-prices[i]);
+            // cout << "latter " << prices[i] << " " << latter[i] << endl;
+        }
+        
+        int max_profit = 0;
+        for (int pivot = 0; pivot < days; pivot++) {
+            max_profit = max(max_profit, front[pivot]+latter[pivot]);
+        }
+        return max_profit;
+
+    }
+};
+```
+
 ## 124. Binary Tree Maximum Path Sum
 
 解题思路
@@ -2396,18 +3030,6 @@ public:
 // 2020-09-09 submission
 // Runtime: 36 ms, faster than 89.91% of C++ online submissions for Binary Tree Maximum Path Sum.
 // Memory Usage: 28.8 MB, less than 25.55% of C++ online submissions for Binary Tree Maximum Path Sum.
-
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
     int maxPathSum(TreeNode* root) {
@@ -2423,6 +3045,25 @@ public:
         // cout << "root: " << root->val << " path_sum: " << root->val + left_sum + right_sum << endl;
         maxVal = max(maxVal, root->val + left_sum + right_sum);
         return max(left_sum, right_sum) + root->val;
+    }
+};
+```
+
+## 125. Valid Palindrome
+
+回文字符串判断(中间混杂了很多无意义的非字母数字字符)
+
+```C++
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int left=0, right=s.length()-1;
+        while(left < right) {
+            if(!isalnum(s[left])) left++;
+            else if(!isalnum(s[right])) right--;
+            else if(tolower(s[left++]) != tolower(s[right--])) return false;
+        }
+        return true;
     }
 };
 ```
@@ -2581,6 +3222,31 @@ public:
 };
 ```
 
+## 135. Candy
+
+解题思路
+
+1. 两次遍历：第一遍从左向右遍历，如果右边的小盆友的等级高，等加一个糖果，这样保证了一个方向上高等级的糖果多。然后再从右向左遍历一遍，如果相邻两个左边的等级高，而左边的糖果又少的话，则左边糖果数为右边糖果数加一
+
+```C++
+class Solution {
+public:
+    int candy(vector<int>& ratings) {
+        int res = 0, n = ratings.size();
+        vector<int> nums(n, 1);
+        for (int i = 0; i < n - 1; ++i) {
+            if (ratings[i + 1] > ratings[i]) nums[i + 1] = nums[i] + 1;
+        }
+        for (int i = n - 1; i > 0; --i) {
+            if (ratings[i - 1] > ratings[i]) nums[i - 1] = max(nums[i - 1], nums[i] + 1);
+        }
+        for (int num : nums) res += num;
+        return res;
+    }
+};
+```
+
+
 ## 136. Single Number
 
 解题思路
@@ -2596,6 +3262,33 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         return std::accumulate(nums.begin(), nums.end(), 0, std::bit_xor<int>());
+    }
+};
+```
+
+## 137. Single Number II
+
+解题思路
+
+1. 题目描述：非空数组，除了 X 只出现一次其他所有元素都出现了三次，找出 X。
+2. 位操作：建立一个 32 位的数字，来统计每一位上 1 出现的个数，如果该整数某一位出现了三次，对3取余为0，这样把每个数的对应位都加起来对3取余，最终剩下来的那个数就是单独的数字。
+
+```C++
+// 2020-09-27 submission
+// Runtime: 16 ms, faster than 80.35% of C++ online submissions for Single Number II.
+// Memory Usage: 9.7 MB, less than 33.57% of C++ online submissions for Single Number II.
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int res = 0;
+        for (int i = 0; i < 32; i++) {
+            int sum = 0;
+            for (int idx = 0; idx < nums.size(); idx++) {
+                sum += (nums[idx] >> i) & 1;
+            }
+            res += (sum % 3) << i; // |= or +=
+        }
+        return res;
     }
 };
 ```
@@ -2809,6 +3502,43 @@ public:
 };
 ```
 
+## 143. Reorder List
+
+重排链表
+
+($L_{0} \rightarrow L_{n} \rightarrow L_{1} \rightarrow L_{n-1} \rightarrow L_{2} \rightarrow L_{n-2} \rightarrow \ldots$)
+
+```C++
+// 2019-09-24 submission
+// Runtime: 36 ms, faster than 81.47% of C++ online submissions for Reorder List.
+// Memory Usage: 18.3 MB, less than 40.59% of C++ online submissions for Reorder List.
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        if(!head || !head->next || !head->next->next) return;
+        // Tips: fast and slow pointer
+        ListNode* fast=head, *slow=head;
+        while(fast->next && fast->next->next) {
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        ListNode* mid = slow->next;
+        slow->next = NULL;
+        stack<ListNode*> ptr_stk;
+        while(mid) {
+            ptr_stk.push(mid);
+            mid = mid->next;
+        }
+        while(!ptr_stk.empty()) {
+            ptr_stk.top()->next = head->next;
+            head->next = ptr_stk.top();
+            ptr_stk.pop();
+            head = head->next->next;
+        }
+    }
+};
+```
+
 ## 146. LRU Cache
 
 ```C++
@@ -2856,6 +3586,67 @@ public:
  * int param_1 = obj->get(key);
  * obj->put(key,value);
  */
+```
+
+## 147. Insertion Sort List
+
+插入排序
+
+```C++
+// 2020-11-03 submission
+// Runtime: 44 ms, faster than 56.99% of C++ online submissions for Insertion Sort List.
+// Memory Usage: 9.7 MB, less than 34.79% of C++ online submissions for Insertion Sort List.
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        ListNode *dummy = new ListNode(-1), *cur = dummy;
+        while (head) {
+            ListNode *t = head->next;
+            cur = dummy;
+            while (cur->next && cur->next->val <= head->val) {
+                cur = cur->next;
+            }
+            head->next = cur->next;
+            cur->next = head;
+            head = t;
+        }
+        return dummy->next;
+    }
+};
+```
+
+## 148. Sort List
+
+归并排序
+
+```C++
+class Solution {
+public:
+
+    ListNode* sortList(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode *slow = head, *fast = head, *pre = head;
+        while (fast && fast->next) {
+            pre = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        pre->next = NULL;
+        return merge(sortList(head), sortList(slow));
+    }
+
+    ListNode* merge(ListNode* l1, ListNode* l2) {
+        if (!l1) return l2;
+        if (!l2) return l1;
+        if (l1->val < l2->val) {
+            l1->next = merge(l1->next, l2);
+            return l1;
+        } else {
+            l2->next = merge(l1, l2->next);
+            return l2;
+        }
+    }
+};
 ```
 
 ## 149. Max Points on a Line
@@ -2986,6 +3777,83 @@ public:
             res_s.append(" ");
         }
         return res_s.substr(0, res_s.length()-1);
+    }
+};
+```
+
+## 152. Maximum Product Subarray
+
+最大子乘积数组
+
+```C++
+// 2018-09-26 submission
+// Runtime: 4 ms, faster than 84.86% of C++ online submissions for Maximum Product Subarray.
+// Memory Usage: 11.9 MB, less than 7.74% of C++ online submissions for Maximum Product Subarray.
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        vector<int> plus(nums.size(), 0);
+        vector<int> minus(nums.size(), 0);
+        int maxValue = nums[0];
+        nums[0]>=0 ? plus[0]=nums[0] : minus[0]=nums[0];
+        for(int i = 1; i < nums.size(); i++) {
+            if(nums[i] == 0) plus[i] = minus[i] = 0;
+            else if(nums[i] > 0) {
+                minus[i] = minus[i-1] * nums[i];
+                plus[i] = plus[i-1]==0 ? nums[i] : (plus[i-1]*nums[i]);
+            }
+            else {
+                plus[i] = minus[i-1] * nums[i];
+                minus[i] = plus[i-1]==0 ? nums[i] : (plus[i-1]*nums[i]);
+            }
+            maxValue = maxValue>plus[i] ? maxValue : plus[i];
+        }
+        return maxValue;
+    }
+};
+```
+
+## 153. Find Minimum in Rotated Sorted Array
+
+解题思路
+
+1. 这里用中间的值 nums[mid] 和右边界值 nums[right] 进行比较，若数组没有旋转或者旋转点在左半段的时候，中间值是一定小于右边界值的，所以要去左半边继续搜索，反之则去右半段查找，最终返回 nums[right] 即可
+
+```C++
+// 2021-03-18 submission
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Find Minimum in Rotated Sorted Array.
+// Memory Usage: 10.2 MB, less than 43.53% of C++ online submissions for Find Minimum in Rotated Sorted Array.
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int l = 0, r = nums.size() - 1, mid = 0;
+        while (l < r) {
+            mid = l + (r - l) / 2;
+            if (nums[mid] > nums[r]) l = mid + 1;
+            else r = mid;
+        }
+        return nums[l];
+    }
+};
+```
+
+## 154. Find Minimum in Rotated Sorted Array II
+
+```C++
+// 2021-03-18 submission
+// Runtime: 4 ms, faster than 94.90% of C++ online submissions for Find Minimum in Rotated Sorted Array II.
+// Memory Usage: 12.2 MB, less than 93.44% of C++ online submissions for Find Minimum in Rotated Sorted Array II.
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int l = 0, r = nums.size() - 1, mid = 0;
+        while (l < r) {
+            while (l < r && nums[l] == nums[r]) ++l;
+            mid = l + (r - l) / 2;
+            if (nums[mid] <= nums[r]) r = mid;
+            else l = mid + 1;
+        }
+        return nums[l];
     }
 };
 ```
@@ -3124,6 +3992,95 @@ public:
 };
 ```
 
+## 167. Two Sum II - Input array is sorted
+
+已排序数组找两数之和
+
+```C++
+// Runtime: 8 ms, faster than 25.45% of C++ online submissions for Two Sum II - Input array is sorted.
+// Memory Usage: 9.6 MB, less than 75.70% of C++ online submissions for Two Sum II - Input array is sorted.
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int leftIdx = 0;
+        int rightIdx = numbers.size() - 1;
+        while(leftIdx <= rightIdx) {
+            auto left = numbers[leftIdx];
+            auto right = numbers[rightIdx];
+            if(left + right < target) leftIdx++;
+            else if(left + right > target) rightIdx--;
+            else return vector<int>{leftIdx+1, rightIdx+1};
+        }
+        return vector<int>{};
+    }
+};
+```
+
+## 168. Excel Sheet Column Title
+
+整数对应到 excel 的列标题
+
+```C++
+class Solution {
+public:
+    string convertToTitle(int n) {
+        string ret;
+        while(n) {
+            ret = char((n-1)%26+'A') + ret;
+            n = (n - 1) / 26;
+        }
+        return ret;
+    }
+};
+```
+
+## 169. Majority Element
+
+解题思路
+
+1. 排序，取中位数即可
+2. 多数投票算法(Boyer-Moore Algorithm)：扫描两次数组，第一趟记录 candidate (初值可以为任何数)和 count (初值为0)，之后，对于数组中每一个元素，首先判断 count 是否为0，若为0，则把 candidate 设置为当前元素。之后判断 candidate 是否与当前元素相等，若相等则count+=1，否则count-=1。第二趟扫描来统计 candidate 出现的次数来判断其是否为多数元素。该算法无法找到一个序列的众数，除非众数出现的次数大于 ⌊n/2⌋ 次
+3. 位操作：检查每一个二进制位是否为1，如果是就累加 count， 如果count>n/2就置为1。
+
+```C++
+// 2020-10-26 submission (多数投票算法)
+// Runtime: 32 ms, faster than 97.99% of C++ online submissions for Majority Element.
+// Memory Usage: 20 MB, less than 99.97% of C++ online submissions for Majority Element.
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int candidate = 0;
+        int count = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (count == 0) candidate = nums[i];
+            if (candidate == nums[i]) count++;
+            else count--;
+        }
+        return candidate;
+    }
+};
+```
+
+```C++
+// 2020-10-26 submission (位操作)
+// Runtime: 56 ms, faster than 34.92% of C++ online submissions for Majority Element.
+// Memory Usage: 20.1 MB, less than 99.97% of C++ online submissions for Majority Element.
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int res = 0;
+        for (int i = 0; i < 32; i++) {
+            int count = 0;
+            for (int j = 0; j < nums.size(); j++) {
+                count += ((nums[j]>>i) & 1);
+            }
+            if (count > nums.size() / 2) res |= (1 << i);
+        }
+        return res;
+    }
+};
+```
+
 ## 173. Binary Search Tree Iterator
 
 解题思路
@@ -3182,6 +4139,26 @@ private:
  */
 ```
 
+## 179. Largest Number
+
+拼接成最大的数
+
+```C++
+class Solution {
+public:
+    string largestNumber(vector<int>& nums) {
+        string res;
+        sort(nums.begin(), nums.end(), [](int a, int b) {
+           return to_string(a) + to_string(b) > to_string(b) + to_string(a); 
+        });
+        for (int i = 0; i < nums.size(); ++i) {
+            res += to_string(nums[i]);
+        }
+        return res[0] == '0' ? "0" : res;
+    }
+};
+```
+
 ## 187. Repeated DNA Sequences
 
 解题思路
@@ -3217,6 +4194,151 @@ public:
 };
 ```
 
+## 188. Best Time to Buy and Sell Stock IV
+
+解题思路
+
+1. 题目描述：买进前必须卖出手头已有的；允许最多$k$次交易
+2. 维护两个变量：全局最优 ***global*** 和局部最优 ***local***。定义局部最优$\it{local}[i][j]$为在到达第$i$天时最多可进行$j$次交易并且最后一次交易在最后一天卖出的最大利润,全局最优$\it{global}[i][j]$为在到达第$i$天时最多可进行$j$次交易的最大利润。
+3. 递推式为 
+$$local[i][j] = max(global[i - 1][j - 1] + max(\it{diff}, 0), local[i - 1][j] + \it{diff})$$
+$$global[i][j] = max(local[i][j], global[i - 1][j])$$ 
+其中局部最优值是比较前一天并少交易一次的全局最优加上大于0的差值，和前一天的局部最优加上差值后相比，两者之中取较大值，而全局最优比较局部最优和前一天的全局最优。
+4. 上面的算法中对于天数需要一次扫描，而每次要对交易次数进行递推式求解，所以时间复杂度是$O(n*k)$，如果是最多进行两次交易，那么复杂度还是$O(n)$。空间上只需要维护当天数据皆可以，所以是$O(k)$，当k=2，则是$O(1)$。
+5. 为了减少运算次数，当$k$远大于天数时，按照 **122. Best Time to Buy and Sell Stock II** 中无限次数交易的方法求解。
+6. 参见
+- Best Time to Buy and Sell Stock III -- LeetCode_Code Ganker-CSDN博客_best time to buy and sell stock iii https://blog.csdn.net/linhuanmars/article/details/23236995
+- [LeetCode] Best Time to Buy and Sell Stock IV 买卖股票的最佳时间之四 - Grandyang - 博客园 https://www.cnblogs.com/grandyang/p/4295761.html
+
+不明白的事情
+
+1. 为什么要j从k遍历到1，而不是1遍历到k
+2. 为什么局部最优第二个加项里面可以直接加diff
+
+```C++
+// 2020-07-24 submission
+// Runtime: 4 ms, faster than 99.86% of C++ online submissions for Best Time to Buy and Sell Stock IV.
+// Memory Usage: 12 MB, less than 87.45% of C++ online submissions for Best Time to Buy and Sell Stock IV.
+class Solution {
+public:
+    int maxProfit(int k, vector<int>& prices) {
+        if (prices.empty()) return 0;
+        if (k > prices.size()) return maxProfit_largetrades(prices);
+        vector<int> local(k+1, 0), global(k+1, 0);
+        for (int day = 1; day < prices.size(); day++) {
+            int diff = prices[day] - prices[day-1];
+            for (int j = k; j >= 1; j--) {
+                local[j] = max(global[j-1]+max(diff, 0), local[j]+diff);
+                global[j] = max(local[j], global[j]);
+                // cout << "day:" << day << " j:" << j << " local:"<<local[j] << " global:" << global[j] << endl;
+            }
+        }
+        return global[k];
+    }
+    
+    int maxProfit_largetrades(vector<int>& prices) {
+        int maxValue = 0;
+        for(int i = 1; i < prices.size(); i++) {
+            if(prices[i] > prices[i-1])
+                maxValue += (prices[i]-prices[i-1]);
+        }
+        return maxValue;
+    }
+};
+```
+
+## 189. Rotate Array
+
+```C++
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        vector<int> t = nums;
+        for (int i = 0; i < nums.size(); ++i) {
+            nums[(i + k) % nums.size()] = t[i];
+        }
+    }
+};
+```
+
+```C++
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        if(nums.empty()) return;
+        int n = nums.size();
+        k = k % n;
+        reverse(nums.begin(), nums.begin()+n-k);
+        reverse(nums.begin()+n-k, nums.end());
+        reverse(nums.begin(), nums.end());
+    }
+};
+```
+
+```C++
+// 1 2 3 4 5 6 7
+// 5 2 3 4 1 6 7
+// 5 6 3 4 1 2 7
+// 5 6 7 4 1 2 3
+// 5 6 7 1 4 2 3
+// 5 6 7 1 2 4 3
+// 5 6 7 1 2 3 4
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        if (nums.empty()) return;
+        int n = nums.size(), start = 0;   
+        while (n && (k %= n)) {
+            for (int i = 0; i < k; ++i) {
+                swap(nums[i + start], nums[n - k + i + start]);
+            }
+            n -= k;
+            start += k;
+        }
+    }
+};
+```
+
+## 190. Reverse Bits
+
+解题思路
+
+1. 位操作：反转
+
+```C++
+// 2018-07-25 submission
+// Runtime: 4 ms, faster than 58.67% of C++ online submissions for Reverse Bits.
+// Memory Usage: 6.4 MB, less than 100.00% of C++ online submissions for Reverse Bits.
+class Solution {
+public:
+    uint32_t reverseBits(uint32_t n) {
+        uint32_t ret = 0u;
+        for(int i = 0; i < 32; i++) {
+            ret = ret << 1;
+            if(n & 1 == 1) ret += 1;
+            n = n >> 1;
+        }
+        return ret;
+    }
+};
+```
+
+## 191. Number of 1 Bits
+
+```C++
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        int num = 0;
+        while(n) {
+            num++;
+            n &= n-1;
+        }
+        return num;
+    }
+};
+```
+
 ## 198. House Robber
 
 解题思路
@@ -3240,6 +4362,56 @@ public:
             maxSum.push_back(temp + nums[i]);
         }
         return *max_element(maxSum.begin(), maxSum.end());
+    }
+};
+```
+
+## 199. Binary Tree Right Side View
+
+1. 层序遍历: 遍历每层的节点时，把下一层的节点都存入到queue中，每当开始新一层节点的遍历之前，先把新一层最后一个节点值存到结果中
+2. 前序遍历
+
+```C++
+// Runtime: 5 ms, faster than 11.88% of C++ online submissions for Binary Tree Right Side View.
+// Memory Usage: 12.1 MB, less than 21.88% of C++ online submissions for Binary Tree Right Side View.
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode *root) {
+        vector<int> res;
+        if (!root) return res;
+        queue<TreeNode*> q;
+        q.push(root);
+        while (!q.empty()) {
+            res.push_back(q.back()->val);
+            int size = q.size();
+            for (int i = 0; i < size; ++i) {
+                TreeNode *node = q.front();
+                q.pop();
+                if (node->left) q.push(node->left);
+                if (node->right) q.push(node->right);
+            }
+        }
+        return res;
+    }
+};
+```
+
+```C++
+// Runtime: 8 ms, faster than 10.04% of C++ online submissions for Binary Tree Right Side View.
+// Memory Usage: 11.8 MB, less than 90.91% of C++ online submissions for Binary Tree Right Side View.
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> ret;
+        helper(root, 1, ret);
+        return ret;
+    }
+
+    void helper(TreeNode* node, int level, vector<int>& values){
+        if(!node) return; 
+        if(values.size() < level) values.   push_back(node->val);
+        helper(node->right, level+1, values);
+        helper(node->left, level+1, values);
     }
 };
 ```
@@ -3303,6 +4475,39 @@ public:
             ++i;
         }
         return (m << i);
+    }
+};
+```
+
+## 206. Reverse Linked List
+
+反转链表
+
+```C++
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *newHead = NULL;
+        while (head) {
+            ListNode *t = head->next;
+            head->next = newHead;
+            newHead = head;
+            head = t;
+        }
+        return newHead;
+    }
+};
+```
+
+```C++
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode *newHead = reverseList(head->next);
+        head->next->next = head;
+        head->next = NULL;
+        return newHead;
     }
 };
 ```
@@ -5423,52 +6628,5 @@ public:
         recursive(root->left, res);
         recursive(root->right, res);
         res.push_back(root->val);
-    }
-};
-
-1.   Max Points on a Line
-解题思路：直线由点和斜率决定，斜率可以通过pair表示，注意正负号的位置。比如斜率1.5可以表示为<3,2>，所以这里要取最大公约数得到互质数防止斜率重复。另外x==0和y==0和x==0&&y==0要单独考虑，尤其是x==0&&y==0的重复点，可以加到任何结果集里面。注意取符号时候不要通过乘法运算防止溢出。整体思路通过双层循环解决，第一层循环决定直线的点，第二层循环建立一个pair到数量的map映射，最后得到最大值。
-
-Runtime: 68 ms, faster than 25.76% of C++ online submissions
-Memory Usage: 11.5 MB, less than 44.87% of C++ online submissions
-class Solution {
-public:
-    int maxPoints(vector<vector<int>>& points) {
-        if (points.empty()) return 0;
-        int max_num = 0;
-        for (int i = 0; i < points.size(); i++) {
-            map<pair<int, int>, int> collect;
-            int max_cur = 0;
-            for (int j = 0; j < points.size(); j++) {
-                max_cur = max(max_cur, gcd(points[i][0]-points[j][0], points[i][1]-points[j][1], collect));
-            }
-            max_num = max(max_num, max_cur + collect[pair<int, int>{0, 0}]);
-            // cout << max_num <<endl;
-        }
-        return max_num;
-    }
-    
-    int gcd(int x, int y, map<pair<int, int>, int>& collect) {
-        int cnt = 0;
-        if ( x == 0 && y == 0) {
-            ++collect[pair<int, int>{0, 0}];
-        }
-        else if (x == 0) {
-            cnt = ++collect[pair<int, int>{0, 1}];
-        }
-        else if (y == 0) {
-            cnt = ++collect[pair<int, int>{1, 0}];
-        }
-        else {
-            int t = 0;
-            int a = abs(x), b = abs(y), op = abs(x)/x*abs(y)/y;
-            while(b > 0) {
-                t = a % b;
-                a = b;
-                b = t;
-            }
-            cnt = ++collect[pair<int, int>{abs(x)/a*op, abs(y)/a}];
-        }
-        return cnt;
     }
 };

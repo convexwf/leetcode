@@ -86,19 +86,22 @@ public:
 
 ## $\color{red}188$. Best Time to Buy and Sell Stock IV ##
 
-+ 解题思路：
-    1. 题目描述：买进前必须卖出手头已有的；允许最多$k$次交易
-    2. 维护两个变量：全局最优 ***global*** 和局部最优 ***local***。定义局部最优$\it{local}[i][j]$为在到达第$i$天时最多可进行$j$次交易并且最后一次交易在最后一天卖出的最大利润,全局最优$\it{global}[i][j]$为在到达第$i$天时最多可进行$j$次交易的最大利润。
-    3. 递推式为 
-     $$local[i][j] = max(global[i - 1][j - 1] + max(\it{diff}, 0), local[i - 1][j] + \it{diff})$$ $$global[i][j] = max(local[i][j], global[i - 1][j])$$ 其中局部最优值是比较前一天并少交易一次的全局最优加上大于0的差值，和前一天的局部最优加上差值后相比，两者之中取较大值，而全局最优比较局部最优和前一天的全局最优。
-    4. 上面的算法中对于天数需要一次扫描，而每次要对交易次数进行递推式求解，所以时间复杂度是$O(n*k)$，如果是最多进行两次交易，那么复杂度还是$O(n)$。空间上只需要维护当天数据皆可以，所以是$O(k)$，当k=2，则是$O(1)$。
-    5. 为了减少运算次数，当$k$远大于天数时，按照**122. Best Time to Buy and Sell Stock II**中无限次数交易的方法求解。
-    6. 参见
-    + Best Time to Buy and Sell Stock III -- LeetCode_Code Ganker-CSDN博客_best time to buy and sell stock iii https://blog.csdn.net/linhuanmars/article/details/23236995
-    + [LeetCode] Best Time to Buy and Sell Stock IV 买卖股票的最佳时间之四 - Grandyang - 博客园 https://www.cnblogs.com/grandyang/p/4295761.html
-+ 不明白的事情
-    1. 为什么要j从k遍历到1，而不是1遍历到k
-    2. 为什么局部最优第二个加项里面可以直接加diff
+解题思路
+
+1. 题目描述：买进前必须卖出手头已有的；允许最多$k$次交易
+2. 维护两个变量：全局最优 ***global*** 和局部最优 ***local***。定义局部最优$\it{local}[i][j]$为在到达第$i$天时最多可进行$j$次交易并且最后一次交易在最后一天卖出的最大利润,全局最优$\it{global}[i][j]$为在到达第$i$天时最多可进行$j$次交易的最大利润。
+3. 递推式为 
+$$local[i][j] = max(global[i - 1][j - 1] + max(\it{diff}, 0), local[i - 1][j] + \it{diff})$$ $$global[i][j] = max(local[i][j], global[i - 1][j])$$ 其中局部最优值是比较前一天并少交易一次的全局最优加上大于0的差值，和前一天的局部最优加上差值后相比，两者之中取较大值，而全局最优比较局部最优和前一天的全局最优。
+4. 上面的算法中对于天数需要一次扫描，而每次要对交易次数进行递推式求解，所以时间复杂度是$O(n*k)$，如果是最多进行两次交易，那么复杂度还是$O(n)$。空间上只需要维护当天数据皆可以，所以是$O(k)$，当k=2，则是$O(1)$。
+5. 为了减少运算次数，当$k$远大于天数时，按照**122. Best Time to Buy and Sell Stock II**中无限次数交易的方法求解。
+6. 参见
+   + Best Time to Buy and Sell Stock III -- LeetCode_Code Ganker-CSDN博客_best time to buy and sell stock iii https://blog.csdn.net/linhuanmars/article/details/23236995
+   + [LeetCode] Best Time to Buy and Sell Stock IV 买卖股票的最佳时间之四 - Grandyang - 博客园 https://www.cnblogs.com/grandyang/p/4295761.html
+
+不明白的事情
+
+1. 为什么要j从k遍历到1，而不是1遍历到k
+2. 为什么局部最优第二个加项里面可以直接加diff
 
 ```C++
 // 2020-07-24 submission
