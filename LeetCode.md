@@ -129,6 +129,42 @@ public:
 };
 ```
 
+## 4. Median of Two Sorted Arrays
+
+解题思路
+
+1. 二分法: 转化为找第 K 个数字，中位数即 (m + n + 1) / 2 和 (m + n + 2) / 2 的平均数。在 nums1 和 nums2 中查找第 K/2 个元素，注意这里由于两个数组的长度不定，所以有可能某个数组没有第 K/2 个数字，所以需要先 check 一下，数组中到底存不存在第 K/2 个数字，如果存在就取出来，否则就赋值上一个整型最大值（目的是要在 nums1 或者 nums2 中先淘汰 K/2 个较小的数字，判断的依据就是看 midVal1 和 midVal2 谁更小，但如果某个数组的个数都不到 K/2 个，自然无法淘汰，所以将其对应的 midVal 值设为整型最大值，以保证其不会被淘汰），若某个数组没有第 K/2 个数字，则淘汰另一个数组的前 K/2 个数字即可。
+
+边界条件
+
+1. 另外一个数组比本数组的所有数字都大
+
+```C++
+// Runtime: 31 ms, faster than 59.38% of C++ online submissions for Median of Two Sorted Arrays.
+// Memory Usage: 89.1 MB, less than 97.25% of C++ online submissions for Median of Two Sorted Arrays.
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size(), n = nums2.size();
+        int mid1 = (m + n + 1) / 2, mid2 = (m + n + 2) / 2;
+        return (findKthNumber(nums1, nums2, 0, 0, mid1) + findKthNumber(nums1, nums2, 0, 0, mid2)) / 2.0;
+    }
+    
+    int findKthNumber(vector<int>& nums1, vector<int>& nums2, int i, int j, int k) {
+        if (i >= nums1.size()) return nums2[j + k - 1];
+        if (j >= nums2.size()) return nums1[i + k - 1];
+        if (k == 1) return min(nums1[i], nums2[j]);
+        int midVal1 = (i + k / 2 - 1 < nums1.size()) ? nums1[i + k / 2 - 1] : INT_MAX;
+        int midVal2 = (j + k / 2 - 1 < nums2.size()) ? nums2[j + k / 2 - 1] : INT_MAX;
+        if (midVal1 < midVal2) {
+            return findKthNumber(nums1, nums2, i + k / 2, j, k - k / 2);
+        } else {
+            return findKthNumber(nums1, nums2, i, j + k / 2, k - k / 2);
+        }
+    }
+};
+```
+
 ## 5. Longest Palindromic Substring
 
 解题思路
@@ -166,6 +202,33 @@ public:
         int len = *max_it;
         string res = s.substr(idx, len);
         return res;
+    }
+};
+```
+
+## 6. ZigZag Conversion
+
+```C++
+// Runtime: 15 ms, faster than 41.31% of C++ online submissions for ZigZag Conversion.
+// Memory Usage: 8.1 MB, less than 96.26% of C++ online submissions for ZigZag Conversion.
+class Solution {
+public:
+    string convert(string s, int numRows) {
+
+        if (numRows == 1) return s;
+
+        string ret;
+        int n = s.size();
+        int cycleLen = 2 * numRows - 2;
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j + i < n; j += cycleLen) {
+                ret += s[j + i];
+                if (i != 0 && i != numRows - 1 && j + cycleLen - i < n)
+                    ret += s[j + cycleLen - i];
+            }
+        }
+        return ret;
     }
 };
 ```
@@ -4479,6 +4542,132 @@ public:
 };
 ```
 
+## 202. Happy Number
+
+对于某一个正整数，如果对其各个位上的数字分别平方，然后再加起来得到一个新的数字，再进行同样的操作，如果最终结果变成了1，则说明是快乐数
+
+解题思路
+
+1. 用 HashSet 来记录所有出现过的数字，然后每出现一个新数字，在 HashSet 中查找看是否存在，若不存在则加入表中，若存在则跳出循环，并且判断此数是否为1，若为1返回true，不为1返回false
+2. 关于非快乐数有个特点，循环的数字中必定会有4
+
+```C++
+class Solution {
+public:
+    bool isHappy(int n) {
+        unordered_set<int> st;
+        while (n != 1) {
+            int sum = 0;
+            while (n) {
+                sum += (n % 10) * (n % 10);
+                n /= 10;
+            }
+            n = sum;
+            if (st.count(n)) break;
+            st.insert(n);
+        }
+        return n == 1;
+    }
+};
+```
+
+```C++
+class Solution {
+public:
+    bool isHappy(int n) {
+        while (n != 1 && n != 4) {
+            int sum = 0;
+            while (n) {
+                sum += (n % 10) * (n % 10);
+                n /= 10;
+            }
+            n = sum;
+        }
+        return n == 1;
+    }
+};
+```
+
+## 203. Remove Linked List Elements
+
+从链表中移除所有给定值的节点
+
+解题思路
+
+1. 迭代: 判断下一个结点的值跟给定值相同的话，直接跳过下一个结点，将next指向下下一个结点，而根本不断开下一个结点的next，更不用删除下一个结点了。最后还要验证头结点是否需要删除，要的话直接返回下一个结点
+2. 递归: 通过递归调用到链表末尾，然后回来，需要要删的元素，将链表next指针指向下一个元素即可
+
+```C++
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if (!head) return NULL;
+        ListNode *cur = head;
+        while (cur->next) {
+            if (cur->next->val == val) cur->next = cur->next->next;
+            else cur = cur->next;
+        }
+        return head->val == val ? head->next : head;
+    }
+};
+```
+
+```C++
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if (!head) return NULL;
+        head->next = removeElements(head->next, val);
+        return head->val == val ? head->next : head;
+    }
+};
+```
+
+## 204. Count Primes
+
+给定一个非负数n，让我们求小于n的质数的个数
+
+解题思路
+
+1. 埃拉托斯特尼筛法(Sieve of Eratosthenes): [埃拉托斯特尼筛法 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95)
+
+```C++
+class Solution {
+public:
+    int countPrimes(int n) {
+        int res = 0;
+        vector<bool> prime(n, true);
+        for (int i = 2; i < n; ++i) {
+            if (!prime[i]) continue;
+            ++res;
+            for (int j = 2; i * j < n; ++j) {
+                prime[i * j] = false;
+            }
+        }
+        return res;
+    }
+};
+```
+
+## 205. Isomorphic Strings
+
+同构字符串: 所有出现的字符都必须替换为另一个字符，同时保留字符的顺序。没有两个字符可以映射到同一个字符，但一个字符可以映射到它自己
+
+```C++
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        int m1[256] = {0}, m2[256] = {0}, n = s.size();
+        for (int i = 0; i < n; ++i) {
+            if (m1[s[i]] != m2[t[i]]) return false;
+            m1[s[i]] = i + 1;
+            m2[t[i]] = i + 1;
+        }
+        return true;
+    }
+};
+```
+
 ## 206. Reverse Linked List
 
 反转链表
@@ -4508,6 +4697,39 @@ public:
         head->next->next = head;
         head->next = NULL;
         return newHead;
+    }
+};
+```
+
+## 207. Course Schedule (****)
+
+拓扑排序: 每个课程都有先修课程，问是否会出现无法修完的情况
+
+```C++
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> graph(numCourses, vector<int>());
+        vector<int> in(numCourses);
+        for (auto a : prerequisites) {
+            graph[a[1]].push_back(a[0]);
+            ++in[a[0]];
+        }
+        queue<int> q;
+        for (int i = 0; i < numCourses; ++i) {
+            if (in[i] == 0) q.push(i);
+        }
+        while (!q.empty()) {
+            int t = q.front(); q.pop();
+            for (auto a : graph[t]) {
+                --in[a];
+                if (in[a] == 0) q.push(a);
+            }
+        }
+        for (int i = 0; i < numCourses; ++i) {
+            if (in[i] != 0) return false;
+        }
+        return true;
     }
 };
 ```
@@ -4650,6 +4872,98 @@ public:
         return res == INT_MAX ? 0 : res;
     }
 };
+```
+
+## 210. Course Schedule II
+
+```C++
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        vector<int> res;
+        vector<vector<int> > graph(numCourses, vector<int>(0));
+        vector<int> in(numCourses, 0);
+        for (auto &a : prerequisites) {
+            graph[a.second].push_back(a.first);
+            ++in[a.first];
+        }
+        queue<int> q;
+        for (int i = 0; i < numCourses; ++i) {
+            if (in[i] == 0) q.push(i);
+        }
+        while (!q.empty()) {
+            int t = q.front();
+            res.push_back(t);
+            q.pop();
+            for (auto &a : graph[t]) {
+                --in[a];
+                if (in[a] == 0) q.push(a);
+            }
+        }
+        if (res.size() != numCourses) res.clear();
+        return res;
+    }
+};
+```
+
+## 211. Design Add and Search Words Data Structure
+
+```C++
+// 2020-12-01 submission
+// Runtime: 86 ms, faster than 58.91% of C++ online submissions for Design Add and Search Words Data Structure.
+// Memory Usage: 43.2 MB, less than 77.18% of C++ online submissions for Design Add and Search Words Data Structure.
+class WordDictionary {
+public:
+    struct TrieNode {
+    public:
+        TrieNode *child[26];
+        bool isWord;
+        TrieNode() : isWord(false) {
+            for (auto &a : child) a = NULL;
+        }
+    };
+    
+    WordDictionary() {
+        root = new TrieNode();
+    }
+    
+    // Adds a word into the data structure.
+    void addWord(string word) {
+        TrieNode *p = root;
+        for (auto &a : word) {
+            int i = a - 'a';
+            if (!p->child[i]) p->child[i] = new TrieNode();
+            p = p->child[i];
+        }
+        p->isWord = true;
+    }
+
+    // Returns if the word is in the data structure. A word could
+    // contain the dot character '.' to represent any one letter.
+    bool search(string word) {
+        return searchWord(word, root, 0);
+    }
+    
+    bool searchWord(string &word, TrieNode *p, int i) {
+        if (i == word.size()) return p->isWord;
+        if (word[i] == '.') {
+            for (auto &a : p->child) {
+                if (a && searchWord(word, a, i + 1)) return true;
+            }
+            return false;
+        } else {
+            return p->child[word[i] - 'a'] && searchWord(word, p->child[word[i] - 'a'], i + 1);
+        }
+    }
+    
+private:
+    TrieNode *root;
+};
+
+// Your WordDictionary object will be instantiated and called as such:
+// WordDictionary wordDictionary;
+// wordDictionary.addWord("word");
+// wordDictionary.search("pattern");
 ```
 
 ## 212. Word Search II
@@ -4928,7 +5242,7 @@ public:
     }
 };
 ```
-
+ 
 ## 228. Summary Ranges (2020-10-29)
 
 解题思路
@@ -4958,6 +5272,42 @@ public:
             if(helper[i][0] == helper[i][1]) res.push_back(to_string(helper[i][0]));
             else res.push_back(to_string(helper[i][0]) + "->" + to_string(helper[i][1]));
         }
+        return res;
+    }
+};
+```
+
+## 229. Majority Element II (2020-11-19)
+
+解题思路
+
+1. 题目描述：求出现次数大于 n/3 的数字，而且限定空间复杂度为 O(1)。
+2. 任意一个数组出现次数大于 n/3 的数最多有两个。证明：如果有超过两个，也就是至少三个数字满足“出现的次数大于 n/3”，那么就意味着数组里总共有超过 3*(n/3) = n 个数字，这与已知的数组大小矛盾
+3. 多数投票法：找出两个候选数进行投票，需要两遍遍历，第一遍历找出两个候选数，第二遍遍历重新投票验证这两个候选数是否符合题意
+
+```C++
+// 2020-11-19 submission
+// Runtime: 28 ms, faster than 76.33% of C++ online submissions for Majority Element II.
+// Memory Usage: 16.2 MB, less than 7.61% of C++ online submissions for Majority Element II.
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        vector<int> res;
+        int a = 0, b = 0, cnt1 = 0, cnt2 = 0, n = nums.size();
+        for (int num : nums) {
+            if (num == a) ++cnt1;
+            else if (num == b) ++cnt2;
+            else if (cnt1 == 0) { a = num; cnt1 = 1; }
+            else if (cnt2 == 0) { b = num; cnt2 = 1; }
+            else { --cnt1; --cnt2; }
+        }
+        cnt1 = cnt2 = 0;
+        for (int num : nums) {
+            if (num == a) ++cnt1;
+            else if (num == b) ++cnt2;
+        }
+        if (cnt1 > n / 3) res.push_back(a);
+        if (cnt2 > n / 3) res.push_back(b);
         return res;
     }
 };
@@ -4996,6 +5346,103 @@ public:
         if (k == 0) return val;
         if (--k == 0) return root->val;
         return helper(root->right, k);
+    }
+};
+```
+
+## 231. Power of Two
+
+```C++
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        return (n > 0) && (!(n & (n - 1)));
+    } 
+};
+```
+
+## 233. Number of Digit One
+
+比给定数小的所有数中1出现的个数
+
+解题思路
+
+1. 100 以内的数字，除了10-19之间有 11 个 ‘1’ 之外，其余都只有1个。如果不考虑 [10, 19] 区间上那多出来的 10 个 ‘1’ 的话，那么在对任意一个两位数，十位数上的数字(加1)就代表1出现的个数，这时候再把多出的 10 个加上即可。比如 56 就有 (5+1)+10=16 个。如何知道是否要加上多出的 10 个呢，就要看十位上的数字是否大于等于2，是的话就要加上多余的 10 个 '1'。那么就可以用 (x+8)/10 来判断一个数是否大于等于2。对于三位数区间 [100, 199] 内的数也是一样，除了 [110, 119] 之间多出的10个数之外，共 21 个 ‘1’，其余的每 10 个数的区间都只有 11 个 ‘1’，所以 [100, 199] 内共有 21 + 11 * 9 = 120 个 ‘1’。那么现在想想 [0, 999] 区间内 ‘1’ 的个数怎么求？根据前面的结果，[0, 99] 内共有 20 个，[100, 199] 内共有 120 个，而其他每 100 个数内 ‘1’ 的个数也应该符合之前的规律，即也是 20 个，那么总共就有 120 + 20 * 9 = 300 个 ‘1’。那么还是可以用相同的方法来判断并累加1的个数
+
+```C++
+class Solution {
+public:
+    int countDigitOne(int n) {
+        int res = 0, a = 1, b = 1;
+        while (n > 0) {
+            res += (n + 8) / 10 * a + (n % 10 == 1) * b;
+            b += n % 10 * a;
+            a *= 10;
+            n /= 10;
+        }
+        return res;
+    }
+};
+```
+
+## 235. Lowest Common Ancestor of a Binary Search Tree
+
+公共节点: 二叉搜索树
+
+```C++
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root) return NULL;
+        if (root->val > max(p->val, q->val)) 
+            return lowestCommonAncestor(root->left, p, q);
+        else if (root->val < min(p->val, q->val)) 
+            return lowestCommonAncestor(root->right, p, q);
+        else return root;
+    }
+};
+```
+
+## 236. Lowest Common Ancestor of a Binary Tree
+
+公共节点: 普通二叉树
+
+解题思路
+
+1. 如果当前结点不等于p或q，p和q要么分别位于左右子树中，要么同时位于左子树，或者同时位于右子树
+   - 若p和q分别位于左右子树中，那么对左右子结点调用递归函数，会分别返回p和q结点的位置，而当前结点正好就是p和q的最小共同父结点，直接返回当前结点即可
+   - 若p和q同时位于左子树，这里有两种情况，一种情况是 left 会返回p和q中较高的那个位置，而 right 会返回空，所以最终返回非空的 left 即可; 还有一种情况是会返回p和q的最小父结点，就是说当前结点的左子树中的某个结点才是p和q的最小父结点，会被返回。
+   - 若p和q同时位于右子树，同样这里有两种情况，一种情况是 right 会返回p和q中较高的那个位置，而 left 会返回空，所以最终返回非空的 right 即可，还有一种情况是会返回p和q的最小父结点，就是说当前结点的右子树中的某个结点才是p和q的最小父结点，会被返回
+
+```C++
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+       if (!root || p == root || q == root) return root;
+       TreeNode *left = lowestCommonAncestor(root->left, p, q);
+       TreeNode *right = lowestCommonAncestor(root->right, p , q);
+       if (left && right) return root;
+       return left ? left : right;
+    }
+};
+```
+
+## 237. Delete Node in a Linked List
+
+删除链表的一个节点，不提供链表的起点
+
+解题思路
+
+1. 先把当前节点的值用下一个节点的值覆盖，然后删除下一个节点即可
+
+```C++
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val;
+        ListNode *tmp = node->next;
+        node->next = tmp->next;
+        delete tmp;
     }
 };
 ```
@@ -5095,6 +5542,60 @@ public:
             else if (matrix[x][y] > target) --y;
         }
         return false;
+    }
+};
+```
+
+## 241. Different Ways to Add Parentheses
+
+解题思路
+
+1. 分治法: 先建立一个结果 res 数组，然后遍历 input 中的字符，在每个运算符的地方，将 input 分成左右两部分，从而扔到递归中去计算，从而可以得到两个整型数组 left 和 right，分别表示作用两部分各自添加不同的括号所能得到的所有不同的值，再分别从两个数组中取数字进行当前的运算符计算，然后把结果存到 res 中即可。当然，若最终结果 res 中还是空的，那么只有一种情况，input 本身就是一个数字，直接转为整型存入结果 res 中即可
+
+```C++
+class Solution {
+public:
+    vector<int> diffWaysToCompute(string input) {
+        vector<int> res;
+        for (int i = 0; i < input.size(); ++i) {
+            if (input[i] == '+' || input[i] == '-' || input[i] == '*') {
+                vector<int> left = diffWaysToCompute(input.substr(0, i));
+                vector<int> right = diffWaysToCompute(input.substr(i + 1));
+                for (int j = 0; j < left.size(); ++j) {
+                    for (int k = 0; k < right.size(); ++k) {
+                        if (input[i] == '+') res.push_back(left[j] + right[k]);
+                        else if (input[i] == '-') res.push_back(left[j] - right[k]);
+                        else res.push_back(left[j] * right[k]);
+                    }
+                }
+            }
+        }
+        if (res.empty()) res.push_back(stoi(input));
+        return res;
+    }
+};
+```
+
+## 242. Valid Anagram
+
+两个词是否互为变位词(组成字母一样)
+
+```c++
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.size() != t.size()) return false;
+        unordered_map<char, int> table;
+        for(char c : s) {
+            if(table.find(c)==table.end()) table[c] = 1;
+            else table[c]++;
+        }
+        for(char c : t) {
+            if(table.find(c)==table.end()) return false;
+            else if(table[c]<=0) return false;
+            else table[c]--;
+        }
+        return true;
     }
 };
 ```
@@ -5246,6 +5747,104 @@ public:
             if (nums[j] != 0) {
                 ++i;
                 swap(nums[i], nums[j]);
+            }
+        }
+    }
+};
+```
+
+## 287. Find the Duplicate Number
+
+解题思路
+
+1. 题目描述：给定一个包含 n + 1 个整数的数组，其中每一个整数均介于 [1, n] 之间，其中至少有一个重复元素存在（鸽巢原理）。假设只有一个数字出现重复，找出这个重复的数字。要求不能改动原数组（排序），O(1) extra space，less than O(n2) runtime complexity
+2. 位操作：遍历每一位，然后对于 32 位中的每一个位 bit，都遍历一遍从 0 到 n-1，将 0 到 n-1 中的每一个数都跟 bit 相 与，若大于0，则计数器 cnt1 自增1。同时 0 到 n-1 也可以当作 nums 数组的下标，从而让 nums 数组中的每个数字也跟 bit 相与，若大于0，则计数器 cnt2 自增1。最后比较若 cnt2 大于 cnt1，则将 bit 加入结果 res 中。因为对于每一位，0 到 n-1 中所有数字中该位上的 1 的个数应该是固定的，如果 nums 数组中所有数字中该位上 1 的个数多了，说明重复数字在该位上一定是 1，这样我们把重复数字的所有为 1 的位都累加起来，就可以还原出这个重复数字。
+3. 快慢指针：
+
+```C++
+// 2020-10-28 submission (位操作)
+// Runtime: 16 ms, faster than 70.60% of C++ online submissions for Find the Duplicate Number.
+// Memory Usage: 11.4 MB, less than 18.91% of C++ online submissions for Find the Duplicate Number.
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int res = 0, n = nums.size();
+        for (int i = 0; i < 32; ++i) {
+            int bit = (1 << i), cnt1 = 0, cnt2 = 0;
+            for (int k = 0; k < n; ++k) {
+                if ((k & bit) > 0) ++cnt1;
+                if ((nums[k] & bit) > 0) ++cnt2;
+            }
+            if (cnt2 > cnt1) res += bit;
+        }
+        return res;
+    }
+};
+```
+
+```C++
+// 2020-10-28 submission (快慢指针)
+// Runtime: 8 ms, faster than 99.60% of C++ online submissions for Find the Duplicate Number.
+// Memory Usage: 11.3 MB, less than 18.91% of C++ online submissions for Find the Duplicate Number.
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int slow = 0, fast = 0, t = 0;
+        while (true) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+            if (slow == fast) {
+                while (true) {
+                    slow = nums[slow];
+                    t = nums[t];
+                    if (slow == t) return slow;
+                }
+            }
+        }
+        return -1;
+    }
+};
+```
+
+## 289. Game of Life
+
+细胞自动机，每一个位置有两种状态，1为活细胞，0为死细胞，对于每个位置都满足如下的条件：
+1. 如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡
+2. 如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活
+3. 如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡
+4. 如果死细胞周围正好有三个活细胞，则该位置死细胞复活
+
+解题思路
+
+1. 要求 O(1) 复杂度，可以通过状态机转换同时知道其未更新和已更新的状态。最后对所有状态对2取余，则状态0和2就变成死细胞，状态1和3就是活细胞
+    状态0： 死细胞转为死细胞
+    状态1： 活细胞转为活细胞
+    状态2： 活细胞转为死细胞
+    状态3： 死细胞转为活细胞
+
+```c++
+class Solution {
+public:
+    void gameOfLife(vector<vector<int> >& board) {
+        int m = board.size(), n = m ? board[0].size() : 0;
+        vector<int> dx{-1, -1, -1, 0, 1, 1, 1, 0};
+        vector<int> dy{-1, 0, 1, 1, 1, 0, -1, -1};
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                int cnt = 0;
+                for (int k = 0; k < 8; ++k) {
+                    int x = i + dx[k], y = j + dy[k];
+                    if (x >= 0 && x < m && y >= 0 && y < n && (board[x][y] == 1 || board[x][y] == 2)) {
+                        ++cnt;
+                    }
+                }
+                if (board[i][j] && (cnt < 2 || cnt > 3)) board[i][j] = 2;
+                else if (!board[i][j] && cnt == 3) board[i][j] = 3;
+            }
+        }
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                board[i][j] %= 2;
             }
         }
     }

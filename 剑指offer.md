@@ -1,5 +1,11 @@
 # 剑指offer
 
+[CodeTop企业题库](https://codetop.cc/home)
+
+## 队列实现栈/栈实现队列
+
+## atoi
+
 ## 链表排序
 
 ```C++
@@ -594,15 +600,27 @@ public:
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        if (!head || !head->next) return head;
-        ListNode* p = head, *q = head->next, *r = nullptr;
-        while (p) {
-            p->next = r;
-            r = p;
-            p = q;
-            if (q) q = q->next;
+        ListNode *newHead = NULL;
+        while (head) {
+            ListNode *t = head->next;
+            head->next = newHead;
+            newHead = head;
+            head = t;
         }
-        return r;
+        return newHead;
+    }
+};
+```
+
+```C++
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode *newHead = reverseList(head->next);
+        head->next->next = head;
+        head->next = NULL;
+        return newHead;
     }
 };
 ```
