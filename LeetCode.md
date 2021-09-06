@@ -1924,6 +1924,88 @@ public:
 };
 ```
 
+## 79. Word Search
+
+```C++
+class Solution {
+public:
+    bool exist(vector<vector<char>>& board, string word) {
+        if (board.empty() || board[0].empty()) return false;
+        int m = board.size(), n = board[0].size();
+        vector<vector<bool>> visited(m, vector<bool>(n));
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (search(board, word, 0, i, j, visited)) return true;
+            }
+        }
+        return false;
+    }
+    bool search(vector<vector<char>>& board, string word, int idx, int i, int j, vector<vector<bool>>& visited) {
+        if (idx == word.size()) return true;
+        int m = board.size(), n = board[0].size();
+        if (i < 0 || j < 0 || i >= m || j >= n || visited[i][j] || board[i][j] != word[idx]) return false;
+        visited[i][j] = true;
+        bool res = search(board, word, idx + 1, i - 1, j, visited) 
+                 || search(board, word, idx + 1, i + 1, j, visited)
+                 || search(board, word, idx + 1, i, j - 1, visited)
+                 || search(board, word, idx + 1, i, j + 1, visited);
+        visited[i][j] = false;
+        return res;
+    }
+};
+```
+
+## 80. Remove Duplicates from Sorted Array II
+
+给定一个排序数组 nums，就地删除重复项使得重复项最多出现两次，并返回新长度
+
+```C++
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int pre = 0, cur = 1, cnt = 1, n = nums.size();
+        while (cur < n) {
+            if (nums[pre] == nums[cur] && cnt == 0) ++cur;
+            else {
+                if (nums[pre] == nums[cur]) --cnt;
+                else cnt = 1;
+                nums[++pre] = nums[cur++];
+            }
+        }
+        return nums.empty() ? 0 : pre + 1;
+    }
+};
+```
+
+## 81. Search in Rotated Sorted Array II
+
+```C++
+// 2021-03-18 submission
+// Runtime: 8 ms, faster than 64.87% of C++ online submissions for Search in Rotated Sorted Array II.
+// Memory Usage: 13.8 MB, less than 98.98% of C++ online submissions for Search in Rotated Sorted Array II.
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+        int l = 0, r = nums.size(), mid = 0;
+        while (l < r) {
+            mid = l + (r - l) / 2;
+            if (nums[mid] == target) return true;
+            while (l < r && nums[l] == nums[mid]) ++l;
+            if (l >= mid) continue;
+            if (nums[l] < nums[mid]) {
+                if (nums[l] <= target && target < nums[mid]) r = mid;
+                else l = mid + 1;
+            }
+            else if (nums[l] > nums[mid]){
+                if (nums[mid] < target && target <= nums[r - 1]) l = mid + 1;
+                else r = mid;
+            }
+        }
+        return false;
+    }
+};
+```
+
 ## 82. Remove Duplicates from Sorted List II
 
 给定一个已排序的链表，删除所有具有重复数字的节点
@@ -2055,12 +2137,43 @@ public:
 };
 ```
 
-### 87. Scramble String
-解题思路：s1 和 s2 是 scramble 的话，那么必然存在一个在 s1 上的长度 l1，将 s1 分成 s11 和 s12 两段，同样有 s21 和 s22，那么要么 s11 和 s21 是 scramble 的并且 s12 和 s22 是 scramble 的；要么 s11 和 s22 是 scramble 的并且 s12 和 s21 是 scramble 的。
-递归方法是将字符串按照不同长度进行切割，然后让子递归函数判断是否成立。
-注意一个词和它自身是 scramble 的。
-为了减少复杂度，每次切割前可以采用排序或者统计字母频率等。
+## 86. Partition List
 
+```C++
+class Solution {
+public:
+    ListNode *partition(ListNode *head, int x) {
+        ListNode *dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode *pre = dummy, *cur = head;;
+        while (pre->next && pre->next->val < x) pre = pre->next;
+        cur = pre;
+        while (cur->next) {
+            if (cur->next->val < x) {
+                ListNode *tmp = cur->next;
+                cur->next = tmp->next;
+                tmp->next = pre->next;
+                pre->next = tmp;
+                pre = pre->next;
+            } else {
+                cur = cur->next;
+            }
+        }
+        return dummy->next;
+    }
+};
+```
+
+## 87. Scramble String
+
+解题思路
+
+1. s1 和 s2 是 scramble 的话，那么必然存在一个在 s1 上的长度 l1，将 s1 分成 s11 和 s12 两段，同样有 s21 和 s22，那么要么 s11 和 s21 是 scramble 的并且 s12 和 s22 是 scramble 的；要么 s11 和 s22 是 scramble 的并且 s12 和 s21 是 scramble 的。
+2. 递归方法是将字符串按照不同长度进行切割，然后让子递归函数判断是否成立。
+注意一个词和它自身是 scramble 的。
+3. 为了减少复杂度，每次切割前可以采用排序或者统计字母频率等。
+
+```C++
 // 2020-07-16 submission
 // Runtime: 12 ms, faster than 79.75% of C++ online submissions
 // Memory Usage: 8.9 MB, less than 73.29% of C++ online submissions
@@ -2094,85 +2207,53 @@ public:
         return false;
     }
 };
+```
 
-93. Restore IP Addresses
-解题思路：递归，从某一位开始，连续截取1位、2位或者3位数字，然后将后续数字进行递归处理
-（1）IP地址要去除前导0
-"010010"注意不能转化为"0.1.0.10"
-边界条件：长度小于4或者大于12
+## 88. Merge Sorted Array
 
-// 2020-07-07 submission
-Runtime: 8 ms, faster than 26.99% of C++ online submissions
-Memory Usage: 6.8 MB, less than 41.62% of C++ online submissions
+```C++
 class Solution {
 public:
-    vector<string> restoreIpAddresses(string s) {
-        vector<int> candidates;
-        vector<string> result;
-        helper(s, candidates, result, 0);
-        return result;
-    }
-    
-    void helper(string& s, vector<int>& candidates, vector<string>& result, int idx) {
-        if (candidates.size() > 4) return;
-        if (s.length() == idx) {
-            if (candidates.size() == 4) {
-                stringstream sstream;
-                sstream << candidates[0] << "." << candidates[1] << "." << candidates[2] << "." << candidates[3];
-                result.push_back(sstream.str());
-            }
-            return;
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int i = m - 1, j = n - 1, k = m + n - 1;
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) nums1[k--] = nums1[i--];
+            else nums1[k--] = nums2[j--];
         }
-        for (int i = 0; i < 3 && idx + i < s.length(); i++) {
-            string c_str = s.substr(idx, i + 1);
-            int c = stoi(c_str);
-            if(c > 255 || (c_str[0]=='0' && c_str.length()>1)) continue;
-            candidates.push_back(c);
-            helper(s, candidates, result, idx + i + 1);
-            candidates.pop_back();
-        }
+        while (j >= 0) nums1[k--] = nums2[j--];
     }
 };
+```
 
-95. Unique Binary Search Trees II
-解题思路：递归，注意因为是BST，选定一个pivot后，比pivot小的交给左子树，比pivot大的交给右子树。递归形式是最后回收所有可能的子树形式。
+## 89. Gray Code
 
-// 2020-07-08 submission
-Runtime: 16 ms, faster than 69.66% of C++ online submissions
-Memory Usage: 14.8 MB, less than 9.78% of C++ online submissions
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+格雷码是一种二进制数字系统，其中两个连续值仅相差一位
+
+解题思路
+
+1. 镜面排列: ![](res/2021-09-05-15-00-02.png)
+
+```C++
 class Solution {
 public:
-    vector<TreeNode*> generateTrees(int n) {
-        return helper(1, n);
-    }
-    
-    vector<TreeNode*> helper(int left, int right) {
-        vector<TreeNode*> res, left_res, right_res;
-        for (int pivot = left; pivot <= right; pivot++) {
-            if (left == pivot) left_res = vector<TreeNode*>{NULL};
-            else left_res = helper(left, pivot - 1);
-            if (right == pivot) right_res = vector<TreeNode*>{NULL};
-            else right_res = helper(pivot + 1, right);
-            
-            for (int i = 0; i < left_res.size()*right_res.size(); i++) {
-                TreeNode* new_node = new TreeNode(pivot);
-                new_node->left = left_res[i % left_res.size()];
-                new_node->right = right_res[i / left_res.size()];
-                res.push_back(new_node);
+    vector<int> grayCode(int n) {
+        vector<int> res{0};
+        for (int i = 0; i < n; ++i) {
+            int size = res.size();
+            for (int j = size - 1; j >= 0; --j) {
+                res.push_back(res[j] | (1 << i));
             }
         }
         return res;
     }
 };
+```
+
+## 90. Subsets II
+
+```C++
+
+```
 
 ## 92. Reverse Linked List II
 
@@ -2209,6 +2290,15 @@ public:
 
 ## 93. Restore IP Addresses
 
+解题思路
+
+1. 递归，从某一位开始，连续截取1位、2位或者3位数字，然后将后续数字进行递归处理。
+
+边界条件
+
+1. IP地址要去除前导0。"010010"注意不能转化为"0.1.0.10"
+2. 长度小于4或者大于12
+
 ```C++
 // Runtime: 4 ms, faster than 64.95% of C++ online submissions for Restore IP Addresses.
 // Memory Usage: 6.7 MB, less than 56.22% of C++ online submissions for Restore IP Addresses.
@@ -2239,6 +2329,42 @@ public:
             helper(s, candidates, result, idx + i + 1);
             candidates.pop_back();
         }
+    }
+};
+```
+
+## 95. Unique Binary Search Trees II
+
+解题思路
+
+1. 递归，注意因为是BST，选定一个pivot后，比pivot小的交给左子树，比pivot大的交给右子树。递归形式是最后回收所有可能的子树形式。
+
+```C++
+// 2020-07-08 submission
+// Runtime: 16 ms, faster than 69.66% of C++ online submissions
+// Memory Usage: 14.8 MB, less than 9.78% of C++ online submissions
+class Solution {
+public:
+    vector<TreeNode*> generateTrees(int n) {
+        return helper(1, n);
+    }
+    
+    vector<TreeNode*> helper(int left, int right) {
+        vector<TreeNode*> res, left_res, right_res;
+        for (int pivot = left; pivot <= right; pivot++) {
+            if (left == pivot) left_res = vector<TreeNode*>{NULL};
+            else left_res = helper(left, pivot - 1);
+            if (right == pivot) right_res = vector<TreeNode*>{NULL};
+            else right_res = helper(pivot + 1, right);
+            
+            for (int i = 0; i < left_res.size()*right_res.size(); i++) {
+                TreeNode* new_node = new TreeNode(pivot);
+                new_node->left = left_res[i % left_res.size()];
+                new_node->right = right_res[i / left_res.size()];
+                res.push_back(new_node);
+            }
+        }
+        return res;
     }
 };
 ```
