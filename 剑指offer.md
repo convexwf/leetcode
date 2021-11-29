@@ -11,51 +11,29 @@
 ```C++
 class Solution {
 public:
+
     ListNode* sortList(ListNode* head) {
-        if(!head) return NULL;
-        return helper(head, NULL);
+        if (!head || !head->next) return head;
+        ListNode *slow = head, *fast = head, *pre = head;
+        while (fast && fast->next) {
+            pre = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        pre->next = NULL;
+        return merge(sortList(head), sortList(slow));
     }
-    
-    ListNode* helper(ListNode* left, ListNode* right) {
-        if(left->next == right) {
-            left->next = NULL;
-            return left;
+
+    ListNode* merge(ListNode* l1, ListNode* l2) {
+        if (!l1) return l2;
+        if (!l2) return l1;
+        if (l1->val < l2->val) {
+            l1->next = merge(l1->next, l2);
+            return l1;
+        } else {
+            l2->next = merge(l1, l2->next);
+            return l2;
         }
-        ListNode* middle = get_mid(left, right);
-        right = helper(middle, right);
-        left = helper(left, middle); 
-        
-        ListNode* dummy = new ListNode(0);
-        ListNode* cur =  dummy;
-        while(left && right) {
-            if(left->val < right->val) {
-                cur->next = left;
-                left = left->next;
-            }
-            else {
-                cur->next = right; 
-                right = right->next;
-            }
-            cur = cur->next;
-        }
-        while(left || right) {
-            cur->next = left ? left : right;
-            left ? (left=left->next) : (right=right->next);
-            cur = cur->next;
-        }
-        cur->next = NULL;
-        cur = dummy->next;
-        delete dummy;
-        return cur;
-    }
-        
-    ListNode* get_mid(ListNode* left, ListNode* right) {
-        ListNode* fast_ptr = left, *slow_ptr = left;
-        while(fast_ptr!=right && fast_ptr->next!=right) {
-            fast_ptr = fast_ptr->next->next;
-            slow_ptr = slow_ptr->next;
-        }
-        return slow_ptr;
     }
 };
 ```
@@ -431,17 +409,51 @@ public:
 ## 两个栈实现队列
 
 ```C++
+class myStack {
+    myStack() {
+
+    }
+
+    void push(int val) {
+        topVal = val;
+        q.push(val);
+    }
+
+    void pop() {
+        int size = q.size();
+        while (size > 2) {
+            q.push(q.front());
+            q.pop();
+            --size;
+        }
+        topVal = q.front();
+        q.push(topVal);
+        q.pop();
+        q.pop();
+        
+    }
+
+    int top() {
+        return topVal;
+    }
+
+    queue<int> q;
+    int topVal;
+}
+```
+
+```C++
 class CQueue {
 public:
     CQueue() {
 
     }
     
-    void appendTail(int value) {
+    void push_back(int value) {
         stk1.push(value);
     }
     
-    int deleteHead() {
+    int pop_front() {
         if (stk1.empty() && stk2.empty()) return -1;
         if (stk2.empty()) {
             while (!stk1.empty()) {
@@ -452,6 +464,14 @@ public:
         int res = stk2.top();
         stk2.pop();
         return res;
+    }
+
+    bool empty() {
+        return stk1.empty() && stk2.empty()
+    }
+
+    int front() {
+
     }
 
     stack<int> stk1;
@@ -593,6 +613,31 @@ public:
     }
 };
 ```
+
+## 数独解法
+
+```C++
+
+int32_t[9] flags;
+
+void DFS(vector<vector<char> > matrix, int idx, int &validCnt) {
+
+    if (idx == 81) validCnt++；
+
+    int x = idx / 9;
+    int y = idx % 9;
+    if (matrix[i][j] != '.') {
+
+        int row = x;
+        int col = y;
+        
+
+        DFS(matrix, idx + 1);
+    }
+    else DFS(matrix, idx + 1);
+}
+```
+
 
 ## 反转链表
 
