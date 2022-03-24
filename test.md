@@ -1,0 +1,357 @@
+
+## [345] Reverse Vowels of a String
+
+解题思路
+
+1. 双指针法
+
+边界条件
+
+1. 注意大写字母
+
+```C++
+// 2021-12-16 submission
+// 480/480 cases passed
+// Runtime: 8 ms, faster than 70.15% of C++ online submissions.
+// Memory Usage: 8 MB, less than 38.59% of C++ online submissions.
+class Solution {
+public:
+    string reverseVowels(string s) {
+        unordered_set<char> m{'a', 'i', 'u', 'e', 'o'};
+        int n = s.length();
+        int l = 0, r = n - 1;
+        while (l < r) {
+            while (l < n && !m.count(tolower(s[l]))) ++l;
+            while (r >= 0 && !m.count(tolower(s[r]))) --r;
+            if (l < r) {
+                swap(s[l], s[r]);
+                ++l;
+                --r;
+            }
+        }
+        return s;
+    }
+};
+```
+
+## [434] Number of Segments in a String
+
+```C++
+// 2021-12-16 submission
+// 27/27 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 6.1 MB, less than 90.99% of C++ online submissions.
+class Solution {
+public:
+    int countSegments(string s) {
+        int cnt = 0;
+        bool is_space = true;
+        for (char c : s) {
+            if (c != ' ' && is_space) {
+                is_space = false;
+                ++cnt;
+            }
+            if (c == ' ') is_space = true;
+        }
+        return cnt;
+    }
+};
+```
+
+## [482] License Key Formatting
+
+边界条件
+
+1. k 正好可以整除 n
+2. 小写字母需要转为大写字母
+
+```C++
+// 2021-12-17 submission
+// 38/38 cases passed
+// Runtime: 8 ms, faster than 80.96% of C++ online submissions.
+// Memory Usage: 8.3 MB, less than 67.18% of C++ online submissions.
+class Solution {
+public:
+    string licenseKeyFormatting(string s, int k) {
+        int cnt = 0;
+        for (char c : s) {
+            if (isalnum(c)) ++cnt;
+        }
+
+        string res;
+        for (char c : s) {
+            if (isalnum(c)) {
+                cnt--;
+                res.append(1, toupper(c));
+                if (cnt % k == 0 && cnt != 0) 
+                    res.append(1, '-');
+            }
+        }
+        return res;
+    }
+};
+```
+
+## [504] Base 7
+
+```C++
+// 2021-12-15 submission
+// 241/241 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 6 MB, less than 51.71% of C++ online submissions.
+class Solution {
+public:
+    string convertToBase7(int num) {
+        bool minus = (num < 0);
+        num = abs(num);
+        string res;
+        while(num) {
+            res.append(1, '0' + num % 7);
+            num /= 7;
+        }
+        if (minus) res.append(1, '-');
+        reverse(res.begin(), res.end());
+        return res.empty() ? "0" : res;
+    }
+};
+```
+
+## [506] Relative Ranks
+
+解题思路
+
+1. 哈希表：首先存储元素到下标的映射，然后对数组进行降序排序。
+2. map：对方法 1 直接进行简化，使用红黑树直接合并映射和排序。
+
+```C++
+// 2021-12-16 submission
+// 17/17 cases passed
+// Runtime: 16 ms, faster than 45.84% of C++ online submissions.
+// Memory Usage: 10.9 MB, less than 44.38% of C++ online submissions.
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& score) {
+        vector<string> res(score.size());
+        unordered_map<int, int> m;
+        for (int i = 0; i < score.size(); i++) {
+            m[score[i]] = i;
+        }
+        sort(score.begin(), score.end(), greater<int>());
+        for (int i = 0; i < score.size(); i++) {
+            if (i == 0) res[m[score[i]]] = "Gold Medal";
+            else if (i == 1) res[m[score[i]]] = "Silver Medal";
+            else if (i == 2) res[m[score[i]]] = "Bronze Medal";
+            else res[m[score[i]]] = to_string(i+1);
+        }
+        return res;
+    }
+};
+```
+
+```C++
+// 2021-12-16 submission
+// 17/17 cases passed
+// Runtime: 15 ms, faster than 47.98% of C++ online submissions.
+// Memory Usage: 10.9 MB, less than 41.8% of C++ online submissions.
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& score) {
+        
+        map<int, int> m;
+        for (int i = 0; i < score.size(); i++) {
+            m[score[i]] = i;
+        }
+        
+        vector<string> res(score.size());
+        int cnt = 0;
+        for (auto it = m.rbegin(); it != m.rend(); ++it) {
+            ++cnt;
+            if (cnt == 1) res[it->second] = "Gold Medal";
+            else if (cnt == 2) res[it->second] = "Silver Medal";
+            else if (cnt == 3) res[it->second] = "Bronze Medal";
+            else res[it->second] = to_string(cnt);
+        }
+        return res;
+    }
+};
+```
+
+## [509] Fibonacci Number
+
+```C++
+// 2021-12-16 submission
+// 31/31 cases passed
+// Runtime: 12 ms, faster than 28.87% of C++ online submissions.
+// Memory Usage: 5.9 MB, less than 39.97% of C++ online submissions.
+class Solution {
+public:
+    int fib(int n) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        return fib(n-1) + fib(n-2);
+    }
+};
+```
+
+## [566] Reshape the Matrix
+
+```C++
+// 2021-12-16 submission
+// 57/57 cases passed
+// Runtime: 8 ms, faster than 91.8% of C++ online submissions.
+// Memory Usage: 10.6 MB, less than 81.57% of C++ online submissions.
+class Solution {
+public:
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        int m = mat.size(), n = mat[0].size();
+        if (m * n != r * c) return mat;
+        vector<vector<int>> res(r, vector<int>(c));
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int seq = i * n + j;
+                res[seq / c][seq % c] = mat[i][j];
+            }
+        }
+        return res;
+    }
+};
+```
+
+## [628] Maximum Product of Three Numbers
+
+解题思路
+
+1. 分类讨论：(1) 全正数：最大的三个数之乘积 （2）：全负数：最大的三个数之乘积 （3）正负混合：最大的数和最小两个数的乘积或者最大的三个数之乘积。
+2. 在 (1) 的基础上，因为只需要求最大和最小的几个数，可将时间复杂度降低为 O(n)。
+
+```C++
+// 2021-12-17 submission
+// 92/92 cases passed
+// Runtime: 61 ms, faster than 16.89% of C++ online submissions.
+// Memory Usage: 27.8 MB, less than 35.13% of C++ online submissions.
+class Solution {
+public:
+    int maximumProduct(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        int val1 = nums[n-1] * nums[n-2] * nums[n-3];
+        int val2 = nums[n-1] * nums[0] * nums[1];
+        return max(val1, val2);
+    }
+};
+```
+
+```C++
+// 2021-12-17 submission
+// 92/92 cases passed
+// Runtime: 44 ms, faster than 62.61% of C++ online submissions.
+// Memory Usage: 27.8 MB, less than 35.13% of C++ online submissions.
+class Solution {
+public:
+    int maximumProduct(vector<int>& nums) {
+        int A = INT_MIN, B = INT_MIN, C = INT_MIN;
+        int a = INT_MAX, b = INT_MAX;
+        for (int num : nums) {
+            // max three numbers
+            if (num > A) {
+                C = B; B = A; A = num;
+            }
+            else if (A > num && num > B) {
+                C = B; B = num;
+            }
+            else if (B > num && num > C) {
+                C = num;
+            }
+            // min two numbers
+            if (num < a) {
+                b = a; a = num
+            }
+            else if (a < num && num < b) {
+                b = num;
+            }
+        }
+        return max(A * B * C, a * b * A);
+    }
+};
+```
+
+## [697] Degree of an Array
+
+解题思路
+
+1. 首先统计数组元素的出现次数，以及数组元素的右边界。得到最大出现次数后，从左往右遍历，依次计算元素是否符合最大出现次数，如果符合就计算区间长度，并将出现次数减一，防止后续重复计算。
+
+```C++
+// 2021-12-15 submission
+// 89/89 cases passed
+// Runtime: 44 ms, faster than 56.21% of C++ online submissions.
+// Memory Usage: 25.5 MB, less than 67.47% of C++ online submissions.
+class Solution {
+public:
+    int findShortestSubArray(vector<int>& nums) {
+        unordered_map<int, int> m;
+        unordered_map<int, int> right;
+        int max_val = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            ++m[nums[i]];
+            right[nums[i]] = i;
+            if (m[nums[i]] > max_val) {
+                max_val = m[nums[i]];
+            }
+        }
+
+        int res = INT_MAX;
+        for (int i = 0; i < nums.size(); i++) {
+            if (m[nums[i]] == max_val) {
+                res = min(res, right[nums[i]] - i + 1);
+                --m[nums[i]];
+            }
+        }
+        return res;
+    }
+};
+```
+
+## [709] To Lower Case
+
+```C++
+// 2021-12-16 submission
+// 114/114 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 6.2 MB, less than 51.19% of C++ online submissions.
+class Solution {
+public:
+    string toLowerCase(string s) {
+        string res;
+        for (char c : s) {
+            if ('A' <= c && c <= 'Z') res.append(1, c + ('a' - 'A'));
+            else res.append(1, c);
+        }
+        return res;
+    }
+};
+```
+
+## [717] 1-bit and 2-bit Characters
+
+```C++
+// 2021-12-16 submission
+// 93/93 cases passed
+// Runtime: 3 ms, faster than 71.94% of C++ online submissions.
+// Memory Usage: 9.7 MB, less than 65.33% of C++ online submissions.
+class Solution {
+public:
+    bool isOneBitCharacter(vector<int>& bits) {
+        if (bits.size() == 1) return true;
+
+        int n = bits.size();
+        vector<bool> dp(n, true);
+        if (bits[n-2] == 1) dp[n-2] = false;
+        for (int i = n-3; i >= 0; i--) {
+            if (bits[i] == 1) dp[i] = dp[i+2];
+            else dp[i] = dp[i+1];
+        }
+        return dp[0];
+    }
+};
+```

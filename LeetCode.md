@@ -13,8 +13,9 @@
 
 ```C++
 // 2020-12-14 submission
-// Runtime: 8 ms, faster than 95.31% of C++ online submissions for Two Sum.
-// Memory Usage: 9.4 MB, less than 77.01% of C++ online submissions for Two Sum.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 95.31% of C++ online submissions.
+// Memory Usage: 9.4 MB, less than 77.01% of C++ online submissions.
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -42,8 +43,9 @@ public:
 
 ```C++
 // 2018-04-12 submission
-// Runtime: 28 ms, faster than 90.44% of C++ online submissions for Add Two Numbers.
-// Memory Usage: 71.6 MB, less than 33.89% of C++ online submissions for Add Two Numbers.
+// ?/? cases passed
+// Runtime: 28 ms, faster than 90.44% of C++ online submissions.
+// Memory Usage: 71.6 MB, less than 33.89% of C++ online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -89,8 +91,9 @@ public:
 
 ```C++
 // 2018-04-13 submission
-// Runtime: 8 ms, faster than 88.24% of C++ online submissions for Longest Substring Without Repeating Characters.
-// Memory Usage: 8.6 MB, less than 64.19% of C++ online submissions for Longest Substring Without Repeating Characters.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 88.24% of C++ online submissions.
+// Memory Usage: 8.6 MB, less than 64.19% of C++ online submissions.
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -111,8 +114,9 @@ public:
 
 ```C++
 // 2018-04-13 submission
-// Runtime: 12 ms, faster than 76.61% of C++ online submissions for Longest Substring Without Repeating Characters.
-// Memory Usage: 8.5 MB, less than 74.50% of C++ online submissions for Longest Substring Without Repeating Characters.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 76.61% of C++ online submissions.
+// Memory Usage: 8.5 MB, less than 74.50% of C++ online submissions.
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -140,8 +144,8 @@ public:
 1. 另外一个数组比本数组的所有数字都大
 
 ```C++
-// Runtime: 31 ms, faster than 59.38% of C++ online submissions for Median of Two Sorted Arrays.
-// Memory Usage: 89.1 MB, less than 97.25% of C++ online submissions for Median of Two Sorted Arrays.
+// Runtime: 31 ms, faster than 59.38% of C++ online submissions.
+// Memory Usage: 89.1 MB, less than 97.25% of C++ online submissions.
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
@@ -172,8 +176,8 @@ public:
 1. 马拉车算法
 
 ```C++
-// Runtime: 8 ms, faster than 95.79% of C++ online submissions for Longest Palindromic Substring.
-// Memory Usage: 9.1 MB, less than 61.47% of C++ online submissions for Longest Palindromic Substring.
+// Runtime: 8 ms, faster than 95.79% of C++ online submissions.
+// Memory Usage: 9.1 MB, less than 61.47% of C++ online submissions.
 class Solution {
 public:
     string longestPalindrome(string s) {
@@ -209,8 +213,8 @@ public:
 ## 6. ZigZag Conversion
 
 ```C++
-// Runtime: 15 ms, faster than 41.31% of C++ online submissions for ZigZag Conversion.
-// Memory Usage: 8.1 MB, less than 96.26% of C++ online submissions for ZigZag Conversion.
+// Runtime: 15 ms, faster than 41.31% of C++ online submissions.
+// Memory Usage: 8.1 MB, less than 96.26% of C++ online submissions.
 class Solution {
 public:
     string convert(string s, int numRows) {
@@ -261,8 +265,8 @@ public:
 1. 正则匹配：(1) sp 和 pp 都到了末尾，表示匹配结束 (2) 如果 p[pp+1] 为 *，
 
 ```C++
-// Runtime: 24 ms, faster than 23.92% of C++ online submissions for Regular Expression Matching.
-// Memory Usage: 6.1 MB, less than 97.79% of C++ online submissions for Regular Expression Matching.
+// Runtime: 24 ms, faster than 23.92% of C++ online submissions.
+// Memory Usage: 6.1 MB, less than 97.79% of C++ online submissions.
 class Solution {
 public:
     bool isMatch(string s, string p) {
@@ -286,8 +290,8 @@ public:
 ## 11. Container With Most Water
 
 ```C++
-// Runtime: 80 ms, faster than 25.22% of C++ online submissions for Container With Most Water.
-// Memory Usage: 58.9 MB, less than 30.39% of C++ online submissions for Container With Most Water.
+// Runtime: 80 ms, faster than 25.22% of C++ online submissions.
+// Memory Usage: 58.9 MB, less than 30.39% of C++ online submissions.
 class Solution {
 public:
     int maxArea(vector<int>& height) {
@@ -314,8 +318,8 @@ public:
 1. 给输入字符串数组排序，有共同字母多的两个字符串会被排到一起，所以只需要找首尾字母串的共同前缀即可。为了防止溢出错误，只遍历而这种较短的那个的长度，找出共同前缀返回即可。
 
 ```C++
-// Runtime: 4 ms, faster than 72.48% of C++ online submissions for Longest Common Prefix.
-// Memory Usage: 9.3 MB, less than 43.57% of C++ online submissions for Longest Common Prefix.
+// Runtime: 4 ms, faster than 72.48% of C++ online submissions.
+// Memory Usage: 9.3 MB, less than 43.57% of C++ online submissions.
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
@@ -331,8 +335,8 @@ public:
 ## 15. 3Sum
 
 ```C++
-// Runtime: 76 ms, faster than 66.86% of C++ online submissions for 3Sum.
-// Memory Usage: 20 MB, less than 58.46% of C++ online submissions for 3Sum.
+// Runtime: 76 ms, faster than 66.86% of C++ online submissions.
+// Memory Usage: 20 MB, less than 58.46% of C++ online submissions.
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
@@ -359,8 +363,8 @@ public:
 ## 16. 3Sum Closest
 
 ```C++
-// Runtime: 4 ms, faster than 97.67% of C++ online submissions for 3Sum Closest.
-// Memory Usage: 9.8 MB, less than 88.84% of C++ online submissions for 3Sum Closest.
+// Runtime: 4 ms, faster than 97.67% of C++ online submissions.
+// Memory Usage: 9.8 MB, less than 88.84% of C++ online submissions.
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {
@@ -385,8 +389,8 @@ public:
 ## 17. Letter Combinations of a Phone Number
 
 ```C++
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Letter Combinations of a Phone Number.
-// Memory Usage: 6.5 MB, less than 84.70% of C++ online submissions for Letter Combinations of a Phone Number.
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.5 MB, less than 84.70% of C++ online submissions.
 class Solution {
 public:
     
@@ -422,8 +426,9 @@ public:
 
 ```C++
 // 2018-08-05 submission
-// Runtime: 4 ms, faster than 80.26% of C++ online submissions for Remove Nth Node From End of List.
-// Memory Usage: 10.7 MB, less than 57.60% of C++ online submissions for Remove Nth Node From End of List.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 80.26% of C++ online submissions.
+// Memory Usage: 10.7 MB, less than 57.60% of C++ online submissions.
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
@@ -447,8 +452,8 @@ public:
 1. 栈: 开始遍历输入字符串，如果当前字符为左半边括号时，则将其压入栈中，如果遇到右半边括号时，若此时栈为空，则直接返回 false，如不为空，则取出栈顶元素，若为对应的左半边括号，则继续循环，反之返回 false
 
 ```C++
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Valid Parentheses.
-// Memory Usage: 6.3 MB, less than 64.43% of C++ online submissions for Valid Parentheses.
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.3 MB, less than 64.43% of C++ online submissions.
 class Solution {
 public:
     bool isValid(string s) {
@@ -478,8 +483,9 @@ public:
 
 ```C++
 // 2020-06-28 submission
-// Runtime: 12 ms, faster than 29.96% of C++ online submissions for Merge Two Sorted Lists.
-// Memory Usage: 15 MB, less than 5.72% of C++ online submissions for Merge Two Sorted Lists.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 29.96% of C++ online submissions.
+// Memory Usage: 15 MB, less than 5.72% of C++ online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -515,8 +521,8 @@ public:
 ## 22. Generate Parentheses
 
 ```C++
-// Runtime: 4 ms, faster than 73.69% of C++ online submissions for Generate Parentheses.
-// Memory Usage: 7.2 MB, less than 95.80% of C++ online submissions for Generate Parentheses.
+// Runtime: 4 ms, faster than 73.69% of C++ online submissions.
+// Memory Usage: 7.2 MB, less than 95.80% of C++ online submissions.
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
@@ -542,8 +548,9 @@ public:
 
 ```C++
 // 2020-06-28 submission
-// Runtime: 24 ms, faster than 59.80% of C++ online submissions for Merge k Sorted Lists.
-// Memory Usage: 13.9 MB, less than 27.89% of C++ online submissions for Merge k Sorted Lists.
+// ?/? cases passed
+// Runtime: 24 ms, faster than 59.80% of C++ online submissions.
+// Memory Usage: 13.9 MB, less than 27.89% of C++ online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -578,8 +585,9 @@ public:
 
 ```C++
 // 2020-06-28 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Swap Nodes in Pairs.
-// Memory Usage: 7.6 MB, less than 45.58% of C++ online submissions for Swap Nodes in Pairs.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 7.6 MB, less than 45.58% of C++ online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -604,8 +612,9 @@ public:
 
 ```C++
 // 2020-06-28 submission
-// Runtime: 12 ms, faster than 90.02% of C++ online submissions for Reverse Nodes in k-Group.
-// Memory Usage: 11.5 MB, less than 61.58% of C++ online submissions for Reverse Nodes in k-Group.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 90.02% of C++ online submissions.
+// Memory Usage: 11.5 MB, less than 61.58% of C++ online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -670,6 +679,7 @@ public:
 
 ```C++
 // 2020-06-28 submission
+// ?/? cases passed
 // Runtime: 4 ms, faster than 98.77% of C++ online submissions
 // Memory Usage: 6.9 MB, less than 53.41% of C++ online submissions
 class Solution {
@@ -701,6 +711,7 @@ public:
 （3）边界条件：被除数是INT_MAX，除数是INT_MIN
 （4）边界条件：被除数是0
 // 2020-07-04 submission
+// ?/? cases passed
 // Runtime: 4 ms, faster than 66.28% of C++ online submissions
 // Memory Usage: 5.9 MB, less than 75.15% of C++ online submissions
 class Solution {
@@ -734,6 +745,7 @@ s.substr(pos,n)：若pos的值超过了string的大小，则substr函数会抛�
 边界条件：查找字符串长度为0
 
 // 2020-07-06 submission
+// ?/? cases passed
 // Runtime: 1044 ms, faster than 20.74% of C++ online submissions
 // Memory Usage: 16.7 MB, less than 77.82% of C++ online submissions
 ```C++ code
@@ -798,8 +810,9 @@ public:
 
 ```C++
 // 2021-04-03 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Longest Valid Parentheses.
-// Memory Usage: 7.4 MB, less than 21.88% of C++ online submissions for Longest Valid Parentheses.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 7.4 MB, less than 21.88% of C++ online submissions.
 class Solution {
 public:
     int longestValidParentheses(string s) {
@@ -829,8 +842,9 @@ public:
 
 ```C++
 // 2020-07-14 submission
-// Runtime: 4 ms, faster than 88.40% of C++ online submissions for Trapping Rain Water.
-// Memory Usage: 14.1 MB, less than 71.67% of C++ online submissions for Trapping Rain Water.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 88.40% of C++ online submissions.
+// Memory Usage: 14.1 MB, less than 71.67% of C++ online submissions.
 class Solution {
 public:
     int trap(vector<int>& height) {
@@ -857,10 +871,10 @@ public:
 
 解题思路
 
-1. 动态规划，
-    dp[i][j] 表示 p 前 i 个字符 和 s 前 j 个字符是否匹配
-    if p[i-1] == s[j-1] or p[i-1] == '?', dp[i][j]=dp[i-1][j-1]
-    if p[i-1] == '*', dp[i][j]=dp[i-1][j] or dp[i][j-1]
+1. 动态规划
+- dp[i][j] 表示 p 前 i 个字符 和 s 前 j 个字符是否匹配
+- if p[i-1] == s[j-1] or p[i-1] == '?', dp[i][j]=dp[i-1][j-1]
+- if p[i-1] == '*', dp[i][j]=dp[i-1][j] or dp[i][j-1]
 
 边界条件：
 
@@ -869,8 +883,9 @@ public:
 
 ```C++
 // 2020-09-14 submission
-// Runtime: 176 ms, faster than 40.96% of C++ online submissions for Wildcard Matching.
-// Memory Usage: 6.6 MB, less than 89.86% of C++ online submissions for Wildcard Matching.
+// ?/? cases passed
+// Runtime: 176 ms, faster than 40.96% of C++ online submissions.
+// Memory Usage: 6.6 MB, less than 89.86% of C++ online submissions.
 class Solution {
 public:
     bool isMatch(string s, string p) {
@@ -903,8 +918,9 @@ public:
 
 ```C++
 // 2021-03-11 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Jump Game II.
-// Memory Usage: 8.1 MB, less than 100.00% of C++ online submissions for Jump Game II.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 8.1 MB, less than 100.00% of C++ online submissions.
 class Solution {
 public:
     int jump(vector<int>& nums) {
@@ -931,8 +947,9 @@ public:
 
 ```C++
 // 2019-04-16 submission
-// Runtime: 4 ms, faster than 59.23% of C++ online submissions for Rotate Image.
-// Memory Usage: 7.1 MB, less than 67.77% of C++ online submissions for Rotate Image.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 59.23% of C++ online submissions.
+// Memory Usage: 7.1 MB, less than 67.77% of C++ online submissions.
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
@@ -954,8 +971,8 @@ public:
 ## 49. Group Anagrams
 
 ```C++
-// Runtime: 28 ms, faster than 88.94% of C++ online submissions for Group Anagrams.
-// Memory Usage: 20.5 MB, less than 51.98% of C++ online submissions for Group Anagrams.
+// Runtime: 28 ms, faster than 88.94% of C++ online submissions.
+// Memory Usage: 20.5 MB, less than 51.98% of C++ online submissions.
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
@@ -982,8 +999,9 @@ public:
 
 ```C++
 // 2018-07-24 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Pow(x, n).
-// Memory Usage: 6.2 MB, less than 63.60% of C++ online submissions for Pow(x, n).
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.2 MB, less than 63.60% of C++ online submissions.
 class Solution {
 public:
     double myPow(double x, int n) {
@@ -1003,8 +1021,9 @@ public:
 
 ```C++
 // 2019-04-14 submission
-// Runtime: 8 ms, faster than 63.24% of C++ online submissions for N-Queens.
-// Memory Usage: 7.4 MB, less than 61.04% of C++ online submissions for N-Queens.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 63.24% of C++ online submissions.
+// Memory Usage: 7.4 MB, less than 61.04% of C++ online submissions.
 class Solution {
 public:
     vector<vector<string>> solveNQueens(int n) {
@@ -1064,8 +1083,9 @@ public:
 
 ```C++
 // 2019-04-14 submission
-// Runtime: 4 ms, faster than 82.73% of C++ online submissions for N-Queens II.
-// Memory Usage: 6 MB, less than 90.16% of C++ online submissions for N-Queens II.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 82.73% of C++ online submissions.
+// Memory Usage: 6 MB, less than 90.16% of C++ online submissions.
 class Solution {
 public:
     int totalNQueens(int n) {
@@ -1156,8 +1176,9 @@ public:
 
 ```C++
 // 2018-07-26 submission
-// Runtime: 12 ms, faster than 98.54% of C++ online submissions for Jump Game.
-// Memory Usage: 13 MB, less than 95.54% of C++ online submissions for Jump Game.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 98.54% of C++ online submissions.
+// Memory Usage: 13 MB, less than 95.54% of C++ online submissions.
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
@@ -1179,8 +1200,9 @@ public:
 
 ```C++
 // 2019-05-09 submission
-// Runtime: 32 ms, faster than 94.27% of C++ online submissions for Merge Intervals.
-// Memory Usage: 14.5 MB, less than 76.55% of C++ online submissions for Merge Intervals.
+// ?/? cases passed
+// Runtime: 32 ms, faster than 94.27% of C++ online submissions.
+// Memory Usage: 14.5 MB, less than 76.55% of C++ online submissions.
 class Solution {
 public:
     static bool cmp(const vector<int> &v1, const vector<int> &v2) {
@@ -1209,8 +1231,9 @@ public:
 
 ```C++
 // 2020-11-19 submission
-// Runtime: 44 ms, faster than 59.45% of C++ online submissions for Merge Intervals.
-// Memory Usage: 14.7 MB, less than 54.25% of C++ online submissions for Merge Intervals.
+// ?/? cases passed
+// Runtime: 44 ms, faster than 59.45% of C++ online submissions.
+// Memory Usage: 14.7 MB, less than 54.25% of C++ online submissions.
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
@@ -1234,6 +1257,7 @@ public:
 边界条件：待插列表为空；新区间在最左边或者最右边；插入区间为空（标准程序没有注意到）
 
 // 2020-07-14 submission
+// ?/? cases passed
 // Runtime: 32 ms, faster than 64.68% of C++ online submissions
 // Memory Usage: 17.1 MB, less than 63.69% of C++ online submissions
 class Solution {
@@ -1305,8 +1329,9 @@ public:
 
 ```C++
 // 2020-12-08 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Spiral Matrix II.
-// Memory Usage: 7.1 MB, less than 7.66% of C++ online submissions for Spiral Matrix II.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 7.1 MB, less than 7.66% of C++ online submissions.
 class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
@@ -1333,8 +1358,9 @@ public:
 
 ```C++
 // 2019-09-01 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Permutation Sequence.
-// Memory Usage: 6 MB, less than 78.79% of C++ online submissions for Permutation Sequence.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6 MB, less than 78.79% of C++ online submissions.
 class Solution {
 public:
     string getPermutation(int n, int k) {
@@ -1433,8 +1459,9 @@ public:
 
 ```C++
 // 2018-07-26 submission
-// Runtime: 8 ms, faster than 82.85% of C++ online submissions for Minimum Path Sum.
-// Memory Usage: 10 MB, less than 35.59% of C++ online submissions for Minimum Path Sum.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 82.85% of C++ online submissions.
+// Memory Usage: 10 MB, less than 35.59% of C++ online submissions.
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
@@ -1464,8 +1491,9 @@ public:
 “0000.1e-0000.00”合法；
 
 // 2020-07-14 submission
-// Runtime: 4 ms, faster than 76.08% of C++ online submissions for Valid Number.
-// Memory Usage: 6.1 MB, less than 44.60% of C++ online submissions for Valid Number.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 76.08% of C++ online submissions.
+// Memory Usage: 6.1 MB, less than 44.60% of C++ online submissions.
 
 class Solution {
 public:
@@ -1567,8 +1595,9 @@ public:
 
 ```C++
 // 2020-09-29 submission
-// Runtime: 4 ms, faster than 57.57% of C++ online submissions for Text Justification.
-// Memory Usage: 7.6 MB, less than 49.47% of C++ online submissions for Text Justification.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 57.57% of C++ online submissions.
+// Memory Usage: 7.6 MB, less than 49.47% of C++ online submissions.
 class Solution {
 public:
     vector<string> fullJustify(vector<string>& words, int maxWidth) {
@@ -1616,8 +1645,9 @@ public:
 
 ```C++
 // 2019-05-17 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Sqrt(x).
-// Memory Usage: 6.2 MB, less than 89.91% of C++ online submissions for Sqrt(x).
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.2 MB, less than 89.91% of C++ online submissions.
 class Solution {
 public:
     int mySqrt(int x) {
@@ -1638,8 +1668,9 @@ https://www.jianshu.com/p/a617d20162cf
 ![](res/2020-09-08-14-58-00.png)
 
 // 2020-09-08 submission
-// Runtime: 12 ms, faster than 83.41% of C++ online submissions for Edit Distance.
-// Memory Usage: 6.3 MB, less than 97.74% of C++ online submissions for Edit Distance.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 83.41% of C++ online submissions.
+// Memory Usage: 6.3 MB, less than 97.74% of C++ online submissions.
 
 class Solution {
 public:
@@ -1777,8 +1808,8 @@ public:
 ## 75. Sort Colors
 
 ```C++
-// Runtime: 4 ms, faster than 47.31% of C++ online submissions for Sort Colors.
-// Memory Usage: 8.3 MB, less than 63.84% of C++ online submissions for Sort Colors.
+// Runtime: 4 ms, faster than 47.31% of C++ online submissions.
+// Memory Usage: 8.3 MB, less than 63.84% of C++ online submissions.
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
@@ -1811,6 +1842,7 @@ public:
 
 ```C++
 // 2020-07-17 submission
+// ?/? cases passed
 // Runtime: 32 ms, faster than 67.64% of C++ online submissions
 // Memory Usage: 55.6 MB, less than 5.05% of C++ online submissions
 class Solution {
@@ -1881,8 +1913,8 @@ public:
 
 ```C++
 // 2019-05-06 submission (DFS)
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Subsets.
-// Memory Usage: 7.5 MB, less than 7.29% of C++ online submissions for Subsets.
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 7.5 MB, less than 7.29% of C++ online submissions.
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
@@ -1905,8 +1937,8 @@ public:
 
 ```C++
 // 2020-10-26 submission (位操作)
-// Runtime: 4 ms, faster than 67.90% of C++ online submissions for Subsets.
-// Memory Usage: 7.5 MB, less than 7.29% of C++ online submissions for Subsets.
+// Runtime: 4 ms, faster than 67.90% of C++ online submissions.
+// Memory Usage: 7.5 MB, less than 7.29% of C++ online submissions.
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
@@ -1981,8 +2013,9 @@ public:
 
 ```C++
 // 2021-03-18 submission
-// Runtime: 8 ms, faster than 64.87% of C++ online submissions for Search in Rotated Sorted Array II.
-// Memory Usage: 13.8 MB, less than 98.98% of C++ online submissions for Search in Rotated Sorted Array II.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 64.87% of C++ online submissions.
+// Memory Usage: 13.8 MB, less than 98.98% of C++ online submissions.
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
@@ -2045,6 +2078,7 @@ public:
 
 ```C++
 // 2020-07-16 submission
+// ?/? cases passed
 // Runtime: 28 ms, faster than 64.06% of C++ online submissions
 // Memory Usage: 14.3 MB, less than 47.02% of C++ online submissions
 class Solution {
@@ -2099,8 +2133,9 @@ public:
 
 ```C++
 // 2020-09-15 submission
-// Runtime: 48 ms, faster than 93.31% of C++ online submissions for Maximal Rectangle.
-// Memory Usage: 11.1 MB, less than 87.63% of C++ online submissions for Maximal Rectangle.
+// ?/? cases passed
+// Runtime: 48 ms, faster than 93.31% of C++ online submissions.
+// Memory Usage: 11.1 MB, less than 87.63% of C++ online submissions.
 class Solution {
 public:
     int maximalRectangle(vector<vector<char>>& matrix) {
@@ -2175,6 +2210,7 @@ public:
 
 ```C++
 // 2020-07-16 submission
+// ?/? cases passed
 // Runtime: 12 ms, faster than 79.75% of C++ online submissions
 // Memory Usage: 8.9 MB, less than 73.29% of C++ online submissions
 class Solution {
@@ -2259,8 +2295,9 @@ public:
 
 ```C++
 // 2020-09-14 submission
-// Runtime: 4 ms, faster than 57.72% of C++ online submissions for Reverse Linked List II.
-// Memory Usage: 7.3 MB, less than 92.47% of C++ online submissions for Reverse Linked List II.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 57.72% of C++ online submissions.
+// Memory Usage: 7.3 MB, less than 92.47% of C++ online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -2300,8 +2337,8 @@ public:
 2. 长度小于4或者大于12
 
 ```C++
-// Runtime: 4 ms, faster than 64.95% of C++ online submissions for Restore IP Addresses.
-// Memory Usage: 6.7 MB, less than 56.22% of C++ online submissions for Restore IP Addresses.
+// Runtime: 4 ms, faster than 64.95% of C++ online submissions.
+// Memory Usage: 6.7 MB, less than 56.22% of C++ online submissions.
 class Solution {
 public:
     vector<string> restoreIpAddresses(string s) {
@@ -2341,6 +2378,7 @@ public:
 
 ```C++
 // 2020-07-08 submission
+// ?/? cases passed
 // Runtime: 16 ms, faster than 69.66% of C++ online submissions
 // Memory Usage: 14.8 MB, less than 9.78% of C++ online submissions
 class Solution {
@@ -2385,8 +2423,9 @@ public:
 
 ```C++
 // 2020-09-14 submission
-// Runtime: 8 ms, faster than 47.16% of C++ online submissions for Interleaving String.
-// Memory Usage: 6.4 MB, less than 70.29% of C++ online submissions for Interleaving String.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 47.16% of C++ online submissions.
+// Memory Usage: 6.4 MB, less than 70.29% of C++ online submissions.
 class Solution {
 public:
     bool isInterleave(string s1, string s2, string s3) {
@@ -2456,8 +2495,8 @@ public:
 
 ```C++
 // 2020-11-01 submission (中序遍历)
-// Runtime: 36 ms, faster than 84.19% of C++ online submissions for Recover Binary Search Tree.
-// Memory Usage: 58.3 MB, less than 8.04% of C++ online submissions for Recover Binary Search Tree.
+// Runtime: 36 ms, faster than 84.19% of C++ online submissions.
+// Memory Usage: 58.3 MB, less than 8.04% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -2540,8 +2579,9 @@ public:
 
 ```C++
 // 2018-07-12 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Binary Tree Level Order Traversal.
-// Memory Usage: 13.3 MB, less than 13.96% of C++ online submissions for Binary Tree Level Order Traversal.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 13.3 MB, less than 13.96% of C++ online submissions.
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
@@ -2587,8 +2627,8 @@ public:
 之形层序遍历
 
 ```C++
-// Runtime: 3 ms, faster than 63.81% of C++ online submissions for Binary Tree Zigzag Level Order Traversal.
-// Memory Usage: 11.9 MB, less than 99.36% of C++ online submissions for Binary Tree Zigzag Level Order Traversal.
+// Runtime: 3 ms, faster than 63.81% of C++ online submissions.
+// Memory Usage: 11.9 MB, less than 99.36% of C++ online submissions.
 class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
@@ -2614,8 +2654,9 @@ public:
 
 ```C++
 // 2018-07-21 submission
-// Runtime: 12 ms, faster than 60.67% of C++ online submissions for Maximum Depth of Binary Tree.
-// Memory Usage: 19.6 MB, less than 24.21% of C++ online submissions for Maximum Depth of Binary Tree.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 60.67% of C++ online submissions.
+// Memory Usage: 19.6 MB, less than 24.21% of C++ online submissions.
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
@@ -2633,8 +2674,9 @@ public:
 
 ```C++
 // 2018-07-21 submission
-// Runtime: 71 ms, faster than 7.64% of C++ online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
-// Memory Usage: 26 MB, less than 56.32% of C++ online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
+// ?/? cases passed
+// Runtime: 71 ms, faster than 7.64% of C++ online submissions.
+// Memory Usage: 26 MB, less than 56.32% of C++ online submissions.
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
@@ -2688,8 +2730,9 @@ public:
 
 ```C++
 // 2020-09-14 submission
-// Runtime: 36 ms, faster than 41.31% of C++ online submissions for Convert Sorted List to Binary Search Tree.
-// Memory Usage: 31.5 MB, less than 15.62% of C++ online submissions for Convert Sorted List to Binary Search Tree.
+// ?/? cases passed
+// Runtime: 36 ms, faster than 41.31% of C++ online submissions.
+// Memory Usage: 31.5 MB, less than 15.62% of C++ online submissions.
 
 /**
  * Definition for singly-linked list.
@@ -2738,8 +2781,9 @@ public:
 
 ```C++
 // 2018-07-22 submission
-// Runtime: 12 ms, faster than 85.09% of C++ online submissions for Balanced Binary Tree.
-// Memory Usage: 21.7 MB, less than 67.92% of C++ online submissions for Balanced Binary Tree.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 85.09% of C++ online submissions.
+// Memory Usage: 21.7 MB, less than 67.92% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -2777,8 +2821,9 @@ public:
 
 ```C++
 // 2019-04-24 submission
-// Runtime: 8 ms, faster than 93.97% of C++ online submissions for Path Sum.
-// Memory Usage: 21.1 MB, less than 98.40% of C++ online submissions for Path Sum.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 93.97% of C++ online submissions.
+// Memory Usage: 21.1 MB, less than 98.40% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -2804,8 +2849,9 @@ public:
 
 ```C++
 // 2019-03-29 submission
-// Runtime: 8 ms, faster than 80.63% of C++ online submissions for Path Sum II.
-// Memory Usage: 19.8 MB, less than 90.69% of C++ online submissions for Path Sum II.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 80.63% of C++ online submissions.
+// Memory Usage: 19.8 MB, less than 90.69% of C++ online submissions.
 class Solution {
 public:
     vector<vector<int>> pathSum(TreeNode* root, int sum) {
@@ -2839,8 +2885,9 @@ public:
 
 ```C++
 // 2020-09-16 submission
-// Runtime: 8 ms, faster than 70.80% of C++ online submissions for Flatten Binary Tree to Linked List.
-// Memory Usage: 12.9 MB, less than 10.64% of C++ online submissions for Flatten Binary Tree to Linked List.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 70.80% of C++ online submissions.
+// Memory Usage: 12.9 MB, less than 10.64% of C++ online submissions.
 
 /**
  * Definition for a binary tree node.
@@ -2884,8 +2931,9 @@ public:
 
 ```C++
 // 2020-09-15 submission
-// Runtime: 12 ms, faster than 71.06% of C++ online submissions for Distinct Subsequences.
-// Memory Usage: 7 MB, less than 83.59% of C++ online submissions for Distinct Subsequences.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 71.06% of C++ online submissions.
+// Memory Usage: 7 MB, less than 83.59% of C++ online submissions.
 class Solution {
 public:
     int numDistinct(string s, string t) {
@@ -2915,8 +2963,9 @@ public:
 
 ```C++
 // 2019-09-03 submission
-// Runtime: 12 ms, faster than 98.01% of C++ online submissions for Populating Next Right Pointers in Each Node.
-// Memory Usage: 17.3 MB, less than 28.18% of C++ online submissions for Populating Next Right Pointers in Each Node.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 98.01% of C++ online submissions.
+// Memory Usage: 17.3 MB, less than 28.18% of C++ online submissions.
 /*
 // Definition for a Node.
 class Node {
@@ -2960,8 +3009,9 @@ public:
 
 ```C++
 // 2020-11-09 submission
-// Runtime: 12 ms, faster than 88.81% of C++ online submissions for Populating Next Right Pointers in Each Node II.
-// Memory Usage: 18 MB, less than 87.11% of C++ online submissions for Populating Next Right Pointers in Each Node II.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 88.81% of C++ online submissions.
+// Memory Usage: 18 MB, less than 87.11% of C++ online submissions.
 /*
 // Definition for a Node.
 class Node {
@@ -2999,8 +3049,9 @@ public:
 
 ```C++
 // 2020-11-09 submission
-// Runtime: 16 ms, faster than 62.44% of C++ online submissions for Populating Next Right Pointers in Each Node II.
-// Memory Usage: 17.8 MB, less than 87.11% of C++ online submissions for Populating Next Right Pointers in Each Node II.
+// ?/? cases passed
+// Runtime: 16 ms, faster than 62.44% of C++ online submissions.
+// Memory Usage: 17.8 MB, less than 87.11% of C++ online submissions.
 /*
 // Definition for a Node.
 class Node {
@@ -3100,8 +3151,9 @@ public:
 
 ```C++
 // 2021-09-01 submission
-// Runtime: 8 ms, faster than 32.16% of C++ online submissions for Triangle.
-// Memory Usage: 8.5 MB, less than 49.67% of C++ online submissions for Triangle.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 32.16% of C++ online submissions.
+// Memory Usage: 8.5 MB, less than 49.67% of C++ online submissions.
 class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
@@ -3126,8 +3178,9 @@ public:
 
 ```C++
 // 2020-01-01 submission
-// Runtime: 8 ms, faster than 97.15% of C++ online submissions for Best Time to Buy and Sell Stock.
-// Memory Usage: 13.3 MB, less than 11.11% of C++ online submissions for Best Time to Buy and Sell Stock.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 97.15% of C++ online submissions.
+// Memory Usage: 13.3 MB, less than 11.11% of C++ online submissions.
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
@@ -3152,8 +3205,9 @@ public:
 
 ```C++
 // 2020-01-01 submission
-// Runtime: 12 ms, faster than 76.16% of C++ online submissions for Best Time to Buy and Sell Stock II.
-// Memory Usage: 13.1 MB, less than 63.22% of C++ online submissions for Best Time to Buy and Sell Stock II.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 76.16% of C++ online submissions.
+// Memory Usage: 13.1 MB, less than 63.22% of C++ online submissions.
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
@@ -3177,8 +3231,9 @@ public:
 
 ```C++
 // 2020-07-23 submission
-// Runtime: 24 ms, faster than 23.09% of C++ online submissions for Best Time to Buy and Sell Stock III.
-// Memory Usage: 13.5 MB, less than 31.24% of C++ online submissions for Best Time to Buy and Sell Stock III.
+// ?/? cases passed
+// Runtime: 24 ms, faster than 23.09% of C++ online submissions.
+// Memory Usage: 13.5 MB, less than 31.24% of C++ online submissions.
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
@@ -3217,8 +3272,9 @@ public:
 
 ```C++
 // 2020-09-09 submission
-// Runtime: 36 ms, faster than 89.91% of C++ online submissions for Binary Tree Maximum Path Sum.
-// Memory Usage: 28.8 MB, less than 25.55% of C++ online submissions for Binary Tree Maximum Path Sum.
+// ?/? cases passed
+// Runtime: 36 ms, faster than 89.91% of C++ online submissions.
+// Memory Usage: 28.8 MB, less than 25.55% of C++ online submissions.
 class Solution {
 public:
     int maxPathSum(TreeNode* root) {
@@ -3267,8 +3323,9 @@ public:
 
 ```C++
 // 2020-09-16 submission
-// Runtime: 24 ms, faster than 44.06% of C++ online submissions for Longest Consecutive Sequence.
-// Memory Usage: 10.9 MB, less than 74.65% of C++ online submissions for Longest Consecutive Sequence.
+// ?/? cases passed
+// Runtime: 24 ms, faster than 44.06% of C++ online submissions.
+// Memory Usage: 10.9 MB, less than 74.65% of C++ online submissions.
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
@@ -3296,8 +3353,9 @@ public:
 
 ```C++
 // 2020-09-20 submission
-// Runtime: 32 ms, faster than 49.65% of C++ online submissions for Surrounded Regions.
-// Memory Usage: 10.5 MB, less than 30.21% of C++ online submissions for Surrounded Regions.
+// ?/? cases passed
+// Runtime: 32 ms, faster than 49.65% of C++ online submissions.
+// Memory Usage: 10.5 MB, less than 30.21% of C++ online submissions.
 class Solution {
 public:
     void solve(vector<vector<char>>& board) {
@@ -3338,8 +3396,9 @@ public:
 
 ```C++
 // 2020-11-11 submission
-// Runtime: 12 ms, faster than 52.37% of C++ online submissions for Clone Graph.
-// Memory Usage: 9.1 MB, less than 99.27% of C++ online submissions for Clone Graph.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 52.37% of C++ online submissions.
+// Memory Usage: 9.1 MB, less than 99.27% of C++ online submissions.
 /*
 // Definition for a Node.
 class Node {
@@ -3390,8 +3449,9 @@ public:
 
 ```C++
 // 2018-09-19 submission
-// Runtime: 12 ms, faster than 67.53% of C++ online submissions for Gas Station.
-// Memory Usage: 9.9 MB, less than 70.19% of C++ online submissions for Gas Station.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 67.53% of C++ online submissions.
+// Memory Usage: 9.9 MB, less than 70.19% of C++ online submissions.
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
@@ -3415,7 +3475,9 @@ public:
 
 解题思路
 
-1. 两次遍历：第一遍从左向右遍历，如果右边的小盆友的等级高，等加一个糖果，这样保证了一个方向上高等级的糖果多。然后再从右向左遍历一遍，如果相邻两个左边的等级高，而左边的糖果又少的话，则左边糖果数为右边糖果数加一
+题目描述：n 个孩子站在一排，每个孩子至少得到一个糖果，相邻孩子中得分高的孩子必须要有更多的糖果。
+
+1. 两次遍历：第一遍从左向右遍历，如果右边的小盆友的等级高，等加一个糖果，这样保证了一个方向上高等级的糖果多。然后再从右向左遍历一遍，如果相邻两个左边的等级高，而左边的糖果又少的话，则左边糖果数为右边糖果数加一。
 
 ```C++
 class Solution {
@@ -3445,8 +3507,9 @@ public:
 
 ```C++
 // 2018-09-19 submission
-// Runtime: 20 ms, faster than 92.90% of C++ online submissions for Single Number.
-// Memory Usage: 12 MB, less than 65.67% of C++ online submissions for Single Number.
+// ?/? cases passed
+// Runtime: 20 ms, faster than 92.90% of C++ online submissions.
+// Memory Usage: 12 MB, less than 65.67% of C++ online submissions.
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
@@ -3464,8 +3527,9 @@ public:
 
 ```C++
 // 2020-09-27 submission
-// Runtime: 16 ms, faster than 80.35% of C++ online submissions for Single Number II.
-// Memory Usage: 9.7 MB, less than 33.57% of C++ online submissions for Single Number II.
+// ?/? cases passed
+// Runtime: 16 ms, faster than 80.35% of C++ online submissions.
+// Memory Usage: 9.7 MB, less than 33.57% of C++ online submissions.
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
@@ -3494,8 +3558,8 @@ public:
 
 ```C++
 // 2020-11-11 submission (哈希+递归)
-// Runtime: 12 ms, faster than 89.42% of C++ online submissions for Copy List with Random Pointer.
-// Memory Usage: 11.9 MB, less than 33.30% of C++ online submissions for Copy List with Random Pointer.
+// Runtime: 12 ms, faster than 89.42% of C++ online submissions.
+// Memory Usage: 11.9 MB, less than 33.30% of C++ online submissions.
 /*
 // Definition for a Node.
 class Node {
@@ -3531,8 +3595,8 @@ public:
 
 ```C++
 // 2020-11-11 submission (迭代)
-// Runtime: 12 ms, faster than 89.42% of C++ online submissions for Copy List with Random Pointer.
-// Memory Usage: 11.4 MB, less than 33.30% of C++ online submissions for Copy List with Random Pointer.
+// Runtime: 12 ms, faster than 89.42% of C++ online submissions.
+// Memory Usage: 11.4 MB, less than 33.30% of C++ online submissions.
 /*
 // Definition for a Node.
 class Node {
@@ -3586,8 +3650,9 @@ public:
 
 ```C++
 // 2020-07-18 submission
-// Runtime: 16 ms, faster than 57.77% of C++ online submissions for Word Break.
-// Memory Usage: 13.5 MB, less than 5.36% of C++ online submissions for Word Break.
+// ?/? cases passed
+// Runtime: 16 ms, faster than 57.77% of C++ online submissions.
+// Memory Usage: 13.5 MB, less than 5.36% of C++ online submissions.
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
@@ -3615,8 +3680,9 @@ public:
 
 ```C++
 // 2018-07-24 submission
-// Runtime: 8 ms, faster than 95.86% of C++ online submissions for Linked List Cycle.
-// Memory Usage: 7.8 MB, less than 46.24% of C++ online submissions for Linked List Cycle.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 95.86% of C++ online submissions.
+// Memory Usage: 7.8 MB, less than 46.24% of C++ online submissions.
 
 /**
  * Definition for singly-linked list.
@@ -3654,8 +3720,9 @@ public:
 
 ```C++
 // 2020-09-17 submission
-// Runtime: 12 ms, faster than 68.48% of C++ online submissions for Linked List Cycle II.
-// Memory Usage: 7.9 MB, less than 33.42% of C++ online submissions for Linked List Cycle II.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 68.48% of C++ online submissions.
+// Memory Usage: 7.9 MB, less than 33.42% of C++ online submissions.
 
 /**
  * Definition for singly-linked list.
@@ -3699,8 +3766,9 @@ public:
 
 ```C++
 // 2019-09-24 submission
-// Runtime: 36 ms, faster than 81.47% of C++ online submissions for Reorder List.
-// Memory Usage: 18.3 MB, less than 40.59% of C++ online submissions for Reorder List.
+// ?/? cases passed
+// Runtime: 36 ms, faster than 81.47% of C++ online submissions.
+// Memory Usage: 18.3 MB, less than 40.59% of C++ online submissions.
 class Solution {
 public:
     void reorderList(ListNode* head) {
@@ -3732,8 +3800,9 @@ public:
 
 ```C++
 // 2020-09-18 submission
-// Runtime: 112 ms, faster than 27.54% of C++ online submissions for LRU Cache.
-// Memory Usage: 42 MB, less than 39.16% of C++ online submissions for LRU Cache.
+// ?/? cases passed
+// Runtime: 112 ms, faster than 27.54% of C++ online submissions.
+// Memory Usage: 42 MB, less than 39.16% of C++ online submissions.
 class LRUCache {
 public:
     int capacity;
@@ -3783,8 +3852,9 @@ public:
 
 ```C++
 // 2020-11-03 submission
-// Runtime: 44 ms, faster than 56.99% of C++ online submissions for Insertion Sort List.
-// Memory Usage: 9.7 MB, less than 34.79% of C++ online submissions for Insertion Sort List.
+// ?/? cases passed
+// Runtime: 44 ms, faster than 56.99% of C++ online submissions.
+// Memory Usage: 9.7 MB, less than 34.79% of C++ online submissions.
 class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
@@ -3842,8 +3912,9 @@ public:
 
 ```C++
 // 2020-07-19 submission
-// Runtime: 20 ms, faster than 43.48% of C++ online submissions for Max Points on a Line.
-// Memory Usage: 10.3 MB, less than 41.32% of C++ online submissions for Max Points on a Line.
+// ?/? cases passed
+// Runtime: 20 ms, faster than 43.48% of C++ online submissions.
+// Memory Usage: 10.3 MB, less than 41.32% of C++ online submissions.
 class Solution {
 public:
     int maxPoints(vector<vector<int>>& points) {
@@ -3899,8 +3970,9 @@ public:
 
 ```C++
 // 2020-09-18 submission
-// Runtime: 24 ms, faster than 80.69% of C++ online submissions for Evaluate Reverse Polish Notation.
-// Memory Usage: 12.2 MB, less than 17.79% of C++ online submissions for Evaluate Reverse Polish Notation.
+// ?/? cases passed
+// Runtime: 24 ms, faster than 80.69% of C++ online submissions.
+// Memory Usage: 12.2 MB, less than 17.79% of C++ online submissions.
 class Solution {
 public:
     int evalRPN(vector<string>& tokens) {
@@ -3938,8 +4010,9 @@ public:
 
 ```C++
 // 2020-09-19 submission
-// Runtime: 16 ms, faster than 86.70% of C++ online submissions for Reverse Words in a String.
-// Memory Usage: 8.7 MB, less than 46.08% of C++ online submissions for Reverse Words in a String.
+// ?/? cases passed
+// Runtime: 16 ms, faster than 86.70% of C++ online submissions.
+// Memory Usage: 8.7 MB, less than 46.08% of C++ online submissions.
 class Solution {
 public:
     string reverseWords(string s) {
@@ -3976,8 +4049,9 @@ public:
 
 ```C++
 // 2018-09-26 submission
-// Runtime: 4 ms, faster than 84.86% of C++ online submissions for Maximum Product Subarray.
-// Memory Usage: 11.9 MB, less than 7.74% of C++ online submissions for Maximum Product Subarray.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 84.86% of C++ online submissions.
+// Memory Usage: 11.9 MB, less than 7.74% of C++ online submissions.
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
@@ -4010,8 +4084,9 @@ public:
 
 ```C++
 // 2021-03-18 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Find Minimum in Rotated Sorted Array.
-// Memory Usage: 10.2 MB, less than 43.53% of C++ online submissions for Find Minimum in Rotated Sorted Array.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 10.2 MB, less than 43.53% of C++ online submissions.
 class Solution {
 public:
     int findMin(vector<int>& nums) {
@@ -4030,8 +4105,9 @@ public:
 
 ```C++
 // 2021-03-18 submission
-// Runtime: 4 ms, faster than 94.90% of C++ online submissions for Find Minimum in Rotated Sorted Array II.
-// Memory Usage: 12.2 MB, less than 93.44% of C++ online submissions for Find Minimum in Rotated Sorted Array II.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 94.90% of C++ online submissions.
+// Memory Usage: 12.2 MB, less than 93.44% of C++ online submissions.
 class Solution {
 public:
     int findMin(vector<int>& nums) {
@@ -4054,8 +4130,8 @@ public:
 1. 最小栈：同时能够返回最小值的栈。利用单调栈的思想解决。
 
 ```C++
-// Runtime: 20 ms, faster than 82.23% of C++ online submissions for Min Stack.
-// Memory Usage: 16.2 MB, less than 28.07% of C++ online submissions for Min Stack.
+// Runtime: 20 ms, faster than 82.23% of C++ online submissions.
+// Memory Usage: 16.2 MB, less than 28.07% of C++ online submissions.
 class MinStack {
 public:
     /** initialize your data structure here. */
@@ -4105,8 +4181,8 @@ private:
 1. Y 型交叉链表求入口节点：链表拼接，A的尾接B的头，B的尾接A的头，从而相遇时候大家都走了AB的共同部分和AB的不同部分。
 
 ```C++
-// Runtime: 40 ms, faster than 84.58% of C++ online submissions for Intersection of Two Linked Lists.
-// Memory Usage: 14.6 MB, less than 46.57% of C++ online submissions for Intersection of Two Linked Lists.
+// Runtime: 40 ms, faster than 84.58% of C++ online submissions.
+// Memory Usage: 14.6 MB, less than 46.57% of C++ online submissions.
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
@@ -4128,8 +4204,9 @@ public:
 
 ```C++
 // 2020-11-11 submission
-// Runtime: 4 ms, faster than 97.33% of C++ online submissions for Find Peak Element.
-// Memory Usage: 9.1 MB, less than 100.00% of C++ online submissions for Find Peak Element.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 97.33% of C++ online submissions.
+// Memory Usage: 9.1 MB, less than 100.00% of C++ online submissions.
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
@@ -4152,8 +4229,9 @@ public:
 
 ```C++
 // 2021-03-18 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Compare Version Numbers.
-// Memory Usage: 6.2 MB, less than 73.33% of C++ online submissions for Compare Version Numbers.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.2 MB, less than 73.33% of C++ online submissions.
 class Solution {
 public:
     int compareVersion(string version1, string version2) {
@@ -4186,8 +4264,8 @@ public:
 已排序数组找两数之和
 
 ```C++
-// Runtime: 8 ms, faster than 25.45% of C++ online submissions for Two Sum II - Input array is sorted.
-// Memory Usage: 9.6 MB, less than 75.70% of C++ online submissions for Two Sum II - Input array is sorted.
+// Runtime: 8 ms, faster than 25.45% of C++ online submissions.
+// Memory Usage: 9.6 MB, less than 75.70% of C++ online submissions.
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
@@ -4233,8 +4311,8 @@ public:
 
 ```C++
 // 2020-10-26 submission (多数投票算法)
-// Runtime: 32 ms, faster than 97.99% of C++ online submissions for Majority Element.
-// Memory Usage: 20 MB, less than 99.97% of C++ online submissions for Majority Element.
+// Runtime: 32 ms, faster than 97.99% of C++ online submissions.
+// Memory Usage: 20 MB, less than 99.97% of C++ online submissions.
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
@@ -4252,8 +4330,8 @@ public:
 
 ```C++
 // 2020-10-26 submission (位操作)
-// Runtime: 56 ms, faster than 34.92% of C++ online submissions for Majority Element.
-// Memory Usage: 20.1 MB, less than 99.97% of C++ online submissions for Majority Element.
+// Runtime: 56 ms, faster than 34.92% of C++ online submissions.
+// Memory Usage: 20.1 MB, less than 99.97% of C++ online submissions.
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
@@ -4278,8 +4356,9 @@ public:
 
 ```C++
 // 2020-09-19 submission
-// Runtime: 76 ms, faster than 95.90% of C++ online submissions for Binary Search Tree Iterator.
-// Memory Usage: 28 MB, less than 28.15% of C++ online submissions for Binary Search Tree Iterator.
+// ?/? cases passed
+// Runtime: 76 ms, faster than 95.90% of C++ online submissions.
+// Memory Usage: 28 MB, less than 28.15% of C++ online submissions.
 
 /**
  * Definition for a binary tree node.
@@ -4361,8 +4440,9 @@ public:
 
 ```C++
 // 2020-09-18 submission
-// Runtime: 68 ms, faster than 93.74% of C++ online submissions for Repeated DNA Sequences.
-// Memory Usage: 14.9 MB, less than 97.44% of C++ online submissions for Repeated DNA Sequences.
+// ?/? cases passed
+// Runtime: 68 ms, faster than 93.74% of C++ online submissions.
+// Memory Usage: 14.9 MB, less than 97.44% of C++ online submissions.
 class Solution {
 public:
     vector<string> findRepeatedDnaSequences(string s) {
@@ -4406,8 +4486,9 @@ $$global[i][j] = max(local[i][j], global[i - 1][j])$$
 
 ```C++
 // 2020-07-24 submission
-// Runtime: 4 ms, faster than 99.86% of C++ online submissions for Best Time to Buy and Sell Stock IV.
-// Memory Usage: 12 MB, less than 87.45% of C++ online submissions for Best Time to Buy and Sell Stock IV.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 99.86% of C++ online submissions.
+// Memory Usage: 12 MB, less than 87.45% of C++ online submissions.
 class Solution {
 public:
     int maxProfit(int k, vector<int>& prices) {
@@ -4496,8 +4577,9 @@ public:
 
 ```C++
 // 2018-07-25 submission
-// Runtime: 4 ms, faster than 58.67% of C++ online submissions for Reverse Bits.
-// Memory Usage: 6.4 MB, less than 100.00% of C++ online submissions for Reverse Bits.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 58.67% of C++ online submissions.
+// Memory Usage: 6.4 MB, less than 100.00% of C++ online submissions.
 class Solution {
 public:
     uint32_t reverseBits(uint32_t n) {
@@ -4536,8 +4618,9 @@ public:
 
 ```C++
 // 2018-07-25 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for House Robber.
-// Memory Usage: 8 MB, less than 100.00% of C++ online submissions for House Robber.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 8 MB, less than 100.00% of C++ online submissions.
 class Solution {
 public:
     int rob(vector<int>& nums) {
@@ -4561,8 +4644,8 @@ public:
 2. 前序遍历
 
 ```C++
-// Runtime: 5 ms, faster than 11.88% of C++ online submissions for Binary Tree Right Side View.
-// Memory Usage: 12.1 MB, less than 21.88% of C++ online submissions for Binary Tree Right Side View.
+// Runtime: 5 ms, faster than 11.88% of C++ online submissions.
+// Memory Usage: 12.1 MB, less than 21.88% of C++ online submissions.
 class Solution {
 public:
     vector<int> rightSideView(TreeNode *root) {
@@ -4586,8 +4669,8 @@ public:
 ```
 
 ```C++
-// Runtime: 8 ms, faster than 10.04% of C++ online submissions for Binary Tree Right Side View.
-// Memory Usage: 11.8 MB, less than 90.91% of C++ online submissions for Binary Tree Right Side View.
+// Runtime: 8 ms, faster than 10.04% of C++ online submissions.
+// Memory Usage: 11.8 MB, less than 90.91% of C++ online submissions.
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
@@ -4613,8 +4696,9 @@ public:
 
 ```C++
 // 2020-09-20 submission
-// Runtime: 28 ms, faster than 87.82% of C++ online submissions for Number of Islands.
-// Memory Usage: 9.9 MB, less than 37.26% of C++ online submissions for Number of Islands.
+// ?/? cases passed
+// Runtime: 28 ms, faster than 87.82% of C++ online submissions.
+// Memory Usage: 9.9 MB, less than 37.26% of C++ online submissions.
 class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
@@ -4652,8 +4736,9 @@ public:
 
 ```C++
 // 2020-07-20 submission
-// Runtime: 16 ms, faster than 42.97% of C++ online submissions for Bitwise AND of Numbers Range.
-// Memory Usage: 5.9 MB, less than 94.20% of C++ online submissions for Bitwise AND of Numbers Range.
+// ?/? cases passed
+// Runtime: 16 ms, faster than 42.97% of C++ online submissions.
+// Memory Usage: 5.9 MB, less than 94.20% of C++ online submissions.
 class Solution {
 public:
     int rangeBitwiseAnd(int m, int n) {
@@ -4872,8 +4957,9 @@ public:
 
 ```C++
 // 2020-11-04 submission
-// Runtime: 80 ms, faster than 79.93% of C++ online submissions for Implement Trie (Prefix Tree).
-// Memory Usage: 45.3 MB, less than 5.00% of C++ online submissions for Implement Trie (Prefix Tree).
+// ?/? cases passed
+// Runtime: 80 ms, faster than 79.93% of C++ online submissions.
+// Memory Usage: 45.3 MB, less than 5.00% of C++ online submissions.
 class Node{
 public:
     Node* child[26];
@@ -4954,8 +5040,8 @@ Follow up
 
 ```C++
 // 2020-11-04 submission (滑动窗口)
-// Runtime: 12 ms, faster than 93.12% of C++ online submissions for Minimum Size Subarray Sum.
-//Memory Usage: 10.9 MB, less than 93.00% of C++ online submissions for Minimum Size Subarray Sum.
+// Runtime: 12 ms, faster than 93.12% of C++ online submissions.
+//Memory Usage: 10.9 MB, less than 93.00% of C++ online submissions.
 class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
@@ -4977,8 +5063,8 @@ public:
 
 ```C++
 // 2020-11-04 submission (二分搜索)
-// Runtime: 12 ms, faster than 93.12% of C++ online submissions for Minimum Size Subarray Sum.
-// Memory Usage: 11.2 MB, less than 93.00% of C++ online submissions for Minimum Size Subarray Sum.
+// Runtime: 12 ms, faster than 93.12% of C++ online submissions.
+// Memory Usage: 11.2 MB, less than 93.00% of C++ online submissions.
 class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
@@ -5036,8 +5122,9 @@ public:
 
 ```C++
 // 2020-12-01 submission
-// Runtime: 86 ms, faster than 58.91% of C++ online submissions for Design Add and Search Words Data Structure.
-// Memory Usage: 43.2 MB, less than 77.18% of C++ online submissions for Design Add and Search Words Data Structure.
+// ?/? cases passed
+// Runtime: 86 ms, faster than 58.91% of C++ online submissions.
+// Memory Usage: 43.2 MB, less than 77.18% of C++ online submissions.
 class WordDictionary {
 public:
     struct TrieNode {
@@ -5104,8 +5191,9 @@ Follow Up:
 
 ```C++
 // 2020-12-13 submission
-// Runtime: 1016 ms, faster than 18.19% of C++ online submissions for Word Search II.
-// Memory Usage: 9 MB, less than 52.69% of C++ online submissions for Word Search II.
+// ?/? cases passed
+// Runtime: 1016 ms, faster than 18.19% of C++ online submissions.
+// Memory Usage: 9 MB, less than 52.69% of C++ online submissions.
 class Solution {
 private:
     struct TrieNode {
@@ -5178,8 +5266,9 @@ public:
 
 ```C++
 // 2020-11-04 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for House Robber II.
-// Memory Usage: 8.2 MB, less than 5.25% of C++ online submissions for House Robber II.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 8.2 MB, less than 5.25% of C++ online submissions.
 class Solution {
 public:
     int rob(vector<int>& nums) {
@@ -5210,8 +5299,9 @@ public:
 
 ```C++
 // 2021-03-18 submission
-// Runtime: 4 ms, faster than 98.71% of C++ online submissions for Kth Largest Element in an Array.
-// Memory Usage: 10.1 MB, less than 46.30% of C++ online submissions for Kth Largest Element in an Array.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 98.71% of C++ online submissions.
+// Memory Usage: 10.1 MB, less than 46.30% of C++ online submissions.
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
@@ -5239,8 +5329,9 @@ public:
 
 ```C++
 // 2019-09-17 submission
-// Runtime: 64 ms, faster than 79.78% of C++ online submissions for Contains Duplicate.
-// Memory Usage: 20 MB, less than 69.02% of C++ online submissions for Contains Duplicate.
+// ?/? cases passed
+// Runtime: 64 ms, faster than 79.78% of C++ online submissions.
+// Memory Usage: 20 MB, less than 69.02% of C++ online submissions.
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
@@ -5263,8 +5354,9 @@ public:
 
 ```C++
 // 2019-09-17 submission
-// Runtime: 52 ms, faster than 71.61% of C++ online submissions for Contains Duplicate II.
-// Memory Usage: 16.4 MB, less than 74.38% of C++ online submissions for Contains Duplicate II.
+// ?/? cases passed
+// Runtime: 52 ms, faster than 71.61% of C++ online submissions.
+// Memory Usage: 16.4 MB, less than 74.38% of C++ online submissions.
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
@@ -5290,8 +5382,8 @@ public:
 
 ```C++
 // 2020-11-04 submission (brute force)
-// Runtime: 44 ms, faster than 59.03% of C++ online submissions for Count Complete Tree Nodes.
-// Memory Usage: 31.4 MB, less than 34.25% of C++ online submissions for Count Complete Tree Nodes.
+// Runtime: 44 ms, faster than 59.03% of C++ online submissions.
+// Memory Usage: 31.4 MB, less than 34.25% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -5314,8 +5406,8 @@ public:
 
 ```C++
 // 2020-11-04 submission (完美二叉树)
-// Runtime: 36 ms, faster than 94.26% of C++ online submissions for Count Complete Tree Nodes.
-// Memory Usage: 31.7 MB, less than 34.25% of C++ online submissions for Count Complete Tree Nodes.
+// Runtime: 36 ms, faster than 94.26% of C++ online submissions.
+// Memory Usage: 31.7 MB, less than 34.25% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -5354,8 +5446,9 @@ public:
 
 ```C++
 // 2019-09-20 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Invert Binary Tree.
-// Memory Usage: 9.7 MB, less than 17.04% of C++ online submissions for Invert Binary Tree.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 9.7 MB, less than 17.04% of C++ online submissions.
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
@@ -5381,8 +5474,9 @@ public:
 
 ```C++
 // 2020-10-29 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Summary Ranges.
-// Memory Usage: 7.2 MB, less than 100.00% of C++ online submissions for Summary Ranges.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 7.2 MB, less than 100.00% of C++ online submissions.
 class Solution {
 public:
     vector<string> summaryRanges(vector<int>& nums) {
@@ -5413,8 +5507,9 @@ public:
 
 ```C++
 // 2020-11-19 submission
-// Runtime: 28 ms, faster than 76.33% of C++ online submissions for Majority Element II.
-// Memory Usage: 16.2 MB, less than 7.61% of C++ online submissions for Majority Element II.
+// ?/? cases passed
+// Runtime: 28 ms, faster than 76.33% of C++ online submissions.
+// Memory Usage: 16.2 MB, less than 7.61% of C++ online submissions.
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
@@ -5447,8 +5542,9 @@ public:
 
 ```C++
 // 2021-03-18 submission
-// Runtime: 16 ms, faster than 89.83% of C++ online submissions for Kth Smallest Element in a BST.
-// Memory Usage: 24.1 MB, less than 87.41% of C++ online submissions for Kth Smallest Element in a BST.
+// ?/? cases passed
+// Runtime: 16 ms, faster than 89.83% of C++ online submissions.
+// Memory Usage: 24.1 MB, less than 87.41% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -5581,8 +5677,9 @@ public:
 
 ```C++
 // 2020-10-29 submission
-// Runtime: 28 ms, faster than 66.19% of C++ online submissions for Product of Array Except Self.
-// Memory Usage: 24.4 MB, less than 43.20% of C++ online submissions for Product of Array Except Self.
+// ?/? cases passed
+// Runtime: 28 ms, faster than 66.19% of C++ online submissions.
+// Memory Usage: 24.4 MB, less than 43.20% of C++ online submissions.
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
@@ -5609,8 +5706,8 @@ public:
 
 ```C++
 // 2020-11-24 submission (multiset)
-// Runtime: 960 ms, faster than 13.14% of C++ online submissions for Sliding Window Maximum.
-// Memory Usage: 166.7 MB, less than 5.72% of C++ online submissions for Sliding Window Maximum.
+// Runtime: 960 ms, faster than 13.14% of C++ online submissions.
+// Memory Usage: 166.7 MB, less than 5.72% of C++ online submissions.
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
@@ -5628,8 +5725,8 @@ public:
 
 ```C++
 // 2020-11-24 submission (deque)
-// Runtime: 336 ms, faster than 94.72% of C++ online submissions for Sliding Window Maximum.
-// Memory Usage: 106.9 MB, less than 58.01% of C++ online submissions for Sliding Window Maximum.
+// Runtime: 336 ms, faster than 94.72% of C++ online submissions.
+// Memory Usage: 106.9 MB, less than 58.01% of C++ online submissions.
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
@@ -5654,8 +5751,9 @@ public:
 
 ```C++
 // 2021-03-10 submission
-// Runtime: 116 ms, faster than 64.86% of C++ online submissions for Search a 2D Matrix II.
-// Memory Usage: 14.7 MB, less than 81.91% of C++ online submissions for Search a 2D Matrix II.
+// ?/? cases passed
+// Runtime: 116 ms, faster than 64.86% of C++ online submissions.
+// Memory Usage: 14.7 MB, less than 81.91% of C++ online submissions.
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -5738,8 +5836,9 @@ public:
 
 ```C++
 // 2019-09-11 submission
-// Runtime: 4 ms, faster than 49.57% of C++ online submissions for Ugly Number.
-// Memory Usage: 5.9 MB, less than 87.59% of C++ online submissions for Ugly Number.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 49.57% of C++ online submissions.
+// Memory Usage: 5.9 MB, less than 87.59% of C++ online submissions.
 class Solution {
 public:
     bool isUgly(int num) {
@@ -5761,8 +5860,9 @@ public:
 
 ```C++
 // 2020-09-21 submission
-// Runtime: 12 ms, faster than 67.00% of C++ online submissions for Ugly Number II.
-// Memory Usage: 9.6 MB, less than 37.73% of C++ online submissions for Ugly Number II.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 67.00% of C++ online submissions.
+// Memory Usage: 9.6 MB, less than 37.73% of C++ online submissions.
 class Solution {
 public:
     int nthUglyNumber(int n) {
@@ -5791,8 +5891,9 @@ public:
 
 ```C++
 // 2020-11-11 submission
-// Runtime: 8 ms, faster than 33.71% of C++ online submissions for H-Index.
-// Memory Usage: 9 MB, less than 100.00% of C++ online submissions for H-Index.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 33.71% of C++ online submissions.
+// Memory Usage: 9 MB, less than 100.00% of C++ online submissions.
 class Solution {
 public:
     int hIndex(vector<int>& citations) {
@@ -5818,8 +5919,9 @@ public:
 
 ```C++
 // 2020-12-10 submission
-// Runtime: 220 ms, faster than 59.84% of C++ online submissions for Perfect Squares.
-// Memory Usage: 9.4 MB, less than 58.61% of C++ online submissions for Perfect Squares.
+// ?/? cases passed
+// Runtime: 220 ms, faster than 59.84% of C++ online submissions.
+// Memory Usage: 9.4 MB, less than 58.61% of C++ online submissions.
 class Solution {
 public:
     int numSquares(int n) {
@@ -5837,8 +5939,9 @@ public:
 
 ```C++
 // 2020-12-10 submission
-// Runtime: 4 ms, faster than 97.60% of C++ online submissions for Perfect Squares.
-// Memory Usage: 6.3 MB, less than 87.50% of C++ online submissions for Perfect Squares.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 97.60% of C++ online submissions.
+// Memory Usage: 6.3 MB, less than 87.50% of C++ online submissions.
 class Solution {
 public:
     int numSquares(int n) {
@@ -5863,8 +5966,9 @@ public:
 
 ```C++
 // 2020-03-31 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Move Zeroes.
-// Memory Usage: 8.9 MB, less than 56.86% of C++ online submissions for Move Zeroes.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 8.9 MB, less than 56.86% of C++ online submissions.
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
@@ -5889,8 +5993,8 @@ public:
 
 ```C++
 // 2020-10-28 submission (位操作)
-// Runtime: 16 ms, faster than 70.60% of C++ online submissions for Find the Duplicate Number.
-// Memory Usage: 11.4 MB, less than 18.91% of C++ online submissions for Find the Duplicate Number.
+// Runtime: 16 ms, faster than 70.60% of C++ online submissions.
+// Memory Usage: 11.4 MB, less than 18.91% of C++ online submissions.
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
@@ -5910,8 +6014,8 @@ public:
 
 ```C++
 // 2020-10-28 submission (快慢指针)
-// Runtime: 8 ms, faster than 99.60% of C++ online submissions for Find the Duplicate Number.
-// Memory Usage: 11.3 MB, less than 18.91% of C++ online submissions for Find the Duplicate Number.
+// Runtime: 8 ms, faster than 99.60% of C++ online submissions.
+// Memory Usage: 11.3 MB, less than 18.91% of C++ online submissions.
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
@@ -5989,8 +6093,9 @@ public:
 
 ```C++
 // 2020-11-08 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Word Pattern.
-// Memory Usage: 6.8 MB, less than 71.32% of C++ online submissions for Word Pattern.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.8 MB, less than 71.32% of C++ online submissions.
 class Solution {
 public:
     bool wordPattern(string pattern, string str) {
@@ -6015,8 +6120,9 @@ public:
 
 ```C++
 // 2021-03-17 submission
-// Runtime: 112 ms, faster than 39.98% of C++ online submissions for Find Median from Data Stream.
-// Memory Usage: 46.8 MB, less than 33.66% of C++ online submissions for Find Median from Data Stream.
+// ?/? cases passed
+// Runtime: 112 ms, faster than 39.98% of C++ online submissions.
+// Memory Usage: 46.8 MB, less than 33.66% of C++ online submissions.
 class MedianFinder {
 public:
     /** initialize your data structure here. */
@@ -6066,8 +6172,9 @@ public:
 
 ```C++
 // 2021-03-07 submission
-// Runtime: 44 ms, faster than 86.17% of C++ online submissions for Serialize and Deserialize Binary Tree.
-// Memory Usage: 31.1 MB, less than 80.21% of C++ online submissions for Serialize and Deserialize Binary Tree.
+// ?/? cases passed
+// Runtime: 44 ms, faster than 86.17% of C++ online submissions.
+// Memory Usage: 31.1 MB, less than 80.21% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -6181,8 +6288,9 @@ TODO
 
 ```C++
 // 2020-09-21 submission
-// Runtime: 96 ms, faster than 75.60% of C++ online submissions for Super Ugly Number.
-// Memory Usage: 9 MB, less than 64.69% of C++ online submissions for Super Ugly Number.
+// ?/? cases passed
+// Runtime: 96 ms, faster than 75.60% of C++ online submissions.
+// Memory Usage: 9 MB, less than 64.69% of C++ online submissions.
 class Solution {
 public:
     int nthSuperUglyNumber(int n, vector<int>& primes) {
@@ -6213,8 +6321,8 @@ public:
 
 ```C++
 // 2020-11-25 submission (动态规划)
-// Runtime: 108 ms, faster than 55.71% of C++ online submissions for Coin Change.
-// Memory Usage: 14.3 MB, less than 49.21% of C++ online submissions for Coin Change.
+// Runtime: 108 ms, faster than 55.71% of C++ online submissions.
+// Memory Usage: 14.3 MB, less than 49.21% of C++ online submissions.
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
@@ -6233,8 +6341,8 @@ public:
 
 ```C++
 // 2020-11-25 submission (递归+记忆数组)
-// Runtime: 124 ms, faster than 34.31% of C++ online submissions for Coin Change.
-// Memory Usage: 15.1 MB, less than 21.50% of C++ online submissions for Coin Change.
+// Runtime: 124 ms, faster than 34.31% of C++ online submissions.
+// Memory Usage: 15.1 MB, less than 21.50% of C++ online submissions.
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
@@ -6256,8 +6364,8 @@ public:
 
 ```C++
 // 2020-11-25 submission (暴力搜索+剪枝)
-// Runtime: 4 ms, faster than 99.91% of C++ online submissions for Coin Change.
-// Memory Usage: 10.2 MB, less than 88.97% of C++ online submissions for Coin Change.
+// Runtime: 4 ms, faster than 99.91% of C++ online submissions.
+// Memory Usage: 10.2 MB, less than 88.97% of C++ online submissions.
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
@@ -6284,8 +6392,9 @@ public:
 
 ```C++
 // 2019-09-26 submission
-// Runtime: 24 ms, faster than 14.94% of C++ online submissions for Power of Three.
-// Memory Usage: 6.2 MB, less than 83.11% of C++ online submissions for Power of Three.
+// ?/? cases passed
+// Runtime: 24 ms, faster than 14.94% of C++ online submissions.
+// Memory Usage: 6.2 MB, less than 83.11% of C++ online submissions.
 class Solution {
 public:
     bool isPowerOfThree(int n) {
@@ -6309,8 +6418,9 @@ public:
 
 ```C++
 // 2020-11-26 submission
-// Runtime: 68 ms, faster than 48.47% of C++ online submissions for Count of Range Sum.
-// Memory Usage: 15.1 MB, less than 61.69% of C++ online submissions for Count of Range Sum.
+// ?/? cases passed
+// Runtime: 68 ms, faster than 48.47% of C++ online submissions.
+// Memory Usage: 15.1 MB, less than 61.69% of C++ online submissions.
 class Solution {
 public:
     int countRangeSum(vector<int>& nums, int lower, int upper) {
@@ -6337,8 +6447,8 @@ public:
 
 ```C++
 // 2020-10-27 submission (位操作)
-// Runtime: 4 ms, faster than 98.71% of C++ online submissions for Counting Bits.
-// Memory Usage: 8.1 MB, less than 35.37% of C++ online submissions for Counting Bits.
+// Runtime: 4 ms, faster than 98.71% of C++ online submissions.
+// Memory Usage: 8.1 MB, less than 35.37% of C++ online submissions.
 class Solution {
 public:
     vector<int> countBits(int num) {
@@ -6373,8 +6483,9 @@ public:
 
 ```C++
 // 2020-12-06 submission
-// Runtime: 4 ms, faster than 33.76% of C++ online submissions for Power of Four.
-// Memory Usage: 6.1 MB, less than 91.77% of C++ online submissions for Power of Four.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 33.76% of C++ online submissions.
+// Memory Usage: 6.1 MB, less than 91.77% of C++ online submissions.
 class Solution {
 public:
     bool isPowerOfFour(int n) {
@@ -6391,8 +6502,9 @@ public:
 
 ```C++
 // 2021-03-19 submission
-// Runtime: 12 ms, faster than 96.04% of C++ online submissions for Top K Frequent Elements.
-// Memory Usage: 13.6 MB, less than 82.60% of C++ online submissions for Top K Frequent Elements.
+// ?/? cases passed
+// Runtime: 12 ms, faster than 96.04% of C++ online submissions.
+// Memory Usage: 13.6 MB, less than 82.60% of C++ online submissions.
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
@@ -6421,8 +6533,9 @@ public:
 
 ```C++
 // 2020-11-13 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Count Numbers with Unique Digits.
-// Memory Usage: 6.2 MB, less than 35.40% of C++ online submissions for Count Numbers with Unique Digits.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.2 MB, less than 35.40% of C++ online submissions.
 class Solution {
 public:
     int countNumbersWithUniqueDigits(int n) {
@@ -6463,8 +6576,9 @@ TODO
 
 ```C++
 // 2020-09-22 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Valid Perfect Square.
-// Memory Usage: 6.1 MB, less than 10.60% of C++ online submissions for Valid Perfect Square.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.1 MB, less than 10.60% of C++ online submissions.
 class Solution {
 public:
     bool isPerfectSquare(int num) {
@@ -6485,8 +6599,9 @@ public:
 
 ```C++
 // 2020-09-22 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Guess Number Higher or Lower.
-// Memory Usage: 6.1 MB, less than 15.75% of C++ online submissions for Guess Number Higher or Lower.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.1 MB, less than 15.75% of C++ online submissions.
 /**
  * Forward declaration of guess API.
  * @param  num   your guess
@@ -6516,8 +6631,9 @@ public:
 
 ```C++
 // 2020-11-02 submission
-// Runtime: 32 ms, faster than 73.30% of C++ online submissions for Ransom Note.
-// Memory Usage: 9.3 MB, less than 99.23% of C++ online submissions for Ransom Note.
+// ?/? cases passed
+// Runtime: 32 ms, faster than 73.30% of C++ online submissions.
+// Memory Usage: 9.3 MB, less than 99.23% of C++ online submissions.
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
@@ -6541,8 +6657,9 @@ public:
 
 ```C++
 // 2020-12-06 submission
-//Runtime: 0 ms, faster than 100.00% of C++ online submissions for Elimination Game.
-// Memory Usage: 6.3 MB, less than 44.34% of C++ online submissions for Elimination Game.
+// ?/? cases passed
+//Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.3 MB, less than 44.34% of C++ online submissions.
 class Solution {
 public:
     int lastRemaining(int n) {
@@ -6574,8 +6691,9 @@ public:
 
 ```C++
 // 2020-12-10 submission
-// Runtime: 272 ms, faster than 45.91% of C++ online submissions for Perfect Rectangle.
-// Memory Usage: 37.5 MB, less than 15.46% of C++ online submissions for Perfect Rectangle.
+// ?/? cases passed
+// Runtime: 272 ms, faster than 45.91% of C++ online submissions.
+// Memory Usage: 37.5 MB, less than 15.46% of C++ online submissions.
 class Solution { 
 public:
     bool isRectangleCover(vector<vector<int>>& rectangles) {
@@ -6614,8 +6732,9 @@ public:
 
 ```C++
 // 2020-12-10 submission
-// Runtime: 256 ms, faster than 55.00% of C++ online submissions for Perfect Rectangle.
-// Memory Usage: 38.6 MB, less than 12.27% of C++ online submissions for Perfect Rectangle.
+// ?/? cases passed
+// Runtime: 256 ms, faster than 55.00% of C++ online submissions.
+// Memory Usage: 38.6 MB, less than 12.27% of C++ online submissions.
 class Solution { 
 public:
     bool isRectangleCover(vector<vector<int>>& rectangles) {
@@ -6654,8 +6773,9 @@ public:
 
 ```C++
 // 2020-12-06 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Is Subsequence.
-// Memory Usage: 6.6 MB, less than 86.33% of C++ online submissions for Is Subsequence.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.6 MB, less than 86.33% of C++ online submissions.
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
@@ -6677,8 +6797,9 @@ public:
 
 ```C++
 // 2020-12-11 submission
-// Runtime: 4 ms, faster than 79.99% of C++ online submissions for Sum of Left Leaves.
-// Memory Usage: 13.6 MB, less than 95.47% of C++ online submissions for Sum of Left Leaves.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 79.99% of C++ online submissions.
+// Memory Usage: 13.6 MB, less than 95.47% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -6708,8 +6829,9 @@ public:
 
 ```C++
 // 2021-04-07 submission
-// Runtime: 4 ms, faster than 77.88% of C++ online submissions for Fizz Buzz.
-// Memory Usage: 7.8 MB, less than 76.15% of C++ online submissions for Fizz Buzz.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 77.88% of C++ online submissions.
+// Memory Usage: 7.8 MB, less than 76.15% of C++ online submissions.
 class Solution {
 public:
     vector<string> fizzBuzz(int n) {
@@ -6739,8 +6861,9 @@ public:
 
 ```C++
 // 2020-12-11 submission
-// Runtime: 8 ms, faster than 86.86% of C++ online submissions for Third Maximum Number.
-// Memory Usage: 9.3 MB, less than 83.57% of C++ online submissions for Third Maximum Number.
+// ?/? cases passed
+// Runtime: 8 ms, faster than 86.86% of C++ online submissions.
+// Memory Usage: 9.3 MB, less than 83.57% of C++ online submissions.
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
@@ -6770,8 +6893,9 @@ public:
 
 ```C++
 // 2021-03-18 submission
-// Runtime: 16 ms, faster than 60.99% of C++ online submissions for Find All Anagrams in a String.
-// Memory Usage: 8.6 MB, less than 53.85% of C++ online submissions for Find All Anagrams in a String.
+// ?/? cases passed
+// Runtime: 16 ms, faster than 60.99% of C++ online submissions.
+// Memory Usage: 8.6 MB, less than 53.85% of C++ online submissions.
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
@@ -6801,8 +6925,9 @@ public:
 
 ```C++
 // 2021-03-19 submission
-// Runtime: 40 ms, faster than 98.97% of C++ online submissions for Find All Duplicates in an Array.
-// Memory Usage: 33.7 MB, less than 60.41% of C++ online submissions for Find All Duplicates in an Array.
+// ?/? cases passed
+// Runtime: 40 ms, faster than 98.97% of C++ online submissions.
+// Memory Usage: 33.7 MB, less than 60.41% of C++ online submissions.
 class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
@@ -6827,8 +6952,9 @@ public:
 
 ```C++
 // 2021-03-19 submission
-// Runtime: 56 ms, faster than 74.59% of C++ online submissions for Find All Numbers Disappeared in an Array.
-// Memory Usage: 33.7 MB, less than 85.74% of C++ online submissions for Find All Numbers Disappeared in an Array.
+// ?/? cases passed
+// Runtime: 56 ms, faster than 74.59% of C++ online submissions.
+// Memory Usage: 33.7 MB, less than 85.74% of C++ online submissions.
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
@@ -6856,8 +6982,9 @@ public:
 
 ```C++
 // 2020-11-02 submission
-// Runtime: 60 ms, faster than 98.72% of C++ online submissions for Assign Cookies.
-// Memory Usage: 17.8 MB, less than 91.35% of C++ online submissions for Assign Cookies.
+// ?/? cases passed
+// Runtime: 60 ms, faster than 98.72% of C++ online submissions.
+// Memory Usage: 17.8 MB, less than 91.35% of C++ online submissions.
 class Solution {
 public:
     int findContentChildren(vector<int>& g, vector<int>& s) {
@@ -6881,8 +7008,9 @@ public:
 
 ```C++
 // 2020-12-11 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Construct the Rectangle.
-// Memory Usage: 6.6 MB, less than 31.57% of C++ online submissions for Construct the Rectangle.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6.6 MB, less than 31.57% of C++ online submissions.
 class Solution {
 public:
     vector<int> constructRectangle(int area) {
@@ -6904,8 +7032,9 @@ public:
 
 ```C++
 // 2021-03-21 submission
-// Runtime: 84 ms, faster than 45.73% of C++ online submissions for Target Sum.
-// Memory Usage: 20.2 MB, less than 36.81% of C++ online submissions for Target Sum.
+// ?/? cases passed
+// Runtime: 84 ms, faster than 45.73% of C++ online submissions.
+// Memory Usage: 20.2 MB, less than 36.81% of C++ online submissions.
 class Solution {
 public:
     int findTargetSumWays(vector<int>& nums, int S) {
@@ -6935,8 +7064,9 @@ public:
 
 ```C++
 // 2021-03-07 submission
-// Runtime: 32 ms, faster than 87.00% of C++ online submissions for Next Greater Element II.
-// Memory Usage: 23.7 MB, less than 88.13% of C++ online submissions for Next Greater Element II.
+// ?/? cases passed
+// Runtime: 32 ms, faster than 87.00% of C++ online submissions.
+// Memory Usage: 23.7 MB, less than 88.13% of C++ online submissions.
 class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
@@ -6969,8 +7099,9 @@ public:
 
 ```C++
 // 2020-11-13 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Perfect Number.
-// Memory Usage: 6 MB, less than 81.46% of C++ online submissions for Perfect Number.
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 6 MB, less than 81.46% of C++ online submissions.
 class Solution {
 public:
     bool checkPerfectNumber(int num) {
@@ -6990,8 +7121,9 @@ public:
 
 ```C++
 // 2021-03-17 submission
-// Runtime: 16 ms, faster than 35.45% of C++ online submissions for Diameter of Binary Tree.
-// Memory Usage: 23.1 MB, less than 5.27% of C++ online submissions for Diameter of Binary Tree.
+// ?/? cases passed
+// Runtime: 16 ms, faster than 35.45% of C++ online submissions.
+// Memory Usage: 23.1 MB, less than 5.27% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -7030,8 +7162,9 @@ public:
 
 ```C++
 // 2019-05-18 submission
-// Runtime: 24 ms, faster than 66.39% of C++ online submissions for Binary Tree Tilt.
-// Memory Usage: 24.1 MB, less than 6.16% of C++ online submissions for Binary Tree Tilt.
+// ?/? cases passed
+// Runtime: 24 ms, faster than 66.39% of C++ online submissions.
+// Memory Usage: 24.1 MB, less than 6.16% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -7078,8 +7211,9 @@ public:
 
 ```C++
 // 2021-04-03 submission
-// Runtime: 24 ms, faster than 86.70% of C++ online submissions for Shortest Unsorted Continuous Subarray.
-// Memory Usage: 26.5 MB, less than 59.14% of C++ online submissions for Shortest Unsorted Continuous Subarray.
+// ?/? cases passed
+// Runtime: 24 ms, faster than 86.70% of C++ online submissions.
+// Memory Usage: 26.5 MB, less than 59.14% of C++ online submissions.
 class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {
@@ -7103,8 +7237,9 @@ public:
 
 ```C++
 // 2021-03-10 submission
-// Runtime: 40 ms, faster than 73.91% of C++ online submissions for Merge Two Binary Trees.
-// Memory Usage: 34.2 MB, less than 26.12% of C++ online submissions for Merge Two Binary Trees.
+// ?/? cases passed
+// Runtime: 40 ms, faster than 73.91% of C++ online submissions.
+// Memory Usage: 34.2 MB, less than 26.12% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -7138,8 +7273,9 @@ public:
 
 ```C++
 // 2021-03-17 submission
-// Runtime: 28 ms, faster than 34.67% of C++ online submissions for Palindromic Substrings.
-// Memory Usage: 7.5 MB, less than 57.20% of C++ online submissions for Palindromic Substrings.
+// ?/? cases passed
+// Runtime: 28 ms, faster than 34.67% of C++ online submissions.
+// Memory Usage: 7.5 MB, less than 57.20% of C++ online submissions.
 class Solution {
 public:
     int countSubstrings(string s) {
@@ -7162,8 +7298,9 @@ public:
 
 ```C++
 // 2020-12-10 submission
-// Runtime: 52 ms, faster than 77.49% of C++ online submissions for Search in a Binary Search Tree.
-// Memory Usage: 35.6 MB, less than 41.77% of C++ online submissions for Search in a Binary Search Tree.
+// ?/? cases passed
+// Runtime: 52 ms, faster than 77.49% of C++ online submissions.
+// Memory Usage: 35.6 MB, less than 41.77% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -7194,8 +7331,9 @@ public:
 
 ```C++
 // 2021-03-10 submission
-// Runtime: 60 ms, faster than 81.38% of C++ online submissions for Daily Temperatures.
-// Memory Usage: 41.6 MB, less than 46.62% of C++ online submissions for Daily Temperatures.
+// ?/? cases passed
+// Runtime: 60 ms, faster than 81.38% of C++ online submissions.
+// Memory Usage: 41.6 MB, less than 46.62% of C++ online submissions.
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& T) {
@@ -7222,8 +7360,9 @@ public:
 
 ```C++
 // 2021-04-18 submission
-// Runtime: 100 ms, faster than 91.40% of C++ online submissions for Network Delay Time.
-// Memory Usage: 37.3 MB, less than 90.33% of C++ online submissions for Network Delay Time.
+// ?/? cases passed
+// Runtime: 100 ms, faster than 91.40% of C++ online submissions.
+// Memory Usage: 37.3 MB, less than 90.33% of C++ online submissions.
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
@@ -7271,8 +7410,9 @@ public:
 
 ```C++
 // 2021-03-17 submission
-// Runtime: 4 ms, faster than 83.01% of C++ online submissions for Partition Labels.
-// Memory Usage: 6.8 MB, less than 64.91% of C++ online submissions for Partition Labels.
+// ?/? cases passed
+// Runtime: 4 ms, faster than 83.01% of C++ online submissions.
+// Memory Usage: 6.8 MB, less than 64.91% of C++ online submissions.
 class Solution {
 public:
     vector<int> partitionLabels(string S) {
@@ -7300,6 +7440,7 @@ public:
 （迭代）使用栈实现。最开始将根节点压入栈。迭代开始时每次取出栈顶节点，如果当前节点为叶节点或者子树节点为之前弹出节点head，则认为当前节点需要加入输出集，弹出当前节点并标记为head；如果不是则将当前节点右子树和左子树压入栈（注意栈先入后出的特性）。head初始化可以初始化为root，但是绝对不能为空，因为有可能会出现节点只有左子树或者右子树的情况，这样会直接弹出当前节点，这明显不符合情况。
 
 // 2020-07-17 submission
+// ?/? cases passed
 (recursive )
 Runtime: 4 ms, faster than 51.58% of C++ online submissions
 Memory Usage: 8.7 MB, less than 26.67% of C++ online submissions
