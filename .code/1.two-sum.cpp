@@ -6,11 +6,11 @@
  * https://leetcode.com/problems/two-sum/description/
  *
  * algorithms
- * Easy (47.90%)
- * Likes:    27178
- * Dislikes: 872
- * Total Accepted:    5.5M
- * Total Submissions: 11.5M
+ * Easy (48.62%)
+ * Likes:    32485
+ * Dislikes: 1032
+ * Total Accepted:    6.7M
+ * Total Submissions: 13.8M
  * Testcase Example:  '[2,7,11,15]\n9'
  *
  * Given an array of integers nums and an integer target, return indices of the
@@ -27,7 +27,7 @@
  * 
  * Input: nums = [2,7,11,15], target = 9
  * Output: [0,1]
- * Output: Because nums[0] + nums[1] == 9, we return [0, 1].
+ * Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
  * 
  * 
  * Example 2:
@@ -59,20 +59,7 @@
  * complexity?
  */
 
-// @lc solution=start
-
-题目描述：给定无序数组和指定值 target, 返回和为 target 的两个数的下标。
-
-解题思路
-
-1. HashMap：建立值到下标的映射。复杂度为 O(n)
-// @lc solution=end
-
 // @lc code=start
-// 2020-12-14 submission
-// 57/57 cases passed
-// Runtime: 10 ms, faster than 79.42% of C++ online submissions.
-// Memory Usage: 10.9 MB, less than 44.27% of C++ online submissions.
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -87,15 +74,3 @@ public:
 };
 // @lc code=end
 
-// @lc code=start
-// 2020-12-14 submission
-// 57/57 cases passed
-// Runtime: 10 ms, faster than 79.42% of C++ online submissions.
-// Memory Usage: 10.9 MB, less than 44.27% of C++ online submissions.
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        return vector<int>{};
-    }
-};
-// @lc code=end
