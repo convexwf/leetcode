@@ -60,6 +60,18 @@
  */
 
 // @lc code=start
+// 2022-05-30 submission
+// 57/57 cases passed
+// Runtime: 19 ms, faster than 59.18% of C++ online submissions.
+// Memory Usage: 10.9 MB, less than 45.93% of C++ online submissions.
+// 2022-05-30 submission
+// 57/57 cases passed
+// Runtime: 12 ms, faster than 83.93% of C++ online submissions.
+// Memory Usage: 10.9 MB, less than 29.71% of C++ online submissions.
+// 2022-05-30 submission
+// 57/57 cases passed
+// Runtime: 22 ms, faster than 52.06% of C++ online submissions.
+// Memory Usage: 10.8 MB, less than 45.93% of C++ online submissions.
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -73,4 +85,3 @@ public:
     }
 };
 // @lc code=end
-
