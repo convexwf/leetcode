@@ -21,7 +21,7 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> m;
         for (int i = 0; i < nums.size(); i++) {
-            if (m.count(target - nums[i])) 
+            if (m.count(target - nums[i]))
                 return vector<int>{m[target - nums[i]], i};
             m[nums[i]] = i;
         }
@@ -57,9 +57,9 @@ public:
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        
+
         ListNode* dummy = new ListNode(0);
-        
+
         ListNode* cur = dummy;
         int carry = 0;
         while (l1 || l2 || carry) {
@@ -71,7 +71,7 @@ public:
             l2 = l2 ? l2->next : l2;
             cur = cur->next;
         }
-        
+
         return dummy->next;
     }
 };
@@ -153,7 +153,7 @@ public:
         int mid1 = (m + n + 1) / 2, mid2 = (m + n + 2) / 2;
         return (findKthNumber(nums1, nums2, 0, 0, mid1) + findKthNumber(nums1, nums2, 0, 0, mid2)) / 2.0;
     }
-    
+
     int findKthNumber(vector<int>& nums1, vector<int>& nums2, int i, int j, int k) {
         if (i >= nums1.size()) return nums2[j + k - 1];
         if (j >= nums2.size()) return nums1[i + k - 1];
@@ -187,7 +187,7 @@ public:
             str.append(1, '#');
         }
         str.append(1, '$'); // 为了避免之后的越界比较
-        
+
         int n = str.length();
         vector<int> vec(n, 0);
         int C = 0, R = 0;
@@ -200,7 +200,7 @@ public:
                 R = i + vec[i];
             }
         };
-        
+
         auto max_it = max_element(vec.begin(), vec.end());
         int idx = (max_it-vec.begin()-*max_it) / 2;
         int len = *max_it;
@@ -272,7 +272,7 @@ public:
     bool isMatch(string s, string p) {
         return helper(s, p, 0, 0);
     }
-    
+
     bool helper(string& s, string& p, int sp, int pp) {
         if(sp == s.size() && pp == p.size()) return true;
         if(pp+1 < p.size() && p[pp+1] == '*') {
@@ -393,9 +393,9 @@ public:
 // Memory Usage: 6.5 MB, less than 84.70% of C++ online submissions.
 class Solution {
 public:
-    
+
     string prefix[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    
+
     vector<string> letterCombinations(string digits) {
         queue<string> q;
         if (digits.length() > 0) q.push("");
@@ -407,7 +407,7 @@ public:
                 }
             }
         }
-        
+
         vector<string> res;
         while (!q.empty()) {
             res.push_back(q.front());
@@ -434,7 +434,7 @@ public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         return helper(head, n);
     }
-    
+
     ListNode* helper(ListNode* curr, int& limit) {
         if(!curr) return NULL;
         curr->next = helper(curr->next, limit);
@@ -532,7 +532,7 @@ public:
         helper(res, cur, lp, rp);
         return res;
     }
-    
+
     void helper(vector<string>& res, string cur, int lp, int rp) {
         if (lp == 0) {
             res.push_back(cur + string(rp-lp, ')'));
@@ -675,7 +675,7 @@ public:
 边界条件：
 
 1. 注意 haystack 或者 needle 长度为0的情况
-2. 注意 haystack 长度比 needle 小的情况  
+2. 注意 haystack 长度比 needle 小的情况
 
 ```C++
 // 2020-06-28 submission
@@ -718,7 +718,7 @@ class Solution {
 public:
     int divide(int dividend, int divisor) {
         if(INT_MIN == dividend && -1 == divisor) return INT_MAX;
-        
+
         long x = abs(dividend), y = abs(div isor);
         bool minus = (dividend<0 && divisor>0) || (dividend>0 && divisor<0);
         long accum = 0;
@@ -768,8 +768,8 @@ public:
                 check_freq[words[x]] = 0;
             check_freq[words[x]]++;
         }
-                
-        
+
+
         for (int i = 0; i < len; i++) {
             for (int x = 0; x < words.size(); x++)
                 word_freq[words[x]] = 0;
@@ -821,7 +821,7 @@ public:
         for(int i = 1; i <= s.length(); i++) {
             if(s[i-1] == ')' && i-1-vec[i-1]-1 >= 0 && s[i-1-vec[i-1]-1] == '(') {
                 vec[i] = vec[i-1] + 2;
-                vec[i] += vec[i-vec[i]]; 
+                vec[i] += vec[i-vec[i]];
                 res = max(res, vec[i]);
             }
         }
@@ -850,13 +850,13 @@ public:
     int trap(vector<int>& height) {
         vector<int> vec(height.size(), 0);
         long long res = 0;
-        
+
         int maxVal = 0;
         for (int i = 0; i < (int)height.size(); i++) {
             maxVal = max(maxVal, height[i]);
             vec[i] = maxVal;
         }
-        
+
         maxVal = 0;
         for (int i = (int)vec.size()-1; i >= 0; i--) {
             maxVal = max(maxVal, height[i]);
@@ -890,7 +890,7 @@ class Solution {
 public:
     bool isMatch(string s, string p) {
         vector<bool> dp(s.length()+1, false);
-        
+
         dp[0] = true;
         for (int i = 1; i <= p.length(); i++) {
             bool last_valid = dp[0];
@@ -904,7 +904,7 @@ public:
                 // cout << s[j-1] << " " << p[i-1] << " " << dp[j] << endl;
             }
         }
-        
+
         return dp[s.length()];
     }
 };
@@ -1040,14 +1040,14 @@ public:
         }
         return chess_results;
     }
-    
+
     bool find(int row, int col, vector<int>& curr) {
         for(int i = 0; i < row; i++) {
             if(curr[i]==col || abs(i-row)==abs(col-curr[i])) return false;
         }
         return true;
     }
-    
+
     void place(int k, int n, vector<int>& curr, vector<vector<int>>& result) {
         for(int i = 0; i < n; i++) {
             if(find(k, i, curr)) {
@@ -1057,7 +1057,7 @@ public:
             }
         }
     }
-    
+
     void print_chess(vector<vector<int>>& result, vector<vector<string>>& chess_results) {
         int col = 0;
         string temp = "";
@@ -1094,7 +1094,7 @@ public:
         place(0, n, temp, success);
         return success;
     }
-    
+
     bool find(int row, int col, vector<int>& curr) {
         for(int i = 0; i < row; i++) {
             if(curr[i] == col || abs(i-row) == abs(curr[i]-col))
@@ -1102,7 +1102,7 @@ public:
         }
         return true;
     }
-    
+
     void place(int k, int n, vector<int>& curr, int &success) {
         for(int i = 0; i < n; i++) {
             if(find(k, i, curr)) {
@@ -1112,7 +1112,7 @@ public:
             }
         }
     }
-    
+
 };
 ```
 
@@ -1242,7 +1242,7 @@ public:
         sort(intervals.begin(), intervals.end());
         result.push_back(intervals[0]);
         for(int i = 1; i < intervals.size(); i++) {
-            if (intervals[i][0] <= result.back()[1]) 
+            if (intervals[i][0] <= result.back()[1])
                 result.back()[1] = max(result.back()[1], intervals[i][1]);
             else
                 result.push_back(intervals[i]);
@@ -1266,7 +1266,7 @@ public:
         if (newInterval.empty()) return vector<vector<int>>(intervals.begin(), intervals.end());
         vector<vector<int>> res;
         int cnt = intervals.size();
-        
+
         int cur = 0;
         while(cur < cnt) {
             if (intervals[cur][1] < newInterval[0])
@@ -1274,7 +1274,7 @@ public:
             else
                 break;
         }
-        
+
         vector<int> temp_interval(newInterval.begin(), newInterval.end());
         for (; cur < cnt; cur++) {
             if (judge(temp_interval, intervals[cur])) {
@@ -1286,13 +1286,13 @@ public:
             // cout << "interval " << temp_interval[0] << " " << temp_interval[1] << endl;
         }
         res.push_back(temp_interval);
-        
+
         while(cur < cnt) {
             res.push_back(intervals[cur++]);
         }
         return res;
     }
-    
+
     bool judge(vector<int>& A, vector<int>& B) {
         return (A[1] >= B[0] && A[0] <= B[1]) || (B[1] >= A[0] && B[0] <= A[1]);
     }
@@ -1341,7 +1341,7 @@ public:
         for (int i = 1; i <= n * n; i++) {
             if (0 > x + direction[di][0] ||
                 x + direction[di][0] >= n ||
-                0 > y + direction[di][1] || 
+                0 > y + direction[di][1] ||
                 y + direction[di][1] >= n ||
                 res[x+direction[di][0]][y + direction[di][1]] != 0)  di = (di + 1) % 4;
             x += direction[di][0]; y += direction[di][1];
@@ -1422,7 +1422,7 @@ public:
         vector<int> dp(n, 1);
         for (int i = 1; i < m; ++i) {
             for (int j = 1; j < n; ++j) {
-                dp[j] += dp[j - 1]; 
+                dp[j] += dp[j - 1];
             }
         }
         return dp[n - 1];
@@ -1469,7 +1469,7 @@ public:
         int rows = grid.size();
         int cols = grid[0].size();
         vector<vector<int>> record(rows+1, vector<int>(cols+1, INT_MAX));
-        
+
         for (int i = 1; i <= rows; i++) {
             for (int j = 1; j <= cols; j++) {
                 if (i == 1 && j == 1) record[i][j] = grid[i-1][j-1];
@@ -1509,7 +1509,7 @@ public:
             {7, -1, -1, -1},//7
             {-1, -1, -1, -1}};//8
         int accepted[] = {2, 4, 7};
-        
+
         s.append(1, ' ');
         int cur = 0;
         for (int i = 0; i < s.length(); i++) {
@@ -1553,7 +1553,7 @@ public:
         reverse(result.begin(), result.end());
         return result;
     }
-    
+
 };
 ```
 
@@ -1587,7 +1587,7 @@ public:
 
 解题思路
 
-1. 遍历单词 list, 并维护一个cur_len表示当前收纳的长度（需包含空格）。每读入一个单词有三种情况：  
+1. 遍历单词 list, 并维护一个cur_len表示当前收纳的长度（需包含空格）。每读入一个单词有三种情况：
 
    + 加入当前单词后，cur_len <= maxWidth，当前单词记录，遍历下一个单词
    + 加入当前单词后，cur_len >= maxWidth 而且当前单词不是最后一个单词。此时将记录的单词串格式化处理。
@@ -1664,8 +1664,8 @@ public:
 
 https://www.jianshu.com/p/a617d20162cf
 
-![](res/2020-09-08-14-57-14.png)
-![](res/2020-09-08-14-58-00.png)
+![Edit Distance](res/2020-09-08-14-57-14.png)
+![Edit Distance](res/2020-09-08-14-58-00.png)
 
 // 2020-09-08 submission
 // ?/? cases passed
@@ -1678,7 +1678,7 @@ public:
         int c1 = word1.length();
         int c2 = word2.length();
         if (c1 == 0 or c2 == 0) return max(c1, c2);
-        
+
         vector<int> dist(c1 + 1, 0);
         for (int i = 1; i <= c1; i++) {
             dist[i] = i;
@@ -1756,7 +1756,7 @@ public:
         }
         for (int i = 0; i < n; ++i) {
             if (matrix[0][i] == 0) rowZero = true;
-        } 
+        }
         for (int i = 1; i < m; ++i) {
             for (int j = 1; j < n; ++j) {
                 if (matrix[i][j] == 0) {
@@ -1849,12 +1849,12 @@ class Solution {
 public:
     string minWindow(string s, string t) {
         if(t.length() == 0) return "";
-        
+
         unordered_map<char, int> freq;
         for (int i = 0; i < t.length(); i++) {
             freq[t[i]]++;
         }
-        
+
         int left = 0;
         int cnt = 0;
         string res = "";
@@ -1977,7 +1977,7 @@ public:
         int m = board.size(), n = board[0].size();
         if (i < 0 || j < 0 || i >= m || j >= n || visited[i][j] || board[i][j] != word[idx]) return false;
         visited[i][j] = true;
-        bool res = search(board, word, idx + 1, i - 1, j, visited) 
+        bool res = search(board, word, idx + 1, i - 1, j, visited)
                  || search(board, word, idx + 1, i + 1, j, visited)
                  || search(board, word, idx + 1, i, j - 1, visited)
                  || search(board, word, idx + 1, i, j + 1, visited);
@@ -2219,7 +2219,7 @@ public:
         if (s1.size() != s2.size()) return false;
         if(s1 == s2) return true;
         int len = s1.length();
-        
+
         int freq[26] = {0};
         for (int i = 0; i < len; i++) {
             ++freq[s1[i]-'a'];
@@ -2228,14 +2228,14 @@ public:
         for (int i = 0; i < 26; i++) {
             if (freq[i] != 0) return false;
         }
-        
+
         for (int i = 1; i < len; i++) {
             string s11 = s1.substr(0, i);
             string s12 = s1.substr(i);
             string s21 = s2.substr(0, i);
             string s22 = s2.substr(i);
             if (isScramble(s11, s21) && isScramble(s12, s22)) return true;
-            
+
             s21 = s2.substr(0, len - i);
             s22 = s2.substr(len - i);
             if (isScramble(s11, s22) && isScramble(s12, s21)) return true;
@@ -2267,7 +2267,7 @@ public:
 
 解题思路
 
-1. 镜面排列: ![](res/2021-09-05-15-00-02.png)
+1. 镜面排列: ![镜面排列](res/2021-09-05-15-00-02.png)
 
 ```C++
 class Solution {
@@ -2347,7 +2347,7 @@ public:
         helper(s, candidates, result, 0);
         return result;
     }
-    
+
     void helper(string& s, vector<int>& candidates, vector<string>& result, int idx) {
         if (candidates.size() > 4) return;
         if (s.length() == idx) {
@@ -2386,7 +2386,7 @@ public:
     vector<TreeNode*> generateTrees(int n) {
         return helper(1, n);
     }
-    
+
     vector<TreeNode*> helper(int left, int right) {
         vector<TreeNode*> res, left_res, right_res;
         for (int pivot = left; pivot <= right; pivot++) {
@@ -2394,7 +2394,7 @@ public:
             else left_res = helper(left, pivot - 1);
             if (right == pivot) right_res = vector<TreeNode*>{NULL};
             else right_res = helper(pivot + 1, right);
-            
+
             for (int i = 0; i < left_res.size()*right_res.size(); i++) {
                 TreeNode* new_node = new TreeNode(pivot);
                 new_node->left = left_res[i % left_res.size()];
@@ -2560,11 +2560,11 @@ public:
         if(root == NULL) return true;
         return checkLeftRight(root->left, root->right);
     }
-    
+
     bool checkLeftRight(TreeNode* left, TreeNode* right) {
         if(left==NULL && right==NULL) return true;
         if(left==NULL || right==NULL || left->val!=right->val) return false;
-        return checkLeftRight(left->left, right->right) && 
+        return checkLeftRight(left->left, right->right) &&
             checkLeftRight(left->right, right->left);
     }
 };
@@ -2589,7 +2589,7 @@ public:
         pushOrder(root, vec, 0);
         return vec;
     }
-    
+
     void pushOrder(TreeNode*root, vector<vector<int>>& vec, int depth) {
         if(root == NULL) return;
         if (vec.size() == level) vec.push_back({});
@@ -2639,7 +2639,7 @@ public:
         }
         return vec;
     }
-    
+
     void pushOrder(TreeNode*root, vector<vector<int>>& vec, int depth) {
         if(root == NULL) return;
         if(vec.size() - depth <= 0) vec.resize(depth+1);
@@ -2682,7 +2682,7 @@ public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         return helper(preorder, 0, preorder.size()-1, inorder, 0, inorder.size() - 1);
     }
-    
+
     TreeNode* helper(vector<int>& pre, int pre_l, int pre_r, vector<int>& vin, int vin_l, int vin_r) {
         if (pre_r - pre_l < 0) return nullptr;
         TreeNode* root = new TreeNode(pre[pre_l]);
@@ -2694,7 +2694,7 @@ public:
             }
         }
         return root;
-    } 
+    }
 };
 ```
 
@@ -2711,7 +2711,7 @@ public:
         reverse(vec.begin(), vec.end());
         return vec;
     }
-    
+
     void pushOrder(TreeNode*root, vector<vector<int>>& vec, int depth) {
         if(root == NULL) return;
         if(vec.size() - depth <= 0) vec.resize(depth+1);
@@ -2837,7 +2837,7 @@ class Solution {
 public:
     bool hasPathSum(TreeNode* root, int sum) {
         if (!root) return false;
-        if (!root->left && !root->right) 
+        if (!root->left && !root->right)
             return sum == root->val;
         return hasPathSum(root->left, sum-root->val) ||
                 hasPathSum(root->right, sum-root->val);
@@ -2860,7 +2860,7 @@ public:
         if(root) helper(candidates, temp, root, sum);
         return candidates;
     }
-    
+
     void helper(vector<vector<int>>& candidates, vector<int>& current, TreeNode* root, int rest) {
         if(rest==root->val && !root->left && !root->right) {
             current.push_back(root->val);
@@ -3102,14 +3102,14 @@ public:
         if(numRows == 0) return ret;
         ret.push_back(vector<int>{1});
         if(numRows == 1) return ret;
-        
+
         ret.push_back(vector<int>{1, 1});
         for(int i = numRows - 2; i > 0; i--) {
             ret.push_back(getNext(ret.back()));
         }
         return ret;
     }
-    
+
     vector<int> getNext(vector<int>& curr) {
         vector<int> ret;
         ret.push_back(1);
@@ -3240,7 +3240,7 @@ public:
         if (prices.empty()) return 0;
         int days = prices.size();
         vector<int> front(days, 0), latter(days, 0);
-        
+
         int min_price = prices[0], max_price = prices[days-1];
         for (int i = 1; i < days; i++) {
             min_price = min(min_price, prices[i]);
@@ -3252,7 +3252,7 @@ public:
             latter[i] = max(latter[i+1], max_price-prices[i]);
             // cout << "latter " << prices[i] << " " << latter[i] << endl;
         }
-        
+
         int max_profit = 0;
         for (int pivot = 0; pivot < days; pivot++) {
             max_profit = max(max_profit, front[pivot]+latter[pivot]);
@@ -3282,7 +3282,7 @@ public:
         helper(root, maxVal);
         return maxVal;
     }
-    
+
     int helper(TreeNode* root, int& maxVal) {
         if(!root) return 0;
         int left_sum = max(0, helper(root->left, maxVal));
@@ -3366,7 +3366,7 @@ public:
         vector<vector<bool> > mask(rows, vector<bool>(cols, false));
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (i == 0 || i == rows-1 || j == 0 || j == cols - 1) 
+                if (i == 0 || i == rows-1 || j == 0 || j == cols - 1)
                     DFS(board, mask, i, j);
             }
         }
@@ -3808,11 +3808,11 @@ public:
     int capacity;
     unordered_map<int, list<pair<int, int>>::iterator> m;
     list<pair<int, int> > l;
-    
+
     LRUCache(int capacity) {
         this->capacity = capacity;
     }
-    
+
     int get(int key) {
         if (!m.count(key)) return -1;
         else {
@@ -3824,7 +3824,7 @@ public:
             return value;
         }
     }
-    
+
     void put(int key, int value) {
         if (m.count(key)) l.erase(m[key]);
         else --capacity;
@@ -3931,7 +3931,7 @@ public:
         }
         return max_num;
     }
-    
+
     int gcd(int x, int y, map<pair<int, int>, int>& collect) {
         int cnt = 0;
         if ( x == 0 && y == 0) {
@@ -4136,29 +4136,29 @@ class MinStack {
 public:
     /** initialize your data structure here. */
     MinStack() {
-        
+
     }
-    
+
     void push(int val) {
         if (min_s.empty() || min_s.top() >= val) {
             min_s.push(val);
         }
         base.push(val);
     }
-    
+
     void pop() {
         if (min_s.top() == base.top()) min_s.pop();
         base.pop();
     }
-    
+
     int top() {
         return base.top();
     }
-    
+
     int getMin() {
         return min_s.top();
     }
-    
+
 private:
     stack<int> base;
     stack<int> min_s;
@@ -4236,20 +4236,20 @@ class Solution {
 public:
     int compareVersion(string version1, string version2) {
         int p1 = 0, p2 = 0;
-        
+
         while (p1 < version1.length() || p2 < version2.length()) {
-            
+
             int x1 = 0, x2 = 0;
             while (p1 < version1.length() && version1[p1] != '.') {
                 x1 = x1 * 10 + version1[p1] - '0';
                 ++p1;
             }
-                
+
             while (p2 < version2.length() && version2[p2] != '.') {
                 x2 = x2 * 10 + version2[p2] - '0';
                 ++p2;
             }
-                
+
             if (x1 < x2) return -1;
             else if (x1 > x2) return 1;
             ++p1; ++p2;
@@ -4417,7 +4417,7 @@ public:
     string largestNumber(vector<int>& nums) {
         string res;
         sort(nums.begin(), nums.end(), [](int a, int b) {
-           return to_string(a) + to_string(b) > to_string(b) + to_string(a); 
+           return to_string(a) + to_string(b) > to_string(b) + to_string(a);
         });
         for (int i = 0; i < nums.size(); ++i) {
             res += to_string(nums[i]);
@@ -4469,9 +4469,9 @@ public:
 
 1. 题目描述：买进前必须卖出手头已有的；允许最多$k$次交易
 2. 维护两个变量：全局最优 ***global*** 和局部最优 ***local***。定义局部最优$\it{local}[i][j]$为在到达第$i$天时最多可进行$j$次交易并且最后一次交易在最后一天卖出的最大利润,全局最优$\it{global}[i][j]$为在到达第$i$天时最多可进行$j$次交易的最大利润。
-3. 递推式为 
+3. 递推式为
 $$local[i][j] = max(global[i - 1][j - 1] + max(\it{diff}, 0), local[i - 1][j] + \it{diff})$$
-$$global[i][j] = max(local[i][j], global[i - 1][j])$$ 
+$$global[i][j] = max(local[i][j], global[i - 1][j])$$
 其中局部最优值是比较前一天并少交易一次的全局最优加上大于0的差值，和前一天的局部最优加上差值后相比，两者之中取较大值，而全局最优比较局部最优和前一天的全局最优。
 4. 上面的算法中对于天数需要一次扫描，而每次要对交易次数进行递推式求解，所以时间复杂度是$O(n*k)$，如果是最多进行两次交易，那么复杂度还是$O(n)$。空间上只需要维护当天数据皆可以，所以是$O(k)$，当k=2，则是$O(1)$。
 5. 为了减少运算次数，当$k$远大于天数时，按照 **122. Best Time to Buy and Sell Stock II** 中无限次数交易的方法求解。
@@ -4505,7 +4505,7 @@ public:
         }
         return global[k];
     }
-    
+
     int maxProfit_largetrades(vector<int>& prices) {
         int maxValue = 0;
         for(int i = 1; i < prices.size(); i++) {
@@ -4557,7 +4557,7 @@ class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
         if (nums.empty()) return;
-        int n = nums.size(), start = 0;   
+        int n = nums.size(), start = 0;
         while (n && (k %= n)) {
             for (int i = 0; i < k; ++i) {
                 swap(nums[i + start], nums[n - k + i + start]);
@@ -4680,7 +4680,7 @@ public:
     }
 
     void helper(TreeNode* node, int level, vector<int>& values){
-        if(!node) return; 
+        if(!node) return;
         if(values.size() < level) values.   push_back(node->val);
         helper(node->right, level+1, values);
         helper(node->left, level+1, values);
@@ -5135,11 +5135,11 @@ public:
             for (auto &a : child) a = NULL;
         }
     };
-    
+
     WordDictionary() {
         root = new TrieNode();
     }
-    
+
     // Adds a word into the data structure.
     void addWord(string word) {
         TrieNode *p = root;
@@ -5156,7 +5156,7 @@ public:
     bool search(string word) {
         return searchWord(word, root, 0);
     }
-    
+
     bool searchWord(string &word, TrieNode *p, int i) {
         if (i == word.size()) return p->isWord;
         if (word[i] == '.') {
@@ -5168,7 +5168,7 @@ public:
             return p->child[word[i] - 'a'] && searchWord(word, p->child[word[i] - 'a'], i + 1);
         }
     }
-    
+
 private:
     TrieNode *root;
 };
@@ -5205,7 +5205,7 @@ private:
                 ptr = NULL;
         }
     };
-    
+
     struct TrieTree {
         TrieNode* root;
         TrieTree() : root(new TrieNode()) {}
@@ -5218,18 +5218,18 @@ private:
             cur->word = word;
         }
     };
-    
+
 public:
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
         if(board.empty() || board[0].empty()) return vector<string>{};
         vector<string> res;
         int rows = board.size(), cols = board[0].size();
         vector<vector<bool>> visited(rows, vector<bool>(cols, false));
-        
+
         TrieTree* tree = new TrieTree();
         for (string word : words)
             tree->insert(word);
-        
+
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < cols; j++) {
                 DFS(board, visited, res, i, j, tree->root);
@@ -5237,7 +5237,7 @@ public:
         }
         return res;
     }
-    
+
     void DFS(vector<vector<char>>& board, vector<vector<bool>>& visited, vector<string>& res, int x, int y, TrieNode* cur) {
         if (0 > x || x >= board.size() || 0 > y || y >= board[0].size() || visited[x][y]) return;
         visited[x][y] = true;
@@ -5461,7 +5461,7 @@ public:
     }
 };
 ```
- 
+
 ## 228. Summary Ranges (2020-10-29)
 
 解题思路
@@ -5561,7 +5561,7 @@ public:
     int kthSmallest(TreeNode* root, int k) {
         return helper(root, k);
     }
-    
+
     int helper(TreeNode* root, int& k) {
         if (!root) return -1;
         int val = helper(root->left, k);
@@ -5579,7 +5579,7 @@ class Solution {
 public:
     bool isPowerOfTwo(int n) {
         return (n > 0) && (!(n & (n - 1)));
-    } 
+    }
 };
 ```
 
@@ -5616,9 +5616,9 @@ class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if (!root) return NULL;
-        if (root->val > max(p->val, q->val)) 
+        if (root->val > max(p->val, q->val))
             return lowestCommonAncestor(root->left, p, q);
-        else if (root->val < min(p->val, q->val)) 
+        else if (root->val < min(p->val, q->val))
             return lowestCommonAncestor(root->right, p, q);
         else return root;
     }
@@ -6127,9 +6127,9 @@ class MedianFinder {
 public:
     /** initialize your data structure here. */
     MedianFinder() {
-        
+
     }
-    
+
     void addNum(int num) {
         if ((small.size() + big.size()) % 2 == 0) {
             small.push(num);
@@ -6141,7 +6141,7 @@ public:
             big.pop();
         }
     }
-    
+
     double findMedian() {
         if ((small.size() + big.size()) % 2 == 0) {
             return ((double)small.top() + big.top()) / 2;
@@ -6149,7 +6149,7 @@ public:
             return big.top();
         }
     }
-    
+
     priority_queue<int, vector<int>, less<int> > small;
     priority_queue<int, vector<int>, greater<int> > big;
 };
@@ -6195,7 +6195,7 @@ public:
             encode(root->right, out);
         }
     }
-    
+
     TreeNode *decode(istringstream& in) {
         string val;
         in >> val;
@@ -6205,7 +6205,7 @@ public:
         node->right = decode(in);
         return node;
     }
-    
+
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
         ostringstream out;
@@ -6694,10 +6694,10 @@ public:
 // ?/? cases passed
 // Runtime: 272 ms, faster than 45.91% of C++ online submissions.
 // Memory Usage: 37.5 MB, less than 15.46% of C++ online submissions.
-class Solution { 
+class Solution {
 public:
     bool isRectangleCover(vector<vector<int>>& rectangles) {
-        
+
         unordered_map<string, int> m;
         int min_w = INT_MAX, max_w = 0, min_h = INT_MAX, max_h = 0;
         int res_area = 0;
@@ -6712,7 +6712,7 @@ public:
             m[to_string(rectangles[i][2]) + "_" + to_string(rectangles[i][3])]++;
             res_area += (rectangles[i][2] - rectangles[i][0]) * (rectangles[i][3] - rectangles[i][1]);
         }
-        
+
         unordered_set<string> angle{to_string(min_w) + "_" + to_string(min_h),
                                     to_string(min_w) + "_" + to_string(max_h),
                                     to_string(max_w) + "_" + to_string(min_h),
@@ -6735,7 +6735,7 @@ public:
 // ?/? cases passed
 // Runtime: 256 ms, faster than 55.00% of C++ online submissions.
 // Memory Usage: 38.6 MB, less than 12.27% of C++ online submissions.
-class Solution { 
+class Solution {
 public:
     bool isRectangleCover(vector<vector<int>>& rectangles) {
         unordered_map<string, int> m;
@@ -6759,7 +6759,7 @@ public:
         }
         return cnt == 4 && area == (max_x - min_x) * (max_y - min_y);
     }
-    
+
     bool isValid(unordered_map<string, int>& m, string corner, int type) {
         int& val = m[corner];
         if (val & type) return false;
@@ -6816,7 +6816,7 @@ public:
     int sumOfLeftLeaves(TreeNode* root) {
         return helper(root, false);
     }
-    
+
     int helper(TreeNode* root, bool is_left) {
         if (!root) return 0;
         if (!root->left && !root->right) return is_left ? root->val : 0;
@@ -6903,12 +6903,12 @@ public:
         int len = p.length();
         for (char c : p)
             ++m[c];
-        
+
         int l = 0;
         vector<int> res;
         for (int i = 0; i < s.length(); i++) {
             --m[s[i]];
-            while (m[s[i]] < 0) 
+            while (m[s[i]] < 0)
                 ++m[s[l++]];
             if (i - l + 1 == len) res.push_back(l);
         }
@@ -7028,7 +7028,7 @@ public:
 解题思路
 
 1. BFS
-2. 
+2.
 
 ```C++
 // 2021-03-21 submission
@@ -7048,7 +7048,7 @@ public:
                     can.push_back(make_pair(it.first-nums[i], it.second));
                     m[it.first] = 0;
                 }
-                
+
             }
             for (auto it : can) {
                 m[it.first] += it.second;
@@ -7110,7 +7110,7 @@ public:
             if (num % i == 0) {
                 sum += i;
                 if (i * i != num) sum += (num / i);
-            } 
+            }
         }
         return sum == 2 * num;
     }
@@ -7282,7 +7282,7 @@ public:
         int n = s.length();
         int res = 0;
         vector<vector<bool> > dp(n, vector<bool>(n, false));
-        
+
         for (int i = n-1; i >= 0; i--) {
             for (int j = i; j < n; j++) {
                 dp[i][j] = (s[i] == s[j]) && (j - i <= 2 || dp[i + 1][j - 1]);
@@ -7371,14 +7371,14 @@ public:
             dist[edge[0]-1][edge[1]-1] = edge[2];
             // dist[edge[1]-1][edge[0]-1] = edge[2];
         }
-        
+
         // djkstra algorithm
         vector<int> shortest(n, INT_MAX);
         unordered_set<int> added;
         shortest[k-1] = 0;
         int cnt = 0;
         while (cnt < n) {
-            
+
             int cur_min = INT_MAX, cur_idx = 0;
             for (int i = 0; i < n; i++) {
                 if (!added.count(i) && cur_min > shortest[i]) {
@@ -7387,14 +7387,14 @@ public:
                 }
             }
             if (cur_min == INT_MAX) return -1;
-            
+
             added.insert(cur_idx);
             for (int i = 0; i < n; i++) {
                 if (!added.count(i) && dist[cur_idx][i] >= 0 && shortest[i] > shortest[cur_idx] +  dist[cur_idx][i]) {
                     shortest[i] = shortest[cur_idx] +  dist[cur_idx][i];
                 }
             }
-            
+
             ++cnt;
         }
         return *max_element(shortest.begin(), shortest.end());
@@ -7420,7 +7420,7 @@ public:
         for (int i = 0; i < S.length(); i++) {
             m[S[i]] = i;
         }
-        
+
         vector<int> res;
         int last = 0, prev = -1;
         for (int i = 0; i < S.length(); i++) {
@@ -7464,9 +7464,9 @@ public:
         vector<int> res;
         iterate(root, res);
         return res;
-        
+
     }
-    
+
     void iterate(TreeNode* root, vector<int>& res) {
         stack<TreeNode*> stk;
         if(root) stk.push(root);
@@ -7484,7 +7484,7 @@ public:
             }
         }
     }
-    
+
     void recursive(TreeNode* root, vector<int>& res) {
         if (!root) return;
         if (!root->left && !root->right) {
