@@ -79,7 +79,7 @@ public:
 
         ListNode* cur = dummy;
         int carry = 0;
-        while (l1 || l2 || carry) {
+        while (l1 || l2 || carry != 0) {
             if (l1) carry += l1->val;
             if (l2) carry += l2->val;
             cur->next = new ListNode(carry % 10);
