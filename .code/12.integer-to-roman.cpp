@@ -79,6 +79,10 @@
  */
 
 // @lc code=start
+// 2022-07-18 submission
+// 3999/3999 cases passed
+// Runtime: 31 ms, faster than 12.2% of C++ online submissions.
+// Memory Usage: 8.8 MB, less than 26.81% of C++ online submissions.
 class Solution {
 public:
     string intToRoman(int num) {
@@ -95,4 +99,3 @@ public:
     }
 };
 // @lc code=end
-

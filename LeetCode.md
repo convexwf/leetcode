@@ -378,7 +378,8 @@ public:
                 if(curr_sum == target) return target;
                 if(curr_sum > target) right--;
                 if(curr_sum < target) left++;
-                if(abs(target-curr_sum) < abs(target-closestVal)) closestVal=curr_sum;
+                if(abs(target-curr_sum) < abs(target-closestVal))
+                    closestVal=curr_sum;
             }
         }
         return closestVal;
