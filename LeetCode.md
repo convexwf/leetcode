@@ -940,81 +940,8 @@ public:
 };
 ```
 
-## 48. Rotate Image
 
-解题思路
 
-1. 对于 n 是偶数的情况，只需要将四个对角的元素进行调换即可；如果 n 是奇数，这中间有个十字会重复移动，所以要单独处理。
-
-```C++
-// 2019-04-16 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 59.23% of C++ online submissions.
-// Memory Usage: 7.1 MB, less than 67.77% of C++ online submissions.
-class Solution {
-public:
-    void rotate(vector<vector<int>>& matrix) {
-        int n = matrix.size();
-        int temp = 0;
-        for(int x = 0; x < n/2 + (n&1); x++) {
-            for(int y = 0; y < n/2; y++) {
-                temp = matrix[n-1-y][x];
-                matrix[n-1-y][x] = matrix[n-1-x][n-1-y];
-                matrix[n-1-x][n-1-y] = matrix[y][n-1-x];
-                matrix[y][n-1-x] = matrix[x][y];
-                matrix[x][y] = temp;
-            }
-        }
-    }
-};
-```
-
-## 49. Group Anagrams
-
-```C++
-// Runtime: 28 ms, faster than 88.94% of C++ online submissions.
-// Memory Usage: 20.5 MB, less than 51.98% of C++ online submissions.
-class Solution {
-public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        unordered_map<string, vector<string> > m;
-        for (string str : strs) {
-            string cur = str;
-            sort(cur.begin(), cur.end());
-            m[cur].push_back(str);
-        }
-        vector<vector<string>> res;
-        for (auto it : m) {
-            res.push_back(it.second);
-        }
-        return res;
-    }
-};
-```
-
-## 50. Pow(x, n)
-
-解题思路
-
-1. 递归回溯
-
-```C++
-// 2018-07-24 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 6.2 MB, less than 63.60% of C++ online submissions.
-class Solution {
-public:
-    double myPow(double x, int n) {
-        if(n == 0) return 1;
-        if(n == 1) return x;
-        if(n == -1) return 1 / x;
-        double temp = myPow(x, n/2);
-        if(n % 2 != 0) return temp * temp * myPow(x, n%2);
-        else return temp * temp;
-    }
-};
-```
 
 ## 51. N-Queens
 
@@ -1117,57 +1044,6 @@ public:
 };
 ```
 
-## 53. Maximum Subarray
-
-最大连续子数组
-
-```C++
-class Solution {
-public:
-    int maxSubArray(vector<int>& nums) {
-        int maxSum = INT_MIN;
-        int currSum = 0;
-        for(auto num : nums) {
-            if(currSum >= 0) currSum += num;
-            else currSum = num;
-            maxSum = max(currSum, maxSum);
-        }
-        return maxSum;
-    }
-};
-```
-
-## 54. Spiral Matrix
-
-打印螺旋数组
-
-```C++
-class Solution {
-public:
-    vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        if (matrix.empty() || matrix[0].empty()) return vector<int>{};
-        int rows = matrix.size(), cols = matrix[0].size();
-        vector<int> traj;
-        int left = 0, right = cols - 1, top = 0, bottom = rows - 1;
-        while (traj.size() < rows * cols) {
-            for (int i = left; i <= right; i++) {
-                traj.push_back(matrix[top][i]);
-            }
-            for (int i = top+1; i <= bottom; i++) {
-                traj.push_back(matrix[i][right]);
-            }
-            for (int i = right-1; i >= left && top < bottom; i--) {
-                traj.push_back(matrix[bottom][i]);
-            }
-            for (int i = bottom-1; i > top && left < right; i--) {
-                traj.push_back(matrix[i][left]);
-            }
-            ++left;--right;++top;--bottom;
-        }
-        return traj;
-    }
-};
-```
 
 ## 55. Jump Game
 
@@ -1368,7 +1244,7 @@ public:
         vector<int> frac(n, 1);
         string nums = "123456789";
         string ret = "";
-        for(int i = 1; i < n; i++) frac[i] = frac[i-1]*i;
+        for(int i = 1; i < n; i++) {frac[i] = frac[i-1]*i;}
         --k;
         for(int i = n-1; i >= 0; i--) {
             ret += nums[k / frac[i]];
