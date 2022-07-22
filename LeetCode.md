@@ -1045,29 +1045,6 @@ public:
 ```
 
 
-## 55. Jump Game
-
-解题思路
-
-1. 贪心算法：用一个变量标记当前能达到的最远距离。遍历数组，若超过超远距离或者最远距离已经覆盖数组尾退出循环，否则更新最远距离。
-
-```C++
-// 2018-07-26 submission
-// ?/? cases passed
-// Runtime: 12 ms, faster than 98.54% of C++ online submissions.
-// Memory Usage: 13 MB, less than 95.54% of C++ online submissions.
-class Solution {
-public:
-    bool canJump(vector<int>& nums) {
-        int maxIdx = 0;
-        for(int i = 0; i < nums.size(); i++) {
-            if(i > maxIdx || maxIdx >= nums.size()-1) break;
-            maxIdx = max(maxIdx, i+nums[i]);
-        }
-        return maxIdx >= nums.size()-1;
-    }
-};
-```
 
 ## 56. Merge Intervals
 
@@ -1175,59 +1152,7 @@ public:
     }
 };
 
-## 58. Length of Last Word
 
-返回字符串中最后一个单词的长度
-
-```C++
-class Solution {
-public:
-    int lengthOfLastWord(string s) {
-        int len = s.length();
-        int validNum = 0;
-        int index = len - 1;
-        while(s[index] == ' ') index--;
-        for(; index >= 0; index--) {
-            if(isalpha(s[index])) validNum++;
-            else break;
-        }
-        return validNum;
-    }
-};
-```
-
-## 59. Spiral Matrix II
-
-生成螺旋数组
-
-解题思路
-
-1. 可以发现顺时针走法是按照 [ '→', '↓', '←', '↑', ] 的顺序转向，当走出边缘或者碰到已经填上的数字时候就会转向。注意转向函数的书写，和常识不同。
-
-```C++
-// 2020-12-08 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 7.1 MB, less than 7.66% of C++ online submissions.
-class Solution {
-public:
-    vector<vector<int>> generateMatrix(int n) {
-        vector<vector<int>> direction{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-        vector<vector<int>> res(n, vector<int>(n, 0));
-        int di = 0, x = 0, y = -1;
-        for (int i = 1; i <= n * n; i++) {
-            if (0 > x + direction[di][0] ||
-                x + direction[di][0] >= n ||
-                0 > y + direction[di][1] ||
-                y + direction[di][1] >= n ||
-                res[x+direction[di][0]][y + direction[di][1]] != 0)  di = (di + 1) % 4;
-            x += direction[di][0]; y += direction[di][1];
-            res[x][y] = i;
-        }
-        return res;
-    }
-};
-```
 
 ## 60. Permutation Sequence
 

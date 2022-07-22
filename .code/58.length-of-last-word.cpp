@@ -55,6 +55,10 @@
  */
 
 // @lc code=start
+// 2022-07-21 submission
+// 58/58 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 6.6 MB, less than 52.03% of C++ online submissions.
 class Solution {
 public:
     int lengthOfLastWord(string s) {
@@ -72,4 +76,3 @@ public:
     }
 };
 // @lc code=end
-
