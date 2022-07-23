@@ -1,48 +1,8 @@
 # Duplicate
 
-## 136. Single Number
+## 136
 
-解题思路
-
-1. 题目描述：非空数组，除了 X 只出现一次其他所有元素都出现了两次，找出 X。
-2. 位操作：两个相同的数取异或(^)结果为0，所以对所有数取异或，结果即为 X
-
-```C++
-// 2018-09-19 submission
-// Runtime: 20 ms, faster than 92.90% of C++ online submissions for Single Number.
-// Memory Usage: 12 MB, less than 65.67% of C++ online submissions for Single Number.
-class Solution {
-public:
-    int singleNumber(vector<int>& nums) {
-        return std::accumulate(nums.begin(), nums.end(), 0, std::bit_xor<int>());
-    }
-};
-```
-
-## 137. Single Number II
-
-1. 题目描述：非空数组，除了 X 只出现一次其他所有元素都出现了三次，找出 X。
-2. 位操作：建立一个 32 位的数字，来统计每一位上 1 出现的个数，如果该整数某一位出现了三次，对3取余为0，这样把每个数的对应位都加起来对3取余，最终剩下来的那个数就是单独的数字。
-
-```C++
-// 2020-09-27 submission
-// Runtime: 16 ms, faster than 80.35% of C++ online submissions for Single Number II.
-// Memory Usage: 9.7 MB, less than 33.57% of C++ online submissions for Single Number II.
-class Solution {
-public:
-    int singleNumber(vector<int>& nums) {
-        int res = 0;
-        for (int i = 0; i < 32; i++) {
-            int sum = 0;
-            for (int idx = 0; idx < nums.size(); idx++) {
-                sum += (nums[idx] >> i) & 1;
-            }
-            res += (sum % 3) << i; // |= or +=
-        }
-        return res;
-    }
-};
-```
+## 137
 
 ## 260. Single Number III
 

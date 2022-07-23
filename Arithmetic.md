@@ -26,9 +26,9 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        
+
         ListNode* dummy = new ListNode(0);
-        
+
         ListNode* cur = dummy;
         int carry = 0;
         while (l1 || l2 || carry) {
@@ -40,7 +40,7 @@ public:
             l2 = l2 ? l2->next : l2;
             cur = cur->next;
         }
-        
+
         return dummy->next;
     }
 };
@@ -67,7 +67,7 @@ public:
                 vec[i+j] += (num1[num1.size()-i-1]-'0') * (num2[num2.size()-j-1]-'0');
             }
         }
-        
+
         int carry = 0;
         string res;
         for (int i = 0; i < vec.size(); i++) {
