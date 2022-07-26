@@ -1704,59 +1704,6 @@ public:
 };
 ```
 
-## 78. Subsets
-
-解题思路
-
-1. 题目描述：找出给定集合的所有子集
-2. 递归：DFS深度优先搜索
-3. 位操作：数组中所有的数分配一个状态，true 表示这个数在子集中出现，false 表示在子集中不出现，那么对于一个长度为n的数组，每个数字都有出现与不出现两种情况，所以共有 $2^n$ 中情况
-// 此处删去了图片
-
-```C++
-// 2019-05-06 submission (DFS)
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 7.5 MB, less than 7.29% of C++ online submissions.
-class Solution {
-public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> result{vector<int>{}};
-        vector<int> temp;
-        DFS(nums, temp, result, 0);
-        return result;
-    }
-
-    void DFS(vector<int>& candidates, vector<int>& curr, vector<vector<int>>& result, int pivot) {
-        for(int i = pivot; i < candidates.size(); i++) {
-            curr.push_back(candidates[i]);
-            result.push_back(curr);
-            DFS(candidates, curr, result, i+1);
-            curr.pop_back();
-        }
-    }
-};
-```
-
-```C++
-// 2020-10-26 submission (位操作)
-// Runtime: 4 ms, faster than 67.90% of C++ online submissions.
-// Memory Usage: 7.5 MB, less than 7.29% of C++ online submissions.
-class Solution {
-public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> res;
-        int count = 1 << nums.size();
-        for (int i = 0; i < count; i++) {
-            vector<int> vec;
-            for (int j = 0; j < nums.size(); j++) {
-                if (i & (1 << j)) vec.push_back(nums[j]);
-            }
-            res.push_back(vec);
-        }
-        return res;
-    }
-};
-```
 
 ## 79. Word Search
 

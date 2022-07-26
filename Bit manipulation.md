@@ -31,8 +31,8 @@
     第三步  a=( a^b ) = ( a^ b)^a = b
 
     ```C++
-    a ^= b;  
-    b ^= a;  
+    a ^= b;
+    b ^= a;
     a ^= b;
     ```
 
@@ -81,7 +81,7 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> result{vector<int>{}};
+        vector<vector<int>> result;
         vector<int> temp;
         DFS(nums, temp, result, 0);
         return result;
