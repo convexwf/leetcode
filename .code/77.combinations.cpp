@@ -97,3 +97,13 @@ public:
     }
 };
 // @lc code=end
+class Solution {
+public:
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> res;
+        vector<int> cur(k, 1);
+        int i = k - 1;
+
+    }
+};
+// @lc code=start
