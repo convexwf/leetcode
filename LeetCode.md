@@ -1595,12 +1595,12 @@ public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         if (matrix.empty() || matrix[0].empty()) return false;
         int m = matrix.size(), n = matrix[0].size();
-        int left = 0, right = m * n;
-        while (left < right) {
-            int mid = (left + right) / 2;
+        int l = 0, r = m * n, mid = 0;
+        while (l < r) {
+            int mid = l + (r - l) / 2;
             if (matrix[mid / n][mid % n] == target) return true;
-            if (matrix[mid / n][mid % n] < target) left = mid + 1;
-            else right = mid;
+            else if (matrix[mid / n][mid % n] < target) l = mid + 1;
+            else r = mid;
         }
         return false;
     }
@@ -1841,36 +1841,6 @@ public:
 };
 ```
 
-## 82. Remove Duplicates from Sorted List II
-
-给定一个已排序的链表，删除所有具有重复数字的节点
-
-```C++
-class Solution {
-public:
-    ListNode* deleteDuplicates(ListNode* head) {
-        if (!head || !head->next) return head;
-        ListNode *dummy = new ListNode(-1), *pre = dummy;
-        dummy->next = head;
-        while (pre->next) {
-            ListNode *cur = pre->next;
-            while (cur->next && cur->next->val == cur->val) {
-                cur = cur->next;
-            }
-            if (cur != pre->next) pre->next = cur->next;
-            else pre = pre->next;
-        }
-        return dummy->next;
-    }
-};
-```
-
-## 83. Remove Duplicates from Sorted List
-
-
-```C++
-
-```
 
 ## 84. Largest Rectangle in Histogram
 

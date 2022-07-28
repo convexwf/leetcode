@@ -1,49 +1,8 @@
-## 121. Best Time to Buy and Sell Stock ##
-+ 解题思路：
-    1. 题目描述：买进前必须卖出手头已有的；只允许一次交易
-    2. 遍历每天的股价，存储遍历到当前位置的最小值，然后用当前值减去最小值即可得到如果当天卖出得到最大的利润。
-    3. 注意利润值可能为负数，这时候可以不交易保证不亏本（即返回最小为0）
+# Best Time to Buy and Sell Stock
 
-```C++
-// 2020-01-01 submission
-// Runtime: 8 ms, faster than 97.15% of C++ online submissions for Best Time to Buy and Sell Stock.
-// Memory Usage: 13.3 MB, less than 11.11% of C++ online submissions for Best Time to Buy and Sell Stock.
-class Solution {
-public:
-    int maxProfit(vector<int>& prices) {
-        if(prices.empty()) return 0;
-        int minPrice = prices[0];
-        int maxPro = INT_MIN;
-        for(int i = 1; i < prices.size(); i++) {
-            maxPro = max(maxPro, prices[i] - minPrice);
-            minPrice = min(minPrice, prices[i]);
-        }
-        return maxPro > 0 ? maxPro : 0;
-    }
-};
-```
+## 121. Best Time to Buy and Sell Stock
 
-## 122. Best Time to Buy and Sell Stock II ##
-+ 解题思路：
-    1. 题目描述：买进前必须卖出手头已有的；允许无数次交易
-    2. 只要前后两数呈递增关系，则可以进行交易。
-
-```C++
-// 2020-01-01 submission
-// Runtime: 12 ms, faster than 76.16% of C++ online submissions for Best Time to Buy and Sell Stock II.
-// Memory Usage: 13.1 MB, less than 63.22% of C++ online submissions for Best Time to Buy and Sell Stock II.
-class Solution {
-public:
-    int maxProfit(vector<int>& prices) {
-        int maxValue = 0;
-        for(int i = 1; i < prices.size(); i++) {
-            if(prices[i] > prices[i-1])
-                maxValue += (prices[i]-prices[i-1]);
-        }
-        return maxValue;
-    }
-};
-```
+## 122. Best Time to Buy and Sell Stock II
 
 ## 123. Best Time to Buy and Sell Stock III ##
 + 解题思路：
@@ -61,7 +20,7 @@ public:
         if (prices.empty()) return 0;
         int days = prices.size();
         vector<int> front(days, 0), latter(days, 0);
-        
+
         int min_price = prices[0], max_price = prices[days-1];
         for (int i = 1; i < days; i++) {
             min_price = min(min_price, prices[i]);
@@ -73,7 +32,7 @@ public:
             latter[i] = max(latter[i+1], max_price-prices[i]);
             // cout << "latter " << prices[i] << " " << latter[i] << endl;
         }
-        
+
         int max_profit = 0;
         for (int pivot = 0; pivot < days; pivot++) {
             max_profit = max(max_profit, front[pivot]+latter[pivot]);
@@ -90,7 +49,7 @@ public:
 
 1. 题目描述：买进前必须卖出手头已有的；允许最多$k$次交易
 2. 维护两个变量：全局最优 ***global*** 和局部最优 ***local***。定义局部最优$\it{local}[i][j]$为在到达第$i$天时最多可进行$j$次交易并且最后一次交易在最后一天卖出的最大利润,全局最优$\it{global}[i][j]$为在到达第$i$天时最多可进行$j$次交易的最大利润。
-3. 递推式为 
+3. 递推式为
 $$local[i][j] = max(global[i - 1][j - 1] + max(\it{diff}, 0), local[i - 1][j] + \it{diff})$$ $$global[i][j] = max(local[i][j], global[i - 1][j])$$ 其中局部最优值是比较前一天并少交易一次的全局最优加上大于0的差值，和前一天的局部最优加上差值后相比，两者之中取较大值，而全局最优比较局部最优和前一天的全局最优。
 4. 上面的算法中对于天数需要一次扫描，而每次要对交易次数进行递推式求解，所以时间复杂度是$O(n*k)$，如果是最多进行两次交易，那么复杂度还是$O(n)$。空间上只需要维护当天数据皆可以，所以是$O(k)$，当k=2，则是$O(1)$。
 5. 为了减少运算次数，当$k$远大于天数时，按照**122. Best Time to Buy and Sell Stock II**中无限次数交易的方法求解。
@@ -123,7 +82,7 @@ public:
         }
         return global[k];
     }
-    
+
     int maxProfit_largetrades(vector<int>& prices) {
         int maxValue = 0;
         for(int i = 1; i < prices.size(); i++) {
