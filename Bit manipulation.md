@@ -289,6 +289,8 @@ public:
 // abcdefgh -> efghabcd -> ghefcdab -> hgfedcba
 ```
 
+## 191
+
 ## 318. Maximum Product of Word Lengths
 
 解题思路
