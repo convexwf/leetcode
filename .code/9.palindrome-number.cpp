@@ -102,3 +102,27 @@ public:
     }
 };
 // @lc code=end
+
+// @lc code=start
+// 2022-08-01 submission
+// 11510/11510 cases passed
+// Runtime: 11 ms, faster than 92.34% of C++ online submissions.
+// Memory Usage: 5.7 MB, less than 90.95% of C++ online submissions.
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if (x < 0 || (x % 10 == 0 && x != 0)) return false;
+        return reverse(x) == x;
+    }
+
+    int reverse(int x) {
+        int res = 0;
+        while (x != 0) {
+            if (res > INT_MAX / 10) return -1;
+            res = res * 10 + x % 10;
+            x /= 10;
+        }
+        return res;
+    }
+};
+// @lc code=end
