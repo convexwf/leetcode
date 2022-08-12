@@ -48,29 +48,21 @@
  */
 
 // @lc code=start
+// 2022-08-12 submission
+// 97/97 cases passed
+// Runtime: 141 ms, faster than 42.25% of C++ online submissions.
+// Memory Usage: 61.1 MB, less than 93.31% of C++ online submissions.
 class Solution {
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
-        if (nums.empty()) return 0;
-        int left = 0, right = 1;
-        int curValue = nums[0], res = 0;
-
-        while (left < right && right < nums.size()) {
-
+        if (k <= 1) return 0;
+        int res = 0, prod = 1, left = 0;
+        for (int right = 0; right < nums.size(); ++right) {
+            prod *= nums[right];
+            while (left <= right && prod >= k) prod /= nums[left++];
+            res += right - left + 1;
         }
-
-        for (right = 1; right < nums.size(); ++right) {
-            curValue *= nums[right];
-            if (curValue > k) {
-                res += (right - left);
-                while (left <= right && curValue > k) {
-                    curValue /= nums[left++];
-                }
-            }
-        }
-        res += (right - left);
         return res;
     }
 };
 // @lc code=end
-
