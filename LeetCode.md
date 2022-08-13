@@ -7055,33 +7055,6 @@ public:
 ```
 
 
-## 739. Daily Temperatures (HOT 100)
-
-解题思路
-
-1. 单调栈：栈里面存值索引，当遇到比栈顶大的元素，就不断弹出栈顶并更新栈顶对应的间隔，然后推新数入栈。
-
-```C++
-// 2021-03-10 submission
-// ?/? cases passed
-// Runtime: 60 ms, faster than 81.38% of C++ online submissions.
-// Memory Usage: 41.6 MB, less than 46.62% of C++ online submissions.
-class Solution {
-public:
-    vector<int> dailyTemperatures(vector<int>& T) {
-        stack<int> stk;
-        vector<int> res(T.size(), 0);
-        for (int i = 0; i < T.size(); i++) {
-            while (!stk.empty() && T[stk.top()] < T[i]) {
-                res[stk.top()] = i - stk.top();
-                stk.pop();
-            }
-            stk.push(i);
-        }
-        return res;
-    }
-};
-```
 
 ## 743. Network Delay Time
 
