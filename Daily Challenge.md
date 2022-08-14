@@ -1089,7 +1089,7 @@ public:
         for (char c : s)
             count[c - 'a']++;
         for (int i = 0; i < s.length(); i++) {
-            if (count[s[i] - 'a'] == 1) 
+            if (count[s[i] - 'a'] == 1)
                 return i;
         }
         return -1;
@@ -1437,7 +1437,7 @@ public:
                 else if (!(data[i] & 0b11110000 ^ 0b11100000)) flag = 2;
                 else if (!(data[i] & 0b11111000 ^ 0b11110000)) flag = 3;
                 else return false;
-            } 
+            }
             else {
                 if (!(data[i] & 0b11000000 ^ 0b10000000)) flag--;
                 else return false;
@@ -1464,7 +1464,7 @@ public:
         vector<vector<int>> direction{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         vector<vector<int>> res;
         int di = 0;
-        
+
         int cnt = 0, step = 1;
         while (cnt < R * C) {
             for (int j = 0; j < step; j++) {
@@ -1540,7 +1540,7 @@ public:
         }
         return res.empty() ? "0" : res;
     }
-    
+
     int find_d(string& num, int s, int e) {
         int min_idx = s;
         for (int i = s + 1; i <= e; i++) {
@@ -1595,13 +1595,13 @@ public:
         vector<int> src{1};
         src.insert(src.end(), nums.begin(), nums.end());
         src.push_back(1);
-        
+
         int n = nums.size();
         vector<vector<int> > dp(n+2, vector<int>(n+2, 0));
         for (int j = 1; j <= n; j++) {
             for (int i = j; i >= 1; i--) {
                 for (int k = i; k <= j; k++) {
-                    dp[i][j] = max(dp[i][j], dp[i][k-1] + dp[k+1][j] + src[i-1]*src[k]*src[j+1]); 
+                    dp[i][j] = max(dp[i][j], dp[i][k-1] + dp[k+1][j] + src[i-1]*src[k]*src[j+1]);
                 }
             }
         }
@@ -1664,8 +1664,8 @@ public:
                         nums[left] * nums[i] * nums[right] + dp[left][i] + dp[i][right]);
                 }
             }
-        }       
-        return dp[0][n - 1]; 
+        }
+        return dp[0][n - 1];
     }
 };
 ```
@@ -1682,14 +1682,14 @@ public:
         string up = "qwertyuiop", mid = "ASDFGHJKLasdfghjkl", bottom = "ZXCVBNMzxcvbnm";
         unordered_map<char, int> m;
         for (char c = 'a'; c <= 'z'; c++) {
-            if (up.find(c) != string::npos || up.find(c + ('A'-'a')) != string::npos) 
+            if (up.find(c) != string::npos || up.find(c + ('A'-'a')) != string::npos)
                 m[c] = m[c + ('A'-'a')] = 0;
             else if (mid.find(c) != string::npos || mid.find(c + ('A'-'a')) != string::npos)
                 m[c] = m[c + ('A'-'a')] = 1;
-            else if (bottom.find(c) != string::npos || bottom.find(c + ('A'-'a')) != string::npos) 
+            else if (bottom.find(c) != string::npos || bottom.find(c + ('A'-'a')) != string::npos)
                 m[c] = m[c + ('A'-'a')] = 2;
         }
-        
+
         vector<string> res;
         int i = 0;
         for (string word : words) {
@@ -1719,7 +1719,7 @@ class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
         if (nums.empty()) return vector<int>{};
-        
+
         int pivot = find_closest(nums, 0);
         vector<int> res{nums[pivot] * nums[pivot]};
         int l = pivot - 1, r = pivot + 1;
@@ -1735,7 +1735,7 @@ public:
         }
         return res;
     }
-    
+
     int find_closest(vector<int>& nums, int target) {
         int l = 0, r = nums.size()-1, mid = 0;
         while(l < r) {
@@ -1820,7 +1820,7 @@ public:
             for (int a : routes[i])
                 stop[a].push_back(i);
         }
-        
+
         queue<int> q;
         q.push(source);
         unordered_set<int> visited_s{source};
@@ -1866,7 +1866,7 @@ public:
             B = new_B % 1000000007;
         }
         return (A + B) % 1000000007;
-        
+
     }
 };
 ```
