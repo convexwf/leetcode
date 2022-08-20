@@ -15,42 +15,42 @@
  *
  * Given a non-empty array of non-negative integers nums, the degree of this
  * array is defined as the maximum frequency of any one of its elements.
- * 
+ *
  * Your task is to find the smallest possible length of a (contiguous) subarray
  * of nums, that has the same degree as nums.
- * 
- * 
+ *
+ *
  * Example 1:
- * 
- * 
+ *
+ *
  * Input: nums = [1,2,2,3,1]
  * Output: 2
- * Explanation: 
+ * Explanation:
  * The input array has a degree of 2 because both elements 1 and 2 appear
  * twice.
  * Of the subarrays that have the same degree:
  * [1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]
  * The shortest length is 2. So return 2.
- * 
- * 
+ *
+ *
  * Example 2:
- * 
- * 
+ *
+ *
  * Input: nums = [1,2,2,3,1,4,2]
  * Output: 6
- * Explanation: 
+ * Explanation:
  * The degree is 3 because the element 2 is repeated 3 times.
  * So [2,2,3,1,4,2] is the shortest subarray, therefore returning 6.
- * 
- * 
- * 
+ *
+ *
+ *
  * Constraints:
- * 
- * 
+ *
+ *
  * nums.length will be between 1 and 50,000.
  * nums[i] will be an integer between 0 and 49,999.
- * 
- * 
+ *
+ *
  */
 
 // @lc solution=start
@@ -67,15 +67,13 @@
 class Solution {
 public:
     int findShortestSubArray(vector<int>& nums) {
-        unordered_map<int, int> m;
-        unordered_map<int, int> right;
-        int max_val = 0;
+        unordered_map<int, int> m;      // 出现次数的映射
+        unordered_map<int, int> right;  // 右边界的映射
+        int max_val = 0;                // 数组的度, 最多出现次数
         for (int i = 0; i < nums.size(); i++) {
             ++m[nums[i]];
             right[nums[i]] = i;
-            if (m[nums[i]] > max_val) {
-                max_val = m[nums[i]];
-            }
+            max_val = max(max_val, m[nums[i]]);
         }
 
         int res = INT_MAX;

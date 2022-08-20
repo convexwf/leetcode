@@ -245,3 +245,28 @@ public:
     }
 };
 ```
+
+## 702.
+
+在未知大小数组里搜索数字
+
+1. 二分搜索: 假设数组就有整型最大值个数字，在多余的位置上相当于都填上了整型最大值，那么这也是一个有序的数组
+
+```
+class ArrayReader;
+
+class Solution {
+public:
+    int search(const ArrayReader& reader, int target) {
+        int left = 0, right = INT_MAX;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            int x = reader.get(mid);
+            if (x == target) return mid;
+            else if (x < target) left = mid + 1;
+            else right = mid;
+        }
+        return -1;
+    }
+};
+```
