@@ -414,3 +414,225 @@ public:
     }
 };
 ```
+
+## 263
+
+检测一个数是否为丑数，丑数只含有质因数 (2, 3, 5)
+
+1. 只要对某数不断除以 (2, 3, 5) 直到剩余数字为 1 即可判断为丑数
+
+边界条件
+
+1. 1 也是丑数
+
+```C++
+class Solution {
+public:
+    bool isUgly(int num) {
+        if (num <= 0) return false;
+        while(num%2 == 0) num /= 2;
+        while(num%3 == 0) num /= 3;
+        while(num%5 == 0) num /= 5;
+        return num == 1;
+    }
+};
+```
+
+## 264
+
+找到第 n 个丑数，丑数只含有质因数 (2, 3, 5)
+
+1. 新的丑数可以认为是从已有的丑数序列生成的。为 (2, 3, 5) 都各自分配一个下标指向丑数序列，其实就可以当做是三个已经生成的序列，每次都从这三个列表中取出当前最小的那个作为新丑数，当有新的丑数加入就把产生效果的下标加1。
+2. 和方法 1 类似，使用最小堆来做，首先放进去一个 1，然后循环 n 次，每次取出堆顶元素，为了确保没有重复数字，进行一次 while 循环，将此时和堆顶元素相同的都取出来，然后分别将这个取出的数字乘以 2，3，5，并分别加入最小堆。
+
+```C++
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+        vector<int> res(1, 1);
+        int i2 = 0, i3 = 0, i5 = 0;
+        int cur = 0;
+        for (int i = 1; i < n; i++) {
+            cur = min(min(res[i2]*2, res[i3]*3), res[i5]*5);
+            res.push_back(cur);
+            if (cur == res[i2]*2) i2++;
+            if (cur == res[i3]*3) i3++;
+            if (cur == res[i5]*5) i5++;
+            // cout << cur << " " << i2 << " " << i3 << " " << i5 <<endl;
+        }
+        return res[n-1];
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+        priority_queue<long, vector<long>, greater<long>> pq;
+        pq.push(1);
+        for (long i = 1; i < n; ++i) {
+            long t = pq.top(); pq.pop();
+            while (!pq.empty() && pq.top() == t) {
+                t = pq.top(); pq.pop();
+            }
+            pq.push(t * 2);
+            pq.push(t * 3);
+            pq.push(t * 5);
+        }
+        return pq.top();
+    }
+};
+```
+
+## 238
+
+给定一个数组，返回一个新数组，对于每一个位置上的数是其他位置上数的乘积，并且限定了时间复杂度 O(n)，并且不能用除法。
+
+1. 分别从数组的两个方向遍历就可以分别创建出乘积累积数组。
+   - 为了进行空间上的优化，由于最终的结果都是要乘到结果 res 中，所以可以不用单独的数组来保存乘积，而是直接累积到结果 res 中。
+   - 先从前面遍历一遍，将乘积的累积存入结果 res 中，然后从后面开始遍历，用到一个临时变量 right，初始化为1，然后每次不断累积，最终得到正确结果。
+
+```cpp
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> res(nums.size(), 1);
+        for (int i = 1; i < nums.size(); i++) {
+            res[i] = res[i-1] * nums[i-1];
+        }
+        int right = 1;
+        for (int i = (int)nums.size()-2; i >= 0; i--) {
+            right  *= nums[i+1];
+            res[i] *= right;
+        }
+        return res;
+    }
+};
+```
+
+## 237
+
+删除链表的一个节点，不提供链表的起点，只提供当前节点
+
+解题思路
+
+1. 先把当前节点的值用下一个节点的值覆盖，然后删除下一个节点即可
+
+```C++
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val;
+        ListNode *tmp = node->next;
+        node->next = tmp->next;
+        delete tmp;
+    }
+};
+```
+
+## 235
+
+公共祖先节点: 二叉搜索树
+
+1. 利用 BST 的特性
+   - 二叉搜索树的特点是左<根<右，所以根节点的值一直都是中间值，大于左子树的所有节点值，小于右子树的所有节点值，
+   - 如果根节点的值大于p和q之间的较大值，说明p和q都在左子树中
+   - 如果根节点小于p和q之间的较小值，说明p和q都在右子树中
+   - 如果都不是，则说明当前根节点就是最小共同父节点，直接返回即可
+2. 方法 1 的非递归写法
+
+```C++
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root) return NULL;
+        if (root->val > max(p->val, q->val))
+            return lowestCommonAncestor(root->left, p, q);
+        else if (root->val < min(p->val, q->val))
+            return lowestCommonAncestor(root->right, p, q);
+        else return root;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        while (true) {
+            if (root->val > max(p->val, q->val)) root = root->left;
+            else if (root->val < min(p->val, q->val)) root = root->right;
+            else break;
+        }
+        return root;
+    }
+};
+```
+
+## 236
+
+公共祖先节点: 普通二叉树
+
+1. 如果当前结点不等于p或q，p和q要么分别位于左右子树中，要么同时位于左子树，或者同时位于右子树
+   - 若p和q分别位于左右子树中，那么对左右子结点调用递归函数，会分别返回p和q结点的位置，而当前结点正好就是p和q的最小共同父结点，直接返回当前结点即可
+   - 若p和q同时位于左子树，这里有两种情况，一种情况是 left 会返回p和q中较高的那个位置，而 right 会返回空，所以最终返回非空的 left 即可; 还有一种情况是会返回p和q的最小父结点，就是说当前结点的左子树中的某个结点才是p和q的最小父结点，会被返回。
+   - 若p和q同时位于右子树，同样这里有两种情况，一种情况是 right 会返回p和q中较高的那个位置，而 left 会返回空，所以最终返回非空的 right 即可，还有一种情况是会返回p和q的最小父结点，就是说当前结点的右子树中的某个结点才是p和q的最小父结点，会被返回
+
+**边界条件**
+
+1. p和q不是树中的节点
+
+```C++
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+       if (!root || p == root || q == root) return root;
+       TreeNode *left = lowestCommonAncestor(root->left, p, q);
+       TreeNode *right = lowestCommonAncestor(root->right, p, q);
+       if (left && right) return root;
+       return left ? left : right;
+    }
+};
+```
+
+## 231
+
+判断一个数是否为 2 的次方，要求时间和空间复杂度都为常数
+
+1. 如果一个数是2的次方数的话，那么它的二进数必然是最高位为1，其它都为0，那么如果此时减1，最高位会降一位，其余为0的位现在都为变为1，此时把两数相与，就会得到0
+
+```cpp
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        return (n > 0) && (!(n & (n - 1)));
+    }
+};
+```
+
+## 313
+
+超级丑数，质因子集合不一定是 (2,3,5)，自由指定。求给定质因子集合的第 n 个超级丑数。
+
+```cpp
+class Solution {
+public:
+    int nthSuperUglyNumber(int n, vector<int>& primes) {
+        vector<int> res(n, 1);
+        vector<int> idx(primes.size(), 0);
+
+        for (int i = 1; i < n; i++) {
+            int min_val = primes[0];
+            for (int j = 1; j < primes.size(); j++) {
+                min_val = min(primes[j]*res[idx[j]], min_val);
+            }
+            for (int j = 0; j < primes.size(); j++) {
+                if (min_val == primes[j]*res[idx[j]]) idx[j]++;
+            }
+            res[i] = min_val;
+        }
+        return res.back();
+    }
+};
+```
