@@ -615,6 +615,8 @@ public:
 
 超级丑数，质因子集合不一定是 (2,3,5)，自由指定。求给定质因子集合的第 n 个超级丑数。
 
+1. 参考 <264. Ugly Number II> 的做法，可以用一个idx数组来保存当前的位置，然后我们从每个子链中取出一个数，找出其中最小值，然后更新idx数组对应位置，注意有可能最小值不止一个，要更新所有最小值的位置。
+
 ```cpp
 class Solution {
 public:
@@ -636,3 +638,355 @@ public:
     }
 };
 ```
+
+## 289
+
+细胞自动机，每一个位置有两种状态，1为活细胞，0为死细胞，对于每个位置都满足如下的条件：
+
+1. 如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡
+2. 如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活
+3. 如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡
+4. 如果死细胞周围正好有三个活细胞，则该位置死细胞复活
+
+计算出细胞自动机的下一个状态，要求 in-place 空间复杂度，要求同时更新所有细胞的状态。
+
+1. 可以通过状态机转换同时知道其未更新和已更新的状态。最后对所有状态对2取余，则状态0和2就变成死细胞，状态1和3就是活细胞
+   - 状态0： 死细胞转为死细胞
+   - 状态1： 活细胞转为活细胞
+   - 状态2： 活细胞转为死细胞
+   - 状态3： 死细胞转为活细胞
+
+```c++
+class Solution {
+public:
+    void gameOfLife(vector<vector<int> >& board) {
+        int m = board.size(), n = m ? board[0].size() : 0;
+        vector<int> dx{-1, -1, -1, 0, 1, 1, 1, 0};
+        vector<int> dy{-1, 0, 1, 1, 1, 0, -1, -1};
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                int cnt = 0;
+                for (int k = 0; k < 8; ++k) {
+                    int x = i + dx[k], y = j + dy[k];
+                    if (x >= 0 && x < m && y >= 0 && y < n && (board[x][y] == 1 || board[x][y] == 2)) {
+                        ++cnt;
+                    }
+                }
+                if (board[i][j] && (cnt < 2 || cnt > 3)) board[i][j] = 2;
+                else if (!board[i][j] && cnt == 3) board[i][j] = 3;
+            }
+        }
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                board[i][j] %= 2;
+            }
+        }
+    }
+};
+```
+
+## 268
+
+给定 [0, n] 范围内互不相同的 n 个数字，找出缺失的数字。
+
+1. 利用等差数列的特性，计算出 0\~n 的序列和，然后再遍历数组算出给定数字的累积和，然后做减法，差值就是丢失的那个数字。
+2. 位操作: 将这个少了一个数的数组同 0 到 n 之间完整的数组进行异或操作，相同的数字都变为0，剩下的就是少了的那个数字。
+3. 二分查找: 如果数组有序，可将时间复杂度降为 O(logn)。如果元素值大于下标值，则说明缺失的数字在左边，此时将 right 赋为 mid，反之则将 left 赋为 mid+1。
+
+```cpp
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int sum = 0, n = nums.size();
+        for (int num : nums) {
+            sum += num;
+        }
+        return n * (n + 1) / 2 - sum;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int res = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            res ^= (i + 1) ^ nums[i];
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int left = 0, right = nums.size();
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] > mid) right = mid;
+            else left = mid + 1;
+        }
+        return right;
+    }
+};
+```
+
+## 218
+
+## 198
+
+抢劫房屋，相邻的房屋连接了安全系统，如果相邻的房屋被闯入，安全系统会自动联系警察，求不在惊动警察的情况下最多能抢劫到的金钱。问题本质为，在一列数组中取出一个或多个不相邻数，使其和最大。
+
+1. 动态规划
+   - 两个被打劫的家中间的间隔可能是1或2（不可能大于2）
+   - 维护一个一位数组 dp，其中 dp[i] 表示 [0, i] 区间可以抢夺的最大值（并且 i 位置要抢）。
+   - 状态转移方程为 $\text{dp}[i] = \text{max}(\text{dp}[i-2], \text{dp}[i-3]) + \text{nums}[i]$。
+
+```C++
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        if(nums.empty()) return 0;
+        vector<int> maxSum;
+        if(nums.size() >= 1) maxSum.push_back(nums[0]);
+        if(nums.size() >= 2) maxSum.push_back(nums[1]);
+        if(nums.size() >= 3) maxSum.push_back(nums[0]+nums[2]);
+        for(int i = 3; i < nums.size(); i++) {
+            auto temp = maxSum[i-2] > maxSum[i-3] ? maxSum[i-2] : maxSum[i-3];
+            maxSum.push_back(temp + nums[i]);
+        }
+        return *max_element(maxSum.begin(), maxSum.end());
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        if (nums.size() <= 1) return nums.empty() ? 0 : nums[0];
+        vector<int> dp = {nums[0], max(nums[0], nums[1])};
+        for (int i = 2; i < nums.size(); ++i) {
+            dp.push_back(max(nums[i] + dp[i - 2], dp[i - 1]));
+        }
+        return dp.back();
+    }
+};
+```
+
+## 213. House Robber II
+
+解题思路
+
+1. 动态规划：房子围成环后，可以发现第一家和最后一家不能同时抢，恰好分解为两个子问题：分别计算去掉第一家和最后一家后能抢到的最大值，对两个极大值取最大即为所求。
+
+```C++
+// 2020-11-04 submission
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 8.2 MB, less than 5.25% of C++ online submissions.
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        if (nums.size() == 0) return 0;
+        if (nums.size() == 1) return nums[0];
+        return max(helper(nums, 0, nums.size()-1), helper(nums, 1, nums.size()));
+    }
+
+    int helper(vector<int>& nums, int s, int e) {
+        vector<int> dp;
+        if (e - s >= 1) dp.push_back(nums[s]);
+        if (e - s >= 2) dp.push_back(nums[s+1]);
+        if (e - s >= 3) dp.push_back(nums[s] + nums[s+2]);
+        for (int i = 3; i < e - s; i++) {
+            dp.push_back(max(dp[i-2], dp[i-3]) + nums[s+i]);
+        }
+        // cout << *max_element(dp.begin(), dp.end()) << endl;
+        return *max_element(dp.begin(), dp.end());
+    }
+};
+```
+
+## 171
+
+excel 中列标识到数字的转换，即 A 对应 1，B 对应 2，AA 对应 27，本质是二十六进制转十进制的问题。
+
+1. 进制转化
+
+```cpp
+class Solution {
+public:
+    int titleToNumber(string s) {
+        int res = 0;
+        for (char c : s) {
+            res = res * 26 + (c - 'A' + 1);
+        }
+        return res;
+    }
+};
+```
+
+## 223
+
+二维坐标系中给出两个矩形四个点的坐标，求两个矩形覆盖的总面积。![223. Rectangle Area 矩形坐标](../res/2022-08-24-19-43-58.png)
+
+1. 先找出所有的不相交的情况，只有四种，一个矩形在另一个的上下左右四个位置不重叠，这四种情况下返回两个矩形面积之和。其他情况下需要计算出交集面积。
+
+```cpp
+class Solution {
+public:
+    int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        int sum1 = (C - A) * (D - B), sum2 = (H - F) * (G - E);
+        if (E >= C || F >= D || B >= H || A >= G) {return sum1 + sum2;}
+        return sum1 - ((min(G, C) - max(A, E)) * (min(D, H) - max(B, F))) + sum2;
+    }
+};
+```
+
+## 461. Hamming Distance
+
+求两个数的汉明距离，汉明距离即二进制数对应位不同的个数。
+
+1. 位操作：异或后求 1 的个数，可以通过 $a & (a - 1)$ 将 a 最右边的 1 转为 0。
+
+```C++
+class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        int merge = x ^ y;
+        int res = 0;
+        while (merge > 0) {
+            ++res;
+            merge = merge & (merge - 1);
+        }
+        return res;
+    }
+};
+```
+
+## 477. Total Hamming Distance
+
+计算数字集合中每个两两数字对汉明距离的总和。
+
+1. 位操作：找到每一位上 1 的个数和 0 的个数，然后两个相乘即这一位的总 Hamming Distance
+
+```C++
+class Solution {
+public:
+    int totalHammingDistance(vector<int>& nums) {
+        int res = 0;
+        for (int i = 0; i < 32; i++) {
+            int count = 0;
+            for (int j = 0; j < nums.size(); j++) {
+                count += ((nums[j]>>i) & 1);
+            }
+            res += ((nums.size()-count) * count);
+        }
+        return res;
+    }
+};
+```
+
+## 448
+
+给定长度为 n 的数组，数值范围为 [1, n]，数字最多重复出现两次，找到所有消失的数字。要求 O(n) 时间复杂度，且不使用额外的空间。
+
+1. 取负法：将元素对应的位置取负。在取负的过程中，如果发现要取负的位置已经为负，说明这个元素已经出现过，也即该元素出现了两次。当某个元素不出现的时候，该元素对应的位置始终访问不到，所以还是正值，通过这种方法我们就可以找到哪些元素没有出现。
+
+```C++
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res;
+        int dst = 0;
+        for (int i = 0; i < n; i++) {
+            dst = nums[i] >= 0 ? nums[i] : nums[i] + (n + 1);
+            if (nums[dst-1] >= 0) nums[dst-1] -= (n + 1);
+        }
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > 0) {
+                res.push_back(i+1);
+            }
+        }
+        return res;
+    }
+};
+```
+
+## 225
+
+用队列实现栈
+
+1. 每次把新加入的数插到队列前头，即在队尾加入了新元素x后，将x前面所有的元素都按顺序取出并加到队列到末尾，这样队列保存的顺序和栈的顺序是相反的，它们的取出方式也是反的。这种方法适用于写少读多的场景。
+2. 两个队列，其中一个队列用来放最后加进来的数，模拟栈顶元素，剩下所有的数都按顺序放入另一个队列中。
+   - 当 push() 操作时，将新数字先加入模拟栈顶元素的队列中，如果此时队列中有数字，则将原本有的数字放入另一个队中，让新数字在这队中，用来模拟栈顶元素。
+   - 当 top() 操作时，如果模拟栈顶的队中有数字则直接返回，如果没有则到另一个队列中通过平移数字取出最后一个数字加入模拟栈顶的队列中。
+   - 当 pop() 操作时，先执行下 top() 操作，保证模拟栈顶的队列中有数字，然后再将该数字移除即可。
+   - 当 empty() 操作时，当两个队列都为空时，栈为空。
+   - 这种方法适用于写多读少的场景。
+
+```cpp
+class MyStack {
+public:
+    MyStack() {}
+    void push(int x) {
+        q.push(x);
+        for (int i = 0; i < (int)q.size() - 1; ++i) {
+            q.push(q.front()); q.pop();
+        }
+    }
+    int pop() {
+        int x = q.front(); q.pop();
+        return x;
+    }
+    int top() {
+        return q.front();
+    }
+    bool empty() {
+        return q.empty();
+    }
+private:
+    queue<int> q;
+};
+```
+
+```cpp
+class MyStack {
+public:
+    MyStack() {}
+    void push(int x) {
+        q2.push(x);
+        while (q2.size() > 1) {
+            q1.push(q2.front()); q2.pop();
+        }
+    }
+    int pop() {
+        int x = top(); q2.pop();
+        return x;
+    }
+    int top() {
+        if (q2.empty()) {
+            for (int i = 0; i < (int)q1.size() - 1; ++i) {
+                q1.push(q1.front()); q1.pop();
+            }
+            q2.push(q1.front()); q1.pop();
+        }
+        return q2.front();
+    }
+    bool empty() {
+        return q1.empty() && q2.empty();
+    }
+private:
+    queue<int> q1, q2;
+};
+```
+
+## 232
+
+用栈实现队列
+

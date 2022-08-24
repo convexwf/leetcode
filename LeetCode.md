@@ -5649,51 +5649,6 @@ public:
 };
 ```
 
-## 289. Game of Life
-
-细胞自动机，每一个位置有两种状态，1为活细胞，0为死细胞，对于每个位置都满足如下的条件：
-1. 如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡
-2. 如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活
-3. 如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡
-4. 如果死细胞周围正好有三个活细胞，则该位置死细胞复活
-
-解题思路
-
-1. 要求 O(1) 复杂度，可以通过状态机转换同时知道其未更新和已更新的状态。最后对所有状态对2取余，则状态0和2就变成死细胞，状态1和3就是活细胞
-    状态0： 死细胞转为死细胞
-    状态1： 活细胞转为活细胞
-    状态2： 活细胞转为死细胞
-    状态3： 死细胞转为活细胞
-
-```c++
-class Solution {
-public:
-    void gameOfLife(vector<vector<int> >& board) {
-        int m = board.size(), n = m ? board[0].size() : 0;
-        vector<int> dx{-1, -1, -1, 0, 1, 1, 1, 0};
-        vector<int> dy{-1, 0, 1, 1, 1, 0, -1, -1};
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
-                int cnt = 0;
-                for (int k = 0; k < 8; ++k) {
-                    int x = i + dx[k], y = j + dy[k];
-                    if (x >= 0 && x < m && y >= 0 && y < n && (board[x][y] == 1 || board[x][y] == 2)) {
-                        ++cnt;
-                    }
-                }
-                if (board[i][j] && (cnt < 2 || cnt > 3)) board[i][j] = 2;
-                else if (!board[i][j] && cnt == 3) board[i][j] = 3;
-            }
-        }
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
-                board[i][j] %= 2;
-            }
-        }
-    }
-};
-```
-
 ## 290. Word Pattern
 
 解题思路
@@ -6564,10 +6519,6 @@ public:
 1. 取负法：将元素对应的位置取负。在取负的过程中，如果发现要取负的位置已经为负，说明这个元素已经出现过，也即该元素出现了两次。当某个元素不出现的时候，该元素对应的位置始终访问不到，所以还是正值，通过这种方法我们就可以找到哪些元素没有出现。
 
 ```C++
-// 2021-03-19 submission
-// ?/? cases passed
-// Runtime: 56 ms, faster than 74.59% of C++ online submissions.
-// Memory Usage: 33.7 MB, less than 85.74% of C++ online submissions.
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
@@ -6579,8 +6530,9 @@ public:
             if (nums[dst-1] >= 0) nums[dst-1] -= (n + 1);
         }
         for (int i = 0; i < n; i++) {
-            if (nums[i] > 0)
+            if (nums[i] > 0) {
                 res.push_back(i+1);
+            }
         }
         return res;
     }
