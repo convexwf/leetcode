@@ -990,3 +990,70 @@ private:
 
 用栈实现队列
 
+```C++
+class myStack {
+    myStack() {
+
+    }
+
+    void push(int val) {
+        topVal = val;
+        q.push(val);
+    }
+
+    void pop() {
+        int size = q.size();
+        while (size > 2) {
+            q.push(q.front());
+            q.pop();
+            --size;
+        }
+        topVal = q.front();
+        q.push(topVal);
+        q.pop();
+        q.pop();
+
+    }
+
+    int top() {
+        return topVal;
+    }
+
+    queue<int> q;
+    int topVal;
+};
+```
+
+```C++
+class CQueue {
+public:
+    CQueue() {
+
+    }
+
+    void appendTail(int value) {
+    void push_back(int value) {
+        stk1.push(value);
+    }
+
+    int deleteHead() {
+    int pop_front() {
+        if (stk1.empty() && stk2.empty()) return -1;
+        if (stk2.empty()) {
+            while (!stk1.empty()) {
+        return res;
+    }
+
+    bool empty() {
+        return stk1.empty() && stk2.empty()
+    }
+
+    int front() {
+
+    }
+
+    stack<int> stk1;
+    stack<int> stk2;
+};
+};
+```
