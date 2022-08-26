@@ -1,37 +1,35 @@
 /*
- * @lc app=leetcode id=682 lang=cpp
+ * @lc app=leetcode id=496 lang=cpp
  */
 
 // @lc code=start
-// 2022-08-20 submission
-// 39/39 cases passed
-// Runtime: 8 ms, faster than 44.66% of C++ online submissions.
-// Memory Usage: 8.2 MB, less than 99.8% of C++ online submissions.
+// 2022-08-26 submission
+// 15/15 cases passed
+// Runtime: 18 ms, faster than 24.42% of C++ online submissions.
+// Memory Usage: 8.8 MB, less than 71.01% of C++ online submissions.
 class Solution {
 public:
-    int calPoints(vector<string>& ops) {
-        vector<int> vec;
-        int sum = 0;
-        for (string op : ops) {
-            int n = vec.size();
-            if (op == "+") {
-                vec.push_back(vec[n - 1] + vec[n - 2]);
-                sum += vec.back();
+    vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
+        unordered_map<int, int> m;
+        stack<int> stk;
+        for (int i = 0; i < nums.size(); ++i) {
+            while (!stk.empty() && stk.top() < nums[i]) {
+                m[stk.top()] = nums[i];
+                stk.pop();
             }
-            else if (op == "D") {
-                vec.push_back(vec[n - 1] * 2);
-                sum += vec.back();
-            }
-            else if (op == "C") {
-                sum -= vec.back();
-                vec.pop_back();
+            stk.push(nums[i]);
+        }
+
+        vector<int> res;
+        for (int num : findNums) {
+            if (m.count(num)) {
+                res.push_back(m[num]);
             }
             else {
-                vec.push_back(stoi(op));
-                sum += vec.back();
+                res.push_back(-1);
             }
         }
-        return sum;
+        return res;
     }
 };
 // @lc code=end

@@ -5718,8 +5718,8 @@ public:
         }
     }
 
-    priority_queue<int, vector<int>, less<int> > small;
-    priority_queue<int, vector<int>, greater<int> > big;
+    priority_queue<int, vector<int>, less<int> > big;
+    priority_queue<int, vector<int>, greater<int> > small;
 };
 
 /**

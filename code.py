@@ -85,6 +85,9 @@ def instead_code(content):
     return found
 
 if __name__ == '__main__':
+
+    mode = False
+
     with open("myCode.md", 'r', encoding='utf-8') as fp:
         lines = fp.readlines()
     idx_list = split_block(lines)
@@ -92,12 +95,24 @@ if __name__ == '__main__':
     content_list = []
     for idx in idx_list:
         content_list.append(get_content(lines, idx))
-    print('All: ', ','.join([it[0] for it in content_list]))
+    id_list = [it[0] for it in content_list]
+    print('All: ', ','.join(id_list))
 
+    invalid_id_list = []
+    for content_id in id_list:
+        exist_flag = False
+        for code_file in os.listdir('.code'):
+            if code_file.startswith(f'{content_id}.'):
+                exist_flag = True
+                break
+        if not exist_flag:
+            invalid_id_list.append(content_id)
+    print('Invalid: ', ','.join(invalid_id_list))
 
-    for content in content_list:
-        result = instead_content(content)
-        result = result and instead_code(content)
-        if not result:
-            print(f'Error: {content[0]}')
+    if mode:
+        for content in content_list:
+            result = instead_content(content)
+            result = result and instead_code(content)
+            if not result:
+                print(f'Error: {content[0]}')
 

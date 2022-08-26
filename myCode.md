@@ -735,7 +735,42 @@ public:
 };
 ```
 
+```cpp
+class Solution {
+public:
+    int findMissing(vector<int> nums) {
+        return findMissing(nums, 0);
+    }
+    int findMissing(vector<int> nums, int col) {
+        if (nums.empty()) return 0;
+        vector<int> oneBits, zeroBits;
+        for (auto &a : nums) {
+            if (fetch(a, col) == 0) zeroBits.push_back(a);
+            else oneBits.push_back(a);
+        }
+        if (zeroBits.size() <= oneBits.size()) {
+            int v = findMissing(zeroBits, col + 1);
+            return (v << 1) | 0;
+        } else {
+            int v = findMissing(oneBits, col + 1);
+            return (v << 1) | 1;
+        }
+    }
+    int fetch(int n, int col) {
+        return n & (int)pow(2, col);
+    }
+};
+```
+
 ## 218
+
+1
+
+1
+
+```cpp
+
+```
 
 ## 198
 
@@ -743,7 +778,7 @@ public:
 
 1. 动态规划
    - 两个被打劫的家中间的间隔可能是1或2（不可能大于2）
-   - 维护一个一位数组 dp，其中 dp[i] 表示 [0, i] 区间可以抢夺的最大值（并且 i 位置要抢）。
+   - 维护一个一维数组 dp，其中 dp[i] 表示 [0, i] 区间可以抢夺的最大值（并且 i 位置要抢）。
    - 状态转移方程为 $\text{dp}[i] = \text{max}(\text{dp}[i-2], \text{dp}[i-3]) + \text{nums}[i]$。
 
 ```C++
@@ -1055,5 +1090,179 @@ public:
     stack<int> stk1;
     stack<int> stk2;
 };
+```
+
+## 495
+
+提莫攻击，每一次攻击都会造成敌人中毒，中毒的时间不会累计，求若干次攻击后总共的中毒时间。
+
+1. 按照题意处理即可。将紧接着的两个数字做减法，并和持续时间做对比。
+
+```cpp
+class Solution {
+public:
+    int findPoisonedDuration(vector<int>& timeSeries, int duration) {
+        int res = 0;
+        for (int i = 1; i < timeSeries.size(); ++i) {
+            res += min(duration, timeSeries[i] - timeSeries[i - 1]);
+        }
+        return res + duration;
+    }
+};
+```
+
+## 504
+
+十进制转为七进制，输入可能是负数。
+
+1. 进制转换。注意 0 和负数的处理。
+
+```cpp
+class Solution {
+public:
+    string convertToBase7(int num) {
+        if (num == 0) return "0";
+        string res = "";
+        if (num < 0) res += "-";
+        num = abs(num);
+        while (num > 0) {
+            res = to_string(num % 7) + res;
+            num /= 7;
+        }
+        return res;
+    }
+};
+```
+
+## 496
+
+给定一个数组，又给了该数组的一个子集合，求集合中每个数字在原数组中右边第一个较大的数字。
+
+1. HashMap+单调栈
+   - 建立每个数字和其右边第一个较大数之间的映射
+   - 遍历原数组中的所有数字，如果此时栈不为空，且栈顶元素小于当前数字，说明当前数字就是栈顶元素的右边第一个较大数，那么建立二者的映射，并且去除当前栈顶元素，最后将当前遍历到的数字压入栈。
+   - 当所有数字都建立了映射，最后可以直接通过哈希表快速的找到子集合中数字的右边较大值
+
+```cpp
+// 2022-08-26 submission
+// 15/15 cases passed
+// Runtime: 18 ms, faster than 24.42% of C++ online submissions.
+// Memory Usage: 8.8 MB, less than 71.01% of C++ online submissions.
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
+        unordered_map<int, int> m;
+        stack<int> stk;
+        for (int i = 0; i < nums.size(); ++i) {
+            while (!stk.empty() && stk.top() < nums[i]) {
+                m[stk.top()] = nums[i];
+                stk.pop();
+            }
+            stk.push(nums[i]);
+        }
+
+        vector<int> res;
+        for (int num : findNums) {
+            if (m.count(num)) {
+                res.push_back(m[num]);
+            }
+            else {
+                res.push_back(-1);
+            }
+        }
+        return res;
+    }
+};
+```
+
+## 503
+
+给定一个 *循环* 数组，又给了该数组的一个子集合，求集合中每个数字在原数组中右边第一个较大的数字。
+
+1. HashMap+单调栈，参见 <496. Next Greater Element I>
+   - 遍历两遍数组，但是只在第一次遍历时压栈，因为超过 n 的部分只是为了给之前栈中的数字找较大值
+
+```cpp
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n, -1);
+        stack<int> st;
+        for (int i = 0; i < 2 * n; ++i) {
+            int num = nums[i % n];
+            while (!st.empty() && nums[st.top()] < num) {
+                res[st.top()] = num; st.pop();
+            }
+            if (i < n) st.push(i);
+        }
+        return res;
+    }
+};
+```
+
+## 556
+
+对给定数字的各个位数重新排序，求刚好比给定数字大的一种排序，如果不存在就返回-1。
+
+```cpp
+class Solution {
+public:
+    int nextGreaterElement(int n) {
+        string str = to_string(n);
+        int len = str.size(), i = len - 1;
+        for (; i > 0; --i) {
+            if (str[i] > str[i - 1]) break;
+        }
+        if (i == 0) return -1;
+        for (int j = len - 1; j >= i; --j) {
+            if (str[j] > str[i - 1]) {
+                swap(str[j], str[i - 1]);
+                break;
+            }
+        }
+        sort(str.begin() + i, str.end());
+        long long res = stoll(str);
+        return res > INT_MAX ? -1 : res;
+    }
+};
+```
+
+## 295
+
+数据流中的中位数
+
+1. 大小堆
+
+```cpp
+class MedianFinder {
+public:
+    /** initialize your data structure here. */
+    MedianFinder() {
+
+    }
+
+    void addNum(int num) {
+        if ((small.size() + big.size()) % 2 == 0) {
+            small.push(num);
+            big.push(small.top());
+            small.pop();
+        } else {
+            big.push(num);
+            small.push(big.top());
+            big.pop();
+        }
+    }
+
+    double findMedian() {
+        if ((small.size() + big.size()) % 2 == 0) {
+            return ((double)small.top() + big.top()) / 2;
+        } else {
+            return big.top();
+        }
+    }
+
+    priority_queue<int, vector<int>, less<int> > big;
+    priority_queue<int, vector<int>, greater<int> > small;
 };
 ```
