@@ -6,11 +6,11 @@
  * https://leetcode.com/problems/implement-queue-using-stacks/description/
  *
  * algorithms
- * Easy (60.30%)
- * Likes:    4136
+ * Easy (60.31%)
+ * Likes:    4140
  * Dislikes: 268
- * Total Accepted:    483.3K
- * Total Submissions: 801.5K
+ * Total Accepted:    483.7K
+ * Total Submissions: 802K
  * Testcase Example:  '["MyQueue","push","push","peek","pop","empty"]\n[[],[1],[2],[],[],[]]'
  *
  * Implement a first in first out (FIFO) queue using only two stacks. The
@@ -73,27 +73,50 @@
  */
 
 // @lc code=start
+// 2022-08-27 submission
+// 22/22 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 7 MB, less than 57.21% of C++ online submissions.
 class MyQueue {
 public:
     MyQueue() {
-        
     }
-    
-    void push(int x) {
-        
+
+    void push(int value) {
+        stk1.push(value);
     }
-    
+
     int pop() {
-        
+        if (stk1.empty() && stk2.empty()) return -1;
+        if (stk2.empty()) {
+            while (!stk1.empty()) {
+                stk2.push(stk1.top());
+                stk1.pop();
+            }
+        }
+        int res = stk2.top();
+        stk2.pop();
+        return res;
     }
-    
-    int peek() {
-        
-    }
-    
+
     bool empty() {
-        
+        return stk1.empty() && stk2.empty();
     }
+
+    int peek() {
+        if (stk1.empty() && stk2.empty()) return -1;
+        if (stk2.empty()) {
+            while (!stk1.empty()) {
+                stk2.push(stk1.top());
+                stk1.pop();
+            }
+        }
+        return stk2.top();
+    }
+
+private:
+    stack<int> stk1;
+    stack<int> stk2;
 };
 
 /**
@@ -105,4 +128,3 @@ public:
  * bool param_4 = obj->empty();
  */
 // @lc code=end
-

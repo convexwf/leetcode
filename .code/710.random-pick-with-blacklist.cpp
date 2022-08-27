@@ -18,29 +18,29 @@
  * an algorithm to pick a random integer in the range [0, n - 1] that is not in
  * blacklist. Any integer that is in the mentioned range and not in blacklist
  * should be equally likely to be returned.
- * 
+ *
  * Optimize your algorithm such that it minimizes the number of calls to the
  * built-in random function of your language.
- * 
+ *
  * Implement the Solution class:
- * 
- * 
+ *
+ *
  * Solution(int n, int[] blacklist) Initializes the object with the integer n
  * and the blacklisted integers blacklist.
  * int pick() Returns a random integer in the range [0, n - 1] and not in
  * blacklist.
- * 
- * 
- * 
+ *
+ *
+ *
  * Example 1:
- * 
- * 
+ *
+ *
  * Input
  * ["Solution", "pick", "pick", "pick", "pick", "pick", "pick", "pick"]
  * [[7, [2, 3, 5]], [], [], [], [], [], [], []]
  * Output
  * [null, 0, 4, 1, 6, 1, 0, 4]
- * 
+ *
  * Explanation
  * Solution solution = new Solution(7, [2, 3, 5]);
  * solution.pick(); // return 0, any integer from [0,1,4,6] should be ok. Note
@@ -53,31 +53,51 @@
  * solution.pick(); // return 1
  * solution.pick(); // return 0
  * solution.pick(); // return 4
- * 
- * 
- * 
+ *
+ *
+ *
  * Constraints:
- * 
- * 
+ *
+ *
  * 1 <= n <= 10^9
  * 0 <= blacklist.length <= min(10^5, n - 1)
  * 0 <= blacklist[i] < n
  * All the values of blacklist are unique.
  * At most 2 * 10^4 calls will be made to pick.
- * 
- * 
+ *
+ *
  */
 
 // @lc code=start
+// 2022-08-26 submission
+// 68/68 cases passed
+// Runtime: 276 ms, faster than 27.67% of C++ online submissions.
+// Memory Usage: 71.9 MB, less than 20.93% of C++ online submissions.
 class Solution {
 public:
-    Solution(int n, vector<int>& blacklist) {
-        
+    Solution(int N, vector<int> blacklist) {
+        unordered_set<int> st;
+        len = N - blacklist.size();
+        for (int i = len; i < N; ++i) {
+            st.insert(i);
+        }
+        for (int num : blacklist) {
+            st.erase(num);
+        }
+        auto it = st.begin();
+        for (int num : blacklist) {
+            if (num < len) m[num] = *it++;
+        }
     }
-    
+
     int pick() {
-        
+        int k = rand() % len;
+        return m.count(k) ? m[k] : k;
     }
+
+private:
+    unordered_map<int, int> m;
+    int len;
 };
 
 /**
@@ -86,4 +106,3 @@ public:
  * int param_1 = obj->pick();
  */
 // @lc code=end
-

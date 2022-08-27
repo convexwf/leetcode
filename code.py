@@ -73,7 +73,7 @@ def instead_code(content):
                 if line.startswith('// @lc code=end'):
                     end2 = i
             if start > 0:
-                lines = lines[:start] + [f'{content[3]}\n'] + lines[end+1:end2] + ["// @lc code=end\n"]
+                lines = lines[:start] + [f'{content[3]}'] + lines[end+1:end2] + ["// @lc code=end\n"]
                 start = 4
             else:
                 start = 3
@@ -86,7 +86,7 @@ def instead_code(content):
 
 if __name__ == '__main__':
 
-    mode = False
+    mode = True
 
     with open("myCode.md", 'r', encoding='utf-8') as fp:
         lines = fp.readlines()
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     for idx in idx_list:
         content_list.append(get_content(lines, idx))
     id_list = [it[0] for it in content_list]
-    print('All: ', ','.join(id_list))
+    print(f'All({len(id_list)}): ', ','.join(id_list))
 
     invalid_id_list = []
     for content_id in id_list:
@@ -107,7 +107,7 @@ if __name__ == '__main__':
                 break
         if not exist_flag:
             invalid_id_list.append(content_id)
-    print('Invalid: ', ','.join(invalid_id_list))
+    print(f'Invalid({len(invalid_id_list)}): ', ','.join(invalid_id_list))
 
     if mode:
         for content in content_list:

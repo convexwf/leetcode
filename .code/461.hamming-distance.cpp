@@ -15,13 +15,13 @@
  *
  * The Hamming distance between two integers is the number of positions at
  * which the corresponding bits are different.
- * 
+ *
  * Given two integers x and y, return the Hamming distance between them.
- * 
- * 
+ *
+ *
  * Example 1:
- * 
- * 
+ *
+ *
  * Input: x = 1, y = 4
  * Output: 2
  * Explanation:
@@ -30,30 +30,39 @@
  * ⁠      ↑   ↑
  * The above arrows point to positions where the corresponding bits are
  * different.
- * 
- * 
+ *
+ *
  * Example 2:
- * 
- * 
+ *
+ *
  * Input: x = 3, y = 1
  * Output: 1
- * 
- * 
- * 
+ *
+ *
+ *
  * Constraints:
- * 
- * 
+ *
+ *
  * 0 <= x, y <= 2^31 - 1
- * 
- * 
+ *
+ *
  */
 
 // @lc code=start
+// 2022-08-26 submission
+// 149/149 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 5.9 MB, less than 26.57% of C++ online submissions.
 class Solution {
 public:
     int hammingDistance(int x, int y) {
-        
+        int merge = x ^ y;
+        int res = 0;
+        while (merge > 0) {
+            ++res;
+            merge = merge & (merge - 1);
+        }
+        return res;
     }
 };
 // @lc code=end
-

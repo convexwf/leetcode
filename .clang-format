@@ -13,9 +13,9 @@ AccessModifierOffset: -4
 # AllowAllArgumentsOnNextLine: true
 AllowAllConstructorInitializersOnNextLine: false
 # AllowAllParametersOfDeclarationOnNextLine: true
-# AllowShortBlocksOnASingleLine: Never
-AllowShortCaseLabelsOnASingleLine: true
-# AllowShortFunctionsOnASingleLine: All
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
 # AllowShortLambdasOnASingleLine: All
 # AllowShortIfStatementsOnASingleLine: WithoutElse
 # AllowShortLoopsOnASingleLine: true
