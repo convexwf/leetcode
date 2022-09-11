@@ -25,7 +25,7 @@ def split_block(lines):
 
 def get_content(lines, idx):
     res = []
-    res.append(lines[idx[0]].strip().split(' ')[1])
+    res.append(lines[idx[0]].replace('.', ' ').strip().split(' ')[1])
     res.append(lines[idx[0]+2].strip())
     res.append(''.join(lines[idx[0]+4:idx[1]-1]))
     for i in range(1, len(idx), 2):
@@ -86,7 +86,7 @@ def instead_code(content):
 
 if __name__ == '__main__':
 
-    mode = True
+    mode = False
 
     with open("myCode.md", 'r', encoding='utf-8') as fp:
         lines = fp.readlines()

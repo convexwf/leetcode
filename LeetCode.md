@@ -2063,84 +2063,6 @@ public:
 
 ```
 
-## 92. Reverse Linked List II
-
-```C++
-// 2020-09-14 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 57.72% of C++ online submissions.
-// Memory Usage: 7.3 MB, less than 92.47% of C++ online submissions.
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    ListNode* reverseBetween(ListNode* head, int m, int n) {
-        ListNode* dummy = new ListNode(0), *prev = dummy;
-        dummy->next = head;
-        for (int i = 0; i < m-1; i++)
-            prev = prev->next;
-        ListNode* cur = prev->next;
-        for (int i = m; i < n; i++) {
-            ListNode* t = cur->next;
-            cur->next = t->next;
-            t->next = prev->next;
-            prev->next = t;
-        }
-        return dummy->next;
-    }
-};
-```
-
-## 93. Restore IP Addresses
-
-解题思路
-
-1. 递归，从某一位开始，连续截取1位、2位或者3位数字，然后将后续数字进行递归处理。
-
-边界条件
-
-1. IP地址要去除前导0。"010010"注意不能转化为"0.1.0.10"
-2. 长度小于4或者大于12
-
-```C++
-// Runtime: 4 ms, faster than 64.95% of C++ online submissions.
-// Memory Usage: 6.7 MB, less than 56.22% of C++ online submissions.
-class Solution {
-public:
-    vector<string> restoreIpAddresses(string s) {
-        vector<int> candidates;
-        vector<string> result;
-        helper(s, candidates, result, 0);
-        return result;
-    }
-
-    void helper(string& s, vector<int>& candidates, vector<string>& result, int idx) {
-        if (candidates.size() > 4) return;
-        if (s.length() == idx) {
-            if (candidates.size() == 4) {
-                stringstream sstream;
-                sstream << candidates[0] << "." << candidates[1] << "." << candidates[2] << "." << candidates[3];
-                result.push_back(sstream.str());
-            }
-            return;
-        }
-        for (int i = 0; i < 3 && idx + i < s.length(); i++) {
-            string c_str = s.substr(idx, i + 1);
-            int c = stoi(c_str);
-            if(c > 255 || (c_str[0]=='0' && c_str.length()>1)) continue;
-            candidates.push_back(c);
-            helper(s, candidates, result, idx + i + 1);
-            candidates.pop_back();
-        }
-    }
-};
-```
 
 ## 95. Unique Binary Search Trees II
 
@@ -3054,25 +2976,6 @@ public:
 };
 ```
 
-## 125. Valid Palindrome
-
-回文字符串判断(中间混杂了很多无意义的非字母数字字符)
-
-```C++
-class Solution {
-public:
-    bool isPalindrome(string s) {
-        int left=0, right=s.length()-1;
-        while(left < right) {
-            if(!isalnum(s[left])) left++;
-            else if(!isalnum(s[right])) right--;
-            else if(tolower(s[left++]) != tolower(s[right--])) return false;
-        }
-        return true;
-    }
-};
-```
-
 ## 128. Longest Consecutive Sequence
 
 解题思路
@@ -3934,28 +3837,6 @@ private:
  */
 ```
 
-## 160. Intersection of Two Linked Lists
-
-解题思路
-
-1. Y 型交叉链表求入口节点：链表拼接，A的尾接B的头，B的尾接A的头，从而相遇时候大家都走了AB的共同部分和AB的不同部分。
-
-```C++
-// Runtime: 40 ms, faster than 84.58% of C++ online submissions.
-// Memory Usage: 14.6 MB, less than 46.57% of C++ online submissions.
-class Solution {
-public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        ListNode* curA = headA, *curB = headB;
-        while (curA != curB) {
-            curA = curA ? curA->next : headB;
-            curB = curB ? curB->next : headA;
-        }
-        return curA;
-    }
-};
-```
-
 ## 162. Find Peak Element
 
 解题思路
@@ -4015,30 +3896,6 @@ public:
             ++p1; ++p2;
         }
         return 0;
-    }
-};
-```
-
-## 167. Two Sum II - Input array is sorted
-
-已排序数组找两数之和
-
-```C++
-// Runtime: 8 ms, faster than 25.45% of C++ online submissions.
-// Memory Usage: 9.6 MB, less than 75.70% of C++ online submissions.
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& numbers, int target) {
-        int leftIdx = 0;
-        int rightIdx = numbers.size() - 1;
-        while(leftIdx <= rightIdx) {
-            auto left = numbers[leftIdx];
-            auto right = numbers[rightIdx];
-            if(left + right < target) leftIdx++;
-            else if(left + right > target) rightIdx--;
-            else return vector<int>{leftIdx+1, rightIdx+1};
-        }
-        return vector<int>{};
     }
 };
 ```
@@ -4165,26 +4022,6 @@ private:
  * int param_1 = obj->next();
  * bool param_2 = obj->hasNext();
  */
-```
-
-## 179. Largest Number
-
-拼接成最大的数
-
-```C++
-class Solution {
-public:
-    string largestNumber(vector<int>& nums) {
-        string res;
-        sort(nums.begin(), nums.end(), [](int a, int b) {
-           return to_string(a) + to_string(b) > to_string(b) + to_string(a);
-        });
-        for (int i = 0; i < nums.size(); ++i) {
-            res += to_string(nums[i]);
-        }
-        return res[0] == '0' ? "0" : res;
-    }
-};
 ```
 
 ## 187. Repeated DNA Sequences
@@ -4635,39 +4472,6 @@ public:
             m2[t[i]] = i + 1;
         }
         return true;
-    }
-};
-```
-
-## 206. Reverse Linked List
-
-反转链表
-
-```C++
-class Solution {
-public:
-    ListNode* reverseList(ListNode* head) {
-        ListNode *newHead = NULL;
-        while (head) {
-            ListNode *t = head->next;
-            head->next = newHead;
-            newHead = head;
-            head = t;
-        }
-        return newHead;
-    }
-};
-```
-
-```C++
-class Solution {
-public:
-    ListNode* reverseList(ListNode* head) {
-        if (!head || !head->next) return head;
-        ListNode *newHead = reverseList(head->next);
-        head->next->next = head;
-        head->next = NULL;
-        return newHead;
     }
 };
 ```
@@ -5198,30 +5002,6 @@ public:
 };
 ```
 
-## 226. Invert Binary Tree
-
-解题思路
-
-1. 翻转二叉树
-
-```C++
-// 2019-09-20 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 9.7 MB, less than 17.04% of C++ online submissions.
-class Solution {
-public:
-    TreeNode* invertTree(TreeNode* root) {
-        if (!root) return nullptr;
-        TreeNode* l_child = invertTree(root->left);
-        TreeNode* r_child = invertTree(root->right);
-        root->left = r_child;
-        root->right = l_child;
-        return root;
-    }
-};
-```
-
 ## 228. Summary Ranges (2020-10-29)
 
 解题思路
@@ -5252,43 +5032,6 @@ public:
             if(helper[i][0] == helper[i][1]) res.push_back(to_string(helper[i][0]));
             else res.push_back(to_string(helper[i][0]) + "->" + to_string(helper[i][1]));
         }
-        return res;
-    }
-};
-```
-
-## 229. Majority Element II (2020-11-19)
-
-解题思路
-
-1. 题目描述：求出现次数大于 n/3 的数字，而且限定空间复杂度为 O(1)。
-2. 任意一个数组出现次数大于 n/3 的数最多有两个。证明：如果有超过两个，也就是至少三个数字满足“出现的次数大于 n/3”，那么就意味着数组里总共有超过 3*(n/3) = n 个数字，这与已知的数组大小矛盾
-3. 多数投票法：找出两个候选数进行投票，需要两遍遍历，第一遍历找出两个候选数，第二遍遍历重新投票验证这两个候选数是否符合题意
-
-```C++
-// 2020-11-19 submission
-// ?/? cases passed
-// Runtime: 28 ms, faster than 76.33% of C++ online submissions.
-// Memory Usage: 16.2 MB, less than 7.61% of C++ online submissions.
-class Solution {
-public:
-    vector<int> majorityElement(vector<int>& nums) {
-        vector<int> res;
-        int a = 0, b = 0, cnt1 = 0, cnt2 = 0, n = nums.size();
-        for (int num : nums) {
-            if (num == a) ++cnt1;
-            else if (num == b) ++cnt2;
-            else if (cnt1 == 0) { a = num; cnt1 = 1; }
-            else if (cnt2 == 0) { b = num; cnt2 = 1; }
-            else { --cnt1; --cnt2; }
-        }
-        cnt1 = cnt2 = 0;
-        for (int num : nums) {
-            if (num == a) ++cnt1;
-            else if (num == b) ++cnt2;
-        }
-        if (cnt1 > n / 3) res.push_back(a);
-        if (cnt2 > n / 3) res.push_back(b);
         return res;
     }
 };
@@ -5471,30 +5214,6 @@ public:
 };
 ```
 
-## 242. Valid Anagram
-
-两个词是否互为变位词(组成字母一样)
-
-```c++
-class Solution {
-public:
-    bool isAnagram(string s, string t) {
-        if(s.size() != t.size()) return false;
-        unordered_map<char, int> table;
-        for(char c : s) {
-            if(table.find(c)==table.end()) table[c] = 1;
-            else table[c]++;
-        }
-        for(char c : t) {
-            if(table.find(c)==table.end()) return false;
-            else if(table[c]<=0) return false;
-            else table[c]--;
-        }
-        return true;
-    }
-};
-```
-
 ## 274. H-Index
 
 解题思路
@@ -5571,31 +5290,6 @@ public:
 };
 ```
 
-## 283. Move Zeroes
-
-解题思路
-
-1. 将0都移到后面：partition
-
-```C++
-// 2020-03-31 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 8.9 MB, less than 56.86% of C++ online submissions.
-class Solution {
-public:
-    void moveZeroes(vector<int>& nums) {
-        int i = -1;
-        for (int j = 0; j < nums.size(); j++) {
-            if (nums[j] != 0) {
-                ++i;
-                swap(nums[i], nums[j]);
-            }
-        }
-    }
-};
-```
-
 ## 287. Find the Duplicate Number
 
 解题思路
@@ -5649,37 +5343,6 @@ public:
 };
 ```
 
-## 290. Word Pattern
-
-解题思路
-
-1. 哈希：用两个 HashMap 来完成，分别将字符和单词都映射到当前的位置加1，注意这里需要加1就是为了避免默认映射值0，因为 C++ 中的 HashMap 的机制是若访问一个不存在的 key 值，会默认建立一个映射值为 0 的映射。
-
-边界条件
-
-1. s 和 p 长度不相等。
-
-```C++
-// 2020-11-08 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 6.8 MB, less than 71.32% of C++ online submissions.
-class Solution {
-public:
-    bool wordPattern(string pattern, string str) {
-        unordered_map<char, int> m1;
-        unordered_map<string, int> m2;
-        istringstream in(str);
-        int i = 0, n = pattern.length();
-        for (string word; in >> word; ++i) {
-            if (i >= n || m1[pattern[i]] != m2[word]) return false; // i>=n 表示 p 长度比 s 短
-            m1[pattern[i]] = m2[word] = i + 1;
-        }
-        return i == n; // s 已经遍历完，如果 i!=n(i<n) 表示 p 长度比 s 长
-    }
-};
-```
-
 ## 295. Find Median from Data Stream
 
 解题思路
@@ -5728,119 +5391,6 @@ public:
  * obj->addNum(num);
  * double param_2 = obj->findMedian();
  */
-```
-
-## 297. Serialize and Deserialize Binary Tree
-
-解题思路
-
-1. 序列化和去序列化二叉树。
-2. 先序遍历：序列化从根节点开始，如果节点存在，则将值存入输出字符串流，然后分别对其左右子节点递归调用序列化函数；去序列化先读入第一个字符，以此生成一个根节点，然后再对根节点的左右子节点递归调用去序列化函数。
-3. 层序遍历：借助queue来做，本质是BFS算法
-
-```C++
-// 2021-03-07 submission
-// ?/? cases passed
-// Runtime: 44 ms, faster than 86.17% of C++ online submissions.
-// Memory Usage: 31.1 MB, less than 80.21% of C++ online submissions.
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Codec {
-public:
-    void encode(TreeNode *root, ostringstream& out) {
-        if (!root) out << "# ";
-        else {
-            out << to_string(root->val);
-            out << " ";
-            encode(root->left, out);
-            encode(root->right, out);
-        }
-    }
-
-    TreeNode *decode(istringstream& in) {
-        string val;
-        in >> val;
-        if (val == "#") return nullptr;
-        TreeNode* node = new TreeNode(stoi(val));
-        node->left = decode(in);
-        node->right = decode(in);
-        return node;
-    }
-
-    // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
-        ostringstream out;
-        encode(root, out);
-        return out.str();
-    }
-
-    // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
-        istringstream in(data);
-        return decode(in);
-    }
-};
-
-// Your Codec object will be instantiated and called as such:
-// Codec ser, deser;
-// TreeNode* ans = deser.deserialize(ser.serialize(root));
-```
-
-```C++
-class Codec {
-public:
-    // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
-        ostringstream out;
-        queue<TreeNode*> q;
-        if (root) q.push(root);
-        while (!q.empty()) {
-            TreeNode *t = q.front(); q.pop();
-            if (t) {
-                out << t->val << ' ';
-                q.push(t->left);
-                q.push(t->right);
-            } else {
-                out << "# ";
-            }
-        }
-        return out.str();
-    }
-
-    // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
-        if (data.empty()) return nullptr;
-        istringstream in(data);
-        queue<TreeNode*> q;
-        string val;
-        in >> val;
-        TreeNode *res = new TreeNode(stoi(val)), *cur = res;
-        q.push(cur);
-        while (!q.empty()) {
-            TreeNode *t = q.front(); q.pop();
-            if (!(in >> val)) break;
-            if (val != "#") {
-                cur = new TreeNode(stoi(val));
-                q.push(cur);
-                t->left = cur;
-            }
-            if (!(in >> val)) break;
-            if (val != "#") {
-                cur = new TreeNode(stoi(val));
-                q.push(cur);
-                t->right = cur;
-            }
-        }
-        return res;
-    }
-};
 ```
 
 ## 313. Super Ugly Number
@@ -5956,23 +5506,6 @@ public:
 };
 ```
 
-## 326. Power of Three
-
-```C++
-// 2019-09-26 submission
-// ?/? cases passed
-// Runtime: 24 ms, faster than 14.94% of C++ online submissions.
-// Memory Usage: 6.2 MB, less than 83.11% of C++ online submissions.
-class Solution {
-public:
-    bool isPowerOfThree(int n) {
-        if(n <= 0) return false;
-        while(n % 3 == 0) n /= 3;
-        return n == 1;
-    }
-};
-```
-
 ## 327. Count of Range Sum
 
 解题思路
@@ -6000,93 +5533,6 @@ public:
             cur_sum += nums[i];
             res += distance(st.lower_bound(cur_sum-upper), st.upper_bound(cur_sum-lower));
             st.insert(cur_sum); // why this expression after
-        }
-        return res;
-    }
-};
-```
-
-## 338. Counting Bits (HOT 100)
-
-解题思路
-
-1. 问题描述：给定 n，返回 0 到 n 所有数字中含 1 的个数。
-2. 位操作：通过 a = a & (a - 1) 将 a 的最右边 1 改为 0，从而可以通过已有的子问题求解
-
-```C++
-// 2020-10-27 submission (位操作)
-// Runtime: 4 ms, faster than 98.71% of C++ online submissions.
-// Memory Usage: 8.1 MB, less than 35.37% of C++ online submissions.
-class Solution {
-public:
-    vector<int> countBits(int num) {
-        vector<int> dp(num+1, 0);
-        for (int i = 1; i <= num; i++) {
-            dp[i] = dp[i & (i-1)] + 1;
-        }
-        return dp;
-    }
-};
-```
-
-```C++
-#include<bitset>
-class Solution {
-public:
-    vector<int> countBits(int num) {
-        vector<int> result(num + 1);
-        for(int i = 1; i < num + 1; ++i){
-            result[i] = bitset<32>(i).count();
-        }
-        return result;
-    }
-};
-```
-
-## 342. Power of Four
-
-解题思路
-
-1. 位操作：通过 $n & (n - 1)$ 可以用来判断一个数是否为2的次方数，在此基础上发现 4 的次方数的最高位的 1 都是奇数位，所以只需要让原数和 `(0x55555555) <==> 1010101010101010101010101010101` 取与验证得到的数还是其本身；或者在确定其是2的次方数了之后，发现只要是4的次方数，减1之后可以被3整除。
-
-```C++
-// 2020-12-06 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 33.76% of C++ online submissions.
-// Memory Usage: 6.1 MB, less than 91.77% of C++ online submissions.
-class Solution {
-public:
-    bool isPowerOfFour(int n) {
-        return n > 0 && !(n & (n - 1)) && (n - 1) % 3 == 0;
-    }
-};
-```
-
-## 347. Top K Frequent Elements
-
-解题思路
-
-1. 建立数字到出现次数的映射。然后通过最大堆排序。
-
-```C++
-// 2021-03-19 submission
-// ?/? cases passed
-// Runtime: 12 ms, faster than 96.04% of C++ online submissions.
-// Memory Usage: 13.6 MB, less than 82.60% of C++ online submissions.
-class Solution {
-public:
-    vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int, int> m;
-        priority_queue<pair<int, int> > q;
-        vector<int> res;
-        for (int num : nums)
-            ++m[num];
-        for (auto it : m) {
-            q.push(make_pair(it.second, it.first));
-        }
-        for (int i = 0; i < k; i++) {
-            res.push_back(q.top().second);
-            q.pop();
         }
         return res;
     }
@@ -6155,64 +5601,6 @@ public:
             if (num % i == 0 && num / i == i) return true;
         }
         return false;
-    }
-};
-```
-
-## 374. Guess Number Higher or Lower
-
-解题思路
-
-1. 二分搜索
-
-```C++
-// 2020-09-22 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 6.1 MB, less than 15.75% of C++ online submissions.
-/**
- * Forward declaration of guess API.
- * @param  num   your guess
- * @return 	     -1 if num is lower than the guess number
- *			      1 if num is higher than the guess number
- *               otherwise return 0
- * int guess(int num);
- */
-
-class Solution {
-public:
-    int guessNumber(int n) {
-        int start = 1, end = n;
-        int middle = 0, res = 0;
-        while(true) {
-            middle = start + (end - start) / 2;
-            res = guess(middle);
-            if (res == 0) return middle;
-            else if (res < 0) end = middle-1;
-            else start = middle + 1;
-        }
-    }
-};
-```
-
-## 383. Ransom Note
-
-```C++
-// 2020-11-02 submission
-// ?/? cases passed
-// Runtime: 32 ms, faster than 73.30% of C++ online submissions.
-// Memory Usage: 9.3 MB, less than 99.23% of C++ online submissions.
-class Solution {
-public:
-    bool canConstruct(string ransomNote, string magazine) {
-        unordered_map<char, int> hash;
-        for (char c : magazine)
-            hash[c]++;
-        for (char c : ransomNote) {
-            hash[c]--;
-            if (hash[c] < 0) return false;
-        }
-        return true;
     }
 };
 ```
@@ -6337,25 +5725,6 @@ public:
 };
 ```
 
-## 392. Is Subsequence
-
-```C++
-// 2020-12-06 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 6.6 MB, less than 86.33% of C++ online submissions.
-class Solution {
-public:
-    bool isSubsequence(string s, string t) {
-        int s_i = 0;
-        for (int i = 0; i < t.length() && s_i < s.length(); i++) {
-            if (t[i] == s[s_i]) s_i++;
-        }
-        return s_i == s.length();
-    }
-};
-```
-
 ## 404. Sum of Left Leaves
 
 解题思路
@@ -6389,66 +5758,6 @@ public:
         if (!root) return 0;
         if (!root->left && !root->right) return is_left ? root->val : 0;
         return helper(root->left, true) + helper(root->right, false);
-    }
-};
-```
-
-## 412. Fizz Buzz
-
-```C++
-// 2021-04-07 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 77.88% of C++ online submissions.
-// Memory Usage: 7.8 MB, less than 76.15% of C++ online submissions.
-class Solution {
-public:
-    vector<string> fizzBuzz(int n) {
-        vector<string> res;
-        for (int i = 1; i <= n; i++) {
-            if (i % 15 == 0) res.push_back("FizzBuzz");
-            else if (i % 3 == 0) res.push_back("Fizz");
-            else if (i % 5 == 0) res.push_back("Buzz");
-            else res.push_back(to_string(i));
-        }
-        return res;
-    }
-};
-```
-
-## 414. Third Maximum Number
-
-解题思路
-
-1. 初始化三个数字为最小值，因为有可能出现INT_MIN，所以要用LLONG_MIN。然后根据每次迭代的数字依次更新三个候选数。需要注意的是等于候选数的数字。
-
-边界条件
-
-1. 数组长度小于3
-2. 数组中独特数字数量小于3
-3. INT_MIN在数组中
-
-```C++
-// 2020-12-11 submission
-// ?/? cases passed
-// Runtime: 8 ms, faster than 86.86% of C++ online submissions.
-// Memory Usage: 9.3 MB, less than 83.57% of C++ online submissions.
-class Solution {
-public:
-    int thirdMax(vector<int>& nums) {
-        long long A = LLONG_MIN, B = LLONG_MIN, C = LLONG_MIN;
-        for (int num : nums) {
-            if (num > A) {
-                C = B; B = A; A = num;
-            }
-            else if (A > num && num > B) {
-                C = B; B = num;
-            }
-            else if (B > num && num > C) {
-                C = num;
-            }
-            // cout << A << " " << B << " " << C << endl;
-        }
-        return C > LLONG_MIN ? C : A;
     }
 };
 ```
@@ -6512,82 +5821,6 @@ public:
 };
 ```
 
-## 448. Find All Numbers Disappeared in an Array
-
-解题思路
-
-1. 取负法：将元素对应的位置取负。在取负的过程中，如果发现要取负的位置已经为负，说明这个元素已经出现过，也即该元素出现了两次。当某个元素不出现的时候，该元素对应的位置始终访问不到，所以还是正值，通过这种方法我们就可以找到哪些元素没有出现。
-
-```C++
-class Solution {
-public:
-    vector<int> findDisappearedNumbers(vector<int>& nums) {
-        int n = nums.size();
-        vector<int> res;
-        int dst = 0;
-        for (int i = 0; i < n; i++) {
-            dst = nums[i] >= 0 ? nums[i] : nums[i] + (n + 1);
-            if (nums[dst-1] >= 0) nums[dst-1] -= (n + 1);
-        }
-        for (int i = 0; i < n; i++) {
-            if (nums[i] > 0) {
-                res.push_back(i+1);
-            }
-        }
-        return res;
-    }
-};
-```
-
-## 455. Assign Cookies
-
-解题思路
-
-1. 贪心策略：首先对两个数组进行排序。只有满足了当前的小朋友，才会去满足下一个胃口较大的小朋友。
-
-```C++
-// 2020-11-02 submission
-// ?/? cases passed
-// Runtime: 60 ms, faster than 98.72% of C++ online submissions.
-// Memory Usage: 17.8 MB, less than 91.35% of C++ online submissions.
-class Solution {
-public:
-    int findContentChildren(vector<int>& g, vector<int>& s) {
-        int res = 0;
-        sort(g.begin(), g.end());
-        sort(s.begin(), s.end());
-        for(int i=0, j=0; i<g.size() && j<s.size();) {
-            if (s[j] >= g[i]) {
-                i++;
-                j++;
-                res++;
-            }
-            else j++;
-        }
-        return res;
-    }
-};
-```
-
-## 492. Construct the Rectangle
-
-```C++
-// 2020-12-11 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 6.6 MB, less than 31.57% of C++ online submissions.
-class Solution {
-public:
-    vector<int> constructRectangle(int area) {
-        int W = 1;
-        for (int i = 2; i <= int(sqrt(area)); i++) {
-            if (area % i == 0) W = i;
-        }
-        return vector<int>{area / W, W};
-    }
-};
-```
-
 ## 494. Target Sum
 
 解题思路
@@ -6625,63 +5858,6 @@ public:
 };
 ```
 
-## 503. Next Greater Element II
-
-```C++
-// 2021-03-07 submission
-// ?/? cases passed
-// Runtime: 32 ms, faster than 87.00% of C++ online submissions.
-// Memory Usage: 23.7 MB, less than 88.13% of C++ online submissions.
-class Solution {
-public:
-    vector<int> nextGreaterElements(vector<int>& nums) {
-        stack<int> stk;
-        vector<int> res(nums.size(), -1);
-        for (int i = 0; i < nums.size(); i++) {
-            while (!stk.empty() && nums[stk.top()] < nums[i]) {
-                res[stk.top()] = nums[i];
-                stk.pop();
-            }
-            stk.push(i);
-        }
-        for (int i = 0; i < nums.size(); i++) {
-            while (!stk.empty() && nums[stk.top()] < nums[i]) {
-                res[stk.top()] = nums[i];
-                stk.pop();
-            }
-        }
-        return res;
-    }
-};
-```
-
-## 507. Perfect Number
-
-解题思路
-
-1. 题目描述：完数 = 他所有正除数（不包括他本身）之和
-2. 从 1 计数到 sqrt(n)，然后计数所有 i 和 n/i。
-
-```C++
-// 2020-11-13 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 6 MB, less than 81.46% of C++ online submissions.
-class Solution {
-public:
-    bool checkPerfectNumber(int num) {
-        int sum = 0;
-        for (int i = 1; i <= int(sqrt(num)); i++) {
-            if (num % i == 0) {
-                sum += i;
-                if (i * i != num) sum += (num / i);
-            }
-        }
-        return sum == 2 * num;
-    }
-};
-```
-
 ## 543. Diameter of Binary Tree
 
 ```C++
@@ -6715,85 +5891,6 @@ public:
         int right = maxDepth(node->right, res, m);
         res = max(res, left + right);
         return m[node] = (max(left, right) + 1);
-    }
-};
-```
-
-## 563. Binary Tree Tilt
-
-解题思路
-
-1. 后续遍历：返回值为当前子树的结点之和，所以需要一个参数来专门记录坡度和。
-
-```C++
-// 2019-05-18 submission
-// ?/? cases passed
-// Runtime: 24 ms, faster than 66.39% of C++ online submissions.
-// Memory Usage: 24.1 MB, less than 6.16% of C++ online submissions.
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    int findTilt(TreeNode* root) {
-        int result = 0;
-        search(root, result);
-        return result;
-    }
-
-    int search(TreeNode* root, int& tilt_sum) {
-        if (!root) return 0;
-        int left = search(root->left, tilt_sum);
-        int right = search(root->right, tilt_sum);
-        tilt_sum += abs(left-right);
-        return root->val + left + right;
-    }
-
-};
-```
-
-## 581. Shortest Unsorted Continuous Subarray
-
-解题思路
-
-1. 题目描述：乱序数组中，只排序某个部分的子数组就能让整体有序，求子数组的最短长度
-2. 遍历数组，只要当前数字小于前面的最大值，就说明当前数字需要加入排序，而且由于当前数字的加入，左边界窗口可能向左移，把所有比其大的数字都加入需要排序的滑动窗口。
-
-```C++
-// 2021-04-03 submission
-// ?/? cases passed
-// Runtime: 24 ms, faster than 86.70% of C++ online submissions.
-// Memory Usage: 26.5 MB, less than 59.14% of C++ online submissions.
-class Solution {
-public:
-    int findUnsortedSubarray(vector<int>& nums) {
-        int i = INT_MAX;
-        int max_val = INT_MIN;
-        int res = 0;
-        for (int j = 1; j < nums.size(); j++) {
-            max_val = max(max_val, nums[j-1]);
-            if (nums[j] < max_val) {
-                i = min(i, j - 1);
-                while (i >= 0 && nums[j] < nums[i]) --i;
-                res = max(res, j - i);
-            }
-        }
-        return res;
     }
 };
 ```
