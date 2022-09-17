@@ -2408,4 +2408,996 @@ public:
 };
 ```
 
-## 6.
+## 201. Bitwise AND of Numbers Range
+
+给定范围 [m, n] 内所有数字进行与操作后的结果。
+
+1. 结果数是该数字范围内所有的数的左边共同的 '1' 部分
+
+```C++
+class Solution {
+public:
+    int rangeBitwiseAnd(int m, int n) {
+        int i = 0;
+        while (m != n) {
+            m >>= 1;
+            n >>= 1;
+            ++i;
+        }
+        return (m << i);
+    }
+};
+```
+
+## 202. Happy Number
+
+对于某一个正整数，如果对其各个位上的数字分别平方，然后再加起来得到一个新的数字，再进行同样的操作，如果最终结果变成了1，则说明是快乐数。
+
+首先找规律，以 11 为例
+
+```txt
+1^2 + 1^2 = 2
+2^2 = 4
+4^2 = 16
+1^2 + 6^2 = 37
+3^2 + 7^2 = 58
+5^2 + 8^2 = 89
+8^2 + 9^2 = 145
+1^2 + 4^2 + 5^2 = 42
+4^2 + 2^2 = 20
+2^2 + 0^2 = 4
+```
+
+发现数字 4 反复出现，说明计算过程中总会出现循环。
+
+1. 用 HashSet 来记录所有出现过的数字，然后每出现一个新数字，在 HashSet 中查找看是否存在，若不存在则加入表中，若存在则跳出循环，并且判断此数是否为 1，若为 1 返回true，不为1返回false
+2. 关于非快乐数有个特点，循环的数字中必定会有 4。
+3. 快慢指针: 用于检测循环
+
+```C++
+class Solution {
+public:
+    bool isHappy(int n) {
+        unordered_set<int> st;
+        while (n != 1) {
+            int sum = 0;
+            while (n) {
+                sum += (n % 10) * (n % 10);
+                n /= 10;
+            }
+            n = sum;
+            if (st.count(n)) break;
+            st.insert(n);
+        }
+        return n == 1;
+    }
+};
+```
+
+```C++
+class Solution {
+public:
+    bool isHappy(int n) {
+        while (n != 1 && n != 4) {
+            int sum = 0;
+            while (n) {
+                sum += (n % 10) * (n % 10);
+                n /= 10;
+            }
+            n = sum;
+        }
+        return n == 1;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool isHappy(int n) {
+        int slow = n, fast = n;
+        while (true) {
+            slow = findNext(slow);
+            fast = findNext(fast);
+            fast = findNext(fast);
+            if (slow == fast) break;
+        }
+        return slow == 1;
+    }
+    int findNext(int n) {
+        int res = 0;
+        while (n > 0) {
+            res += (n % 10) * (n % 10);
+            n /= 10;
+        }
+        return res;
+    }
+};
+```
+
+## 203. Remove Linked List Elements
+
+从链表中移除所有给定值的节点
+
+1. 迭代: 判断下一个结点的值跟给定值相同的话，直接跳过下一个结点，将 next 指向下下一个结点。最后还要验证头结点是否需要删除，要的话直接返回下一个结点
+2. 递归: 通过递归调用到链表末尾，然后回来，碰到要删的元素，将链表next指针指向下一个元素即可。
+
+```C++
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if (!head) return NULL;
+        ListNode *cur = head;
+        while (cur->next) {
+            if (cur->next->val == val) cur->next = cur->next->next;
+            else cur = cur->next;
+        }
+        return head->val == val ? head->next : head;
+    }
+};
+```
+
+```C++
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if (!head) return NULL;
+        head->next = removeElements(head->next, val);
+        return head->val == val ? head->next : head;
+    }
+};
+```
+
+## 204. Count Primes
+
+给定一个非负数 n，求小于 n 的质数的个数
+
+1. 埃拉托斯特尼筛法(Sieve of Eratosthenes)
+   - [埃拉托斯特尼筛法 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95)
+   - 从 2 开始遍历到根号 n，先找到第一个质数 2，然后将其所有的倍数全部标记出来，然后到下一个质数3，标记其所有倍数，以此类推，直到根号 n，此时数组中未被标记的数字就是质数。
+
+```C++
+class Solution {
+public:
+    int countPrimes(int n) {
+        int res = 0;
+        vector<bool> prime(n, true);
+        for (int i = 2; i < n; ++i) {
+            if (!prime[i]) continue;
+            ++res;
+            for (int j = 2; i * j < n; ++j) {
+                prime[i * j] = false;
+            }
+        }
+        return res;
+    }
+};
+```
+
+## 205. Isomorphic Strings
+
+同构字符串: 所有出现的字符都必须替换为另一个字符，同时保留字符的顺序。没有两个字符可以映射到同一个字符，但一个字符可以映射到它自己。
+
+1. HashMap
+   - 用两个 HashMap 分别来记录原字符串和目标字符串中字符出现情况
+   - 遍历原字符串，分别从源字符串和目标字符串取出一个字符，然后分别在两个数组中查找其值，若不相等，则返回 false，若相等，将其值更新为 i + 1
+
+```C++
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        int m1[256] = {0}, m2[256] = {0}, n = s.size();
+        for (int i = 0; i < n; ++i) {
+            if (m1[s[i]] != m2[t[i]]) return false;
+            m1[s[i]] = i + 1;
+            m2[t[i]] = i + 1;
+        }
+        return true;
+    }
+};
+```
+
+## 207. Course Schedule
+
+每个课程都有先修课程，问是否会出现无法修完的情况
+
+1. 拓扑排序
+   - 这个问题相当于查找有向图中是否存在环
+   - 统计每个节点的入度，将入度为 0 的节点删掉，不断循环反复这个过程，如果最后还有节点入读不为 0，则说明存在环。
+   - 拓扑排序可以用 BFS 解决，也可以通过 DFS 解决
+2. 拓扑排序的 DFS 实现
+   - 需要一个一维数组 visit 来记录访问状态，这里有三种状态，0表示还未访问过，1表示已经访问了，-1 表示有冲突。
+   - 先建立好有向图，然后从第一个课开始，找其可构成哪门课，暂时将当前课程标记为已访问，然后对新得到的课程调用 DFS 递归，直到出现新的课程已经访问过了，则返回 false，没有冲突的话返回 true，然后把标记为已访问的课程改为未访问。
+
+```C++
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> graph(numCourses, vector<int>());
+        vector<int> in(numCourses);
+        for (auto a : prerequisites) {
+            graph[a[1]].push_back(a[0]);
+            ++in[a[0]];
+        }
+        queue<int> q;
+        for (int i = 0; i < numCourses; ++i) {
+            if (in[i] == 0) q.push(i);
+        }
+        while (!q.empty()) {
+            int t = q.front(); q.pop();
+            for (auto a : graph[t]) {
+                --in[a];
+                if (in[a] == 0) q.push(a);
+            }
+        }
+        for (int i = 0; i < numCourses; ++i) {
+            if (in[i] != 0) return false;
+        }
+        return true;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> graph(numCourses, vector<int>());
+        vector<int> visit(numCourses);
+        for (auto a : prerequisites) {
+            graph[a[1]].push_back(a[0]);
+        }
+        for (int i = 0; i < numCourses; ++i) {
+            if (!canFinishDFS(graph, visit, i)) return false;
+        }
+        return true;
+    }
+
+    bool canFinishDFS(vector<vector<int>>& graph, vector<int>& visit, int i) {
+        if (visit[i] == -1) return false;
+        if (visit[i] == 1) return true;
+        visit[i] = -1;
+        for (auto a : graph[i]) {
+            if (!canFinishDFS(graph, visit, a)) return false;
+        }
+        visit[i] = 1;
+        return true;
+    }
+};
+```
+
+## 208. Implement Trie (Prefix Tree)
+
+实现前缀树(字典树)，字典树主要有如下三点性质：
+
+1. 根节点不包含字符，除根节点以外每个节点只包含一个字符。
+2. 从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串。
+3. 每个节点的所有子节点包含的字符串不相同。
+
+![Prefix Tree](../res/2022-09-14-16-25-31.png)
+
+前缀树的插入（Insert）、删除（ Delete）和查找（Find）都非常简单，第 i 次循环找到前 i 个字母所对应的子树，然后进行相应的操作。实现上，使用最常见的数组保存（静态开辟内存）即可，当然也可以开动态的指针类型（动态开辟内存）。至于结点对儿子的指向，一般有三种方法：
+
+1、对每个结点开一个字母集大小的数组，对应的下标是儿子所表示的字母，内容则是这个儿子对应在大数组上的位置，即标号；
+2、对每个结点挂一个链表，按一定顺序记录每个儿子是谁；
+3、使用左儿子右兄弟表示法记录这棵树。
+
+第一种易实现，但实际的空间要求较大；第二种，较易实现，空间要求相对较小，但比较费时；第三种，空间要求最小，但相对费时且不易写。以下给出第一种实现方法。
+
+**边界条件**
+
+1. 先插入 apple, 再插入 app，所以需要对每一个节点设置 is_word 标志位，不能简单通过是不是叶子节点来判断。
+
+```C++
+class Node{
+public:
+    Node* child[26];
+    bool is_word;
+    Node() {
+        is_word = false;
+        for (Node*& ptr : child) {
+            ptr = NULL;
+        }
+    }
+};
+
+class Trie {
+public:
+    Node* root;
+
+    /** Initialize your data structure here. */
+    Trie() {
+        root = new Node();
+    }
+
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        Node* cur = root;
+        for (int i = 0; i < word.length(); i++) {
+            if(!cur->child[word[i]-'a']) {
+                cur->child[word[i]-'a'] = new Node();
+            }
+            cur = cur->child[word[i]-'a'];
+        }
+        cur->is_word = true;
+    }
+
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        Node* cur = root;
+        for (int i = 0; i < word.length(); i++) {
+            if(!cur->child[word[i]-'a']) return false;
+            cur = cur->child[word[i]-'a'];
+        }
+        return cur->is_word;
+    }
+
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        Node* cur = root;
+        for (int i = 0; i < prefix.length(); i++) {
+            if(!cur->child[prefix[i]-'a']) return false;
+            cur = cur->child[prefix[i]-'a'];
+        }
+        return true;
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
+```
+
+## 593. Valid Square
+
+验证这四个点是否能组成一个正方形
+
+正方形的四条边相等，两条对角线相等，满足这两个条件的四边形一定是正方形。
+
+1. HashMap
+   - 对四个点，两两之间算距离
+   - 如果计算出某两个点之间距离为 0，说明两点重合了，直接返回 false
+   - 如果不为 0，那么就建立距离和其出现次数之间的映射
+   - 最后如果我们只得到了两个不同的距离长度，那么就说明是正方形。
+2. HashSet: 集合中不存在0，且里面只有两个数的时候，说明是正方形
+
+```C++
+class Solution {
+public:
+    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {
+        unordered_map<int, int> m;
+        vector<vector<int>> v{p1, p2, p3, p4};
+        for (int i = 0; i < 4; ++i) {
+            for (int j = i + 1; j < 4; ++j) {
+                int x1 = v[i][0], y1 = v[i][1], x2 = v[j][0], y2 = v[j][1];
+                int dist = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+                if (dist == 0) return false;
+                ++m[dist];
+            }
+        }
+        return m.size() == 2;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {
+        unordered_set<int> s{d(p1, p2), d(p1, p3), d(p1, p4), d(p2, p3), d(p2, p4), d(p3, p4)};
+        return !s.count(0) && s.size() == 2;
+    }
+    int d(vector<int>& p1, vector<int>& p2) {
+        return (p1[0] - p2[0]) * (p1[0] - p2[0]) + (p1[1] - p2[1]) * (p1[1] - p2[1]);
+    }
+};
+```
+
+## 322. Coin Change
+
+给定一些可用的硬币面值，又给定总钱数，问最少能用几个硬币来找零。
+
+1. 动态规划：维护一个一维动态数组 dp，其中 dp[i] 表示钱数为i时的所需最少找零数。因为最小的硬币是1，所以 amount 最多需要 amount 个硬币，不可以用 INT_MAX 初始化，因为之后 +1 操作会溢出。状态转移方程为 $dp[i] = min(dp[i], dp[i - coins[j]] + 1)$
+2. 递归+记忆数组：思路同上
+3. 暴力搜索+剪枝：首先排序硬币数组，然后从最大硬币开始，尽可能取到最多，然后对于次一级的硬币进行递归。剪枝策略是若当前硬币数已超过最小值，停止检索并返回。
+
+```C++
+// 2020-11-25 submission (动态规划)
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> dp(amount + 1, amount + 1); // dp[i] 表示amount为i时所需最少找零数，显然dp[i]<=i
+        dp[0] = 0;
+        for (int i = 1; i <= amount; i++) {
+            for (int coin : coins) {
+                if (coin > i) continue;
+                dp[i] = min(dp[i], dp[i-coin] + 1);
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+};
+```
+
+```C++
+// 2020-11-25 submission (递归+记忆数组)
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> memo(amount + 1, INT_MAX);
+        memo[0] = 0;
+        return coinChangeDFS(coins, amount, memo);
+    }
+    int coinChangeDFS(vector<int>& coins, int target, vector<int>& memo) {
+        if (target < 0) return - 1;
+        if (memo[target] != INT_MAX) return memo[target];
+        for (int i = 0; i < coins.size(); ++i) {
+            int tmp = coinChangeDFS(coins, target - coins[i], memo);
+            if (tmp >= 0) memo[target] = min(memo[target], tmp + 1);
+        }
+        return memo[target] = (memo[target] == INT_MAX) ? -1 : memo[target];
+    }
+};
+```
+
+```C++
+// 2020-11-25 submission (暴力搜索+剪枝)
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int res = INT_MAX, n = coins.size();
+        sort(coins.begin(), coins.end());
+        helper(coins, n - 1, amount, 0, res);
+        return (res == INT_MAX) ? -1 : res;
+    }
+    void helper(vector<int>& coins, int start, int target, int cur, int& res) {
+        if (start < 0) return;
+        if (target % coins[start] == 0) {
+            res = min(res, cur + target / coins[start]);
+            return;
+        }
+        for (int i = target / coins[start]; i >= 0; --i) {
+            if (cur + i >= res - 1) break;
+            helper(coins, start - 1, target - i * coins[start], cur + i, res);
+        }
+    }
+};
+```
+
+## 371. Sum of Two Integers
+
+不依赖内建操作符实现加法运算。
+
+1. 位操作
+   - 考虑例子 759+674，只考虑进位结果为 323，不考虑进位结果为 1110，两个结果数字相加是最终结果
+   - 只考虑进位为‘与’运算，不考虑进位为‘异或’运算，得到两个结果后再次相加时可以递归调用，终止条件为进位为 0。
+
+**边界条件**
+
+1. LeetCode编译器不能对负数进行左移，最高位符号位必须要为0。
+
+```C++
+class Solution {
+public:
+    int getSum(int a, int b) {
+        return b == 0 ? a : getSum(a ^ b, (a & b & 0x7fffffff) << 1);
+    }
+};
+```
+
+## 147. Insertion Sort List
+
+插入排序
+
+```C++
+// 2020-11-03 submission
+// ?/? cases passed
+// Runtime: 44 ms, faster than 56.99% of C++ online submissions.
+// Memory Usage: 9.7 MB, less than 34.79% of C++ online submissions.
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        ListNode *dummy = new ListNode(-1), *cur = dummy;
+        while (head) {
+            ListNode *t = head->next;
+            cur = dummy;
+            while (cur->next && cur->next->val <= head->val) {
+                cur = cur->next;
+            }
+            head->next = cur->next;
+            cur->next = head;
+            head = t;
+        }
+        return dummy->next;
+    }
+};
+```
+
+## 148. Sort List
+
+归并排序
+
+```C++
+class Solution {
+public:
+
+    ListNode* sortList(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode *slow = head, *fast = head, *pre = head;
+        while (fast && fast->next) {
+            pre = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        pre->next = NULL;
+        return merge(sortList(head), sortList(slow));
+    }
+
+    ListNode* merge(ListNode* l1, ListNode* l2) {
+        if (!l1) return l2;
+        if (!l2) return l1;
+        if (l1->val < l2->val) {
+            l1->next = merge(l1->next, l2);
+            return l1;
+        } else {
+            l2->next = merge(l1, l2->next);
+            return l2;
+        }
+    }
+};
+```
+
+## 149. Max Points on a Line
+
+```C++
+// 2020-07-19 submission
+// ?/? cases passed
+// Runtime: 20 ms, faster than 43.48% of C++ online submissions.
+// Memory Usage: 10.3 MB, less than 41.32% of C++ online submissions.
+class Solution {
+public:
+    int maxPoints(vector<vector<int>>& points) {
+        if (points.empty()) return 0;
+        int max_num = 0;
+        for (int i = 0; i < points.size(); i++) {
+            map<pair<int, int>, int> collect;
+            int max_cur = 0;
+            for (int j = 0; j < points.size(); j++) {
+                max_cur = max(max_cur, gcd(points[i][0]-points[j][0], points[i][1]-points[j][1], collect));
+            }
+            max_num = max(max_num, max_cur + collect[pair<int, int>{0, 0}]);
+            // cout << max_num <<endl;
+        }
+        return max_num;
+    }
+
+    int gcd(int x, int y, map<pair<int, int>, int>& collect) {
+        int cnt = 0;
+        if ( x == 0 && y == 0) {
+            ++collect[pair<int, int>{0, 0}];
+        }
+        else if (x == 0) {
+            cnt = ++collect[pair<int, int>{0, 1}];
+        }
+        else if (y == 0) {
+            cnt = ++collect[pair<int, int>{1, 0}];
+        }
+        else {
+            int t = 0;
+            int a = abs(x), b = abs(y), op = abs(x)/x*abs(y)/y;
+            while(b > 0) {
+                t = a % b;
+                a = b;
+                b = t;
+            }
+            cnt = ++collect[pair<int, int>{abs(x)/a*op, abs(y)/a}];
+        }
+        return cnt;
+    }
+};
+```
+
+## 150. Evaluate Reverse Polish Notation
+
+解题思路
+
+1. 利用栈实现后缀表达式求值。
+
+边界条件
+
+1. 当运算对象为负数时候，注意不要和运算符号“-”混淆
+
+```C++
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> stk;
+        for (int i = 0; i < tokens.size(); i++) {
+            if (tokens[i].length() == 1 && tokens[i][0] < '0') { // ASCII中 + - * / 在 0 前面
+                int b = stk.top(); stk.pop();
+                int a = stk.top(); stk.pop();
+                if (tokens[i] == "+") stk.push(a + b);
+                else if (tokens[i] == "-") stk.push(a - b);
+                else if (tokens[i] == "*") stk.push(a * b);
+                else stk.push(a / b);
+                // cout << tokens[i] << " " << stk.top() << endl;
+            }
+            else {
+                stk.push(stoi(tokens[i]));
+            }
+        }
+        return stk.top();
+    }
+};
+```
+
+## 151. Reverse Words in a String
+
+解题思路
+
+1. 细节题目，注意各种边界条件即可
+2. 可以认为单词是夹在边界或者空格中间，所以初始将 begin 设为-1（表示开始边界），之后每次遇到空格就更新 begin。同时遇到右边界或者有空格可以认为有单词结束，所以同时还需要加一个 word flag指示是否当前遍历为单词。
+
+边界条件
+
+1. 字符串为空
+2. 字符串（开始）末尾（没）有空格
+
+```C++
+// 2020-09-19 submission
+// ?/? cases passed
+// Runtime: 16 ms, faster than 86.70% of C++ online submissions.
+// Memory Usage: 8.7 MB, less than 46.08% of C++ online submissions.
+class Solution {
+public:
+    string reverseWords(string s) {
+        string res_s;
+        if (s.length() == 0) return res_s;
+        vector<string> res;
+
+        bool word = false;
+        int begin = -1;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] != ' ' && !word) {
+                word = true;
+            }
+            if (s[i] == ' ') {
+                if (word) res.push_back(s.substr(begin+1, i-begin-1));
+                begin = i;
+                word = false;
+            }
+        }
+        if (s[s.length()-1] != ' ') res.push_back(s.substr(begin+1));
+
+        for (int i = res.size()-1; i >= 0; i--) {
+            res_s.append(res[i]);
+            res_s.append(" ");
+        }
+        return res_s.substr(0, res_s.length()-1);
+    }
+};
+```
+
+## 13. Roman to Integer
+
+
+## 24. Swap Nodes in Pairs
+
+```C++
+// 2020-06-28 submission
+// ?/? cases passed
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
+// Memory Usage: 7.6 MB, less than 45.58% of C++ online submissions.
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if(!head || !head->next) return head;
+        ListNode* curr = head->next;
+        head->next = swapPairs(curr->next);
+        curr->next = head;
+        return curr;
+    }
+};
+```
+
+## 25. Reverse Nodes in k-Group
+
+```C++
+// 2020-06-28 submission
+// ?/? cases passed
+// Runtime: 12 ms, faster than 90.02% of C++ online submissions.
+// Memory Usage: 11.5 MB, less than 61.58% of C++ online submissions.
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode *dummy = new ListNode(-1), *pre = dummy, *cur = pre;
+        dummy->next = head;
+        int num = 0;
+        while (cur = cur->next) ++num;
+        while (num >= k) {
+            cur = pre->next;
+            for (int i = 1; i < k; ++i) {
+                ListNode *t = cur->next;
+                cur->next = t->next;
+                t->next = pre->next;
+                pre->next = t;
+            }
+            pre = cur;
+            num -= k;
+        }
+        return dummy->next;
+    }
+};
+```
+
+## 187. Repeated DNA Sequences
+
+解题思路
+
+1. 基本做法：hash，将连续的十个字符映射为唯一，出现重复时就加入到结果
+2. 同时，为了减少内存使用，可考虑位操作。用两位来表示一个字符，00 表示A，01 表示C，10 表示G，11 表示T，那么总共需要 20 位就可以表示十个字符流。
+
+边界条件
+
+1. 可能会出现多次重复（要去重）
+
+```C++
+// 2020-09-18 submission
+// ?/? cases passed
+// Runtime: 68 ms, faster than 93.74% of C++ online submissions.
+// Memory Usage: 14.9 MB, less than 97.44% of C++ online submissions.
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        unordered_set<string> res; // 用 set 替代 vector，因为可能出现多次重复
+        unordered_set<int> hash_set;
+        unordered_map<char, int> dna{{'A', 0}, {'C', 1}, {'G', 2}, {'T', 3}};
+        int cur = 0;
+        for (int i = 0; i < 9; i++) {
+            cur = cur << 2 | dna[s[i]];
+        }
+        for (int i = 9; i < s.length(); i++) {
+            cur = (cur & 0x0003ffff) << 2 | dna[s[i]]; // 每次只保留 20-2=18 位，再加上后来的2位
+            if (hash_set.count(cur)) res.insert(s.substr(i-9, 10));
+            else hash_set.insert(cur);
+        }
+        return vector<string>(res.begin(), res.end());
+    }
+};
+```
+
+## 189. Rotate Array
+
+```C++
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        vector<int> t = nums;
+        for (int i = 0; i < nums.size(); ++i) {
+            nums[(i + k) % nums.size()] = t[i];
+        }
+    }
+};
+```
+
+```C++
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        if(nums.empty()) return;
+        int n = nums.size();
+        k = k % n;
+        reverse(nums.begin(), nums.begin()+n-k);
+        reverse(nums.begin()+n-k, nums.end());
+        reverse(nums.begin(), nums.end());
+    }
+};
+```
+
+```C++
+// 1 2 3 4 5 6 7
+// 5 2 3 4 1 6 7
+// 5 6 3 4 1 2 7
+// 5 6 7 4 1 2 3
+// 5 6 7 1 4 2 3
+// 5 6 7 1 2 4 3
+// 5 6 7 1 2 3 4
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        if (nums.empty()) return;
+        int n = nums.size(), start = 0;
+        while (n && (k %= n)) {
+            for (int i = 0; i < k; ++i) {
+                swap(nums[i + start], nums[n - k + i + start]);
+            }
+            n -= k;
+            start += k;
+        }
+    }
+};
+```
+
+## 695. Max Area of Island
+
+## 200. Number of Islands
+
+解题思路
+
+1. DFS:维护一个 visited 数组用来记录某个位置是否被访问过，对于一个为 ‘1’ 且未被访问过的位置，递归进入其上下左右位置上为 ‘1’ 的数，将其 visited 对应值赋为 true，继续进入其所有相连的邻位置，这样可以将这个连通区域所有的数找出来，并将其对应的 visited 中的值赋 true，找完相邻区域后，将结果 res 自增1，然后再继续找下一个为 ‘1’ 且未被访问过的位置
+
+```C++
+// 2020-09-20 submission
+// ?/? cases passed
+// Runtime: 28 ms, faster than 87.82% of C++ online submissions.
+// Memory Usage: 9.9 MB, less than 37.26% of C++ online submissions.
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        if (grid.empty() || grid[0].empty()) return 0;
+
+        int res = 0;
+        int rows = grid.size(), cols = grid[0].size();
+        vector<vector<bool> > mask(rows, vector<bool>(cols, false));
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (DFS(grid, mask, i, j)) res++;
+            }
+        }
+
+        return res;
+    }
+
+    bool DFS(vector<vector<char>>& grid, vector<vector<bool>>& mask, int i, int j) {
+        if (mask[i][j] || grid[i][j]=='0') return false;
+        mask[i][j] = true;
+        if (i > 0) DFS(grid, mask, i-1, j);
+        if (i < grid.size()-1) DFS(grid, mask, i+1, j);
+        if (j > 0) DFS(grid, mask, i, j-1);
+        if (j < grid[0].size()-1) DFS(grid, mask, i, j+1);
+        return true;
+    }
+};
+```
+
+## 694. Number of Distinct Islands
+
+## 693. Binary Number with Alternating Bits
+
+判断一个二进制数的 1 和 0 是否是交替出现的
+
+1. 可以通过 异或 1 的方式来将 0 和 1 互换
+   - while 循环的条件是最低位等于 d，而 d 不停的在 0 和 1 之间切换，n 每次也向右平移一位，这样能交替检测 0 和 1
+   - 循环退出后，如果 n 为 0，则返回 true，反之则返回 false。
+2. 错位相加
+   - 比如 n 是10101，那么 n>>1 就是1010，二者相加就是 11111，再加 1 就是 100000，二者相与就是0
+3. 先将 n 右移两位，再和原来的 n 异或，得到的结果其实就是除了最高位，其余都是 0 的数，然后再和自身减 1 的数相与，如果是 0 就返回 true，反之 false。
+   - 比如 n 是 10101，那么 n/4 是 101，二者相异或，得到 10000，此时再减 1，为 1111，二者相与得 0
+
+```cpp
+class Solution {
+public:
+    bool hasAlternatingBits(int n) {
+        int d = n & 1;
+        while ((n & 1) == d) {
+            d ^= 1;
+            n >>= 1;
+        }
+        return n == 0;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool hasAlternatingBits(int n) {
+        return ((n + (n >> 1) + 1) & (n + (n >> 1))) == 0;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool hasAlternatingBits(int n) {
+        return ((n ^= n / 4) & (n - 1)) == 0;
+    }
+};
+```
+
+## 686. Repeated String Match
+
+## 684. Redundant Connection
+
+## 685. Redundant Connection II
+
+## 677. Map Sum Pairs
+
+## 680. Valid Palindrome II
+
+验证回文字符串，允许最多删除其中 1 个字符。
+
+1. 遇到不匹配的时候，是删除左边的字符，还是右边的字符呢，应该是两种情况都要算一遍，只要有一种能返回 true，那么结果就返回 true。
+
+```cpp
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        int left = 0, right = (int)s.length() - 1;
+        while (left < right) {
+            if (s[left] != s[right]) return isValid(s, left, right - 1) || isValid(s, left + 1, right);
+            ++left; --right;
+        }
+        return true;
+    }
+
+    bool isValid(string s, int left, int right) {
+        while (left < right) {
+            if (s[left] != s[right]) return false;
+            ++left; --right;
+        }
+        return true;
+    }
+};
+```
+
+## 485. Max Consecutive Ones
+
+求二进制数组中最大连续 1 的个数。
+
+1. 遍历一遍数组，用一个计数器 cnt 来统计 1 的个数
+2. 数组中的数字只能是 0 或 1，那么连续 1 的和跟个数相等，所以可以计算和，通过加上 num，再乘以 num 来计算
+
+```cpp
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int res = 0, cnt = 0;
+        for (int num : nums) {
+            if (num == 0) cnt = 0;
+            else ++cnt;
+            res = max(res, cnt);
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int res = 0, sum = 0;
+        for (int num : nums) {
+            sum = (sum + num) * num;
+            res = max(res, sum);
+        }
+        return res;
+    }
+};
+```
+
+## 498. Diagonal Traverse
+
+二维数组的对角遍历，先向右上，然后左下，再右上，以此类推直至遍历完整个数组。
