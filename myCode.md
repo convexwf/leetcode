@@ -9,6 +9,70 @@
 
 ```
 
+## 4. Median of Two Sorted Arrays
+
+求两个有序数组的中位数，限制时间复杂度为 O(log (m+n))
+
+1. 二分法+递归:
+   - 假设两个有序数组的长度分别为 m 和 n，找第 $(m+n+1) / 2$ 个，和 $(m+n+2) / 2$ 个，然后求其平均值即可
+   - 在两个有序数组中找到第 $K$ 个元素，分别在 nums1 和 nums2 中查找第 $K/2$ 个元素，由于两个数组的长度不定，所以有可能某个数组没有第 $K/2$ 个数字
+   - 如果不存在第 K/2 个数字，赋值上一个整型最大值
+   - 如果第一个数组的第 K/2 个数字小的话，那么说明要找的数字肯定不在 nums1 中的前 K/2 个数字，可以将其淘汰
+   - 当某一个数组的起始位置大于等于其数组长度时，说明其所有数字均已经被淘汰了，相当于一个空数组，那么实际上就变成了在另一个数组中找数字，直接就可以找出来了
+   - 如果 $K=1$ 的话，只要比较 nums1 和 nums2 的起始位置 i 和 j 上的数字即可
+2. 二分法+迭代
+   - 中位数其实就是把一个有序数组分为长度相等的两段，然后取前半段的最大值和后半段的最小值的平均数
+   - 使用 L 表示分割点左边的数字，R 表示分割点右边的数字，则对于 [1 3 5 7] 来说，L=3，R=5。对于 [1 3 4 5 7] 来说，L=4，R=4
+   - $idx(L)= (N-1)/2$，$idx(R) = N/2$，idx 表示 Index of，对应下标。中位数可以表示为 $(L + R) / 2 = (A[(N - 1) / 2] + A[N / 2]) / 2$
+   - 为了统一数组长度为奇数和偶数的情况，在每个数字的两边都加上一个特殊字符 `#`
+
+```cpp
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size(), n = nums2.size(), left = (m + n + 1) / 2, right = (m + n + 2) / 2;
+        return (findKth(nums1, 0, nums2, 0, left) + findKth(nums1, 0, nums2, 0, right)) / 2.0;
+    }
+
+    int findKth(vector<int>& nums1, int i, vector<int>& nums2, int j, int k) {
+        if (i >= nums1.size()) return nums2[j + k - 1];
+        if (j >= nums2.size()) return nums1[i + k - 1];
+        if (k == 1) return min(nums1[i], nums2[j]);
+        int midVal1 = (i + k / 2 - 1 < nums1.size()) ? nums1[i + k / 2 - 1] : INT_MAX;
+        int midVal2 = (j + k / 2 - 1 < nums2.size()) ? nums2[j + k / 2 - 1] : INT_MAX;
+        if (midVal1 < midVal2) {
+            return findKth(nums1, i + k / 2, nums2, j, k - k / 2);
+        } else {
+            return findKth(nums1, i, nums2, j + k / 2, k - k / 2);
+        }
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size(), n = nums2.size();
+        if (m < n) return findMedianSortedArrays(nums2, nums1);
+        if (n == 0) return ((double)nums1[(m - 1) / 2] + (double)nums1[m / 2]) / 2.0;
+        int left = 0, right = n * 2;
+        while (left <= right) {
+            int mid2 = (left + right) / 2;
+            int mid1 = m + n - mid2;
+            double L1 = mid1 == 0 ? INT_MIN : nums1[(mid1 - 1) / 2];
+            double L2 = mid2 == 0 ? INT_MIN : nums2[(mid2 - 1) / 2];
+            double R1 = mid1 == m * 2 ? INT_MAX : nums1[mid1 / 2];
+            double R2 = mid2 == n * 2 ? INT_MAX : nums2[mid2 / 2];
+            if (L1 > R2) left = mid2 + 1;
+            else if (L2 > R1) right = mid2 - 1;
+            else return (max(L1, L2) + min(R1, R2)) / 2;
+        }
+        return -1;
+    }
+};
+```
+
 ## 41
 
 找缺失的首个正数，限定 O(n) 时间复杂度和不使用额外空间。
