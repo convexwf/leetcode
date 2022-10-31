@@ -9,6 +9,51 @@
 
 ```
 
+## 6. ZigZag Conversion
+
+给定字符串和行数，将其进行 “之” 形变换后，输出逐行读取的结果。
+
+```txt
+当 n = 2 时：
+
+0 2 4 6 8 A C E
+1 3 5 7 9 B D F
+
+result: 0 2 4 6 8 A C E 1 3 5 7 9 B D F
+
+当 n = 3 时：
+
+0   4   8   C
+1 3 5 7 9 B D F
+2   6   A   E
+
+当 n = 4 时：
+
+0     6     C
+1   5 7   B D
+2 4   8 A   E
+3     9     F
+```
+
+```cpp
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if (numRows <= 1) return s;
+        string res;
+        int size = 2 * numRows - 2, n = s.size();
+        for (int i = 0; i < numRows; ++i) {
+            for (int j = i; j < n; j += size) {
+                res += s[j];
+                int pos = j + size - 2 * i;
+                if (i != 0 && i != numRows - 1 && pos < n) res += s[pos];
+            }
+        }
+        return res;
+    }
+};
+```
+
 ## 4. Median of Two Sorted Arrays
 
 求两个有序数组的中位数，限制时间复杂度为 O(log (m+n))
