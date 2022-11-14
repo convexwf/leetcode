@@ -12,7 +12,7 @@ def split_block(lines):
     res = []
     unlock = True
     for idx, line in enumerate(lines):
-        if line.startswith('!'):
+        if line.startswith('!!!'):
             unlock = False
         if line.startswith('#'):
             res.append([idx])
@@ -24,6 +24,7 @@ def split_block(lines):
     return res
 
 def get_content(lines, idx):
+    print(idx)
     res = []
     res.append(lines[idx[0]].replace('.', ' ').strip().split(' ')[1])
     res.append(lines[idx[0]+2].strip())
@@ -86,9 +87,9 @@ def instead_code(content):
 
 if __name__ == '__main__':
 
-    mode = False
+    mode = True
 
-    with open("myCode.md", 'r', encoding='utf-8') as fp:
+    with open("code.md", 'r', encoding='utf-8') as fp:
         lines = fp.readlines()
     idx_list = split_block(lines)
 

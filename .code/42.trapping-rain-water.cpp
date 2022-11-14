@@ -6,11 +6,11 @@
  * https://leetcode.com/problems/trapping-rain-water/description/
  *
  * algorithms
- * Hard (57.38%)
- * Likes:    20301
- * Dislikes: 283
- * Total Accepted:    1.2M
- * Total Submissions: 2.1M
+ * Hard (58.83%)
+ * Likes:    23818
+ * Dislikes: 330
+ * Total Accepted:    1.4M
+ * Total Submissions: 2.4M
  * Testcase Example:  '[0,1,0,2,1,0,1,3,2,1,2,1]'
  *
  * Given n non-negative integers representing an elevation map where the width

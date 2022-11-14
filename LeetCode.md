@@ -258,35 +258,6 @@ public:
 };
 ```
 
-## 10. Regular Expression Matching
-
-解题思路
-
-1. 正则匹配：(1) sp 和 pp 都到了末尾，表示匹配结束 (2) 如果 p[pp+1] 为 *，
-
-```C++
-// Runtime: 24 ms, faster than 23.92% of C++ online submissions.
-// Memory Usage: 6.1 MB, less than 97.79% of C++ online submissions.
-class Solution {
-public:
-    bool isMatch(string s, string p) {
-        return helper(s, p, 0, 0);
-    }
-
-    bool helper(string& s, string& p, int sp, int pp) {
-        if(sp == s.size() && pp == p.size()) return true;
-        if(pp+1 < p.size() && p[pp+1] == '*') {
-            if(sp < s.size() && (p[pp] == '.' || p[pp]==s[sp])) {
-                if(helper(s, p, sp+1, pp)) return true;
-            }
-            return helper(s, p, sp, pp+2);
-        }
-        if(sp < s.size() && (p[pp] == '.' || p[pp] == s[sp])) return helper(s, p, sp+1, pp+1);
-        else return false;
-    }
-};
-```
-
 ## 11. Container With Most Water
 
 ```C++
