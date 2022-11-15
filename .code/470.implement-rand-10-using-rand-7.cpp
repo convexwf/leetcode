@@ -55,10 +55,10 @@
 // 12/12 cases passed
 // Runtime: 70 ms, faster than 78.6% of C++ online submissions.
 // Memory Usage: 7.5 MB, less than 17.27% of C++ online submissions.
+
 // The rand7() API is already defined for you.
 // int rand7();
 // @return a random integer in the range 1 to 7
-
 class Solution {
 public:
     int rand10() {

@@ -80,7 +80,6 @@ public:
     vector<int> subordinates;
 };
 */
-
 class Solution {
 public:
     int getImportance(vector<Employee*> employees, int id) {

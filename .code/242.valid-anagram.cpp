@@ -43,11 +43,20 @@
  */
 
 // @lc code=start
+// 2022-11-14 submission
+// 37/37 cases passed
+// Runtime: 3 ms, faster than 99.41% of C++ online submissions.
+// Memory Usage: 7.1 MB, less than 96.72% of C++ online submissions.
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        
+        if (s.size() != t.size()) return false;
+        int m[26] = {0};
+        for (int i = 0; i < s.size(); ++i) ++m[s[i] - 'a'];
+        for (int i = 0; i < t.size(); ++i) {
+            if (--m[t[i] - 'a'] < 0) return false;
+        }
+        return true;
     }
 };
 // @lc code=end
-

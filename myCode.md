@@ -9,6 +9,67 @@
 
 ```
 
+## 210. Course Schedule II
+
+每个课程都有先修课程，求修课程的顺序，如果有多种可能只返回一种即可。
+
+1. 拓扑排序
+   - 从 queue 中每取出一个数组就将其存在结果中，最终若有向图中有环，则结果中元素的个数不等于总课程数，将结果清空即可。
+
+```C++
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        vector<int> res;
+        vector<vector<int> > graph(numCourses, vector<int>(0));
+        vector<int> in(numCourses, 0);
+        for (auto &a : prerequisites) {
+            graph[a.second].push_back(a.first);
+            ++in[a.first];
+        }
+        queue<int> q;
+        for (int i = 0; i < numCourses; ++i) {
+            if (in[i] == 0) q.push(i);
+        }
+        while (!q.empty()) {
+            int t = q.front();
+            res.push_back(t);
+            q.pop();
+            for (auto &a : graph[t]) {
+                --in[a];
+                if (in[a] == 0) q.push(a);
+            }
+        }
+        if (res.size() != numCourses) res.clear();
+        return res;
+    }
+};
+```
+
+## 278. First Bad Version
+
+在一系列版本中找出第一个坏版本，坏版本后都是坏版本，给了一个 API 函数可以用来判定当前版本是否是坏的，尽可能少调用这个 API。
+
+1. 二分查找
+
+```cpp
+// Forward declaration of isBadVersion API.
+bool isBadVersion(int version);
+
+class Solution {
+public:
+    int firstBadVersion(int n) {
+        int left = 1, right = n;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (isBadVersion(mid)) right = mid;
+            else left = mid + 1;
+        }
+        return left;
+    }
+};
+```
+
 ## 10. Regular Expression Matching
 
 正则匹配：`.` 匹配任意单个字符，`*` 匹配 0 个或多个前置字符。
@@ -1106,10 +1167,6 @@ public:
 ## 25. Reverse Nodes in k-Group
 
 ```C++
-// 2020-06-28 submission
-// ?/? cases passed
-// Runtime: 12 ms, faster than 90.02% of C++ online submissions.
-// Memory Usage: 11.5 MB, less than 61.58% of C++ online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -1143,12 +1200,11 @@ public:
 
 ## 187. Repeated DNA Sequences
 
-解题思路
+检测重复出现的 DNA 序列（10个字符为一个序列）
 
-1. 基本做法：hash，将连续的十个字符映射为唯一，出现重复时就加入到结果
-2. 同时，为了减少内存使用，可考虑位操作。用两位来表示一个字符，00 表示A，01 表示C，10 表示G，11 表示T，那么总共需要 20 位就可以表示十个字符流。
+1. 基本做法：hash，将连续的十个字符映射为唯一，出现重复时就加入到结果。同时，为了减少内存使用，可考虑位操作。用两位来表示一个字符，00 表示A，01 表示C，10 表示G，11 表示T，那么总共需要 20 位就可以表示十个字符流。
 
-边界条件
+**边界条件**
 
 1. 可能会出现多次重复（要去重）
 
@@ -1179,16 +1235,39 @@ public:
 
 ## 189. Rotate Array
 
+数组旋转，要求空间复杂度为 O(1)
+
+1. cur 初始化为数组第一个数字，idx 表示当前在交换的位置，start 表示最开始启动交换的位置，防止陷入死循环
+   - 首先 pre 更新为 cur，然后计算新的 idx 的位置，然后将 nums[idx] 上的值先存到 cur 上，然后把 pre 赋值给 nums[idx]，这相当于把上一轮的 nums[idx] 赋给了新的一轮，完成了数字的交换，然后 if 语句判断是否会变到处理过的数字。
+2. 先把前 n-k 个数字翻转一下，再把后 k 个数字翻转一下，最后再把整个数组翻转。
+3. 不停交换某两个数字的位置来实现旋转。
+
 ```C++
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
-        vector<int> t = nums;
-        for (int i = 0; i < nums.size(); ++i) {
-            nums[(i + k) % nums.size()] = t[i];
+        if (nums.empty() || (k %= nums.size()) == 0) return;
+        int start = 0, idx = 0, pre = 0, cur = nums[0], n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            pre = cur;
+            idx = (idx + k) % n;
+            cur = nums[idx];
+            nums[idx] = pre;
+            if (idx == start) {
+                idx = ++start;
+                cur = nums[idx];
+            }
         }
     }
 };
+// 1 2 3 4 5 6 7
+// 1 2 3 1 5 6 7
+// 1 2 3 1 5 6 4
+// 1 2 7 1 5 6 4
+// 1 2 7 1 5 3 4
+// 1 6 7 1 5 3 4
+// 1 6 7 1 2 3 4
+// 5 6 7 1 2 3 4
 ```
 
 ```C++
@@ -1206,13 +1285,6 @@ public:
 ```
 
 ```C++
-// 1 2 3 4 5 6 7
-// 5 2 3 4 1 6 7
-// 5 6 3 4 1 2 7
-// 5 6 7 4 1 2 3
-// 5 6 7 1 4 2 3
-// 5 6 7 1 2 4 3
-// 5 6 7 1 2 3 4
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
@@ -1227,6 +1299,13 @@ public:
         }
     }
 };
+// 1 2 3 4 5 6 7
+// 5 2 3 4 1 6 7
+// 5 6 3 4 1 2 7
+// 5 6 7 4 1 2 3
+// 5 6 7 1 4 2 3
+// 5 6 7 1 2 4 3
+// 5 6 7 1 2 3 4
 ```
 
 ## 695. Max Area of Island
