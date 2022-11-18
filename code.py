@@ -87,7 +87,7 @@ def instead_code(content):
 
 if __name__ == '__main__':
 
-    mode = False
+    mode = True
 
     with open("code.md", 'r', encoding='utf-8') as fp:
         lines = fp.readlines()
@@ -97,6 +97,7 @@ if __name__ == '__main__':
     for idx in idx_list:
         content_list.append(get_content(lines, idx))
     id_list = [it[0] for it in content_list]
+    id_list.sort()
     print(f'All({len(id_list)}): ', ','.join(id_list))
 
     invalid_id_list = []

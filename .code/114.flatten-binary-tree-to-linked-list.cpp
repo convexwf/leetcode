@@ -15,50 +15,54 @@
  *
  * Given the root of a binary tree, flatten the tree into a "linked
  * list":
- * 
- * 
+ *
+ *
  * The "linked list" should use the same TreeNode class where the right child
  * pointer points to the next node in the list and the left child pointer is
  * always null.
  * The "linked list" should be in the same order as a pre-order traversal of
  * the binary tree.
- * 
- * 
- * 
+ *
+ *
+ *
  * Example 1:
- * 
- * 
+ *
+ *
  * Input: root = [1,2,5,3,4,null,6]
  * Output: [1,null,2,null,3,null,4,null,5,null,6]
- * 
- * 
+ *
+ *
  * Example 2:
- * 
- * 
+ *
+ *
  * Input: root = []
  * Output: []
- * 
- * 
+ *
+ *
  * Example 3:
- * 
- * 
+ *
+ *
  * Input: root = [0]
  * Output: [0]
- * 
- * 
- * 
+ *
+ *
+ *
  * Constraints:
- * 
- * 
+ *
+ *
  * The number of nodes in the tree is in the range [0, 2000].
  * -100 <= Node.val <= 100
- * 
- * 
- * 
+ *
+ *
+ *
  * Follow up: Can you flatten the tree in-place (with O(1) extra space)?
  */
 
 // @lc code=start
+// 2020-09-16 submission
+// 225/225 cases passed
+// Runtime: 7 ms, faster than 86.43% of C++ online submissions.
+// Memory Usage: 12.7 MB, less than 37.29% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -73,8 +77,38 @@
 class Solution {
 public:
     void flatten(TreeNode* root) {
-        
+        if(!root) return;
+        flatten(root->left);
+        flatten(root->right);
+
+        TreeNode* right = root->right;
+        root->right = root->left;
+        root->left = NULL;
+        while(root->right) root = root->right;
+        root->right = right;
     }
 };
 // @lc code=end
 
+// @lc code=start
+// 2022-11-17 submission
+// 225/225 cases passed
+// Runtime: 8 ms, faster than 76.6% of C++ online submissions.
+// Memory Usage: 12.7 MB, less than 37.29% of C++ online submissions.
+class Solution {
+public:
+    void flatten(TreeNode *root) {
+        TreeNode *cur = root;
+        while (cur) {
+            if (cur->left) {
+                TreeNode *p = cur->left;
+                while (p->right) p = p->right;
+                p->right = cur->right;
+                cur->right = cur->left;
+                cur->left = NULL;
+            }
+            cur = cur->right;
+        }
+    }
+};
+// @lc code=end
