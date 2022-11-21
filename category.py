@@ -1,61 +1,98 @@
 # -*- coding : utf-8 -*-
 import os
+import yaml
 
-def extract_cpp(file_name):
-    lines = open(file_name).read().splitlines()
+def filter_path(path_list, problemId):
+    start = min(len(path_list), problemId) - 1
+    for idx in range(start, -1, -1):
+        doc_id = path_list[idx][0]
+        doc_title = path_list[idx][1]
+        print(doc_id, doc_title)
+        if doc_id == problemId:
+            return doc_title
+        if doc_id < problemId:
+            break
+    return ''
 
-    problem_info = []
+def gen_code(doc_list, code_list, problemId):
+    lc_start = '// @lc code=start'
+    lc_end = '// @lc code=end'
+    docTitle = filter_path(doc_list, problemId)
+    codeTitle = filter_path(code_list, problemId)
+    if len(docTitle) == 0 and len(codeTitle) == 0:
+        return
 
-    title = '## ' + lines[3][3:]
-    problem_info.append('')
-    problem_info.append(title)
-    problem_info.append('')
+    docPath = os.path.join('.doc', docTitle)
+    codePath = os.path.join('.code', codeTitle)
+    with open(codePath, 'r', encoding='utf-8') as fp:
+        codeLines = fp.readlines()
 
-    # 解题思路 （可有可无）
-    if '// @lc solution=start' in lines:
-        sidx = lines.index('// @lc solution=start')
-        eidx = lines.index('// @lc solution=end')
-        problem_info.extend(lines[sidx+1:eidx])
-        problem_info.append('')
+    to_write = []
+    codeFlag = False
+    for line in codeLines:
+        if line.startswith(lc_start):
+            codeFlag = True
+            to_write.append('```cpp')
+        elif line.startswith(lc_end):
+            codeFlag = False
+            to_write.append('```\n')
+        elif codeFlag:
+            to_write.append(line.rstrip())
 
-    if '// @lc code=start' not in lines:
-        print('Error: {} code not exists'.format(title))
+    with open(docPath, 'r', encoding='utf-8') as fp:
+        docLines = fp.readlines()
+    codeIdx = len(docLines) - 1
+    for codeIdx in range(len(docLines) - 1, -1, -1):
+        if docLines[codeIdx].startswith('## Code'):
+            break
+    docLines = docLines[:codeIdx + 1] + ['\n'] + ['\n'.join(to_write)]
+    with open(docPath, 'w+', encoding='utf-8', newline='\n') as fp:
+        fp.writelines(docLines)
 
-    # 解题代码 （必须有）
-    code_start = 0
-    while '// @lc code=start' in lines[code_start:]:
-        sidx = lines[code_start:].index('// @lc code=start')
-        eidx = lines[code_start:].index('// @lc code=end')
-        problem_info.append('```C++')
-        problem_info.extend(lines[code_start+sidx+1:code_start+eidx])
-        problem_info.append('```')
-        problem_info.append('')
-        code_start += (eidx + 1)
+def gen_topic(doc_list):
+    yaml_path = '.topic.yaml'
+    with open(yaml_path, 'r', encoding="utf-8") as fp:
+        fp_data = fp.read()
+        data = yaml.load(fp_data, yaml.Loader)
 
-    return '\n'.join(problem_info)
+    for _, val in data.items():
+        title = val['title']
+        path = val['path']
+        detail = val['detail']
+        problems = val['problems']
+        print(type(title), type(detail), type(path), type(problems))
 
-def output(category_name, problems, valid_seq, output_file):
-    valid_problems = ['# {}\n'.format(category_name)]
-    for problem in problems:
-        seq = problem.split('.')[0]
-        if int(seq) in valid_seq:
-            print(problem)
-            problem_info = extract_cpp('./.leetcode/' + problem)
-            valid_problems.append(problem_info)
+        problemLines = [f'# {title}\n', '\n']
+        for problemId in problems:
+            problemTitle = filter_path(doc_list, problemId)
+            if len(problemTitle) == 0:
+                continue
+            problemPath = os.path.join('.doc', problemTitle)
+            with open(problemPath, 'r', encoding='utf-8') as fp:
+                lines = fp.readlines()
+            lines[0] = lines[0][:3] + f'{problemId}.' + lines[0][3:]
 
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
-    with open(output_file, 'w+', encoding='utf-8') as fp:
-        fp.writelines(valid_problems)
+            problemIdx = []
+            for idx, line in enumerate(lines):
+                if line.startswith('#'):
+                    lines[idx] = '#' + line
+                    problemIdx.append(idx)
+            if not detail:
+                lines = lines[0:2] + lines[problemIdx[2]:] + ['\n']
+            problemLines = problemLines + lines
+        with open(path, 'w+', encoding='utf-8', newline='\n') as fp:
+            fp.write(''.join(problemLines))
 
 if __name__ == '__main__':
-    problems = os.listdir('./.leetcode')
-    
-    filename_dict = {
-        'Leetcode' : './001-720.md',
-    }
-    category_dict = {
-        'Leetcode' : list(range(1, 721, 1)),
-    }
 
-    for key in filename_dict.keys():
-        output(key, problems, category_dict[key], filename_dict[key])
+    doc_list = os.listdir('.doc')
+    doc_extract = [[int(it.split('.')[0]), it] for it in doc_list]
+    doc_extract.sort(key=lambda it:it[0])
+    code_list = os.listdir('.code')
+    code_extract = [[int(it.split('.')[0]), it] for it in code_list]
+    code_extract.sort(key=lambda it:it[0])
+
+    gen_topic(doc_extract)
+    for doc in doc_extract:
+        gen_code(doc_extract, code_extract, doc[0])
+

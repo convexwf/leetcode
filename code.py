@@ -48,7 +48,7 @@ def instead_content(content):
                     lines[i] = f'**题目描述**: {content_desc}\n'
                 if line.startswith('**解题思路**: undefined'):
                     lines[i] = f'**解题思路**\n\n{content_solution}'
-            with open(f'.doc/{code_file}', 'w+', encoding='utf-8') as fp:
+            with open(f'.doc/{code_file}', 'w+', encoding='utf-8', newline='\n') as fp:
                 fp.writelines(lines)
             found = True
 
@@ -80,7 +80,7 @@ def instead_code(content):
                 start = 3
             for code in content[start:]:
                 lines.append(f'\n// @lc code=start\n{code}// @lc code=end\n')
-            with open(f'.code/{code_file}', 'w+', encoding='utf-8') as fp:
+            with open(f'.code/{code_file}', 'w+', encoding='utf-8', newline='\n') as fp:
                 fp.writelines(lines)
             found = True
     return found

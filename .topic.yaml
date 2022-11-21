@@ -1,0 +1,19 @@
+math:
+  title: Math
+  path: topic/math.md
+  detail: false
+  problems:
+    - 1
+    - 2
+    - 3
+target_sum:
+  title: Target Sum
+  path: topic/Target Sum.md
+  detail: false
+  problems:
+    - 1
+    - 15
+    - 18
+    - 167
+    - 560
+    - 653
