@@ -134,7 +134,6 @@
 1. `round(sum(case when status != 'completed' then 1 else 0 end)/count(*), 2)` 亦可以换成 `round(count(IF(t.status != 'completed', TRUE, NULL))/count(*),2)` 
 -- @lc solution=end
 
-
 -- @lc code=start
 -- 2022-01-10 submission
 -- 12/12 cases passed

@@ -52,7 +52,6 @@ def instead_content(content):
                 fp.writelines(lines)
             found = True
 
-
             break
     return found
 

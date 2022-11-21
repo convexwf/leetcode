@@ -281,8 +281,6 @@ public:
 };
 ```
 
-
-
 ## 696
 
 1. 动态规划：dp[i] 表示截止到 i 位置且包含 i 位置的有效字符长度，分两种情况讨论。s[i] == s[i-1] 时，就要将 dp[i-1] 视为内字符串，在内字符串的两边加上 s[i] 和 s[i-dp[i-1]-1]，要求这两个字符不能相同；s[i] != s[i-1] 时，就可以直接视作长度为 2 的有效字符串。
@@ -311,7 +309,6 @@ public:
     }
 };
 ```
-
 
 ## 458. Poor Pigs
 
@@ -514,7 +511,6 @@ public:
 
 ## 13. Roman to Integer
 
-
 ## 24. Swap Nodes in Pairs
 
 ```C++
@@ -575,6 +571,7 @@ public:
     }
 };
 ```
+
 ## 695. Max Area of Island
 
 ## 200. Number of Islands

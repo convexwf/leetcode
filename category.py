@@ -7,7 +7,6 @@ def filter_path(path_list, problemId):
     for idx in range(start, -1, -1):
         doc_id = path_list[idx][0]
         doc_title = path_list[idx][1]
-        print(doc_id, doc_title)
         if doc_id == problemId:
             return doc_title
         if doc_id < problemId:
@@ -19,7 +18,7 @@ def gen_code(doc_list, code_list, problemId):
     lc_end = '// @lc code=end'
     docTitle = filter_path(doc_list, problemId)
     codeTitle = filter_path(code_list, problemId)
-    if len(docTitle) == 0 and len(codeTitle) == 0:
+    if len(docTitle) == 0 or len(codeTitle) == 0:
         return
 
     docPath = os.path.join('.doc', docTitle)
@@ -42,8 +41,12 @@ def gen_code(doc_list, code_list, problemId):
     with open(docPath, 'r', encoding='utf-8') as fp:
         docLines = fp.readlines()
     codeIdx = len(docLines) - 1
-    for codeIdx in range(len(docLines) - 1, -1, -1):
+    for codeIdx in range(0, len(docLines)):
+        if docLines[codeIdx].startswith('**题目描述**: undefined'):
+            print(f'error: {problemId} not solved')
+            return
         if docLines[codeIdx].startswith('## Code'):
+            docLines[codeIdx] = '## Code\n'
             break
     docLines = docLines[:codeIdx + 1] + ['\n'] + ['\n'.join(to_write)]
     with open(docPath, 'w+', encoding='utf-8', newline='\n') as fp:
@@ -60,7 +63,6 @@ def gen_topic(doc_list):
         path = val['path']
         detail = val['detail']
         problems = val['problems']
-        print(type(title), type(detail), type(path), type(problems))
 
         problemLines = [f'# {title}\n', '\n']
         for problemId in problems:
@@ -83,6 +85,38 @@ def gen_topic(doc_list):
         with open(path, 'w+', encoding='utf-8', newline='\n') as fp:
             fp.write(''.join(problemLines))
 
+def gen_summary(doc_list, detail=False):
+    problemLines = [f'# summary\n', '\n']
+    for doc in doc_extract:
+        problemId = doc[0]
+        docTitle = filter_path(doc_list, problemId)
+        if len(docTitle) == 0:
+            continue
+        docPath = os.path.join('.doc', docTitle)
+
+        with open(docPath, 'r', encoding='utf-8') as fp:
+            lines = fp.readlines()
+            lines[0] = lines[0][:3] + f'{problemId}.' + lines[0][3:]
+
+        problemIdx = []
+        solve = True
+        for idx, line in enumerate(lines):
+            if line.startswith('**题目描述**: undefined'):
+                solve = False
+                break
+            if line.startswith('#'):
+                lines[idx] = '#' + line
+                problemIdx.append(idx)
+        if not solve:
+            print(f'error: {problemId} not solved')
+            continue
+        if not detail:
+            lines = lines[0:2] + lines[problemIdx[2]:] + ['\n']
+        problemLines = problemLines + lines
+
+    with open('summary.md', 'w+', encoding='utf-8', newline='\n') as fp:
+        fp.write(''.join(problemLines))
+
 if __name__ == '__main__':
 
     doc_list = os.listdir('.doc')
@@ -92,7 +126,8 @@ if __name__ == '__main__':
     code_extract = [[int(it.split('.')[0]), it] for it in code_list]
     code_extract.sort(key=lambda it:it[0])
 
-    gen_topic(doc_extract)
-    for doc in doc_extract:
-        gen_code(doc_extract, code_extract, doc[0])
+    # gen_topic(doc_extract)
+    # for doc in doc_extract:
+    #     gen_code(doc_extract, code_extract, doc[0])
+    gen_summary(doc_extract)
 

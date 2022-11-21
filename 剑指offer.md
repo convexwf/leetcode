@@ -82,7 +82,7 @@ public:
             str.append(1, '#');
         }
         str.append(1, '$');
-        
+
         int n = str.length();
         vector<int> vec(n, 0);
         int C = 0, R = 0;
@@ -95,7 +95,7 @@ public:
                 R = i + vec[i];
             }
         };
-        
+
         auto max_it = max_element(vec.begin(), vec.end());
         int idx = (max_it-vec.begin()-*max_it) / 2;
         int len = *max_it;
@@ -118,7 +118,7 @@ public:
             encode(root->right, out);
         }
     }
-    
+
     TreeNode *decode(istringstream& in) {
         string val;
         in >> val;
@@ -128,7 +128,7 @@ public:
         node->right = decode(in);
         return node;
     }
-    
+
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
         ostringstream out;
@@ -186,7 +186,7 @@ public:
         if (fast) return helper(head, slow->next, slow);
         else return helper(head, slow, slow);
     }
-    
+
     bool helper(ListNode* head, ListNode*& after, ListNode* stop) {
         if (head == stop) return true;
         bool flag = helper(head->next, after, stop);
@@ -194,7 +194,7 @@ public:
         after = after->next;
         return flag;
     }
-    
+
 };
 ```
 
@@ -206,22 +206,22 @@ public:
     TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
         return helper(pre, 0, pre.size()-1, vin, 0, vin.size() - 1);
     }
-    
-    TreeNode* helper(vector<int>& pre, int pre_l, int pre_r, 
+
+    TreeNode* helper(vector<int>& pre, int pre_l, int pre_r,
                     vector<int>& vin, int vin_l, int vin_r) {
         if (pre_r - pre_l < 0) return nullptr;
         TreeNode* root = new TreeNode(pre[pre_l]);
         for (int pivot = vin_l; pivot <= vin_r; ++pivot) {
             if (vin[pivot] == pre[pre_l]) {
-                root->left = helper(pre, pre_l+1, pre_l+pivot-vin_l, 
+                root->left = helper(pre, pre_l+1, pre_l+pivot-vin_l,
                                         vin, vin_l, pivot-1);
-                root->right = helper(pre, pre_l+pivot-vin_l+1, pre_r, 
+                root->right = helper(pre, pre_l+pivot-vin_l+1, pre_r,
                                         vin, pivot+1, vin_r);
                 break;
             }
         }
         return root;
-    } 
+    }
 };
 ```
 
@@ -229,7 +229,7 @@ public:
 
 ```C++
 int randomInt(int l, int r) {
-    return (rand() % (r - l)) + l; 
+    return (rand() % (r - l)) + l;
 }
 
 void shuffle(vector<int>& vec) {
@@ -291,7 +291,7 @@ public:
     bool isMatch(string s, string p) {
         return helper(s, p, 0, 0);
     }
-    
+
     bool helper(string& s, string& p, int sp, int pp) {
         if(sp == s.size() && pp == p.size()) return true;
         if(pp+1 < p.size() && p[pp+1] == '*') {
@@ -336,7 +336,7 @@ public:
     ListNode* FindKthToTail(ListNode* pHead, int k) {
         return helper(pHead, k);
     }
-    
+
     ListNode* helper(ListNode* pHead, int& k) {
         if (!pHead) return nullptr;
         ListNode* node = helper(pHead->next, k);
@@ -371,13 +371,13 @@ public:
     vector<int> multiply(const vector<int>& A) {
         if (A.empty()) return vector<int>{};
         vector<int> res(A.size(), 1);
-        
+
         int cur = A[0];
         for (int i = 1; i < A.size(); i++) {
             res[i] *= cur;
             cur *= A[i];
         }
-        
+
         cur = A.back();
         for (int i = (int)A.size()-2; i >= 0; i--) {
             res[i] *= cur;
@@ -430,7 +430,7 @@ class myStack {
         q.push(topVal);
         q.pop();
         q.pop();
-        
+
     }
 
     int top() {
@@ -448,11 +448,11 @@ public:
     CQueue() {
 
     }
-    
+
     void push_back(int value) {
         stk1.push(value);
     }
-    
+
     int pop_front() {
         if (stk1.empty() && stk2.empty()) return -1;
         if (stk2.empty()) {
@@ -630,14 +630,13 @@ void DFS(vector<vector<char> > matrix, int idx, int &validCnt) {
 
         int row = x;
         int col = y;
-        
+
 
         DFS(matrix, idx + 1);
     }
     else DFS(matrix, idx + 1);
 }
 ```
-
 
 ## 反转链表
 
@@ -716,7 +715,7 @@ public:
             if (0 > x+direction[di][0] || x+direction[di][0] >= rows ||
                 0 > y+direction[di][1] || y+direction[di][1] >= cols ||
                 visited[x+direction[di][0]][y+direction[di][1]]) di = (di + 1) % 4;
-            x += direction[di][0]; 
+            x += direction[di][0];
             y += direction[di][1];
             visited[x][y] = true;
             traj.push_back(matrix[x][y]);
@@ -735,22 +734,22 @@ public:
     MinStack() {
 
     }
-    
+
     void push(int x) {
         if (min_s.empty() || min_s.top() >= x)
             min_s.push(x);
         base.push(x);
     }
-    
+
     void pop() {
         if (min_s.top() == base.top()) min_s.pop();
         base.pop();
     }
-    
+
     int top() {
         return base.top();
     }
-    
+
     int min() {
         return min_s.top();
     }
@@ -880,7 +879,6 @@ public:
         vec[parent] = tmp;
         return true;
     }
-
 
     void heapSort(vector<int>& vec) {
         int n = vec.size();

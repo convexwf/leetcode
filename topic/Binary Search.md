@@ -1,7 +1,7 @@
 # Binary Search
 
 ## Find the target Value in the Sorted Array
-Description: 在有序数组中找到指定值  
+Description: 在有序数组中找到指定值
 Tips: 范围为$[a, b)$,mid为$(a+b)/2$
 ```C++
 int find(vector<int>& nums, int target) {
@@ -17,9 +17,9 @@ int find(vector<int>& nums, int target) {
 ```
 
 ## Find the minimum(maximun) value that is close to target value
-Description: 在有序数组中找到第一个不小于目标值的数，或者查找最后一个小于目标值的数  
+Description: 在有序数组中找到第一个不小于目标值的数，或者查找最后一个小于目标值的数
 
-```C++ 
+```C++
 
 int find(vector<int>& nums, int target) {
     int left = 0, right = nums.size();
@@ -31,7 +31,6 @@ int find(vector<int>& nums, int target) {
     return right;
 }
 ```
-
 
 ```C++
 // 有序数组中找到最后一个不大于目标值的数
