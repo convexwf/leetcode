@@ -1,4 +1,4 @@
-math:
+math: # 数学
   title: Math
   path: topic/math.md
   detail: false
@@ -6,7 +6,7 @@ math:
     - 1
     - 2
     - 3
-target_sum:
+target_sum: # 目标和
   title: Target Sum
   path: topic/Target Sum.md
   detail: false
@@ -17,3 +17,13 @@ target_sum:
     - 167
     - 560
     - 653
+palindrome: # 回文数
+  title: Palindrome
+  path: topic/Palindrome.md
+  detail: false
+  problems:
+    - 5
+    - 9
+    - 125
+    - 131
+    - 234

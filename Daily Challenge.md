@@ -292,57 +292,6 @@ public:
 };
 ```
 
-## 310. Minimum Height Trees (2020-11-05)
-
-解题思路
-
-1. 基于拓扑排序：遍历所有的叶子节点，然后把这些叶子节点关联的边从图中删去，更新所有节点的度数，重复以上步骤，最后就能得到中心的节点。
-2. DFS：问题求解其实可以转化为求图的直径（即图中的最长路径）
-
-```C++
-// 2020-11-05 submission
-// Runtime: 108 ms, faster than 98.26% of C++ online submissions for Minimum Height Trees.
-// Memory Usage: 27.3 MB, less than 5.08% of C++ online submissions for Minimum Height Trees.
-class Solution {
-public:
-    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
-        vector<vector<int> > graph(n, vector<int>{});
-        vector<int> degree(n, 0);
-        for (int i = 0; i < edges.size(); i++) {
-            graph[edges[i][0]].push_back(edges[i][1]);
-            graph[edges[i][1]].push_back(edges[i][0]);
-            degree[edges[i][0]]++;
-            degree[edges[i][1]]++;
-        }
-
-        queue<int> q;
-        int cnt = n;
-        for (int node = 0; node < n; node++) {
-            if (degree[node] <= 1) // < 是为了防止独立点(n=1)的情况
-                q.push(node);
-        }
-        while(cnt > 2) {
-            int q_size = q.size();
-            cnt -= q_size;
-            for (int i = 0; i < q_size; i++) {
-                int node = q.front(); q.pop();
-                for (int adj : graph[node]) {
-                    degree[adj]--;
-                    if (degree[adj] == 1) q.push(adj);
-                }
-            }
-        }
-
-        vector<int> res;
-        while(!q.empty()) {
-            res.push_back(q.front());
-            q.pop();
-        }
-        return res;
-    }
-};
-```
-
 ## 1217. Minimum Cost to Move Chips to The Same Position (2020-11-06)
 
 ```C++
@@ -939,31 +888,6 @@ public:
         for (int i = 1; i <= K; i++) {
             last = (last * 10 + 1) % K;
             if (last == 0) return i;
-        }
-        return -1;
-    }
-};
-```
-
-## 387. First Unique Character in a String (2020-11-29)
-
-解题思路
-
-1. 用一个数组记录每个字母出现的次数
-
-```C++
-// 2020-11-29 submission
-// Runtime: 28 ms, faster than 74.23% of C++ online submissions for First Unique Character in a String.
-// Memory Usage: 10.9 MB, less than 85.48% of C++ online submissions for First Unique Character in a String.
-class Solution {
-public:
-    int firstUniqChar(string s) {
-        int count[26] = {0};
-        for (char c : s)
-            count[c - 'a']++;
-        for (int i = 0; i < s.length(); i++) {
-            if (count[s[i] - 'a'] == 1)
-                return i;
         }
         return -1;
     }
@@ -1641,36 +1565,6 @@ public:
             else {
                 res[i] = nums[l] * nums[l];
                 ++l;
-            }
-        }
-        return res;
-    }
-};
-```
-
-## 454. 4Sum II (2020-12-16)
-
-解题思路
-
-1. HashMap: 把A和B的两两之和都求出来，在 HashMap 中建立两数之和跟其出现次数之间的映射，那么再遍历C和D中任意两个数之和，再看看哈希表存不存在这两数之和的相反数。
-
-```C++
-// 2020-12-18 submission
-// Runtime: 320 ms, faster than 84.15% of C++ online submissions for 4Sum II.
-// Memory Usage: 29.7 MB, less than 78.46% of C++ online submissions for 4Sum II.
-class Solution {
-public:
-    int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
-        int res = 0;
-        unordered_map<int, int> m;
-        for (int a : A) {
-            for (int b : B) {
-                ++m[a + b];
-            }
-        }
-        for (int c : C) {
-            for (int d : D) {
-                if (m.count(-c - d)) res += m[-c - d];
             }
         }
         return res;
