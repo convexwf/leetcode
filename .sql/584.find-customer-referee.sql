@@ -1,0 +1,78 @@
+--
+-- @lc app=leetcode id=584 lang=mysql
+--
+-- [584] Find Customer Referee
+--
+-- https://leetcode.com/problems/find-customer-referee/description/
+--
+-- database
+-- Easy (72.02%)
+-- Likes:    723
+-- Dislikes: 245
+-- Total Accepted:    216.3K
+-- Total Submissions: 300.3K
+-- Testcase Example:  '{"headers":{"Customer":["id","name","referee_id"]},"rows":{"Customer":[[1,"Will",null],[2,"Jane",null],[3,"Alex",2],[4,"Bill",null],[5,"Zack",1],[6,"Mark",2]]}}'
+--
+-- Table: Customer
+--
+--
+-- +-------------+---------+
+-- | Column Name | Type    |
+-- +-------------+---------+
+-- | id          | int     |
+-- | name        | varchar |
+-- | referee_id  | int     |
+-- +-------------+---------+
+-- id is the primary key column for this table.
+-- Each row of this table indicates the id of a customer, their name, and the
+-- id of the customer who referred them.
+--
+--
+--
+--
+-- Write an SQL query to report the names of the customer that are not referred
+-- by the customer with id = 2.
+--
+-- Return the result table in any order.
+--
+-- The query result format is in the following example.
+--
+--
+-- Example 1:
+--
+--
+-- Input:
+-- Customer table:
+-- +----+------+------------+
+-- | id | name | referee_id |
+-- +----+------+------------+
+-- | 1  | Will | null       |
+-- | 2  | Jane | null       |
+-- | 3  | Alex | 2          |
+-- | 4  | Bill | null       |
+-- | 5  | Zack | 1          |
+-- | 6  | Mark | 2          |
+-- +----+------+------------+
+-- Output:
+-- +------+
+-- | name |
+-- +------+
+-- | Will |
+-- | Jane |
+-- | Bill |
+-- | Zack |
+-- +------+
+--
+--
+--
+
+-- @lc code=start
+-- 2022-11-29 submission
+-- 19/19 cases passed
+-- Runtime: 528 ms, faster than 71.1% of mysql online submissions.
+-- Memory Usage: 0 MB, less than 100% of mysql online submissions.
+# Write your MySQL query statement below
+SELECT name FROM customer WHERE
+id NOT IN
+(SELECT id FROM customer WHERE referee_id = 2);
+-- @lc code=end

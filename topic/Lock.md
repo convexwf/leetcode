@@ -723,44 +723,431 @@ public:
 ## 499. The Maze III
 ## 505. The Maze II
 ## 510. Inorder Successor in BST II
+
 ## 512. Game Play Analysis II
+
+```sql
+SELECT a.player_id, a.device_id FROM Activity AS a
+INNER JOIN
+(SELECT player_id, MIN(event_date) AS first_login FROM Activity
+GROUP BY player_id
+ORDER BY player_id) AS b
+ON a.player_id = b.player_id
+AND a.event_date = b.first_login
+ORDER BY a.player_id;
+```
+
+```sql
+SELECT player_id, device_id FROM (
+    SELECT player_id, device_id,
+    RANK() OVER (PARTITION BY player_id ORDER BY event_date) AS rnk
+    FROM Activity)
+AS tmp
+WHERE rnk = 1;
+```
+
 ## 527. Word Abbreviation
 ## 531. Lonely Pixel I
 ## 533. Lonely Pixel II
+
 ## 534. Game Play Analysis III
+
+```sql
+SELECT player_id, MIN(event_date) AS first_login FROM Activity
+GROUP BY player_id
+ORDER BY player_id;
+```
+
 ## 536. Construct Binary Tree from String
 ## 544. Output Contest Matches
 ## 545. Boundary of Binary Tree
 ## 548. Split Array with Equal Sum
 ## 549. Binary Tree Longest Consecutive Sequence II
+
 ## 550. Game Play Analysis IV
+
+```sql
+SELECT ROUND(COUNT(DISTINCT b.player_id)/COUNT(DISTINCT a.player_id), 2) AS fraction FROM Activity AS a
+LEFT JOIN
+(SELECT player_id, MIN(event_date) AS first_login FROM Activity
+GROUP BY player_id) AS b
+ON a.player_id = b.player_id
+AND DATEDIFF(a.event_date, b.first_login) = 1
+```
+
+```sql
+SELECT ROUND(COUNT(DISTINCT b.player_id)/COUNT(DISTINCT a.player_id), 2) AS fraction FROM Activity AS a
+LEFT JOIN
+(SELECT player_id, FIRST_VALUE(event_date) OVER(PARTITION BY player_id ORDER BY event_date) AS first_login FROM Activity) AS b
+ON a.player_id = b.player_id
+AND DATEDIFF(a.event_date, b.first_login) = 1
+```
+
 ## 555. Split Concatenated Strings
 ## 562. Longest Line of Consecutive One in Matrix
 ## 568. Maximum Vacation Days
+
 ## 569. Median Employee Salary
+
+```sql
+SELECT
+Company,
+Salary
+FROM (
+SELECT
+Id,
+Company,
+Salary,
+ROW_NUMBER() OVER (PARTITION BY Company ORDER BY Salary) AS sal_id,
+COUNT(Id) OVER (PARTITION BY Company) AS sal_num
+FROM Employee e) T1
+WHERE (ROUND(sal_num/2) = sal_id)
+OR (ROUND((sal_num+1)/2) = sal_id)
+```
+
 ## 570. Managers with at Least 5 Direct Reports
+
+```sql
+SELECT Name FROM Employee WHERE Id IN
+(SELECT ManagerId FROM Employee
+ GROUP BY ManagerId
+ HAVING COUNT(ManagerId) >=5);
+```
+
+```sql
+SELECT Name FROM Employee AS t1 JOIN
+(SELECT ManagerId FROM Employee
+ GROUP BY ManagerId
+ HAVING COUNT(ManagerId) >= 5) AS t2
+ON t1.Id = t2.ManagerId;
+```
+
 ## 571. Find Median Given Frequency of Numbers
+
+```sql
+SELECT AVG(Number) AS median
+FROM
+(
+select *, SUM(Frequency) OVER (ORDER BY Number) AS cum_sum,
+          (SUM(Frequency) OVER ())/2.0  AS mid
+FROM Numbers
+) AS temp
+WHERE mid BETWEEN cum_sum - frequency AND cum_sum;
+```
+
 ## 573. Squirrel Simulation
+
 ## 574. Winning Candidate
+
+```sql
+SELECT Name FROM Candidate AS a
+JOIN
+(SELECT CandidateId FROM Vote
+ GROUP BY CandidateId
+ ORDER BY COUNT(*) DESC
+ LIMIT 1
+) AS b
+ON a.id = b.CandidateId;
+```
+
+```sql
+SELECT Name FROM Candidate
+WHERE id =
+(SELECT CandidateId FROM Vote
+ GROUP BY CandidateId
+ ORDER BY COUNT(*) DESC
+ LIMIT 1
+);
+```
+
 ## 577. Employee Bonus
+
+```sql
+SELECT a.name,
+b.bonus
+FROM Employee AS a
+LEFT JOIN Bonus AS b
+ON a.empId = b.empId
+WHERE b.bonus < 1000 OR b.bonus IS NULL;
+```
+
 ## 578. Get Highest Answer Rate Question
+
+```sql
+SELECT question_id AS survey_log
+FROM
+(SELECT question_id,
+        SUM(case when action="answer" THEN 1 ELSE 0 END) AS num_answer,
+        SUM(case when action="show" THEN 1 ELSE 0 END) AS num_show,
+    FROM survey_log
+    GROUP BY question_id
+) AS tbl
+ORDER BY (num_answer / num_show) DESC
+LIMIT 1
+```
+
+```sql
+SELECT question_id AS 'survey_log'
+FROM survey_log
+GROUP BY question_id
+ORDER BY COUNT(answer_id) / COUNT(IF(action = 'show', 1, NULL)) DESC
+LIMIT 1;
+```
+
 ## 579. Find Cumulative Salary of an Employee
+
+```sql
+SELECT E1.id, E1.month,
+(IFNULL(E1.salary, 0) + IFNULL(E2.salary, 0) + IFNULL(E3.salary, 0)) AS Salary
+FROM
+(
+SELECT id, MAX(month) AS month FROM Employee
+GROUP BY id
+HAVING COUNT(*) > 1
+) AS maxmonth
+LEFT JOIN Employee AS E1
+ON (maxmonth.id = E1.id AND maxmonth.month > E1.month)
+LEFT JOIN Employee AS E2
+ON (E2.id = E1.id AND E2.month = E1.month - 1)
+LEFT JOIN Employee AS E3
+ON (E3.id = E1.id AND E3.month = E1.month - 2)
+ORDER BY id ASC, month DESC;
+```
+
 ## 580. Count Student Number in Departments
+
+```sql
+SELECT a.dept_name, COUNT(b.student_id) AS student_number FROM department AS a
+LEFT JOIN student AS b
+ON a.dept_id = b.dept_id
+GROUP BY a.dept_name
+ORDER BY student_number DESC, a.dept_name;
+```
+
 ## 582. Kill Process
+
 ## 585. Investments in 2016
+
+```sql
+SELECT SUM(insurance.TIV_2016) AS TIV_2016
+FROM insurance
+WHERE insurance.TIV_2015 IN
+(SELECT TIV_2015 FROM insurance
+ GROUP BY TIV_2015
+ HAVING COUNT(*) > 1)
+AND CONCAT(LAT, ",", LON) IN
+(SELECT CONCAT(LAT, ",", LON) FROM insurance
+ GROUP BY LAT , LON
+ HAVING COUNT(*) = 1);
+```
+
+```sql
+SELECT SUM(TIV_2016) TIV_2016
+FROM insurance
+WHERE TIV_2015 IN
+(SELECT TIV_2015 FROM insurance
+ GROUP BY TIV_2015
+ HAVING COUNT(*) > 1)
+AND (lat, lon) IN
+(SELECT lat, lon FROM insurance
+ GROUP BY lat, lon
+ HAVING COUNT(*)=1);
+```
+
 ## 588. Design In-Memory File System
+
 ## 597. Friend Requests I: Overall Acceptance Rate
+
+```sql
+SELECT
+ROUND(
+    IFNULL(
+    (SELECT COUNT(*) FROM (SELECT DISTINCT requester_id,
+                           accepter_id from request_accepted)
+     AS A)
+    /
+    (SELECT COUNT(*) FROM (SELECT DISTINCT sender_id,
+                           send_to_id FROM friend_request)
+     AS B), 0)
+    , 2)
+    AS accept_rate;
+```
+
 ## 602. Friend Requests II: Who Has the Most Friends
+
+```sql
+SELECT c.people as id, SUM(c.cnt) AS num
+FROM (
+SELECT requester_id AS people, COUNT(DISTINCT accepter_id) AS cnt
+FROM request_accepted
+GROUP BY requester_id
+
+UNION ALL
+
+SELECT accepter_id AS people, COUNT(DISTINCT requester_id) AS cnt
+FROM request_accepted
+GROUP BY accepter_id
+) AS c
+
+GROUP BY c.people
+ORDER BY SUM(c.cnt) DESC
+LIMIT 1;
+```
+
+```sql
+-- Follow Up
+-- In the real world, multiple people could have the same most number of friends, can you find all these people in this case?
+WITH
+
+ids AS (
+SELECT DISTINCT requester_id AS id FROM request_accepted
+UNION
+SELECT DISTINCT accepter_id AS id FROM request_accepted
+),
+
+tmp1 AS (
+SELECT requester_id AS id, COUNT(DISTINCT accepter_id) AS fri_num FROM request_accepted
+GROUP BY requester_id
+),
+
+
+tmp2 AS (SELECT accepter_id AS id, COUNT(DISTINCT requester_id) AS fri_num FROM request_accepted
+GROUP BY accepter_id
+),
+
+tmp3 AS (
+SELECT a.id,
+(IFNULL(b.fri_num,0) + IFNULL(c.fri_num,0)) AS num
+FROM ids AS a
+LEFT JOIN tmp1 AS b ON a.id = b.id
+LEFT JOIN tmp2 AS c ON a.id = c.id
+)
+
+SELECT * FROM tmp3
+WHERE num >= ALL(SELECT MAX(num) FROM tmp3);
+```
+
 ## 603. Consecutive Available Seats
+
+```sql
+SELECT DISTINCT a.seat_id
+FROM cinema AS a JOIN cinema AS b
+ON ABS(a.seat_id - b.seat_id) = 1
+AND a.free = TRUE AND b.free = TRUE
+ORDER BY a.seat_id;
+```
+
 ## 604. Design Compressed String Iterator
+
 ## 610. Triangle Judgement
+
+```sql
+SELECT *,
+CASE WHEN
+(x + y > z) AND (x + z > y) AND (y + z > x) THEN 'Yes'
+ELSE 'No' END AS triangle
+FROM triangle
+```
+
+```sql
+select *,
+    IF(x + y > z AND x + z > y AND y + z > x, 'Yes', 'No') as triangle
+    FROM triangle;
+```
+
 ## 612. Shortest Distance in a Plane
+
+```sql
+SELECT
+ROUND(MIN(SQRT(POW(a.x - b.x, 2) + POW(a.y - b.y, 2))),2) AS shortest
+FROM point_2d AS a
+JOIN point_2d AS b
+ON a.x <> b.x OR a.y <> b.y;
+```
+
 ## 613. Shortest Distance in a Line
+
+```sql
+SELECT MIN(ABS(a.x - b.x)) AS shortest
+FROM point AS a
+JOIN point AS b
+ON a.x <> b.x;
+```
+
 ## 614. Second Degree Follower
+
+```sql
+SELECT a.follower, COUNT(DISTINCT b.follower) AS num FROM follow AS a
+LEFT JOIN follow AS b
+ON a.follower = b.followee
+WHERE b.followee IS NOT NULL
+GROUP BY a.follower
+ORDER BY a.follower;
+```
+
 ## 615. Average Salary: Departments VS Company
+
+```sql
+SELECT pay_month, department_id,
+CASE WHEN dep_avg > com_avg THEN 'higher'
+WHEN dep_avg < com_avg THEN 'lower'
+ELSE 'same' END AS comparison
+FROM (
+SELECT LEFT(a.pay_date, 7) AS pay_month,
+b.department_id, AVG(a.amount) AS dep_avg,
+(SELECT AVG(amount) FROM salary AS x
+ WHERE LEFT(a.pay_date, 7) = LEFT(x.pay_date, 7)
+GROUP BY LEFT(x.pay_date, 7)) AS com_avg
+FROM salary AS a
+JOIN employee AS b
+ON a.employee_id = b.employee_id
+GROUP BY pay_month, b.department_id
+ORDER BY pay_month DESC ) AS tmp;
+```
+
 ## 616. Add Bold Tag in String
+
 ## 618. Students Report By Geography
+
+```sql
+SELECT America, Asia, Europe
+FROM
+(SELECT @r1 := 0, @r2 := 0, @r3 := 0) AS t,
+(
+SELECT @r1:= @r1 + 1 AS rowid, name AS America
+FROM student
+WHERE continent = 'America'
+ORDER BY name
+) AS t1
+LEFT JOIN
+(
+SELECT @r2:= @r2 + 1 AS rowid, name AS Asia
+FROM student
+WHERE continent = 'Asia'
+ORDER BY name
+) AS t2
+ON t1.rowid = t2.rowid
+LEFT JOIN
+(
+SELECT @r3:= @r3 + 1 AS rowid, name AS Europe
+FROM student
+WHERE continent = 'Europe'
+ORDER BY name
+) AS t3
+ON t1.rowid = t3.rowid;
+```
+
 ## 619. Biggest Single Number
+
+```sql
+SELECT MAX(num) AS num FROM
+(
+SELECT num FROM my_numbers
+GROUP BY num
+HAVING COUNT(*) = 1
+) AS x;
+```
+
 ## 624. Maximum Distance in Arrays
 ## 625. Minimum Factorization
 ## 631. Design Excel Sum Formula
@@ -780,10 +1167,6 @@ public:
 ## 708. Insert into a Sorted Circular Linked List
 ## 711. Number of Distinct Islands II
 ## 716. Max Stack
-
-
-
-
 
 ## 702.
 
