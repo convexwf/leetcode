@@ -6,7 +6,7 @@
 
 ## 157. Read N Characters Given Read4
 
-题目描述：给定一个 Read4 函数，每次可以从一个文件中最多读出 4 个字符，如果文件中的字符不足 4 个字符时，返回准确的当前剩余的字符数。要求实现一个最多能读取n个字符的函数。
+题目描述：给定一个 Read4 函数，每次可以从一个文件中最多读出 4 个字符，如果文件中的字符不足 4 个字符时，返回准确的当前剩余的字符数。要求实现一个最多能读取 n 个字符的函数。
 
 1. 迭代：思路是每4个读一次，然后把读出的结果判断一下，如果为0的话，说明此时的 buf 已经被读完，跳出循环，直接返回 res 和n之中的较小值。否则一直读入，直到读完n个字符，循环结束，最后再返回 res 和n之中的较小值
 
@@ -29,6 +29,34 @@ public:
 ```
 
 ## 158. Read N Characters Given read4 II - Call Multiple Times
+
+题目描述：给定一个 Read4 函数，每次可以从一个文件中最多读出 4 个字符，如果文件中的字符不足 4 个字符时，返回准确的当前剩余的字符数。要求实现一个最多能读取 n 个字符的函数 Read。Read 可被调用多次。
+
+1. 维护一个本地缓存，存储 Read4 读取的数据，仅在缓存为空的情况下才调用 Read4 继续读取新数据。
+
+```cpp
+// Forward declaration of the read4 API.
+int read4(char *buf);
+
+class Solution {
+public:
+    int read(char *buf, int n) {
+        for (int i = 0; i < n; ++i) {
+            if (readPos == writePos) {
+                writePos = read4(buff);
+                readPos = 0;
+                if (writePos == 0) return i;
+            }
+            buf[i] = buff[readPos++];
+        }
+        return n;
+    }
+private:
+    int readPos = 0, writePos = 0;
+    char buff[4];
+};
+```
+
 
 ## 159. Longest Substring with At Most Two Distinct Characters
 
@@ -363,6 +391,82 @@ public:
 ```
 
 ## 254. Factor Combinations
+
+题目描述：写出正整数 n 所有的因子相乘的形式，规定因子按照从小到大的顺序排列。1 和 n 本身不能算其因子。
+
+1. 回溯
+   - 从 2 开始遍历到 sqrt(n)，如果当前的数 i 可以被 n 整除，说明 i 是 n 的一个因子，将其存入一位数组 out 中
+   - 然后递归调用 n/i，此时不从 2 开始遍历，而是从 i 遍历到 n/i
+   - 停止的条件是当 n 等于 1 时
+2. 递归：同样是从 2 开始遍历到 sqrt(n)，每次向递归返回的结果中追加因子。
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> getFactors(int n) {
+        vector<vector<int>> res;
+        helper(n, 2, {}, res);
+        return res;
+    }
+    void helper(int n, int start, vector<int> out, vector<vector<int>> &res) {
+        for (int i = start; i <= sqrt(n); ++i) {
+            if (n % i != 0) continue;
+            vector<int> new_out = out;
+            new_out.push_back(i);
+            helper(n / i, i, new_out, res);
+            new_out.push_back(n / i);
+            res.push_back(new_out);
+        }
+    }
+};
+// n = 12
+// 2 2 3
+// 2 6
+// 3 4
+
+// n = 32
+// 2 2 2 2 2
+// 2 2 2 4
+// 2 2 8
+// 2 4 4
+// 2 16
+// 4 8
+```
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> getFactors(int n) {
+        vector<vector<int>> res;
+        for (int i = 2; i * i <= n; ++i) {
+            if (n % i != 0) continue;
+            vector<vector<int>> v = getFactors(n / i);
+            vector<int> out{i, n / i};
+            res.push_back(out);
+            for (auto a : v) {
+                if (i <= a[0]) {
+                    a.insert(a.begin(), i);
+                    res.push_back(a);
+                }
+            }
+        }
+        return res;
+    }
+};
+// n = 12
+// 2 6
+// 2 2 3
+// 3 4
+
+// n = 32
+// 2 16
+// 2 2 8
+// 2 2 2 4
+// 2 2 2 2 2
+// 2 4 4
+// 4 8
+```
+
 ## 255. Verify Preorder Sequence in Binary Search Tree
 
 ## 256. Paint House
@@ -747,7 +851,42 @@ WHERE rnk = 1;
 ```
 
 ## 527. Word Abbreviation
+
 ## 531. Lonely Pixel I
+
+题目描述：二维图像中只有 B 和 W 两种像素值，找出所有的孤独黑像素，即该黑像素所在的行和列中没有其他的黑像素。
+
+1. 既然对于每个黑像素都需要查找其所在的行和列，为了避免重复查找，可以统一扫描一次，将各行各列的黑像素的个数都统计出来，然后再扫描所有的黑像素一次，看其是否是该行该列唯一的存在，是的话就累加计数器即可。
+
+```cpp
+class Solution {
+public:
+    int findLonelyPixel(vector<vector<char>>& picture) {
+        if (picture.empty() || picture[0].empty()) return 0;
+        int m = picture.size(), n = picture[0].size(), res = 0;
+        vector<int> rowCnt(m, 0), colCnt(n, 0);
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (picture[i][j] == 'B') {
+                    ++rowCnt[i];
+                    ++colCnt[j];
+                }
+            }
+        }
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (picture[i][j] == 'B') {
+                    if (rowCnt[i] == 1 && colCnt[j] == 1) {
+                        ++res;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};
+```
+
 ## 533. Lonely Pixel II
 
 ## 534. Game Play Analysis III
@@ -759,6 +898,70 @@ ORDER BY player_id;
 ```
 
 ## 536. Construct Binary Tree from String
+
+题目描述：根据一个字符串来创建一个二叉树，其中结点与其左右子树是用括号隔开，每个括号中又是数字后面跟括号的模式。空树用 () 表示。
+
+1. 递归
+   - 找第一个左括号的位置，如果找不到，说明当前字符串都是数字，直接转化为整型，然后新建结点返回即可。
+   - 否则的话从当前位置开始遍历，因为当前位置是一个左括号，需要找到与之对应的右括号的位置。由于中间还会遇到左右括号，所以用一个变量 cnt 来记录左括号的个数，如果遇到左括号，cnt 自增1，如果遇到右括号，cnt 自减 1，这样当某个时刻 cnt 为 0 的时候，就确定了一个完整的子树的位置
+   - 需要一个辅助变量 start，当最开始找到第一个左括号的位置时，将 start 赋值为该位置，那么当 cnt 为0时，如果 start 还是原来的位置，说明这个是左子树，对其调用递归函数，注意此时更新 start 的位置，这样就能区分左右子树了
+2. 迭代+栈
+   - 遍历字符串 s，用变量 j 记录当前位置 i，然后看当前遍历到的字符是什么
+   - 如果遇到的是左括号，什么也不做继续遍历；
+   - 如果遇到的是数字或者负号，将连续的数字都找出来，然后转为整型并新建结点
+   - 此时看 stack 中是否有结点，如果有的话，当前结点就是栈顶结点的子结点，如果栈顶结点没有左子结点，那么此结点就是其左子结点，反之则为其右子结点。
+   - 之后要将此结点压入栈中。如果遍历到的是右括号，说明栈顶元素的子结点已经处理完了，将其移除栈
+
+```cpp
+class Solution {
+public:
+    TreeNode* str2tree(string s) {
+        if (s.empty()) return NULL;
+        auto found = s.find('(');
+        int val = (found == string::npos) ? stoi(s) : stoi(s.substr(0, found));
+        TreeNode *cur = new TreeNode(val);
+        if (found == string::npos) return cur;
+        int start = found, cnt = 0;
+        for (int i = start; i < s.size(); ++i) {
+            if (s[i] == '(') ++cnt;
+            else if (s[i] == ')') --cnt;
+            if (cnt == 0 && start == found) {
+                cur->left = str2tree(s.substr(start + 1, i - start - 1));
+                start = i + 1;
+            } else if (cnt == 0) {
+                cur->right = str2tree(s.substr(start + 1, i - start - 1));
+            }
+        }
+        return cur;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    TreeNode* str2tree(string s) {
+        if (s.empty()) return NULL;
+        stack<TreeNode*> st;
+        for (int i = 0; i < s.size(); ++i) {
+            int j = i;
+            if (s[i] == ')') st.pop();
+            else if ((s[i] >= '0' && s[i] <= '9') || s[i] == '-') {
+                while (i + 1 < s.size() && s[i + 1] >= '0' && s[i + 1] <= '9') ++i;
+                TreeNode *cur = new TreeNode(stoi(s.substr(j, i - j + 1)));
+                if (!st.empty()) {
+                    TreeNode *t = st.top();
+                    if (!t->left) t->left = cur;
+                    else t->right = cur;
+                }
+                st.push(cur);
+            }
+        }
+        return st.top();
+    }
+};
+```
+
 ## 544. Output Contest Matches
 ## 545. Boundary of Binary Tree
 ## 548. Split Array with Equal Sum
@@ -1149,6 +1352,26 @@ HAVING COUNT(*) = 1
 ```
 
 ## 624. Maximum Distance in Arrays
+
+题目描述：从不同的数组中各取一个数字，使得这两个数字的差的绝对值最大。要求必须来自两个不同的数组。
+
+1. 用两个变量 start 和 end 分别表示当前遍历过的数组中最小的首元素和最大的尾元素，每当遍历到一个新的数组时，只需计算新数组尾元素和 start 绝对差，跟 end 和新数组首元素的绝对差，取二者之间的较大值来更新结果res即可。
+
+```cpp
+class Solution {
+public:
+    int maxDistance(vector<vector<int>>& arrays) {
+        int res = 0, start = arrays[0][0], end = arrays[0].back();
+        for (int i = 1; i < arrays.size(); ++i) {
+            res = max(res, max(abs(arrays[i].back() - start), abs(end - arrays[i][0])));
+            start = min(start, arrays[i][0]);
+            end = max(end, arrays[i].back());
+        }
+        return res;
+    }
+};
+```
+
 ## 625. Minimum Factorization
 ## 631. Design Excel Sum Formula
 ## 634. Find the Derangement of An Array
@@ -1166,7 +1389,108 @@ HAVING COUNT(*) = 1
 ## 702. Search in a Sorted Array of Unknown Size
 ## 708. Insert into a Sorted Circular Linked List
 ## 711. Number of Distinct Islands II
+
 ## 716. Max Stack
+
+题目描述：实现一个最大栈，包含一般栈的功能，但是还新加了两个功能 `peekMax()` 和 `popMax()`，随时随地可以查看和弹出最大值。
+
+1. 使用两个栈来模拟，s1 为普通的栈，用来保存所有的数字，s2 为最大栈，用来保存出现的最大的数字。
+   - push()：如果 s2 为空，或者 s2 的栈顶元素小于等于 x，将 x 压入 s2 中。然后将数字压入 s1，s1保存所有的数字。
+   - pop()：当 s2 的栈顶元素和 s1 的栈顶元素相同时，移除 s2 的栈顶元素。然后取出s1的栈顶元素。
+   - top()：直接返回 s1 的 top() 函数即可。
+   - peekMax()：直接返回 s2 的 top() 函数即可。
+   - popMax()：先将 s2 的栈顶元素保存到一个变量 mx 中，用一个临时栈 t，将 s1 的出栈元素保存到临时栈 t 中，当 s1 的栈顶元素和 s2 的栈顶元素相同时退出while循环，此时在 s1 中找到了 s2 的栈顶元素，分别将 s1 和 s2 的栈顶元素移除，然后将临时栈 t 中的元素加回 s1 中，注意加回过程中需要同时更新 s2，此处直接调用 push() 函数即可。
+2. 用一个 list 链表来保存所有的数字，然后建立一个数字和包含所有相同的数字的位置 iterator 的向量容器的映射 map。
+   - push()：把新数字加到 list 表头，然后把数字 x 的位置 iterator 加到数字映射的向量容器的末尾。
+   - pop()：先得到表头数字，然后把该数字对应的 iterator 向量容器的末尾元素删掉，如果此时向量容器为空了，将这个映射直接删除，移除表头数字，返回该数字即可。
+   - top()：直接返回表头数字即可。
+   - peekMax()：因为 map 是按 key 值自动排序的，直接返回尾映射的 key 值即可。
+   - popMax()：首先保存尾映射的 key 值，也就是最大值到变量 x 中，然后在其对应的向量容器的末尾取出其在 list 中的 iterator。然后删除该向量容器的尾元素，如果此时向量容器为空了，将这个映射直接删除。根据之前取出的 iterator，在 list 中删除对应的数字，返回 x 即可。
+
+```cpp
+class MaxStack {
+public:
+    /** initialize your data structure here. */
+    MaxStack() {}
+
+    void push(int x) {
+        if (s2.empty() || s2.top() <= x) s2.push(x);
+        s1.push(x);
+    }
+
+    int pop() {
+        if (!s2.empty() && s2.top() == s1.top()) s2.pop();
+        int t = s1.top(); s1.pop();
+        return t;
+    }
+
+    int top() {
+        return s1.top();
+    }
+
+    int peekMax() {
+        return s2.top();
+    }
+
+    int popMax() {
+        int mx = s2.top();
+        stack<int> t;
+        while (s1.top() != s2.top()) {
+            t.push(s1.top()); s1.pop();
+        }
+        s1.pop(); s2.pop();
+        while (!t.empty()) {
+            push(t.top()); t.pop();
+        }
+        return mx;
+    }
+
+private:
+    stack<int> s1, s2;
+};
+```
+
+```cpp
+class MaxStack {
+public:
+    /** initialize your data structure here. */
+    MaxStack() {}
+
+    void push(int x) {
+        v.insert(v.begin(), x);
+        m[x].push_back(v.begin());
+    }
+
+    int pop() {
+        int x = *v.begin();
+        m[x].pop_back();
+        if (m[x].empty()) m.erase(x);
+        v.erase(v.begin());
+        return x;
+    }
+
+    int top() {
+        return *v.begin();
+    }
+
+    int peekMax() {
+        return m.rbegin()->first;
+    }
+
+    int popMax() {
+        int x = m.rbegin()->first;
+        auto it = m[x].back();
+        m[x].pop_back();
+        if (m[x].empty()) m.erase(x);
+        v.erase(it);
+        return x;
+    }
+
+private:
+    list<int> v;
+    map<int, vector<list<int>::iterator>> m;
+};
+```
 
 ## 702.
 
