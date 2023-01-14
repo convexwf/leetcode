@@ -11,6 +11,7 @@ import os
 def split_block(lines):
     res = []
     unlock = True
+    iscode = False
     for idx, line in enumerate(lines):
         if line.startswith('!!!'):
             unlock = False
@@ -19,7 +20,11 @@ def split_block(lines):
             unlock = True
         if not unlock:
             continue
-        if line.startswith('```'):
+        if line.startswith('```cpp'):
+            iscode = True
+            res[-1].append(idx)
+        if iscode and line.startswith('```'):
+            iscode = False
             res[-1].append(idx)
     return res
 
@@ -86,9 +91,9 @@ def instead_code(content):
 
 if __name__ == '__main__':
 
-    mode = True
+    mode = False
 
-    with open("code.md", 'r', encoding='utf-8') as fp:
+    with open("myCode.md", 'r', encoding='utf-8') as fp:
         lines = fp.readlines()
     idx_list = split_block(lines)
 
