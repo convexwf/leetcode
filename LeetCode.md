@@ -612,140 +612,6 @@ public:
 };
 ```
 
-## 28. Implement strStr()
-
-解题思路
-
-1. 暴力求解即可
-
-边界条件：
-
-1. 注意 haystack 或者 needle 长度为0的情况
-2. 注意 haystack 长度比 needle 小的情况
-
-```C++
-// 2020-06-28 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 98.77% of C++ online submissions
-// Memory Usage: 6.9 MB, less than 53.41% of C++ online submissions
-class Solution {
-public:
-    int strStr(string haystack, string needle) {
-        if(needle.length() <= 0) return 0;
-        if(haystack.length() < needle.length()) return -1;
-        for(int i = 0; i <= haystack.length()-needle.length(); i++) {
-            if(judge(haystack,  needle, i))
-                return i;
-        }
-        return -1;
-    }
-
-    bool judge(string& haystack, string& needle, int cur_pivot) {
-        int size = needle.length();
-        for(int i = 0; i < size; i++) {
-            if (cur_pivot + i >= haystack.length()) return false;
-        }
-        return true;
-    }
-};
-```
-
-1.  Divide Two Integers
-（1）不准使用乘除幂运算的情况下，都要使用位操作
-（2）去除符号后再做运算，结果再加上符号
-（3）运算过程中可能会发生溢出，要用long表示
-（3）边界条件：被除数是INT_MAX，除数是INT_MIN
-（4）边界条件：被除数是0
-// 2020-07-04 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 66.28% of C++ online submissions
-// Memory Usage: 5.9 MB, less than 75.15% of C++ online submissions
-class Solution {
-public:
-    int divide(int dividend, int divisor) {
-        if(INT_MIN == dividend && -1 == divisor) return INT_MAX;
-
-        long x = abs(dividend), y = abs(div isor);
-        bool minus = (dividend<0 && divisor>0) || (dividend>0 && divisor<0);
-        long accum = 0;
-        while(x >= y) {
-            int i = 1;
-            for (; y<<i <= x; i++);
-            i--;
-            x -= (y<<i);
-            accum += (1<<i);
-            // cout << x << " " << y << endl;
-        }
-        if(minus) return -accum;
-        return accum;
-    }
-};
-
-30. Substring with Concatenation of All Words
-（1）解题思路：先用check_freq存储单词表的频率，然后词遍历字符串。词遍历是先遍历0,4,8,12,...，再遍历1,5,9,13,...，再遍历2,6,10,14...。词遍历过程中要维护一个哈希表word_freq表示当前匹配的单词数量，还有维护一个左边界表示当前匹配的最左位置。当当前位置减去左边界等于总长度而且维护的哈希表满足时，说明左边界为所需要的结果之一。
-s.substr(pos,n)：若pos的值超过了string的大小，则substr函数会抛出一个out_of_range异常；若pos+n的值超过了string的大小，则substr会调整n的值。
-将map改为unordered_map可以有效提高速度
-边界条件：待选单词可能会重复（两个以上同样的词），建议先用一个hashmap存储单词表的频率
-边界条件：单词表为空
-边界条件：待选单词长度为0
-边界条件：查找字符串长度为0
-
-// 2020-07-06 submission
-// ?/? cases passed
-// Runtime: 1044 ms, faster than 20.74% of C++ online submissions
-// Memory Usage: 16.7 MB, less than 77.82% of C++ online submissions
-```C++ code
-class Solution {
-public:
-    vector<int> findSubstring(string s, vector<string>& words) {
-        vector<int> ret_vec;
-        if(words.size() <= 0) return ret_vec;
-        if(words[0].size() <= 0) {
-            for(int i = 0; i <= s.size(); i++) {
-                ret_vec.push_back(i);
-            }
-            return ret_vec;
-        }
-        int count = words.size(); // Count of words
-        int len = words[0].size(); // Length of word
-        unordered_map<string, int> word_freq, check_freq;
-        for (int x = 0; x < words.size(); x++) {
-            if (check_freq.find(words[x]) == check_freq.end())
-                check_freq[words[x]] = 0;
-            check_freq[words[x]]++;
-        }
-
-        for (int i = 0; i < len; i++) {
-            for (int x = 0; x < words.size(); x++)
-                word_freq[words[x]] = 0;
-            int left_pivot = i;
-            for (int pivot = i; pivot < s.size(); pivot += len) {
-                string to_compare = s.substr(pivot, len);
-                if (word_freq.find(to_compare) == word_freq.end()) {
-                    for (int x = 0; x < words.size(); x++)
-                        word_freq[words[x]] = 0;
-                    left_pivot = pivot + len;
-                }
-                else {
-                    word_freq[to_compare]++;
-                    while (word_freq[to_compare] > check_freq[to_compare]) {
-                        word_freq[s.substr(left_pivot, len)]--;
-                        left_pivot += len;
-                    }
-                    if (word_freq[to_compare] == check_freq[to_compare] && pivot+len-left_pivot == count * len) {
-                        ret_vec.push_back(left_pivot);
-                        word_freq[s.substr(left_pivot, len)]--;
-                        left_pivot += len;
-                    }
-                }
-                // cout << i << " " << pivot << " " << left_pivot << endl;
-            }
-        }
-        return ret_vec;
-    }
-};
-```
-
 ## 32. Longest Valid Parentheses
 
 解题思路
@@ -1756,12 +1622,6 @@ public:
 };
 ```
 
-## 90. Subsets II
-
-```C++
-
-```
-
 ## 99. Recover Binary Search Tree
 
 解题思路
@@ -2693,35 +2553,6 @@ public:
 };
 ```
 
-## 215. Kth Largest Element in an Array
-
-解题思路
-
-1. 小顶堆
-
-```C++
-// 2021-03-18 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 98.71% of C++ online submissions.
-// Memory Usage: 10.1 MB, less than 46.30% of C++ online submissions.
-class Solution {
-public:
-    int findKthLargest(vector<int>& nums, int k) {
-        priority_queue<int, vector<int>, greater<int> > q;
-        for (int i = 0; i < nums.size(); i++) {
-            if (q.size() >= k) {
-                if (nums[i] > q.top()) {
-                    q.pop();
-                    q.push(nums[i]);
-                }
-            }
-            else q.push(nums[i]);
-        }
-        return q.top();
-    }
-};
-```
-
 ## 217. Contains Duplicate
 
 解题思路
@@ -2741,31 +2572,6 @@ public:
         for(int i = 0; i < nums.size(); i++) {
             if(st.count(nums[i])) return true;
             else st.insert(nums[i]);
-        }
-        return false;
-    }
-};
-```
-
-## 219. Contains Duplicate II
-
-解题思路
-
-1. 对于数组(array)，判断是否出现重复值，且重复值之间下标距离不大于 k
-2. hashmap，存储值到下标的映射。从左到右遍历数组，如果当前值的当前下标距离当前值的前下标不大于 k, 则认为出现重复。
-
-```C++
-// 2019-09-17 submission
-// ?/? cases passed
-// Runtime: 52 ms, faster than 71.61% of C++ online submissions.
-// Memory Usage: 16.4 MB, less than 74.38% of C++ online submissions.
-class Solution {
-public:
-    bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        unordered_map<int,int> m;
-        for(int i = 0; i < nums.size(); i++) {
-            if(m.count(nums[i]) && i-m[nums[i]]<=k) return true;
-            else m[nums[i]] = i;
         }
         return false;
     }

@@ -852,6 +852,135 @@ public:
 };
 ```
 
+## 321. Create Maximum Number
+
+给定两个无序数组，从两个数组中共挑出 k 个数，数字之间的相对顺序不变，求能组成的最大的数字。
+
+由于k的大小不定，所以有三种可能：
+
+第一种是当k为0时，两个数组中都不取数。
+
+第二种是当k不大于其中任意一个数组的长度时，这种情况下，有可能只从一个数组中取数，或者两个都取一些。
+
+第三种情况是k大于其中任意一个数组的长度，则需要从两个数组中分别取数，至于每个数组中取几个，每种情况都要考虑到，然后每次更结果即可。
+
+为了同时能处理这三种情况，这里假设从数组 nums1 中取i个数，那么就需要从 nums2 中取 k-i 个数。那么i的范围如何确定呢？从情况二中知道，假如k不大于任意一个数组的长度，那么有可能只从其中一个数组中取k个，就是说可以不从 nums1 中取数，所以 i 最小可以取到0。如果是第三种情况，假设k大于 nums2 的长度，就算把 nums2 中所有的数字都取出来，都无法凑个k个，多余的 k-n2 个数字要从 nums1 中来取。所以只要比较 0 和 k-n2 的大小，取较大的为i的起始范围。那么i最大能到多大呢，还是要看 k 和 n1 的大小，如果 k 小于等于 n1，那么只需要取k个就行了，如果k大于 n1，那么只能在 nums1 中取 n1 个，多余的要到 nums2 中取。
+
+好，现在知道了分别要从两个数组中取数字的情况，这里希望从 nums1 中取出的i个数字是最大的组合，同理，从 nums2 中取出的 k-i 个也是最大的数字组合。如何才能取出最大的组合呢？比如当前数组长度为n，需要取出k个数字，定义一个变量 drop = n - k，表示需要丢弃的数字的个数，遍历数组中的数字，进行下列循环，如果此时 drop 为整数，且结果数组长度不为0，结果数组的尾元素小于当前遍历的元素，则去掉结果数组的尾元素，此时 drop 自减1，重复循环直至上述任意条件不满足为止，然后把当前元素加入结果数组中，最后返回结果数组中的前k个元素。
+
+现在分别从 nums1 中取出了i个最大组合的数字，从 nums2 中取出了 k-i 个最大组合的数字，最后一步就是需要将两个取出的数组混合排序成一个数组，小数组中各自的数字之间的相对顺序不变。对于两个数组的混合，要比较了两个数组的大小（按元素比较），然后从当前比较大的数组里取头一个元素，然后删除头元素到下次再接着比较，直到两个数组都为空停止。
+
+```cpp
+class Solution {
+public:
+    vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {
+        int n1 = nums1.size(), n2 = nums2.size();
+        vector<int> res;
+        for (int i = max(0, k - n2); i <= min(k, n1); ++i) {
+            res = max(res, mergeVector(maxVector(nums1, i), maxVector(nums2, k - i)));
+        }
+        return res;
+    }
+
+    vector<int> maxVector(vector<int>& nums, int k) {
+        int drop = (int)nums.size() - k;
+        vector<int> res;
+        for (int num : nums) {
+            while (drop > 0 && !res.empty() && res.back() < num) {
+                res.pop_back();
+                --drop;
+            }
+            res.push_back(num);
+        }
+        res.resize(k);
+        return res;
+    }
+
+    vector<int> mergeVector(vector<int> nums1, vector<int> nums2) {
+        vector<int> res;
+        while (!nums1.empty() || !nums2.empty()) {
+            vector<int> &tmp = (nums1 > nums2) ? nums1 : nums2;
+            res.push_back(tmp[0]);
+            tmp.erase(tmp.begin());
+        }
+        return res;
+    }
+};
+```
+
+## 400. Nth Digit
+
+自然数序列看成一个长字符串，求第 N 位上的数字。
+
+1. 定义个变量 cnt 初始化为9，每次循环扩大 10 倍，再用一个变量 len 记录当前循环区间数字的位数，另外再需要一个变量 start 用来记录当前循环区间的第一个数字。当 n 落到某一个确定的区间里了，`(n-1)/len` 就是目标数字在该区间里的坐标，加上 start 就是得到了目标数字，然后将目标数字 start 转为字符串，`(n-1)%len` 就是所要求的目标位。
+
+```cpp
+class Solution {
+public:
+    int findNthDigit(int n) {
+        long long len = 1, cnt = 9, start = 1;
+        while (n > len * cnt) {
+            n -= len * cnt;
+            ++len;
+            cnt *= 10;
+            start *= 10;
+        }
+        start += (n - 1) / len;
+        string t = to_string(start);
+        return t[(n - 1) % len] - '0';
+    }
+};
+```
+
+## 315. Count of Smaller Numbers After Self
+
+1. 二分搜索法：将给定数组从最后一个开始，用二分法插入到一个新的数组，该数字在新数组中的坐标就是原数组中其右边所有较小数字的个数。时间复杂度 O(nlogn)，空间复杂度 O(n)。
+2. 二分搜索树：加一个变量 smaller 来记录比当前结点值小的所有结点的个数，每插入一个结点，会判断其和根结点的大小，如果新的结点值小于根结点值，则其会插入到左子树中，此时要增加根结点的 smaller，并继续递归调用左子结点的 insert。如果结点值大于根结点值，则需要递归调用右子结点的 insert 并加上根结点的 smaller，并加 1。
+
+```cpp
+class Solution {
+public:
+    vector<int> countSmaller(vector<int>& nums) {
+        vector<int> t, res(nums.size());
+        for (int i = nums.size() - 1; i >= 0; --i) {
+            int left = 0, right = t.size();
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+                if (t[mid] >= nums[i]) right = mid;
+                else left = mid + 1;
+            }
+            res[i] = right;
+            t.insert(t.begin() + right, nums[i]);
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    struct Node {
+        int val, smaller;
+        Node *left, *right;
+        Node(int v, int s) : val(v), smaller(s), left(NULL), right(NULL) {}
+    };
+    int insert(Node*& root, int val) {
+        if (!root) return (root = new Node(val, 0)), 0;
+        if (root->val > val) return root->smaller++, insert(root->left, val);
+        return insert(root->right, val) + root->smaller + (root->val < val ? 1 : 0);
+    }
+    vector<int> countSmaller(vector<int>& nums) {
+        vector<int> res(nums.size());
+        Node *root = NULL;
+        for (int i = nums.size() - 1; i >= 0; --i) {
+            res[i] = insert(root, nums[i]);
+        }
+        return res;
+    }
+};
+```
+
 ## 454. 4Sum II
 
 在四个数组中各取一个数字使总和为 0，一共有多少种取法。

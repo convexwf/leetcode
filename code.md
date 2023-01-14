@@ -1,3 +1,225 @@
+## 18. 4Sum
+
+四数之和，给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
+
+1. 排序+双指针：两层循环后进行双指针查找，注意去重处理，O(n^3) 时间复杂度。
+
+TODO
+
+1. 时间复杂度更低的做法，比如建立和到两个数的映射
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> res;
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < n - 3; ++i) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            for (int j = i + 1; j < n - 2; ++j) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) continue;
+                int left = j + 1, right = n - 1;
+                while (left < right) {
+                    long sum = (long)nums[i] + nums[j] + nums[left] + nums[right];
+                    if (sum == target) {
+                        vector<int> out{nums[i], nums[j], nums[left], nums[right]};
+                        res.push_back(out);
+                        while (left < right && nums[left] == nums[left + 1]) ++left;
+                        while (left < right && nums[right] == nums[right - 1]) --right;
+                        ++left; --right;
+                    } else if (sum < target) ++left;
+                    else --right;
+                }
+            }
+        }
+        return res;
+    }
+};
+```
+
+## 28. Implement strStr()
+
+实现 `strStr()` 函数，返回字符串 needle 在字符串 haystack 中的第一次出现位置。
+
+1. 遍历母字符串，这里并不需要遍历整个母字符串，而是遍历到剩下的长度和子字符串相等的位置即可，这样可以提高运算效率。然后对于每一个字符，都遍历一遍子字符串，一个一个字符的对应比较，如果对应位置有不等的，则跳出循环，如果一直都没有跳出循环，则说明子字符串出现了，则返回起始位置即可
+
+**边界条件**
+
+1. 注意 haystack 或者 needle 长度为 0 的情况
+2. 注意 haystack 长度比 needle 小的情况
+
+TODO
+
+1. KMP
+
+```C++
+// 2020-06-28 submission
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if (needle.empty()) return 0;
+        int m = haystack.size(), n = needle.size();
+        if (m < n) return -1;
+        for (int i = 0; i <= m - n; ++i) {
+            int j = 0;
+            for (j = 0; j < n; ++j) {
+                if (haystack[i + j] != needle[j]) break;
+            }
+            if (j == n) return i;
+        }
+        return -1;
+    }
+};
+```
+
+## 29. Divide Two Integers
+
+求两数相除，规定不能用乘法，除法和取余操作。
+
+1. 位操作
+   - 不准使用乘除幂运算的情况下，都要使用位操作。
+   - 如果被除数大于或等于除数，则进行如下循环，定义变量 t 等于除数，定义计数 p，当 t 的两倍小于等于被除数时，进行如下循环， t 扩大一倍，p 扩大一倍，然后更新 res 和 m。
+   - 去除符号后再做运算，结果再加上符号
+   - 运算过程中可能会发生溢出，要用 long 表示
+2. 上述方法的递归形式
+
+**边界条件**
+
+1. 被除数是 INT_MAX，除数是 INT_MIN
+2. 被除数是 INT_MIN，除数是 -1
+3. 被除数是 0
+
+```cpp
+// 2020-07-04 submission
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        if (dividend == INT_MIN && divisor == -1) return INT_MAX;
+        long m = labs(dividend), n = labs(divisor), res = 0;
+        int sign = ((dividend < 0) ^ (divisor < 0)) ? -1 : 1;
+        if (n == 1) return sign == 1 ? m : -m;
+        while (m >= n) {
+            long t = n, p = 1;
+            while (m >= (t << 1)) {
+                t <<= 1;
+                p <<= 1;
+            }
+            res += p;
+            m -= t;
+        }
+        return sign == 1 ? res : -res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        long m = labs(dividend), n = labs(divisor), res = 0;
+        if (m < n) return 0;
+        long t = n, p = 1;
+        while (m > (t << 1)) {
+            t <<= 1;
+            p <<= 1;
+        }
+        res += p + divide(m - t, n);
+        if ((dividend < 0) ^ (divisor < 0)) res = -res;
+        return res > INT_MAX ? INT_MAX : res;
+    }
+};
+```
+
+## 30. Substring with Concatenation of All Words
+
+给定一个长字符串，再给定几个长度相同的单词，让找出串联给定所有单词的子串的起始位置。
+
+1. HashMap
+   - 先用 check_freq 存储单词表的频率，然后词遍历字符串。
+   - 词遍历是先遍历0,4,8,12,...，再遍历1,5,9,13,...，再遍历2,6,10,14...。词遍历过程中要维护一个哈希表 word_freq 表示当前匹配的单词数量，还有维护一个左边界表示当前匹配的最左位置。
+   - 当当前位置减去左边界等于总长度而且维护的哈希表满足时，说明左边界为所需要的结果之一。
+   - s.substr(pos,n)：若pos的值超过了string的大小，则substr函数会抛出一个out_of_range异常；若pos+n的值超过了string的大小，则substr会调整n的值。
+   - O(n) 时间复杂度。
+2. 遍历 s 中所有长度为 n\*len 的子串，当剩余子串的长度小于 n\*len 时，就不用再判断了。对于每个遍历到的长度为 n\*len 的子串，需要验证其是否刚好由 words 中所有的单词构成，检查方法就是每次取长度为 len 的子串，看其是否是 words 中的单词。为了方便比较，建立另一个 HashMap，当取出的单词不在 words 中，直接 break 掉，否则就将其在新的 HashMap 中的映射值加 1，还要检测若其映射值超过原 HashMap 中的映射值，也 break 掉，因为就算当前单词在 words 中，但若其出现的次数超过 words 中的次数，还是不合题意的。在 for 循环外面，若 j 正好等于n ，说明检测的 n 个长度为 len 的子串都是 words 中的单词，并且刚好构成了 words，则将当前位置 i 加入结果 res 即可。
+
+**边界条件**
+
+1. 待选单词可能会重复（两个以上同样的词），建议先用一个hashmap存储单词表的频率
+2. 单词表为空
+3. 待选单词长度为 0
+4. 查找字符串长度为 0
+
+```cpp
+// 2020-07-06 submission
+```C++ code
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) {
+        if (s.length() == 0 || words.empty()) return {};
+        if(words[0].size() == 0) {
+            for(int i = 0; i <= s.size(); i++) {
+                ret_vec.push_back(i);
+            }
+            return ret_vec;
+        }
+        int count = words.size(); // Count of words
+        int len = words[0].size(); // Length of word
+        unordered_map<string, int> word_freq;
+        for (string word : words) {
+            word_freq[word]++;
+        }
+
+        for (int i = 0; i < len; i++) {
+            unordered_map<string, int> check_freq;
+            int left_pivot = i;
+            for (int pivot = i; pivot < s.size(); pivot += len) {
+                string to_compare = s.substr(pivot, len);
+                if(word_freq.count(to_compare)) {
+                    check_freq[to_compare]++;
+                    while (check_freq[to_compare] > word_freq[to_compare]) {
+                        word_freq[s.substr(left_pivot, len)]--;
+                        left_pivot += len;
+                    }
+                    if (pivot + len - left_pivot == count * len) {
+                        ret_vec.push_back(left_pivot);
+                        word_freq[s.substr(left_pivot, len)]--;
+                        left_pivot += len;
+                    }
+                }
+                // cout << i << " " << pivot << " " << left_pivot << endl;
+            }
+        }
+        return ret_vec;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) {
+        if (s.empty() || words.empty()) return {};
+        vector<int> res;
+        int n = words.size(), len = words[0].size();
+        unordered_map<string, int> wordCnt;
+        for (auto &word : words) ++wordCnt[word];
+        for (int i = 0; i <= (int)s.size() - n * len; ++i) {
+            unordered_map<string, int> strCnt;
+            int j = 0;
+            for (j = 0; j < n; ++j) {
+                string t = s.substr(i + j * len, len);
+                if (!wordCnt.count(t)) break;
+                ++strCnt[t];
+                if (strCnt[t] > wordCnt[t]) break;
+            }
+            if (j == n) res.push_back(i);
+        }
+        return res;
+    }
+};
+```
+
 ## 109. Convert Sorted List to Binary Search Tree
 
 有序链表转为二叉搜索树。
@@ -94,6 +316,70 @@ public:
         int diff = abs(left - right);
         if (diff > 1) return -1;
         else return 1 + max(left, right);
+    }
+};
+```
+
+## 115. Distinct Subsequences
+
+给定字符串 S 和 T，从 S 中选择子序列使得刚好和 T 相等，有多少种选法。
+
+1. 动态规划：`dp[i][j]` 表示 s 中范围是 [0, i] 的子串中能组成 t 中范围是 [0, j] 的子串的子序列的个数。状态转移方程为 `dp[i][j] = dp[i][j - 1] + (T[i - 1] == S[j - 1] ? dp[i - 1][j - 1] : 0)`。
+2. 动态规划：简化用一维数组
+
+```txt
+  Ø r a b b b i t
+Ø 1 1 1 1 1 1 1 1
+r 0 1 1 1 1 1 1 1
+a 0 0 1 1 1 1 1 1
+b 0 0 0 1 2 3 3 3
+b 0 0 0 0 1 3 3 3
+i 0 0 0 0 0 0 3 3
+t 0 0 0 0 0 0 0 3
+```
+
+**边界条件**
+
+1. 空串是任意字符串（包括空串）的子串，在本题中空串仅计算1次。
+2. 非空串不是空串的子串。
+3. 数据类型不能使用 int，因为在运算过程中有可能会出现比最终结果大的数字（比如说rab能够比rabbit匹配更多次）而导致溢出。
+
+```cpp
+class Solution {
+public:
+    int numDistinct(string s, string t) {
+        int m = s.size(), n = t.size();
+        vector<vector<long>> dp(n + 1, vector<long>(m + 1));
+        for (int j = 0; j <= m; ++j) dp[0][j] = 1;
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j <= m; ++j) {
+                dp[i][j] = dp[i][j - 1] + (t[i - 1] == s[j - 1] ? dp[i - 1][j - 1] : 0);
+            }
+        }
+        return dp[n][m];
+    }
+};
+```
+
+```cpp
+// 2020-09-15 submission
+class Solution {
+public:
+    int numDistinct(string s, string t) {
+        int c1 = s.length(), c2 = t.length();
+        vector<long> dp(c1 + 1, 1); // why long type
+
+        int last_valid = 0;
+        for (int i = 1; i <= c2; i++) {
+            last_valid = dp[0];
+            dp[0] = 0;
+            for (int j = 1; j <= c1; j++) {
+                int temp = dp[j];
+                dp[j] = dp[j-1] + (s[j-1] == t[i-1] ? last_valid : 0);
+                last_valid = temp;
+            }
+        }
+        return dp[c1];
     }
 };
 ```
@@ -367,6 +653,94 @@ public:
     //         break;
     //     }
     // }
+};
+```
+
+## 127. Word Ladder
+
+给定一个单词字典，给定一个起始单词和一个结束单词，每次变换只能改变一个字母，并且中间过程的单词都必须是单词字典中的单词，求出最短的变化序列的长度。
+
+1. BFS
+   - 使用 HashSet 保存所有的单词。
+   - 把起始单词排入队列中，开始队列循环：取出队首词，然后对其每个位置上的字符，用 26 个字母进行替换，如果此时和结尾单词相同，返回当前遍历层数。如果替换词在字典中存在，将替换词排入队列中，并移除字典中的替换词；。如果循环完成则返回 0。
+
+```cpp
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_set<string> wordSet(wordList.begin(), wordList.end());
+        if (!wordSet.count(endWord)) return 0;
+        queue<string> q{{beginWord}};
+        int res = 0;
+        while (!q.empty()) {
+            for (int k = q.size(); k > 0; --k) {
+                string word = q.front(); q.pop();
+                if (word == endWord) return res + 1;
+                for (int i = 0; i < word.size(); ++i) {
+                    string newWord = word;
+                    for (char ch = 'a'; ch <= 'z'; ++ch) {
+                        newWord[i] = ch;
+                        if (wordSet.count(newWord) && newWord != word) {
+                            q.push(newWord);
+                            wordSet.erase(newWord);
+                        }
+                    }
+                }
+            }
+            ++res;
+        }
+        return 0;
+    }
+};
+```
+
+## 126. Word Ladder II
+
+给定一个单词字典，给定一个起始单词和一个结束单词，每次变换只能改变一个字母，并且中间过程的单词都必须是单词字典中的单词，求出最短的变化序列。
+
+1. BFS
+   - 建立一个路径集 paths 用以保存所有路径，和起始路径 p，在p中先把起始单词放进去。
+   - 定义两个整型变量 level，和 minLevel，其中 level 是记录循环中当前路径的长度，minLevel 是记录最短路径的长度，如果某条路径的长度超过了已有的最短路径的长度，那么舍弃，这样会提高运行速度，相当于一种剪枝。
+   - 定义一个 HashSet 变量 words 用来记录已经循环过的路径中的词，
+   - 循环路径集 paths 里的内容，取出队首路径，如果该路径长度大于 level，说明字典中的有些词已经存入路径了，如果在路径中重复出现，则肯定不是最短路径，所以需要在字典中将这些词删去，然后将 words 清空，对循环对剪枝处理。然后取出当前路径的最后一个词，对每个字母进行替换并在字典中查找是否存在替换后的新词，如果替换后的新词在字典中存在，将其加入 words 中，并在原有路径的基础上加上这个新词生成一条新路径，如果这个新词就是结束词，则此新路径为一条完整的路径，加入结果中，并更新 minLevel，若不是结束词，则将新路径加入路径集中继续循环。
+
+```cpp
+class Solution {
+public:
+    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
+        vector<vector<string>> res;
+        unordered_set<string> dict(wordList.begin(), wordList.end());
+        vector<string> p{beginWord};
+        queue<vector<string>> paths;
+        paths.push(p);
+        int level = 1, minLevel = INT_MAX;
+        unordered_set<string> words;
+        while (!paths.empty()) {
+            auto t = paths.front(); paths.pop();
+            if (t.size() > level) {
+                for (string w : words) dict.erase(w);
+                words.clear();
+                level = t.size();
+                if (level > minLevel) break;
+            }
+            string last = t.back();
+            for (int i = 0; i < last.size(); ++i) {
+                string newLast = last;
+                for (char ch = 'a'; ch <= 'z'; ++ch) {
+                    newLast[i] = ch;
+                    if (!dict.count(newLast)) continue;
+                    words.insert(newLast);
+                    vector<string> nextPath = t;
+                    nextPath.push_back(newLast);
+                    if (newLast == endWord) {
+                        res.push_back(nextPath);
+                        minLevel = level;
+                    } else paths.push(nextPath);
+                }
+            }
+        }
+        return res;
+    }
 };
 ```
 
@@ -692,7 +1066,6 @@ k 个为一组来翻转链表
 
 1. 迭代：首先遍历整个链表，统计出链表的长度，然后如果长度大于等于k，交换节点，当 k=2 时，每段只需要交换一次，当 k=3 时，每段需要交换2此，所以 i 从 1 开始循环，注意交换一段后更新 pre 指针，然后 num 自减 k，直到 $num < k$ 时循环结束。
 2. 递归：用 head 记录每段的开始位置，cur 记录结束位置的下一个节点，然后调用 reverse 函数来将这段翻转，然后得到一个 new_head，原来的 head 就变成了末尾，这时候后面接上递归调用下一段得到的新节点，返回 new_head 即可。
-
 
 ```cpp
 /**
@@ -1548,6 +1921,261 @@ public:
 
 ```
 
+## 303. Range Sum Query - Immutable
+
+检索一个数组的某个区间的所有数字之和。数组元素不会发生变化。
+
+1. 累计直方图：建立一个累计和的数组 dp，其中 dp[i] 表示 [0, i] 区间的数字之和，那么 [i,j] 就可以表示为 dp[j]-dp[i-1]。
+
+```cpp
+class NumArray {
+public:
+    NumArray(vector<int> &nums) {
+        dp.resize(nums.size() + 1, 0);
+        for (int i = 1; i <= nums.size(); ++i) {
+            dp[i] = dp[i - 1] + nums[i - 1];
+        }
+    }
+    int sumRange(int i, int j) {
+        return dp[j + 1] - dp[i];
+    }
+
+private:
+    vector<int> dp;
+};
+```
+
+## 304. Range Sum Query 2D - Immutable
+
+检索一个二维数组的某个区域的所有数字之和。数组元素不会发生变化。
+
+1. 累计区域和：`dp[i][j]` 表示累计区间 (0, 0) 到 (i, j) 这个矩形区间所有的数字之和，(r1, c1) 到 (r2, c2) 的矩形区间和为 `dp[r2][c2] - dp[r2][c1 - 1] - dp[r1 - 1][c2] + dp[r1 - 1][c1 - 1]`。
+
+```cpp
+class NumMatrix {
+public:
+    NumMatrix(vector<vector<int> > &matrix) {
+        if (matrix.empty() || matrix[0].empty()) return;
+        dp.resize(matrix.size() + 1, vector<int>(matrix[0].size() + 1, 0));
+        for (int i = 1; i <= matrix.size(); ++i) {
+            for (int j = 1; j <= matrix[0].size(); ++j) {
+                dp[i][j] = dp[i][j - 1] + dp[i - 1][j] - dp[i - 1][j - 1] + matrix[i - 1][j - 1];
+            }
+        }
+    }
+    int sumRegion(int row1, int col1, int row2, int col2) {
+        return dp[row2 + 1][col2 + 1] - dp[row1][col2 + 1] - dp[row2 + 1][col1] + dp[row1][col1];
+    }
+
+private:
+    vector<vector<int> > dp;
+};
+```
+
+## 307. Range Sum Query - Mutable
+
+
+## 214. Shortest Palindrome
+
+在给定字符串 s 的前面加上尽可能少的字符，使之变成回文串。
+
+## 215. Kth Largest Element in an Array
+
+求数组中第 k 大的数字。
+
+1. 小顶堆
+2. 快速排序：先找一个中枢点 Pivot，然后遍历其他所有的数字，把大于中枢点的数字放到左半边，把小于中枢点的放在右半边，这样中枢点是整个数组中第几大的数字就确定了，虽然左右两部分各自不一定是完全有序的。如果位置正好是 k-1，那么直接返回该位置上的数字；如果大于 k-1，说明要求的数字在左半部分，更新右边界，再求新的中枢点位置；反之则更新右半部分，求中枢点的位置。
+
+```C++
+// 2021-03-18 submission
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int, vector<int>, greater<int> > q;
+        for (int i = 0; i < nums.size(); i++) {
+            if (q.size() >= k) {
+                if (nums[i] > q.top()) {
+                    q.pop();
+                    q.push(nums[i]);
+                }
+            }
+            else q.push(nums[i]);
+        }
+        return q.top();
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        int left = 0, right = nums.size() - 1;
+        while (true) {
+            int pos = partition(nums, left, right);
+            if (pos == k - 1) return nums[pos];
+            if (pos > k - 1) right = pos - 1;
+            else left = pos + 1;
+        }
+    }
+    int partition(vector<int>& nums, int left, int right) {
+        int pivot = nums[left], l = left + 1, r = right;
+        while (l <= r) {
+            if (nums[l] < pivot && nums[r] > pivot) {
+                swap(nums[l++], nums[r--]);
+            }
+            if (nums[l] >= pivot) ++l;
+            if (nums[r] <= pivot) --r;
+        }
+        swap(nums[left], nums[r]);
+        return r;
+    }
+};
+```
+
+## 219. Contains Duplicate II
+
+对于数组(array)，判断是否出现重复值，且重复值之间下标距离不大于 k
+
+1. HashMap
+   - 存储值到下标的映射。
+   - 从左到右遍历数组，如果当前值的当前下标距离当前值的前下标不大于 k, 则认为出现重复。
+
+```C++
+// 2019-09-17 submission
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_map<int,int> m;
+        for(int i = 0; i < nums.size(); i++) {
+            if(m.count(nums[i]) && i - m[nums[i]] <= k) return true;
+            else m[nums[i]] = i;
+        }
+        return false;
+    }
+};
+```
+
+## 221. Maximal Square
+
+在一个由 '0' 和 '1' 组成的二维矩阵内，找到只包含 '1' 的最大正方形，并返回其面积。
+
+1. brute force
+   - 把数组中每一个点都当成正方形的左顶点来向右下方扫描，来寻找最大正方形。
+   - 确定了左顶点后，再往下扫的时候，正方形的竖边长度就确定了，只需要找到横边即可，这时候使用直方图的原理，从其累加值能反映出上面的值是否全为 1。
+2. 累计和数组
+   - 建立好了累加和数组后，我们开始遍历二维数组的每一个位置，对于任意一个位置 (i, j)，从该位置往 (0,0) 点遍历所有的正方形，正方形的个数为 `min(i, j) + 1`，由于累加和矩阵能快速的求出任意一个区域之和，所以能快速得到所有子正方形之和，比较正方形之和跟边长的平方是否相等，相等说明正方形中的数字均为1，更新 res 结果即可。
+3. 动态规划：`dp[i][j]` 表示到达 (i, j) 位置所能组成的最大正方形的边长。
+   - 当 i 或 j 为 0 时，最多能组成长度为 1 的正方形，条件是当前位置为1。
+   - 对于任意一点 `dp[i][j]`，只有当前 (i, j) 位置为 1，`dp[i][j]` 才有可能大于 0。
+   - 当 (i, j) 位置为 1，`dp[i][j] = min(dp[i-1][j-1], dp[i][j-1], dp[i-1][j]) + 1`
+4. 动态规划：一维数组处理
+
+```cpp
+class Solution {
+public:
+    int maximalSquare(vector<vector<char> >& matrix) {
+        int res = 0;
+        for (int i = 0; i < matrix.size(); ++i) {
+            vector<int> v(matrix[i].size(), 0);
+            for (int j = i; j < matrix.size(); ++j) {
+                for (int k = 0; k < matrix[j].size(); ++k) {
+                    if (matrix[j][k] == '1') ++v[k];
+                }
+                res = max(res, getSquareArea(v, j - i + 1));
+            }
+        }
+        return res;
+    }
+
+    int getSquareArea(vector<int> &v, int k) {
+        if (v.size() < k) return 0;
+        int count = 0;
+        for (int i = 0; i < v.size(); ++i) {
+            if (v[i] != k) count = 0;
+            else ++count;
+            if (count == k) return k * k;
+        }
+        return 0;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        if (matrix.empty() || matrix[0].empty()) return 0;
+        int m = matrix.size(), n = matrix[0].size(), res = 0;
+        vector<vector<int>> sum(m, vector<int>(n, 0));
+        for (int i = 0; i < matrix.size(); ++i) {
+            for (int j = 0; j < matrix[i].size(); ++j) {
+                int t = matrix[i][j] - '0';
+                if (i > 0) t += sum[i - 1][j];
+                if (j > 0) t += sum[i][j - 1];
+                if (i > 0 && j > 0) t -= sum[i - 1][j - 1];
+                sum[i][j] = t;
+                int cnt = 1;
+                for (int k = min(i, j); k >= 0; --k) {
+                    int d = sum[i][j];
+                    if (i - cnt >= 0) d -= sum[i - cnt][j];
+                    if (j - cnt >= 0) d -= sum[i][j - cnt];
+                    if (i - cnt >= 0 && j - cnt >= 0) d += sum[i - cnt][j - cnt];
+                    if (d == cnt * cnt) res = max(res, d);
+                    ++cnt;
+                }
+            }
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        if (matrix.empty() || matrix[0].empty()) return 0;
+        int m = matrix.size(), n = matrix[0].size(), res = 0;
+        vector<vector<int>> dp(m, vector<int>(n, 0));
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (i == 0 || j == 0) dp[i][j] = matrix[i][j] - '0';
+                else if (matrix[i][j] == '1') {
+                    dp[i][j] = min(dp[i - 1][j - 1], min(dp[i][j - 1], dp[i - 1][j])) + 1;
+                }
+                res = max(res, dp[i][j]);
+            }
+        }
+        return res * res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        if (matrix.empty() || matrix[0].empty()) return 0;
+        int m = matrix.size(), n = matrix[0].size(), res = 0, pre = 0;
+        vector<int> dp(m + 1, 0);
+        for (int j = 0; j < n; ++j) {
+            for (int i = 1; i <= m; ++i) {
+                int t = dp[i];
+                if (matrix[i - 1][j] == '1') {
+                    dp[i] = min(dp[i], min(dp[i - 1], pre)) + 1;
+                    res = max(res, dp[i]);
+                } else {
+                    dp[i] = 0;
+                }
+                pre = t;
+            }
+        }
+        return res * res;
+    }
+};
+```
+
 ## 222. Count Complete Tree Nodes
 
 完全二叉树节点的个数。
@@ -1775,7 +2403,7 @@ public:
 
 ## 39. Combination Sum
 
-给定正整数候选数集合 candidates 和目标和 target，找出 candidates 中所有可以使数字和为 target 的组合，candidates 中的数字可以无限制重复被选取。
+给定正整数候选数集合 candidates 和目标和 target，找出 candidates 中所有可以使数字和为 target 的组合，candidates 中的数字可以无限制重复被选取。候选数集合中不会出现重复数字。
 
 1. 递归：加入三个变量，start 记录当前的递归到的下标，out 为一个解，res 保存所有已经得到的解，每次调用新的递归函数时，此时的 target 要减去当前数组的的数。
 2. 迭代：建立一个三维数组 dp，dp[i] 表示目标数为 i+1 的所有解法集合。
@@ -1836,7 +2464,59 @@ public:
 
 ## 40. Combination Sum II
 
+给定一个正整数候选数集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用一次。候选数集合中不会出现重复数字。
+
+1. 递归
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int>& num, int target) {
+        vector<vector<int>> res;
+        vector<int> out;
+        sort(num.begin(), num.end());
+        helper(num, target, 0, out, res);
+        return res;
+    }
+
+    void helper(vector<int>& num, int target, int start, vector<int>& out, vector<vector<int>>& res) {
+        if (target < 0) return;
+        if (target == 0) { res.push_back(out); return; }
+        for (int i = start; i < num.size(); ++i) {
+            out.push_back(num[i]);
+            helper(num, target - num[i], i + 1, out, res);
+            out.pop_back();
+        }
+    }
+};
+```
+
 ## 216. Combination Sum III
+
+找出所有相加之和为 n 的 k 个数的组合。组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。
+
+1. 递归：n 是 k 个数字之和，如果 n 小于 0，则直接返回，如果 n 正好等于 0，而且此时 out 中数字的个数正好为 k，说明此时是一个正确解，将其存入结果 res 中。
+
+```cpp
+class Solution {
+public:
+    vector<vector<int> > combinationSum3(int k, int n) {
+        vector<vector<int> > res;
+        vector<int> out;
+        combinationSum3DFS(k, n, 1, out, res);
+        return res;
+    }
+    void combinationSum3DFS(int k, int n, int level, vector<int> &out, vector<vector<int>> &res) {
+        if (n < 0) return;
+        if (n == 0 && out.size() == k) res.push_back(out);
+        for (int i = level; i <= 9; ++i) {
+            out.push_back(i);
+            combinationSum3DFS(k, n - i, i + 1, out, res);
+            out.pop_back();
+        }
+    }
+};
+```
 
 ## 139. Word Break
 
@@ -1885,6 +2565,36 @@ public:
             }
         }
         return memo[start] = 0;
+    }
+};
+```
+
+## 140. Word Break II
+
+给定单词和字典，将单词拆分成字典里的单词，求出所有可以拆分的情况。
+
+1. 递归+记忆数组：
+   - 使用一个 HashMap 保存 s 和其所有的拆分的字符串
+   - 递归函数中，首先检测当前 s 是否已经有映射结果，有的话直接返回即可
+   - 如果 s 为空了，放一个空字符串返回，单词之间是有空格，而最后一个单词后面没有空格，所以这个空字符串旧标记当前单词是最后一个，所以不需要再加空格
+   - 遍历 wordDict 数组，如果某个单词是 s 字符串中的开头单词的话，对后面部分调用递归函数，将结果保存到 rem 中，然后遍历里面的所有字符串，和当前的单词拼接起来。for循环结束后，记得返回结果 res 之前建立其和 s 之间的映射，方便下次使用。
+
+```cpp
+class Solution {
+public:
+    unordered_map<string, vector<string>> m;
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+        if (m.count(s)) return m[s];
+        if (s.empty()) return {""};
+        vector<string> res;
+        for (string word : wordDict) {
+            if (s.substr(0, word.size()) != word) continue;
+            vector<string> rem = wordBreak(s.substr(word.size()), wordDict);
+            for (string str : rem) {
+                res.push_back(word + (str.empty() ? "" : " ") + str);
+            }
+        }
+        return m[s] = res;
     }
 };
 ```
@@ -2602,6 +3312,76 @@ public:
     }
 };
 
+## 90. Subsets II
+
+找出给定集合的所有子集，输入数组允许有重复项。
+
+1. 非递归遍历: 按照子集的长度由少到多全部写出来。用 last 来记录上一个处理的数字，然后判定当前的数字和 last 是否相同，若不同，则循环还是从 0 到当前子集的个数，若相同，则新子集个数减去之前循环时子集的个数当做起点来循环，这样就不会产生重复。
+2. DFS：增加去重处理。
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int> &S) {
+        if (S.empty()) return {};
+        vector<vector<int>> res(1);
+        sort(S.begin(), S.end());
+        int size = 1, last = S[0];
+        for (int i = 0; i < S.size(); ++i) {
+            if (last != S[i]) {
+                last = S[i];
+                size = res.size();
+            }
+            int newSize = res.size();
+            for (int j = newSize - size; j < newSize; ++j) {
+                res.push_back(res[j]);
+                res.back().push_back(S[i]);
+            }
+        }
+        return res;
+    }
+};
+
+// 添加顺序为
+// []
+// [1]
+// [2]
+// [1 2]
+// [2 2]
+// [1 2 2]
+```
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int> &S) {
+        if (S.empty()) return {};
+        vector<vector<int>> res;
+        vector<int> out;
+        sort(S.begin(), S.end());
+        getSubsets(S, 0, out, res);
+        return res;
+    }
+    void getSubsets(vector<int> &S, int pos, vector<int> &out, vector<vector<int>> &res) {
+        res.push_back(out);
+        for (int i = pos; i < S.size(); ++i) {
+            out.push_back(S[i]);
+            getSubsets(S, i + 1, out, res);
+            out.pop_back();
+            while (i + 1 < S.size() && S[i] == S[i + 1]) ++i;
+        }
+    }
+};
+
+// 添加顺序为
+// []
+// [1]
+// [1 2]
+// [1 2 2]
+// [2]
+// [2 2]
+```
+
 ## 123. Best Time to Buy and Sell Stock III
 
 股票交易，买进前必须卖出手头已有的，允许最多两次交易
@@ -2715,7 +3495,7 @@ public:
 返回二叉树所有根到叶节点的路径
 
 1. DFS：当遇到叶结点的时候，此时一条完整的路径已经形成了，加上当前的叶结点后存入结果 res 中。
-2. DFS：在一个函数内完成
+2. DFS：在一个函数内完成。
 
 ```cpp
 class Solution {
@@ -2753,14 +3533,349 @@ public:
 
 ## 224. Basic Calculator
 
-算数表达式计算，表达式中只有加减号，数字，括号和空格，没有乘除。
+算术表达式计算，表达式中只有加减号，数字，括号和空格，没有乘除。
+
+1. 栈
+   - 用变量 sign 来表示当前的符号
+   - 遍历给定的字符串 s，如果遇到了数字，使用了一个变量来保存读入的 num；
+   - 如果遇到了加号，则 sign 赋为1，如果遇到了符号，则赋为-1；
+   - 如果遇到了左括号，则把当前结果 res 和符号 sign 压入栈，res 重置为 0，sign 重置为 1；
+   - 如果遇到了右括号，结果 res 乘以栈顶的符号，栈顶元素出栈，结果 res 加上栈顶的数字，栈顶元素出栈。
+2. 递归
+   - 用一个变量 cnt，遇到左括号自增 1，遇到右括号自减 1，当 cnt 为0的时候，说明括号正好完全匹配
+   - 根据左右括号的位置提取出中间的子字符串调用递归函数，返回值赋给 num
+
+```cpp
+class Solution {
+public:
+    int calculate(string s) {
+        int res = 0, num = 0, sign = 1, n = s.size();
+        stack<int> st;
+        for (int i = 0; i < n; ++i) {
+            char c = s[i];
+            if (c >= '0') {
+                num = 10 * num + (c - '0');
+            } else if (c == '+' || c == '-') {
+                res += sign * num;
+                num = 0;
+                sign = (c == '+') ? 1 : -1;
+            } else if (c == '(') {
+                st.push(res);
+                st.push(sign);
+                res = 0;
+                sign = 1;
+            } else if (c == ')') {
+                res += sign * num;
+                num = 0;
+                res *= st.top(); st.pop();
+                res += st.top(); st.pop();
+            }
+        }
+        res += sign * num;
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int calculate(string s) {
+        int res = 0, num = 0, sign = 1, n = s.size();
+        for (int i = 0; i < n; ++i) {
+            char c = s[i];
+            if (c >= '0' && c <= '9') {
+                num = 10 * num + (c - '0');
+            } else if (c == '(') {
+                int j = i, cnt = 0;
+                for (; i < n; ++i) {
+                    if (s[i] == '(') ++cnt;
+                    if (s[i] == ')') --cnt;
+                    if (cnt == 0) break;
+                }
+                num = calculate(s.substr(j + 1, i - j - 1));
+            }
+            if (c == '+' || c == '-' || i == n - 1) {
+                res += sign * num;
+                num = 0;
+                sign = (c == '+') ? 1 : -1;
+             }
+        }
+        return res;
+    }
+};
+```
 
 ## 227. Basic Calculator II
 
+算术表达式计算，表达式中有加减乘除号，数字和空格，没有括号。
+
+1. 栈
+   - 使用一个栈保存数字，如果该数字之前的符号是加或减，那么把当前数字压入栈中，注意如果是减号，则加入当前数字的相反数，因为减法相当于加上一个相反数。
+   - 如果之前的符号是乘或除，那么从栈顶取出一个数字和当前数字进行乘或除的运算，再把结果压入栈中，那么完成一遍遍历后，所有的乘或除都运算完了，再把栈中所有的数字都加起来就是最终结果
+2. num 表示当前的数字，curRes 表示当前的结果，res 为最终的结果，op 为操作符号，初始化为 '+'。根据 op 的值对 num 进行分别的加减乘除的处理，结果保存到 curRes 中。然后再次判断如果 op 是加或减，或者是最后一个位置的字符时，将 curRes 加到结果 res 中，并且 curRes 重置为 0。最后将当前字符 c 赋值给 op（注意这里只有当时最后一个位置的字符时，才有可能不是运算符号，不过也不要紧了，因为遍历已经结束了），num 也要重置为 0。
+
+```cpp
+class Solution {
+public:
+    int calculate(string s) {
+        long res = 0, num = 0, n = s.size();
+        char op = '+';
+        stack<int> st;
+        for (int i = 0; i < n; ++i) {
+            if (s[i] >= '0') {
+                num = num * 10 + s[i] - '0';
+            }
+            if ((s[i] < '0' && s[i] != ' ') || i == n - 1) {
+                if (op == '+') st.push(num);
+                if (op == '-') st.push(-num);
+                if (op == '*' || op == '/') {
+                    int tmp = (op == '*') ? st.top() * num : st.top() / num;
+                    st.pop();
+                    st.push(tmp);
+                }
+                op = s[i];
+                num = 0;
+            }
+        }
+        while (!st.empty()) {
+            res += st.top();
+            st.pop();
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int calculate(string s) {
+        long res = 0, curRes = 0, num = 0, n = s.size();
+        char op = '+';
+        for (int i = 0; i < n; ++i) {
+            char c = s[i];
+            if (c >= '0' && c <= '9') {
+                num = num * 10 + c - '0';
+            }
+            if (c == '+' || c == '-' || c == '*' || c == '/' || i == n - 1) {
+                switch (op) {
+                    case '+':
+                        curRes += num;
+                        break;
+                    case '-':
+                        curRes -= num;
+                        break;
+                    case '*':
+                        curRes *= num;
+                        break;
+                    case '/':
+                        curRes /= num;
+                        break;
+                }
+                if (c == '+' || c == '-' || i == n - 1) {
+                    res += curRes;
+                    curRes = 0;
+                }
+                op = c;
+                num = 0;
+            }
+        }
+        return res;
+    }
+};
+```
+
 ## 146. LRU Cache
+
+实现一个 LRU 缓存器，要求 `get` 和 `put` 方法为 O(1) 时间复杂度。
+
+1. 双向链表+哈希表
+   - 双向链表实现：dummy node，减少边界处理复杂度，并实现三个辅助函数
+   - put 实现：
+
+```cpp
+// 2020-09-18 submission
+struct ListNode
+{
+    int key;
+    int value;
+    struct ListNode* next;
+    struct ListNode* prev;
+    explicit ListNode(int key, int value) : key(key), value(value), next(nullptr), prev(nullptr){}
+};
+
+class LRUCache {
+public:
+
+    LRUCache(int capacity) {
+        this->size = 0;
+        this->capacity = capacity;
+        this->dummyHead = new ListNode(0);
+        this->dummyTail = new ListNode(0);
+        this->dummyHead->next = this->dummyTail;
+        this->dummyTail->prev = this->dummyHead;
+    }
+
+    int get(int key) {
+        if (!cache.count(key)) return -1;
+        else {
+            ListNode* node = m[key];
+            int value = node->second;
+            this->moveNodeToHead(node);
+            return value;
+        }
+    }
+
+    void put(int key, int value) {
+        if (m.count(key)) {
+            this->moveNodeToHead(node);
+        }
+        else {
+            ListNode* node = new ListNode(key, value);
+            this->addNodeToHead(node);
+            m[key] = node;
+            ++size;
+            while (capacity < size) {
+                ListNode* tailNode = this->dummyTail->prev;
+                m.erase(tailNode->key);
+                this->removeNodeFromList(tailNode);
+                --size;
+            }
+        }
+    }
+
+private:
+    int addNodeToHead(ListNode* node) {
+        if (node == nullptr) {
+            return -1;
+        }
+        node->next = this->dummyHead->next;
+        this->dummyHead->next = node;
+        node->prev = this->dummyHead;
+        node->next->prev = node;
+        return 0;
+    }
+
+    int moveNodeToHead(ListNode* node) {
+        if (node == nullptr) {
+            return -1;
+        }
+        node->next->prev = node->prev;
+        node->prev->next = node->next;
+        return addNodeToHead(node);
+    }
+
+    int removeNodeFromList(ListNode* node) {
+        if (node == nullptr) {
+            return -1;
+        }
+        node->next->prev = node->prev;
+        node->prev->next = node->next;
+        delete node;
+        return 0;
+    }
+
+private:
+    uint32_t size;
+    uint32_t capacity;
+    struct ListNode* dummyHead;
+    struct ListNode* dummyTail;
+    std::unordered_map<int, struct ListNode*> cache;
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
+```
 
 ## 131. Palindrome Partitioning
 
 拆分回文子字符串，求出所有的拆分组合。
 
 ## 132. Palindrome Partitioning II
+
+
+## 174. Dungeon Game
+
+恶魔抓住了公主并将她关在了地下城的右下角，地下城是由 M x N 个房间组成的二维网格。英勇的骑士最初被安置在左上角的房间里，他必须穿过地下城并通过对抗恶魔来拯救公主。骑士的初始健康点数为一个正整数。如果他的健康点数在某一时刻降至 0 或以下，他会立即死亡。有些房间由恶魔守卫，因此骑士在进入这些房间时会失去健康点数（若房间里的值为负整数，则表示骑士将损失健康点数）；其他房间要么是空的（房间里的值为 0），要么包含增加骑士健康点数的魔法球（若房间里的值为正整数，则表示骑士将增加健康点数）。为了尽快到达公主，骑士决定每次只向右或向下移动一步。计算确保骑士能够拯救到公主所需的最低初始健康点数。
+
+1. 动态规划
+   - `dp[i][j]` 表示当前位置 (i, j) 出发的起始血量(即不考虑当前房间产生的影响)
+   - 最先处理公主所在的房间的起始生命值，然后慢慢向第一个房间扩散，不断的得到各个位置的最优的生命值。
+   - 状态转移方程 `dp[i][j] = max(1, min(dp[i+1][j], dp[i][j+1]) - dungeon[i][j])`。
+   - 为了更好的处理边界情况，二维 dp 数组比原数组的行数列数均多 1 个，先都初始化为整型数最大值 INT_MAX，到达公主房间后，骑士火拼完的血量至少为1，那么此时公主房间的右边和下边房间里的数字都设置为 1。
+2. 动态规划：使用一维数组
+
+```cpp
+class Solution {
+public:
+    int calculateMinimumHP(vector<vector<int>>& dungeon) {
+        int m = dungeon.size(), n = dungeon[0].size();
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, INT_MAX));
+        dp[m][n - 1] = 1; dp[m - 1][n] = 1;
+        for (int i = m - 1; i >= 0; --i) {
+            for (int j = n - 1; j >= 0; --j) {
+                dp[i][j] = max(1, min(dp[i + 1][j], dp[i][j + 1]) - dungeon[i][j]);
+            }
+        }
+        return dp[0][0];
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int calculateMinimumHP(vector<vector<int>>& dungeon) {
+        int m = dungeon.size(), n = dungeon[0].size();
+        vector<int> dp(n + 1, INT_MAX);
+        dp[n - 1] = 1;
+        for (int i = m - 1; i >= 0; --i) {
+            for (int j = n - 1; j >= 0; --j) {
+                dp[j] = max(1, min(dp[j], dp[j + 1]) - dungeon[i][j]);
+            }
+        }
+        return dp[0];
+    }
+};
+```
+
+## 464. Can I Win
+
+给定两个整数 maxChoosableInteger(整数池中可选择的最大数) 和 desiredTotal(累计和)，两个玩家可以轮流从公共整数池中抽取整数(不放回)，先使得累计整数和达到或超过规定累计和的玩家即为胜者。求先手玩家是否必胜。
+
+1. HashMap + 递归
+   - 如果给定的数字范围大于等于目标值的话，直接返回 true。如果给定的数字总和小于目标值的话，说明谁也没法赢，返回 false。
+   - 进入递归函数，首先查找当前情况是否在 HashMap 中存在，有的话直接返回即可。
+   - 使用一个整型数按位来记录数组中的某个数字是否使用过，遍历所有数字，将该数字对应的 mask 算出来，如果其和 used 相与为 0 的话，说明该数字没有使用过
+   - 如果此时的目标值小于等于当前数字，说明已经赢了，或者调用递归函数，如果返回 false，说明也是当前进入递归函数的玩家赢了。
+
+```cpp
+class Solution {
+public:
+    bool canIWin(int maxChoosableInteger, int desiredTotal) {
+        if (maxChoosableInteger >= desiredTotal) return true;
+        if (maxChoosableInteger * (maxChoosableInteger + 1) / 2 < desiredTotal) return false;
+        unordered_map<int, bool> m;
+        return canWin(maxChoosableInteger, desiredTotal, 0, m);
+    }
+    bool canWin(int length, int total, int used, unordered_map<int, bool>& m) {
+        if (m.count(used)) return m[used];
+        for (int i = 0; i < length; ++i) {
+            int cur = (1 << i);
+            if ((cur & used) == 0) {
+                if (total <= i + 1 || !canWin(length, total - (i + 1), cur | used, m)) {
+                    m[used] = true;
+                    return true;
+                }
+            }
+        }
+        m[used] = false;
+        return false;
+    }
+};
+```
