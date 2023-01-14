@@ -23,7 +23,7 @@ def split_block(lines):
         if line.startswith('```cpp'):
             iscode = True
             res[-1].append(idx)
-        if iscode and line.startswith('```'):
+        elif iscode and line.startswith('```'):
             iscode = False
             res[-1].append(idx)
     return res

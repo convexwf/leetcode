@@ -112,7 +112,6 @@ public:
 
 ```cpp
 // 2020-07-06 submission
-```cpp code
 class Solution {
 public:
     vector<int> findSubstring(string s, vector<string>& words) {
