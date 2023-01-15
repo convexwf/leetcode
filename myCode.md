@@ -653,56 +653,6 @@ public:
 };
 ```
 
-## 126. Word Ladder II
-
-给定一个单词字典，给定一个起始单词和一个结束单词，每次变换只能改变一个字母，并且中间过程的单词都必须是单词字典中的单词，求出最短的变化序列。
-
-1. BFS
-   - 建立一个路径集 paths 用以保存所有路径，和起始路径 p，在p中先把起始单词放进去。
-   - 定义两个整型变量 level，和 minLevel，其中 level 是记录循环中当前路径的长度，minLevel 是记录最短路径的长度，如果某条路径的长度超过了已有的最短路径的长度，那么舍弃，这样会提高运行速度，相当于一种剪枝。
-   - 定义一个 HashSet 变量 words 用来记录已经循环过的路径中的词，
-   - 循环路径集 paths 里的内容，取出队首路径，如果该路径长度大于 level，说明字典中的有些词已经存入路径了，如果在路径中重复出现，则肯定不是最短路径，所以需要在字典中将这些词删去，然后将 words 清空，对循环对剪枝处理。然后取出当前路径的最后一个词，对每个字母进行替换并在字典中查找是否存在替换后的新词，如果替换后的新词在字典中存在，将其加入 words 中，并在原有路径的基础上加上这个新词生成一条新路径，如果这个新词就是结束词，则此新路径为一条完整的路径，加入结果中，并更新 minLevel，若不是结束词，则将新路径加入路径集中继续循环。
-
-```cpp
-class Solution {
-public:
-    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
-        vector<vector<string>> res;
-        unordered_set<string> dict(wordList.begin(), wordList.end());
-        vector<string> p{beginWord};
-        queue<vector<string>> paths;
-        paths.push(p);
-        int level = 1, minLevel = INT_MAX;
-        unordered_set<string> words;
-        while (!paths.empty()) {
-            auto t = paths.front(); paths.pop();
-            if (t.size() > level) {
-                for (string w : words) dict.erase(w);
-                words.clear();
-                level = t.size();
-                if (level > minLevel) break;
-            }
-            string last = t.back();
-            for (int i = 0; i < last.size(); ++i) {
-                string newLast = last;
-                for (char ch = 'a'; ch <= 'z'; ++ch) {
-                    newLast[i] = ch;
-                    if (!dict.count(newLast)) continue;
-                    words.insert(newLast);
-                    vector<string> nextPath = t;
-                    nextPath.push_back(newLast);
-                    if (newLast == endWord) {
-                        res.push_back(nextPath);
-                        minLevel = level;
-                    } else paths.push(nextPath);
-                }
-            }
-        }
-        return res;
-    }
-};
-```
-
 ## 162. Find Peak Element
 
 寻找峰值(局部最大值)，峰值就是比周围两个数字都大的数字，如果有多个局部最大值随机返回其中一个即可，要求 O(logn) 复杂度。
@@ -1739,55 +1689,6 @@ public:
         start += (n - 1) / len;
         string t = to_string(start);
         return t[(n - 1) % len] - '0';
-    }
-};
-```
-
-## 315. Count of Smaller Numbers After Self
-
-1. 二分搜索法：将给定数组从最后一个开始，用二分法插入到一个新的数组，该数字在新数组中的坐标就是原数组中其右边所有较小数字的个数。时间复杂度 O(nlogn)，空间复杂度 O(n)。
-2. 二分搜索树：加一个变量 smaller 来记录比当前结点值小的所有结点的个数，每插入一个结点，会判断其和根结点的大小，如果新的结点值小于根结点值，则其会插入到左子树中，此时要增加根结点的 smaller，并继续递归调用左子结点的 insert。如果结点值大于根结点值，则需要递归调用右子结点的 insert 并加上根结点的 smaller，并加 1。
-
-```cpp
-class Solution {
-public:
-    vector<int> countSmaller(vector<int>& nums) {
-        vector<int> t, res(nums.size());
-        for (int i = nums.size() - 1; i >= 0; --i) {
-            int left = 0, right = t.size();
-            while (left < right) {
-                int mid = left + (right - left) / 2;
-                if (t[mid] >= nums[i]) right = mid;
-                else left = mid + 1;
-            }
-            res[i] = right;
-            t.insert(t.begin() + right, nums[i]);
-        }
-        return res;
-    }
-};
-```
-
-```cpp
-class Solution {
-public:
-    struct Node {
-        int val, smaller;
-        Node *left, *right;
-        Node(int v, int s) : val(v), smaller(s), left(NULL), right(NULL) {}
-    };
-    int insert(Node*& root, int val) {
-        if (!root) return (root = new Node(val, 0)), 0;
-        if (root->val > val) return root->smaller++, insert(root->left, val);
-        return insert(root->right, val) + root->smaller + (root->val < val ? 1 : 0);
-    }
-    vector<int> countSmaller(vector<int>& nums) {
-        vector<int> res(nums.size());
-        Node *root = NULL;
-        for (int i = nums.size() - 1; i >= 0; --i) {
-            res[i] = insert(root, nums[i]);
-        }
-        return res;
     }
 };
 ```

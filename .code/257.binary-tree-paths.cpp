@@ -44,6 +44,10 @@
  */
 
 // @lc code=start
+// 2023-01-14 submission
+// 208/208 cases passed
+// Runtime: 7 ms, faster than 52.16% of C++ online submissions.
+// Memory Usage: 12.5 MB, less than 90.16% of C++ online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -58,8 +62,36 @@
 class Solution {
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
-        
+        vector<string> res;
+        if (root) helper(root, "", res);
+        return res;
+    }
+    void helper(TreeNode* node, string out, vector<string>& res) {
+        if (!node->left && !node->right) res.push_back(out + to_string(node->val));
+        if (node->left) helper(node->left, out + to_string(node->val) + "->", res);
+        if (node->right) helper(node->right, out + to_string(node->val) + "->", res);
     }
 };
 // @lc code=end
 
+// @lc code=start
+// 2023-01-14 submission
+// 208/208 cases passed
+// Runtime: 8 ms, faster than 41.77% of C++ online submissions.
+// Memory Usage: 13.6 MB, less than 26.05% of C++ online submissions.
+class Solution {
+public:
+    vector<string> binaryTreePaths(TreeNode* root) {
+        if (!root) return {};
+        if (!root->left && !root->right) return {to_string(root->val)};
+        vector<string> res;
+        for (string str : binaryTreePaths(root->left)) {
+            res.push_back(to_string(root->val) + "->" + str);
+        }
+        for (string str : binaryTreePaths(root->right)) {
+            res.push_back(to_string(root->val) + "->" + str);
+        }
+        return res;
+    }
+};
+// @lc code=end

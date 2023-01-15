@@ -92,3 +92,27 @@ public:
     }
 };
 // @lc code=end
+
+// @lc code=start
+// 2023-01-14 submission
+// 21/21 cases passed
+// Runtime: 14 ms, faster than 51.5% of C++ online submissions.
+// Memory Usage: 13.3 MB, less than 5.24% of C++ online submissions.
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        int op = (int)tokens.size() - 1;
+        return helper(tokens, op);
+    }
+    int helper(vector<string>& tokens, int& op) {
+        string str = tokens[op];
+        if (str != "+" && str != "-" && str != "*" && str != "/") return stoi(str);
+        int num1 = helper(tokens, --op);
+        int num2 = helper(tokens, --op);
+        if (str == "+") return num2 + num1;
+        if (str == "-") return num2 - num1;
+        if (str == "*") return num2 * num1;
+        return num2 / num1;
+    }
+};
+// @lc code=end
