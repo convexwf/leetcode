@@ -1,31 +1,3 @@
-## 22. Generate Parentheses
-
-给定一个数字 n，让生成共有 n 个括号的所有正确的形式。
-
-1. 递归：
-
-```cpp
-class Solution {
-public:
-    vector<string> generateParenthesis(int n) {
-        vector<string> res;
-        string cur = "";
-        int lp = n, rp = n;
-        helper(res, cur, lp, rp);
-        return res;
-    }
-
-    void helper(vector<string>& res, string cur, int lp, int rp) {
-        if (lp == 0) {
-            res.push_back(cur + string(rp-lp, ')'));
-            return;
-        }
-        helper(res, cur + "(", lp-1, rp);
-        if (lp < rp) helper(res, cur + ")", lp, rp-1);
-    }
-};
-```
-
 ## 149. Max Points on a Line
 
 给了一堆二维点，求最大的共线点的个数。
@@ -118,6 +90,15 @@ public:
     }
 };
 ```
+
+
+## 282. Expression Add Operators
+
+## 385. Mini Parser
+
+## 386. Lexicographical Numbers
+
+## 388. Longest Absolute File Path
 
 ## 103. Binary Tree Zigzag Level Order Traversal
 
@@ -493,111 +474,12 @@ public:
 
 给定字符串能否拆成斐波那契数列
 
-## 146. LRU Cache
+## 378. Kth Smallest Element in a Sorted Matrix
 
-实现一个 LRU 缓存器，要求 `get` 和 `put` 方法为 O(1) 时间复杂度。
+##
 
-1. 双向链表+哈希表
-   - 双向链表实现：dummy node，减少边界处理复杂度，并实现三个辅助函数
-   - put 实现：
+实现LFU（最不经常使用）缓存算法，
 
-```cpp
-// 2020-09-18 submission
-struct ListNode
-{
-    int key;
-    int value;
-    struct ListNode* next;
-    struct ListNode* prev;
-    explicit ListNode(int key, int value) : key(key), value(value), next(nullptr), prev(nullptr){}
-};
-
-class LRUCache {
-public:
-
-    LRUCache(int capacity) {
-        this->size = 0;
-        this->capacity = capacity;
-        this->dummyHead = new ListNode(0);
-        this->dummyTail = new ListNode(0);
-        this->dummyHead->next = this->dummyTail;
-        this->dummyTail->prev = this->dummyHead;
-    }
-
-    int get(int key) {
-        if (!cache.count(key)) return -1;
-        else {
-            ListNode* node = m[key];
-            int value = node->second;
-            this->moveNodeToHead(node);
-            return value;
-        }
-    }
-
-    void put(int key, int value) {
-        if (m.count(key)) {
-            this->moveNodeToHead(node);
-        }
-        else {
-            ListNode* node = new ListNode(key, value);
-            this->addNodeToHead(node);
-            m[key] = node;
-            ++size;
-            while (capacity < size) {
-                ListNode* tailNode = this->dummyTail->prev;
-                m.erase(tailNode->key);
-                this->removeNodeFromList(tailNode);
-                --size;
-            }
-        }
-    }
-
-private:
-    int addNodeToHead(ListNode* node) {
-        if (node == nullptr) {
-            return -1;
-        }
-        node->next = this->dummyHead->next;
-        this->dummyHead->next = node;
-        node->prev = this->dummyHead;
-        node->next->prev = node;
-        return 0;
-    }
-
-    int moveNodeToHead(ListNode* node) {
-        if (node == nullptr) {
-            return -1;
-        }
-        node->next->prev = node->prev;
-        node->prev->next = node->next;
-        return addNodeToHead(node);
-    }
-
-    int removeNodeFromList(ListNode* node) {
-        if (node == nullptr) {
-            return -1;
-        }
-        node->next->prev = node->prev;
-        node->prev->next = node->next;
-        delete node;
-        return 0;
-    }
-
-private:
-    uint32_t size;
-    uint32_t capacity;
-    struct ListNode* dummyHead;
-    struct ListNode* dummyTail;
-    std::unordered_map<int, struct ListNode*> cache;
-};
-
-/**
- * Your LRUCache object will be instantiated and called as such:
- * LRUCache* obj = new LRUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
- */
-```
 
 ## 131. Palindrome Partitioning
 
@@ -637,33 +519,6 @@ public:
             ++dp[sum];
         }
         return res;
-    }
-};
-```
-
-## 409
-
-```cpp
-// 2021-12-23 submission
-// 95/95 cases passed
-// Runtime: 4 ms, faster than 71.27% of C++ online submissions.
-// Memory Usage: 6.6 MB, less than 46.27% of C++ online submissions.
-class Solution {
-public:
-    int longestPalindrome(string s) {
-        unordered_map<char, int> m;
-        for (char c : s) {
-            ++m[c];
-        }
-        int odd_cnt = 0, even_cnt = 0;
-        for (auto it = m.begin(); it != m.end(); ++it) {
-            if (it->second % 2 == 0) even_cnt += it->second;
-            else {
-                even_cnt += (it->second - 1);
-                odd_cnt = 1;
-            }
-        }
-        return odd_cnt + even_cnt;
     }
 };
 ```
@@ -882,37 +737,6 @@ public:
                 q.pop();
             }
             res.push_back(level_sum / q_size);
-        }
-        return res;
-    }
-};
-```
-
-
-
-## 696
-
-1. 动态规划：dp[i] 表示截止到 i 位置且包含 i 位置的有效字符长度，分两种情况讨论。s[i] == s[i-1] 时，就要将 dp[i-1] 视为内字符串，在内字符串的两边加上 s[i] 和 s[i-dp[i-1]-1]，要求这两个字符不能相同；s[i] != s[i-1] 时，就可以直接视作长度为 2 的有效字符串。
-
-```cpp
-// 2021-12-22 submission
-// 91/91 cases passed
-// Runtime: 20 ms, faster than 93.86% of C++ online submissions.
-// Memory Usage: 14.6 MB, less than 6.24% of C++ online submissions.
-class Solution {
-public:
-    int countBinarySubstrings(string s) {
-        int res = 0;
-        vector<int> dp(s.length(), 0);
-        for (int i = 1; i < s.length(); i++) {
-            if (s[i] != s[i-1]) {
-                dp[i] = 2;
-                res += 1;
-            }
-            else if(i-dp[i-1]-1>=0 && s[i-dp[i-1]-1]!=s[i]) {
-                dp[i] = dp[i-1] + 2;
-                res += 1;
-            }
         }
         return res;
     }
@@ -1258,3 +1082,51 @@ public:
 ```
 
 ## 115 (溢出存疑)
+
+## 398 (TLE)
+
+## 233. Number of Digit One
+
+比给定数小的所有数中1出现的个数
+
+解题思路
+
+1. 100 以内的数字，除了10-19之间有 11 个 ‘1’ 之外，其余都只有1个。如果不考虑 [10, 19] 区间上那多出来的 10 个 ‘1’ 的话，那么在对任意一个两位数，十位数上的数字(加1)就代表1出现的个数，这时候再把多出的 10 个加上即可。比如 56 就有 (5+1)+10=16 个。如何知道是否要加上多出的 10 个呢，就要看十位上的数字是否大于等于2，是的话就要加上多余的 10 个 '1'。那么就可以用 (x+8)/10 来判断一个数是否大于等于2。对于三位数区间 [100, 199] 内的数也是一样，除了 [110, 119] 之间多出的10个数之外，共 21 个 ‘1’，其余的每 10 个数的区间都只有 11 个 ‘1’，所以 [100, 199] 内共有 21 + 11 * 9 = 120 个 ‘1’。那么现在想想 [0, 999] 区间内 ‘1’ 的个数怎么求？根据前面的结果，[0, 99] 内共有 20 个，[100, 199] 内共有 120 个，而其他每 100 个数内 ‘1’ 的个数也应该符合之前的规律，即也是 20 个，那么总共就有 120 + 20 * 9 = 300 个 ‘1’。那么还是可以用相同的方法来判断并累加1的个数
+
+```C++
+class Solution {
+public:
+    int countDigitOne(int n) {
+        int res = 0, a = 1, b = 1;
+        while (n > 0) {
+            res += (n + 8) / 10 * a + (n % 10 == 1) * b;
+            b += n % 10 * a;
+            a *= 10;
+            n /= 10;
+        }
+        return res;
+    }
+};
+```
+
+## 397. Integer Replacement
+
+## 399. Evaluate Division
+
+## 355. Design Twitter
+
+## 349. Intersection of Two Arrays
+
+## 350. Intersection of Two Arrays II
+
+## 341. Flatten Nested List Iterator
+
+## 332. Reconstruct Itinerary
+
+给定飞机票建立一个行程单，如果有多种方法，取其中字母顺序小的那种方法。本质是有向图的边遍历。
+
+1. 邻接链表+multiset：建图，从节点 JFK 开始遍历，只要当前节点映射的 multiset 里有节点，取出这个节点，将其在 multiset 里删掉，然后继续递归遍历这个节点，由于题目中限定了一定会有解，那么等图中所有的multiset中都没有节点的时候，我们把当前节点存入结果中，然后再一层层回溯回去，将当前节点都存入结果，那么最后我们结果中存的顺序和我们需要的相反的，我们最后再翻转一下即可，参见代码如下：
+
+## 331. Verify Preorder Serialization of a Binary Tree
+
+判断给定字符串是否为一个正确的二叉树的先序遍历序列化字符串。

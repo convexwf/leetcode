@@ -2627,30 +2627,6 @@ public:
 };
 ```
 
-## 233. Number of Digit One
-
-比给定数小的所有数中1出现的个数
-
-解题思路
-
-1. 100 以内的数字，除了10-19之间有 11 个 ‘1’ 之外，其余都只有1个。如果不考虑 [10, 19] 区间上那多出来的 10 个 ‘1’ 的话，那么在对任意一个两位数，十位数上的数字(加1)就代表1出现的个数，这时候再把多出的 10 个加上即可。比如 56 就有 (5+1)+10=16 个。如何知道是否要加上多出的 10 个呢，就要看十位上的数字是否大于等于2，是的话就要加上多余的 10 个 '1'。那么就可以用 (x+8)/10 来判断一个数是否大于等于2。对于三位数区间 [100, 199] 内的数也是一样，除了 [110, 119] 之间多出的10个数之外，共 21 个 ‘1’，其余的每 10 个数的区间都只有 11 个 ‘1’，所以 [100, 199] 内共有 21 + 11 * 9 = 120 个 ‘1’。那么现在想想 [0, 999] 区间内 ‘1’ 的个数怎么求？根据前面的结果，[0, 99] 内共有 20 个，[100, 199] 内共有 120 个，而其他每 100 个数内 ‘1’ 的个数也应该符合之前的规律，即也是 20 个，那么总共就有 120 + 20 * 9 = 300 个 ‘1’。那么还是可以用相同的方法来判断并累加1的个数
-
-```C++
-class Solution {
-public:
-    int countDigitOne(int n) {
-        int res = 0, a = 1, b = 1;
-        while (n > 0) {
-            res += (n + 8) / 10 * a + (n % 10 == 1) * b;
-            b += n % 10 * a;
-            a *= 10;
-            n /= 10;
-        }
-        return res;
-    }
-};
-```
-
 ## 239. Sliding Window Maximum
 
 解题思路
@@ -2720,31 +2696,6 @@ public:
             else if (matrix[x][y] > target) --y;
         }
         return false;
-    }
-};
-```
-
-## 274. H-Index
-
-解题思路
-
-1. 降序排序：可以按照如下方法确定某人的 H 指数：1、将其发表的所有SCI论文按被引次数从高到低排序；2、从前往后查找排序后的列表，直到某篇论文的序号大于该论文被引次数。所得序号减一即为H指数。
-2. 桶排序： <https://leetcode.com/problems/h-index/discuss/70768/Java-bucket-sort-O(n)-solution-with-detail-explanation>
-
-```C++
-// 2020-11-11 submission
-// ?/? cases passed
-// Runtime: 8 ms, faster than 33.71% of C++ online submissions.
-// Memory Usage: 9 MB, less than 100.00% of C++ online submissions.
-class Solution {
-public:
-    int hIndex(vector<int>& citations) {
-        sort(citations.begin(), citations.end(), greater<int>());
-        int h_idx = 1;
-        for (; h_idx <= citations.size(); h_idx++) {
-            if (h_idx > citations[h_idx-1]) break;
-        }
-        return h_idx - 1;
     }
 };
 ```
