@@ -100,32 +100,6 @@ public:
 
 ## 388. Longest Absolute File Path
 
-## 103. Binary Tree Zigzag Level Order Traversal
-
-二叉树的之字形层序遍历
-
-```cpp
-class Solution {
-public:
-    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        vector<vector<int>> vec;
-        pushOrder(root, vec, 0);
-        for(int i = 1; i < vec.size(); i+=2) {
-            reverse(vec[i].begin(), vec[i].end());
-        }
-        return vec;
-    }
-
-    void pushOrder(TreeNode*root, vector<vector<int>>& vec, int depth) {
-        if(root == NULL) return;
-        if(vec.size() - depth <= 0) vec.resize(depth+1);
-        vec[depth].push_back(root->val);
-        pushOrder(root->left, vec, depth+1);
-        pushOrder(root->right, vec, depth+1);
-    }
-};
-```
-
 
 ## 111. Minimum Depth of Binary Tree
 
@@ -134,6 +108,7 @@ public:
 ```cpp
 
 ```
+
 
 ## 307. Range Sum Query - Mutable
 
@@ -433,43 +408,6 @@ public:
     }
 };
 
-## 123. Best Time to Buy and Sell Stock III
-
-股票交易，买进前必须卖出手头已有的，允许最多两次交易
-
-1. 在数组中间画条线，在左边进行第一次交易，在右边进行第二次交易，来计算两次交易的最大收益和。这样，就将问题简化为只进行一次交易的问题了。维护两个数组，分别存储截止到第 $x$ 日交易的最大利润和第 $x$ 日之后交易的最大利润。
-
-```cpp
-// 2020-07-23 submission
-class Solution {
-public:
-    int maxProfit(vector<int>& prices) {
-        if (prices.empty()) return 0;
-        int days = prices.size();
-        vector<int> front(days, 0), latter(days, 0);
-
-        int min_price = prices[0], max_price = prices[days-1];
-        for (int i = 1; i < days; i++) {
-            min_price = min(min_price, prices[i]);
-            front[i] = max(front[i-1], prices[i]-min_price);
-            // cout << "front " << prices[i] << " " << front[i] << endl;
-        }
-        for (int i = days - 2; i >= 0; i--) {
-            max_price = max(max_price, prices[i]);
-            latter[i] = max(latter[i+1], max_price-prices[i]);
-            // cout << "latter " << prices[i] << " " << latter[i] << endl;
-        }
-
-        int max_profit = 0;
-        for (int pivot = 0; pivot < days; pivot++) {
-            max_profit = max(max_profit, front[pivot]+latter[pivot]);
-        }
-        return max_profit;
-
-    }
-};
-```
-
 ## 306. Additive Number
 
 给定字符串能否拆成斐波那契数列
@@ -498,251 +436,7 @@ public:
 
 ```
 
-## 560. Subarray Sum Equals K
-
-解题思路
-
-1. 用一个哈希表来建立连续子数组之和跟其出现次数之间的映射，初始化要加入 {0,1} 这对映射。建立哈希表的目的是为了让我们可以快速的查找 sum-k 是否存在，即是否有连续子数组的和为 sum-k，如果存在的话，那么和为k的子数组一定也存在
-
-```cpp
-// 2021-03-17 submission
-// Runtime: 84 ms, faster than 74.74% of C++ online submissions for Subarray Sum Equals K.
-// Memory Usage: 42 MB, less than 21.64% of C++ online submissions for Subarray Sum Equals K.
-class Solution {
-public:
-    int subarraySum(vector<int>& nums, int k) {
-        unordered_map<int, int> dp{{0 ,1}};
-        int sum = 0, res = 0;
-        for (int num : nums) {
-            sum += num;
-            res += dp[sum - k];
-            ++dp[sum];
-        }
-        return res;
-    }
-};
-```
-
-## 501
-
-1. 先序遍历+哈希表计数
-2. 递归中序遍历:不用除了递归中的隐含栈之外的额外空间。二分搜索树的中序遍历结果是有序的。
-3. 迭代中序遍历。
-
-```cpp
-// 2021-12-21 submission
-// 23/23 cases passed
-// Runtime: 20 ms, faster than 64.74% of C++ online submissions.
-// Memory Usage: 29.3 MB, less than 5.03% of C++ online submissions.
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    vector<int> findMode(TreeNode* root) {
-        unordered_map<int, int> m;
-        int max_val = DFS(root, m);
-
-        vector<int> res;
-        for (auto it = m.begin(); it != m.end(); ++it) {
-            if (it->second == max_val)
-                res.push_back(it->first);
-        }
-        return res;
-    }
-
-    int DFS(TreeNode* root, unordered_map<int, int>& m) {
-        if (!root) return 0;
-        ++m[root->val];
-        return max(max(DFS(root->left, m), DFS(root->right, m)), m[root->val]);
-    }
-};
-```
-
-```cpp
-// 2021-12-21 submission
-// 23/23 cases passed
-// Runtime: 24 ms, faster than 43.63% of C++ online submissions.
-// Memory Usage: 29.2 MB, less than 5.03% of C++ online submissions.
-class Solution {
-public:
-    vector<int> findMode(TreeNode* root) {
-        TreeNode* pre = nullptr;
-        vector<int> res;
-        int cur = 1, int mx = 0;
-        inorder(root, pre, res, cur, mx);
-        return res;
-    }
-
-    void inorder(TreeNode* root, TreeNode* &pre, vector<int>& candidates, int& cur, int& mx) {
-        if (!root) return;
-        inorder(root->left, pre, candidates, cur, mx);
-        if (pre) cur = pre->val == root->val ? cur+1 : 1;
-        if (cur >= mx) {
-            if (cur > mx) candidates.clear();
-            mx = cur;
-            candidates.push_back(root->val);
-        }
-        pre = root;
-        inorder(root->right, pre, candidates, cur, mx);
-    }
-};
-```
-
-```cpp
-// 2021-12-21 submission
-// 23/23 cases passed
-// Runtime: 28 ms, faster than 25.09% of C++ online submissions.
-// Memory Usage: 29.1 MB, less than 6.61% of C++ online submissions.
-class Solution {
-public:
-    vector<int> findMode(TreeNode* root) {
-        if (!root) return {};
-        vector<int> res;
-        TreeNode* cur = root, *pre = nullptr;
-        int cnt = 0, mx = 0;
-        while (cur) {
-            TreeNode* right_most = cur->left;
-            if (right_most) {
-                while (right_most->right != nullptr && right_most->right != cur) {
-                    right_most = right_most->right;
-                }
-                if (right_most->right == nullptr) {
-                    right_most->right = cur;
-                    cur = cur->left;
-                    continue;
-                }
-                else right_most->right = nullptr;
-            }
-            if (pre) cnt = (pre->val == cur->val) ? cnt+1 : 1;
-            if (cnt >= mx) {
-                if (cnt > mx) res.clear();
-                mx = cnt;
-                res.push_back(cur->val);
-            }
-            res.push_back(cur->val);
-            cur = cur->right;
-        }
-        return res;
-    }
-};
-```
-
-## 520
-
-1. 状态机：![520. 状态机](res/myCode-520._状态机.png)
-
-```cpp
-// 2021-12-21 submission
-// 550/550 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.7 MB, less than 17.78% of C++ online submissions.
-class Solution {
-public:
-    bool detectCapitalUse(string word) {
-        vector<vector<int> > trans{
-            {1, 2},
-            {1, 5},
-            {3, 4},
-            {3, 5},
-            {5, 4},
-            {5, 5}
-        };
-        int state = 0;
-        for (char c : word) {
-            int next = isupper(c) ? 1 : 0;
-            state = trans[state][next];
-            if (state == 5) break;
-        }
-        return state != 5;
-    }
-};
-```
-
 ## 530
-## 606
-
-```cpp
-// 2021-12-23 submission
-// 160/160 cases passed
-// Runtime: 16 ms, faster than 84.13% of C++ online submissions.
-// Memory Usage: 66.6 MB, less than 15.49% of C++ online submissions.
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    string tree2str(TreeNode* root) {
-        if (!root) return "()";
-        string res = to_string(root->val), lres, rres;
-        if (root->left) lres = tree2str(root->left);
-        if (root->right) rres = tree2str(root->right);
-        if (root->right) {
-            res += ("(" + lres + ")(" + rres + ")");
-        } else if (root->left) {
-            res += ("(" + lres + ")");
-        }
-        return res;
-    }
-};
-```
-
-## 637
-
-```cpp
-// 2021-12-21 submission
-// 66/66 cases passed
-// Runtime: 12 ms, faster than 85.36% of C++ online submissions.
-// Memory Usage: 22.5 MB, less than 72.82% of C++ online submissions.
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    vector<double> averageOfLevels(TreeNode* root) {
-        queue<TreeNode*> q;
-        vector<double> res;
-        if (root) q.push(root);
-        while (!q.empty()) {
-            int q_size = q.size();
-            double level_sum = 0;
-            for (int i = 0; i < q_size; i++) {
-                level_sum += q.front()->val;
-                if (q.front()->left) q.push(q.front()->left);
-                if (q.front()->right) q.push(q.front()->right);
-                q.pop();
-            }
-            res.push_back(level_sum / q_size);
-        }
-        return res;
-    }
-};
-```
-
 
 ## 458. Poor Pigs
 
@@ -803,44 +497,14 @@ public:
 };
 ```
 
-## 438. Find All Anagrams in a String
-
-解题思路
-
-1. 滑动窗口
-
-```cpp
-// 2021-03-18 submission
-// ?/? cases passed
-// Runtime: 16 ms, faster than 60.99% of C++ online submissions.
-// Memory Usage: 8.6 MB, less than 53.85% of C++ online submissions.
-class Solution {
-public:
-    vector<int> findAnagrams(string s, string p) {
-        unordered_map<char, int> m;
-        int len = p.length();
-        for (char c : p)
-            ++m[c];
-
-        int l = 0;
-        vector<int> res;
-        for (int i = 0; i < s.length(); i++) {
-            --m[s[i]];
-            while (m[s[i]] < 0)
-                ++m[s[l++]];
-            if (i - l + 1 == len) res.push_back(l);
-        }
-        return res;
-    }
-};
-```
-
 ## 494. Target Sum
 
 给定一个非负整数数组和一个目标值，给数组中每个数字加上正号或负号，然后求和要和目标值相等。
 
 1. BFS
-2.
+2. 背包问题
+   - `Sum(positive) - Sum(negative) = S`，`Sum(positive)+Sum(negative)=total`，两式相加得 `2 * Sum(positive) = (S+total)`
+   - 题目等价于从 nums 里任取若干使其和为（S+total) / 2
 
 ```cpp
 // 2021-03-21 submission
@@ -857,7 +521,6 @@ public:
                     can.push_back(make_pair(it.first-nums[i], it.second));
                     m[it.first] = 0;
                 }
-
             }
             for (auto it : can) {
                 m[it.first] += it.second;
@@ -865,6 +528,29 @@ public:
             can.clear();
         }
         return m[S];
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int findTargetSumWays(vector & nums, int sum)
+    {
+        int total = accumulate(nums.begin(), nums.end(), 0);
+        if (sum > total || sum < -total) return 0;
+        if ((total + sum) & 1 != 0) return 0; // S, total 奇偶性必须相同
+        int target = (total + sum) / 2;
+        vector<int> dp(target + 1, 0);
+        dp[0] = 1;
+        for (int n : nums)
+        {
+            int k0 = static_cast<int>(dp.size()) - 1 - n;
+            for (int k = k0; k >= 0; --k) {
+                dp[k + n] += dp[k];
+            }
+        }
+        return dp.back();
     }
 };
 ```
@@ -1087,13 +773,16 @@ public:
 
 ## 233. Number of Digit One
 
-比给定数小的所有数中1出现的个数
+统计比给定数小的所有数中 1 出现的个数。
 
 解题思路
 
-1. 100 以内的数字，除了10-19之间有 11 个 ‘1’ 之外，其余都只有1个。如果不考虑 [10, 19] 区间上那多出来的 10 个 ‘1’ 的话，那么在对任意一个两位数，十位数上的数字(加1)就代表1出现的个数，这时候再把多出的 10 个加上即可。比如 56 就有 (5+1)+10=16 个。如何知道是否要加上多出的 10 个呢，就要看十位上的数字是否大于等于2，是的话就要加上多余的 10 个 '1'。那么就可以用 (x+8)/10 来判断一个数是否大于等于2。对于三位数区间 [100, 199] 内的数也是一样，除了 [110, 119] 之间多出的10个数之外，共 21 个 ‘1’，其余的每 10 个数的区间都只有 11 个 ‘1’，所以 [100, 199] 内共有 21 + 11 * 9 = 120 个 ‘1’。那么现在想想 [0, 999] 区间内 ‘1’ 的个数怎么求？根据前面的结果，[0, 99] 内共有 20 个，[100, 199] 内共有 120 个，而其他每 100 个数内 ‘1’ 的个数也应该符合之前的规律，即也是 20 个，那么总共就有 120 + 20 * 9 = 300 个 ‘1’。那么还是可以用相同的方法来判断并累加1的个数
+1. 分类讨论
+   - 10 以内的数字：看个位数是否大于 1，是就加上 1
+   - 100 以内的数字：
+   - 除了10-19之间有 11 个 ‘1’ 之外，其余都只有1个。如果不考虑 [10, 19] 区间上那多出来的 10 个 ‘1’ 的话，那么在对任意一个两位数，十位数上的数字(加1)就代表1出现的个数，这时候再把多出的 10 个加上即可。比如 56 就有 (5+1)+10=16 个。如何知道是否要加上多出的 10 个呢，就要看十位上的数字是否大于等于2，是的话就要加上多余的 10 个 '1'。那么就可以用 (x+8)/10 来判断一个数是否大于等于2。对于三位数区间 [100, 199] 内的数也是一样，除了 [110, 119] 之间多出的10个数之外，共 21 个 ‘1’，其余的每 10 个数的区间都只有 11 个 ‘1’，所以 [100, 199] 内共有 21 + 11 * 9 = 120 个 ‘1’。那么现在想想 [0, 999] 区间内 ‘1’ 的个数怎么求？根据前面的结果，[0, 99] 内共有 20 个，[100, 199] 内共有 120 个，而其他每 100 个数内 ‘1’ 的个数也应该符合之前的规律，即也是 20 个，那么总共就有 120 + 20 * 9 = 300 个 ‘1’。那么还是可以用相同的方法来判断并累加1的个数
 
-```C++
+```cpp
 class Solution {
 public:
     int countDigitOne(int n) {
@@ -1115,12 +804,6 @@ public:
 
 ## 355. Design Twitter
 
-## 349. Intersection of Two Arrays
-
-## 350. Intersection of Two Arrays II
-
-## 341. Flatten Nested List Iterator
-
 ## 332. Reconstruct Itinerary
 
 给定飞机票建立一个行程单，如果有多种方法，取其中字母顺序小的那种方法。本质是有向图的边遍历。
@@ -1130,3 +813,44 @@ public:
 ## 331. Verify Preorder Serialization of a Binary Tree
 
 判断给定字符串是否为一个正确的二叉树的先序遍历序列化字符串。
+
+## 164. Maximum Gap
+
+给一个乱序的数组，求出数组排序以后的相邻数字的差最大是多少。要求时间复杂度 O(n)。
+
+1. 桶排序
+   - 首先找出数组的最大值和最小值以确定每个桶的容量，即为 len = (max - min) / (n - 1)
+   - 区间分别为：`[min,min+len)`, `[min+len,min+2*len)`, `[min+2*len,min+3*len)`, ... `[max-len,max]`
+   - 桶的个数为 n - 1
+   - 最大间距的两个数不会在同一个桶中，而是一个桶的最小值和另一个桶的最大值
+
+**边界条件**
+
+1. 可能存在空桶
+
+```cpp
+class Solution {
+public:
+    int maximumGap(vector<int>& nums) {
+        if (nums.size() <= 1) return 0;
+        int mx = INT_MIN, mn = INT_MAX, n = nums.size(), pre = 0, res = 0;
+        for (int num : nums) {
+            mx = max(mx, num);
+            mn = min(mn, num);
+        }
+        int size = (mx - mn) / (n - 1), cnt = n - 1;
+        vector<int> bucket_min(cnt, INT_MAX), bucket_max(cnt, INT_MIN);
+        for (int num : nums) {
+            int idx = (num - mn) / size;
+            bucket_min[idx] = min(bucket_min[idx], num);
+            bucket_max[idx] = max(bucket_max[idx], num);
+        }
+        for (int i = 1; i < cnt; ++i) {
+            if (bucket_min[i] == INT_MAX || bucket_max[i] == INT_MIN) continue;
+            res = max(res, bucket_min[i] - bucket_max[pre]);
+            pre = i;
+        }
+        return res;
+    }
+};
+```
