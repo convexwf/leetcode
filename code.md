@@ -101,98 +101,51 @@ public:
 ## 388. Longest Absolute File Path
 
 
-## 111. Minimum Depth of Binary Tree
 
-二叉树的最小深度。
-
-```cpp
-
-```
 
 
 ## 307. Range Sum Query - Mutable
+
+```cpp
+class NumArray {
+public:
+    NumArray(vector<int> nums) {
+        data.resize(nums.size());
+        bit.resize(nums.size() + 1);
+        for (int i = 0; i < nums.size(); ++i) {
+            update(i, nums[i]);
+        }
+    }
+
+    void update(int i, int val) {
+        int diff = val - data[i];
+        for (int j = i + 1; j < bit.size(); j += (j & -j)) {
+            bit[j] += diff;
+        }
+        data[i] = val;
+    }
+
+    int sumRange(int i, int j) {
+        return getSum(j + 1) - getSum(i);
+    }
+
+    int getSum(int i) {
+        int res = 0;
+        for (int j = i; j > 0; j -= (j&-j)) {
+            res += bit[j];
+        }
+        return res;
+    }
+
+private:
+    vector<int> data, bit;
+};
+```
 
 
 ## 214. Shortest Palindrome
 
 在给定字符串 s 的前面加上尽可能少的字符，使之变成回文串。
-
-## 97. Interleaving String
-
-给定字符串 s1，s2 和 s3，问 s3 是不是由 s1 和 s2 的交织字符串组成
-
-1. 动态规划
-   - 前提：字符串 s1 和 s2 的长度和必须等于 s3 的长度
-   - 初始化：若 s1 和 s2 其中的一个为空串的话，那么另一个肯定和 s3 的长度相等，则按位比较
-   - 在任意非边缘位置 `dp[i][j]` 时，它的左边或上边有可能为 True 或是 False，两边都可以更新过来，只要有一条路通着，那么这个点就可以为 True
-   - 转移方程：`dp[i][j] = (dp[i - 1][j] && s1[i - 1] == s3[i - 1 + j]) || (dp[i][j - 1] && s2[j - 1] == s3[j - 1 + i])`;
-
-**边界条件**
-
-1. s1 或者 s2 为空
-
-```cpp
-// 2020-09-14 submission
-// ?/? cases passed
-// Runtime: 8 ms, faster than 47.16% of C++ online submissions.
-// Memory Usage: 6.4 MB, less than 70.29% of C++ online submissions.
-class Solution {
-public:
-    bool isInterleave(string s1, string s2, string s3) {
-        int c1 = s1.length(), c2 = s2.length();
-        if (c1 + c2 != s3.length()) return false;
-        vector<bool> dp(c1 + 1, true);
-
-        for (int i = 1; i <= c1; i++) {
-            dp[i] = (s1.substr(0, i) == s3.substr(0, i));
-        }
-        for (int i = 1; i <= c2; i++) {
-            dp[0] = (s2.substr(0, i) == s3.substr(0, i));
-            for (int j = 1; j <= c1; j++) {
-                dp[j] = (dp[j-1] && s1[j-1]==s3[i+j-1]) || (dp[j] && s2[i-1]==s3[i+j-1]);
-                // cout << s1[j-1] << " " << s2[i-1] << endl;
-            }
-        }
-
-        return dp[c1];
-    }
-};
-```
-
-## 91. Decode Ways
-
-编码的可能性，比如 "12" 可以解码为 "AB" 或 "L"。
-
-1. 动态规划
-
-## 10. Regular Expression Matching
-
-正则匹配：`.` 匹配任意单个字符，`*` 匹配 0 个或多个前置字符。
-
-1. 正则匹配
-   - sp 和 pp 都到了末尾，表示匹配结束
-   - 如果 p[pp+1] 为 *，
-
-```cpp
-class Solution {
-public:
-    bool isMatch(string s, string p) {
-        return helper(s, p, 0, 0);
-    }
-
-    bool helper(string& s, string& p, int sp, int pp) {
-        if(sp == s.size() && pp == p.size()) return true;
-        if(pp+1 < p.size() && p[pp+1] == '*') {
-            if(sp < s.size() && (p[pp] == '.' || p[pp]==s[sp])) {
-                if(helper(s, p, sp+1, pp)) return true;
-            }
-            return helper(s, p, sp, pp+2);
-        }
-        if(sp < s.size() && (p[pp] == '.' || p[pp] == s[sp])) return helper(s, p, sp+1, pp+1);
-        else return false;
-    }
-};
-```
 
 ## 4. Median of Two Sorted Arrays
 
@@ -258,156 +211,6 @@ public:
 };
 ```
 
-## 85. Maximal Rectangle
-
-解题思路
-
-1. 参见 `##84` 思路，同样是要先确定高度和宽度再得到最大面积
-2. 维护三个数组（左连续序列长度、右连续序列长度、高度）
-   左连续序列长度：指从左边开始计数到当前位置，连续的高于当前高度的序列长度（包括当前位置）
-   右连续序列长度：指从右边开始计数到当前位置，连续的高于当前高度的序列长度（包括当前位置）
-3. 进行行遍历
-    + 若当前位置为“1”，要考虑上一侧行遍历序列长度是否大于 0。如果大于0说明正上面位置为“1”，则取连续的行“1”长度和上一次序列遍历长度的最小值，否则，直接认为序列长度为连续的行“1”长度。
-    + 若当前位置为“0”，序列长度直接置0
-
-边界条件
-
-1. 矩阵为空
-
-```cpp
-// 2020-09-15 submission
-// ?/? cases passed
-// Runtime: 48 ms, faster than 93.31% of C++ online submissions.
-// Memory Usage: 11.1 MB, less than 87.63% of C++ online submissions.
-class Solution {
-public:
-    int maximalRectangle(vector<vector<char>>& matrix) {
-        if (matrix.empty() || matrix[0].empty()) return 0;
-        int rows = matrix.size();
-        int cols = matrix[0].size();
-
-        int max_area = 0;
-        vector<int> left_seq(cols, INT_MAX);
-        vector<int> right_seq(cols, INT_MAX);
-        vector<int> height(cols, 0);
-        int continous = 0;
-
-        for (int i = 0; i < rows; i++) {
-            continous = 0;
-            for (int j = cols-1; j >= 0; j--) {
-                if (matrix[i][j] == '1') continous++;
-                else continous = 0;
-                height[j] = continous == 0 ? 0 : height[j] + 1;
-                right_seq[j] = right_seq[j] == 0 ? continous : min(right_seq[j], continous);
-            }
-
-            continous = 0;
-            for (int j = 0; j < cols; j++) {
-                if (matrix[i][j] == '1') continous++;
-                else continous = 0;
-                left_seq[j] = left_seq[j] == 0 ? continous : min(left_seq[j], continous);
-                max_area = max(max_area, height[j]*(left_seq[j]+right_seq[j]-1));
-            }
-        }
-
-        return max_area;
-    }
-};
-```
-
-## 87. Scramble String
-
-解题思路
-
-1. s1 和 s2 是 scramble 的话，那么必然存在一个在 s1 上的长度 l1，将 s1 分成 s11 和 s12 两段，同样有 s21 和 s22，那么要么 s11 和 s21 是 scramble 的并且 s12 和 s22 是 scramble 的；要么 s11 和 s22 是 scramble 的并且 s12 和 s21 是 scramble 的。
-2. 递归方法是将字符串按照不同长度进行切割，然后让子递归函数判断是否成立。
-注意一个词和它自身是 scramble 的。
-3. 为了减少复杂度，每次切割前可以采用排序或者统计字母频率等。
-
-```cpp
-// 2020-07-16 submission
-// ?/? cases passed
-// Runtime: 12 ms, faster than 79.75% of C++ online submissions
-// Memory Usage: 8.9 MB, less than 73.29% of C++ online submissions
-class Solution {
-public:
-    bool isScramble(string s1, string s2) {
-        if (s1.size() != s2.size()) return false;
-        if(s1 == s2) return true;
-        int len = s1.length();
-
-        int freq[26] = {0};
-        for (int i = 0; i < len; i++) {
-            ++freq[s1[i]-'a'];
-            --freq[s2[i]-'a'];
-        }
-        for (int i = 0; i < 26; i++) {
-            if (freq[i] != 0) return false;
-        }
-
-        for (int i = 1; i < len; i++) {
-            string s11 = s1.substr(0, i);
-            string s12 = s1.substr(i);
-            string s21 = s2.substr(0, i);
-            string s22 = s2.substr(i);
-            if (isScramble(s11, s21) && isScramble(s12, s22)) return true;
-
-            s21 = s2.substr(0, len - i);
-            s22 = s2.substr(len - i);
-            if (isScramble(s11, s22) && isScramble(s12, s21)) return true;
-        }
-        return false;
-    }
-};
-```
-
-## 57. Insert Interval
-
-解题思路：从最左边遍历待插入区间，如果遍历区间右边界小于新区间左边界，将遍历区间加入结果，否则跳出循环。然后正式对交叉的区间进行处理，注意每次处理前都要判断是否重叠（因为有可能出现新区建在最左边和最右边的情况），然后取左边界最小值和右边界最大值作为新区间。不重叠时候跳出循环，将新区间加入结果，最后把剩下的待插入区间遍历完即可，所以有三个阶段。
-边界条件：待插列表为空；新区间在最左边或者最右边；插入区间为空（标准程序没有注意到）
-
-// 2020-07-14 submission
-// ?/? cases passed
-// Runtime: 32 ms, faster than 64.68% of C++ online submissions
-// Memory Usage: 17.1 MB, less than 63.69% of C++ online submissions
-class Solution {
-public:
-    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-        if (newInterval.empty()) return vector<vector<int>>(intervals.begin(), intervals.end());
-        vector<vector<int>> res;
-        int cnt = intervals.size();
-
-        int cur = 0;
-        while(cur < cnt) {
-            if (intervals[cur][1] < newInterval[0])
-                res.push_back(intervals[cur++]);
-            else
-                break;
-        }
-
-        vector<int> temp_interval(newInterval.begin(), newInterval.end());
-        for (; cur < cnt; cur++) {
-            if (judge(temp_interval, intervals[cur])) {
-                temp_interval[0] = min(temp_interval[0], intervals[cur][0]);
-                temp_interval[1] = max(temp_interval[1], intervals[cur][1]);
-            }
-            else
-                break;
-            // cout << "interval " << temp_interval[0] << " " << temp_interval[1] << endl;
-        }
-        res.push_back(temp_interval);
-
-        while(cur < cnt) {
-            res.push_back(intervals[cur++]);
-        }
-        return res;
-    }
-
-    bool judge(vector<int>& A, vector<int>& B) {
-        return (A[1] >= B[0] && A[0] <= B[1]) || (B[1] >= A[0] && B[0] <= A[1]);
-    }
-};
-
 ## 306. Additive Number
 
 给定字符串能否拆成斐波那契数列
@@ -464,38 +267,7 @@ public:
 
 二维数组的对角遍历，先向右上，然后左下，再右上，以此类推直至遍历完整个数组。
 
-## 327. Count of Range Sum
 
-解题思路
-
-1. 首先计算出一个累计和数组 accum，$$\text{accum}[i]=\text{accum}[i-1]+nums[i]$$ 那问题可以转化为求解所有的区间$(j, i]$，满足 $$lower <= \text{accum}[i]-\text{accum}[j] <= upper$$(亦可写成$\text{accum}[i]-\text{upper} <= \text{accum}[j] <= \text{accum}[i]-\text{lower}$)。
- 然后利用 STL 里的 multiset 容器，lower_bound() 是找数组中第一个不小于给定值的数(包括等于情况)，而 upper_bound() 是找数组中第一个大于给定值的数，distance() 方法返回两个迭代器之间的距离。
-
-边界条件
-
-1. 出现 INT_MIN 和 INT_MAX
-
-```cpp
-// 2020-11-26 submission
-// ?/? cases passed
-// Runtime: 68 ms, faster than 48.47% of C++ online submissions.
-// Memory Usage: 15.1 MB, less than 61.69% of C++ online submissions.
-class Solution {
-public:
-    int countRangeSum(vector<int>& nums, int lower, int upper) {
-        if (nums.empty()) return 0;
-        multiset<long long> st{0};
-        long long cur_sum = 0; // 后续有减法操作避免溢出
-        int res = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            cur_sum += nums[i];
-            res += distance(st.lower_bound(cur_sum-upper), st.upper_bound(cur_sum-lower));
-            st.insert(cur_sum); // why this expression after
-        }
-        return res;
-    }
-};
-```
 
 ## 494. Target Sum
 
@@ -555,42 +327,6 @@ public:
 };
 ```
 
-## 543. Diameter of Binary Tree
-
-```cpp
-// 2021-03-17 submission
-// ?/? cases passed
-// Runtime: 16 ms, faster than 35.45% of C++ online submissions.
-// Memory Usage: 23.1 MB, less than 5.27% of C++ online submissions.
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    int diameterOfBinaryTree(TreeNode* root) {
-        unordered_map<TreeNode*, int> m;
-        int res = 0;
-        maxDepth(root, res, m);
-        return res;
-    }
-    int maxDepth(TreeNode* node, int& res, unordered_map<TreeNode*, int>& m) {
-        if (!node) return 0;
-        if (m.count(node)) return m[node];
-        int left = maxDepth(node->left, res, m);
-        int right = maxDepth(node->right, res, m);
-        res = max(res, left + right);
-        return m[node] = (max(left, right) + 1);
-    }
-};
-```
 
 ## 316. Remove Duplicate Letters
 
@@ -654,9 +390,7 @@ public:
 
 ## 436 Find Right Interval
 
-## 435 Non-overlapping Intervals
 
-## 434 Number of Segments in a String
 
 ## 433 Minimum Genetic Mutation
 
@@ -718,7 +452,30 @@ public:
 };
 ```
 
+## 115 (溢出存疑)
+
+## 398 (TLE)
+
+## 397. Integer Replacement
+
+## 399. Evaluate Division
+
+## 355. Design Twitter
+
+## 332. Reconstruct Itinerary
+
+给定飞机票建立一个行程单，如果有多种方法，取其中字母顺序小的那种方法。本质是有向图的边遍历。
+
+1. 邻接链表+multiset：建图，从节点 JFK 开始遍历，只要当前节点映射的 multiset 里有节点，取出这个节点，将其在 multiset 里删掉，然后继续递归遍历这个节点，由于题目中限定了一定会有解，那么等图中所有的multiset中都没有节点的时候，我们把当前节点存入结果中，然后再一层层回溯回去，将当前节点都存入结果，那么最后我们结果中存的顺序和我们需要的相反的，我们最后再翻转一下即可，参见代码如下：
+
+## 331. Verify Preorder Serialization of a Binary Tree
+
+判断给定字符串是否为一个正确的二叉树的先序遍历序列化字符串。
+
+
 ## 315. Count of Smaller Numbers After Self
+
+返回数组中每个元素右边比他小的元素个数。
 
 1. 二分搜索法：将给定数组从最后一个开始，用二分法插入到一个新的数组，该数字在新数组中的坐标就是原数组中其右边所有较小数字的个数。时间复杂度 O(nlogn)，空间复杂度 O(n)。
 2. 二分搜索树：加一个变量 smaller 来记录比当前结点值小的所有结点的个数，每插入一个结点，会判断其和根结点的大小，如果新的结点值小于根结点值，则其会插入到左子树中，此时要增加根结点的 smaller，并继续递归调用左子结点的 insert。如果结点值大于根结点值，则需要递归调用右子结点的 insert 并加上根结点的 smaller，并加 1。
@@ -761,94 +518,6 @@ public:
         Node *root = NULL;
         for (int i = nums.size() - 1; i >= 0; --i) {
             res[i] = insert(root, nums[i]);
-        }
-        return res;
-    }
-};
-```
-
-## 115 (溢出存疑)
-
-## 398 (TLE)
-
-## 233. Number of Digit One
-
-统计比给定数小的所有数中 1 出现的个数。
-
-解题思路
-
-1. 分类讨论
-   - 10 以内的数字：看个位数是否大于 1，是就加上 1
-   - 100 以内的数字：
-   - 除了10-19之间有 11 个 ‘1’ 之外，其余都只有1个。如果不考虑 [10, 19] 区间上那多出来的 10 个 ‘1’ 的话，那么在对任意一个两位数，十位数上的数字(加1)就代表1出现的个数，这时候再把多出的 10 个加上即可。比如 56 就有 (5+1)+10=16 个。如何知道是否要加上多出的 10 个呢，就要看十位上的数字是否大于等于2，是的话就要加上多余的 10 个 '1'。那么就可以用 (x+8)/10 来判断一个数是否大于等于2。对于三位数区间 [100, 199] 内的数也是一样，除了 [110, 119] 之间多出的10个数之外，共 21 个 ‘1’，其余的每 10 个数的区间都只有 11 个 ‘1’，所以 [100, 199] 内共有 21 + 11 * 9 = 120 个 ‘1’。那么现在想想 [0, 999] 区间内 ‘1’ 的个数怎么求？根据前面的结果，[0, 99] 内共有 20 个，[100, 199] 内共有 120 个，而其他每 100 个数内 ‘1’ 的个数也应该符合之前的规律，即也是 20 个，那么总共就有 120 + 20 * 9 = 300 个 ‘1’。那么还是可以用相同的方法来判断并累加1的个数
-
-```cpp
-class Solution {
-public:
-    int countDigitOne(int n) {
-        int res = 0, a = 1, b = 1;
-        while (n > 0) {
-            res += (n + 8) / 10 * a + (n % 10 == 1) * b;
-            b += n % 10 * a;
-            a *= 10;
-            n /= 10;
-        }
-        return res;
-    }
-};
-```
-
-## 397. Integer Replacement
-
-## 399. Evaluate Division
-
-## 355. Design Twitter
-
-## 332. Reconstruct Itinerary
-
-给定飞机票建立一个行程单，如果有多种方法，取其中字母顺序小的那种方法。本质是有向图的边遍历。
-
-1. 邻接链表+multiset：建图，从节点 JFK 开始遍历，只要当前节点映射的 multiset 里有节点，取出这个节点，将其在 multiset 里删掉，然后继续递归遍历这个节点，由于题目中限定了一定会有解，那么等图中所有的multiset中都没有节点的时候，我们把当前节点存入结果中，然后再一层层回溯回去，将当前节点都存入结果，那么最后我们结果中存的顺序和我们需要的相反的，我们最后再翻转一下即可，参见代码如下：
-
-## 331. Verify Preorder Serialization of a Binary Tree
-
-判断给定字符串是否为一个正确的二叉树的先序遍历序列化字符串。
-
-## 164. Maximum Gap
-
-给一个乱序的数组，求出数组排序以后的相邻数字的差最大是多少。要求时间复杂度 O(n)。
-
-1. 桶排序
-   - 首先找出数组的最大值和最小值以确定每个桶的容量，即为 len = (max - min) / (n - 1)
-   - 区间分别为：`[min,min+len)`, `[min+len,min+2*len)`, `[min+2*len,min+3*len)`, ... `[max-len,max]`
-   - 桶的个数为 n - 1
-   - 最大间距的两个数不会在同一个桶中，而是一个桶的最小值和另一个桶的最大值
-
-**边界条件**
-
-1. 可能存在空桶
-
-```cpp
-class Solution {
-public:
-    int maximumGap(vector<int>& nums) {
-        if (nums.size() <= 1) return 0;
-        int mx = INT_MIN, mn = INT_MAX, n = nums.size(), pre = 0, res = 0;
-        for (int num : nums) {
-            mx = max(mx, num);
-            mn = min(mn, num);
-        }
-        int size = (mx - mn) / (n - 1), cnt = n - 1;
-        vector<int> bucket_min(cnt, INT_MAX), bucket_max(cnt, INT_MIN);
-        for (int num : nums) {
-            int idx = (num - mn) / size;
-            bucket_min[idx] = min(bucket_min[idx], num);
-            bucket_max[idx] = max(bucket_max[idx], num);
-        }
-        for (int i = 1; i < cnt; ++i) {
-            if (bucket_min[i] == INT_MAX || bucket_max[i] == INT_MIN) continue;
-            res = max(res, bucket_min[i] - bucket_max[pre]);
-            pre = i;
         }
         return res;
     }

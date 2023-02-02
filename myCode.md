@@ -1,605 +1,627 @@
-## 103. Binary Tree Zigzag Level Order Traversal
+## 327. Count of Range Sum
 
-二叉树的之字形层序遍历。
+求数组中，值位于范围 [lower, upper] (包含lower 和upper) 之内的区间和的个数。
 
-1. 先序遍历：用一个变量 level 记录当前的深度，由于 level 是从 0 开始的，假如结果 res 的大小等于 level，就需要在结果 res 中新加一个空集，这样可以保证 res[level] 不会越界。取出 res[level] 之后，判断 level 的奇偶，若其为偶数，则将 node->val 加入 oneLevel 的末尾，若为奇数，则加在 oneLevel 的开头，然后分别对 node 的左右子结点调用递归函数。
-2. 层序遍历+队列
+1. multiset
+   - 首先计算出一个累计和数组 accum，`accum[i]=accum[i-1]+nums[i]` 那问题可以转化为求解所有的区间 (j, i]，满足 `lower <= accum[i]-accum[j] <= upper`，亦可写成 `accum[i]-upper <= accum[j] <= accum[i]-lower`。
+   - lower_bound() 是找数组中第一个不小于给定值的数(包括等于情况)，而 upper_bound() 是找数组中第一个大于给定值的数，distance() 方法返回两个迭代器之间的距离。
+2. 归并排序(TODO)
 
-```cpp
-class Solution {
-public:
-    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        vector<vector<int>> res;
-        helper(root, 0, res);
-        return res;
-    }
+**边界条件**
 
-    void helper(TreeNode* node, int level, vector<vector<int>>& res) {
-        if (!node) return;
-        if (res.size() <= level) {
-            res.push_back({});
-        }
-        vector<int> &oneLevel = res[level];
-        if (level % 2 == 0) oneLevel.push_back(node->val);
-        else oneLevel.insert(oneLevel.begin(), node->val);
-        helper(node->left, level + 1, res);
-        helper(node->right, level + 1, res);
-    }
-};
-```
+1. 出现 INT_MIN 和 INT_MAX
 
 ```cpp
+// 2020-11-26 submission
 class Solution {
 public:
-    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        if (!root) return {};
-        vector<vector<int>> res;
-        queue<TreeNode*> q{{root}};
-        bool leftToRight = true;
-        while (!q.empty()) {
-            int size = q.size();
-            vector<int> oneLevel(size);
-            for (int i = 0; i < size; ++i) {
-                TreeNode *t = q.front(); q.pop();
-                int idx = leftToRight ? i : (size - 1 - i);
-                oneLevel[idx] = t->val;
-                if (t->left) q.push(t->left);
-                if (t->right) q.push(t->right);
-            }
-            leftToRight = !leftToRight;
-            res.push_back(oneLevel);
+    int countRangeSum(vector<int>& nums, int lower, int upper) {
+        if (nums.empty()) return 0;
+        multiset<long long> st{0};
+        long long cur_sum = 0; // 后续有减法操作避免溢出
+        int res = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            cur_sum += nums[i];
+            res += distance(st.lower_bound(cur_sum-upper), st.upper_bound(cur_sum-lower));
+            st.insert(cur_sum); // why this expression after
         }
         return res;
     }
 };
 ```
 
-## 220. Contains Duplicate III
-
-数组中是否存在一个大小不超过 k 的子数组，该子数组内的最大值和最小值的差不超过 t。
-
-1. 双指针 + map
-   - 两个指针 i 和 j 刚开始都指向0，然后 i 开始向右走遍历数组，如果 i 和 j 之差大于 k，且 m 中有 nums[j]，则删除并 j 加一，这样保证了 m 中所有的数的下标之差都不大于 k。
-   - 使用 lower_bound() 函数来查找大于或等于 nums[i] - t 的位置，然后检测后面的所有的数字，如果两数的差的绝对值小于等于 t，则返回true。
-   - 最后遍历完整个数组返回 false。
-
 ```cpp
 class Solution {
 public:
-    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
-        map<long long, int> m;
-        int j = 0;
+    int countRangeSum(vector<int>& nums, int lower, int upper) {
+        vector<long> sums(nums.size() + 1, 0);
         for (int i = 0; i < nums.size(); ++i) {
-            if (i - j > k) m.erase(nums[j++]);
-            auto a = m.lower_bound((long long)nums[i] - t);
-            if (a != m.end() && abs(a->first - nums[i]) <= t) return true;
-            m[nums[i]] = i;
+            sums[i + 1] = sums[i] + nums[i];
         }
-        return false;
+        return countAndMergeSort(sums, 0, sums.size(), lower, upper);
+    }
+    int countAndMergeSort(vector<long>& sums, int start, int end, int lower, int upper) {
+        if (end - start <= 1) return 0;
+        int mid = start + (end - start) / 2;
+        int cnt = countAndMergeSort(sums, start, mid, lower, upper) + countAndMergeSort(sums, mid, end, lower, upper);
+        int j = mid, k = mid, t = mid;
+        vector<int> cache(end - start, 0);
+        for (int i = start, r = 0; i < mid; ++i, ++r) {
+            while (k < end && sums[k] - sums[i] < lower) ++k;
+            while (j < end && sums[j] - sums[i] <= upper) ++j;
+            while (t < end && sums[t] < sums[i]) cache[r++] = sums[t++];
+            cache[r] = sums[i];
+            cnt += j - k;
+        }
+        copy(cache.begin(), cache.begin() + t - start, sums.begin() + start);
+        return cnt;
     }
 };
 ```
 
-## 123. Best Time to Buy and Sell Stock III
+## 435 Non-overlapping Intervals
 
-股票交易，买进前必须卖出手头已有的，允许最多两次交易。
+给定一个区间的集合，找到需要移除区间的最小数量，使剩余区间互不重叠。
 
-1. 在数组中间画条线，在左边进行第一次交易，在右边进行第二次交易，来计算两次交易的最大收益和。这样，就将问题简化为只进行一次交易的问题了。维护两个数组，分别存储截止到第 x 日交易的最大利润和第 x 日之后交易的最大利润。
+1. 贪心算法：为了保证总体去掉的区间数最小，去掉 end 值较大的区间。
 
 ```cpp
-// 2020-07-23 submission
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-        if (prices.empty()) return 0;
-        int days = prices.size();
-        vector<int> front(days, 0), latter(days, 0);
-
-        int min_price = prices[0], max_price = prices[days-1];
-        for (int i = 1; i < days; i++) {
-            min_price = min(min_price, prices[i]);
-            front[i] = max(front[i-1], prices[i]-min_price);
-            // cout << "front " << prices[i] << " " << front[i] << endl;
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+        int res = 0, n = intervals.size(), last = 0;
+        sort(intervals.begin(), intervals.end());
+        for (int i = 1; i < n; ++i) {
+            if (intervals[i][0] < intervals[last][1]) {
+                ++res;
+                if (intervals[i][1] < intervals[last][1]) last = i;
+            } else {
+                last = i;
+            }
         }
-        for (int i = days - 2; i >= 0; i--) {
-            max_price = max(max_price, prices[i]);
-            latter[i] = max(latter[i+1], max_price-prices[i]);
-            // cout << "latter " << prices[i] << " " << latter[i] << endl;
-        }
-
-        int max_profit = 0;
-        for (int pivot = 0; pivot < days; pivot++) {
-            max_profit = max(max_profit, front[pivot]+latter[pivot]);
-        }
-        return max_profit;
+        return res;
     }
 };
 ```
 
-## 560. Subarray Sum Equals K
+## 543. Diameter of Binary Tree
 
-让求和为 k 的连续子数组的个数。
+求二叉树的直径，直径即两点之间的最远距离。
 
-1. HashMap：建立连续子数组之和跟其出现次数之间的映射，初始化要加入 {0,1} 这对映射。建立哈希表的目的是为了快速查找 sum-k 是否存在，即是否有连续子数组的和为 sum-k，如果存在的话，那么和为 k 的子数组一定也存在。
+1. 对每一个结点求出其左右子树深度之和，然后再对左右子结点分别调用求直径对递归函数，这三个值相互比较，取最大的值更新结果 res，因为直径不一定会经过根结点，所以才要对左右子结点再分别算一次。为了减少重复计算，用哈希表建立每个结点和其深度之间的映射。
+2. TODO 两次 DFS 或树型dp：[树的直径 - OI Wiki](https://oi-wiki.org/graph/tree-diameter/)
 
 ```cpp
 // 2021-03-17 submission
 class Solution {
 public:
-    int subarraySum(vector<int>& nums, int k) {
-        unordered_map<int, int> dp{{0 ,1}};
-        int sum = 0, res = 0;
-        for (int num : nums) {
-            sum += num;
-            res += dp[sum - k];
-            ++dp[sum];
-        }
+    int diameterOfBinaryTree(TreeNode* root) {
+        unordered_map<TreeNode*, int> m;
+        int res = 0;
+        maxDepth(root, res, m);
         return res;
+    }
+    int maxDepth(TreeNode* node, int& res, unordered_map<TreeNode*, int>& m) {
+        if (!node) return 0;
+        if (m.count(node)) return m[node];
+        int left = maxDepth(node->left, res, m);
+        int right = maxDepth(node->right, res, m);
+        res = max(res, left + right);
+        return m[node] = (max(left, right) + 1);
     }
 };
 ```
 
-## 501. Find Mode in Binary Search Tree
+## 85. Maximal Rectangle
 
-求二分搜索树中的众数。
+给定一个仅包含 0 和 1 的二维二进制矩阵，找出只包含 1 的最大矩形，并返回其面积。
 
-1. 先序遍历+哈希表计数
-2. 递归中序遍历:不用除了递归中的隐含栈之外的额外空间。二分搜索树的中序遍历结果是有序的。
-3. 迭代中序遍历。
+1. 先确定高度和宽度再得到最大面积
+   - 维护三个数组（左连续序列长度、右连续序列长度、高度）
+   - 左连续序列长度：指从左边开始计数到当前位置，连续的高于当前高度的序列长度（包括当前位置）
+   - 右连续序列长度：指从右边开始计数到当前位置，连续的高于当前高度的序列长度（包括当前位置）
+   - 进行行遍历，若当前位置为 "1"，要考虑上一侧行遍历序列长度是否大于 0。如果大于 0 说明正上面位置为 "1"，则取连续的行 "1" 长度和上一次序列遍历长度的最小值，否则，直接认为序列长度为连续的行 "1" 长度；若当前位置为 "0"，序列长度直接置 0。
+2. 统计每一行的连续 1 的个数
+   - 使用一个数组 h_max, 其中 `h_max[i][j]` 表示第 i 行，第 j 个位置水平方向连续 1 的个数，若 `matrix[i][j]` 为 0，那对应的 `h_max[i][j]` 也一定为 0。
+   - 统计的过程跟建立累加和数组很类似，唯一不同的是遇到 0 了要将 h_max 置 0。
+   - 统计完成之后，只需要再次遍历每个位置，首先每个位置的 h_max 值都先用来更新结果 res，因为高度为 1 也可以看作是矩形，然后我们向上方遍历，上方 (i, j-1) 位置也会有 h_max 值，但是用二者之间的较小值才能构成矩形，用新的矩形面积来更新结果 res，这样一直向上遍历，直到遇到 0，或者是越界的时候停止，这样就可以找出所有的矩形
 
-```cpp
-// 2021-12-21 submission
-// 23/23 cases passed
-// Runtime: 20 ms, faster than 64.74% of C++ online submissions.
-// Memory Usage: 29.3 MB, less than 5.03% of C++ online submissions.
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    vector<int> findMode(TreeNode* root) {
-        unordered_map<int, int> m;
-        int max_val = DFS(root, m);
+**边界条件**
 
-        vector<int> res;
-        for (auto it = m.begin(); it != m.end(); ++it) {
-            if (it->second == max_val)
-                res.push_back(it->first);
-        }
-        return res;
-    }
-
-    int DFS(TreeNode* root, unordered_map<int, int>& m) {
-        if (!root) return 0;
-        ++m[root->val];
-        return max(max(DFS(root->left, m), DFS(root->right, m)), m[root->val]);
-    }
-};
-```
+1. 矩阵为空
 
 ```cpp
-// 2021-12-21 submission
-// 23/23 cases passed
-// Runtime: 24 ms, faster than 43.63% of C++ online submissions.
-// Memory Usage: 29.2 MB, less than 5.03% of C++ online submissions.
+// 2020-09-15 submission
 class Solution {
 public:
-    vector<int> findMode(TreeNode* root) {
-        TreeNode* pre = nullptr;
-        vector<int> res;
-        int cur = 1, int mx = 0;
-        inorder(root, pre, res, cur, mx);
-        return res;
-    }
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        if (matrix.empty() || matrix[0].empty()) return 0;
+        int rows = matrix.size();
+        int cols = matrix[0].size();
 
-    void inorder(TreeNode* root, TreeNode* &pre, vector<int>& candidates, int& cur, int& mx) {
-        if (!root) return;
-        inorder(root->left, pre, candidates, cur, mx);
-        if (pre) cur = pre->val == root->val ? cur+1 : 1;
-        if (cur >= mx) {
-            if (cur > mx) candidates.clear();
-            mx = cur;
-            candidates.push_back(root->val);
-        }
-        pre = root;
-        inorder(root->right, pre, candidates, cur, mx);
-    }
-};
-```
+        int max_area = 0;
+        vector<int> left_seq(cols, INT_MAX);
+        vector<int> right_seq(cols, INT_MAX);
+        vector<int> height(cols, 0);
+        int continous = 0;
 
-```cpp
-// 2021-12-21 submission
-// 23/23 cases passed
-// Runtime: 28 ms, faster than 25.09% of C++ online submissions.
-// Memory Usage: 29.1 MB, less than 6.61% of C++ online submissions.
-class Solution {
-public:
-    vector<int> findMode(TreeNode* root) {
-        if (!root) return {};
-        vector<int> res;
-        TreeNode* cur = root, *pre = nullptr;
-        int cnt = 0, mx = 0;
-        while (cur) {
-            TreeNode* right_most = cur->left;
-            if (right_most) {
-                while (right_most->right != nullptr && right_most->right != cur) {
-                    right_most = right_most->right;
-                }
-                if (right_most->right == nullptr) {
-                    right_most->right = cur;
-                    cur = cur->left;
-                    continue;
-                }
-                else right_most->right = nullptr;
+        for (int i = 0; i < rows; i++) {
+            continous = 0;
+            for (int j = cols-1; j >= 0; j--) {
+                if (matrix[i][j] == '1') continous++;
+                else continous = 0;
+                height[j] = continous == 0 ? 0 : height[j] + 1;
+                right_seq[j] = right_seq[j] == 0 ? continous : min(right_seq[j], continous);
             }
-            if (pre) cnt = (pre->val == cur->val) ? cnt+1 : 1;
-            if (cnt >= mx) {
-                if (cnt > mx) res.clear();
-                mx = cnt;
-                res.push_back(cur->val);
+
+            continous = 0;
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] == '1') continous++;
+                else continous = 0;
+                left_seq[j] = left_seq[j] == 0 ? continous : min(left_seq[j], continous);
+                max_area = max(max_area, height[j]*(left_seq[j]+right_seq[j]-1));
             }
-            res.push_back(cur->val);
-            cur = cur->right;
+        }
+
+        return max_area;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        if (matrix.empty() || matrix[0].empty()) return 0;
+        int res = 0, m = matrix.size(), n = matrix[0].size();
+        vector<vector<int>> h_max(m, vector<int>(n));
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (matrix[i][j] == '0') continue;
+                if (j > 0) h_max[i][j] = h_max[i][j - 1] + 1;
+                else h_max[i][0] = 1;
+            }
+        }
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (h_max[i][j] == 0) continue;
+                int mn = h_max[i][j];
+                res = max(res, mn);
+                for (int k = i - 1; k >= 0 && h_max[k][j] != 0; --k) {
+                    mn = min(mn, h_max[k][j]);
+                    res = max(res, mn * (i - k + 1));
+                }
+            }
         }
         return res;
     }
 };
 ```
 
-## 520. Detect Capital
+## 87. Scramble String
 
-检测单词的大写格式是否正确，规定了三种正确方式，要么都是大写或小写，要么首字母大写，其他情况都不正确。
+使用下面描述的算法可以扰乱字符串 s 得到字符串 t ：
 
-1. 状态机：![520. 状态机](res/myCode-520._状态机.png)
-2. 统计出单词中所有大写字母的个数 cnt，再来判断是否属于这三种情况。
+- 如果字符串的长度为 1 ，算法停止
+- 如果字符串的长度 > 1 ，执行下述步骤：
+  - 在一个随机下标处将字符串分割成两个非空的子字符串。即，如果已知字符串 s ，则可以将其分成两个子字符串 x 和 y ，且满足 s = x + y 。
+  - 随机 决定是要「交换两个子字符串」还是要「保持这两个子字符串的顺序不变」。即，在执行这一步骤之后，s 可能是 s = x + y 或者 s = y + x 。
+  - 在 x 和 y 这两个子字符串上继续从步骤 1 开始递归执行此算法。
+  - 给定两个 长度相等 的字符串 s1 和 s2，判断 s2 是否是 s1 的扰乱字符串。如果是，返回 true ；否则，返回 false 。
 
-```cpp
-// 2021-12-21 submission
-class Solution {
-public:
-    bool detectCapitalUse(string word) {
-        vector<vector<int> > trans{
-            {1, 2},
-            {1, 5},
-            {3, 4},
-            {3, 5},
-            {5, 4},
-            {5, 5}
-        };
-        int state = 0;
-        for (char c : word) {
-            int next = isupper(c) ? 1 : 0;
-            state = trans[state][next];
-            if (state == 5) break;
-        }
-        return state != 5;
-    }
-};
-```
-
-```cpp
-class Solution {
-public:
-    bool detectCapitalUse(string word) {
-        int cnt = 0, n = word.size();
-        for (int i = 0; i < n; ++i) {
-            if (word[i] <= 'Z') ++cnt;
-        }
-        return cnt == 0 || cnt == n || (cnt == 1 && word[0] <= 'Z');
-    }
-};
-```
-
-## 606. Construct String from Binary Tree
-
-创建二叉树对应的字符串。如果左子结点为空，右子结点不为空时，需要在父结点后加上个空括号，而右子结点如果不存在，或者左右子结点都不存在就不需要这么做。
+s1 和 s2 是 scramble 的话，那么必然存在一个在 s1 上的长度 l1，将 s1 分成 s11 和 s12 两段，同样有 s21 和 s22，那么要么 s11 和 s21 是 scramble 的并且 s12 和 s22 是 scramble 的；要么 s11 和 s22 是 scramble 的并且 s12 和 s21 是 scramble 的。
 
 1. 递归
-   - 如果左右结果串均为空，则直接返回当前结点值
-   - 如果左子结果串为空，那么返回当前结果 res，加上一个空括号，再加上放在括号中的右子结果串
-   - 如果右子结果串为空，那么发返回当前结果res，加上放在括号中的左子结果串
-   - 如果左右子结果串都存在，那么返回当前结果，加上分别放在括号中的左右子结果串
+   - 将字符串按照不同长度进行切割，然后让子递归函数判断是否成立。注意一个词和它自身是 scramble 的。
+   - 为了减少复杂度，每次切割前可以采用排序或者统计字母频率等。
+
+TODO：https://github.com/grandyang/leetcode/issues/87
 
 ```cpp
-// 2021-12-23 submission
+// 2020-07-16 submission
 class Solution {
 public:
-    string tree2str(TreeNode* root) {
-        if (!root) return "";
-        string res = to_string(root->val);
-        if (!root->left && !root->right) return res;
-        res += "(" + tree2str(root->left) + ")";
-        if (root->right) res += "(" + tree2str(root->right) + ")";
-        return res;
-    }
-};
-```
+    bool isScramble(string s1, string s2) {
+        if (s1.size() != s2.size()) return false;
+        if(s1 == s2) return true;
+        int len = s1.length();
 
-## 637. Average of Levels in Binary Tree
-
-求一个二叉树每层的平均值。
-
-1. 层序遍历
-2. 先序遍历
-
-```cpp
-// 2021-12-21 submission
-class Solution {
-public:
-    vector<double> averageOfLevels(TreeNode* root) {
-        queue<TreeNode*> q;
-        vector<double> res;
-        if (root) q.push(root);
-        while (!q.empty()) {
-            int q_size = q.size();
-            double level_sum = 0;
-            for (int i = 0; i < q_size; i++) {
-                level_sum += q.front()->val;
-                if (q.front()->left) q.push(q.front()->left);
-                if (q.front()->right) q.push(q.front()->right);
-                q.pop();
-            }
-            res.push_back(level_sum / q_size);
+        int freq[26] = {0};
+        for (int i = 0; i < len; i++) {
+            ++freq[s1[i]-'a'];
+            --freq[s2[i]-'a'];
         }
-        return res;
-    }
-};
-```
-
-```cpp
-class Solution {
-public:
-    vector<double> averageOfLevels(TreeNode* root) {
-        vector<double> res, cnt;
-        helper(root, 0, cnt, res);
-        for (int i = 0; i < res.size(); ++i) {
-            res[i] /= cnt[i];
+        for (int i = 0; i < 26; i++) {
+            if (freq[i] != 0) return false;
         }
-        return res;
-    }
 
-    void helper(TreeNode* node, int level, vector<double>& cnt, vector<double>& res) {
-        if (!node) return;
-        if (res.size() <= level) {
-            res.push_back(0);
-            cnt.push_back(0);
-        }
-        res[level] += node->val;
-        ++cnt[level];
-        helper(node->left, level + 1, cnt, res);
-        helper(node->right, level + 1, cnt, res);
-    }
-};
-```
+        for (int i = 1; i < len; i++) {
+            string s11 = s1.substr(0, i);
+            string s12 = s1.substr(i);
+            string s21 = s2.substr(0, i);
+            string s22 = s2.substr(i);
+            if (isScramble(s11, s21) && isScramble(s12, s22)) return true;
 
-## 438. Find All Anagrams in a String
-
-给定两个字符串 s 和 p，找到 s 中所有 p 的 异位词 的子串，返回这些子串的起始索引。异位词 指由相同字母重排列形成的字符串（包括相同的字符串）。
-
-1. 滑动窗口 + HashMap：两个变量 left 和 right 表示滑动窗口的左右边界，HashMap 用于存储 p 中字符的出现频率。
-
-```cpp
-// 2021-03-18 submission
-class Solution {
-public:
-    vector<int> findAnagrams(string s, string p) {
-        char m[256];
-        int len = p.length();
-        for (char c : p)
-            ++m[c];
-
-        int l = 0;
-        vector<int> res;
-        for (int i = 0; i < s.length(); i++) {
-            --m[s[i]];
-            while (m[s[i]] < 0) ++m[s[l++]];
-            if (i - l + 1 == len) res.push_back(l);
-        }
-        return res;
-    }
-};
-```
-
-## 349. Intersection of Two Arrays
-
-找两个数组交集的部分（不包含重复数字）。
-
-1. HashSet：把 nums1 都放进 HashSet，然后遍历 nums2 的元素，如果在 HashSet 中存在，说明是交集的部分。
-2. 排序+双指针：先给两个数组排序，然后用两个指针分别指向两个数组的开头，然后比较两个数组的大小，把小的数字的指针向后移，如果两个指针指的数字相等，那么看结果 res 是否为空，如果为空或者是最后一个数字和当前数字不等的话，将该数字加入结果 res 中。
-3. 排序+二分查找：将一个数组排序，然后遍历另一个数组，把遍历到的每个数字在排序号的数组中用二分查找法搜索，如果能找到则放入结果 set 中。
-4. STL的 set_intersection 函数。
-
-```cpp
-class Solution {
-public:
-    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        unordered_set<int> st(nums1.begin(), nums1.end()), res;
-        for (auto a : nums2) {
-            if (st.count(a)) res.insert(a);
-        }
-        return vector<int>(res.begin(), res.end());
-    }
-};
-```
-
-```cpp
-class Solution {
-public:
-    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> res;
-        int i = 0, j = 0;
-        sort(nums1.begin(), nums1.end());
-        sort(nums2.begin(), nums2.end());
-        while (i < nums1.size() && j < nums2.size()) {
-            if (nums1[i] < nums2[j]) ++i;
-            else if (nums1[i] > nums2[j]) ++j;
-            else {
-                if (res.empty() || res.back() != nums1[i]) {
-                    res.push_back(nums1[i]);
-                }
-                ++i; ++j;
-            }
-        }
-        return res;
-    }
-};
-```
-
-```cpp
-class Solution {
-public:
-    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        unordered_set<int> res;
-        sort(nums2.begin(), nums2.end());
-        for (auto a : nums1) {
-            if (binarySearch(nums2, a)) {
-                res.insert(a);
-            }
-        }
-        return vector<int>(res.begin(), res.end());
-    }
-    bool binarySearch(vector<int> &nums, int target) {
-        int left = 0, right = nums.size();
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target) return true;
-            else if (nums[mid] < target) left = mid + 1;
-            else right = mid;
+            s21 = s2.substr(0, len - i);
+            s22 = s2.substr(len - i);
+            if (isScramble(s11, s22) && isScramble(s12, s21)) return true;
         }
         return false;
     }
 };
 ```
 
-```cpp
-class Solution {
-public:
-    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        unordered_set<int> s1(nums1.begin(), nums1.end()), s2(nums2.begin(), nums2.end()), res;
-        set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), inserter(res, res.begin()));
-        return vector<int>(res.begin(), res.end());
-    }
-};
-```
+## 57. Insert Interval
 
-## 350. Intersection of Two Arrays II
+在列表中插入一个新的区间，需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。
 
-以数组形式返回两数组的交集，返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致。
+1. 从最左边遍历待插入区间，如果遍历区间右边界小于新区间左边界，将遍历区间加入结果，否则跳出循环。然后正式对交叉的区间进行处理，注意每次处理前都要判断是否重叠（因为有可能出现新区建在最左边和最右边的情况），然后取左边界最小值和右边界最大值作为新区间。不重叠时候跳出循环，将新区间加入结果，最后把剩下的待插入区间遍历完即可，所以有三个阶段。
+2. 上述方法的进一步简化：合并原列表中所有与新区间交叉重叠的区间，最后再把该区间插入到结果列表中。
 
-1. HashMap：建立 nums1 中字符和其出现个数之间的映射，然后遍历 nums2 数组，如果当前字符在 HashMap 中的个数大于0，则将此字符加入结果 res 中，然后 HashMap 的对应值自减 1。
-2. 排序+双指针：先给两个数组排序，然后用两个指针分别指向两个数组的起始位置，如果两个指针指的数字相等，则存入结果中，两个指针均自增 1，如果第一个指针指的数字大，则第二个指针自增 1，反之亦然。
+**边界条件**
+
+1. 待插列表为空；
+2. 新区间在最左边或者最右边；
+3. 插入区间为空
 
 ```cpp
+// 2020-07-14 submission
 class Solution {
 public:
-    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        unordered_map<int, int> m;
-        vector<int> res;
-        for (int a : nums1) ++m[a];
-        for (int a : nums2) {
-            if (m[a]-- > 0) res.push_back(a);
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        if (newInterval.empty()) return intervals;
+        vector<vector<int>> res;
+
+        int cur = 0;
+        int cnt = intervals.size();
+        while(cur < cnt) {
+            if (intervals[cur][1] < newInterval[0])
+                res.push_back(intervals[cur++]);
+            else break;
+        }
+
+        vector<int> temp_interval(newInterval.begin(), newInterval.end());
+        for (; cur < cnt; cur++) {
+            if (judge(temp_interval, intervals[cur])) {
+                temp_interval[0] = min(temp_interval[0], intervals[cur][0]);
+                temp_interval[1] = max(temp_interval[1], intervals[cur][1]);
+            }
+            else
+                break;
+            // cout << "interval " << temp_interval[0] << " " << temp_interval[1] << endl;
+        }
+        res.push_back(temp_interval);
+
+        while(cur < cnt) {
+            res.push_back(intervals[cur++]);
         }
         return res;
     }
+
+    bool judge(vector<int>& A, vector<int>& B) {
+        return (A[1] >= B[0] && A[0] <= B[1]) || (B[1] >= A[0] && B[0] <= A[1]);
+    }
 };
 ```
 
 ```cpp
 class Solution {
 public:
-    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> res;
-        int i = 0, j = 0;
-        sort(nums1.begin(), nums1.end());
-        sort(nums2.begin(), nums2.end());
-        while (i < nums1.size() && j < nums2.size()) {
-            if (nums1[i] == nums2[j]) {
-                res.push_back(nums1[i]);
-                ++i; ++j;
-            } else if (nums1[i] > nums2[j]) {
-                ++j;
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        vector<vector<int>> res;
+        int n = intervals.size(), cur = 0;
+        for (int i = 0; i < n; ++i) {
+            if (intervals[i][1] < newInterval[0]) {
+                res.push_back(intervals[i]);
+                ++cur;
+            } else if (intervals[i][0] > newInterval[1]) {
+                res.push_back(intervals[i]);
             } else {
-                ++i;
+                newInterval[0] = min(newInterval[0], intervals[i][0]);
+                newInterval[1] = max(newInterval[1], intervals[i][1]);
             }
+        }
+        res.insert(res.begin() + cur, newInterval);
+        return res;
+    }
+};
+```
+
+## 111. Minimum Depth of Binary Tree
+
+二叉树的最小深度。
+
+1. 递归：首先判空，若当前结点不存在，直接返回 0。若左子结点不存在，那么对右子结点调用递归函数，并加 1 返回。反之，若右子结点不存在，那么对左子结点调用递归函数，并加 1 返回。最后分别对左右子结点调用递归函数，将二者中的较小值加 1 返回即可。
+2. 迭代：层序遍历，记录遍历的层数，一旦遍历到第一个叶结点，就将当前层数返回，即为二叉树的最小深度。
+
+```cpp
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if (!root) return 0;
+        if (!root->left) return 1 + minDepth(root->right);
+        if (!root->right) return 1 + minDepth(root->left);
+        return 1 + min(minDepth(root->left), minDepth(root->right));
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if (!root) return 0;
+        int res = 0;
+        queue<TreeNode*> q{{root}};
+        while (!q.empty()) {
+            ++res;
+            for (int i = q.size(); i > 0; --i) {
+                auto t = q.front(); q.pop();
+                if (!t->left && !t->right) return res;
+                if (t->left) q.push(t->left);
+                if (t->right) q.push(t->right);
+            }
+        }
+        return -1;
+    }
+};
+```
+
+## 97. Interleaving String
+
+给定字符串 s1，s2 和 s3，问 s3 是不是由 s1 和 s2 交织组成。
+
+1. 动态规划
+   - 前提：字符串 s1 和 s2 的长度和必须等于 s3 的长度
+   - 初始化：若 s1 和 s2 其中的一个为空串的话，那么另一个肯定和 s3 的长度相等，则按位比较
+   - 在任意非边缘位置 `dp[i][j]` 时，它的左边或上边有可能为 True 或是 False，两边都可以更新过来，只要有一条路通着，那么这个点就可以为 True
+   - 转移方程：`dp[i][j] = (dp[i - 1][j] && s1[i - 1] == s3[i - 1 + j]) || (dp[i][j - 1] && s2[j - 1] == s3[j - 1 + i])`;
+2. DFS + HashSet
+   - 分别用变量i，j，和k来记录字符串 s1，s2，和 s3 匹配到的位置，初始化的时候都传入0。
+   - 在递归函数中，首先根据 i 和 j 算出 key 值，如果 key 已经在集合中，直接返回 false，因为集合中存的是无法匹配的情况。
+   - corner case：如果 i 等于 s1 的长度了，说明 s1 的字符都匹配完了，此时 s2 剩下的字符和 s3 剩下的字符可以直接进行匹配。同理，如果 j 等于 s2 的长度了，说明 s2 的字符都匹配完了，此时 s1 剩下的字符和 s3 剩下的字符可以直接进行匹配。
+   - 如果 s1 和 s2 都有剩余字符，那么当 s1 的当前字符等于 s3 的当前字符，那么调用递归函数，注意 i 和 k 都加上 1，如果递归函数返回 true，则当前函数也返回 true；还有一种情况是，当 s2 的当前字符等于 s3 的当前字符，那么调用递归函数，注意 j 和 k 都加上 1，如果递归函数返回 true，那么当前函数也返回 true。
+   - 如果匹配失败了，则将 key 加入集合中，并返回 false 即可
+
+**边界条件**
+
+1. s1 或者 s2 为空
+
+```cpp
+// 2020-09-14 submission
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        int c1 = s1.length(), c2 = s2.length();
+        if (c1 + c2 != s3.length()) return false;
+        vector<bool> dp(c1 + 1, true);
+
+        for (int i = 1; i <= c1; i++) {
+            dp[i] = (s1.substr(0, i) == s3.substr(0, i));
+        }
+        for (int i = 1; i <= c2; i++) {
+            dp[0] = (s2.substr(0, i) == s3.substr(0, i));
+            for (int j = 1; j <= c1; j++) {
+                dp[j] = (dp[j-1] && s1[j-1]==s3[i+j-1]) || (dp[j] && s2[i-1]==s3[i+j-1]);
+                // cout << s1[j-1] << " " << s2[i-1] << endl;
+            }
+        }
+
+        return dp[c1];
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        if (s1.length() + s2.length() != s3.length()) return false;
+        unordered_set<int> s;
+        return helper(s1, 0, s2, 0, s3, 0, s);
+    }
+    bool helper(string& s1, int i, string& s2, int j, string& s3, int k, unordered_set<int>& s) {
+        int key = i * s3.length() + j;
+        if (s.count(key)) return false;
+        if (i == s1.length()) return s2.substr(j) == s3.substr(k);
+        if (j == s2.length()) return s1.substr(i) == s3.substr(k);
+        if ((s1[i] == s3[k] && helper(s1, i + 1, s2, j, s3, k + 1, s)) ||
+            (s2[j] == s3[k] && helper(s1, i, s2, j + 1, s3, k + 1, s))) return true;
+        s.insert(key);
+        return false;
+    }
+};
+```
+
+## 10. Regular Expression Matching
+
+正则匹配：`.` 匹配任意单个字符，`*` 匹配 0 个或多个前置字符。
+
+1. 正则匹配
+   - sp 和 pp 都到了末尾，表示匹配结束
+   - 如果 p 的后置字符为 *，(1) p 的当前字符为 . (2) p 的当前字符匹配 s 的当前字符，如果满足上述两种情况之一，s 后移一位，继续递归。
+   - 如果上述情况返回错误，说明 * 匹配失效，p 后移两位，继续递归。
+   - 最后进行普通匹配，(1) p 的当前字符为 . (2) p 的当前字符匹配 s 的当前字符，如果满足上述两种情况之一，s 和 p 均后移一位，继续递归。
+
+TODO 贪婪匹配 VS 非贪婪匹配
+
+```cpp
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        return helper(s, p, 0, 0);
+    }
+
+    bool helper(string& s, string& p, int sp, int pp) {
+        if(sp == s.size() && pp == p.size()) return true;
+        if(pp+1 < p.size() && p[pp+1] == '*') {
+            if(sp < s.size() && (p[pp] == '.' || p[pp]==s[sp])) {
+                if(helper(s, p, sp+1, pp)) return true;
+            }
+            return helper(s, p, sp, pp+2);
+        }
+        if(sp < s.size() && (p[pp] == '.' || p[pp] == s[sp])) return helper(s, p, sp+1, pp+1);
+        else return false;
+    }
+};
+```
+
+## 164. Maximum Gap
+
+给一个乱序的数组，求出数组排序以后的相邻数字的差最大是多少。要求时间复杂度 O(n)。
+
+1. 桶排序
+   - 首先找出数组的最大值和最小值以确定每个桶的容量，即为 len = (max - min) / n + 1
+   - 区间分别为：`[min,min+len)`, `[min+len,min+2*len)`, `[min+2*len,min+3*len)`, ... `[max-len,max]`
+   - 桶的个数为 (max - min) / len + 1
+   - 最大间距的两个数不会在同一个桶中，而是一个桶的最小值和另一个桶的最大值
+
+**边界条件**
+
+1. 可能存在空桶
+
+```cpp
+class Solution {
+public:
+    int maximumGap(vector<int>& nums) {
+        if (nums.size() <= 1) return 0;
+        int mx = INT_MIN, mn = INT_MAX, n = nums.size(), pre = 0, res = 0;
+        for (int num : nums) {
+            mx = max(mx, num);
+            mn = min(mn, num);
+        }
+        int size = (mx - mn) / n + 1, cnt = (mx - mn) / size + 1;
+        vector<int> bucket_min(cnt, INT_MAX), bucket_max(cnt, INT_MIN);
+        for (int num : nums) {
+            int idx = (num - mn) / size;
+            bucket_min[idx] = min(bucket_min[idx], num);
+            bucket_max[idx] = max(bucket_max[idx], num);
+        }
+        for (int i = 1; i < cnt; ++i) {
+            if (bucket_min[i] == INT_MAX || bucket_max[i] == INT_MIN) continue;
+            res = max(res, bucket_min[i] - bucket_max[pre]);
+            pre = i;
         }
         return res;
     }
 };
 ```
 
-## 341. Flatten Nested List Iterator
+## 91. Decode Ways
 
-给定一个嵌套的整数列表 nestedList，每个元素要么是一个整数，要么是一个列表，该列表的元素也可能是整数或者是其他列表。实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。
+一条包含字母 A-Z 的消息通过以下映射进行了编码：'A' -> 1, 'B' -> 2, ..., 'Z' -> 26，要解码已编码的消息，所有数字必须基于上述映射的方法，反向映射回字母（可能有多种方法）。例如，"11106" 可以映射为："AAJF" 将消息分组为 (1 1 10 6) 或者 "KJF" 将消息分组为 (11 10 6)。
 
-1. 栈：从后往前把对象压入栈中，那么第一个对象最后压入栈就会第一个取出来处理。hasNext() 函数需要遍历栈，并进行处理，如果栈顶元素是整数，直接返回 true，如果不是，移除栈顶元素，并开始遍历这个取出的 list，还是从后往前压入栈，循环停止条件是栈为空，返回 false。
-2. 双向队列：思路同上。
+1. 动态规划
+   - dp[i] 表示 s 中前 i 个字符组成的子串的解码方法的个数
+   - 计算 dp[i] 时，若 s[i] 和 s[i-1] 拼起来的两位数小于等于 26，并且大于等于 10（因为两位数的高位不能是0），那么就可以在之前 dp[i-2] 的每种情况下都加上这个二位数，所以最终 dp[i] = dp[i-1] + dp[i-2]
+   - 若当前位置是 0，则一定无法单独拆分出来，即不能加上 dp[i-1]，就只能看否跟前一个数字组成大于等于 10 且小于等于 26 的数，能的话可以加上 dp[i-2]，否则就只能保持为 0
+2. 用两个变量 a, b 来分别表示 s[i-1] 和 s[i-2] 的解码方法，然后从字符串的第二个字符开始遍历，判断如果当前字符为 '0'，说明当前字符不能单独拆分出来，只能和前一个字符一起，先将 a 赋为 0，然后看前面的字符，如果前面的字符是 1 或者 2 时，就可以更新 a = a + b，然后 b = a - b，其实 b 赋值为之前的 a，如果不满足这些条件的话，那么 b = a。
 
 ```cpp
-class NestedIterator {
+class Solution {
 public:
-    NestedIterator(vector<NestedInteger> &nestedList) {
-        for (int i = nestedList.size() - 1; i >= 0; --i) {
-            s.push(nestedList[i]);
-        }
-    }
-
-    int next() {
-        NestedInteger t = s.top(); s.pop();
-        return t.getInteger();
-    }
-
-    bool hasNext() {
-        while (!s.empty()) {
-            NestedInteger t = s.top();
-            if (t.isInteger()) return true;
-            s.pop();
-            for (int i = t.getList().size() - 1; i >= 0; --i) {
-                s.push(t.getList()[i]);
+    int numDecodings(string s) {
+        if (s.empty() || s[0] == '0') return 0;
+        vector<int> dp(s.size() + 1, 0);
+        dp[0] = 1;
+        for (int i = 1; i < dp.size(); ++i) {
+            if (s[i - 1] != '0') dp[i] += dp[i - 1];
+            if (i >= 2 && s.substr(i - 2, 2) <= "26" && s.substr(i - 2, 2) >= "10") {
+                dp[i] += dp[i - 2];
             }
         }
-        return false;
+        return dp.back();
     }
-
-private:
-    stack<NestedInteger> s;
 };
 ```
 
 ```cpp
-class NestedIterator {
+class Solution {
 public:
-    NestedIterator(vector<NestedInteger> &nestedList) {
-        for (auto a : nestedList) {
-            d.push_back(a);
-        }
-    }
-
-    int next() {
-        NestedInteger t = d.front(); d.pop_front();
-        return t.getInteger();
-    }
-
-    bool hasNext() {
-        while (!d.empty()) {
-            NestedInteger t = d.front();
-            if (t.isInteger()) return true;
-            d.pop_front();
-            for (int i = 0; i < t.getList().size(); ++i) {
-                d.insert(d.begin() + i, t.getList()[i]);
+    int numDecodings(string s) {
+        if (s.empty() || s[0] == '0') return 0;
+        int a = 1, b = 1, n = s.size();
+        for (int i = 1; i < n; ++i) {
+            if (s[i] == '0') a = 0;
+            if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] <= '6')) {
+                a = a + b;
+                b = a - b;
+            } else {
+                b = a;
             }
         }
-        return false;
+        return a;
+    }
+};
+```
+
+## 233. Number of Digit One
+
+统计比给定数小的所有数中 1 出现的个数。
+
+解题思路
+
+1. 分类讨论
+   - 10 以内的数字：看个位数是否大于 1，是就加上 1
+   - 100 以内的数字：除了 10-19 之间有 11 个 '1' 之外，其余都只有 1 个。如果不考虑 [10, 19] 区间上那多出来的 10 个 '1'，对任意一个两位数，十位数上的数字(加1)就代表 1 出现的个数，这时候再把多出的 10 个加上即可。比如 56 就有 (5+1)+10=16 个。如何知道是否要加上多出的 10 个，就要看十位上的数字是否大于等于 2，是的话就要加上多余的 10 个 '1'。可以用 (x+8)/10 来判断一个数是否大于等于 2。
+   - 1000 以内的数字：除了 [110, 119] 之间多出的10个数之外，共 21 个 '1'，其余的每 10 个数的区间都只有 11 个 '1'，所以 [100, 199] 内共有 21 + 11 * 9 = 120 个 '1'。[0, 999] 区间内 '1' 的个数怎么求？根据前面的结果，[0, 99] 内共有 20 个，[100, 199] 内共有 120 个，而其他每 100 个数内 '1' 的个数也应该符合之前的规律，即也是 20 个，那么总共就有 120 + 20 * 9 = 300 个 '1'。那么还是可以用相同的方法来判断并累加 1 的个数。
+
+```cpp
+class Solution {
+public:
+    int countDigitOne(int n) {
+        int res = 0, a = 1, b = 1;
+        while (n > 0) {
+            res += (n + 8) / 10 * a + (n % 10 == 1) * b;
+            b += n % 10 * a;
+            a *= 10;
+            n /= 10;
+        }
+        return res;
+    }
+};
+```
+
+## 188. Best Time to Buy and Sell Stock IV
+
+买进前必须卖出手头已有的；允许最多 k 次交易。
+
+1. 动态规划
+   - 维护两个变量：全局最优 global 和局部最优 local。
+   - 定义局部最优 `local[i][j]` 为在到达第 i 天时最多可进行 j 次交易并且最后一次交易在最后一天卖出的最大利润。
+   - 定义全局最优 `global[i][j]`为在到达第 i 天时最多可进行 j 次交易的最大利润。
+   - 递推式为 `local[i][j] = max(global[i - 1][j - 1] + max(diff, 0), local[i - 1][j] + diff)`，`global[i][j] = max(local[i][j], global[i - 1][j])`
+   - 局部最优值是比较前一天并少交易一次的全局最优加上大于0的差值，和前一天的局部最优加上差值后相比，两者之中取较大值。前者是加上了 (i-1, i) 这笔交易，后者是修改最后一次交易的结束日为 i。
+   - 而全局最优比较局部最优和前一天的全局最优。
+   - 上面的算法中对于天数需要一次扫描，而每次要对交易次数进行递推式求解，所以时间复杂度是 O(n*k)，如果是最多进行两次交易，那么复杂度还是 O(n)。空间上只需要维护当天数据皆可以，所以是 O(k)，当k=2，则是 O(1)。
+   - 为了减少运算次数，当 k 远大于天数时，按照 <122. Best Time to Buy and Sell Stock II> 中无限次数交易的方法求解。
+
+```cpp
+// 2020-07-24 submission
+class Solution {
+public:
+    int maxProfit(int k, vector<int>& prices) {
+        if (prices.empty()) return 0;
+        if (k > prices.size()) return maxProfit_largetrades(prices);
+        vector<int> local(k+1, 0), global(k+1, 0);
+        for (int day = 1; day < prices.size(); day++) {
+            int diff = prices[day] - prices[day-1];
+            for (int j = k; j >= 1; j--) { // 为什么要 j 从 k 遍历到 1，而不是 1 遍历到 k
+                local[j] = max(global[j-1]+max(diff, 0), local[j]+diff);
+                global[j] = max(local[j], global[j]);
+                // cout << "day:" << day << " j:" << j << " local:"<<local[j] << " global:" << global[j] << endl;
+            }
+        }
+        return global[k];
     }
 
-private:
-    deque<NestedInteger> d;
+    int maxProfit_largetrades(vector<int>& prices) {
+        int maxValue = 0;
+        for(int i = 1; i < prices.size(); i++) {
+            if(prices[i] > prices[i-1])
+                maxValue += (prices[i]-prices[i-1]);
+        }
+        return maxValue;
+    }
 };
 ```
