@@ -105,7 +105,7 @@ def gen_summary(doc_list, detail=False):
                 solve = False
                 break
             if line.startswith('#'):
-                lines[idx] = '#' + line
+                lines[idx] = '==' + line.split(' ')[1] + '=='
                 problemIdx.append(idx)
         if not solve:
             print(f'error: {problemId} not solved')
