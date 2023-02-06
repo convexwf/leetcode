@@ -91,7 +91,7 @@ def instead_code(content):
 
 if __name__ == '__main__':
 
-    mode = False
+    mode = True
 
     with open("myCode.md", 'r', encoding='utf-8') as fp:
         lines = fp.readlines()

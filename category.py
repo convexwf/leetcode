@@ -104,8 +104,11 @@ def gen_summary(doc_list, detail=False):
             if line.startswith('**题目描述**: undefined'):
                 solve = False
                 break
-            if line.startswith('#'):
-                lines[idx] = '==' + line.split(' ')[1] + '=='
+            if line.startswith('##'):
+                lines[idx] = '==' + line.strip().split(' ')[1] + '==\n'
+                problemIdx.append(idx)
+            elif line.startswith('#'):
+                lines[idx] = '#' + line
                 problemIdx.append(idx)
         if not solve:
             print(f'error: {problemId} not solved')
@@ -127,7 +130,7 @@ if __name__ == '__main__':
     code_extract.sort(key=lambda it:it[0])
 
     # gen_topic(doc_extract)
-    for doc in doc_extract:
-        gen_code(doc_extract, code_extract, doc[0])
-    # gen_summary(doc_extract)
+    # for doc in doc_extract:
+    #     gen_code(doc_extract, code_extract, doc[0])
+    gen_summary(doc_extract)
 
