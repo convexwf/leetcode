@@ -1042,53 +1042,6 @@ public:
 };
 ```
 
-## 65. Valid Number
-弱智题目（边界条件不说清楚）
-解题思路：状态转移。注意要在字符串后面加一个空格表示结束符，从而使得终结符号只有1个。
-边界条件 数字字符串中间不能被空格打断；不能出现两个以上数字字符串；
-“1.”是合法的；“.1”合法；“.”不合法；
-“+.5”合法；
-“0000.1e-0000.00”合法；
-
-// 2020-07-14 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 76.08% of C++ online submissions.
-// Memory Usage: 6.1 MB, less than 44.60% of C++ online submissions.
-
-class Solution {
-public:
-    bool isNumber(string s) {
-        int trans[][4] = {
-            {2, -1, 1, 3}, // 0
-            {2, -1, -1, 3},// 1
-            {2, 5, -1, 4}, // 2
-            {4, -1, -1, -1},// 3
-            {4, 5, -1, -1},// 4
-            {7, -1, 6, -1},// 5
-            {7, -1, -1, -1},// 6
-            {7, -1, -1, -1},//7
-            {-1, -1, -1, -1}};//8
-        int accepted[] = {2, 4, 7};
-
-        s.append(1, ' ');
-        int cur = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] == ' ') {
-                if (cur == 0 || cur == 8) continue;
-                else if (cur == 2 || cur ==4 || cur == 7) cur = 8;
-                else cur = -1;;
-            }
-            else if (s[i] >= '0' && s[i] <= '9') cur = trans[cur][0];
-            else if (s[i] == 'e') cur = trans[cur][1];
-            else if (s[i] == '+' || s[i] == '-') cur = trans[cur][2];
-            else if (s[i] == '.') cur = trans[cur][3];
-            else cur = -1;
-            if (cur == -1) return false;
-        }
-        return cur == 8;
-    }
-};
-
 ## 66. Plus One
 
 数字以数组形式存在，+1 返回
@@ -1397,37 +1350,6 @@ public:
             }
             res.push_back(vec);
         }
-        return res;
-    }
-};
-```
-
-## 79. Word Search
-
-```C++
-class Solution {
-public:
-    bool exist(vector<vector<char>>& board, string word) {
-        if (board.empty() || board[0].empty()) return false;
-        int m = board.size(), n = board[0].size();
-        vector<vector<bool>> visited(m, vector<bool>(n));
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (search(board, word, 0, i, j, visited)) return true;
-            }
-        }
-        return false;
-    }
-    bool search(vector<vector<char>>& board, string word, int idx, int i, int j, vector<vector<bool>>& visited) {
-        if (idx == word.size()) return true;
-        int m = board.size(), n = board[0].size();
-        if (i < 0 || j < 0 || i >= m || j >= n || visited[i][j] || board[i][j] != word[idx]) return false;
-        visited[i][j] = true;
-        bool res = search(board, word, idx + 1, i - 1, j, visited)
-                 || search(board, word, idx + 1, i + 1, j, visited)
-                 || search(board, word, idx + 1, i, j - 1, visited)
-                 || search(board, word, idx + 1, i, j + 1, visited);
-        visited[i][j] = false;
         return res;
     }
 };
@@ -2345,85 +2267,6 @@ public:
             maxSum.push_back(temp + nums[i]);
         }
         return *max_element(maxSum.begin(), maxSum.end());
-    }
-};
-```
-
-## 212. Word Search II
-
-解题思路
-
-1. 前缀树+DFS
-
-Follow Up:
-
-<https://leetcode.com/problems/word-search-ii/discuss/59780/Java-15ms-Easiest-Solution-(100.00>
-
-```C++
-// 2020-12-13 submission
-// ?/? cases passed
-// Runtime: 1016 ms, faster than 18.19% of C++ online submissions.
-// Memory Usage: 9 MB, less than 52.69% of C++ online submissions.
-class Solution {
-private:
-    struct TrieNode {
-        TrieNode* child[26];
-        string word;
-        TrieNode() {
-            word = "";
-            for (TrieNode*& ptr : child)
-                ptr = NULL;
-        }
-    };
-
-    struct TrieTree {
-        TrieNode* root;
-        TrieTree() : root(new TrieNode()) {}
-        void insert(string word) {
-            TrieNode* cur = root;
-            for (char c : word) {
-                if (!cur->child[c-'a']) cur->child[c-'a'] = new TrieNode();
-                cur = cur->child[c-'a'];
-            }
-            cur->word = word;
-        }
-    };
-
-public:
-    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
-        if(board.empty() || board[0].empty()) return vector<string>{};
-        vector<string> res;
-        int rows = board.size(), cols = board[0].size();
-        vector<vector<bool>> visited(rows, vector<bool>(cols, false));
-
-        TrieTree* tree = new TrieTree();
-        for (string word : words)
-            tree->insert(word);
-
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < cols; j++) {
-                DFS(board, visited, res, i, j, tree->root);
-            }
-        }
-        return res;
-    }
-
-    void DFS(vector<vector<char>>& board, vector<vector<bool>>& visited, vector<string>& res, int x, int y, TrieNode* cur) {
-        if (0 > x || x >= board.size() || 0 > y || y >= board[0].size() || visited[x][y]) return;
-        visited[x][y] = true;
-        char c = board[x][y];
-        if (cur->child[c-'a']) {
-            cur = cur->child[c-'a'];
-            if (cur->word != "") {
-                res.push_back(cur->word);
-                cur->word.clear();
-            }
-            DFS(board, visited, res, x-1, y, cur);
-            DFS(board, visited, res, x+1, y, cur);
-            DFS(board, visited, res, x, y-1, cur);
-            DFS(board, visited, res, x, y+1, cur);
-        }
-        visited[x][y] = false;
     }
 };
 ```

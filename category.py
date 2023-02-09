@@ -130,7 +130,7 @@ if __name__ == '__main__':
     code_extract.sort(key=lambda it:it[0])
 
     # gen_topic(doc_extract)
-    # for doc in doc_extract:
-    #     gen_code(doc_extract, code_extract, doc[0])
+    for doc in doc_extract:
+        gen_code(doc_extract, code_extract, doc[0])
     gen_summary(doc_extract)
 

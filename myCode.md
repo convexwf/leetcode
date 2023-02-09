@@ -1,49 +1,96 @@
-## 68. Text Justification
+## 98. Validate Binary Search Tree
 
-给定一个字符数组，和一个行的最大长度。将单词放入行内，同一行相邻的单词中间需要有空格。当放入一个单词后该行长度大于最大长度，那么这个单词就不能放入该行，需要另起一行。这样的话，行的长度就可能会小于最大长度，于是需要增加单词间的空格数量，尽可能均匀的分配，若不能均匀分配，那么左边的单词数量应该大于右边。
-最后一行单词间只需要一个空格，但是最后一个单词后需要补空格，直至行长度等于最大程度。
+验证是否为二叉搜索树。
 
-1. 遍历单词 list, 并维护一个cur_len表示当前收纳的长度（需包含空格）。每读入一个单词有三种情况：
-   - 加入当前单词后，cur_len <= maxWidth，当前单词记录，遍历下一个单词
-   - 加入当前单词后，cur_len >= maxWidth 而且当前单词不是最后一个单词。此时将记录的单词串格式化处理。
-   - 当前单词是最后一个单词，将记录的单词串格式化处理。（因为最后一行格式特殊）
+1. 中序递归遍历：针对每一颗子树逐步收缩区间，该方法只能解决严格不等于情况的二叉搜索树，无法处理 左<=根<=右 的情况。
+2. 中序遍历 + 排序：通过中序遍历将所有的节点值存到一个数组里，再来判断这个数组是不是有序。
+3. 中序遍历：每当遍历到一个新节点时和其上一个节点比较。
+4. 迭代中序遍历：Morris 遍历。
+
+**边界条件**
+
+1. 根节点中出现 INT_MAX 和 INT_MIN
 
 ```cpp
-// 2020-09-29 submission
 class Solution {
 public:
-    vector<string> fullJustify(vector<string>& words, int maxWidth) {
-        vector<string> res;
+    bool isValidBST(TreeNode* root) {
+        return isValidBST(root, LONG_MIN, LONG_MAX);
+    }
 
-        vector<string> cur;
-        int cur_len = 0;
-        for (int i = 0; i < words.size();) {
-            bool flag = (words[i].length() + cur_len <= maxWidth);
-            if (flag) {
-                cur_len += (words[i].length() + 1);
-                cur.push_back(words[i]);
-                i++;
-            }
-            if (!flag && i < words.size()) {
-                cur_len = maxWidth-cur_len+cur.size();
-                string to_add = cur[0];
-                if (cur.size() == 1) to_add.append(cur_len, ' ');
-                for (int j = 1; j < cur.size(); j++) {
-                    to_add.append(cur_len/(cur.size()-1)+(j<=cur_len%(cur.size()-1)), ' ');
-                    to_add.append(cur[j]);
+    bool helper(TreeNode* root, long mn, long mx) {
+        if (!root) return true;
+        if (root->val <= mn || root->val >= mx) return false;
+        return helper(root->left, mn, root->val) && helper(root->right, root->val, mx);
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        if (!root) return true;
+        vector<int> vals;
+        inorder(root, vals);
+        for (int i = 0; i < vals.size() - 1; ++i) {
+            if (vals[i] >= vals[i + 1]) return false;
+        }
+        return true;
+    }
+    void inorder(TreeNode* root, vector<int>& vals) {
+        if (!root) return;
+        inorder(root->left, vals);
+        vals.push_back(root->val);
+        inorder(root->right, vals);
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        TreeNode *pre = NULL;
+        return inorder(root, pre);
+    }
+    bool inorder(TreeNode* node, TreeNode*& pre) { // pre 表示当前节点的前缀节点
+        if (!node) return true;
+        bool res = inorder(node->left, pre);
+        if (!res) return false;
+        if (pre) {
+            if (node->val <= pre->val) return false;
+        }
+        pre = node;
+        return inorder(node->right, pre);
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool isValidBST(TreeNode *root) {
+        if (!root) return true;
+        TreeNode *cur = root, *pre, *parent = NULL;
+        bool res = true;
+        while (cur) {
+            if (!cur->left) {
+                if (parent && parent->val >= cur->val) res = false;
+                parent = cur;
+                cur = cur->right;
+            } else {
+                pre = cur->left;
+                while (pre->right && pre->right != cur) pre = pre->right;
+                if (!pre->right) {
+                    pre->right = cur;
+                    cur = cur->left;
+                } else {
+                    pre->right = NULL;
+                    if (parent->val >= cur->val) res = false;
+                    parent = cur;
+                    cur = cur->right;
                 }
-                res.push_back(to_add);
-                cur_len = 0;
-                cur.clear();
-            }
-            if (i == words.size()) {
-                string to_add = cur[0];
-                for (int j = 1; j < cur.size(); j++) {
-                    to_add.append(" ");
-                    to_add.append(cur[j]);
-                }
-                to_add.append(maxWidth-to_add.length(), ' ');
-                res.push_back(to_add);
             }
         }
         return res;
@@ -51,109 +98,433 @@ public:
 };
 ```
 
-## 72. Edit Distance
+## 94. Binary Tree Inorder Traversal
 
-在信息论、语言学和计算机科学领域，Levenshtein Distance 是用来度量两个序列相似程度的指标。通俗地来讲，编辑距离指的是在两个单词之间，由其中一个单词转换为另一个单词所需要的最少单字符编辑操作次数。
+实现二叉树的中序遍历。
 
-在这里定义的单字符编辑操作有且仅有三种：
-
-- 插入（Insertion）
-- 删除（Deletion）
-- 替换（Substitution）
-
-譬如，"kitten" 和 "sitting" 这两个单词，由 "kitten" 转换为 "sitting" 需要的最少单字符编辑操作有：
-(1) kitten → sitten (substitution of "s" for "k")
-(2) sitten → sittin (substitution of "i" for "e")
-(3) sittin → sitting (insertion of "g" at the end)
-因此，"kitten" 和 "sitting" 这两个单词之间的编辑距离为 3 。
-
-将两个字符串 a, b 的 Levenshtein Distance 表示为 $lev_{a,b}(|a|, |b|)$，其中 $|a|$ 和 $|b|$ 分别对应 a, b 的长度。那么，在这里两个字符串 a, b 的 Levenshtein Distance，即 $lev_{a,b}(|a|, |b|)$ 可用如下的数学语言描述：
-
-![Levenshtein Distance 数学描述](res/2023-02-03-14-53-17.png)
-
-定义 $lev_{a,b}(i, j)$ 指的是 a 中前 i 个字符和 b 中前 j 个字符之间的距离。
-
-当 $min(i, j) = 0$ 的时候，对应着字符串 a 中前 i 个字符和字符串 b 中前 j 个字符，此时的 i, j 有一个值为 0，表示字符串 a 和 b 中有一个为空串，那么从 a 转换到 b 只需要进行 $max(i, j)$ 次单字符编辑操作即可，所以它们之间的编辑距离为 $max(i, j)$。
-
-当 $min(i, j) \ne 0$ 的时候，$lev_{a,b}(i, j)$ 为如下三种情况的最小值：
-(1) $lev_{a,b}(i-1, j) + 1$ 表示 删除 $a_i$
-(2) $lev_{a,b}(i, j-1) + 1$ 表示 插入 $b_j$
-(3) $lev_{a,b}(i-1, j-1)+1_{(a_i \ne b_j)}$ 表示 替换 $b_j$
-
-$1_{(a_i \ne b_j)}$ 为一个指示函数，表示当 $a_i = b_j$ 的时候取 0；当 $a_i \ne b_j$ 的时候，其值为 1。
-
-1. 动态规划。
-2. 动态规划，简化空间复杂度。
+1. 递归
+2. 迭代+栈+辅助节点
+3. Morris 遍历：O(1) 空间复杂度。构建一个线索二叉树，需要将所有为空的右子节点指向中序遍历的下一个节点，这样中序遍历完左子结点后，就能顺利的回到其根节点继续遍历了。具体算法如下：
+   - (1) 初始化指针 cur 指向 root
+   - (2) 当 cur 不为空时，如果 cur 没有左子结点，打印出 cur 的值，将 cur 指针指向其右子节点
+   - (3) 如果 cur 有左子结点，将 pre 指针指向 cur 的左子树中的最右子节点。
+     - 若 pre 不存在右子节点，将其右子节点指回 cur，cur 指向其左子节点。
+     - 若 pre 存在右子节点，将 pre 的右子节点置空，打印 cur 的值，将 cur 指针指向其右子节点
 
 ```cpp
 class Solution {
 public:
-    int minDistance(string word1, string word2) {
-        int m = word1.size(), n = word2.size();
-        vector<vector<int>> dp(m + 1, vector<int>(n + 1));
-        for (int i = 0; i <= m; ++i) dp[i][0] = i;
-        for (int i = 0; i <= n; ++i) dp[0][i] = i;
-        for (int i = 1; i <= m; ++i) {
-            for (int j = 1; j <= n; ++j) {
-                if (word1[i - 1] == word2[j - 1]) {
-                    dp[i][j] = dp[i - 1][j - 1];
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> res;
+        inorder(root, res);
+        return res;
+    }
+    void inorder(TreeNode *root, vector<int> &res) {
+        if (!root) return;
+        if (root->left) inorder(root->left, res);
+        res.push_back(root->val);
+        if (root->right) inorder(root->right, res);
+    }
+};
+```
+
+```cpp
+// Non-recursion
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> res;
+        stack<TreeNode*> s;
+        TreeNode *p = root;
+        while (p || !s.empty()) {
+            while (p) {
+                s.push(p);
+                p = p->left;
+            }
+            p = s.top(); s.pop();
+            res.push_back(p->val);
+            p = p->right;
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> res;
+        if (!root) return res;
+        TreeNode *cur, *pre;
+        cur = root;
+        while (cur) {
+            if (!cur->left) {
+                res.push_back(cur->val);
+                cur = cur->right;
+            } else {
+                pre = cur->left;
+                while (pre->right && pre->right != cur) pre = pre->right;
+                if (!pre->right) {
+                    pre->right = cur;
+                    cur = cur->left;
                 } else {
-                    dp[i][j] = min(dp[i - 1][j - 1], min(dp[i - 1][j], dp[i][j - 1])) + 1;
+                    pre->right = NULL;
+                    res.push_back(cur->val);
+                    cur = cur->right;
                 }
             }
         }
-        return dp[m][n];
+        return res;
     }
 };
 ```
 
+## 79. Word Search
+
+给定一个 m x n 二维字符网格 board 和一个字符串单词 word。如果 word 存在于网格中，返回 true；否则，返回 false。
+
+1. DFS：以二维数组中每一个数都作为起点和给定字符串做匹配，并且需要一个 visited 数组用来记录当前位置是否已经被访问过。如果二维数组 board 的当前字符和目标字符串 word 对应的字符相等，则对其上下左右四个邻字符分别调用 DFS 的递归函数，只要有一个返回 true，那么就表示可以找到对应的字符串，否则就不能找到。
+
 ```cpp
-// 2020-09-08 submission
 class Solution {
 public:
-    int minDistance(string word1, string word2) {
-        int c1 = word1.length();
-        int c2 = word2.length();
-        if (c1 == 0 or c2 == 0) return max(c1, c2);
-
-        vector<int> dist(c1 + 1, 0);
-        for (int i = 1; i <= c1; i++) {
-            dist[i] = i;
-        }
-        for (int i = 1; i <= c2; i++) {
-            int last_valid = dist[0];
-            dist[0] = i;
-            for (int j = 1; j <= c1; j++) {
-                int temp = min(min(dist[j - 1], dist[j]) + 1, last_valid + (word1[j-1] != word2[i-1]));
-                last_valid = dist[j];
-                dist[j] = temp;
+    bool exist(vector<vector<char>>& board, string word) {
+        if (board.empty() || board[0].empty()) return false;
+        int m = board.size(), n = board[0].size();
+        vector<vector<bool>> visited(m, vector<bool>(n));
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (search(board, word, 0, i, j, visited)) return true;
             }
         }
-        return dist[c1];
+        return false;
+    }
+    bool search(vector<vector<char>>& board, string word, int idx, int i, int j, vector<vector<bool>>& visited) {
+        if (idx == word.size()) return true;
+        int m = board.size(), n = board[0].size();
+        if (i < 0 || j < 0 || i >= m || j >= n || visited[i][j] || board[i][j] != word[idx]) return false;
+        visited[i][j] = true;
+        bool res = search(board, word, idx + 1, i - 1, j, visited)
+                 || search(board, word, idx + 1, i + 1, j, visited)
+                 || search(board, word, idx + 1, i, j - 1, visited)
+                 || search(board, word, idx + 1, i, j + 1, visited);
+        visited[i][j] = false;
+        return res;
     }
 };
 ```
 
-## 214. Shortest Palindrome
+## 212. Word Search II
 
-在给定字符串 s 的前面加上尽可能少的字符，使之变成回文串。
+给定一个二维网格 board 和一个字典中的单词列表words，找出所有同时在二维网格和字典中出现的单词。
 
-1. KMP 算法：把 s 和其转置 r 连接起来，中间加上一个其他字符，形成一个新的字符串 t，还需要一个和 t 长度相同的一位数组 next，其中 next[i] 表示从 t[i] 到开头的子串的相同前缀后缀的个数。最后把不相同的个数对应的字符串添加到s之前即可
+1. 前缀树 + DFS
+
+TODO
+
+<https://leetcode.com/problems/word-search-ii/discuss/59780/Java-15ms-Easiest-Solution-(100.00>
+
+```cpp
+// 2020-12-13 submission
+class Solution {
+private:
+    struct TrieNode {
+        TrieNode* child[26];
+        string word;
+        TrieNode() {
+            word = "";
+            for (TrieNode*& ptr : child) {
+                ptr = NULL;
+            }
+        }
+    };
+
+    struct TrieTree {
+        TrieNode* root;
+        TrieTree() : root(new TrieNode()) {}
+        void insert(string word) {
+            TrieNode* cur = root;
+            for (char c : word) {
+                if (!cur->child[c-'a']) cur->child[c-'a'] = new TrieNode();
+                cur = cur->child[c-'a'];
+            }
+            cur->word = word;
+        }
+    };
+
+public:
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        if(board.empty() || board[0].empty()) return vector<string>{};
+        vector<string> res;
+        int rows = board.size(), cols = board[0].size();
+        vector<vector<bool>> visited(rows, vector<bool>(cols, false));
+
+        TrieTree* tree = new TrieTree();
+        for (string word : words)
+            tree->insert(word);
+
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                DFS(board, visited, res, i, j, tree->root);
+            }
+        }
+        return res;
+    }
+
+    void DFS(vector<vector<char>>& board, vector<vector<bool>>& visited, vector<string>& res, int x, int y, TrieNode* cur) {
+        if (0 > x || x >= board.size() || 0 > y || y >= board[0].size() || visited[x][y]) return;
+        visited[x][y] = true;
+        char c = board[x][y];
+        if (cur->child[c-'a']) {
+            cur = cur->child[c-'a'];
+            if (cur->word != "") {
+                res.push_back(cur->word);
+                cur->word.clear();
+            }
+            DFS(board, visited, res, x-1, y, cur);
+            DFS(board, visited, res, x+1, y, cur);
+            DFS(board, visited, res, x, y-1, cur);
+            DFS(board, visited, res, x, y+1, cur);
+        }
+        visited[x][y] = false;
+    }
+};
+```
+
+##!! 65. Valid Number
+
+验证数字有效性。
+
+1. 状态转移。注意要在字符串后面加一个空格表示结束符，从而使得终结符号只有 1 个。
+
+**边界条件**
+
+1. 数字字符串中间不能被空格打断；不能出现两个以上数字字符串；
+2. “1.”是合法的；“.1”合法；“.”不合法；
+3. “+.5”合法；
+4. “0000.1e-0000.00”合法；
+
+```cpp
+// 2020-07-14 submission
+class Solution {
+public:
+    bool isNumber(string s) {
+        int trans[][4] = {
+            {2, -1, 1, 3}, // 0
+            {2, -1, -1, 3},// 1
+            {2, 5, -1, 4}, // 2
+            {4, -1, -1, -1},// 3
+            {4, 5, -1, -1},// 4
+            {7, -1, 6, -1},// 5
+            {7, -1, -1, -1},// 6
+            {7, -1, -1, -1},//7
+            {-1, -1, -1, -1}};//8
+        int accepted[] = {2, 4, 7};
+
+        s.append(1, ' ');
+        int cur = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] == ' ') {
+                if (cur == 0 || cur == 8) continue;
+                else if (cur == 2 || cur ==4 || cur == 7) cur = 8;
+                else cur = -1;;
+            }
+            else if (s[i] >= '0' && s[i] <= '9') cur = trans[cur][0];
+            else if (s[i] == 'e') cur = trans[cur][1];
+            else if (s[i] == '+' || s[i] == '-') cur = trans[cur][2];
+            else if (s[i] == '.') cur = trans[cur][3];
+            else cur = -1;
+            if (cur == -1) return false;
+        }
+        return cur == 8;
+    }
+};
+```
+
+## 144. Binary Tree Preorder Traversal
+
+实现二叉树的前序遍历。
+
+1. 递归
+2. 非递归+栈：把根节点 push 到栈中，然后循环检测栈是否为空，若不空，则取出栈顶元素，保存其值，然后看其右子节点是否存在，若存在则 push 到栈中。再看其左子节点，若存在，则 push 到栈中。
+3. Morris 遍历
 
 ```cpp
 class Solution {
 public:
-    string shortestPalindrome(string s) {
-        string r = s;
-        reverse(r.begin(), r.end());
-        string t = s + "#" + r;
-        vector<int> next(t.size(), 0);
-        for (int i = 1; i < t.size(); ++i) {
-            int j = next[i - 1];
-            while (j > 0 && t[i] != t[j]) j = next[j - 1];
-            next[i] = (j += t[i] == t[j]);
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        helper(root, res);
+    }
+
+    void helper(TreeNode* root, vector<int>& res) {
+        if (!root) return;
+        res.push_back(root->val);
+        helper(root->left);
+        helper(root->right);
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> st;
+        TreeNode *p = root;
+        while (!st.empty() || p) {
+            if (p) {
+                st.push(p);
+                res.push_back(p->val);
+                p = p->left;
+            } else {
+                p = st.top(); st.pop();
+                p = p->right;
+            }
         }
-        return r.substr(0, s.size() - next.back()) + s;
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> data = {};
+        TreeNode* cur = root;
+        TreeNode* pre = NULL;
+        while (cur)
+        {
+            if (cur->left == NULL)
+            {
+                data.push_back(cur->val);
+                cur = cur->right;
+            }
+            else
+            {
+                // 寻找前驱结点
+                pre = cur->left;
+                while (pre->right != cur && pre->right)
+                {
+                    pre = pre->right;
+                }
+                if (pre->right == NULL)
+                {
+                    data.push_back(cur->val);
+                    pre->right = cur;
+                    cur = cur->left;
+                }
+                else
+                {
+                    cur = cur->right;
+                    pre->right = NULL;
+                }
+            }
+        }
+        return data;
+    }
+};
+```
+
+## 145. Binary Tree Postorder Traversal
+
+实现二叉树的后序遍历。
+
+1. 递归
+2. 迭代+栈+辅助节点
+3. Morris 遍历
+
+```cpp
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        helper(root, res);
+        return res;
+    }
+
+    void helper(TreeNode *root, vector<int> &res) {
+        if (!root) return;
+        if (root->left) helper(root->left, res);
+        if (root->right) helper(root->right, res);
+        res.push_back(root->val);
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> s;
+        TreeNode *p = root;
+        while (!s.empty() || p) {
+            if (p) {
+                s.push(p);
+                res.insert(res.begin(), p->val);
+                p = p->right;
+            } else {
+                TreeNode *t = s.top(); s.pop();
+                p = t->left;
+            }
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    // addPath
+    void addPath(vector<int> &vec, TreeNode *node) {
+        int count = 0;
+        while (node != nullptr) {
+            ++count;
+            vec.push_back(node->val);
+            node = node->right;
+        }
+        reverse(vec.end() - count, vec.end());
+    }
+
+    vector<int> postorderTraversal(TreeNode *root) {
+        vector<int> res;
+        TreeNode *p1 = root, *p2 = nullptr;
+        // p2的设定是p1的左孩子
+
+        // p1非空就继续循环
+        while (p1 != nullptr) {
+            p2 = p1->left;
+            // 若p1有左孩子
+            if (p2 != nullptr) {
+                // p2是p1左子树的最右节点
+                while (p2->right != nullptr && p2->right != p1) {
+                    p2 = p2->right;
+                }
+                // p2->right == nullptr 确定了该节点是第一次访问
+                // 先把p1加入结果，再把p1左子树的最右节点指向p1，p1继续往左走
+                if (p2->right == nullptr) {
+                    p2->right = p1;
+                    p1 = p1->left;
+                    continue;
+                // // p2->right == p1 说明该节点已经访问过，此时再访问到就置为空
+                } else {
+                    p2->right = nullptr;
+                    // 打印p1->left而非p1，就保证根节点一定是最后打印的
+                    addPath(res, p1->left);
+                }
+            }
+            // 1、其左孩子已经访问完毕，因此把p1的右孩子赋给p1
+            // 要么就是在回溯的路上，要么就是到了一个全新的未被访问过的节点
+            p1 = p1->right;
+        }
+        // 最后打印root及其右孩子（若右孩子是叶子节点）
+        addPath(res, root);
+        return res;
     }
 };
 ```
