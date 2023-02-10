@@ -1230,55 +1230,6 @@ public:
 };
 ```
 
-## 76. Minimum Window Substring
-
-解题思路
-
-1. 滑动窗口。注意可以只用一个哈希表，存储t的频率，当右边界遍历到减1，左边界遍历到加1。另外需要一个计数变量，当频率大于0时（因为非法字符最大频率为0，合法字符最小频率为0）计数变量cnt加1，从而可以判断是否已经包含所有合法字符。
-
-边界条件
-1. t长度可能为0（测试样例没有考虑到）
-
-```C++
-// 2020-07-17 submission
-// ?/? cases passed
-// Runtime: 32 ms, faster than 67.64% of C++ online submissions
-// Memory Usage: 55.6 MB, less than 5.05% of C++ online submissions
-class Solution {
-public:
-    string minWindow(string s, string t) {
-        if(t.length() == 0) return "";
-
-        unordered_map<char, int> freq;
-        for (int i = 0; i < t.length(); i++) {
-            freq[t[i]]++;
-        }
-
-        int left = 0;
-        int cnt = 0;
-        string res = "";
-        int res_cnt = INT_MAX;
-        for (int pivot = 0; pivot < s.length(); pivot++) {
-            freq[s[pivot]]--;
-            if(freq[s[pivot]] >= 0) cnt++;
-            if (cnt == t.length()) {
-                while(cnt == t.length()) {
-                    freq[s[left]]++;
-                    if (freq[s[left]] > 0) cnt--;
-                    left++;
-                }
-                string cur_str = s.substr(left-1, pivot-left+2);
-                if (cur_str.length() < res_cnt) {
-                    res_cnt = cur_str.length();
-                    res = cur_str;
-                }
-            }
-        }
-        return res;
-    }
-};
-```
-
 ## 77. Combinations
 
 ```C++
@@ -2329,44 +2280,6 @@ public:
 };
 ```
 
-## 230. Kth Smallest Element in a BST
-
-解题思路
-
-1. 中序遍历
-
-```C++
-// 2021-03-18 submission
-// ?/? cases passed
-// Runtime: 16 ms, faster than 89.83% of C++ online submissions.
-// Memory Usage: 24.1 MB, less than 87.41% of C++ online submissions.
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    int kthSmallest(TreeNode* root, int k) {
-        return helper(root, k);
-    }
-
-    int helper(TreeNode* root, int& k) {
-        if (!root) return -1;
-        int val = helper(root->left, k);
-        if (k == 0) return val;
-        if (--k == 0) return root->val;
-        return helper(root->right, k);
-    }
-};
-```
-
 ## 231. Power of Two
 
 ```C++
@@ -2374,79 +2287,6 @@ class Solution {
 public:
     bool isPowerOfTwo(int n) {
         return (n > 0) && (!(n & (n - 1)));
-    }
-};
-```
-
-## 239. Sliding Window Maximum
-
-解题思路
-
-1. multiset: multiset是一种基于红黑树的数据结构，可以自动对元素进行排序，允许有重复值。首先遍历每个数字，即窗口右移，若超过了k，则需要把左边界值删除，这里不能直接删除 nums[i-k]，因为集合中可能有重复数字，而 erase 默认是将所有和目标值相同的元素都删掉，所以我们只能提供一个 iterator，代表一个确定的删除位置，先通过 find() 函数找到左边界 nums[i-k] 在集合中的位置再删除。然后将当前数字插入到集合中，此时看若 i >= k-1，说明窗口大小正好是k，就需要将最大值加入结果 res 中，而由于 multiset 是按升序排列的，最大值在最后一个元素，可以通过 rbegin() 来取出。
-2. deque: 用双向队列保存数字的下标，遍历整个数组，如果此时队列的首元素是 i-k，表示此时窗口向右移了一步，则移除队首元素。然后比较队尾元素和将要进来的值，如果小的话就都移除，这样可以确保队列中为近似降序排列。
-
-```C++
-// 2020-11-24 submission (multiset)
-// Runtime: 960 ms, faster than 13.14% of C++ online submissions.
-// Memory Usage: 166.7 MB, less than 5.72% of C++ online submissions.
-class Solution {
-public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        vector<int> res;
-        multiset<int> st;
-        for (int i = 0; i < nums.size(); i++) {
-            if (i >= k) st.erase(st.find(nums[i-k]));
-            st.insert(nums[i]);
-            if (i + 1 >= k) res.push_back(*st.rbegin());
-        }
-        return res;
-    }
-};
-```
-
-```C++
-// 2020-11-24 submission (deque)
-// Runtime: 336 ms, faster than 94.72% of C++ online submissions.
-// Memory Usage: 106.9 MB, less than 58.01% of C++ online submissions.
-class Solution {
-public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        vector<int> res;
-        deque<int> q;
-        for (int i = 0; i < nums.size(); i++) {
-            if (!q.empty() && q.front()==i-k) q.pop_front();
-            while(!q.empty() && nums[q.back()] <= nums[i]) q.pop_back();
-            q.push_back(i);
-            if (i + 1 >= k) res.push_back(nums[q.front()]);
-        }
-        return res;
-    }
-};
-```
-
-## 240. Search a 2D Matrix II
-
-解题思路
-
-1. i指向0，j指向列数，这样第一个被验证的数就是二维数组右上角的数字，假如这个数字等于 target，直接返回 true；若大于 target，说明要减小数字，则列数j自减1；若小于 target，说明要增加数字，行数i自增1
-
-```C++
-// 2021-03-10 submission
-// ?/? cases passed
-// Runtime: 116 ms, faster than 64.86% of C++ online submissions.
-// Memory Usage: 14.7 MB, less than 81.91% of C++ online submissions.
-class Solution {
-public:
-    bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        if (matrix.empty() || matrix[0].empty()) return false;
-        int rows = matrix.size(), cols = matrix[0].size();
-        int x = 0, y = cols - 1;
-        while (x < rows && y >= 0) {
-            if (matrix[x][y] == target) return true;
-            else if (matrix[x][y] < target) ++x;
-            else if (matrix[x][y] > target) --y;
-        }
-        return false;
     }
 };
 ```
@@ -2498,59 +2338,6 @@ public:
             }
         }
         return 3;
-    }
-};
-```
-
-## 287. Find the Duplicate Number
-
-解题思路
-
-1. 题目描述：给定一个包含 n + 1 个整数的数组，其中每一个整数均介于 [1, n] 之间，其中至少有一个重复元素存在（鸽巢原理）。假设只有一个数字出现重复，找出这个重复的数字。要求不能改动原数组（排序），O(1) extra space，less than O(n2) runtime complexity
-2. 位操作：遍历每一位，然后对于 32 位中的每一个位 bit，都遍历一遍从 0 到 n-1，将 0 到 n-1 中的每一个数都跟 bit 相 与，若大于0，则计数器 cnt1 自增1。同时 0 到 n-1 也可以当作 nums 数组的下标，从而让 nums 数组中的每个数字也跟 bit 相与，若大于0，则计数器 cnt2 自增1。最后比较若 cnt2 大于 cnt1，则将 bit 加入结果 res 中。因为对于每一位，0 到 n-1 中所有数字中该位上的 1 的个数应该是固定的，如果 nums 数组中所有数字中该位上 1 的个数多了，说明重复数字在该位上一定是 1，这样我们把重复数字的所有为 1 的位都累加起来，就可以还原出这个重复数字。
-3. 快慢指针：
-
-```C++
-// 2020-10-28 submission (位操作)
-// Runtime: 16 ms, faster than 70.60% of C++ online submissions.
-// Memory Usage: 11.4 MB, less than 18.91% of C++ online submissions.
-class Solution {
-public:
-    int findDuplicate(vector<int>& nums) {
-        int res = 0, n = nums.size();
-        for (int i = 0; i < 32; ++i) {
-            int bit = (1 << i), cnt1 = 0, cnt2 = 0;
-            for (int k = 0; k < n; ++k) {
-                if ((k & bit) > 0) ++cnt1;
-                if ((nums[k] & bit) > 0) ++cnt2;
-            }
-            if (cnt2 > cnt1) res += bit;
-        }
-        return res;
-    }
-};
-```
-
-```C++
-// 2020-10-28 submission (快慢指针)
-// Runtime: 8 ms, faster than 99.60% of C++ online submissions.
-// Memory Usage: 11.3 MB, less than 18.91% of C++ online submissions.
-class Solution {
-public:
-    int findDuplicate(vector<int>& nums) {
-        int slow = 0, fast = 0, t = 0;
-        while (true) {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-            if (slow == fast) {
-                while (true) {
-                    slow = nums[slow];
-                    t = nums[t];
-                    if (slow == t) return slow;
-                }
-            }
-        }
-        return -1;
     }
 };
 ```
