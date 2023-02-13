@@ -367,9 +367,9 @@ public:
    - 最后进行普通匹配，(1) p 的当前字符为 . (2) p 的当前字符匹配 s 的当前字符，如果满足上述两种情况之一，s 和 p 均后移一位，继续递归。
 2. 动态规划
    - `dp[i][j]` 表示 s[0,i) 和 p[0,j) 是否 match
-   - `P[i][j] = P[i - 1][j - 1]`, if `p[j - 1] != '' && (s[i - 1] == p[j - 1] || p[j - 1] == '.')`;
-   - `P[i][j] = P[i][j - 2]`, if `p[j - 1] == ''` and the pattern repeats for 0 times;
-   - `P[i][j] = P[i - 1][j] && (s[i - 1] == p[j - 2] || p[j - 2] == '.')`, if `p[j - 1] == '*'` and the pattern repeats for at least 1 times.
+   - `dp[i][j] = dp[i - 1][j - 1]`, if `p[j - 1] != '*' && (s[i - 1] == p[j - 1] || p[j - 1] == '.')`;
+   - `dp[i][j] = dp[i][j - 2]`, if `p[j - 1] == '*'` and the pattern repeats for 0 times;
+   - `dp[i][j] = dp[i - 1][j] && (s[i - 1] == p[j - 2] || p[j - 2] == '.')`, if `p[j - 1] == '*'` and the pattern repeats for at least 1 times.
 
 TODO 贪婪匹配 VS 非贪婪匹配
 
@@ -2453,6 +2453,48 @@ public:
 };
 ```
 
+## [45.Jump Game II](https://leetcode.com/problems/jump-game-ii/description/)
+
+==Solution==
+
+**题目描述**: 给定一个非负整数数组 nums，最初位于数组的第一个位置，数组中的每个元素代表在该位置可以跳跃的最大长度，目标是使用最少的跳跃次数到达数组的最后一个位置。
+
+**解题思路**:
+
+1. 贪心算法：cur 是当前能到达的最远位置，last 是上一步能到达的最远位置，遍历数组。判断如果当前位置超过 last，即上一步能到达的最远位置，说明需要再跳一次。判断如果 cur 到达末尾。注意至少要跳一次，所以初始化为 1。
+
+**边界条件**:
+
+1. 数组长度只有 1
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2022-07-28 submission
+// 109/109 cases passed
+// Runtime: 23 ms, faster than 72.87% of C++ online submissions.
+// Memory Usage: 16.5 MB, less than 96.6% of C++ online submissions.
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        if (nums.size() <= 1) return 0;
+        int res = 1;
+        int pre = 0, cur = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (i > pre) {
+                pre = cur;
+                ++res;
+            }
+            cur = max(cur, i + nums[i]);
+            if (cur >= nums.size() - 1) break;
+        }
+        return res;
+    }
+};
+```
+
 ## [46.Permutations](https://leetcode.com/problems/permutations/description/)
 
 ==Solution==
@@ -3461,6 +3503,68 @@ public:
 };
 ```
 
+## [65.Valid Number](https://leetcode.com/problems/valid-number/description/)
+
+==Solution==
+
+**题目描述**: 验证数字有效性。
+
+**解题思路**
+
+1. 状态转移。注意要在字符串后面加一个空格表示结束符，从而使得终结符号只有 1 个。
+2. TODO
+
+**边界条件**
+
+1. 数字字符串中间不能被空格打断；不能出现两个以上数字字符串；
+2. “1.”是合法的；“.1”合法；“.”不合法；
+3. “+.5”合法；
+4. “0000.1e-0000.00”合法；
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2020-07-14 submission
+// 1490/1490 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 5.8 MB, less than 100% of C++ online submissions.
+class Solution {
+public:
+    bool isNumber(string s) {
+        int trans[][4] = {
+            {2, -1, 1, 3}, // 0
+            {2, -1, -1, 3},// 1
+            {2, 5, -1, 4}, // 2
+            {4, -1, -1, -1},// 3
+            {4, 5, -1, -1},// 4
+            {7, -1, 6, -1},// 5
+            {7, -1, -1, -1},// 6
+            {7, -1, -1, -1},//7
+            {-1, -1, -1, -1}};//8
+        int accepted[] = {2, 4, 7};
+
+        s.append(1, ' ');
+        int cur = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] == ' ') {
+                if (cur == 0 || cur == 8) continue;
+                else if (cur == 2 || cur ==4 || cur == 7) cur = 8;
+                else cur = -1;;
+            }
+            else if (s[i] >= '0' && s[i] <= '9') cur = trans[cur][0];
+            else if (s[i] == 'e' || s[i] == 'E') cur = trans[cur][1];
+            else if (s[i] == '+' || s[i] == '-') cur = trans[cur][2];
+            else if (s[i] == '.') cur = trans[cur][3];
+            else cur = -1;
+            if (cur == -1) return false;
+        }
+        return cur == 8;
+    }
+};
+```
+
 ## [66.Plus One](https://leetcode.com/problems/plus-one/description/)
 
 ==Solution==
@@ -3672,7 +3776,7 @@ public:
 
 **边界条件**:
 
-1. "/../" 返回 "/"
+1. "/../" 返回 “/”
 2. "/home//foo/" 返回 "/home/foo"
 
 **关联专题**: undefined
@@ -4007,6 +4111,60 @@ public:
 };
 ```
 
+## [76.Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/description/)
+
+==Solution==
+
+**题目描述**: 最小覆盖子串，在字符串 S 里面找出包含 T 所有字母的最小子串。
+
+**解题思路**
+
+1. 滑动窗口 + HashMap
+   - 只用一个哈希表存储 t 的频率。
+   - 另外需要一个计数变量，当频率大于 0 时（因为非法字符最大频率为 0，合法字符最小频率为 0）计数变量 cnt 加 1，从而可以判断是否已经包含所有合法字符。
+   - 没有必要每次都计算子串，只要有了起始位置和长度，就能唯一确定一个子串。这里使用一个全局变量 minLeft 来记录最终结果子串的起始位置。
+
+**边界条件**
+
+1. t 长度可能为 0
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2020-07-17 submission
+// 267/267 cases passed
+// Runtime: 3 ms, faster than 99.69% of C++ online submissions.
+// Memory Usage: 7.8 MB, less than 95.59% of C++ online submissions.
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        if(t.empty() || s.length() < t.length()) return "";
+
+        int freq[256] = {0};
+        for (char c : t) {
+            ++freq[c];
+        }
+
+        int left = 0, cnt = 0;
+        int minLeft = -1, minLen = s.length() + 1;
+        for (int pivot = 0; pivot < s.length(); ++pivot) {
+            if (--freq[s[pivot]] >= 0) ++cnt;
+            while (cnt == t.length()) {
+                if (minLen > pivot - left + 1) {
+                    minLen = pivot - left + 1;
+                    minLeft = left;
+                }
+                if (++freq[s[left]] > 0) --cnt;
+                ++left;
+            }
+        }
+        return minLeft == -1 ? "" : s.substr(minLeft, minLen);
+    }
+};
+```
+
 ## [77.Combinations](https://leetcode.com/problems/combinations/description/)
 
 ==Solution==
@@ -4183,6 +4341,53 @@ public:
             }
             res.push_back(vec);
         }
+        return res;
+    }
+};
+```
+
+## [79.Word Search](https://leetcode.com/problems/word-search/description/)
+
+==Solution==
+
+**题目描述**: 给定一个 m x n 二维字符网格 board 和一个字符串单词 word。如果 word 存在于网格中，返回 true；否则，返回 false。
+
+**解题思路**
+
+1. DFS：以二维数组中每一个数都作为起点和给定字符串做匹配，并且需要一个 visited 数组用来记录当前位置是否已经被访问过。如果二维数组 board 的当前字符和目标字符串 word 对应的字符相等，则对其上下左右四个邻字符分别调用 DFS 的递归函数，只要有一个返回 true，那么就表示可以找到对应的字符串，否则就不能找到。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-09 submission
+// 85/85 cases passed
+// Runtime: 1188 ms, faster than 19.42% of C++ online submissions.
+// Memory Usage: 8.1 MB, less than 23.51% of C++ online submissions.
+class Solution {
+public:
+    bool exist(vector<vector<char>>& board, string word) {
+        if (board.empty() || board[0].empty()) return false;
+        int m = board.size(), n = board[0].size();
+        vector<vector<bool>> visited(m, vector<bool>(n));
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (search(board, word, 0, i, j, visited)) return true;
+            }
+        }
+        return false;
+    }
+    bool search(vector<vector<char>>& board, string word, int idx, int i, int j, vector<vector<bool>>& visited) {
+        if (idx == word.size()) return true;
+        int m = board.size(), n = board[0].size();
+        if (i < 0 || j < 0 || i >= m || j >= n || visited[i][j] || board[i][j] != word[idx]) return false;
+        visited[i][j] = true;
+        bool res = search(board, word, idx + 1, i - 1, j, visited)
+                 || search(board, word, idx + 1, i + 1, j, visited)
+                 || search(board, word, idx + 1, i, j - 1, visited)
+                 || search(board, word, idx + 1, i, j + 1, visited);
+        visited[i][j] = false;
         return res;
     }
 };
@@ -5234,6 +5439,118 @@ public:
 };
 ```
 
+## [94.Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+
+==Solution==
+
+**题目描述**: 实现二叉树的中序遍历。
+
+**解题思路**
+
+1. 递归
+2. 迭代+栈+辅助节点
+3. Morris 遍历：O(1) 空间复杂度。构建一个线索二叉树，需要将所有为空的右子节点指向中序遍历的下一个节点，这样中序遍历完左子结点后，就能顺利的回到其根节点继续遍历了。具体算法如下：
+   - (1) 初始化指针 cur 指向 root
+   - (2) 当 cur 不为空时，如果 cur 没有左子结点，打印出 cur 的值，将 cur 指针指向其右子节点
+   - (3) 如果 cur 有左子结点，将 pre 指针指向 cur 的左子树中的最右子节点。
+     - 若 pre 不存在右子节点，将其右子节点指回 cur，cur 指向其左子节点。
+     - 若 pre 存在右子节点，将 pre 的右子节点置空，打印 cur 的值，将 cur 指针指向其右子节点
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-09 submission
+// 70/70 cases passed
+// Runtime: 6 ms, faster than 20.68% of C++ online submissions.
+// Memory Usage: 8.5 MB, less than 45.69% of C++ online submissions.
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> res;
+        inorder(root, res);
+        return res;
+    }
+    void inorder(TreeNode *root, vector<int> &res) {
+        if (!root) return;
+        if (root->left) inorder(root->left, res);
+        res.push_back(root->val);
+        if (root->right) inorder(root->right, res);
+    }
+};
+```
+
+```cpp
+// 2023-02-09 submission
+// 70/70 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 8.2 MB, less than 92.54% of C++ online submissions.
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> res;
+        stack<TreeNode*> s;
+        TreeNode *p = root;
+        while (p || !s.empty()) {
+            while (p) {
+                s.push(p);
+                p = p->left;
+            }
+            p = s.top(); s.pop();
+            res.push_back(p->val);
+            p = p->right;
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+// 2023-02-09 submission
+// 70/70 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 8.4 MB, less than 77.94% of C++ online submissions.
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> res;
+        if (!root) return res;
+        TreeNode *cur, *pre;
+        cur = root;
+        while (cur) {
+            if (!cur->left) {
+                res.push_back(cur->val);
+                cur = cur->right;
+            } else {
+                pre = cur->left;
+                while (pre->right && pre->right != cur) pre = pre->right;
+                if (!pre->right) {
+                    pre->right = cur;
+                    cur = cur->left;
+                } else {
+                    pre->right = NULL;
+                    res.push_back(cur->val);
+                    cur = cur->right;
+                }
+            }
+        }
+        return res;
+    }
+};
+```
+
 ## [95.Unique Binary Search Trees II](https://leetcode.com/problems/unique-binary-search-trees-ii/description/)
 
 ==Solution==
@@ -5471,6 +5788,141 @@ public:
             (s2[j] == s3[k] && helper(s1, i, s2, j + 1, s3, k + 1, s))) return true;
         s.insert(key);
         return false;
+    }
+};
+```
+
+## [98.Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)
+
+==Solution==
+
+**题目描述**: 验证是否为二叉搜索树。
+
+**解题思路**
+
+1. 中序递归遍历：针对每一颗子树逐步收缩区间，该方法只能解决严格不等于情况的二叉搜索树，无法处理 左<=根<=右 的情况。
+2. 中序遍历 + 排序：通过中序遍历将所有的节点值存到一个数组里，再来判断这个数组是不是有序。
+3. 中序遍历：每当遍历到一个新节点时和其上一个节点比较。
+4. 迭代中序遍历：Morris 遍历。
+
+**边界条件**
+
+1. 根节点中出现 INT_MAX 和 INT_MIN
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-09 submission
+// 82/82 cases passed
+// Runtime: 14 ms, faster than 61.68% of C++ online submissions.
+// Memory Usage: 21.7 MB, less than 54.7% of C++ online submissions.
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        return helper(root, LONG_MIN, LONG_MAX);
+    }
+
+    bool helper(TreeNode* root, long mn, long mx) {
+        if (!root) return true;
+        if (root->val <= mn || root->val >= mx) return false;
+        return helper(root->left, mn, root->val) && helper(root->right, root->val, mx);
+    }
+};
+```
+
+```cpp
+// 2023-02-09 submission
+// 82/82 cases passed
+// Runtime: 7 ms, faster than 96.34% of C++ online submissions.
+// Memory Usage: 21.7 MB, less than 54.7% of C++ online submissions.
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        if (!root) return true;
+        vector<int> vals;
+        inorder(root, vals);
+        for (int i = 0; i < vals.size() - 1; ++i) {
+            if (vals[i] >= vals[i + 1]) return false;
+        }
+        return true;
+    }
+    void inorder(TreeNode* root, vector<int>& vals) {
+        if (!root) return;
+        inorder(root->left, vals);
+        vals.push_back(root->val);
+        inorder(root->right, vals);
+    }
+};
+```
+
+```cpp
+// 2023-02-09 submission
+// 82/82 cases passed
+// Runtime: 13 ms, faster than 66.09% of C++ online submissions.
+// Memory Usage: 21.9 MB, less than 22.58% of C++ online submissions.
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        TreeNode *pre = NULL;
+        return inorder(root, pre);
+    }
+    bool inorder(TreeNode* node, TreeNode*& pre) { // pre 表示当前节点的前缀节点
+        if (!node) return true;
+        bool res = inorder(node->left, pre);
+        if (!res) return false;
+        if (pre) {
+            if (node->val <= pre->val) return false;
+        }
+        pre = node;
+        return inorder(node->right, pre);
+    }
+};
+```
+
+```cpp
+// 2023-02-09 submission
+// 82/82 cases passed
+// Runtime: 7 ms, faster than 96.34% of C++ online submissions.
+// Memory Usage: 21.8 MB, less than 54.7% of C++ online submissions.
+class Solution {
+public:
+    bool isValidBST(TreeNode *root) {
+        if (!root) return true;
+        TreeNode *cur = root, *pre, *parent = NULL;
+        bool res = true;
+        while (cur) {
+            if (!cur->left) {
+                if (parent && parent->val >= cur->val) res = false;
+                parent = cur;
+                cur = cur->right;
+            } else {
+                pre = cur->left;
+                while (pre->right && pre->right != cur) pre = pre->right;
+                if (!pre->right) {
+                    pre->right = cur;
+                    cur = cur->left;
+                } else {
+                    pre->right = NULL;
+                    if (parent->val >= cur->val) res = false;
+                    parent = cur;
+                    cur = cur->right;
+                }
+            }
+        }
+        return res;
     }
 };
 ```
@@ -7144,6 +7596,81 @@ public:
 };
 ```
 
+## [129.Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/description/)
+
+==Solution==
+
+**题目描述**: 每条从根节点到叶节点的路径都代表一个数字：比如路径 1 -> 2 -> 3 就表示数字 123。计算从根节点到叶节点生成的所有数字之和。
+
+**解题思路**
+
+1. DFS
+2. 栈：首先将根结点压入栈，然后进行while循环，取出栈顶元素，如果是叶结点，那么将其值加入结果res。如果其右子结点存在，那么其结点值加上当前结点值的 10 倍，再将右子结点压入栈。同理，若左子结点存在，那么其结点值加上当前结点值的 10 倍，再将左子结点压入栈。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-10 submission
+// 108/108 cases passed
+// Runtime: 7 ms, faster than 20.25% of C++ online submissions.
+// Memory Usage: 9.3 MB, less than 20.28% of C++ online submissions.
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int sumNumbers(TreeNode* root) {
+        return sumNumbersDFS(root, 0);
+    }
+    int sumNumbersDFS(TreeNode* root, int sum) {
+        if (!root) return 0;
+        sum = sum * 10 + root->val;
+        if (!root->left && !root->right) return sum;
+        return sumNumbersDFS(root->left, sum) + sumNumbersDFS(root->right, sum);
+    }
+};
+```
+
+```cpp
+// 2023-02-10 submission
+// 108/108 cases passed
+// Runtime: 3 ms, faster than 61.48% of C++ online submissions.
+// Memory Usage: 9.4 MB, less than 18.14% of C++ online submissions.
+class Solution {
+public:
+    int sumNumbers(TreeNode* root) {
+        if (!root) return 0;
+        int res = 0;
+        stack<TreeNode*> st{{root}};
+        while (!st.empty()) {
+            TreeNode *t = st.top(); st.pop();
+            if (!t->left && !t->right) {
+                res += t->val;
+            }
+            if (t->right) {
+                t->right->val += t->val * 10;
+                st.push(t->right);
+            }
+            if (t->left) {
+                t->left->val += t->val * 10;
+                st.push(t->left);
+            }
+        }
+        return res;
+    }
+};
+```
+
 ## [130.Surrounded Regions](https://leetcode.com/problems/surrounded-regions/description/)
 
 ==Solution==
@@ -7906,6 +8433,256 @@ public:
             cur = next;
         }
         st.top()->next = NULL;
+    }
+};
+```
+
+## [144.Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)
+
+==Solution==
+
+**题目描述**: 实现二叉树的前序遍历。
+
+**解题思路**
+
+1. 递归
+2. 非递归+栈：把根节点 push 到栈中，然后循环检测栈是否为空，若不空，则取出栈顶元素，保存其值，然后看其右子节点是否存在，若存在则 push 到栈中。再看其左子节点，若存在，则 push 到栈中。
+3. Morris 遍历
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-09 submission
+// 69/69 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 8.4 MB, less than 80.1% of C++ online submissions.
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        helper(root, res);
+        return res;
+    }
+
+    void helper(TreeNode* root, vector<int>& res) {
+        if (!root) return;
+        res.push_back(root->val);
+        helper(root->left, res);
+        helper(root->right, res);
+    }
+};
+```
+
+```cpp
+// 2023-02-09 submission
+// 69/69 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 8.4 MB, less than 50.42% of C++ online submissions.
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> st;
+        TreeNode *p = root;
+        while (!st.empty() || p) {
+            if (p) {
+                st.push(p);
+                res.push_back(p->val);
+                p = p->left;
+            } else {
+                p = st.top(); st.pop();
+                p = p->right;
+            }
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+// 2023-02-09 submission
+// 69/69 cases passed
+// Runtime: 6 ms, faster than 21.19% of C++ online submissions.
+// Memory Usage: 8.4 MB, less than 50.42% of C++ online submissions.
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> data = {};
+        TreeNode* cur = root;
+        TreeNode* pre = NULL;
+        while (cur)
+        {
+            if (cur->left == NULL)
+            {
+                data.push_back(cur->val);
+                cur = cur->right;
+            }
+            else
+            {
+                // 寻找前驱结点
+                pre = cur->left;
+                while (pre->right != cur && pre->right)
+                {
+                    pre = pre->right;
+                }
+                if (pre->right == NULL)
+                {
+                    data.push_back(cur->val);
+                    pre->right = cur;
+                    cur = cur->left;
+                }
+                else
+                {
+                    cur = cur->right;
+                    pre->right = NULL;
+                }
+            }
+        }
+        return data;
+    }
+};
+```
+
+## [145.Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)
+
+==Solution==
+
+**题目描述**: 实现二叉树的后序遍历。
+
+**解题思路**
+
+1. 递归
+2. 迭代+栈+辅助节点
+3. Morris 遍历
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-09 submission
+// 68/68 cases passed
+// Runtime: 6 ms, faster than 20.13% of C++ online submissions.
+// Memory Usage: 8.5 MB, less than 47.17% of C++ online submissions.
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        helper(root, res);
+        return res;
+    }
+
+    void helper(TreeNode *root, vector<int> &res) {
+        if (!root) return;
+        if (root->left) helper(root->left, res);
+        if (root->right) helper(root->right, res);
+        res.push_back(root->val);
+    }
+};
+```
+
+```cpp
+// 2023-02-09 submission
+// 68/68 cases passed
+// Runtime: 6 ms, faster than 20.13% of C++ online submissions.
+// Memory Usage: 8.5 MB, less than 73.21% of C++ online submissions.
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> s;
+        TreeNode *p = root;
+        while (!s.empty() || p) {
+            if (p) {
+                s.push(p);
+                res.insert(res.begin(), p->val);
+                p = p->right;
+            } else {
+                TreeNode *t = s.top(); s.pop();
+                p = t->left;
+            }
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+// 2023-02-09 submission
+// 68/68 cases passed
+// Runtime: 6 ms, faster than 20.13% of C++ online submissions.
+// Memory Usage: 8.2 MB, less than 98.65% of C++ online submissions.
+class Solution {
+public:
+    // addPath
+    void addPath(vector<int> &vec, TreeNode *node) {
+        int count = 0;
+        while (node != nullptr) {
+            ++count;
+            vec.push_back(node->val);
+            node = node->right;
+        }
+        reverse(vec.end() - count, vec.end());
+    }
+
+    vector<int> postorderTraversal(TreeNode *root) {
+        vector<int> res;
+        TreeNode *p1 = root, *p2 = nullptr;
+        // p2的设定是p1的左孩子
+
+        // p1非空就继续循环
+        while (p1 != nullptr) {
+            p2 = p1->left;
+            // 若p1有左孩子
+            if (p2 != nullptr) {
+                // p2是p1左子树的最右节点
+                while (p2->right != nullptr && p2->right != p1) {
+                    p2 = p2->right;
+                }
+                // p2->right == nullptr 确定了该节点是第一次访问
+                // 先把p1加入结果，再把p1左子树的最右节点指向p1，p1继续往左走
+                if (p2->right == nullptr) {
+                    p2->right = p1;
+                    p1 = p1->left;
+                    continue;
+                // // p2->right == p1 说明该节点已经访问过，此时再访问到就置为空
+                } else {
+                    p2->right = nullptr;
+                    // 打印p1->left而非p1，就保证根节点一定是最后打印的
+                    addPath(res, p1->left);
+                }
+            }
+            // 1、其左孩子已经访问完毕，因此把p1的右孩子赋给p1
+            // 要么就是在回溯的路上，要么就是到了一个全新的未被访问过的节点
+            p1 = p1->right;
+        }
+        // 最后打印root及其右孩子（若右孩子是叶子节点）
+        addPath(res, root);
+        return res;
     }
 };
 ```
@@ -10904,6 +11681,94 @@ private:
  */
 ```
 
+## [212.Word Search II](https://leetcode.com/problems/word-search-ii/description/)
+
+==Solution==
+
+**题目描述**: 给定一个二维网格 board 和一个字典中的单词列表words，找出所有同时在二维网格和字典中出现的单词。
+
+**解题思路**
+
+1. 前缀树 + DFS
+
+TODO
+
+<https://leetcode.com/problems/word-search-ii/discuss/59780/Java-15ms-Easiest-Solution-(100.00>
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2020-12-13 submission
+// 64/64 cases passed
+// Runtime: 907 ms, faster than 60.46% of C++ online submissions.
+// Memory Usage: 15.6 MB, less than 48.33% of C++ online submissions.
+class Solution {
+private:
+    struct TrieNode {
+        TrieNode* child[26];
+        string word;
+        TrieNode() {
+            word = "";
+            for (TrieNode*& ptr : child) {
+                ptr = NULL;
+            }
+        }
+    };
+
+    struct TrieTree {
+        TrieNode* root;
+        TrieTree() : root(new TrieNode()) {}
+        void insert(string word) {
+            TrieNode* cur = root;
+            for (char c : word) {
+                if (!cur->child[c-'a']) cur->child[c-'a'] = new TrieNode();
+                cur = cur->child[c-'a'];
+            }
+            cur->word = word;
+        }
+    };
+
+public:
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        if(board.empty() || board[0].empty()) return vector<string>{};
+        vector<string> res;
+        int rows = board.size(), cols = board[0].size();
+        vector<vector<bool>> visited(rows, vector<bool>(cols, false));
+
+        TrieTree* tree = new TrieTree();
+        for (string word : words)
+            tree->insert(word);
+
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                DFS(board, visited, res, i, j, tree->root);
+            }
+        }
+        return res;
+    }
+
+    void DFS(vector<vector<char>>& board, vector<vector<bool>>& visited, vector<string>& res, int x, int y, TrieNode* cur) {
+        if (0 > x || x >= board.size() || 0 > y || y >= board[0].size() || visited[x][y]) return;
+        visited[x][y] = true;
+        char c = board[x][y];
+        if (cur->child[c-'a']) {
+            cur = cur->child[c-'a'];
+            if (cur->word != "") {
+                res.push_back(cur->word);
+                cur->word.clear();
+            }
+            DFS(board, visited, res, x-1, y, cur);
+            DFS(board, visited, res, x+1, y, cur);
+            DFS(board, visited, res, x, y-1, cur);
+            DFS(board, visited, res, x, y+1, cur);
+        }
+        visited[x][y] = false;
+    }
+};
+```
+
 ## [213.House Robber II](https://leetcode.com/problems/house-robber-ii/description/)
 
 ==Solution==
@@ -12017,6 +12882,131 @@ public:
 };
 ```
 
+## [230.Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/)
+
+==Solution==
+
+**题目描述**: 二叉搜索树中第 K 最小值。
+
+**解题思路**
+
+1. 中序遍历
+2. 分治法
+   - 利用 BST 的性质可以快速定位出第 k 小的元素是在左子树还是右子树。
+   - 首先计算出左子树的结点个数总和 cnt，如果 k 小于等于左子树结点总和 cnt，说明第 k 小的元素在左子树中，直接对左子结点调用递归即可。如果 k 大于 cnt+1，说明目标值在右子树中，对右子结点调用递归函数。
+
+**Follow up**
+
+1. BST 被修改得很频繁，而且查找第 k 小元素的操作也很频繁。
+   - 修改原树结点的结构，使其保存包括当前结点和其左右子树所有结点的个数，这样就可以快速得到任何左子树结点总数。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2021-03-18 submission
+// 93/93 cases passed
+// Runtime: 18 ms, faster than 75.34% of C++ online submissions.
+// Memory Usage: 24.1 MB, less than 90.26% of C++ online submissions.
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        return helper(root, k);
+    }
+
+    int helper(TreeNode* root, int& k) {
+        if (!root) return -1;
+        int val = helper(root->left, k);
+        if (k == 0) return val;
+        if (--k == 0) return root->val;
+        return helper(root->right, k);
+    }
+};
+```
+
+```cpp
+// 2023-02-10 submission
+// 93/93 cases passed
+// Runtime: 18 ms, faster than 75.34% of C++ online submissions.
+// Memory Usage: 24.2 MB, less than 66.94% of C++ online submissions.
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        int cnt = count(root->left);
+        if (k <= cnt) {
+            return kthSmallest(root->left, k);
+        } else if (k > cnt + 1) {
+            return kthSmallest(root->right, k - cnt - 1);
+        }
+        return root->val;
+    }
+    int count(TreeNode* node) {
+        if (!node) return 0;
+        return 1 + count(node->left) + count(node->right);
+    }
+};
+```
+
+```cpp
+// Follow up
+// 2023-02-10 submission
+// 93/93 cases passed
+// Runtime: 31 ms, faster than 18.9% of C++ online submissions.
+// Memory Usage: 27.2 MB, less than 5.96% of C++ online submissions.
+class Solution {
+public:
+    struct MyTreeNode {
+        int val;
+        int count;
+        MyTreeNode *left;
+        MyTreeNode *right;
+        MyTreeNode(int x) : val(x), count(1), left(NULL), right(NULL) {}
+    };
+
+    MyTreeNode* build(TreeNode* root) {
+        if (!root) return NULL;
+        MyTreeNode *node = new MyTreeNode(root->val);
+        node->left = build(root->left);
+        node->right = build(root->right);
+        if (node->left) node->count += node->left->count;
+        if (node->right) node->count += node->right->count;
+        return node;
+    }
+
+    int kthSmallest(TreeNode* root, int k) {
+        MyTreeNode *node = build(root);
+        return helper(node, k);
+    }
+
+    int helper(MyTreeNode* node, int k) {
+        if (node->left) {
+            int cnt = node->left->count;
+            if (k <= cnt) {
+                return helper(node->left, k);
+            } else if (k > cnt + 1) {
+                return helper(node->right, k - 1 - cnt);
+            }
+            return node->val;
+        } else {
+            if (k == 1) return node->val;
+            return helper(node->right, k - 1);
+        }
+    }
+};
+```
+
 ## [231.Power of Two](https://leetcode.com/problems/power-of-two/description/)
 
 ==Solution==
@@ -12471,6 +13461,124 @@ public:
             res[i] *= right;
         }
         return res;
+    }
+};
+```
+
+## [239.Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/description/)
+
+==Solution==
+
+**题目描述**: 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。
+
+**解题思路**
+
+1. multiset: multiset是一种基于红黑树的数据结构，可以自动对元素进行排序，允许有重复值。
+   - 首先遍历每个数字，即窗口右移，若超过了 k，则需要把左边界值删除，这里不能直接删除 nums[i-k]，因为集合中可能有重复数字，而 erase 默认是将所有和目标值相同的元素都删掉，所以只能提供一个 iterator 代表一个确定的删除位置，先通过 find() 函数找到左边界 nums[i-k] 在集合中的位置再删除。
+   - 然后将当前数字插入到集合中，此时看若 i >= k-1，说明窗口大小正好是 k，就需要将最大值加入结果 res 中，而由于 multiset 是按升序排列的，最大值在最后一个元素，可以通过 rbegin() 来取出。
+2. 优先队列/最大堆
+   - 堆元素为由数字和其所在位置组成的 pair。
+   - 在遍历每个数字时，进行 while 循环，假如优先队列中最大的数字此时不在窗口中了，就要移除，判断方法就是将队首元素的 pair 对儿中的 second（位置坐标）跟 i-k 对比，小于等于就移除。然后将当前数字和其位置组成 pair 对儿加入优先队列中。此时看若 i >= k-1，说明窗口大小正好是k，就将最大值加入结果 res 中即可。
+3. deque
+   - 用双向队列保存数字的下标，遍历整个数组，如果此时队列的首元素是 i-k，表示此时窗口向右移了一步，则移除队首元素。
+   - 然后比较队尾元素和将要进来的值，如果小的话就都移除，这样可以确保队列中为近似降序排列。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2020-11-24 submission (multiset)
+// 51/51 cases passed
+// Runtime: 745 ms, faster than 12.41% of C++ online submissions.
+// Memory Usage: 211.9 MB, less than 8.42% of C++ online submissions.
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        vector<int> res;
+        multiset<int> st;
+        for (int i = 0; i < nums.size(); i++) {
+            if (i >= k) st.erase(st.find(nums[i-k]));
+            st.insert(nums[i]);
+            if (i + 1 >= k) res.push_back(*st.rbegin());
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+// 2023-02-10 submission (priority queue)
+// 51/51 cases passed
+// Runtime: 398 ms, faster than 38.56% of C++ online submissions.
+// Memory Usage: 148.9 MB, less than 26.74% of C++ online submissions.
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        vector<int> res;
+        priority_queue<pair<int, int>> q;
+        for (int i = 0; i < nums.size(); ++i) {
+            while (!q.empty() && q.top().second <= i - k) q.pop();
+            q.push({nums[i], i});
+            if (i >= k - 1) res.push_back(q.top().first);
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+// 2020-11-24 submission (deque)
+// 51/51 cases passed
+// Runtime: 281 ms, faster than 92.4% of C++ online submissions.
+// Memory Usage: 134.8 MB, less than 66.21% of C++ online submissions.
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        vector<int> res;
+        deque<int> q;
+        for (int i = 0; i < nums.size(); i++) {
+            if (!q.empty() && q.front()==i-k) q.pop_front();
+            while(!q.empty() && nums[q.back()] <= nums[i]) q.pop_back();
+            q.push_back(i);
+            if (i + 1 >= k) res.push_back(nums[q.front()]);
+        }
+        return res;
+    }
+};
+```
+
+## [240.Search a 2D Matrix II](https://leetcode.com/problems/search-a-2d-matrix-ii/description/)
+
+==Solution==
+
+**题目描述**: 搜索 m x n 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性：每行的元素从左到右升序排列，每列的元素从上到下升序排列。
+
+**解题思路**
+
+1. i 指向 0，j 指向列数，这样第一个被验证的数就是二维数组右上角的数字，假如这个数字等于 target，直接返回 true；若大于 target，说明要减小数字，则列数 j 自减 1；若小于 target，说明要增加数字，行数 i 自增 1。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2021-03-10 submission
+// 130/130 cases passed
+// Runtime: 150 ms, faster than 35.49% of C++ online submissions.
+// Memory Usage: 14.7 MB, less than 92.09% of C++ online submissions.
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if (matrix.empty() || matrix[0].empty()) return false;
+        int rows = matrix.size(), cols = matrix[0].size();
+        int x = 0, y = cols - 1;
+        while (x < rows && y >= 0) {
+            if (matrix[x][y] == target) return true;
+            else if (matrix[x][y] < target) ++x;
+            else if (matrix[x][y] > target) --y;
+        }
+        return false;
     }
 };
 ```
@@ -13261,6 +14369,68 @@ public:
 private:
     int _value;
     bool _flag;
+};
+```
+
+## [287.Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/description/)
+
+==Solution==
+
+**题目描述**: 给定一个包含 n + 1 个整数的数组，其中每一个整数均介于 [1, n] 之间，其中至少有一个重复元素存在（鸽巢原理）。假设只有一个数字出现重复，找出这个重复的数字。要求不能改动原数组（排序），O(1) extra space，less than O(n2) runtime complexity。
+
+**解题思路**
+
+1. 位操作：遍历每一位，然后对于 32 位中的每一个位 bit，都遍历一遍从 0 到 n-1，将 0 到 n-1 中的每一个数都跟 bit 相与，若大于0，则计数器 cnt1 自增1。同时 0 到 n-1 也可以当作 nums 数组的下标，从而让 nums 数组中的每个数字也跟 bit 相与，若大于0，则计数器 cnt2 自增1。最后比较若 cnt2 大于 cnt1，则将 bit 加入结果 res 中。因为对于每一位，0 到 n-1 中所有数字中该位上的 1 的个数应该是固定的，如果 nums 数组中所有数字中该位上 1 的个数多了，说明重复数字在该位上一定是 1，这样我们把重复数字的所有为 1 的位都累加起来，就可以还原出这个重复数字。
+2. 快慢指针：限定了区间 [1,n]，所以可以利用坐标和数值之间相互转换，而由于重复数字的存在，那么一定会形成环，用快慢指针可以找到环并确定环的起始位置。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2020-10-28 submission (位操作)
+// 58/58 cases passed
+// Runtime: 220 ms, faster than 29.66% of C++ online submissions.
+// Memory Usage: 61.4 MB, less than 34.96% of C++ online submissions.
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int res = 0, n = nums.size();
+        for (int i = 0; i < 32; ++i) {
+            int bit = (1 << i), cnt1 = 0, cnt2 = 0;
+            for (int k = 0; k < n; ++k) {
+                if ((k & bit) > 0) ++cnt1;
+                if ((nums[k] & bit) > 0) ++cnt2;
+            }
+            if (cnt2 > cnt1) res += bit;
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+// 2020-10-28 submission (快慢指针)
+// 58/58 cases passed
+// Runtime: 106 ms, faster than 93.04% of C++ online submissions.
+// Memory Usage: 61.3 MB, less than 68.19% of C++ online submissions.
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int slow = 0, fast = 0, t = 0;
+        while (true) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+            if (slow == fast) {
+                while (true) {
+                    slow = nums[slow];
+                    t = nums[t];
+                    if (slow == t) return slow;
+                }
+            }
+        }
+        return -1;
+    }
 };
 ```
 

@@ -549,6 +549,37 @@ public:
 ```
 
 ## 259. 3Sum Smaller
+
+题目描述：给定一个长度为 n 的整数数组和一个目标值 target，寻找能够使条件 nums[i] + nums[j] + nums[k] < target 成立的三元组。
+
+1. 排序 + 双指针
+   - left 指向首数字，从右往左固定最长边，开始循环
+   - 如果 left 小于 right 就进行循环，循环里面判断如果 left 指向的数加上 right 指向的数大于当长边，那么 right 到 left之间的数字都可以组成三角形
+   - 时间复杂度为 O(n^2)
+
+```cpp
+class Solution {
+public:
+    int threeSumSmaller(vector<int>& nums, int target) {
+        if (nums.size() < 3) return 0;
+        int res = 0, n = nums.size();
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < n - 2; ++i) {
+            int left = i + 1, right = n - 1;
+            while (left < right) {
+                if (nums[i] + nums[left] + nums[right] < target) {
+                    res += right - left;
+                    ++left;
+                } else {
+                    --right;
+                }
+            }
+        }
+        return res;
+    }
+};
+```
+
 ## 261. Graph Valid Tree
 
 ## 265. Paint House II

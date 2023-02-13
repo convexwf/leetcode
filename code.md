@@ -1,3 +1,130 @@
+
+## 330. Patching Array
+
+给定一个已排序的正整数数组 nums ，和一个正整数 n。从 [1, n] 区间内选取任意个数字补充到 nums 中，使得 [1, n] 区间内的任何数字都可以用 nums 中某几个数字的和来表示。返回满足上述要求的最少需要补充的数字个数。
+
+## 335. Self Crossing
+
+从 X-Y 平面上的点 (0,0) 开始，先向北移动 distance[0] 米，然后向西移动 distance[1] 米，向南移动 distance[2] 米，向东移动 distance[3] 米，持续移动，每次移动后你的方位会发生逆时针变化。判断所经过的路径是否相交。
+
+## 337. House Robber III
+
+## 343. Integer Break
+
+给定一个正整数 n，将其拆分为至少两个正整数的和，并使这些整数的乘积最大化。
+
+## 437 Path Sum III
+
+
+
+## 472. Concatenated Words
+
+给定一个不含重复单词的字符串数组 words ，找出 words 中的所有连接词。连接词定义为一个完全由给定数组中的至少两个较短单词组成的字符串。
+
+## 488. Zuma Game
+
+## 493. Reverse Pairs
+
+## 494. Target Sum
+
+给定一个非负整数数组和一个目标值，给数组中每个数字加上正号或负号，然后求和要和目标值相等。
+
+1. BFS
+2. 背包问题
+   - `Sum(positive) - Sum(negative) = S`，`Sum(positive)+Sum(negative)=total`，两式相加得 `2 * Sum(positive) = (S+total)`
+   - 题目等价于从 nums 里任取若干使其和为（S+total) / 2
+
+```cpp
+// 2021-03-21 submission
+class Solution {
+public:
+    int findTargetSumWays(vector<int>& nums, int S) {
+        unordered_map<int, int> m;
+        vector<pair<int, int>> can;
+        m[0] = 1;
+        for (int i = 0; i < nums.size(); i++) {
+            for (auto it : m) {
+                if (it.second > 0) {
+                    can.push_back(make_pair(it.first+nums[i], it.second));
+                    can.push_back(make_pair(it.first-nums[i], it.second));
+                    m[it.first] = 0;
+                }
+            }
+            for (auto it : can) {
+                m[it.first] += it.second;
+            }
+            can.clear();
+        }
+        return m[S];
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int findTargetSumWays(vector & nums, int sum)
+    {
+        int total = accumulate(nums.begin(), nums.end(), 0);
+        if (sum > total || sum < -total) return 0;
+        if ((total + sum) & 1 != 0) return 0; // S, total 奇偶性必须相同
+        int target = (total + sum) / 2;
+        vector<int> dp(target + 1, 0);
+        dp[0] = 1;
+        for (int n : nums)
+        {
+            int k0 = static_cast<int>(dp.size()) - 1 - n;
+            for (int k = k0; k >= 0; --k) {
+                dp[k + n] += dp[k];
+            }
+        }
+        return dp.back();
+    }
+};
+```
+
+## 513. Find Bottom Left Tree Value
+
+## 516. Longest Palindromic Subsequence
+
+## 518. Coin Change 2
+
+## 609. Find Duplicate File in System
+
+## 686. Repeated String Match
+
+字符串 a 最少复制几次后，字符串 b 才可以成为 a 复制后的子串。
+
+## 715. Range Module
+
+## 768
+## 887
+## 895
+## 975
+## 1032
+## 1168
+## 1203
+## 1255
+## 1345
+## 1449
+
+## 754
+## 785
+## 816
+## 820
+## 875
+## 877
+## 886
+## 900
+## 911
+## 912
+## 935
+## 978
+## 987
+
+## 874
+
+
 ## 149. Max Points on a Line
 
 给了一堆二维点，求最大的共线点的个数。
@@ -325,8 +452,6 @@ public:
 
 给定字符串能否拆成斐波那契数列
 
-## 378. Kth Smallest Element in a Sorted Matrix
-
 ##
 
 实现LFU（最不经常使用）缓存算法，
@@ -363,8 +488,6 @@ public:
 
 ## 695. Max Area of Island
 
-## 686. Repeated String Match
-
 ## 684. Redundant Connection
 
 删掉无向图中组成环的最后一条边，图中只有一条额外边。
@@ -376,66 +499,6 @@ public:
 ## 498. Diagonal Traverse
 
 二维数组的对角遍历，先向右上，然后左下，再右上，以此类推直至遍历完整个数组。
-
-
-
-## 494. Target Sum
-
-给定一个非负整数数组和一个目标值，给数组中每个数字加上正号或负号，然后求和要和目标值相等。
-
-1. BFS
-2. 背包问题
-   - `Sum(positive) - Sum(negative) = S`，`Sum(positive)+Sum(negative)=total`，两式相加得 `2 * Sum(positive) = (S+total)`
-   - 题目等价于从 nums 里任取若干使其和为（S+total) / 2
-
-```cpp
-// 2021-03-21 submission
-class Solution {
-public:
-    int findTargetSumWays(vector<int>& nums, int S) {
-        unordered_map<int, int> m;
-        vector<pair<int, int>> can;
-        m[0] = 1;
-        for (int i = 0; i < nums.size(); i++) {
-            for (auto it : m) {
-                if (it.second > 0) {
-                    can.push_back(make_pair(it.first+nums[i], it.second));
-                    can.push_back(make_pair(it.first-nums[i], it.second));
-                    m[it.first] = 0;
-                }
-            }
-            for (auto it : can) {
-                m[it.first] += it.second;
-            }
-            can.clear();
-        }
-        return m[S];
-    }
-};
-```
-
-```cpp
-class Solution {
-public:
-    int findTargetSumWays(vector & nums, int sum)
-    {
-        int total = accumulate(nums.begin(), nums.end(), 0);
-        if (sum > total || sum < -total) return 0;
-        if ((total + sum) & 1 != 0) return 0; // S, total 奇偶性必须相同
-        int target = (total + sum) / 2;
-        vector<int> dp(target + 1, 0);
-        dp[0] = 1;
-        for (int n : nums)
-        {
-            int k0 = static_cast<int>(dp.size()) - 1 - n;
-            for (int k = k0; k >= 0; --k) {
-                dp[k + n] += dp[k];
-            }
-        }
-        return dp.back();
-    }
-};
-```
 
 
 ## 316. Remove Duplicate Letters
@@ -509,8 +572,6 @@ public:
 ## 430 Flatten a Multilevel Doubly Linked List
 
 ## 429 N-ary Tree Level Order Traversal
-
-## 437 Path Sum III
 
 ## 126. Word Ladder II
 
