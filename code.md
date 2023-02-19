@@ -1,3 +1,42 @@
+## 395. Longest Substring with At Least K Repeating Characters
+
+给定一个字符串 s 和一个整数 k，找出 s 中的最长子串，要求该子串中的每一字符出现次数都不少于 k。
+
+1. 滑动窗口
+   - 字符串中只有字母，这意味着最多不同的字母数只有 26 个，最后满足题意的子串中的不同字母数一定是在 [1, 26] 的范围
+   - 每次只找不同字母个数为 cnt，且每个字母至少重复 k 次的子串，来更新最终结果 res。
+   - cnt 从 1 遍历到 26，对于每个 cnt 都新建一个大小为 26 的数组 charCnt 来记录每个字母的出现次数
+   - 用两个变量 start 和 i 来分别标记窗口的左右边界，当右边界小于 n 时，进行 while 循环，需要一个变量 valid 来表示当前子串是否满足题意
+   - 需要一个变量 uniqueCnt 来记录子串中不同字母的个数。此时若 s[i] 这个字母在 charCnt 中的出现次数为 0，说明遇到新字母了，uniqueCnt 自增1，同时把该字母的映射值加 1。
+   - 由于 uniqueCnt 变大，有可能会超过 cnt，所以这里用一个 while 循环，条件是当 uniqueCnt 大于 cnt ，此时应该收缩滑动窗口的左边界
+   - 当 uniqueCnt 没超过 cnt 的时候，此时还要看当前窗口中的每个字母的出现次数是否都大于等于 k，遇到小于 k 的字母，则直接 valid 标记为 false 即可
+
+TODO
+
+```cpp
+class Solution {
+public:
+    int longestSubstring(string s, int k) {
+        int res = 0, n = s.size();
+        for (int cnt = 1; cnt <= 26; ++cnt) {
+            int start = 0, i = 0, uniqueCnt = 0;
+            vector<int> charCnt(26);
+            while (i < n) {
+                bool valid = true;
+                if (charCnt[s[i++] - 'a']++ == 0) ++uniqueCnt;
+                while (uniqueCnt > cnt) {
+                    if (--charCnt[s[start++] - 'a'] == 0) --uniqueCnt;
+                }
+                for (int j = 0; j < 26; ++j) {
+                    if (charCnt[j] > 0 && charCnt[j] < k) valid = false;
+                }
+                if (valid) res = max(res, i - start);
+            }
+        }
+        return res;
+    }
+};
+```
 
 ## 330. Patching Array
 
@@ -19,7 +58,7 @@
 
 ## 472. Concatenated Words
 
-给定一个不含重复单词的字符串数组 words ，找出 words 中的所有连接词。连接词定义为一个完全由给定数组中的至少两个较短单词组成的字符串。
+给定一个不含重复单词的字符串数组 words，找出 words 中的所有连接词。连接词定义为一个完全由给定数组中的至少两个较短单词组成的字符串。
 
 ## 488. Zuma Game
 
@@ -97,7 +136,11 @@ public:
 
 ## 715. Range Module
 
-## 768
+##
+## 768. Max Chunks To Make Sorted II
+
+一个整数数组 arr 分割成若干块，将这些块分别进行排序，之后再连接起来，使得连接的结果和按升序排序后的原数组相同。返回能将数组分成的最多块数。
+
 ## 887
 ## 895
 ## 975
@@ -109,21 +152,168 @@ public:
 ## 1449
 
 ## 754
-## 785
+
+## 785. Is Graph Bipartite?
+
+存在一个无向图 ，图中有 n 个节点。其中每个节点都有一个介于 0 到 n - 1 之间的唯一编号。给定一个二维数组 graph ，其中 graph[u] 是一个节点数组，由节点 u 的邻接节点组成。形式上，对于 graph[u] 中的每个 v ，都存在一条位于节点 u 和节点 v 之间的无向边。
+
+该无向图同时具有以下属性：
+(1) 不存在自环（graph[u] 不包含 u）。
+(2) 不存在平行边（graph[u] 不包含重复值）。
+(3) 如果 v 在 graph[u] 内，那么 u 也应该在 graph[v] 内（该图是无向图）。
+(4) 这个图可能不是连通图，也就是说两个节点 u 和 v 之间可能不存在一条连通彼此的路径。
+
+二分图：如果能将一个图的节点集合分割成两个独立的子集 A 和 B ，并使图中的每一条边的两个节点一个来自 A 集合，一个来自 B 集合，就将这个图称为 二分图 。
+
+1. 并查集
+   - 连接的两个节点不能在同一集合中
+   - 同一节点的邻接节点必须在同一集合中
+2. DFS 染色
+   - 使用两种颜色，分别用 1 和 -1 来表示
+   - 初始时每个顶点用 0 表示未染色，然后遍历每一个顶点，如果该顶点未被访问过，则调用递归函数
+   - 在递归函数中，如果当前顶点已经染色，如果该顶点的颜色和将要染的颜色相同，则返回 true，否则返回 false。如果没被染色，则将当前顶点染色，然后再遍历与该顶点相连的所有的顶点
+3. BFS 染色
+   - 遍历所有顶点，如果未被染色，则先染色为 1，然后使用 BFS 进行遍历，将当前顶点放入队列 queue 中
+   - while 循环：queue 不为空，取出队首元素，遍历其所有相邻的顶点，如果相邻顶点未被染色，则染成和当前顶点相反的颜色，然后把相邻顶点加入 queue 中，否则如果当前顶点和相邻顶点颜色相同，直接返回 false，循环退出后返回 true
+
+```cpp
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        vector<int> root(graph.size());
+        for (int i = 0; i < graph.size(); ++i) root[i] = i;
+        for (int i = 0; i < graph.size(); ++i) {
+            if (graph[i].empty()) continue;
+            int x = find(root, i), y = find(root, graph[i][0]);
+            if (x == y) return false;
+            for (int j = 1; j < graph[i].size(); ++j) {
+                int parent = find(root, graph[i][j]);
+                if (x == parent) return false;
+                root[parent] = y;
+            }
+        }
+        return true;
+    }
+    int find(vector<int>& root, int i) {
+        return root[i] == i ? i : find(root, root[i]);
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        vector<int> colors(graph.size());
+        for (int i = 0; i < graph.size(); ++i) {
+            if (colors[i] == 0 && !valid(graph, 1, i, colors)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    bool valid(vector<vector<int>>& graph, int color, int cur, vector<int>& colors) {
+        if (colors[cur] != 0) return colors[cur] == color;
+        colors[cur] = color;
+        for (int i : graph[cur]) {
+            if (!valid(graph, -1 * color, i, colors)) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        vector<int> colors(graph.size());
+        for (int i = 0; i < graph.size(); ++i) {
+            if (colors[i] != 0) continue;
+            colors[i] = 1;
+            queue<int> q{{i}};
+            while (!q.empty()) {
+                int t = q.front(); q.pop();
+                for (auto a : graph[t]) {
+                    if (colors[a] == colors[t]) return false;
+                    if (colors[a] == 0) {
+                        colors[a] = -1 * colors[t];
+                        q.push(a);
+                    }
+                }
+            }
+        }
+        return true;
+    }
+};
+```
+
 ## 816
 ## 820
 ## 875
-## 877
-## 886
-## 900
-## 911
-## 912
-## 935
-## 978
+
+## 877. Stone Game
+
+有偶数堆的石子，两个人轮流选石子堆，规则是每次只能选开头和末尾中的一堆，最终获得石子总数多的人获胜。若 Alex 先选，两个人都会一直做最优选择，问最终 Alex 是否能获胜。
+
+## 886. Possible Bipartition
+
+把每个人分进任意大小的两组。每个人都可能不喜欢其他人，那么他们不应该属于同一组。当可以用这种方法将所有人分进两组时，返回 true；否则返回 false。本质为二分图问题。
+
+## 911. Online Election
+
+给定两个整数数组 persons 和 times，在选举中，第 i 张票是在时刻为 times[i] 时投给候选人 persons[i] 的。对于发生在时刻 t 的每个查询，需要找出在 t 时刻在选举中领先的候选人的编号。在 t 时刻投出的选票也将被计入查询之中。在平局的情况下，最近获得投票的候选人将会获胜。
+
+1. map：建立投票时间点和当前票王之间的映射。
+
+## 912. Sort an Array
+
+数组排序。
+
+1. 归并排序
+2. 堆排序
+   - 注意从 n/2-1 开始进行 siftdown
+   - siftdown 比较值是让最开始的 parent 值和 child 值做比较
+3. 快速排序
+   - 快排在有序数组排序时，复杂度会退化到 O(n^2)
+4.
+5. 计数排序
+
+**边界条件**
+
+1. 完全有序的数组
+2. 数组中的元素完全相等
+
+## 935. Knight Dialer
+
+![chess knight](../res/2023-02-17-14-51-29.png)
+
+![phone pad](../res/2023-02-17-14-52-09.png)
+
+将骑士放在电话拨号盘的任意数字键上，接下来，骑士将会跳 N-1 步。每一步必须是从一个数字键跳到另一个数字键。每当它落在一个键上（包括骑士的初始位置），都会拨出键所对应的数字，总共按下 N 位数字。能用这种方式拨出多少个不同的号码？
+
+```txt
+0 -> 4, 6
+1 -> 6, 8
+2 -> 7, 9
+3 -> 4, 8
+4 -> 3, 9, 0
+5 ->
+6 -> 1, 7, 0
+7 -> 2, 6
+8 -> 1, 3
+9 -> 4, 2
+```
+
+1. 动态规划
+2. 矩阵相乘：[yiduobo的每日leetcode 935.骑士拨号器 - 知乎](https://zhuanlan.zhihu.com/p/357643959)
+
+
+
+
 ## 987
-
-## 874
-
 
 ## 149. Max Points on a Line
 
@@ -131,20 +321,82 @@ public:
 
 判断三点共线的方法：A(ax,ay), B(bx,by), C(cx,cy)
 
-1. 斜率解法：判断 `(ay-by)/(ax-bx) == (cy-by)/(cx-bx)`
-   - 当 `ax == bx` 或 `cx == bx` 时需要特殊判断，注意使用 gcd 化简分子分母比较，不要使用浮点结果比较，可能会有误差
-2. 周长判断解法：排序周长 `AC > AB > BC`，判断 `AC == AB + BC`
-   - 由于 sqrt 开方运算会导致结果不准确，不稳定，在三角形接近扁平时，结果有误差。
-3. 最优解法：面积判断，判断 `area(ABC) == 0`
-   - `area(ABC) = 1/2 * ( AC X BC )  = 1/2 *((ax-cx)*(by-cy)-(bx-cx)*(ay-cy))`
-   - 判断 `(ax-cx)*(by-cy) == (bx-cx)*(ay-cy)` 即可
+(1) 斜率解法：判断 `(ay-by)/(ax-bx) == (cy-by)/(cx-bx)`
+  当 `ax == bx` 或 `cx == bx` 时需要特殊判断，注意使用 gcd 化简分子分母比较，不要使用浮点结果比较，可能会有误差
+(2) 周长判断解法：排序周长 `AC > AB > BC`，判断 `AC == AB + BC`
+  由于 sqrt 开方运算会导致结果不准确，不稳定，在三角形接近扁平时，结果有误差。
+(3) 最优解法：面积判断，判断 `area(ABC) == 0`
+  `area(ABC) = 1/2 * ( AC X BC )  = 1/2 *((ax-cx)*(by-cy)-(bx-cx)*(ay-cy))`
+  判断 `(ax-cx)*(by-cy) == (bx-cx)*(ay-cy)` 即可
 
-4. 暴力解法 O(n^3)：
+1. 暴力解法 O(n^3)：
+2. 斜率计算
+   -
+   - 通过斜率来判断共线需要用到除法，为了更加精确无误的计算共线，应当避免除法，这里把除数和被除数都保存下来，不做除法，但是要让这两数分别除以它们的最大公约数
 
 **边界条件**
 
 1. 当两个点重合时，无法确定一条直线，但这也是共线的情况
 2. 斜率不存在的情况，由于两个点 (x1, y1) 和 (x2, y2) 的斜率k表示为 (y2 - y1) / (x2 - x1)，那么当 x1 = x2 时斜率不存在。
+
+
+```cpp
+class Solution {
+public:
+    int maxPoints(vector<vector<int>>& points) {
+        int res = 0;
+        for (int i = 0; i < points.size(); ++i) {
+            int duplicate = 1;
+            for (int j = i + 1; j < points.size(); ++j) {
+                int cnt = 0;
+                long long x1 = points[i][0], y1 = points[i][1];
+                long long x2 = points[j][0], y2 = points[j][1];
+                if (x1 == x2 && y1 == y2) {++duplicate; continue;}
+                for (int k = 0; k < points.size(); ++k) {
+                    int x3 = points[k][0], y3 = points[k][1];
+                    if (x1 * y2 + x2 * y3 + x3 * y1 - x3 * y2 - x2 * y1 - x1 * y3 == 0) {
+                        ++cnt;
+                    }
+                }
+                res = max(res, cnt);
+            }
+            res = max(res, duplicate);
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int maxPoints(vector<vector<int>>& points) {
+        int res = 0;
+        for (int i = 0; i < points.size(); ++i) {
+            map<pair<int, int>, int> m;
+            int duplicate = 1;
+            for (int j = i + 1; j < points.size(); ++j) {
+                if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) {
+                    ++duplicate;
+                    continue;
+                }
+                int dx = points[j][0] - points[i][0];
+                int dy = points[j][1] - points[i][1];
+                int d = gcd(dx, dy);
+                ++m[{dx / d, dy / d}];
+            }
+            res = max(res, duplicate);
+            for (auto it = m.begin(); it != m.end(); ++it) {
+                res = max(res, it->second + duplicate);
+            }
+        }
+        return res;
+    }
+    int gcd(int a, int b) { // a == 0 or b == 0, return max(a, b)
+        return (b == 0) ? a : gcd(b, a % b);
+    }
+};
+```
 
 ```cpp
 // 2020-07-19 submission
@@ -191,32 +443,6 @@ public:
 };
 ```
 
-```cpp
-class Solution {
-public:
-    int maxPoints(vector<vector<int>>& points) {
-        int res = 0;
-        for (int i = 0; i < points.size(); ++i) {
-            int duplicate = 1;
-            for (int j = i + 1; j < points.size(); ++j) {
-                int cnt = 0;
-                long long x1 = points[i][0], y1 = points[i][1];
-                long long x2 = points[j][0], y2 = points[j][1];
-                if (x1 == x2 && y1 == y2) {++duplicate; continue;}
-                for (int k = 0; k < points.size(); ++k) {
-                    int x3 = points[k][0], y3 = points[k][1];
-                    if (x1 * y2 + x2 * y3 + x3 * y1 - x3 * y2 - x2 * y1 - x1 * y3 == 0) {
-                        ++cnt;
-                    }
-                }
-                res = max(res, cnt);
-            }
-            res = max(res, duplicate);
-        }
-        return res;
-    }
-};
-```
 
 ## 87. Scramble String
 

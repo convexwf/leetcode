@@ -669,6 +669,12 @@ public:
 };
 ```
 
+## 第 k 大的数字
+
+```cpp
+
+```
+
 ## 打印旋转数组
 
 ```C++
@@ -902,18 +908,18 @@ public:
 class Solution {
 public:
 
-    // int partition(vector<int>& vec, int s, int e) {
-    //     if (s >= e) return s;
-    //     int i = s - 1;
-    //     for (int j = s; j < e; j++) {
-    //         if (vec[j] < vec[e]) {
-    //             ++i;
-    //             swap(vec[i], vec[j]);
-    //         }
-    //     }
-    //     swap(vec[i+1], vec[e]);
-    //     return i + 1;
-    // }
+    int partition(vector<int>& vec, int s, int e) {
+        if (s >= e) return s;
+        int i = s - 1;
+        for (int j = s; j < e; j++) {
+            if (vec[j] < vec[e]) {
+                ++i;
+                swap(vec[i], vec[j]);
+            }
+        }
+        swap(vec[i+1], vec[e]);
+        return i + 1;
+    }
 
     int partition(vector<int>& vec, int s, int e) {
         if (s >= e) return s;
