@@ -56,17 +56,38 @@
 // @lc code=start
 class Solution {
 public:
+    vector<int> vec;
+
     vector<int> countSmaller(vector<int>& nums) {
-        vector<int> t, res(nums.size());
-        for (int i = nums.size() - 1; i >= 0; --i) {
-            int left = 0, right = t.size();
-            while (left < right) {
-                int mid = left + (right - left) / 2;
-                if (t[mid] >= nums[i]) right = mid;
-                else left = mid + 1;
+        if (nums.empty()) return 0;
+        int n = nums.size();
+        vec.resize(n);
+        return mergeSort(nums, 0, n - 1);
+    }
+
+    void mergeSort(vector<int>& nums, int l, int r) {
+        if (l >= r) return;
+        int mid = l + (r - l) / 2;
+        int res = 0;
+        res += mergeSort(nums, l, mid);
+        res += mergeSort(nums, mid + 1, r);
+        int lp = l, rp = mid + 1, idx = lp;
+        while (lp <= mid && rp <= r) {
+            if (nums[lp] <= nums[rp]) {
+                res += (rp - 1 - mid);
+                vec[idx++] = nums[lp++];
             }
-            res[i] = right;
-            t.insert(t.begin() + right, nums[i]);
+            else {
+                vec[idx++] = nums[rp++];
+            }
+        }
+        while (lp <= mid) {
+            res += (rp - 1 - mid);
+            vec[idx++] = nums[lp++];
+        }
+        while (rp <= r) vec[idx++] = nums[rp++];
+        for (int i = l; i <= r; i++) {
+            vec[i] = tmp[i - l];
         }
         return res;
     }

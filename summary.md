@@ -122,6 +122,60 @@ public:
 };
 ```
 
+## [5.Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/description/)
+
+==Solution==
+
+**题目描述**: 最长回文子串。
+
+**解题思路**:
+
+1. 动态规划
+   - `dp[i][j]` 表示 s.substr(i, j - i + 1) 是否为回文子串
+   - 初始状态：`dp[i][i] = true`
+   - 状态转移方程：`dp[i][j] = dp[i+1][j-1] if s[i] = s[j]`，其他情况下 `dp[i][j] = false`
+   - 遍历顺序：从小区间遍历到大区间
+2. 马拉车算法：TODO
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-20 submission
+// 141/141 cases passed
+// Runtime: 465 ms, faster than 18.89% of C++ online submissions.
+// Memory Usage: 35.2 MB, less than 28.95% of C++ online submissions.
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int n = s.length();
+        vector<vector<bool>> dp(n, vector<bool>(n, true));
+
+        string res = "";
+        for (int len = 1; len <= n; ++len) {
+            int i = 0, j = i + len - 1;
+            while (j < n) {
+                if (s[i] != s[j]) {
+                    dp[i][j] = false;
+                }
+                else if (i + 1 <= j - 1) {
+                    dp[i][j] = dp[i + 1][j - 1];
+                }
+                // dp[i][i] 默认为 true，有以下两种情况
+                // (1) len = 1
+                // (2) len = 2
+
+                if (dp[i][j] && len > res.length())
+                    res = s.substr(i, len);
+                ++i; ++j;
+            }
+        }
+        return res;
+    }
+};
+```
+
 ## [6.Zigzag Conversion](https://leetcode.com/problems/zigzag-conversion/description/)
 
 ==Solution==
@@ -15233,6 +15287,82 @@ public:
 };
 ```
 
+## [328.Odd Even Linked List](https://leetcode.com/problems/odd-even-linked-list/description/)
+
+==Solution==
+
+**题目描述**: 给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。所有奇节点在前，偶节点在后。
+
+**解题思路**
+
+1. 双指针
+   - pre 指向奇节点，cur 指向偶节点
+   - 偶节点 cur 后面的那个奇节点提前到 pre 的后面，然后 pre 和 cur 各自前进一步，此时 cur 又指向偶节点，pre 指向当前奇节点的末尾
+   - 以此类推直至把所有的偶节点都提前即可
+2. 奇偶指针
+   - 奇偶指针分别指向奇偶节点的起始位置，另外需要一个单独的指针 even_head 来保存偶节点的起点位置
+   - 把奇节点的指向偶节点的下一个(一定是奇节点)，此奇节点后移一步
+   - 再把偶节点指向下一个奇节点的下一个(一定是偶节点)，此偶节点后移一步
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-13 submission
+// 70/70 cases passed
+// Runtime: 15 ms, faster than 50.82% of C++ online submissions.
+// Memory Usage: 10.6 MB, less than 37.88% of C++ online submissions.
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode *pre = head, *cur = head->next;
+        while (cur && cur->next) {
+            ListNode *tmp = pre->next;
+            pre->next = cur->next;
+            cur->next = cur->next->next;
+            pre->next->next = tmp;
+            cur = cur->next;
+            pre = pre->next;
+        }
+        return head;
+    }
+};
+```
+
+```cpp
+// 2023-02-13 submission
+// 70/70 cases passed
+// Runtime: 14 ms, faster than 60.38% of C++ online submissions.
+// Memory Usage: 10.3 MB, less than 97.85% of C++ online submissions.
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode *odd = head, *even = head->next, *even_head = even;
+        while (even && even->next) {
+            odd->next = even->next;
+            odd = odd->next;
+            even->next = odd->next;
+            even = even->next;
+        }
+        odd->next = even_head;
+        return head;
+    }
+};
+```
+
 ## [329.Longest Increasing Path in a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/)
 
 ==Solution==
@@ -15321,6 +15451,73 @@ public:
             }
         }
         return res;
+    }
+};
+```
+
+## [334.Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/description/)
+
+==Solution==
+
+**题目描述**: 判断数组中是否存在长度为 3 的递增子序列。要求 O(n) 时间复杂度和 O(1) 的空间复杂度。
+
+**解题思路**
+
+1. 使用两个指针 m1 和 m2，初始化为整型最大值，m1 表示最小值，m2 表示次小值。
+   - 遍历数组，如果 m1 大于等于当前数字，将当前数字赋给 m1
+   - 如果 m1 小于当前数字且 m2 大于等于当前数字，将当前数字赋给 m2，一旦 m2 被更新了，说明成功组成了一个长度为 2 的递增子序列
+   - 接下来一旦遍历到比 m2 还大的数，直接返回ture。
+   - 如果遇到比 m1 小的数还是要更新 m1，有可能的话也要更新 m2 为更小的值
+2. 建立两个数组，forward 数组和 backward 数组
+   - forward[i] 表示 [0, i] 之间最小的数
+   - backward[i] 表示 [i, n-1] 之间最大的数
+   - 对于任意一个位置 i，如果满足 forward[i] < nums[i] < backward[i]，表示这个递增三元子序列存在
+   - 空间复杂度为 O(n)
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-13 submission
+// 78/78 cases passed
+// Runtime: 150 ms, faster than 49.78% of C++ online submissions.
+// Memory Usage: 111.7 MB, less than 19.22% of C++ online submissions.
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int m1 = INT_MAX, m2 = INT_MAX;
+        for (auto a : nums) {
+            if (m1 >= a) m1 = a;
+            else if (m2 >= a) m2 = a;
+            else return true;
+        }
+        return false;
+    }
+};
+```
+
+```cpp
+// 2023-02-13 submission
+// 78/78 cases passed
+// Runtime: 178 ms, faster than 20.57% of C++ online submissions.
+// Memory Usage: 121.1 MB, less than 5.53% of C++ online submissions.
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        if (nums.size() < 3) return false;
+        int n = nums.size();
+        vector<int> f(n, nums[0]), b(n, nums.back());
+        for (int i = 1; i < n; ++i) {
+            f[i] = min(f[i - 1], nums[i]);
+        }
+        for (int i = n - 2; i >= 0; --i) {
+            b[i] = max(b[i + 1], nums[i]);
+        }
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] > f[i] && nums[i] < b[i]) return true;
+        }
+        return false;
     }
 };
 ```
@@ -15878,6 +16075,46 @@ public:
 };
 ```
 
+## [365.Water and Jug Problem](https://leetcode.com/problems/water-and-jug-problem/description/)
+
+==Solution==
+
+**题目描述**: 有两个容量分别为 x 升 和 y 升 的水壶以及无限多的水，能否通过这两个水壶得到恰好 z 升的水？
+
+问题其实可以转换为有一个很大的容器，有两个杯子，容量分别为 x 和 y，问通过用两个杯子往里倒水，和往出舀水，问能不能使容器中的水刚好为z升。那么这里可以用一个公式来表达：
+
+$$z = m * x + n * y$$
+
+其中 m，n 为舀水和倒水的次数，正数表示往里舀水，负数表示往外倒水。
+
+根据裴蜀定理，等式 $ax + by = d$ 中的 x 和 y 有解的 d 最小正值为 `gcd(x, y)`，当 d 为 gcd(x, y) 的倍数时，也是有解的。所以只要 `z % gcd(x, y) == 0`，上面的等式就有解。
+
+除此还有个限制条件 `x + y >= z`，因为 x 和 y 不可能称出比它们之和还多的水。
+
+**解题思路**
+
+1. 计算 `z % gcd(x, y) == 0` 即可。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-13 submission
+// 28/28 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 5.9 MB, less than 87.84% of C++ online submissions.
+class Solution {
+public:
+    bool canMeasureWater(int x, int y, int z) {
+        return z == 0 || (x + y >= z && z % gcd(x, y) == 0);
+    }
+    int gcd(int x, int y) {
+        return y == 0 ? x : gcd(y, x % y);
+    }
+};
+```
+
 ## [367.Valid Perfect Square](https://leetcode.com/problems/valid-perfect-square/description/)
 
 ==Solution==
@@ -16076,6 +16313,82 @@ public:
             else right = mid;
         }
         return left;
+    }
+};
+```
+
+## [378.Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/description/)
+
+==Solution==
+
+**题目描述**: 一个 n x n 矩阵 matrix ，其中每行和每列元素均按升序排序，找到矩阵中第 k 小的元素。
+
+**解题思路**
+
+1. 二分查找
+   - 由于是有序矩阵，那么左上角的数字一定是最小的，而右下角的数字一定是最大的，从而得到搜索范围
+   - 在每一行都查找第一个大于 mid 的数字，如果目标数在比该行的尾元素大，返回该行元素的个数，如果目标数比该行首元素小，返回 0
+   - 遍历完所有的行可以找出中间数是第几小的数，然后和 k 比较，进行二分查找，left 和 right 最终会相等，并且会变成数组中第 k 小的数字。
+   - 时间复杂度为 O(nlgn*lgX)，其中 X 为最大值和最小值的差值
+2. 二分查找进一步优化，利用每列有序的性质
+   - 从数组的左下角开始查找，如果比目标值小，就向右移一位，而且当前列的当前位置的上面所有的数字都小于目标值，那么 cnt += (i + 1)，反之则向上移一位，这样也能算出 cnt 的值
+   - 时间复杂度为 O(nlgX)，其中 X 为最大值和最小值的差值
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-13 submission
+// 86/86 cases passed
+// Runtime: 25 ms, faster than 95.68% of C++ online submissions.
+// Memory Usage: 13.2 MB, less than 83.43% of C++ online submissions.
+class Solution {
+public:
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        int left = matrix[0][0], right = matrix.back().back();
+        while (left < right) {
+            int mid = left + (right - left) / 2, cnt = 0;
+            for (int i = 0; i < matrix.size(); ++i) {
+                // 使用 upper_bound 函数可以查找第一个大于目标数的元素
+                cnt += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
+            }
+            if (cnt < k) left = mid + 1;
+            else right = mid;
+        }
+        return left;
+    }
+};
+```
+
+```cpp
+// 2023-02-13 submission
+// 86/86 cases passed
+// Runtime: 30 ms, faster than 86.6% of C++ online submissions.
+// Memory Usage: 13.1 MB, less than 83.43% of C++ online submissions.
+class Solution {
+public:
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        int left = matrix[0][0], right = matrix.back().back();
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            int cnt = search_less_equal(matrix, mid);
+            if (cnt < k) left = mid + 1;
+            else right = mid;
+        }
+        return left;
+    }
+    int search_less_equal(vector<vector<int>>& matrix, int target) {
+        int n = matrix.size(), i = n - 1, j = 0, res = 0;
+        while (i >= 0 && j < n) {
+            if (matrix[i][j] <= target) {
+                res += i + 1;
+                ++j;
+            } else {
+                --i;
+            }
+        }
+        return res;
     }
 };
 ```
@@ -16576,6 +16889,60 @@ public:
 };
 ```
 
+## [394.Decode String](https://leetcode.com/problems/decode-string/description/)
+
+==Solution==
+
+**题目描述**: 解码字符串，字符串形如 "2[abc]3[cd]ef"，解码后得到 "abcabccdcdcdef"
+
+**解题思路**
+
+1. 迭代+栈
+   - 两个栈，分别存储数字和当前字符串。当遇到 ']' 时，不断让字符串弹出直至遇到 '['，然后拼接这些字符串，并重复数字栈最顶端数字的次数。
+   - 为了方便处理，对于初始字符串左右两边做了下处理变成 "1[s]" 的形式。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2020-11-20 submission
+// 34/34 cases passed
+// Runtime: 0 ms, faster than 100% of C++ online submissions.
+// Memory Usage: 6.8 MB, less than 20.47% of C++ online submissions.
+class Solution {
+public:
+    string decodeString(string s) {
+        s = "1[" + s + "]";
+        int len = s.length(), cur = 0;
+        stack<int> nums;
+        stack<string> stk;
+        while(cur < len) {
+            if (isdigit(s[cur])) {
+                int tail = cur;
+                while(isdigit(s[++tail]));
+                nums.push(stoi(s.substr(cur, tail - cur)));
+                cur = tail;
+            }
+            else if (s[cur] == ']') {
+                string tmp = "", res = "";
+                while (stk.top() != "[") {
+                    tmp.insert(0, stk.top());
+                    stk.pop();
+                }
+                for (int i = 0; i < nums.top(); i++)
+                    res += tmp;
+                nums.pop(); stk.pop();
+                stk.push(res);
+                cur++; // 不能够在判断语句 s[cur++] == ']'，这样即使不满足条件也会 cur++
+            }
+            else stk.push(string(1, s[cur++]));
+        }
+        return stk.top();
+    }
+};
+```
+
 ## [398.Random Pick Index](https://leetcode.com/problems/random-pick-index/description/)
 
 ==Solution==
@@ -16869,6 +17236,67 @@ public:
 };
 ```
 
+## [416.Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/description/)
+
+==Solution==
+
+**题目描述**: 给定一个只包含正整数的非空数组 nums，判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
+
+**解题思路**
+
+1. 动态规划
+   - dp[i] 表示原数组是否可以取出若干个数字，其和为 i，dp[0] 为 true
+   - 状态转移方程 `dp[j] = dp[j] || dp[j - nums[i]]  (nums[i] <= j <= target)`
+2. bitset
+   - 第 i 位表示数组中是否能取出若干个数字，其和为 i
+   - 数组的长度不超过 200，每个数字的大小都不会超过 100，最大的和为 20000，一半就是 10000，bitset 长度最多不会超过 10001
+   - 对于遍历到的数字 num，把 bits 向左平移 num 位，然后再或上原来的 bits，这样所有的可能出现的和位置上都为 1
+   - 遍历完整个数组后，查看 bits[sum >> 1] 是否为 1
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-13 submission
+// 141/141 cases passed
+// Runtime: 142 ms, faster than 87.8% of C++ online submissions.
+// Memory Usage: 9.8 MB, less than 89.85% of C++ online submissions.
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        int sum = accumulate(nums.begin(), nums.end(), 0), target = sum >> 1;
+        if (sum & 1) return false;
+        vector<bool> dp(target + 1, false);
+        dp[0] = true;
+        for (int num : nums) {
+            for (int i = target; i >= num; --i) {
+                dp[i] = dp[i] || dp[i - num];
+            }
+        }
+        return dp[target];
+    }
+};
+```
+
+```cpp
+// 2023-02-13 submission
+// 141/141 cases passed
+// Runtime: 16 ms, faster than 99.09% of C++ online submissions.
+// Memory Usage: 9.7 MB, less than 94.94% of C++ online submissions.
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        bitset<10001> bits(1);
+        int sum = accumulate(nums.begin(), nums.end(), 0);
+        for (int num : nums) {
+            bits |= (bits << num);
+        }
+        return (sum % 2 == 0) && bits[sum >> 1];
+    }
+};
+```
+
 ## [434.Number of Segments in a String](https://leetcode.com/problems/number-of-segments-in-a-string/description/)
 
 ==Solution==
@@ -17084,6 +17512,103 @@ public:
         for (int i = 0; i < nums.size(); ++i) {
             if (nums[i] != i + 1) res.push_back(nums[i]);
         }
+        return res;
+    }
+};
+```
+
+## [445.Add Two Numbers II](https://leetcode.com/problems/add-two-numbers-ii/description/)
+
+==Solution==
+
+**题目描述**: 两个非空链表代表两个非负整数，数字最高位位于链表开始位置，它们的每个节点只存储一位数字，将这两数相加会返回一个新的链表。除了数字 0 之外，这两个数字都不会以零开头。
+
+**解题思路**
+
+1. 栈：利用栈来保存所有的元素，然后利用栈的后进先出的特点就可以从后往前取数字。建立一个值为0的 res 节点，然后开始循环，如果栈不为空，则将栈顶数字加入 sum 中，然后将 res 节点值赋为 sum%10，然后新建一个进位节点 head，赋值为 sum/10，如果没有进位，那么就是0，然后在 head 后面连上 res，将 res 指向 head，这样循环退出后，我们只要看 res 的值是否为 0，为 0 返回 res->next，不为 0 则返回 res 即可。
+2. 递归：首先统计出两个链表长度，然后根据长度来调用递归函数，需要传一个参数差值，递归函数参数中的 l1 链表长度长于 l2。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2020-11-08 submission (栈)
+// 1563/1563 cases passed
+// Runtime: 46 ms, faster than 42.32% of C++ online submissions.
+// Memory Usage: 73.8 MB, less than 20.44% of C++ online submissions.
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        stack<int> s1, s2;
+        while (l1) {
+            s1.push(l1->val);
+            l1 = l1->next;
+        }
+        while (l2) {
+            s2.push(l2->val);
+            l2 = l2->next;
+        }
+        int sum = 0;
+        ListNode *res = new ListNode(0);
+        while (!s1.empty() || !s2.empty()) {
+            if (!s1.empty()) {sum += s1.top(); s1.pop();}
+            if (!s2.empty()) {sum += s2.top(); s2.pop();}
+            res->val = sum % 10;
+            ListNode *head = new ListNode(sum / 10);
+            head->next = res;
+            res = head;
+            sum /= 10;
+        }
+        return res->val == 0 ? res->next : res;
+    }
+};
+```
+
+```cpp
+// 2020-11-08 submission (递归)
+// 1563/1563 cases passed
+// Runtime: 36 ms, faster than 75.25% of C++ online submissions.
+// Memory Usage: 71.3 MB, less than 69.2% of C++ online submissions.
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        int n1 = getLength(l1), n2 = getLength(l2);
+        ListNode *head = new ListNode(1);
+        head->next = (n1 > n2) ? helper(l1, l2, n1 - n2) : helper(l2, l1, n2 - n1);
+        if (head->next->val > 9) {
+            head->next->val %= 10;
+            return head;
+        }
+        return head->next;
+    }
+    int getLength(ListNode* head) {
+        int cnt = 0;
+        while (head) {
+            ++cnt;
+            head = head->next;
+        }
+        return cnt;
+    }
+    ListNode* helper(ListNode* l1, ListNode* l2, int diff) {
+        if (!l1) return NULL;
+        ListNode *res = (diff == 0) ? new ListNode(l1->val + l2->val) : new ListNode(l1->val);
+        ListNode *post = (diff == 0) ? helper(l1->next, l2->next, 0) : helper(l1->next, l2, diff - 1);
+        if (post && post->val > 9) {
+            post->val %= 10;
+            ++res->val;
+        }
+        res->next = post;
         return res;
     }
 };
@@ -18224,6 +18749,50 @@ GROUP BY player_id
 ORDER BY player_id;
 ```
 
+## [516.Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/description/)
+
+==Solution==
+
+**题目描述**: 最长回文子序列。
+
+**解题思路**:
+
+1. 动态规划
+   - `dp[i][j]` 表示 s.substr(i, j) 的最大子序列长度
+   - 初始状态：`dp[i][i] = true`
+   - 状态转移方程：`dp[i][j] = dp[i+1][j-1] + 2 if s[i] = s[j] else max(dp[i+1][j], dp[i][j-1])`
+   - 遍历顺序：从小区间遍历到大区间
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-20 submission
+// 86/86 cases passed
+// Runtime: 106 ms, faster than 78.85% of C++ online submissions.
+// Memory Usage: 73 MB, less than 56.41% of C++ online submissions.
+class Solution {
+public:
+    int longestPalindromeSubseq(string s) {
+        int n = s.length();
+        vector<vector<int>> dp(n, vector<int>(n, 1));
+        for (int len = 2; len <= n; ++len) {
+            for (int i = 0, j = i + len - 1; j < n; ++i, ++j) {
+                if (s[i] != s[j]) {
+                    dp[i][j] = max(dp[i][j-1], dp[i+1][j]);
+                }
+                else if (i + 1 <= j - 1) {
+                    dp[i][j] = dp[i+1][j-1] + 2;
+                }
+                else dp[i][j] = 2;
+            }
+        }
+        return dp[0][n-1];
+    }
+};
+```
+
 ## [520.Detect Capital](https://leetcode.com/problems/detect-capital/description/)
 
 ==Solution==
@@ -18366,6 +18935,57 @@ public:
         int right = maxDepth(node->right, res, m);
         res = max(res, left + right);
         return m[node] = (max(left, right) + 1);
+    }
+};
+```
+
+## [547.Number of Provinces](https://leetcode.com/problems/number-of-provinces/description/)
+
+==Solution==
+
+**题目描述**: 班上有 N 名学生，其中有些人是朋友，有些则不是。他们的友谊具有传递性，如果已知 A 是 B 的朋友，B 是 C 的朋友，可以认为 A 也是 C 的朋友。朋友圈指所有朋友的集合。给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系，如果 `M[i][j] = 1`，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。输出所有学生中的已知的朋友圈总数。
+
+**解题思路**
+
+1. 并查集：并查集的特点是孩子结点指向父亲结点，两个结点连接在一起即它们有相同的根结点。
+   - 初始时给每一个对象都赋上不同的标签，然后对于属于同一类的对象，在 root 中查找其标签，如果不同，那么将其中一个对象的标签赋值给另一个对象
+   - 初始设置朋友圈个数为 n，每次发现两个对象标签不一致时，朋友圈个数减 1
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-13 submission
+// 113/113 cases passed
+// Runtime: 21 ms, faster than 89.62% of C++ online submissions.
+// Memory Usage: 13.8 MB, less than 61.28% of C++ online submissions.
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& M) {
+        int n = M.size(), res = n;
+        vector<int> root(n);
+        for (int i = 0; i < n; ++i) root[i] = i;
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                if (M[i][j] == 1) {
+                    int p1 = getRoot(root, i);
+                    int p2 = getRoot(root, j);
+                    if (p1 != p2) {
+                        --res;
+                        root[p2] = p1;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+    int getRoot(vector<int>& root, int i) {
+        while (i != root[i]) {
+            root[i] = root[root[i]];
+            i = root[i];
+        }
+        return i;
     }
 };
 ```
@@ -19373,6 +19993,79 @@ CASE WHEN p_id IS NULL THEN 'Root'
                     WHERE p_id IS NOT NULL) THEN 'Leaf'
     ELSE 'Inner' END AS Type
 FROM tree;
+```
+
+## [611.Valid Triangle Number](https://leetcode.com/problems/valid-triangle-number/description/)
+
+==Solution==
+
+**题目描述**: 给定非负数组，能组成多少个正确的三角形。
+
+三角形任意两条边之和要大于第三边，问题其实就变成了找出所有这样的三个数字，使得任意两个数字之和都大于第三个数字。如果三个数字中如果较小的两个数字之和大于第三个数字，那么任意两个数字之和都大于第三个数字。
+**解题思路**
+
+1. 排序 + 二分查找
+   - 先确定前两个数，将这两个数之和 sum 作为目标值，然后用二分查找法快速确定第一个大于等于目标值的下标，下标减一为最后一格小于目标值的数字。
+   - 时间复杂度为 O(n^2logn)
+2. 排序 + 双指针
+   - left 指向首数字，从右往左固定最长边，开始循环
+   - 如果 left 小于 right 就进行循环，循环里面判断如果 left 指向的数加上 right 指向的数大于当长边，那么 right 到 left之间的数字都可以组成三角形
+   - 时间复杂度为 O(n^2)
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-13 submission
+// 241/241 cases passed
+// Runtime: 425 ms, faster than 21.84% of C++ online submissions.
+// Memory Usage: 13 MB, less than 11.25% of C++ online submissions.
+class Solution {
+public:
+    int triangleNumber(vector<int>& nums) {
+        int res = 0, n = nums.size();
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                int sum = nums[i] + nums[j], left = j + 1, right = n;
+                while (left < right) {
+                    int mid = left + (right - left) / 2;
+                    if (nums[mid] < sum) left = mid + 1;
+                    else right = mid;
+                }
+                res += right - 1 - j;
+            }
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+// 2023-02-13 submission
+// 241/241 cases passed
+// Runtime: 103 ms, faster than 83.01% of C++ online submissions.
+// Memory Usage: 13.1 MB, less than 11.25% of C++ online submissions.
+class Solution {
+public:
+    int triangleNumber(vector<int>& nums) {
+        int res = 0, n = nums.size();
+        sort(nums.begin(), nums.end());
+        for (int i = n - 1; i >= 2; --i) {
+            int left = 0, right = i - 1;
+            while (left < right) {
+                if (nums[left] + nums[right] > nums[i]) {
+                    res += right - left;
+                    --right;
+                } else {
+                    ++left;
+                }
+            }
+        }
+        return res;
+    }
+};
 ```
 
 ## [617.Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/description/)
@@ -20447,6 +21140,43 @@ public:
 };
 ```
 
+## [718.Maximum Length of Repeated Subarray](https://leetcode.com/problems/maximum-length-of-repeated-subarray/description/)
+
+==Solution==
+
+**题目描述**: 最长公共子数组。
+
+**解题思路**
+
+1. 动态规划
+   - dp[i][j] 表示数组 A 的前 i 个数字和数组 B 的前 j 个数字在尾部匹配的最长子数组的长度
+   - 如果 dp[i][j] 不为0，则 A 中第 i 个数组和 B 中第 j 个数字必须相等，且 dp[i][j] 的值就是往前推分别相等的个数。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-13 submission
+// 53/53 cases passed
+// Runtime: 321 ms, faster than 34.56% of C++ online submissions.
+// Memory Usage: 85.6 MB, less than 40.11% of C++ online submissions.
+class Solution {
+public:
+    int findLength(vector<int>& A, vector<int>& B) {
+        int res = 0, m = A.size(), n = B.size();
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                dp[i][j] = (A[i - 1] == B[j - 1]) ? dp[i - 1][j - 1] + 1 : 0;
+                res = max(res, dp[i][j]);
+            }
+        }
+        return res;
+    }
+};
+```
+
 ## [739.Daily Temperatures](https://leetcode.com/problems/daily-temperatures/description/)
 
 ==Solution==
@@ -20479,6 +21209,300 @@ public:
             stk.push(i);
         }
         return res;
+    }
+};
+```
+
+## [769.Max Chunks To Make Sorted](https://leetcode.com/problems/max-chunks-to-make-sorted/description/)
+
+==Solution==
+
+**题目描述**: 一个长度为 n 的无序数组，里面的数字是 [0, n-1] 范围内的所有数字，现在分成若干块，每一小块分别排序，再组合到一起，使原数组变得有序，最多能分多少块。
+
+**解题思路**:
+
+1. 思路参见 <769. Max Chunks To Make Sorted>，维护一个最远能到达的位置，数组的每个数字相当于跳力，只有当刚好到达最远点的时候，才可以把之前断成一个新的块。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-22 submission
+// 52/52 cases passed
+// Runtime: 4 ms, faster than 29.59% of C++ online submissions.
+// Memory Usage: 7.1 MB, less than 81.12% of C++ online submissions.
+class Solution {
+public:
+    int maxChunksToSorted(vector<int>& arr) {
+        int last = -1, res = 0;
+        for (int i = 0; i < arr.size(); ++i) {
+            if (i > last) ++res;
+            last = max(last, arr[i]);
+        }
+        return res;
+    }
+};
+```
+
+## [874.Walking Robot Simulation](https://leetcode.com/problems/walking-robot-simulation/description/)
+
+==Solution==
+
+**题目描述**: 机器人在一个无限大小的 XY 网格平面上行走，从点 (0, 0) 处开始出发，面向北方。该机器人可以接收以下三种类型的命令 commands：(1) -2:向左转 90 度；(2) -1:向右转 90 度；(3) 1 <= x <= 9 ：向前移动 x 个单位长度。在网格上有一些格子被视为障碍物 obstacles。第 i 个障碍物位于网格点 obstacles[i] = (xi, yi) 。机器人无法走到障碍物上，它将会停留在障碍物的前一个网格方块上，但仍然可以继续尝试进行该路线的其余部分。返回从原点到机器人所有经过的路径点（坐标为整数）的最大欧式距离的平方。
+
+**解题思路**:
+
+1. 依照题意进行处理
+   - 建立方向数组，方向数组的顺序应该是上右下左。
+   - HashSet 将所有的障碍物位置存进去，可以将横纵坐标都转为字符串，然后在中间加个短横杆隔开
+   - 行走过程中查看有没有障碍物，到 HashSet 中去查找一下，若没有障碍物，则可以到达，更新 x 和 y 为新的位置
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-18 submission
+// 48/48 cases passed
+// Runtime: 203 ms, faster than 33.34% of C++ online submissions.
+// Memory Usage: 36.9 MB, less than 52% of C++ online submissions.
+class Solution {
+public:
+    int robotSim(vector<int>& commands, vector<vector<int>>& obstacles) {
+        unordered_set<string> m_obs;
+        for (vector<int> point : obstacles) {
+            string pattern = to_string(point[0]) + "_" + to_string(point[1]);
+            m_obs.insert(pattern);
+        }
+        vector<vector<int> > dirs{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        int idx = 0, curX = 0, curY = 0, res = 0;
+        for (int command : commands) {
+            if (command == -2) idx = (idx + 3) % 4; // 负数取模后为负数
+            else if (command == -1) idx = (idx + 1) % 4;
+            else {
+                while (command-- > 0) {
+                    string pattern = to_string(curX + dirs[idx][0]) + "_" + to_string(curY + dirs[idx][1]);
+                    if (!m_obs.count(pattern)) {
+                        curX += dirs[idx][0];
+                        curY += dirs[idx][1];
+                    }
+                }
+                res = max(res, curX * curX + curY * curY);
+            }
+        }
+        return res;
+    }
+};
+```
+
+## [886.Possible Bipartition](https://leetcode.com/problems/possible-bipartition/description/)
+
+==Solution==
+
+**题目描述**: 把每个人分进任意大小的两组。每个人都可能不喜欢其他人，那么他们不应该属于同一组。当可以用这种方法将所有人分进两组时，返回 true；否则返回 false。本质为二分图问题。
+
+**解题思路**: 解法同 <785. Is Graph Bipartite?>
+
+1. 并查集
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+class Solution {
+public:
+    bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
+        vector<vector<int>> graph(n, vector<int>{});
+        for(vector<int> dislike : dislikes) {
+            graph[dislike[0] - 1].push_back(dislike[1] - 1);
+            graph[dislike[1] - 1].push_back(dislike[0] - 1);
+        }
+
+        vector<int> root(n, 0);
+        for (int i = 0; i < n; ++i) {
+            root[i] = i;
+        }
+        for (int i = 0; i < graph.size(); ++i) {
+            if (graph[i].empty()) continue;
+            int x = find(root, i), y = find(root, graph[i][0]);
+            if (x == y) return false;
+            for (int j = 1; j < graph[i].size(); ++j) {
+                int parent = find(root, graph[i][j]);
+                if (x == parent) return false;
+                root[parent] = y;
+            }
+        }
+        return true;
+    }
+
+    int find(vector<int>& root, int i) {
+        return i == root[i] ? i : find(root, root[i]);
+    }
+};
+```
+
+## [900.RLE Iterator](https://leetcode.com/problems/rle-iterator/description/)
+
+==Solution==
+
+**题目描述**: 每两个数字组成一个数字对，前一个数字表示后面数字重复出现的次数。实现一个 next 函数返回数组的第 n 个数字。
+
+**解题思路**:
+
+1. 用一个指针 cur，指向当前数字对的次数。
+   - 在 next 函数中，在 while 循环中判断 cur 是否越界
+   - 当 n 大于当前次数，n 减去当前次数，cur 自增 2，移动到下一个数字对的次数上。
+   - 当 while 循环结束后，判断此时 cur 是否越界。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-19 submission
+// 11/11 cases passed
+// Runtime: 4 ms, faster than 82.04% of C++ online submissions.
+// Memory Usage: 8.7 MB, less than 6.94% of C++ online submissions.
+class RLEIterator {
+public:
+    RLEIterator(vector<int>& A): nums(A), cur(0) {}
+
+    int next(int n) {
+        while (cur < nums.size() && n > nums[cur]) {
+            n -= nums[cur];
+            cur += 2;
+        }
+        if (cur >= nums.size()) return -1;
+        nums[cur] -= n;
+        return nums[cur + 1];
+    }
+
+private:
+    int cur;
+    vector<int> nums;
+};
+
+/**
+ * Your RLEIterator object will be instantiated and called as such:
+ * RLEIterator* obj = new RLEIterator(encoding);
+ * int param_1 = obj->next(n);
+ */
+```
+
+## [978.Longest Turbulent Subarray](https://leetcode.com/problems/longest-turbulent-subarray/description/)
+
+==Solution==
+
+**题目描述**: 定义一种湍流子数组，即数字增减交替，就是先增大再减小再增大等交替进行，或者是先减小再增大再减小等交替进行的。找出最长的湍流子数组，并返回长度。
+
+**解题思路**:
+
+1. 动态规划
+   - dec[i] 表示湍流数组的长度，同时其末尾是数字是 arr[i] 且是下降的，同理，inc[i] 表示湍流数组的长度，同时其末尾是数字是 arr[i] 且是上升的
+   - 若前一个数字大于当前数字，则表示下降的关系，则可以更新 dec[i] 为 inc[i-1] + 1，反之，若前一个数字小于当前数字，则表示上升的关系，则可以更新 inc[i] 为 dec[i-1] + 1。
+   - 每次更新完一个位置，从 dec[i] 和 inc[i] 中找出最大的位置，用来更新结果 res 即可
+2. 进一步简化，用两个变量 inc 和 dec 表示当前位置的递增长度和递减长度。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-18 submission
+// 91/91 cases passed
+// Runtime: 86 ms, faster than 60.44% of C++ online submissions.
+// Memory Usage: 43.8 MB, less than 9.43% of C++ online submissions.
+class Solution {
+public:
+    int maxTurbulenceSize(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> inc(n, 1);
+        vector<int> dec(n, 1);
+        int res = 1;
+        for (int i = 1; i < n; ++i) {
+            if (arr[i] > arr[i-1]) {
+                inc[i] = dec[i-1] + 1;
+                res = max(res, inc[i]);
+            }
+            else if (arr[i] < arr[i-1]) {
+                dec[i] = inc[i-1] + 1;
+                res = max(res, dec[i]);
+            }
+        }
+        return res;
+    }
+};
+```
+
+```cpp
+// 2023-02-18 submission
+// 91/91 cases passed
+// Runtime: 81 ms, faster than 76.89% of C++ online submissions.
+// Memory Usage: 40.4 MB, less than 64.51% of C++ online submissions.
+class Solution {
+public:
+    int maxTurbulenceSize(vector<int>& arr) {
+        int n = arr.size();
+        int inc = 1, dec = 1, res = 1;
+        for (int i = 1; i < n; ++i) {
+            if (arr[i] > arr[i-1]) {
+                inc = dec + 1;
+                dec = 1;
+                res = max(res, inc);
+            }
+            else if (arr[i] < arr[i-1]) {
+                dec = inc + 1;
+                inc = 1;
+                res = max(res, dec);
+            }
+            else {
+                inc = dec = 1;
+            }
+        }
+        return res;
+    }
+};
+```
+
+## [1143.Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/description/)
+
+==Solution==
+
+**题目描述**: 最长公共子序列。
+
+**解题思路**
+
+1. 动态规划
+   - dp[i][j] 表示 text1 的前 i 个字符和 text2 的前 j 个字符的最长相同的子序列的字符个数
+   - 若二者对应位置的字符相同，表示当前的 LCS 又增加了一位，所以 `dp[i][j] = dp[i-1][j-1] + 1`。
+   - 若对应位置的字符不相同，由于是子序列，还可以错位比较，可以分别从 text1 或者 text2 去掉一个当前字符，`dp[i][j] = max( dp[i-1][j], dp[i][j-1])`。
+
+**关联专题**: undefined
+
+==Code==
+
+```cpp
+// 2023-02-13 submission
+// 46/46 cases passed
+// Runtime: 45 ms, faster than 23.65% of C++ online submissions.
+// Memory Usage: 18.8 MB, less than 9.25% of C++ online submissions.
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int m = text1.size(), n = text2.size();
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1));
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (text1[i - 1] == text2[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[m][n];
     }
 };
 ```
