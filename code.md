@@ -1,42 +1,5 @@
-## 395. Longest Substring with At Least K Repeating Characters
 
-给定一个字符串 s 和一个整数 k，找出 s 中的最长子串，要求该子串中的每一字符出现次数都不少于 k。
 
-1. 滑动窗口
-   - 字符串中只有字母，这意味着最多不同的字母数只有 26 个，最后满足题意的子串中的不同字母数一定是在 [1, 26] 的范围
-   - 每次只找不同字母个数为 cnt，且每个字母至少重复 k 次的子串，来更新最终结果 res。
-   - cnt 从 1 遍历到 26，对于每个 cnt 都新建一个大小为 26 的数组 charCnt 来记录每个字母的出现次数
-   - 用两个变量 start 和 i 来分别标记窗口的左右边界，当右边界小于 n 时，进行 while 循环，需要一个变量 valid 来表示当前子串是否满足题意
-   - 需要一个变量 uniqueCnt 来记录子串中不同字母的个数。此时若 s[i] 这个字母在 charCnt 中的出现次数为 0，说明遇到新字母了，uniqueCnt 自增1，同时把该字母的映射值加 1。
-   - 由于 uniqueCnt 变大，有可能会超过 cnt，所以这里用一个 while 循环，条件是当 uniqueCnt 大于 cnt ，此时应该收缩滑动窗口的左边界
-   - 当 uniqueCnt 没超过 cnt 的时候，此时还要看当前窗口中的每个字母的出现次数是否都大于等于 k，遇到小于 k 的字母，则直接 valid 标记为 false 即可
-
-TODO
-
-```cpp
-class Solution {
-public:
-    int longestSubstring(string s, int k) {
-        int res = 0, n = s.size();
-        for (int cnt = 1; cnt <= 26; ++cnt) {
-            int start = 0, i = 0, uniqueCnt = 0;
-            vector<int> charCnt(26);
-            while (i < n) {
-                bool valid = true;
-                if (charCnt[s[i++] - 'a']++ == 0) ++uniqueCnt;
-                while (uniqueCnt > cnt) {
-                    if (--charCnt[s[start++] - 'a'] == 0) --uniqueCnt;
-                }
-                for (int j = 0; j < 26; ++j) {
-                    if (charCnt[j] > 0 && charCnt[j] < k) valid = false;
-                }
-                if (valid) res = max(res, i - start);
-            }
-        }
-        return res;
-    }
-};
-```
 
 ## 330. Patching Array
 
@@ -134,7 +97,14 @@ public:
 
 ## 715. Range Module
 
-##
+设计一个数据结构 RangeModule 来跟踪表示为 半开区间 的范围并查询它们。半开区间 [left, right) 表示所有 left <= x < right 的实数 x 。
+
+(1) RangeModule() 初始化数据结构的对象。
+(2) void addRange(int left, int right) 添加 半开区间 [left, right)，跟踪该区间中的每个实数。添加与当前跟踪的数字部分重叠的区间时，应当添加在区间 [left, right) 中尚未跟踪的任何数字到该区间中。
+(3) boolean queryRange(int left, int right) 只有在当前正在跟踪区间 [left, right) 中的每一个实数时，才返回 true ，否则返回 false 。
+(4) void removeRange(int left, int right) 停止跟踪 半开区间 [left, right) 中当前正在跟踪的每个实数。
+
+
 ## 768. Max Chunks To Make Sorted II
 
 一个整数数组 arr 分割成若干块，将这些块分别进行排序，之后再连接起来，使得连接的结果和按升序排序后的原数组相同。返回能将数组分成的最多块数。
@@ -149,10 +119,14 @@ public:
 ## 1345
 ## 1449
 
-## 754
+## 754. Reach a Number
+
+在一根无限长的数轴上，一开始站在 0 的位置，终点在 target 的位置。每次可以选择向左或向右移动，第 n 次移动（从 1 开始）可以走 n 步。返回到达终点需要的最小移动次数。
 
 ## 816
-## 820
+
+
+
 ## 875
 
 ## 877. Stone Game

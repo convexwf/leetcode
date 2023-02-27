@@ -8,6 +8,7 @@
 
 import os
 
+
 def split_block(lines):
     res = []
     unlock = True
@@ -28,6 +29,7 @@ def split_block(lines):
             res[-1].append(idx)
     return res
 
+
 def get_content(lines, idx):
     print(idx)
     res = []
@@ -38,6 +40,7 @@ def get_content(lines, idx):
         res.append(''.join(lines[idx[i]+1:idx[i+1]]))
     return res
 
+
 def instead_content(content):
     found = False
     content_id = content[0]
@@ -47,7 +50,7 @@ def instead_content(content):
         if code_file.startswith(f'{content_id}.'):
             # print(content_id, code_file)
             with open(f'.doc/{code_file}', 'r', encoding='utf-8') as fp:
-                lines = fp.readlines();
+                lines = fp.readlines()
             for i, line in enumerate(lines):
                 if line.startswith('**题目描述**: undefined'):
                     lines[i] = f'**题目描述**: {content_desc}\n'
@@ -60,13 +63,14 @@ def instead_content(content):
             break
     return found
 
+
 def instead_code(content):
     found = False
     content_id = content[0]
     for code_file in os.listdir('.code'):
         if code_file.startswith(f'{content_id}.'):
             with open(f'.code/{code_file}', 'r', encoding='utf-8') as fp:
-                lines = fp.readlines();
+                lines = fp.readlines()
             start = 0
             end = 0
             end2 = 0
@@ -78,7 +82,8 @@ def instead_code(content):
                 if line.startswith('// @lc code=end'):
                     end2 = i
             if start > 0:
-                lines = lines[:start] + [f'{content[3]}'] + lines[end+1:end2] + ["// @lc code=end\n"]
+                lines = lines[:start] + [f'{content[3]}'] + \
+                    lines[end+1:end2] + ["// @lc code=end\n"]
                 start = 4
             else:
                 start = 3
@@ -88,6 +93,7 @@ def instead_code(content):
                 fp.writelines(lines)
             found = True
     return found
+
 
 if __name__ == '__main__':
 
@@ -121,4 +127,3 @@ if __name__ == '__main__':
             result = result and instead_code(content)
             if not result:
                 print(f'Error: {content[0]}')
-

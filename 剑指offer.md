@@ -902,6 +902,89 @@ public:
 };
 ```
 
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+template <class T>
+class Heap {
+
+public:
+    Heap() {
+    }
+    ~Heap() {
+    }
+
+    void push(T val) {
+        vec.push_back(val);
+        int i = vec.size() - 1;
+        for (; i > 0 && vec[(i - 1) / 2] < val; i = (i - 1) / 2) {
+            vec[i] = vec[(i - 1) / 2];
+        }
+        vec[i] = val;
+    }
+
+    T top() {
+        return vec[0];
+    }
+
+    T pop() {
+        vec[0] = vec.back();
+        vec.pop_back();
+        siftDown(0);
+    }
+
+    int size() {
+        return (int)vec.size();
+    }
+
+    bool empty() {
+        return vec.empty();
+    }
+
+private:
+    void siftDown(int i) {
+        int n = vec.size();
+        int parent = i;
+        int child = i * 2 + 1;
+        int cur = vec[parent];
+        while (child < n) {
+            if (child + 1 < n && vec[child] < vec[child + 1]) child = child + 1;
+            if (cur < vec[child]) {
+                vec[parent] = vec[child];
+                parent = child;
+                child = 2 * parent + 1;
+            }
+            else break;
+        }
+        vec[parent] = cur;
+    }
+
+private:
+    vector<int> vec;
+};
+
+int main() {
+    Heap<int> heap;
+    heap.push(2);
+    heap.push(3);
+    heap.push(7);
+    heap.push(1);
+    heap.push(-6);
+    heap.push(5);
+    heap.push(3);
+
+    int n = heap.size();
+    for (int i = 0; i < n; ++i) {
+        cout << heap.top() << " ";
+        heap.pop();
+    }
+    cout << endl;
+}
+```
+
 ## 快排
 
 ```C++

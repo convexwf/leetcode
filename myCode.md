@@ -121,3 +121,144 @@ public:
     }
 };
 ```
+
+## 395. Longest Substring with At Least K Repeating Characters
+
+给定一个字符串 s 和一个整数 k，找出 s 中的最长子串，要求该子串中的每一字符出现次数都不少于 k。
+
+1. 滑动窗口
+   - 字符串中只有字母，这意味着最多不同的字母数只有 26 个，最后满足题意的子串中的不同字母数一定是在 [1, 26] 的范围
+   - 每次只找不同字母个数为 cnt，且每个字母至少重复 k 次的子串，来更新最终结果 res。
+   - cnt 从 1 遍历到 26，对于每个 cnt 都新建一个大小为 26 的数组 charCnt 来记录每个字母的出现次数
+   - 用两个变量 start 和 i 来分别标记窗口的左右边界，当右边界小于 n 时，进行 while 循环，需要一个变量 valid 来表示当前子串是否满足题意
+   - 需要一个变量 uniqueCnt 来记录子串中不同字母的个数。此时若 s[i] 这个字母在 charCnt 中的出现次数为 0，说明遇到新字母了，uniqueCnt 自增1，同时把该字母的映射值加 1。
+   - 由于 uniqueCnt 变大，有可能会超过 cnt，所以这里用一个 while 循环，条件是当 uniqueCnt 大于 cnt ，此时应该收缩滑动窗口的左边界
+   - 当 uniqueCnt 没超过 cnt 的时候，此时还要看当前窗口中的每个字母的出现次数是否都大于等于 k，遇到小于 k 的字母，则直接 valid 标记为 false 即可
+
+TODO
+
+```cpp
+class Solution {
+public:
+    int longestSubstring(string s, int k) {
+        int res = 0, n = s.size();
+        for (int cnt = 1; cnt <= 26; ++cnt) {
+            int start = 0, i = 0, uniqueCnt = 0;
+            vector<int> charCnt(26);
+            while (i < n) {
+                bool valid = true;
+                if (charCnt[s[i++] - 'a']++ == 0) ++uniqueCnt;
+                while (uniqueCnt > cnt) {
+                    if (--charCnt[s[start++] - 'a'] == 0) --uniqueCnt;
+                }
+                for (int j = 0; j < 26; ++j) {
+                    if (charCnt[j] > 0 && charCnt[j] < k) valid = false;
+                }
+                if (valid) res = max(res, i - start);
+            }
+        }
+        return res;
+    }
+};
+```
+
+## 820 Short Encoding of Words
+
+给定一个单词列表，将这个列表编码成一个索引字符串 S 与一个索引列表 A。例如，如果这个列表是 ["time", "me", "bell"]，可以将其表示为 S = "time#bell#" 和 indexes = [0, 2, 5]。对于每一个索引，可以通过从字符串 S 中索引的位置开始读取字符串，直到 "#" 结束，来恢复之前的单词列表。返回成功对给定单词列表进行编码的最小字符串长度。
+
+题目本质是计算单词后缀，当一个单词是另外一个单词的后缀时，需要将当前单词去掉。
+
+1. 后缀匹配变前缀匹配
+   - 对每个单词都做反转处理
+   - 判断前一个字符串是否是后一个字符串的前缀，是的话长度加0，不是的话要加上当前单词的长度并再加 1，多加的 1 是 # 号。
+   - 最后记得加上最后一个单词的长度
+2. HashSet
+   - 将所有的单词先放到 HashSet 中
+   - 对于每个单词，我们遍历其所有的后缀，比如time，那么就遍历ime，me，e，然后看HashSet中是否存在这些后缀，有的话就删掉，那么HashSet中的me就会被删掉，这样保证了留下来的单词不可能再合并了，最后再加上每个单词的长度到结果res
+
+**边界条件**
+
+1. ["aba", "a"]
+
+```cpp
+class Solution {
+public:
+    int minimumLengthEncoding(vector<string>& words) {
+        string str = "";
+        sort(words.begin(), words.end(), [](string& a, string& b){return a.size() > b.size();});
+        for (string word : words) {
+            int found = str.find(word);
+            if (found == string::npos || str[found + word.size()] != '#') {
+                str += word + "#";
+            }
+        }
+        return str.size();
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int minimumLengthEncoding(vector<string>& words) {
+        int res = 0, n = words.size();
+        for (int i = 0; i < n; ++i) reverse(words[i].begin(), words[i].end());
+        sort(words.begin(), words.end());
+        for (int i = 0; i < n - 1; ++i) {
+            res += (words[i] == words[i + 1].substr(0, words[i].size())) ? 0  : words[i].size() + 1;
+        }
+        return res + words.back().size() + 1;
+    }
+};
+```
+
+## 336. Palindrome Pairs
+
+给定一组 互不相同 的单词，找出所有 不同 的索引对 (i, j)，使得列表中的两个单词，words[i] + words[j] ，可拼接成回文串。
+
+1. HashMap
+   - 建立每个单词和其位置的映射，和一个 set 来保存出现过的单词的长度
+   - 遍历单词集，对于遍历到的单词，对其翻转一下，然后在哈希表查找翻转后的字符串是否存在，注意不能和原字符串的坐标位置相同，因为有可能一个单词翻转后和原单词相等
+   - 由于set是自动排序的，可以找到当前单词长度在set中的iterator，然后从开头开始遍历set，遍历比当前单词小的长度，比如abcdd翻转后为ddcba，发现set中有长度为3的单词，然后查看 dd 是否为回文串，若是，再看 cba 是否存在于哈希表，若存在，则说明 abcdd 和cba是回文对，存入结果中
+   - 要在set里找的字符串要在遍历到的字符串的左边和右边分别尝试，看是否是回文对，这样遍历完单词集，就能得到所有的回文对
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> palindromePairs(vector<string>& words) {
+        vector<vector<int>> res;
+        unordered_map<string, int> m;
+        set<int> s;
+        for (int i = 0; i < words.size(); ++i) {
+            m[words[i]] = i;
+            s.insert(words[i].size());
+        }
+        for (int i = 0; i < words.size(); ++i) {
+            string t = words[i];
+            int len = t.size();
+            reverse(t.begin(), t.end());
+            if (m.count(t) && m[t] != i) {
+                res.push_back({i, m[t]});
+            }
+            auto a = s.find(len);
+            for (auto it = s.begin(); it != a; ++it) {
+                int d = *it;
+                if (isPalindrome(t, 0, len - d - 1) && m.count(t.substr(len - d))) {
+                    res.push_back({i, m[t.substr(len - d)]});
+                }
+                if (isPalindrome(t, d, len - 1) && m.count(t.substr(0, d))) {
+                    res.push_back({m[t.substr(0, d)], i});
+                }
+            }
+        }
+        return res;
+    }
+
+    bool isPalindrome(string t, int left, int right) {
+        while (left < right) {
+            if (t[left++] != t[right--]) return false;
+        }
+        return true;
+    }
+};
+```
