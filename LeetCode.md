@@ -258,30 +258,6 @@ public:
 };
 ```
 
-## 11. Container With Most Water
-
-```C++
-// Runtime: 80 ms, faster than 25.22% of C++ online submissions.
-// Memory Usage: 58.9 MB, less than 30.39% of C++ online submissions.
-class Solution {
-public:
-    int maxArea(vector<int>& height) {
-        int maxValue = 0;
-        int l = 0, r = (int)height.size()-1;
-        while (l < r) {
-            int h = min(height[l], height[r]);
-            maxValue = max(maxValue, h * (r - l));
-            while (l < r && h >= height[l]) ++l;
-            while (l < r && h >= height[r]) --r;
-        }
-        return maxValue;
-    }
-};
-```
-
-## 12. Integer to Roman ($$$)
-## 13. Roman to Integer ($$$)
-
 ## 14. Longest Common Prefix
 
 解题思路:
@@ -327,33 +303,6 @@ public:
             }
         }
         return res;
-    }
-};
-```
-
-## 16. 3Sum Closest
-
-```C++
-// Runtime: 4 ms, faster than 97.67% of C++ online submissions.
-// Memory Usage: 9.8 MB, less than 88.84% of C++ online submissions.
-class Solution {
-public:
-    int threeSumClosest(vector<int>& nums, int target) {
-        int closestVal = nums[0]+nums[1]+nums[2];
-        sort(nums.begin(), nums.end());
-        for(int i = 0; i < nums.size()-2; i++) {
-            int rest = nums[i];
-            if(i > 0 && nums[i] == nums[i-1]) continue;
-            for(int left=i+1, right=nums.size()-1; left<right;) {
-                int curr_sum = nums[left] + nums[right] + rest;
-                if(curr_sum == target) return target;
-                if(curr_sum > target) right--;
-                if(curr_sum < target) left++;
-                if(abs(target-curr_sum) < abs(target-closestVal))
-                    closestVal=curr_sum;
-            }
-        }
-        return closestVal;
     }
 };
 ```
@@ -1904,56 +1853,6 @@ public:
 };
 ```
 
-## 146. LRU Cache
-
-```C++
-// 2020-09-18 submission
-// ?/? cases passed
-// Runtime: 112 ms, faster than 27.54% of C++ online submissions.
-// Memory Usage: 42 MB, less than 39.16% of C++ online submissions.
-class LRUCache {
-public:
-    int capacity;
-    unordered_map<int, list<pair<int, int>>::iterator> m;
-    list<pair<int, int> > l;
-
-    LRUCache(int capacity) {
-        this->capacity = capacity;
-    }
-
-    int get(int key) {
-        if (!m.count(key)) return -1;
-        else {
-            auto it = m[key];
-            int value = it->second;
-            l.erase(it);
-            l.push_front(make_pair(key, value));
-            m[key] = l.begin();
-            return value;
-        }
-    }
-
-    void put(int key, int value) {
-        if (m.count(key)) l.erase(m[key]);
-        else --capacity;
-        l.push_front(make_pair(key, value));
-        if (capacity < 0) {
-            ++capacity;
-            m.erase(l.back().first);
-            l.pop_back();
-        }
-        m[key] = l.begin();
-    }
-};
-
-/**
- * Your LRUCache object will be instantiated and called as such:
- * LRUCache* obj = new LRUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
- */
-```
-
 ## 152. Maximum Product Subarray
 
 最大子乘积数组
@@ -2598,34 +2497,6 @@ public:
 };
 ```
 
-## 647. Palindromic Substrings
-
-解题思路
-
-1. 将 dp[i][j] 定义成子字符串 [i, j] 是否是回文串，然后i从 n-1 往0遍历，j从i往 n-1 遍历，然后看 s[i] 和 s[j] 是否相等，这时候需要留意一下，有了 s[i] 和 s[j] 相等这个条件后，i和j的位置关系很重要，如果i和j相等了，则 dp[i][j] 肯定是 true；如果i和j是相邻的，那么 dp[i][j] 也是 true；如果i和j中间只有一个字符，那么 dp[i][j] 还是 true；如果中间有多余一个字符存在，则需要看 dp[i+1][j-1] 是否为 true，若为 true，那么 dp[i][j] 就是 true。
-
-```C++
-// 2021-03-17 submission
-// ?/? cases passed
-// Runtime: 28 ms, faster than 34.67% of C++ online submissions.
-// Memory Usage: 7.5 MB, less than 57.20% of C++ online submissions.
-class Solution {
-public:
-    int countSubstrings(string s) {
-        int n = s.length();
-        int res = 0;
-        vector<vector<bool> > dp(n, vector<bool>(n, false));
-
-        for (int i = n-1; i >= 0; i--) {
-            for (int j = i; j < n; j++) {
-                dp[i][j] = (s[i] == s[j]) && (j - i <= 2 || dp[i + 1][j - 1]);
-                if (dp[i][j]) ++res;
-            }
-        }
-        return res;
-    }
-};
-```
 
 ## 743. Network Delay Time
 

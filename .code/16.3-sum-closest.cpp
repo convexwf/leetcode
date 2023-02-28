@@ -48,26 +48,25 @@
  */
 
 // @lc code=start
-// 2022-07-18 submission
-// 281/281 cases passed
-// Runtime: 491 ms, faster than 43.96% of C++ online submissions.
-// Memory Usage: 23.1 MB, less than 44.65% of C++ online submissions.
+// 2023-02-28 submission
+// 98/98 cases passed
+// Runtime: 41 ms, faster than 93.95% of C++ online submissions.
+// Memory Usage: 10.2 MB, less than 85% of C++ online submissions.
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {
         int closestVal = nums[0] + nums[1] + nums[2];
         sort(nums.begin(), nums.end());
         int lval = 0, rval = 0, pivot = 0, cur_sum = 0;
-        for(int i = 0; i < (int)nums.size() - 2; i++) {
+        for (int i = 0; i < (int)nums.size() - 2; i++) {
             pivot = nums[i];
-            if(i > 0 && nums[i] == nums[i-1]) continue;
-            for(int left = i + 1, right = (int)nums.size() - 1; left < right;) {
-                cur_sum = nums[left] + nums[right] + rest;
-                if(curr_sum == target) return target;
-                if(curr_sum > target) right--;
-                if(curr_sum < target) left++;
-                if(abs(target - curr_sum) < abs(target - closestVal))
-                    closestVal=curr_sum;
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            for (int left = i + 1, right = (int)nums.size() - 1; left < right;) {
+                cur_sum = nums[left] + nums[right] + pivot;
+                if (cur_sum == target) return target;
+                if (cur_sum > target) right--;
+                if (cur_sum < target) left++;
+                if (abs(target - cur_sum) < abs(target - closestVal)) closestVal = cur_sum;
             }
         }
         return closestVal;
