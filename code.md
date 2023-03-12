@@ -25,6 +25,17 @@
 
 ## 488. Zuma Game
 
+桌面上有一排彩球，手中也有一些彩球，每个球的颜色可能是：红色 'R'、黄色 'Y'、蓝色 'B'、绿色 'G' 或白色 'W'。目标是清空桌面上所有的球。
+
+每一回合：
+(1) 从手上的彩球中选出任意一颗，然后将其插入桌面上那一排球中：两球之间或这一排球的任一端。
+(2) 接着，如果有出现 三个或者三个以上 且 颜色相同 的球相连的话，就把它们移除掉。
+(3) 如果这种移除操作同样导致出现三个或者三个以上且颜色相同的球相连，则可以继续移除这些球，直到不再满足移除条件。
+(4) 如果桌面上所有球都被移除，则赢得本场游戏。
+
+重复这个过程，直到赢了游戏或者手中没有更多的球。按上述操作步骤移除掉桌上所有球，计算并返回所需的 最少 球数。如果不能移除桌上所有的球，返回 -1 。
+
+
 ## 493. Reverse Pairs
 
 ## 494. Target Sum
@@ -112,7 +123,62 @@ public:
 ## 887
 ## 895
 ## 975
-## 1032
+
+## 1032. Stream of Characters
+
+设计一个算法：接收一个字符流，并检查这些字符的后缀是否是字符串数组 words 中的一个字符串。
+
+例如，words = ["abc", "xyz"] 且字符流中逐个依次加入 4 个字符 'a'、'x'、'y' 和 'z' ，算法应当可以检测到 "axyz" 的后缀 "xyz" 与 words 中的字符串 "xyz" 匹配。
+
+按下述要求实现 StreamChecker 类：
+
+- `StreamChecker(String[] words)` ：构造函数，用字符串数组 words 初始化数据结构。
+- `boolean query(char letter)`：从字符流中接收一个新字符，如果字符流中的任一非空后缀能匹配 words 中的某一字符串，返回 true ；否则，返回 false。
+
+1. Trie 树
+   - 声明前缀树的根结点 root，定义字符串 queryStr。
+   - 构造函数中，遍历每个单词，从最后的字符开始处理，若当前结点的 next 数组中对应位置不包含该字符，则新建出 Trie 结点，然后当前结点移到新建的结点继续循环，完成之后标记 isWord 为 true。
+   - 实现 query 函数时进行类似的操作，先把字符加入 queryStr，然后从其末尾往前遍历，取出 next 数组中对应位置的结点，若存在且 isWord 为 true，则说明找到了某个单词，直接返回 true，否则继续遍历。最终没找到的话返回 false 即可。
+
+```cpp
+struct TrieNode {
+    bool isWord;
+    TrieNode *next[26];
+};
+
+class StreamChecker {
+public:
+    StreamChecker(vector<string>& words) {
+        root = new TrieNode();
+        for (string word : words) {
+            TrieNode *node = root;
+            for (int i = (int)word.size() - 1; i >= 0; --i) {
+                if (!node->next[word[i] - 'a']) {
+                    node->next[word[i] - 'a'] = new TrieNode();
+                }
+                node = node->next[word[i] - 'a'];
+            }
+            node->isWord = true;
+        }
+    }
+
+    bool query(char letter) {
+        queryStr.push_back(letter);
+        TrieNode *node = root;
+        for (int i = (int)queryStr.size() - 1; i >= 0 && node; --i) {
+            node = node->next[queryStr[i] - 'a'];
+            if (node && node->isWord) return true;
+        }
+        return false;
+    }
+
+private:
+
+    TrieNode *root;
+    string queryStr;
+};
+```
+
 ## 1168
 ## 1203
 ## 1255
@@ -124,6 +190,7 @@ public:
 在一根无限长的数轴上，一开始站在 0 的位置，终点在 target 的位置。每次可以选择向左或向右移动，第 n 次移动（从 1 开始）可以走 n 步。返回到达终点需要的最小移动次数。
 
 ## 816
+
 
 
 

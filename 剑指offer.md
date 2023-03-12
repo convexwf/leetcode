@@ -2,6 +2,19 @@
 
 [CodeTop企业题库](https://codetop.cc/home)
 
+## 创建链表
+
+```cpp
+ListNode* head = nullptr, *cur = nullptr, *pre = nullptr;
+for (int x : vec) {
+    cur = new ListNode(x);
+    if (head == nullptr) head = cur;
+    else pre->next = cur;
+    pre = cur;
+    cur = cur->next;
+}
+```
+
 ## 队列实现栈/栈实现队列
 
 ## atoi
