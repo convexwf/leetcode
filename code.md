@@ -173,9 +173,9 @@ public:
 
 ## 935. Knight Dialer
 
-![chess knight](res/leetcode-chess_knight.png)
+![chess knight](https://gitlab.com/convexwf/convex-resource/-/raw/master/convex-notes/leetcode-chess_knight.png)
 
-![phone pad](res/leetcode-phone_pad.png)
+![phone pad](https://gitlab.com/convexwf/convex-resource/-/raw/master/convex-notes/leetcode-phone_pad.png)
 
 将骑士放在电话拨号盘的任意数字键上，接下来，骑士将会跳 N-1 步。每一步必须是从一个数字键跳到另一个数字键。每当它落在一个键上（包括骑士的初始位置），都会拨出键所对应的数字，总共按下 N 位数字。能用这种方式拨出多少个不同的号码？
 

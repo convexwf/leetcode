@@ -84,7 +84,7 @@
 1. 题目描述：找出给定集合的所有子集
 2. 递归：DFS深度优先搜索
 3. 位操作：数组中所有的数分配一个状态，true 表示这个数在子集中出现，false 表示在子集中不出现，那么对于一个长度为n的数组，每个数字都有出现与不出现两种情况，所以共有 $2^n$ 中情况
-   ![子集的二进制表示](../res/leetcode-子集的二进制表示.png)
+   ![子集的二进制表示](https://gitlab.com/convexwf/convex-resource/-/raw/master/convex-notes/leetcode-子集的二进制表示.png)
 
 ```C++
 // 2019-05-06 submission (DFS)
