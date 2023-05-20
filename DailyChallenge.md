@@ -1,32 +1,5 @@
 # Daily Challenge
 
-## 1510. Stone Game IV (2020-10-26)
-
-解题思路
-
-1. 题目描述：取石头游戏，甲乙轮流取走平方数个石头，无石头可取判负。
-2. 零和游戏（即甲乙中必有胜者和负者，不存在平局）。可以用一个 flag 标记当前石头数下胜者，true为先取者，false为后取者。
-3. 动态规划：转移方程为 dp[i + step * step] = true when dp[i] = false
-
-```C++
-// 2020-10-26 submission
-// Runtime: 32 ms, faster than 85.71% of C++ online submissions for Stone Game IV.
-// Memory Usage: 6.8 MB, less than 5.05% of C++ online submissions for Stone Game IV.
-class Solution {
-public:
-    bool winnerSquareGame(int n) {
-        vector<bool> dp(n + 1, false);
-        for (int i = 0; i < n ; i++) {
-            if (dp[i]) continue;
-            for (int step = 1; i + step * step <= n; step++) {
-                dp[i + step * step] = true;
-            }
-        }
-        return dp[n];
-    }
-};
-```
-
 ## 799. Champagne Tower (2020-10-27)
 
 解题思路
@@ -91,38 +64,6 @@ public:
             if(helper[i][0] == helper[i][1]) res.push_back(to_string(helper[i][0]));
             else res.push_back(to_string(helper[i][0]) + "->" + to_string(helper[i][1]));
         }
-        return res;
-    }
-};
-```
-
-## 849. Maximize Distance to Closest Person (2020-10-30)
-
-解题思路
-
-1. 统计出连续空位的个数，即连续0的个数
-
-边界条件
-
-1. 最左边或者最右边为空座位
-
-```C++
-// 2020-10-30 submission
-// Runtime: 20 ms, faster than 98.04% of C++ online submissions for Maximize Distance to Closest Person.
-// Memory Usage: 17.4 MB, less than 32.38% of C++ online submissions for Maximize Distance to Closest Person.
-class Solution {
-public:
-    int maxDistToClosest(vector<int>& seats) {
-        if (seats.empty()) return 0;
-        int res = 0;
-        int pivot = -1;
-        for (int i = 0; i < seats.size(); i++) {
-            if (seats[i] == 1) {
-                res = max(res, pivot < 0 ? (i - pivot - 1) : (i - pivot) / 2);
-                pivot = i;
-            }
-        }
-        res = max(res, int(seats.size())-pivot-1);
         return res;
     }
 };
@@ -580,10 +521,12 @@ public:
 
 1. 题目描述：抢劫树状房屋，相邻屋子不可以同时抢，求抢劫最大收获
 2. 树形dp：dp[i][0]表示不选这个节点子树的最大价值，dp[i][1]表示选这个节点的子树最大价值，不选时儿子节点可以选或者不选，选时儿子节点必须不选。状态转移方程为
-   $$ \begin{aligned}
+   $$
+   \begin{aligned}
    dp[x, 0] &=\sum_{s \in \operatorname{Son}(x)} \max (dp[s, 0], d p[s, 1]) \\
    dp[x, 1] &=h[x]+\sum_{s \in \operatorname{Son}(x)} d p[s, 0]
-   \end{aligned} $$
+   \end{aligned}
+   $$
 3. helper 函数返回当前结点为根结点的最大 rob 的钱数，里面的两个参数 l 和 r 表示分别从左子结点和右子结点开始 rob，分别能获得的最大钱数。在递归函数里面，如果当前结点不存在，直接返回0。否则对左右子结点分别调用递归函数，得到l和r。另外还得到四个变量，ll 和 lr 表示左子结点的左右子结点的最大 rob 钱数，rl 和 rr 表示右子结点的最大 rob 钱数。那么最后返回的值其实是两部分的值比较，其中一部分的值是当前的结点值加上 ll, lr, rl, 和 rr 这四个值，因为抢了当前的房屋，则左右两个子结点就不能再抢了，但是再下一层的四个子结点都是可以抢的；另一部分是不抢当前房屋，而是抢其左右两个子结点，即 l+r 的值，返回两个部分的值中的较大值即可
 
 ```C++
@@ -947,7 +890,7 @@ public:
 解题思路
 
 1. 当 root 为空时，直接返回空，当 root 没有左右子结点时，也是直接返回 root。当 root 只有一个左子结点时，我们此时要把其左子结点变为根结点，将原来的根结点变成其原来的左子结点的右子结点。但是如果 root 只有一个右子结点，还是保持原来的顺序不变，而若 root 同时具有左右子结点的话，还是要将左子结点变为根结点，然后把之前的根结点连到右子结点上，之前的右子结点还连在之前的根结点上，这个不用改变。我们可以发现，最麻烦的就是左子结点了，需要和其根结点交换位置，所以对于每个结点，我们需要知道其父结点的位置，那么就在递归函数的参数中传入一个 pre 结点，再对左右子结点调用递归函数时，都将其下一个要连接的结点传入，这个 pre 结点可能是当前结点或者当前结点的父结点。
- 在递归函数中，首先判空，若当前结点为空的话，直接返回 pre 结点，因为到空结点的时候，说明已经遍历到叶结点的下方了，那么 pre 就是这个叶结点了。由于是中序遍历，所以要先对左子结点调用递归函数，将返回值保存到一个新的结点 res 中，表示的意义是此时 node 的左子树已经全部捋直了，而且根结点就是 res，而且 node 结点本身也被连到了捋直后的左子树下，即此时左子结点和根结点已经完成了交换位子，当然要断开原来的连接，所以将 node->left 赋值为 nullptr。然后再对 node 的右子结点调用递归函数，注意此时的 pre 不能传入 node 本身，而是要传 node 结点的 pre 结点，这是因为右子结点后面要连接的是 node 的父结点，比如兑入下面这例子：
+   在递归函数中，首先判空，若当前结点为空的话，直接返回 pre 结点，因为到空结点的时候，说明已经遍历到叶结点的下方了，那么 pre 就是这个叶结点了。由于是中序遍历，所以要先对左子结点调用递归函数，将返回值保存到一个新的结点 res 中，表示的意义是此时 node 的左子树已经全部捋直了，而且根结点就是 res，而且 node 结点本身也被连到了捋直后的左子树下，即此时左子结点和根结点已经完成了交换位子，当然要断开原来的连接，所以将 node->left 赋值为 nullptr。然后再对 node 的右子结点调用递归函数，注意此时的 pre 不能传入 node 本身，而是要传 node 结点的 pre 结点，这是因为右子结点后面要连接的是 node 的父结点，比如兑入下面这例子：
 
 ```C++
 // 2020-12-04 submission
@@ -1040,14 +983,14 @@ public:
 
 1. 需要自行实现一个求幂函数以防溢出。可以发现 $2^{23} = (2^{2})^{10} * 2^{3}$，所以可以从 b 的最高位开始，算出结果存入res，然后到下一位时，res的十次方再乘以 a 的该位次方再对 1337 取余。
 2. 取余规则：
-    （1）$ (a \pm b) \% p = (a \% p \pm b \% p) \% p $
-    （2）$ (a *b) \% p = (a \% p* b \% p) \% p $
-    （3）$ a ^ b \% p = ((a \% p)^b) \% p $
-    （4）结合律：$ ((a+b) \% p + c) \% p = (a + (b+c) \% p) \% p $
-    （5）$ ((a*b) \% p* c) \% p = (a *(b*c) \% p) \% p $
-    （6）交换律：$ (a + b) \% p = (b+a) \% p $
-    （7）$ (a *b) \% p = (b* a) \% p $
-    （8）分配律：$ ((a +b)\% p *c) \% p = ((a* c) \% p + (b * c) \% p) \% p $
+   （1）$ (a \pm b) \% p = (a \% p \pm b \% p) \% p $
+   （2）$ (a *b) \% p = (a \% p* b \% p) \% p $
+   （3）$ a ^ b \% p = ((a \% p)^b) \% p $
+   （4）结合律：$ ((a+b) \% p + c) \% p = (a + (b+c) \% p) \% p $
+   （5）$ ((a*b) \% p* c) \% p = (a *(b*c) \% p) \% p $
+   （6）交换律：$ (a + b) \% p = (b+a) \% p $
+   （7）$ (a *b) \% p = (b* a) \% p $
+   （8）分配律：$ ((a +b)\% p *c) \% p = ((a* c) \% p + (b * c) \% p) \% p $
 
 ```C++
 // 2020-12-07 submission
@@ -1234,7 +1177,13 @@ public:
 
 解题思路
 
-1. 动态规划：定义 $dp[i, j]$ 为将从第 \(i\) 到 \(j\) 个气球全部扎破后得到的最多硬币数，状态转移方程为 $$dp[i, j] = \max_{i \leq k \leq j}(dp[i, k-1] + dp[k+1, j]+nums[i-1]*nums[k]*nums[j+1])$$ 其中 \(k\) 表示在区间 $[i, j]$ 中选择气球 \(k\)，先把除了 \(k\) 以外的气球都打破后，最后再打气球 \(k\)。\(k\) 有可能会等于 \(i\) 或者 \(j\)，这种情况下 $dp[i, k-1]$ 和 $dp[k+1, j]$ 无意义，定义为0。
+1. 动态规划：定义 $dp[i, j]$ 为将从第 \(i\) 到 \(j\) 个气球全部扎破后得到的最多硬币数，状态转移方程为
+
+   $$
+   dp[i, j] = \max_{i \leq k \leq j}(dp[i, k-1] + dp[k+1, j]+nums[i-1]*nums[k]*nums[j+1])
+   $$
+
+   其中 \(k\) 表示在区间 $[i, j]$ 中选择气球 \(k\)，先把除了 \(k\) 以外的气球都打破后，最后再打气球 \(k\)。\(k\) 有可能会等于 \(i\) 或者 \(j\)，这种情况下 $dp[i, k-1]$ 和 $dp[k+1, j]$ 无意义，定义为0。
    为了减少运算，在初始数组首尾各插入 1，动态数组也要对应发生变化。
 
 Follow Up
