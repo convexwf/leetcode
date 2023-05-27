@@ -600,10 +600,6 @@ public:
 
 ## 677. Map Sum Pairs
 
-## 498. Diagonal Traverse
-
-二维数组的对角遍历，先向右上，然后左下，再右上，以此类推直至遍历完整个数组。
-
 
 ## 316. Remove Duplicate Letters
 
