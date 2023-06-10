@@ -669,8 +669,6 @@ public:
 
 ## 432 All O`one Data Structure
 
-## 430 Flatten a Multilevel Doubly Linked List
-
 ## 429 N-ary Tree Level Order Traversal
 
 ## 126. Word Ladder II
