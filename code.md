@@ -100,7 +100,6 @@ public:
 
 ## 518. Coin Change 2
 
-## 609. Find Duplicate File in System
 
 ## 686. Repeated String Match
 
