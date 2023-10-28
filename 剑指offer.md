@@ -1,6 +1,14 @@
 # 剑指offer
 
 [CodeTop企业题库](https://codetop.cc/home)
+[leetcode/solution/0000-0099/0001.Two Sum at main · doocs/leetcode · GitHub](https://github.com/doocs/leetcode/tree/main/solution/0000-0099/0001.Two%20Sum)
+
+检查测试用例和极端用例
+检查数据类型 long 和 long long
+查看讨论区，补全题解
+修正时空复杂度
+补充题目描述
+修正提交描述 （beat % of submission）
 
 ## 创建链表
 
