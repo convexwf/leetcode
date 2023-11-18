@@ -5,24 +5,35 @@
  */
 
 // @lc code=start
+// 1. 贪心算法+排序+最大堆
+// 2023-11-17 submission
+// 35/35 cases passed
+// Runtime: 161 ms, faster than 65.33% of cpp online submissions.
+// Memory Usage: 82.3 MB, less than 45.69% of cpp online submissions.
 class Solution {
 public:
     int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {
         int n = profits.size();
-        vector<vector<int>> dp(n + 1, vector<int>(k + 1, 0));
-        dp[0][0] = w;
-        int res = 0;
-        for (int i = 1; i <= n; ++i) {
-            for (int j = 0; j <= min(i, k); ++j) {
-                dp[i][j] = dp[i - 1][j];
-                if (j > 0 && dp[i - 1][j - 1] >= capital[i - 1]) {
-                    dp[i][j] = max(dp[i][j], dp[i - 1][j - 1] + profits[i - 1]);
-                }
-                res = max(res, dp[i][j]);
-                cout << "i: " << i << " j: " << j << " dp: " << dp[i][j] << endl;
+        vector<pair<int, int>> projects;
+        for (int i = 0; i < n; ++i) {
+            projects.emplace_back(capital[i], profits[i]);
+        }
+        sort(projects.begin(), projects.end());
+        priority_queue<int> pq;
+        int idx = 0;
+        while (k--) {
+            while (idx < n && projects[idx].first <= w) {
+                pq.push(projects[idx++].second);
+            }
+            if (!pq.empty()) {
+                w += pq.top();
+                pq.pop();
+            }
+            else {
+                break;
             }
         }
-        return res;
+        return w;
     }
 };
 // @lc code=end
