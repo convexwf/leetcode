@@ -158,3 +158,12 @@ if __name__ == "__main__":
     #         result = result and instead_code(content)
     #         if not result:
     #             print(f"Error: {content[0]}")
+
+class VehicleRecordVariable(str, Enum):
+    realtime_condition = "realtime_condition"
+    hourly_rain_level = "hourly_rain_level"
+    hourly_rain_value = "hourly_rain_value"
+    realtime_humidity = "realtime_humidity"
+    realtime_temperature = "realtime_temperature"
+    realtime_visibility = "realtime_visibility"
+
