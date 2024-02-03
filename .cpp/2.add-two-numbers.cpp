@@ -5,9 +5,10 @@
  */
 
 // @lc code=start
+// 1. dummy 节点
 // 2022-06-03 submission
 // 1568/1568 cases passed
-// Runtime: 73 ms, faster than 12.66% of C++ online submissions.
+// Runtime: 15 ms, faster than 91.25% of cpp online submissions.
 // Memory Usage: 71.5 MB, less than 12.13% of C++ online submissions.
 /**
  * Definition for singly-linked list.
@@ -22,7 +23,6 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-
         ListNode* dummy = new ListNode(0);
 
         ListNode* cur = dummy;
