@@ -9,3 +9,11 @@
 
 
 树状数组主要用于单点更新和区间查询，而线段树可以支持区间更新和区间查询。
+
+
+## Reference
+
+- [线段树详解与实现 - 知乎](https://zhuanlan.zhihu.com/p/174810030)
+- [线段树 - OI Wiki](https://oi-wiki.org/ds/seg/)
+- [线段树（segment tree)，看这一篇就够了_线段树min-CSDN博客](https://blog.csdn.net/Yaokai_AssultMaster/article/details/79599809)
+- [一文读懂扫描线算法 - 知乎](https://zhuanlan.zhihu.com/p/103616664)

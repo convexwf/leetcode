@@ -1,37 +1,4 @@
 
-## 335. Self Crossing
-
-从 X-Y 平面上的点 (0,0) 开始，先向北移动 distance[0] 米，然后向西移动 distance[1] 米，向南移动 distance[2] 米，向东移动 distance[3] 米，持续移动，每次移动后你的方位会发生逆时针变化。判断所经过的路径是否相交。
-
-## 337. House Robber III
-
-## 343. Integer Break
-
-给定一个正整数 n，将其拆分为至少两个正整数的和，并使这些整数的乘积最大化。
-
-## 437 Path Sum III
-
-
-
-## 472. Concatenated Words
-
-给定一个不含重复单词的字符串数组 words，找出 words 中的所有连接词。连接词定义为一个完全由给定数组中的至少两个较短单词组成的字符串。
-
-## 488. Zuma Game
-
-桌面上有一排彩球，手中也有一些彩球，每个球的颜色可能是：红色 'R'、黄色 'Y'、蓝色 'B'、绿色 'G' 或白色 'W'。目标是清空桌面上所有的球。
-
-每一回合：
-(1) 从手上的彩球中选出任意一颗，然后将其插入桌面上那一排球中：两球之间或这一排球的任一端。
-(2) 接着，如果有出现 三个或者三个以上 且 颜色相同 的球相连的话，就把它们移除掉。
-(3) 如果这种移除操作同样导致出现三个或者三个以上且颜色相同的球相连，则可以继续移除这些球，直到不再满足移除条件。
-(4) 如果桌面上所有球都被移除，则赢得本场游戏。
-
-重复这个过程，直到赢了游戏或者手中没有更多的球。按上述操作步骤移除掉桌上所有球，计算并返回所需的 最少 球数。如果不能移除桌上所有的球，返回 -1 。
-
-
-## 493. Reverse Pairs
-
 ## 494. Target Sum
 
 给定一个非负整数数组和一个目标值，给数组中每个数字加上正号或负号，然后求和要和目标值相等。
@@ -90,62 +57,6 @@ public:
 };
 ```
 
-## 513. Find Bottom Left Tree Value
-
-## 518. Coin Change 2
-
-
-## 686. Repeated String Match
-
-字符串 a 最少复制几次后，字符串 b 才可以成为 a 复制后的子串。
-
-## 715. Range Module
-
-设计一个数据结构 RangeModule 来跟踪表示为 半开区间 的范围并查询它们。半开区间 [left, right) 表示所有 left <= x < right 的实数 x 。
-
-(1) RangeModule() 初始化数据结构的对象。
-(2) void addRange(int left, int right) 添加 半开区间 [left, right)，跟踪该区间中的每个实数。添加与当前跟踪的数字部分重叠的区间时，应当添加在区间 [left, right) 中尚未跟踪的任何数字到该区间中。
-(3) boolean queryRange(int left, int right) 只有在当前正在跟踪区间 [left, right) 中的每一个实数时，才返回 true ，否则返回 false 。
-(4) void removeRange(int left, int right) 停止跟踪 半开区间 [left, right) 中当前正在跟踪的每个实数。
-
-
-## 768. Max Chunks To Make Sorted II
-
-一个整数数组 arr 分割成若干块，将这些块分别进行排序，之后再连接起来，使得连接的结果和按升序排序后的原数组相同。返回能将数组分成的最多块数。
-
-## 887
-## 895
-## 975
-
-
-
-## 1168
-## 1203
-## 1255
-## 1345
-## 1449
-
-## 754. Reach a Number
-
-在一根无限长的数轴上，一开始站在 0 的位置，终点在 target 的位置。每次可以选择向左或向右移动，第 n 次移动（从 1 开始）可以走 n 步。返回到达终点需要的最小移动次数。
-
-## 816
-
-
-
-
-## 875
-
-## 877. Stone Game
-
-有偶数堆的石子，两个人轮流选石子堆，规则是每次只能选开头和末尾中的一堆，最终获得石子总数多的人获胜。若 Alex 先选，两个人都会一直做最优选择，问最终 Alex 是否能获胜。
-
-## 911. Online Election
-
-给定两个整数数组 persons 和 times，在选举中，第 i 张票是在时刻为 times[i] 时投给候选人 persons[i] 的。对于发生在时刻 t 的每个查询，需要找出在 t 时刻在选举中领先的候选人的编号。在 t 时刻投出的选票也将被计入查询之中。在平局的情况下，最近获得投票的候选人将会获胜。
-
-1. map：建立投票时间点和当前票王之间的映射。
-
 ## 912. Sort an Array
 
 数组排序。
@@ -187,11 +98,6 @@ public:
 
 1. 动态规划
 2. 矩阵相乘：[yiduobo的每日leetcode 935.骑士拨号器 - 知乎](https://zhuanlan.zhihu.com/p/357643959)
-
-
-
-
-## 987
 
 ## 149. Max Points on a Line
 
@@ -437,18 +343,6 @@ public:
 ```
 
 
-## 282. Expression Add Operators
-
-## 385. Mini Parser
-
-## 386. Lexicographical Numbers
-
-## 388. Longest Absolute File Path
-
-
-
-
-
 ## 307. Range Sum Query - Mutable
 
 ```cpp
@@ -552,34 +446,6 @@ public:
 };
 ```
 
-
-## 530
-
-## 458. Poor Pigs
-
-1000 瓶水中 1 瓶有毒，猪喝了毒水 15 分钟内会死亡，给定 1 个小时时间，求最少需要多少头猪能够定位到毒水。
-
-## 449. Serialize and Deserialize BST
-
-## 673. Number of Longest Increasing Subsequence
-
-最长递增序列的个数。
-
-## 695. Max Area of Island
-
-## 684. Redundant Connection
-
-删掉无向图中组成环的最后一条边，图中只有一条额外边。
-
-## 685. Redundant Connection II
-
-## 677. Map Sum Pairs
-
-
-## 316. Remove Duplicate Letters
-
-移除重复字母，使得每个字符只能出现一次，而且结果要按字典顺序排列，不能打乱其原本的相对位置。
-
 ## 321. Create Maximum Number
 
 给定两个无序数组，从两个数组中共挑出 k 个数，数字之间的相对顺序不变，求能组成的最大的数字。
@@ -636,86 +502,15 @@ public:
 };
 ```
 
-## 436 Find Right Interval
-
-
-
-## 433 Minimum Genetic Mutation
-
-## 432 All O`one Data Structure
-
-## 429 N-ary Tree Level Order Traversal
-
-## 126. Word Ladder II
-
-给定一个单词字典，给定一个起始单词和一个结束单词，每次变换只能改变一个字母，并且中间过程的单词都必须是单词字典中的单词，求出最短的变化序列。
-
-1. BFS
-   - 建立一个路径集 paths 用以保存所有路径，和起始路径 p，在p中先把起始单词放进去。
-   - 定义两个整型变量 level，和 minLevel，其中 level 是记录循环中当前路径的长度，minLevel 是记录最短路径的长度，如果某条路径的长度超过了已有的最短路径的长度，那么舍弃，这样会提高运行速度，相当于一种剪枝。
-   - 定义一个 HashSet 变量 words 用来记录已经循环过的路径中的词，
-   - 循环路径集 paths 里的内容，取出队首路径，如果该路径长度大于 level，说明字典中的有些词已经存入路径了，如果在路径中重复出现，则肯定不是最短路径，所以需要在字典中将这些词删去，然后将 words 清空，对循环对剪枝处理。然后取出当前路径的最后一个词，对每个字母进行替换并在字典中查找是否存在替换后的新词，如果替换后的新词在字典中存在，将其加入 words 中，并在原有路径的基础上加上这个新词生成一条新路径，如果这个新词就是结束词，则此新路径为一条完整的路径，加入结果中，并更新 minLevel，若不是结束词，则将新路径加入路径集中继续循环。
-
-```cpp
-class Solution {
-public:
-    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
-        vector<vector<string>> res;
-        unordered_set<string> dict(wordList.begin(), wordList.end());
-        vector<string> p{beginWord};
-        queue<vector<string>> paths;
-        paths.push(p);
-        int level = 1, minLevel = INT_MAX;
-        unordered_set<string> words;
-        while (!paths.empty()) {
-            auto t = paths.front(); paths.pop();
-            if (t.size() > level) {
-                for (string w : words) dict.erase(w);
-                words.clear();
-                level = t.size();
-                if (level > minLevel) break;
-            }
-            string last = t.back();
-            for (int i = 0; i < last.size(); ++i) {
-                string newLast = last;
-                for (char ch = 'a'; ch <= 'z'; ++ch) {
-                    newLast[i] = ch;
-                    if (!dict.count(newLast)) continue;
-                    words.insert(newLast);
-                    vector<string> nextPath = t;
-                    nextPath.push_back(newLast);
-                    if (newLast == endWord) {
-                        res.push_back(nextPath);
-                        minLevel = level;
-                    } else paths.push(nextPath);
-                }
-            }
-        }
-        return res;
-    }
-};
-```
-
 ## 115 (溢出存疑)
 
 ## 398 (TLE)
-
-## 397. Integer Replacement
-
-## 399. Evaluate Division
-
-## 355. Design Twitter
 
 ## 332. Reconstruct Itinerary
 
 给定飞机票建立一个行程单，如果有多种方法，取其中字母顺序小的那种方法。本质是有向图的边遍历。
 
 1. 邻接链表+multiset：建图，从节点 JFK 开始遍历，只要当前节点映射的 multiset 里有节点，取出这个节点，将其在 multiset 里删掉，然后继续递归遍历这个节点，由于题目中限定了一定会有解，那么等图中所有的multiset中都没有节点的时候，我们把当前节点存入结果中，然后再一层层回溯回去，将当前节点都存入结果，那么最后我们结果中存的顺序和我们需要的相反的，我们最后再翻转一下即可，参见代码如下：
-
-## 331. Verify Preorder Serialization of a Binary Tree
-
-判断给定字符串是否为一个正确的二叉树的先序遍历序列化字符串。
-
 
 ## 315. Count of Smaller Numbers After Self
 
@@ -767,5 +562,3 @@ public:
     }
 };
 ```
-
-## 47. Permutations II

@@ -4,5 +4,5 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "python.formatting.provider": "none",
-    "editor.fontSize": 18
+    "editor.fontSize": 24
 }
