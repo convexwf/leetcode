@@ -5,7 +5,8 @@
  */
 
 // @lc code=start
-// 2022-07-23 submission
+// 1. 位操作
+// 2018-09-19 submission
 // 61/61 cases passed
 // Runtime: 24 ms, faster than 76.56% of C++ online submissions.
 // Memory Usage: 16.9 MB, less than 51.54% of C++ online submissions.

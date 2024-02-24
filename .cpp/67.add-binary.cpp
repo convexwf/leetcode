@@ -6,30 +6,28 @@
 
 // @lc code=start
 // 2022-07-27 submission
-// 294/294 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.4 MB, less than 56.39% of C++ online submissions.
+// 296/296 cases passed
+// Runtime: 2 ms, faster than 63.11% of cpp online submissions.
+// Memory Usage: 8.1 MB, less than 42.49% of cpp online submissions.
 class Solution {
 public:
     string addBinary(string a, string b) {
-        int alen = a.length();
-        int blen = b.length();
-        int rlen = max(alen, blen);
+        int aidx = a.length();
+        int bidx = b.length();
+        int result_len = max(aidx, bidx);
+        string result(result_len, '0');
 
-        string res(rlen, '1');
-        int aval = 0;
-        int bval = 0;
         int carry = 0;
-        while (alen > 0 || blen > 0) {
-            --alen; --blen;
-            aval = (alen >= 0 ? (a[alen] - '0') : 0);
-            bval = (blen >= 0 ? (b[blen] - '0') : 0);
-            carry = carry + aval + bval;
-            res[--rlen] = carry % 2 + '0';
-            carry /= 2;
+        while (aidx > 0 || bidx > 0) {
+            --aidx;
+            --bidx;
+            int aval = (aidx >= 0 ? (a[aidx] - '0') : 0);
+            int bval = (bidx >= 0 ? (b[bidx] - '0') : 0);
+            result[--result_len] = (aval + bval + carry) % 2 + '0';
+            carry = (aval + bval + carry) / 2;
         }
-        if (carry) return "1" + res;
-        else return res;
+        if (carry > 0) return "1" + result;
+        return result;
     }
 };
 // @lc code=end

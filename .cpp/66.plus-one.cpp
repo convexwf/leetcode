@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 模拟
 // 2022-07-27 submission
 // 111/111 cases passed
 // Runtime: 0 ms, faster than 100% of C++ online submissions.
@@ -12,19 +13,16 @@
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
-        vector<int> res;
         int n = digits.size();
-        int carry = 1;
-        while (n-- > 0) {
-            carry += digits[n];
-            res.push_back(carry % 10);
-            carry /= 10;
+        for (int i = n - 1; i >= 0; --i) {
+            if (digits[i] < 9) {
+                ++digits[i];
+                return digits;
+            }
+            digits[i] = 0;
         }
-        if (carry > 0) {
-            res.push_back(carry);
-        }
-        reverse(res.begin(), res.end());
-        return res;
+        digits.insert(digits.begin(), 1);
+        return digits;
     }
 };
 // @lc code=end

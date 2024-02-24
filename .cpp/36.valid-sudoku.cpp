@@ -5,10 +5,11 @@
  */
 
 // @lc code=start
+// 1. 位操作
 // 2022-08-07 submission
 // 507/507 cases passed
-// Runtime: 15 ms, faster than 98.66% of C++ online submissions.
-// Memory Usage: 18.1 MB, less than 74.07% of C++ online submissions.
+// Runtime: 15 ms, faster than 98.66% of cpp online submissions.
+// Memory Usage: 18.1 MB, less than 74.07% of cpp online submissions.
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
@@ -16,8 +17,9 @@ public:
         for (int i = 0; i < 9; ++i) {
             for (int j = 0; j < 9; ++j) {
                 if (board[i][j] != '.') {
-                    if (bitCheck(valid, board[i][j] - '0' - 1, i, j))
+                    if (bitCheck(valid, board[i][j] - '0' - 1, i, j)) {
                         return false;
+                    }
                     bitSet(valid, board[i][j] - '0' - 1, i, j);
                 }
             }
@@ -42,24 +44,24 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 哈希表+字符串
 // 2022-08-07 submission
 // 507/507 cases passed
-// Runtime: 41 ms, faster than 41.59% of C++ online submissions.
-// Memory Usage: 20.1 MB, less than 36.02% of C++ online submissions.
+// Runtime: 41 ms, faster than 41.59% of cpp online submissions.
+// Memory Usage: 20.1 MB, less than 36.02% of cpp online submissions.
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
         unordered_set<string> table;
-        for(int i = 0 ; i < 9; i++) {
-            for(int j = 0; j < 9; j++) {
-                if(board[i][j] != '.') {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
                     ostringstream s_row, s_col, s_block;
                     s_row << i << "(" << board[i][j] << ")";
                     s_col << "(" << board[i][j] << ")" << j;
-                    s_block << i/3 << "(" << board[i][j] << ")" << j/3;
-                    if(!table.insert(s_row.str()).second || 
-                       !table.insert(s_col.str()).second || 
-                       !table.insert(s_block.str()).second)
+                    s_block << i / 3 << "(" << board[i][j] << ")" << j / 3;
+                    if (!table.insert(s_row.str()).second || !table.insert(s_col.str()).second ||
+                        !table.insert(s_block.str()).second)
                         return false;
                 }
             }
