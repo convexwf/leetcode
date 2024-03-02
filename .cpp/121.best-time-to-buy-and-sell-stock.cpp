@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 维护前缀最小值
 // 2022-07-28 submission
 // 211/211 cases passed
 // Runtime: 238 ms, faster than 25.62% of C++ online submissions.
@@ -12,10 +13,10 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        if(prices.empty()) return 0;
+        if (prices.empty()) return 0;
         int minPrice = prices[0];
         int maxPro = 0;
-        for(int i = 1; i < prices.size(); i++) {
+        for (int i = 1; i < prices.size(); i++) {
             maxPro = max(maxPro, prices[i] - minPrice);
             minPrice = min(minPrice, prices[i]);
         }

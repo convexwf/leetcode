@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 迭代(头插法)
 // 2022-11-14 submission
 // 28/28 cases passed
 // Runtime: 12 ms, faster than 57.29% of C++ online submissions.
@@ -22,9 +23,9 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode *newHead = NULL;
+        ListNode* newHead = nullptr;
         while (head) {
-            ListNode *t = head->next;
+            ListNode* t = head->next;
             head->next = newHead;
             newHead = head;
             head = t;
@@ -35,6 +36,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 递归
 // 2022-11-14 submission
 // 28/28 cases passed
 // Runtime: 20 ms, faster than 9.16% of C++ online submissions.
@@ -43,9 +45,9 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         if (!head || !head->next) return head;
-        ListNode *newHead = reverseList(head->next);
+        ListNode* newHead = reverseList(head->next);
         head->next->next = head;
-        head->next = NULL;
+        head->next = nullptr;
         return newHead;
     }
 };

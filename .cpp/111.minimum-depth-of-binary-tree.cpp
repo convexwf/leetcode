@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归
 // 2023-02-02 submission
 // 52/52 cases passed
 // Runtime: 286 ms, faster than 65.62% of C++ online submissions.
@@ -32,6 +33,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 迭代(层序遍历)
 // 2023-02-02 submission
 // 52/52 cases passed
 // Runtime: 289 ms, faster than 60.45% of C++ online submissions.
@@ -45,7 +47,8 @@ public:
         while (!q.empty()) {
             ++res;
             for (int i = q.size(); i > 0; --i) {
-                auto t = q.front(); q.pop();
+                auto t = q.front();
+                q.pop();
                 if (!t->left && !t->right) return res;
                 if (t->left) q.push(t->left);
                 if (t->right) q.push(t->right);

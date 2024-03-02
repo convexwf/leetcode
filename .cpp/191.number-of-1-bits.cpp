@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 位运算(最右边的 1 置 0)
 // 2022-07-30 submission
 // 601/601 cases passed
 // Runtime: 10 ms, faster than 8.38% of C++ online submissions.
@@ -23,6 +24,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 位运算(逻辑右移)
 // 2022-07-30 submission
 // 601/601 cases passed
 // Runtime: 8 ms, faster than 8.38% of C++ online submissions.

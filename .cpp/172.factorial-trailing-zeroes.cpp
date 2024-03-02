@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 数学方法
 // 2023-01-14 submission
 // 500/500 cases passed
 // Runtime: 5 ms, faster than 26.38% of C++ online submissions.
@@ -23,6 +24,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 数学方法+递归
 // 2023-01-14 submission
 // 500/500 cases passed
 // Runtime: 0 ms, faster than 100% of C++ online submissions.

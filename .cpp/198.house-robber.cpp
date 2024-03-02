@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划(当前位置必须要抢)
 // 2022-08-26 submission
 // 68/68 cases passed
 // Runtime: 0 ms, faster than 100% of C++ online submissions.
@@ -12,13 +13,13 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        if(nums.empty()) return 0;
+        if (nums.empty()) return 0;
         vector<int> maxSum;
-        if(nums.size() >= 1) maxSum.push_back(nums[0]);
-        if(nums.size() >= 2) maxSum.push_back(nums[1]);
-        if(nums.size() >= 3) maxSum.push_back(nums[0]+nums[2]);
-        for(int i = 3; i < nums.size(); i++) {
-            auto temp = maxSum[i-2] > maxSum[i-3] ? maxSum[i-2] : maxSum[i-3];
+        if (nums.size() >= 1) maxSum.push_back(nums[0]);
+        if (nums.size() >= 2) maxSum.push_back(nums[1]);
+        if (nums.size() >= 3) maxSum.push_back(nums[0] + nums[2]);
+        for (int i = 3; i < nums.size(); i++) {
+            auto temp = maxSum[i - 2] > maxSum[i - 3] ? maxSum[i - 2] : maxSum[i - 3];
             maxSum.push_back(temp + nums[i]);
         }
         return *max_element(maxSum.begin(), maxSum.end());
@@ -27,6 +28,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 动态规划(当前位置不一定要抢)
 // 2022-08-26 submission
 // 68/68 cases passed
 // Runtime: 0 ms, faster than 100% of C++ online submissions.

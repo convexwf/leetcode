@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 迭代
 // 2022-11-14 submission
 // 44/44 cases passed
 // Runtime: 6 ms, faster than 38.14% of C++ online submissions.
@@ -19,17 +20,18 @@
  */
 class Solution {
 public:
-    ListNode* reverseBetween(ListNode* head, int m, int n) {
-        ListNode* dummy = new ListNode(0), *prev = dummy;
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        ListNode *dummy = new ListNode(0), *pre = dummy;
         dummy->next = head;
-        for (int i = 0; i < m-1; i++)
-            {prev = prev->next;}
-        ListNode* cur = prev->next;
-        for (int i = m; i < n; i++) {
-            ListNode* t = cur->next;
-            cur->next = t->next;
-            t->next = prev->next;
-            prev->next = t;
+        for (int i = 0; i < left - 1; i++) {
+            pre = pre->next;
+        }
+        ListNode* start = pre->next;
+        for (int i = 0; i < right - left; i++) {
+            ListNode* then = start->next;
+            start->next = then->next;
+            then->next = pre->next;
+            pre->next = then;
         }
         return dummy->next;
     }

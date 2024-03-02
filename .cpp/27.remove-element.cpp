@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 双指针
 // 2022-08-07 submission
 // 113/113 cases passed
 // Runtime: 3 ms, faster than 68.33% of C++ online submissions.
@@ -22,4 +23,3 @@ public:
     }
 };
 // @lc code=end
-
