@@ -16,10 +16,12 @@ public:
         int count = 0;
         for (int i = 0; i < nums.size(); i++) {
             if (count == 0) candidate = nums[i];
-            if (candidate == nums[i]) count++;
-            else count--;
+            if (candidate == nums[i])
+                count++;
+            else
+                count--;
         }
-        // 第二次遍历，可略去，因为题目已明确一定会存在结果
+        // 第二次遍历可略去，因为题目已明确一定会存在结果
         // count = 0;
         // for (int num : nums) {
         //     if (num == candidate) ++count;
@@ -42,7 +44,7 @@ public:
         for (int i = 0; i < 32; i++) {
             int count = 0;
             for (int j = 0; j < nums.size(); j++) {
-                count += ((nums[j]>>i) & 1);
+                count += ((nums[j] >> i) & 1);
             }
             if (count > nums.size() / 2) res |= (1 << i);
         }

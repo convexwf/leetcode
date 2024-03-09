@@ -366,40 +366,6 @@ public:
 };
 ```
 
-## 20. Valid Parentheses
-
-解题思路
-
-1. 栈: 开始遍历输入字符串，如果当前字符为左半边括号时，则将其压入栈中，如果遇到右半边括号时，若此时栈为空，则直接返回 false，如不为空，则取出栈顶元素，若为对应的左半边括号，则继续循环，反之返回 false
-
-```C++
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 6.3 MB, less than 64.43% of C++ online submissions.
-class Solution {
-public:
-    bool isValid(string s) {
-        stack<char> stk;
-        for(int i = 0; i < s.size(); i++) {
-            if(s[i]=='(' || s[i]=='[' || s[i]=='{') stk.push(s[i]);
-            else if(s[i] == ')') {
-                if(!stk.empty() && stk.top() == '(') stk.pop();
-                else return false;
-            }
-            else if(s[i] == ']') {
-                if(!stk.empty() && stk.top() == '[') stk.pop();
-                else return false;
-            }
-            else if(s[i] == '}') {
-                if(!stk.empty() && stk.top() == '{') stk.pop();
-                else return false;
-            }
-        }
-        if(stk.empty()) return true;
-        else return false;
-    }
-};
-```
-
 ## 21. Merge Two Sorted Lists
 
 ```C++
@@ -680,107 +646,6 @@ public:
 ```
 
 
-## 51. N-Queens
-
-返回所有解法
-
-```C++
-// 2019-04-14 submission
-// ?/? cases passed
-// Runtime: 8 ms, faster than 63.24% of C++ online submissions.
-// Memory Usage: 7.4 MB, less than 61.04% of C++ online submissions.
-class Solution {
-public:
-    vector<vector<string>> solveNQueens(int n) {
-        vector<vector<int>> result;
-        vector<vector<string>> chess_results;
-        vector<int> temp(n, 0);
-        if(n == 1) {
-            chess_results.push_back(vector<string>{"Q"});
-            return chess_results;
-        }
-        else if(n >= 4) {
-            place(0, n, temp, result);
-            print_chess(result, chess_results);
-        }
-        return chess_results;
-    }
-
-    bool find(int row, int col, vector<int>& curr) {
-        for(int i = 0; i < row; i++) {
-            if(curr[i]==col || abs(i-row)==abs(col-curr[i])) return false;
-        }
-        return true;
-    }
-
-    void place(int k, int n, vector<int>& curr, vector<vector<int>>& result) {
-        for(int i = 0; i < n; i++) {
-            if(find(k, i, curr)) {
-                curr[k] = i;
-                if(k == n-1) result.push_back(curr);
-                else place(k+1, n, curr, result);
-            }
-        }
-    }
-
-    void print_chess(vector<vector<int>>& result, vector<vector<string>>& chess_results) {
-        int col = 0;
-        string temp = "";
-        for(int i = 0; i < result.size(); i++) {
-            int n = result[i].size();
-            chess_results.push_back(vector<string>{});
-            for(int j = 0; j < n; j++) {
-                col = result[i][j];
-                temp = "";
-                for(int k = 0; k < col; k++) temp += '.';
-                temp += 'Q';
-                for(int k = col+1; k < n; k++) temp += '.';
-                chess_results[i].push_back(temp);
-            }
-        }
-    }
-};
-```
-
-## 52. N-Queens II
-
-返回解法数量
-
-```C++
-// 2019-04-14 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 82.73% of C++ online submissions.
-// Memory Usage: 6 MB, less than 90.16% of C++ online submissions.
-class Solution {
-public:
-    int totalNQueens(int n) {
-        int success = 0;
-        vector<int> temp(n, 0);
-        place(0, n, temp, success);
-        return success;
-    }
-
-    bool find(int row, int col, vector<int>& curr) {
-        for(int i = 0; i < row; i++) {
-            if(curr[i] == col || abs(i-row) == abs(curr[i]-col))
-                return false;
-        }
-        return true;
-    }
-
-    void place(int k, int n, vector<int>& curr, int &success) {
-        for(int i = 0; i < n; i++) {
-            if(find(k, i, curr)) {
-                curr[k] = i;
-                if(k == n-1) success++;
-                else place(k+1, n, curr, success);
-            }
-        }
-    }
-
-};
-```
-
 ## 56. Merge Intervals
 
 解题思路
@@ -922,30 +787,6 @@ public:
         }
         return record[rows][cols];
 
-    }
-};
-```
-
-## 71. Simplify Path
-
-解题思路
-
-1. 简化路径: "/../" 返回 "/"
-
-```C++
-class Solution {
-public:
-    string simplifyPath(string path) {
-        string res, t;
-        stringstream ss(path);
-        vector<string> v;
-        while (getline(ss, t, '/')) {
-            if (t == "" || t == ".") continue;
-            if (t == ".." && !v.empty()) v.pop_back();
-            else if (t != "..") v.push_back(t);
-        }
-        for (string s : v) res += "/" + s;
-        return res.empty() ? "/" : res;
     }
 };
 ```
@@ -2331,35 +2172,6 @@ public:
 };
 ```
 
-## 179. Largest Number (2020-11-01)
-
-解题思路
-
-1. 排序：自定义排序方法，对于两个数字 a 和 b，将其都转为字符串，如果 ab > ba，则a排在前面。
-
-边界条件
-
-1. 数组全部为 0
-
-```C++
-// 2020-11-01 submission
-// Runtime: 12 ms, faster than 60.80% of C++ online submissions for Largest Number.
-// Memory Usage: 11.3 MB, less than 6.39% of C++ online submissions for Largest Number.
-class Solution {
-public:
-    string largestNumber(vector<int>& nums) {
-        string res;
-        sort(nums.begin(), nums.end(), [](int a, int b) {
-           return to_string(a) + to_string(b) > to_string(b) + to_string(a);
-        });
-        for (int i = 0; i < nums.size(); ++i) {
-            res += to_string(nums[i]);
-        }
-        return res[0] == '0' ? "0" : res;
-    }
-};
-```
-
 ## 147. Insertion Sort List (2020-11-03)
 
 ```C++
@@ -2391,30 +2203,6 @@ public:
             head = t;
         }
         return dummy->next;
-    }
-};
-```
-
-## 1446. Consecutive Characters (2020-11-04)
-
-```C++
-// 2020-11-04 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Consecutive Characters.
-// Memory Usage: 7.2 MB, less than 100.00% of C++ online submissions for Consecutive Characters.
-class Solution {
-public:
-    int maxPower(string s) {
-        if (s.length() <= 0) return 0;
-        int res = 1;
-        int cur = 1;
-        for (int i = 1; i < s.length(); i++) {
-            if (s[i] == s[i-1]) cur++;
-            else {
-                res = max(res, cur);
-                cur = 1;
-            }
-        }
-        return max(res, cur);
     }
 };
 ```
@@ -3461,40 +3249,6 @@ public:
 };
 ```
 
-## 500. Keyboard Row (2020-12-15)
-
-```C++
-// 2020-12-15 submission
-// Runtime: 8 ms, faster than 30.88% of C++ online submissions for Keyboard Row.
-// Memory Usage: 7.3 MB, less than 37.56% of C++ online submissions for Keyboard Row.
-class Solution {
-public:
-    vector<string> findWords(vector<string>& words) {
-        string up = "qwertyuiop", mid = "ASDFGHJKLasdfghjkl", bottom = "ZXCVBNMzxcvbnm";
-        unordered_map<char, int> m;
-        for (char c = 'a'; c <= 'z'; c++) {
-            if (up.find(c) != string::npos || up.find(c + ('A'-'a')) != string::npos)
-                m[c] = m[c + ('A'-'a')] = 0;
-            else if (mid.find(c) != string::npos || mid.find(c + ('A'-'a')) != string::npos)
-                m[c] = m[c + ('A'-'a')] = 1;
-            else if (bottom.find(c) != string::npos || bottom.find(c + ('A'-'a')) != string::npos)
-                m[c] = m[c + ('A'-'a')] = 2;
-        }
-
-        vector<string> res;
-        int i = 0;
-        for (string word : words) {
-            for (i = 1; i < word.length(); i++) {
-                cout << word[i] << " " << m[word[i]] << " " << m[word[0]] << endl;
-                if (m[word[i]] != m[word[0]]) break;
-            }
-            if (i == word.length()) res.push_back(word);
-        }
-        return res;
-    }
-};
-```
-
 ## 977. Squares of a Sorted Array (2020-12-16)
 
 解题思路
@@ -3602,32 +3356,6 @@ public:
             ++res;
         }
         return -1;
-    }
-};
-```
-
-## 1411. Number of Ways to Paint N × 3 Grid
-
-解题思路
-
-1. 可分为两种情况：两边为同一数字(边)和两边不同数字(中)，则 1中=2边+2中，1边=3边+2中
-
-```C++
-// 2021-03-08 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Number of Ways to Paint N × 3 Grid.
-// Memory Usage: 6 MB, less than 74.43% of C++ online submissions for Number of Ways to Paint N × 3 Grid.
-class Solution {
-public:
-    int numOfWays(int n) {
-        long long  A = 6, B = 6;
-        for (int i = 1 ; i < n; i++) {
-            long long new_A = (A * 3) % 1000000007 + (B * 2)  % 1000000007;
-            long long new_B = (A * 2) % 1000000007 + (B * 2)  % 1000000007;
-            A = new_A % 1000000007;
-            B = new_B % 1000000007;
-        }
-        return (A + B) % 1000000007;
-
     }
 };
 ```

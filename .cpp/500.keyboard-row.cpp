@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表
 // 2022-11-17 submission
 // 22/22 cases passed
 // Runtime: 0 ms, faster than 100% of C++ online submissions.
