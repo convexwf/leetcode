@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-15 submission
 // 254/254 cases passed
-// Runtime: 19 ms, faster than 21.45% of C++ online submissions.
-// Memory Usage: 26.9 MB, less than 33.88% of C++ online submissions.
+// Runtime: 19 ms, faster than 21.45% of cpp online submissions.
+// Memory Usage: 26.9 MB, less than 33.88% of cpp online submissions.
 class Solution {
 public:
     bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {
@@ -30,8 +30,8 @@ public:
 // @lc code=start
 // 2022-11-15 submission
 // 254/254 cases passed
-// Runtime: 15 ms, faster than 38.39% of C++ online submissions.
-// Memory Usage: 26.5 MB, less than 96.04% of C++ online submissions.
+// Runtime: 15 ms, faster than 38.39% of cpp online submissions.
+// Memory Usage: 26.5 MB, less than 96.04% of cpp online submissions.
 class Solution {
 public:
     bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {

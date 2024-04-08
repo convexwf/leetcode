@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-31 submission
 // 56/56 cases passed
-// Runtime: 6 ms, faster than 70.8% of C++ online submissions.
-// Memory Usage: 10.8 MB, less than 23.38% of C++ online submissions.
+// Runtime: 6 ms, faster than 70.8% of cpp online submissions.
+// Memory Usage: 10.8 MB, less than 23.38% of cpp online submissions.
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
@@ -26,8 +26,8 @@ public:
 // @lc code=start
 // 2023-01-31 submission
 // 56/56 cases passed
-// Runtime: 3 ms, faster than 94.57% of C++ online submissions.
-// Memory Usage: 10.1 MB, less than 60.5% of C++ online submissions.
+// Runtime: 3 ms, faster than 94.57% of cpp online submissions.
+// Memory Usage: 10.1 MB, less than 60.5% of cpp online submissions.
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
@@ -38,10 +38,13 @@ public:
         while (i < nums1.size() && j < nums2.size()) {
             if (nums1[i] == nums2[j]) {
                 res.push_back(nums1[i]);
-                ++i; ++j;
-            } else if (nums1[i] > nums2[j]) {
+                ++i;
                 ++j;
-            } else {
+            }
+            else if (nums1[i] > nums2[j]) {
+                ++j;
+            }
+            else {
                 ++i;
             }
         }

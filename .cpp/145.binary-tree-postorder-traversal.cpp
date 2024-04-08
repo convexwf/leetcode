@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-09 submission
 // 68/68 cases passed
-// Runtime: 6 ms, faster than 20.13% of C++ online submissions.
-// Memory Usage: 8.5 MB, less than 47.17% of C++ online submissions.
+// Runtime: 6 ms, faster than 20.13% of cpp online submissions.
+// Memory Usage: 8.5 MB, less than 47.17% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -22,7 +22,7 @@
  */
 class Solution {
 public:
-    vector<int> postorderTraversal(TreeNode* root) {
+    vector<int> postorderTraversal(TreeNode *root) {
         vector<int> res;
         helper(root, res);
         return res;
@@ -40,21 +40,23 @@ public:
 // @lc code=start
 // 2023-02-09 submission
 // 68/68 cases passed
-// Runtime: 6 ms, faster than 20.13% of C++ online submissions.
-// Memory Usage: 8.5 MB, less than 73.21% of C++ online submissions.
+// Runtime: 6 ms, faster than 20.13% of cpp online submissions.
+// Memory Usage: 8.5 MB, less than 73.21% of cpp online submissions.
 class Solution {
 public:
-    vector<int> postorderTraversal(TreeNode* root) {
+    vector<int> postorderTraversal(TreeNode *root) {
         vector<int> res;
-        stack<TreeNode*> s;
+        stack<TreeNode *> s;
         TreeNode *p = root;
         while (!s.empty() || p) {
             if (p) {
                 s.push(p);
                 res.insert(res.begin(), p->val);
                 p = p->right;
-            } else {
-                TreeNode *t = s.top(); s.pop();
+            }
+            else {
+                TreeNode *t = s.top();
+                s.pop();
                 p = t->left;
             }
         }
@@ -66,8 +68,8 @@ public:
 // @lc code=start
 // 2023-02-09 submission
 // 68/68 cases passed
-// Runtime: 6 ms, faster than 20.13% of C++ online submissions.
-// Memory Usage: 8.2 MB, less than 98.65% of C++ online submissions.
+// Runtime: 6 ms, faster than 20.13% of cpp online submissions.
+// Memory Usage: 8.2 MB, less than 98.65% of cpp online submissions.
 class Solution {
 public:
     // addPath
@@ -101,8 +103,9 @@ public:
                     p2->right = p1;
                     p1 = p1->left;
                     continue;
-                // // p2->right == p1 说明该节点已经访问过，此时再访问到就置为空
-                } else {
+                    // // p2->right == p1 说明该节点已经访问过，此时再访问到就置为空
+                }
+                else {
                     p2->right = nullptr;
                     // 打印p1->left而非p1，就保证根节点一定是最后打印的
                     addPath(res, p1->left);

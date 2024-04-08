@@ -8,8 +8,8 @@
 // 1. 维护前缀最小值
 // 2022-07-28 submission
 // 211/211 cases passed
-// Runtime: 238 ms, faster than 25.62% of C++ online submissions.
-// Memory Usage: 93.3 MB, less than 52.3% of C++ online submissions.
+// Runtime: 238 ms, faster than 25.62% of cpp online submissions.
+// Memory Usage: 93.3 MB, less than 52.3% of cpp online submissions.
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {

@@ -7,12 +7,14 @@
 // @lc code=start
 // 2022-08-19 submission
 // 8/8 cases passed
-// Runtime: 145 ms, faster than 45.21% of C++ online submissions.
-// Memory Usage: 26.8 MB, less than 97.34% of C++ online submissions.
+// Runtime: 145 ms, faster than 45.21% of cpp online submissions.
+// Memory Usage: 26.8 MB, less than 97.34% of cpp online submissions.
 class Solution {
 public:
     Solution(double radius, double x_center, double y_center) {
-        r = radius; centerX = x_center; centerY = y_center;
+        r = radius;
+        centerX = x_center;
+        centerY = y_center;
     }
 
     vector<double> randPoint() {
@@ -39,12 +41,14 @@ private:
 // @lc code=start
 // 2022-08-19 submission
 // 8/8 cases passed
-// Runtime: 106 ms, faster than 81.38% of C++ online submissions.
-// Memory Usage: 27.3 MB, less than 48.4% of C++ online submissions.
+// Runtime: 106 ms, faster than 81.38% of cpp online submissions.
+// Memory Usage: 27.3 MB, less than 48.4% of cpp online submissions.
 class Solution {
 public:
     Solution(double radius, double x_center, double y_center) {
-        r = radius; centerX = x_center; centerY = y_center;
+        r = radius;
+        centerX = x_center;
+        centerY = y_center;
     }
 
     vector<double> randPoint() {

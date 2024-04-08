@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-28 submission
 // 72/72 cases passed
-// Runtime: 189 ms, faster than 75.09% of C++ online submissions.
-// Memory Usage: 77.9 MB, less than 89.15% of C++ online submissions.
+// Runtime: 189 ms, faster than 75.09% of cpp online submissions.
+// Memory Usage: 77.9 MB, less than 89.15% of cpp online submissions.
 class Solution {
 public:
     int maxResult(vector<int>& nums, int k) {

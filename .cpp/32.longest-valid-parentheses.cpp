@@ -5,10 +5,11 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2022-07-28 submission
 // 231/231 cases passed
-// Runtime: 8 ms, faster than 40.17% of C++ online submissions.
-// Memory Usage: 7.6 MB, less than 13.58% of C++ online submissions.
+// Runtime: 3 ms, faster than 72.51% of cpp online submissions.
+// Memory Usage: 8.8 MB, less than 22.34% of cpp online submissions.
 class Solution {
 public:
     int longestValidParentheses(string s) {
@@ -17,8 +18,7 @@ public:
         vector<int> dp(s.length(), 0);
         for (int i = 1; i < s.length(); ++i) {
             if (s[i] == ')' && s[i - dp[i - 1] - 1] == '(') {
-                dp[i] = (dp[i - 1] + 2);
-                dp[i] += dp[i - dp[i]];
+                dp[i] = dp[i - 1] + 2 + dp[i - dp[i - 1] - 2];
                 res = max(dp[i], res);
             }
         }
@@ -28,35 +28,44 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 计数
 // 2022-07-28 submission
 // 231/231 cases passed
-// Runtime: 12 ms, faster than 15.97% of C++ online submissions.
-// Memory Usage: 6.7 MB, less than 95.8% of C++ online submissions.
+// Runtime: 12 ms, faster than 15.97% of cpp online submissions.
+// Memory Usage: 6.7 MB, less than 95.8% of cpp online submissions.
 class Solution {
 public:
     int longestValidParentheses(string s) {
         int res = 0;
         int l = 0, r = 0, n = s.length();
         for (int i = 0; i < n; ++i) {
-            if (s[i] == '(')
+            if (s[i] == '(') {
                 ++l;
-            else
+            }
+            else {
                 ++r;
-            if (l == r)
+            }
+            if (l == r) {
                 res = max(res, l + r);
-            else if (l < r)
+            }
+            else if (l < r) {
                 l = r = 0;
+            }
         }
         l = r = 0;
         for (int i = n - 1; i >= 0; --i) {
-            if (s[i] == '(')
+            if (s[i] == '(') {
                 ++l;
-            else
+            }
+            else {
                 ++r;
-            if (l == r)
+            }
+            if (l == r) {
                 res = max(res, l + r);
-            else if (l > r)
+            }
+            else if (l > r) {
                 l = r = 0;
+            }
         }
         return res;
     }
@@ -64,27 +73,28 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 栈
 // 2022-07-28 submission
 // 231/231 cases passed
-// Runtime: 6 ms, faster than 58.09% of C++ online submissions.
-// Memory Usage: 7.2 MB, less than 66.61% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 8.7 MB, less than 46.47% of cpp online submissions.
 class Solution {
 public:
     int longestValidParentheses(string s) {
-        int res = 0, start = 0, n = s.size();
-        stack<int> st;
-        for (int i = 0; i < n; ++i) {
+        stack<int> stk;
+        stk.push(-1);
+        int res = 0;
+        for (int i = 0; i < s.size(); ++i) {
             if (s[i] == '(') {
-                st.push(i);
+                stk.push(i);
             }
-            else if (s[i] == ')') {
-                if (st.empty()) {
-                    start = i + 1;
+            else {
+                stk.pop();
+                if (stk.empty()) {
+                    stk.push(i);
                 }
                 else {
-                    st.pop();
-                    res = st.empty() ? max(res, i - start + 1)
-                                     : max(res, i - st.top());
+                    res = max(res, i - stk.top());
                 }
             }
         }

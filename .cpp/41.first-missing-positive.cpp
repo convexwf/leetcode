@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 173/173 cases passed
-// Runtime: 43 ms, faster than 98.32% of C++ online submissions.
-// Memory Usage: 31.3 MB, less than 80.26% of C++ online submissions.
+// Runtime: 43 ms, faster than 98.32% of cpp online submissions.
+// Memory Usage: 31.3 MB, less than 80.26% of cpp online submissions.
 class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {

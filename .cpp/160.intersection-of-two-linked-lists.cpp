@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 39/39 cases passed
-// Runtime: 44 ms, faster than 97.66% of C++ online submissions.
-// Memory Usage: 14.6 MB, less than 33.27% of C++ online submissions.
+// Runtime: 44 ms, faster than 97.66% of cpp online submissions.
+// Memory Usage: 14.6 MB, less than 33.27% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -21,7 +21,7 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if (!headA || !headB) return NULL;
-        ListNode* curA = headA, *curB = headB;
+        ListNode *curA = headA, *curB = headB;
         while (curA != curB) {
             curA = curA ? curA->next : headB;
             curB = curB ? curB->next : headA;
@@ -34,8 +34,8 @@ public:
 // @lc code=start
 // 2022-11-14 submission
 // 39/39 cases passed
-// Runtime: 120 ms, faster than 29.32% of C++ online submissions.
-// Memory Usage: 14.6 MB, less than 33.27% of C++ online submissions.
+// Runtime: 120 ms, faster than 29.32% of cpp online submissions.
+// Memory Usage: 14.6 MB, less than 33.27% of cpp online submissions.
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
@@ -43,7 +43,8 @@ public:
         int lenA = getLength(headA), lenB = getLength(headB);
         if (lenA < lenB) {
             for (int i = 0; i < lenB - lenA; ++i) headB = headB->next;
-        } else {
+        }
+        else {
             for (int i = 0; i < lenA - lenB; ++i) headA = headA->next;
         }
         while (headA && headB && headA != headB) {
@@ -53,7 +54,7 @@ public:
         return (headA && headB) ? headA : NULL;
     }
 
-    int getLength(ListNode* head) {
+    int getLength(ListNode *head) {
         int cnt = 0;
         while (head) {
             ++cnt;

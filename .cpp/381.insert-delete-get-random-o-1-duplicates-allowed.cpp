@@ -7,11 +7,12 @@
 // @lc code=start
 // 2022-08-19 submission
 // 32/32 cases passed
-// Runtime: 431 ms, faster than 40.35% of C++ online submissions.
-// Memory Usage: 107.7 MB, less than 36.55% of C++ online submissions.
+// Runtime: 431 ms, faster than 40.35% of cpp online submissions.
+// Memory Usage: 107.7 MB, less than 36.55% of cpp online submissions.
 class RandomizedCollection {
 public:
-    RandomizedCollection() {}
+    RandomizedCollection() {
+    }
     bool insert(int val) {
         m[val].insert(nums.size());
         nums.push_back(val);
@@ -24,7 +25,7 @@ public:
         m[val].erase(idx);
         if (nums.size() - 1 != idx) { // 仅当不是末位置才需要替换
             nums[idx] = nums.back();
-            m[nums.back()].erase(nums.size()-1);
+            m[nums.back()].erase(nums.size() - 1);
             m[nums.back()].insert(idx);
         }
         nums.pop_back();
@@ -51,14 +52,16 @@ private:
 // @lc code=start
 // 2022-08-19 submission
 // 32/32 cases passed
-// Runtime: 286 ms, faster than 83.68% of C++ online submissions.
-// Memory Usage: 104 MB, less than 75.26% of C++ online submissions.
+// Runtime: 286 ms, faster than 83.68% of cpp online submissions.
+// Memory Usage: 104 MB, less than 75.26% of cpp online submissions.
 class RandomizedCollection {
 public:
     /** Initialize your data structure here. */
-    RandomizedCollection() {}
+    RandomizedCollection() {
+    }
 
-    /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
+    /** Inserts a value to the collection. Returns true if the collection did not already contain
+     * the specified element. */
     bool insert(int val) {
         auto result = m.find(val) == m.end();
 
@@ -68,16 +71,16 @@ public:
         return result;
     }
 
-    /** Removes a value from the collection. Returns true if the collection contained the specified element. */
+    /** Removes a value from the collection. Returns true if the collection contained the specified
+     * element. */
     bool remove(int val) {
         auto result = m.find(val) != m.end();
-        if(result)
-        {
+        if (result) {
             auto last = nums.back();
             m[last.first][last.second] = m[val].back();
             nums[m[val].back()] = last;
             m[val].pop_back();
-            if(m[val].empty()) m.erase(val);
+            if (m[val].empty()) m.erase(val);
             nums.pop_back();
         }
         return result;
@@ -87,6 +90,7 @@ public:
     int getRandom() {
         return nums[rand() % nums.size()].first;
     }
+
 private:
     vector<pair<int, int>> nums;
     unordered_map<int, vector<int>> m;

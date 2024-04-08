@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-02 submission
 // 16/16 cases passed
-// Runtime: 12 ms, faster than 63.02% of C++ online submissions.
-// Memory Usage: 7.6 MB, less than 36.27% of C++ online submissions.
+// Runtime: 12 ms, faster than 63.02% of cpp online submissions.
+// Memory Usage: 7.6 MB, less than 36.27% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {

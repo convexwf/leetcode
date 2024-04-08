@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-09 submission
 // 70/70 cases passed
-// Runtime: 6 ms, faster than 20.68% of C++ online submissions.
-// Memory Usage: 8.5 MB, less than 45.69% of C++ online submissions.
+// Runtime: 6 ms, faster than 20.68% of cpp online submissions.
+// Memory Usage: 8.5 MB, less than 45.69% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -39,20 +39,21 @@ public:
 // @lc code=start
 // 2023-02-09 submission
 // 70/70 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 8.2 MB, less than 92.54% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 8.2 MB, less than 92.54% of cpp online submissions.
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode *root) {
         vector<int> res;
-        stack<TreeNode*> s;
+        stack<TreeNode *> s;
         TreeNode *p = root;
         while (p || !s.empty()) {
             while (p) {
                 s.push(p);
                 p = p->left;
             }
-            p = s.top(); s.pop();
+            p = s.top();
+            s.pop();
             res.push_back(p->val);
             p = p->right;
         }
@@ -64,8 +65,8 @@ public:
 // @lc code=start
 // 2023-02-09 submission
 // 70/70 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 8.4 MB, less than 77.94% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 8.4 MB, less than 77.94% of cpp online submissions.
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode *root) {
@@ -77,13 +78,15 @@ public:
             if (!cur->left) {
                 res.push_back(cur->val);
                 cur = cur->right;
-            } else {
+            }
+            else {
                 pre = cur->left;
                 while (pre->right && pre->right != cur) pre = pre->right;
                 if (!pre->right) {
                     pre->right = cur;
                     cur = cur->left;
-                } else {
+                }
+                else {
                     pre->right = NULL;
                     res.push_back(cur->val);
                     cur = cur->right;

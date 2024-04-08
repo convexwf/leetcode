@@ -7,12 +7,12 @@
 // @lc code=start
 // 2021-03-18 submission
 // 64/64 cases passed
-// Runtime: 8 ms, faster than 97.04% of C++ online submissions.
-// Memory Usage: 8.6 MB, less than 91.9% of C++ online submissions.
+// Runtime: 8 ms, faster than 97.04% of cpp online submissions.
+// Memory Usage: 8.6 MB, less than 91.9% of cpp online submissions.
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
-        int m[256] = {0};   // 数据类型不能用char！！！
+        int m[256] = {0}; // 数据类型不能用char！！！
         int len = p.length();
         for (char c : p) {
             ++m[c];

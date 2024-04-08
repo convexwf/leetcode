@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-27 submission
 // 133/133 cases passed
-// Runtime: 10 ms, faster than 26.38% of C++ online submissions.
-// Memory Usage: 9.6 MB, less than 51.72% of C++ online submissions.
+// Runtime: 10 ms, faster than 26.38% of cpp online submissions.
+// Memory Usage: 9.6 MB, less than 51.72% of cpp online submissions.
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -32,8 +32,8 @@ public:
 // @lc code=start
 // 2022-07-27 submission
 // 133/133 cases passed
-// Runtime: 15 ms, faster than 6.81% of C++ online submissions.
-// Memory Usage: 9.6 MB, less than 5.1% of C++ online submissions.
+// Runtime: 15 ms, faster than 6.81% of cpp online submissions.
+// Memory Usage: 9.6 MB, less than 5.1% of cpp online submissions.
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -55,8 +55,8 @@ public:
 // @lc code=start
 // 2022-07-27 submission
 // 133/133 cases passed
-// Runtime: 7 ms, faster than 53.15% of C++ online submissions.
-// Memory Usage: 9.5 MB, less than 51.72% of C++ online submissions.
+// Runtime: 7 ms, faster than 53.15% of cpp online submissions.
+// Memory Usage: 9.5 MB, less than 51.72% of cpp online submissions.
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {

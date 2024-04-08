@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 102/102 cases passed
-// Runtime: 58 ms, faster than 40.52% of C++ online submissions.
-// Memory Usage: 14.1 MB, less than 56.93% of C++ online submissions.
+// Runtime: 58 ms, faster than 40.52% of cpp online submissions.
+// Memory Usage: 14.1 MB, less than 56.93% of cpp online submissions.
 /*
 // Definition for Employee.
 class Employee {
@@ -38,8 +38,8 @@ public:
 // @lc code=start
 // 2022-08-26 submission
 // 102/102 cases passed
-// Runtime: 61 ms, faster than 35.09% of C++ online submissions.
-// Memory Usage: 14.2 MB, less than 49.7% of C++ online submissions.
+// Runtime: 61 ms, faster than 35.09% of cpp online submissions.
+// Memory Usage: 14.2 MB, less than 49.7% of cpp online submissions.
 class Solution {
 public:
     int getImportance(vector<Employee*> employees, int id) {

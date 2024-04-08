@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-29 submission
 // 311/311 cases passed
-// Runtime: 4 ms, faster than 91.9% of C++ online submissions.
-// Memory Usage: 6.6 MB, less than 83.46% of C++ online submissions.
+// Runtime: 4 ms, faster than 91.9% of cpp online submissions.
+// Memory Usage: 6.6 MB, less than 83.46% of cpp online submissions.
 class Solution {
 public:
     string multiply(string num1, string num2) {

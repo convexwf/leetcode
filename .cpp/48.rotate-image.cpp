@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-21 submission
 // 21/21 cases passed
-// Runtime: 3 ms, faster than 63.72% of C++ online submissions.
-// Memory Usage: 6.9 MB, less than 99.81% of C++ online submissions.
+// Runtime: 3 ms, faster than 63.72% of cpp online submissions.
+// Memory Usage: 6.9 MB, less than 99.81% of cpp online submissions.
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
@@ -30,8 +30,8 @@ public:
 // @lc code=start
 // 2022-07-21 submission
 // 21/21 cases passed
-// Runtime: 3 ms, faster than 63.72% of C++ online submissions.
-// Memory Usage: 7.2 MB, less than 33.2% of C++ online submissions.
+// Runtime: 3 ms, faster than 63.72% of cpp online submissions.
+// Memory Usage: 7.2 MB, less than 33.2% of cpp online submissions.
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {

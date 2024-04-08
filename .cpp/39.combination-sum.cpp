@@ -7,12 +7,12 @@
 // @lc code=start
 // 2023-01-14 submission
 // 160/160 cases passed
-// Runtime: 8 ms, faster than 67.84% of C++ online submissions.
-// Memory Usage: 10.8 MB, less than 61% of C++ online submissions.
+// Runtime: 8 ms, faster than 67.84% of cpp online submissions.
+// Memory Usage: 10.8 MB, less than 61% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        if(candidates.size() <= 0) return {};
+        if (candidates.size() <= 0) return {};
         sort(candidates.begin(), candidates.end());
         vector<vector<int>> res;
         vector<int> out;
@@ -20,7 +20,8 @@ public:
         return res;
     }
 
-    void combinationSumDFS(vector<int>& candidates, int target, int start, vector<int>& out, vector<vector<int>>& res) {
+    void combinationSumDFS(vector<int>& candidates, int target, int start, vector<int>& out,
+                           vector<vector<int>>& res) {
         if (target < 0) return;
         if (target == 0) {
             res.push_back(out);
@@ -38,8 +39,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 160/160 cases passed
-// Runtime: 32 ms, faster than 30.58% of C++ online submissions.
-// Memory Usage: 16.7 MB, less than 33.44% of C++ online submissions.
+// Runtime: 32 ms, faster than 30.58% of cpp online submissions.
+// Memory Usage: 16.7 MB, less than 33.44% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {

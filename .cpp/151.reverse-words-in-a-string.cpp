@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-19 submission
 // 58/58 cases passed
-// Runtime: 8 ms, faster than 63.19% of C++ online submissions.
-// Memory Usage: 8.3 MB, less than 38.13% of C++ online submissions.
+// Runtime: 8 ms, faster than 63.19% of cpp online submissions.
+// Memory Usage: 8.3 MB, less than 38.13% of cpp online submissions.
 class Solution {
 public:
     string reverseWords(string s) {
@@ -23,18 +23,18 @@ public:
                 word = true;
             }
             if (s[i] == ' ') {
-                if (word) res.push_back(s.substr(begin+1, i-begin-1));
+                if (word) res.push_back(s.substr(begin + 1, i - begin - 1));
                 begin = i;
                 word = false;
             }
         }
-        if (s[s.length()-1] != ' ') res.push_back(s.substr(begin+1));
+        if (s[s.length() - 1] != ' ') res.push_back(s.substr(begin + 1));
 
-        for (int i = res.size()-1; i >= 0; i--) {
+        for (int i = res.size() - 1; i >= 0; i--) {
             res_s.append(res[i]);
             res_s.append(" ");
         }
-        return res_s.substr(0, res_s.length()-1);
+        return res_s.substr(0, res_s.length() - 1);
     }
 };
 // @lc code=end
@@ -42,16 +42,16 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 58/58 cases passed
-// Runtime: 14 ms, faster than 37.09% of C++ online submissions.
-// Memory Usage: 20.9 MB, less than 17.44% of C++ online submissions.
+// Runtime: 14 ms, faster than 37.09% of cpp online submissions.
+// Memory Usage: 20.9 MB, less than 17.44% of cpp online submissions.
 class Solution {
 public:
     string reverseWords(string s) {
         istringstream is(s);
         string tmp;
         is >> s;
-        while(is >> tmp) s = tmp + " " + s;
-        if(!s.empty() && s[0] == ' ') s = "";
+        while (is >> tmp) s = tmp + " " + s;
+        if (!s.empty() && s[0] == ' ') s = "";
         return s;
     }
 };
@@ -60,8 +60,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 58/58 cases passed
-// Runtime: 10 ms, faster than 52.11% of C++ online submissions.
-// Memory Usage: 21 MB, less than 17.44% of C++ online submissions.
+// Runtime: 10 ms, faster than 52.11% of cpp online submissions.
+// Memory Usage: 21 MB, less than 17.44% of cpp online submissions.
 class Solution {
 public:
     string reverseWords(string s) {

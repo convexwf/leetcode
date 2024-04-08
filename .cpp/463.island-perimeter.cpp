@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-15 submission
 // 5833/5833 cases passed
-// Runtime: 163 ms, faster than 79.08% of C++ online submissions.
-// Memory Usage: 96.1 MB, less than 84.61% of C++ online submissions.
+// Runtime: 163 ms, faster than 79.08% of cpp online submissions.
+// Memory Usage: 96.1 MB, less than 84.61% of cpp online submissions.
 class Solution {
 public:
     int islandPerimeter(vector<vector<int>>& grid) {
@@ -31,8 +31,8 @@ public:
 // @lc code=start
 // 2022-11-15 submission
 // 5833/5833 cases passed
-// Runtime: 240 ms, faster than 39.91% of C++ online submissions.
-// Memory Usage: 96.1 MB, less than 84.61% of C++ online submissions.
+// Runtime: 240 ms, faster than 39.91% of cpp online submissions.
+// Memory Usage: 96.1 MB, less than 84.61% of cpp online submissions.
 class Solution {
 public:
     int islandPerimeter(vector<vector<int>>& grid) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-19 submission
 // 61/61 cases passed
-// Runtime: 33 ms, faster than 73.42% of C++ online submissions.
-// Memory Usage: 24.3 MB, less than 10.61% of C++ online submissions.
+// Runtime: 33 ms, faster than 73.42% of cpp online submissions.
+// Memory Usage: 24.3 MB, less than 10.61% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -59,8 +59,8 @@ private:
 // @lc code=start
 // 2023-01-14 submission
 // 61/61 cases passed
-// Runtime: 36 ms, faster than 61.38% of C++ online submissions.
-// Memory Usage: 24.2 MB, less than 60.41% of C++ online submissions.
+// Runtime: 36 ms, faster than 61.38% of cpp online submissions.
+// Memory Usage: 24.2 MB, less than 60.41% of cpp online submissions.
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -72,7 +72,7 @@ private:
  */
 class BSTIterator {
 public:
-    BSTIterator(TreeNode *root) {
+    BSTIterator(TreeNode* root) {
         while (root) {
             s.push(root);
             root = root->left;
@@ -86,7 +86,7 @@ public:
 
     /** @return the next smallest number */
     int next() {
-        TreeNode *n = s.top();
+        TreeNode* n = s.top();
         s.pop();
         int res = n->val;
         if (n->right) {
@@ -98,6 +98,7 @@ public:
         }
         return res;
     }
+
 private:
     stack<TreeNode*> s;
 };

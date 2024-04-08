@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 25/25 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 67.39% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 67.39% of cpp online submissions.
 /**
  * Forward declaration of guess API.
  * @param  num   your guess
@@ -26,8 +26,10 @@ public:
         while (left < right) {
             int mid = left + (right - left) / 2, t = guess(mid);
             if (t == 0) return mid;
-            if (t == 1) left = mid + 1;
-            else right = mid;
+            if (t == 1)
+                left = mid + 1;
+            else
+                right = mid;
         }
         return left;
     }

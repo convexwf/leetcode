@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 122/122 cases passed
-// Runtime: 21 ms, faster than 87.75% of C++ online submissions.
-// Memory Usage: 17.9 MB, less than 93.42% of C++ online submissions.
+// Runtime: 21 ms, faster than 87.75% of cpp online submissions.
+// Memory Usage: 17.9 MB, less than 93.42% of cpp online submissions.
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
@@ -24,8 +24,8 @@ public:
 // @lc code=start
 // 2022-08-26 submission
 // 122/122 cases passed
-// Runtime: 38 ms, faster than 32.58% of C++ online submissions.
-// Memory Usage: 17.9 MB, less than 64.62% of C++ online submissions.
+// Runtime: 38 ms, faster than 32.58% of cpp online submissions.
+// Memory Usage: 17.9 MB, less than 64.62% of cpp online submissions.
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
@@ -41,8 +41,8 @@ public:
 // @lc code=start
 // 2022-08-26 submission
 // 122/122 cases passed
-// Runtime: 43 ms, faster than 21.03% of C++ online submissions.
-// Memory Usage: 18.1 MB, less than 20.2% of C++ online submissions.
+// Runtime: 43 ms, faster than 21.03% of cpp online submissions.
+// Memory Usage: 18.1 MB, less than 20.2% of cpp online submissions.
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {

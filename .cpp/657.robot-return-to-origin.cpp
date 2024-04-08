@@ -8,8 +8,8 @@
 // 1. 统计
 // 2021-12-23 submission
 // 75/75 cases passed
-// Runtime: 8 ms, faster than 95.23% of C++ online submissions.
-// Memory Usage: 8 MB, less than 77.3% of C++ online submissions.
+// Runtime: 8 ms, faster than 95.23% of cpp online submissions.
+// Memory Usage: 8 MB, less than 77.3% of cpp online submissions.
 class Solution {
 public:
     bool judgeCircle(string moves) {

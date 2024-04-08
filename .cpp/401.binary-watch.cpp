@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-15 submission
 // 11/11 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.3 MB, less than 89.27% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.3 MB, less than 89.27% of cpp online submissions.
 class Solution {
 public:
     vector<string> readBinaryWatch(int num) {

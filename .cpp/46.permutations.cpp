@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-21 submission
 // 26/26 cases passed
-// Runtime: 3 ms, faster than 82.05% of C++ online submissions.
-// Memory Usage: 7.6 MB, less than 91.79% of C++ online submissions.
+// Runtime: 3 ms, faster than 82.05% of cpp online submissions.
+// Memory Usage: 7.6 MB, less than 91.79% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> permute(vector<int>& num) {
@@ -19,8 +19,8 @@ public:
         return res;
     }
 
-    void permuteDFS(vector<int>& num, int level, vector<int>& visited,
-                    vector<int>& out, vector<vector<int>>& res) {
+    void permuteDFS(vector<int>& num, int level, vector<int>& visited, vector<int>& out,
+                    vector<vector<int>>& res) {
         if (level == num.size()) {
             res.push_back(out);
             return;

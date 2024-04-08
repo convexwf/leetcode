@@ -7,16 +7,19 @@
 // @lc code=start
 // 2023-02-13 submission
 // 78/78 cases passed
-// Runtime: 150 ms, faster than 49.78% of C++ online submissions.
-// Memory Usage: 111.7 MB, less than 19.22% of C++ online submissions.
+// Runtime: 150 ms, faster than 49.78% of cpp online submissions.
+// Memory Usage: 111.7 MB, less than 19.22% of cpp online submissions.
 class Solution {
 public:
     bool increasingTriplet(vector<int>& nums) {
         int m1 = INT_MAX, m2 = INT_MAX;
         for (auto a : nums) {
-            if (m1 >= a) m1 = a;
-            else if (m2 >= a) m2 = a;
-            else return true;
+            if (m1 >= a)
+                m1 = a;
+            else if (m2 >= a)
+                m2 = a;
+            else
+                return true;
         }
         return false;
     }
@@ -26,8 +29,8 @@ public:
 // @lc code=start
 // 2023-02-13 submission
 // 78/78 cases passed
-// Runtime: 178 ms, faster than 20.57% of C++ online submissions.
-// Memory Usage: 121.1 MB, less than 5.53% of C++ online submissions.
+// Runtime: 178 ms, faster than 20.57% of cpp online submissions.
+// Memory Usage: 121.1 MB, less than 5.53% of cpp online submissions.
 class Solution {
 public:
     bool increasingTriplet(vector<int>& nums) {

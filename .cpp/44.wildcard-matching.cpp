@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-14 submission
 // 1811/1811 cases passed
-// Runtime: 36 ms, faster than 76.03% of C++ online submissions.
-// Memory Usage: 6.7 MB, less than 85.48% of C++ online submissions.
+// Runtime: 36 ms, faster than 76.03% of cpp online submissions.
+// Memory Usage: 6.7 MB, less than 85.48% of cpp online submissions.
 class Solution {
 public:
     bool isMatch(string s, string p) {
@@ -39,8 +39,8 @@ public:
 // @lc code=start
 // 2022-08-02 submission
 // 1811/1811 cases passed
-// Runtime: 4 ms, faster than 98.98% of C++ online submissions.
-// Memory Usage: 6.6 MB, less than 92.87% of C++ online submissions.
+// Runtime: 4 ms, faster than 98.98% of cpp online submissions.
+// Memory Usage: 6.6 MB, less than 92.87% of cpp online submissions.
 class Solution {
 public:
     bool isMatch(string s, string p) {

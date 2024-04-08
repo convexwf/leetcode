@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-16 submission
 // 225/225 cases passed
-// Runtime: 7 ms, faster than 86.43% of C++ online submissions.
-// Memory Usage: 12.7 MB, less than 37.29% of C++ online submissions.
+// Runtime: 7 ms, faster than 86.43% of cpp online submissions.
+// Memory Usage: 12.7 MB, less than 37.29% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -22,15 +22,15 @@
  */
 class Solution {
 public:
-    void flatten(TreeNode* root) {
-        if(!root) return;
+    void flatten(TreeNode *root) {
+        if (!root) return;
         flatten(root->left);
         flatten(root->right);
 
-        TreeNode* right = root->right;
+        TreeNode *right = root->right;
         root->right = root->left;
         root->left = NULL;
-        while(root->right) root = root->right;
+        while (root->right) root = root->right;
         root->right = right;
     }
 };
@@ -39,8 +39,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 225/225 cases passed
-// Runtime: 8 ms, faster than 76.6% of C++ online submissions.
-// Memory Usage: 12.7 MB, less than 37.29% of C++ online submissions.
+// Runtime: 8 ms, faster than 76.6% of cpp online submissions.
+// Memory Usage: 12.7 MB, less than 37.29% of cpp online submissions.
 class Solution {
 public:
     void flatten(TreeNode *root) {

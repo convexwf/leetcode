@@ -64,8 +64,8 @@ public:
 // 2. 重建链表
 // 2023-01-14 submission
 // 168/168 cases passed
-// Runtime: 7 ms, faster than 71.83% of C++ online submissions.
-// Memory Usage: 10.2 MB, less than 94.44% of C++ online submissions.
+// Runtime: 7 ms, faster than 71.83% of cpp online submissions.
+// Memory Usage: 10.2 MB, less than 94.44% of cpp online submissions.
 class Solution {
 public:
     ListNode *partition(ListNode *head, int x) {

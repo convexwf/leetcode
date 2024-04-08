@@ -8,8 +8,8 @@
 // 1. 位运算(最右边的 1 置 0)
 // 2022-07-30 submission
 // 601/601 cases passed
-// Runtime: 10 ms, faster than 8.38% of C++ online submissions.
-// Memory Usage: 6 MB, less than 47.87% of C++ online submissions.
+// Runtime: 10 ms, faster than 8.38% of cpp online submissions.
+// Memory Usage: 6 MB, less than 47.87% of cpp online submissions.
 class Solution {
 public:
     int hammingWeight(uint32_t n) {
@@ -27,8 +27,8 @@ public:
 // 2. 位运算(逻辑右移)
 // 2022-07-30 submission
 // 601/601 cases passed
-// Runtime: 8 ms, faster than 8.38% of C++ online submissions.
-// Memory Usage: 5.8 MB, less than 78.98% of C++ online submissions.
+// Runtime: 8 ms, faster than 8.38% of cpp online submissions.
+// Memory Usage: 5.8 MB, less than 78.98% of cpp online submissions.
 class Solution {
 public:
     int hammingWeight(uint32_t n) {

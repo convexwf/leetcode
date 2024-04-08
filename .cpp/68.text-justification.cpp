@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-29 submission
 // 27/27 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7.6 MB, less than 19.1% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7.6 MB, less than 19.1% of cpp online submissions.
 class Solution {
 public:
     vector<string> fullJustify(vector<string>& words, int maxWidth) {
@@ -24,11 +24,12 @@ public:
                 i++;
             }
             if (!flag && i < words.size()) {
-                cur_len = maxWidth-cur_len+cur.size();
+                cur_len = maxWidth - cur_len + cur.size();
                 string to_add = cur[0];
                 if (cur.size() == 1) to_add.append(cur_len, ' ');
                 for (int j = 1; j < cur.size(); j++) {
-                    to_add.append(cur_len/(cur.size()-1)+(j<=cur_len%(cur.size()-1)), ' ');
+                    to_add.append(cur_len / (cur.size() - 1) + (j <= cur_len % (cur.size() - 1)),
+                                  ' ');
                     to_add.append(cur[j]);
                 }
                 res.push_back(to_add);
@@ -41,7 +42,7 @@ public:
                     to_add.append(" ");
                     to_add.append(cur[j]);
                 }
-                to_add.append(maxWidth-to_add.length(), ' ');
+                to_add.append(maxWidth - to_add.length(), ' ');
                 res.push_back(to_add);
             }
         }

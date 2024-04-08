@@ -8,8 +8,8 @@
 // 1. 模拟
 // 2022-07-27 submission
 // 111/111 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 8.8 MB, less than 61.83% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 8.8 MB, less than 61.83% of cpp online submissions.
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {

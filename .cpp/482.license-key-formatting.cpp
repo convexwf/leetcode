@@ -7,8 +7,8 @@
 // @lc code=start
 // 2021-12-17 submission
 // 38/38 cases passed
-// Runtime: 8 ms, faster than 80.96% of C++ online submissions.
-// Memory Usage: 8.3 MB, less than 67.18% of C++ online submissions.
+// Runtime: 8 ms, faster than 80.96% of cpp online submissions.
+// Memory Usage: 8.3 MB, less than 67.18% of cpp online submissions.
 class Solution {
 public:
     string licenseKeyFormatting(string s, int k) {

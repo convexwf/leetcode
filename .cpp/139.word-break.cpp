@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-07-18 submission
 // 45/45 cases passed
-// Runtime: 14 ms, faster than 58.09% of C++ online submissions.
-// Memory Usage: 13.2 MB, less than 38.59% of C++ online submissions.
+// Runtime: 14 ms, faster than 58.09% of cpp online submissions.
+// Memory Usage: 13.2 MB, less than 38.59% of cpp online submissions.
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
@@ -31,8 +31,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 45/45 cases passed
-// Runtime: 18 ms, faster than 50.6% of C++ online submissions.
-// Memory Usage: 14.7 MB, less than 16.42% of C++ online submissions.
+// Runtime: 18 ms, faster than 50.6% of cpp online submissions.
+// Memory Usage: 14.7 MB, less than 16.42% of cpp online submissions.
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {

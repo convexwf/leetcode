@@ -7,8 +7,8 @@
 // @lc code=start
 // 2018-07-22 submission
 // 228/228 cases passed
-// Runtime: 15 ms, faster than 73.63% of C++ online submissions.
-// Memory Usage: 21 MB, less than 30.19% of C++ online submissions.
+// Runtime: 15 ms, faster than 73.63% of cpp online submissions.
+// Memory Usage: 21 MB, less than 30.19% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -32,8 +32,10 @@ public:
         int right = checkDepth(root->right);
         if (right == -1) return -1;
         int diff = abs(left - right);
-        if (diff > 1) return -1;
-        else return 1 + max(left, right);
+        if (diff > 1)
+            return -1;
+        else
+            return 1 + max(left, right);
     }
 };
 // @lc code=end

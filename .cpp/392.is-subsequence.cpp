@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 18/18 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.4 MB, less than 67.45% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.4 MB, less than 67.45% of cpp online submissions.
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
@@ -25,8 +25,8 @@ public:
 // Follow up
 // 2022-11-14 submission
 // 18/18 cases passed
-// Runtime: 11 ms, faster than 7.87% of C++ online submissions.
-// Memory Usage: 6.8 MB, less than 10.46% of C++ online submissions.
+// Runtime: 11 ms, faster than 7.87% of cpp online submissions.
+// Memory Usage: 6.8 MB, less than 10.46% of cpp online submissions.
 class Solution {
 public:
     bool isSubsequence(string s, string t) {

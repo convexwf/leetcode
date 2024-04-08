@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 74/74 cases passed
-// Runtime: 20 ms, faster than 97.39% of C++ online submissions.
-// Memory Usage: 19.3 MB, less than 14.58% of C++ online submissions.
+// Runtime: 20 ms, faster than 97.39% of cpp online submissions.
+// Memory Usage: 19.3 MB, less than 14.58% of cpp online submissions.
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {

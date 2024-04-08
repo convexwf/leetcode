@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 28/28 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.1 MB, less than 55.52% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.1 MB, less than 55.52% of cpp online submissions.
 class Solution {
 public:
     int countSegments(string s) {
@@ -26,8 +26,8 @@ public:
 // @lc code=start
 // 2022-08-26 submission
 // 28/28 cases passed
-// Runtime: 4 ms, faster than 20.92% of C++ online submissions.
-// Memory Usage: 6.1 MB, less than 55.52% of C++ online submissions.
+// Runtime: 4 ms, faster than 20.92% of cpp online submissions.
+// Memory Usage: 6.1 MB, less than 55.52% of cpp online submissions.
 class Solution {
 public:
     int countSegments(string s) {
@@ -45,8 +45,8 @@ public:
 // @lc code=start
 // 2022-08-26 submission
 // 28/28 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.2 MB, less than 55.52% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.2 MB, less than 55.52% of cpp online submissions.
 class Solution {
 public:
     int countSegments(string s) {

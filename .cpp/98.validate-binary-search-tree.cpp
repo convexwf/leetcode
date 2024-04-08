@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-09 submission
 // 82/82 cases passed
-// Runtime: 14 ms, faster than 61.68% of C++ online submissions.
-// Memory Usage: 21.7 MB, less than 54.7% of C++ online submissions.
+// Runtime: 14 ms, faster than 61.68% of cpp online submissions.
+// Memory Usage: 21.7 MB, less than 54.7% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -37,8 +37,8 @@ public:
 // @lc code=start
 // 2023-02-09 submission
 // 82/82 cases passed
-// Runtime: 7 ms, faster than 96.34% of C++ online submissions.
-// Memory Usage: 21.7 MB, less than 54.7% of C++ online submissions.
+// Runtime: 7 ms, faster than 96.34% of cpp online submissions.
+// Memory Usage: 21.7 MB, less than 54.7% of cpp online submissions.
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
@@ -62,12 +62,12 @@ public:
 // @lc code=start
 // 2023-02-09 submission
 // 82/82 cases passed
-// Runtime: 13 ms, faster than 66.09% of C++ online submissions.
-// Memory Usage: 21.9 MB, less than 22.58% of C++ online submissions.
+// Runtime: 13 ms, faster than 66.09% of cpp online submissions.
+// Memory Usage: 21.9 MB, less than 22.58% of cpp online submissions.
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        TreeNode *pre = NULL;
+        TreeNode* pre = NULL;
         return inorder(root, pre);
     }
     bool inorder(TreeNode* node, TreeNode*& pre) { // pre 表示当前节点的前缀节点
@@ -86,11 +86,11 @@ public:
 // @lc code=start
 // 2023-02-09 submission
 // 82/82 cases passed
-// Runtime: 7 ms, faster than 96.34% of C++ online submissions.
-// Memory Usage: 21.8 MB, less than 54.7% of C++ online submissions.
+// Runtime: 7 ms, faster than 96.34% of cpp online submissions.
+// Memory Usage: 21.8 MB, less than 54.7% of cpp online submissions.
 class Solution {
 public:
-    bool isValidBST(TreeNode *root) {
+    bool isValidBST(TreeNode* root) {
         if (!root) return true;
         TreeNode *cur = root, *pre, *parent = NULL;
         bool res = true;
@@ -99,13 +99,15 @@ public:
                 if (parent && parent->val >= cur->val) res = false;
                 parent = cur;
                 cur = cur->right;
-            } else {
+            }
+            else {
                 pre = cur->left;
                 while (pre->right && pre->right != cur) pre = pre->right;
                 if (!pre->right) {
                     pre->right = cur;
                     cur = cur->left;
-                } else {
+                }
+                else {
                     pre->right = NULL;
                     if (parent->val >= cur->val) res = false;
                     parent = cur;

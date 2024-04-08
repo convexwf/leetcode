@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-15 submission
 // 206/206 cases passed
-// Runtime: 637 ms, faster than 43.94% of C++ online submissions.
-// Memory Usage: 116.1 MB, less than 50.03% of C++ online submissions.
+// Runtime: 637 ms, faster than 43.94% of cpp online submissions.
+// Memory Usage: 116.1 MB, less than 50.03% of cpp online submissions.
 class Solution {
 public:
     int distributeCandies(vector<int>& candies) {

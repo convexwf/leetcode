@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-27 submission
 // 87/87 cases passed
-// Runtime: 363 ms, faster than 31.88% of C++ online submissions.
-// Memory Usage: 10.3 MB, less than 51.86% of C++ online submissions.
+// Runtime: 363 ms, faster than 31.88% of cpp online submissions.
+// Memory Usage: 10.3 MB, less than 51.86% of cpp online submissions.
 class Solution {
 public:
     int nthSuperUglyNumber(int n, vector<int>& primes) {

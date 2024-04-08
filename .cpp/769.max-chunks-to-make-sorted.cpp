@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-22 submission
 // 52/52 cases passed
-// Runtime: 4 ms, faster than 29.59% of C++ online submissions.
-// Memory Usage: 7.1 MB, less than 81.12% of C++ online submissions.
+// Runtime: 4 ms, faster than 29.59% of cpp online submissions.
+// Memory Usage: 7.1 MB, less than 81.12% of cpp online submissions.
 class Solution {
 public:
     int maxChunksToSorted(vector<int>& arr) {

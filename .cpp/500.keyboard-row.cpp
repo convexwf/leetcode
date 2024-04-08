@@ -8,8 +8,8 @@
 // 1. 哈希表
 // 2022-11-17 submission
 // 22/22 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7 MB, less than 34.32% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7 MB, less than 34.32% of cpp online submissions.
 class Solution {
 public:
     vector<string> findWords(vector<string>& words) {

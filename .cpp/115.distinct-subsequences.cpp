@@ -27,8 +27,8 @@ public:
 // @lc code=start
 // 2020-09-15 submission
 // 65/65 cases passed
-// Runtime: 27 ms, faster than 92.23% of C++ online submissions.
-// Memory Usage: 6.6 MB, less than 81.14% of C++ online submissions.
+// Runtime: 27 ms, faster than 92.23% of cpp online submissions.
+// Memory Usage: 6.6 MB, less than 81.14% of cpp online submissions.
 class Solution {
 public:
     int numDistinct(string s, string t) {
@@ -41,7 +41,7 @@ public:
             dp[0] = 0;
             for (int j = 1; j <= c1; j++) {
                 int temp = dp[j];
-                dp[j] = dp[j-1] + (s[j-1] == t[i-1] ? last_valid : 0);
+                dp[j] = dp[j - 1] + (s[j - 1] == t[i - 1] ? last_valid : 0);
                 last_valid = temp;
             }
         }

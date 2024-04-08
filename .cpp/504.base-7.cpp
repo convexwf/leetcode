@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 241/241 cases passed
-// Runtime: 3 ms, faster than 40.09% of C++ online submissions.
-// Memory Usage: 6 MB, less than 8.92% of C++ online submissions.
+// Runtime: 3 ms, faster than 40.09% of cpp online submissions.
+// Memory Usage: 6 MB, less than 8.92% of cpp online submissions.
 class Solution {
 public:
     string convertToBase7(int num) {

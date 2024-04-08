@@ -8,8 +8,8 @@
 // 1. 双指针
 // 2022-08-07 submission
 // 113/113 cases passed
-// Runtime: 3 ms, faster than 68.33% of C++ online submissions.
-// Memory Usage: 8.8 MB, less than 73.02% of C++ online submissions.
+// Runtime: 3 ms, faster than 68.33% of cpp online submissions.
+// Memory Usage: 8.8 MB, less than 73.02% of cpp online submissions.
 class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {

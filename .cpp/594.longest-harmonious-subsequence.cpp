@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-19 submission
 // 206/206 cases passed
-// Runtime: 206 ms, faster than 19.15% of C++ online submissions.
-// Memory Usage: 41.6 MB, less than 35.24% of C++ online submissions.
+// Runtime: 206 ms, faster than 19.15% of cpp online submissions.
+// Memory Usage: 41.6 MB, less than 35.24% of cpp online submissions.
 class Solution {
 public:
     int findLHS(vector<int>& nums) {
@@ -30,8 +30,8 @@ public:
 // @lc code=start
 // 2022-08-19 submission
 // 206/206 cases passed
-// Runtime: 95 ms, faster than 85.98% of C++ online submissions.
-// Memory Usage: 40.1 MB, less than 52.71% of C++ online submissions.
+// Runtime: 95 ms, faster than 85.98% of cpp online submissions.
+// Memory Usage: 40.1 MB, less than 52.71% of cpp online submissions.
 class Solution {
 public:
     int findLHS(vector<int>& nums) {
@@ -51,8 +51,8 @@ public:
 // @lc code=start
 // 2022-08-19 submission
 // 206/206 cases passed
-// Runtime: 162 ms, faster than 36.92% of C++ online submissions.
-// Memory Usage: 39.9 MB, less than 72.75% of C++ online submissions.
+// Runtime: 162 ms, faster than 36.92% of cpp online submissions.
+// Memory Usage: 39.9 MB, less than 72.75% of cpp online submissions.
 class Solution {
 public:
     int findLHS(vector<int>& nums) {
@@ -75,8 +75,8 @@ public:
 // @lc code=start
 // 2022-08-19 submission
 // 206/206 cases passed
-// Runtime: 73 ms, faster than 97.04% of C++ online submissions.
-// Memory Usage: 32.5 MB, less than 89.93% of C++ online submissions.
+// Runtime: 73 ms, faster than 97.04% of cpp online submissions.
+// Memory Usage: 32.5 MB, less than 89.93% of cpp online submissions.
 class Solution {
 public:
     int findLHS(vector<int>& nums) {

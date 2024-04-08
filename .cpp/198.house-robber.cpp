@@ -8,8 +8,8 @@
 // 1. 动态规划(当前位置必须要抢)
 // 2022-08-26 submission
 // 68/68 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7.6 MB, less than 77.09% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7.6 MB, less than 77.09% of cpp online submissions.
 class Solution {
 public:
     int rob(vector<int>& nums) {
@@ -31,8 +31,8 @@ public:
 // 2. 动态规划(当前位置不一定要抢)
 // 2022-08-26 submission
 // 68/68 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7.7 MB, less than 77.09% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7.7 MB, less than 77.09% of cpp online submissions.
 class Solution {
 public:
     int rob(vector<int>& nums) {

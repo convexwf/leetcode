@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-19 submission (merge sort)
 // 19/19 cases passed
-// Runtime: 288 ms, faster than 41.08% of C++ online submissions.
-// Memory Usage: 63.2 MB, less than 47.83% of C++ online submissions.
+// Runtime: 288 ms, faster than 41.08% of cpp online submissions.
+// Memory Usage: 63.2 MB, less than 47.83% of cpp online submissions.
 class Solution {
 public:
     vector<int> vec;
@@ -48,8 +48,8 @@ public:
 // @lc code=start
 // 2023-02-18 submission (heap sort)
 // 19/19 cases passed
-// Runtime: 224 ms, faster than 52.41% of C++ online submissions.
-// Memory Usage: 61.3 MB, less than 53.71% of C++ online submissions.
+// Runtime: 224 ms, faster than 52.41% of cpp online submissions.
+// Memory Usage: 61.3 MB, less than 53.71% of cpp online submissions.
 class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
@@ -58,7 +58,7 @@ public:
         for (int i = n / 2 - 1; i >= 0; --i) {
             siftDown(nums, n, i);
         }
-        while(--n > 0) {
+        while (--n > 0) {
             swap(nums[0], nums[n]);
             siftDown(nums, n, 0);
         }
@@ -70,8 +70,7 @@ public:
         int child = 2 * parent + 1;
         int pval = nums[i];
         while (child < n) {
-            if (child + 1 < n && nums[child] < nums[child + 1])
-                child = child + 1;
+            if (child + 1 < n && nums[child] < nums[child + 1]) child = child + 1;
             if (pval > nums[child]) break;
             nums[parent] = nums[child];
             parent = child;

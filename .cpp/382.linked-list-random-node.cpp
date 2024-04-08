@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-19 submission
 // 8/8 cases passed
-// Runtime: 46 ms, faster than 22.4% of C++ online submissions.
-// Memory Usage: 16.7 MB, less than 51.7% of C++ online submissions.
+// Runtime: 46 ms, faster than 22.4% of cpp online submissions.
+// Memory Usage: 16.7 MB, less than 51.7% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -21,7 +21,7 @@
  */
 class Solution {
 public:
-    Solution(ListNode* head) {
+    Solution(ListNode *head) {
         this->head = head;
     }
 
@@ -36,6 +36,7 @@ public:
         }
         return res;
     }
+
 private:
     ListNode *head;
 };

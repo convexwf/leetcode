@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-13 submission
 // 86/86 cases passed
-// Runtime: 25 ms, faster than 95.68% of C++ online submissions.
-// Memory Usage: 13.2 MB, less than 83.43% of C++ online submissions.
+// Runtime: 25 ms, faster than 95.68% of cpp online submissions.
+// Memory Usage: 13.2 MB, less than 83.43% of cpp online submissions.
 class Solution {
 public:
     int kthSmallest(vector<vector<int>>& matrix, int k) {
@@ -19,8 +19,10 @@ public:
                 // 使用 upper_bound 函数可以查找第一个大于目标数的元素
                 cnt += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
             }
-            if (cnt < k) left = mid + 1;
-            else right = mid;
+            if (cnt < k)
+                left = mid + 1;
+            else
+                right = mid;
         }
         return left;
     }
@@ -30,8 +32,8 @@ public:
 // @lc code=start
 // 2023-02-13 submission
 // 86/86 cases passed
-// Runtime: 30 ms, faster than 86.6% of C++ online submissions.
-// Memory Usage: 13.1 MB, less than 83.43% of C++ online submissions.
+// Runtime: 30 ms, faster than 86.6% of cpp online submissions.
+// Memory Usage: 13.1 MB, less than 83.43% of cpp online submissions.
 class Solution {
 public:
     int kthSmallest(vector<vector<int>>& matrix, int k) {
@@ -39,8 +41,10 @@ public:
         while (left < right) {
             int mid = left + (right - left) / 2;
             int cnt = search_less_equal(matrix, mid);
-            if (cnt < k) left = mid + 1;
-            else right = mid;
+            if (cnt < k)
+                left = mid + 1;
+            else
+                right = mid;
         }
         return left;
     }
@@ -50,7 +54,8 @@ public:
             if (matrix[i][j] <= target) {
                 res += i + 1;
                 ++j;
-            } else {
+            }
+            else {
                 --i;
             }
         }

@@ -7,15 +7,15 @@
 // @lc code=start
 // 2020-11-24 submission (multiset)
 // 51/51 cases passed
-// Runtime: 745 ms, faster than 12.41% of C++ online submissions.
-// Memory Usage: 211.9 MB, less than 8.42% of C++ online submissions.
+// Runtime: 745 ms, faster than 12.41% of cpp online submissions.
+// Memory Usage: 211.9 MB, less than 8.42% of cpp online submissions.
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         vector<int> res;
         multiset<int> st;
         for (int i = 0; i < nums.size(); i++) {
-            if (i >= k) st.erase(st.find(nums[i-k]));
+            if (i >= k) st.erase(st.find(nums[i - k]));
             st.insert(nums[i]);
             if (i + 1 >= k) res.push_back(*st.rbegin());
         }
@@ -27,8 +27,8 @@ public:
 // @lc code=start
 // 2023-02-10 submission (priority queue)
 // 51/51 cases passed
-// Runtime: 398 ms, faster than 38.56% of C++ online submissions.
-// Memory Usage: 148.9 MB, less than 26.74% of C++ online submissions.
+// Runtime: 398 ms, faster than 38.56% of cpp online submissions.
+// Memory Usage: 148.9 MB, less than 26.74% of cpp online submissions.
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
@@ -47,16 +47,16 @@ public:
 // @lc code=start
 // 2020-11-24 submission (deque)
 // 51/51 cases passed
-// Runtime: 281 ms, faster than 92.4% of C++ online submissions.
-// Memory Usage: 134.8 MB, less than 66.21% of C++ online submissions.
+// Runtime: 281 ms, faster than 92.4% of cpp online submissions.
+// Memory Usage: 134.8 MB, less than 66.21% of cpp online submissions.
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         vector<int> res;
         deque<int> q;
         for (int i = 0; i < nums.size(); i++) {
-            if (!q.empty() && q.front()==i-k) q.pop_front();
-            while(!q.empty() && nums[q.back()] <= nums[i]) q.pop_back();
+            if (!q.empty() && q.front() == i - k) q.pop_front();
+            while (!q.empty() && nums[q.back()] <= nums[i]) q.pop_back();
             q.push_back(i);
             if (i + 1 >= k) res.push_back(nums[q.front()]);
         }

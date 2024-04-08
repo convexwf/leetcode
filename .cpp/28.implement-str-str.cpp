@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-06-28 submission
 // 79/79 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.2 MB, less than 69.13% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.2 MB, less than 69.13% of cpp online submissions.
 class Solution {
 public:
     int strStr(string haystack, string needle) {

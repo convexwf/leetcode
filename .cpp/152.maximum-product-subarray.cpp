@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-11 submission
 // 188/188 cases passed
-// Runtime: 16 ms, faster than 29.27% of C++ online submissions.
-// Memory Usage: 14.3 MB, less than 6.35% of C++ online submissions.
+// Runtime: 16 ms, faster than 29.27% of cpp online submissions.
+// Memory Usage: 14.3 MB, less than 6.35% of cpp online submissions.
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
@@ -29,8 +29,8 @@ public:
 // @lc code=start
 // 2022-08-11 submission
 // 188/188 cases passed
-// Runtime: 4 ms, faster than 94.17% of C++ online submissions.
-// Memory Usage: 13.8 MB, less than 71.85% of C++ online submissions.
+// Runtime: 4 ms, faster than 94.17% of cpp online submissions.
+// Memory Usage: 13.8 MB, less than 71.85% of cpp online submissions.
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
@@ -49,8 +49,8 @@ public:
 // @lc code=start
 // 2022-08-11 submission
 // 188/188 cases passed
-// Runtime: 12 ms, faster than 53.36% of C++ online submissions.
-// Memory Usage: 13.8 MB, less than 71.85% of C++ online submissions.
+// Runtime: 12 ms, faster than 53.36% of cpp online submissions.
+// Memory Usage: 13.8 MB, less than 71.85% of cpp online submissions.
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {

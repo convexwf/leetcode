@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-17 submission
 // 203/203 cases passed
-// Runtime: 84 ms, faster than 22.26% of C++ online submissions.
-// Memory Usage: 25.9 MB, less than 93.19% of C++ online submissions.
+// Runtime: 84 ms, faster than 22.26% of cpp online submissions.
+// Memory Usage: 25.9 MB, less than 93.19% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -25,7 +25,8 @@ public:
     TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
         return buildTree(preorder, 0, preorder.size() - 1, inorder, 0, inorder.size() - 1);
     }
-    TreeNode *buildTree(vector<int> &preorder, int pLeft, int pRight, vector<int> &inorder, int iLeft, int iRight) {
+    TreeNode *buildTree(vector<int> &preorder, int pLeft, int pRight, vector<int> &inorder,
+                        int iLeft, int iRight) {
         if (pLeft > pRight || iLeft > iRight) return NULL;
         int i = 0;
         for (i = iLeft; i <= iRight; ++i) {

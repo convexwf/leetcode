@@ -7,8 +7,8 @@
 // @lc code=start
 // 2021-12-21 submission
 // 66/66 cases passed
-// Runtime: 19 ms, faster than 61.5% of C++ online submissions.
-// Memory Usage: 22.3 MB, less than 93.47% of C++ online submissions.
+// Runtime: 19 ms, faster than 61.5% of cpp online submissions.
+// Memory Usage: 22.3 MB, less than 93.47% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -45,8 +45,8 @@ public:
 // @lc code=start
 // 2023-01-31 submission
 // 66/66 cases passed
-// Runtime: 21 ms, faster than 48.74% of C++ online submissions.
-// Memory Usage: 22.4 MB, less than 75.45% of C++ online submissions.
+// Runtime: 21 ms, faster than 48.74% of cpp online submissions.
+// Memory Usage: 22.4 MB, less than 75.45% of cpp online submissions.
 class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {

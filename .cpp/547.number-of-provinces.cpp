@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-13 submission
 // 113/113 cases passed
-// Runtime: 21 ms, faster than 89.62% of C++ online submissions.
-// Memory Usage: 13.8 MB, less than 61.28% of C++ online submissions.
+// Runtime: 21 ms, faster than 89.62% of cpp online submissions.
+// Memory Usage: 13.8 MB, less than 61.28% of cpp online submissions.
 class Solution {
 public:
     int findCircleNum(vector<vector<int>>& M) {

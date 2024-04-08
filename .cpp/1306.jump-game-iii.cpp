@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-24 submission
 // 56/56 cases passed
-// Runtime: 40 ms, faster than 92.84% of C++ online submissions.
-// Memory Usage: 31.3 MB, less than 85.81% of C++ online submissions.
+// Runtime: 40 ms, faster than 92.84% of cpp online submissions.
+// Memory Usage: 31.3 MB, less than 85.81% of cpp online submissions.
 class Solution {
 public:
     bool canReach(vector<int>& arr, int start) {
@@ -19,7 +19,8 @@ public:
         q.push(start);
         int idx = 0, lp = 0, rp = 0;
         while (!q.empty()) {
-            idx = q.front(); q.pop();
+            idx = q.front();
+            q.pop();
             if (arr[idx] == 0) return true;
             lp = idx - arr[idx];
             rp = idx + arr[idx];

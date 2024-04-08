@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 68/68 cases passed
-// Runtime: 276 ms, faster than 27.67% of C++ online submissions.
-// Memory Usage: 71.9 MB, less than 20.93% of C++ online submissions.
+// Runtime: 276 ms, faster than 27.67% of cpp online submissions.
+// Memory Usage: 71.9 MB, less than 20.93% of cpp online submissions.
 class Solution {
 public:
     Solution(int N, vector<int> blacklist) {

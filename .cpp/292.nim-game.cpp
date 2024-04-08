@@ -7,8 +7,8 @@
 // @lc code=start
 // 2019-09-15 submission
 // 60/60 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 62.65% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 62.65% of cpp online submissions.
 class Solution {
 public:
     bool canWinNim(int n) {

@@ -7,17 +7,20 @@
 // @lc code=start
 // 2022-11-17 submission
 // 193/193 cases passed
-// Runtime: 4 ms, faster than 93.98% of C++ online submissions.
-// Memory Usage: 12.3 MB, less than 69.47% of C++ online submissions.
+// Runtime: 4 ms, faster than 93.98% of cpp online submissions.
+// Memory Usage: 12.3 MB, less than 69.47% of cpp online submissions.
 class Solution {
 public:
     int findMin(vector<int>& nums) {
         int left = 0, right = (int)nums.size() - 1;
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (nums[mid] > nums[right]) left = mid + 1;
-            else if (nums[mid] < nums[right]) right = mid;
-            else --right;
+            if (nums[mid] > nums[right])
+                left = mid + 1;
+            else if (nums[mid] < nums[right])
+                right = mid;
+            else
+                --right;
         }
         return nums[right];
     }
@@ -27,8 +30,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 193/193 cases passed
-// Runtime: 12 ms, faster than 55.04% of C++ online submissions.
-// Memory Usage: 12.2 MB, less than 94.2% of C++ online submissions.
+// Runtime: 12 ms, faster than 55.04% of cpp online submissions.
+// Memory Usage: 12.2 MB, less than 94.2% of cpp online submissions.
 class Solution {
 public:
     int findMin(vector<int>& nums) {

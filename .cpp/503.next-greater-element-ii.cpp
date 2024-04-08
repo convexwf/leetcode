@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 223/223 cases passed
-// Runtime: 49 ms, faster than 68.06% of C++ online submissions.
-// Memory Usage: 23.9 MB, less than 78.07% of C++ online submissions.
+// Runtime: 49 ms, faster than 68.06% of cpp online submissions.
+// Memory Usage: 23.9 MB, less than 78.07% of cpp online submissions.
 class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {

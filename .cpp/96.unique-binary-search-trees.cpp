@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 19/19 cases passed
-// Runtime: 3 ms, faster than 42.82% of C++ online submissions.
-// Memory Usage: 6.2 MB, less than 14.21% of C++ online submissions.
+// Runtime: 3 ms, faster than 42.82% of cpp online submissions.
+// Memory Usage: 6.2 MB, less than 14.21% of cpp online submissions.
 class Solution {
 public:
     int numTrees(int n) {
@@ -27,8 +27,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 19/19 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 94.91% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 94.91% of cpp online submissions.
 class Solution {
 public:
     int numTrees(int n) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 66/66 cases passed
-// Runtime: 50 ms, faster than 53.95% of C++ online submissions.
-// Memory Usage: 15 MB, less than 79.87% of C++ online submissions.
+// Runtime: 50 ms, faster than 53.95% of cpp online submissions.
+// Memory Usage: 15 MB, less than 79.87% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -23,10 +23,12 @@ class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
         if (!head) return NULL;
-        ListNode *cur = head;
+        ListNode* cur = head;
         while (cur->next) {
-            if (cur->next->val == val) cur->next = cur->next->next;
-            else cur = cur->next;
+            if (cur->next->val == val)
+                cur->next = cur->next->next;
+            else
+                cur = cur->next;
         }
         return head->val == val ? head->next : head;
     }
@@ -36,8 +38,8 @@ public:
 // @lc code=start
 // 2022-11-14 submission
 // 66/66 cases passed
-// Runtime: 36 ms, faster than 74.92% of C++ online submissions.
-// Memory Usage: 15.3 MB, less than 13.39% of C++ online submissions.
+// Runtime: 36 ms, faster than 74.92% of cpp online submissions.
+// Memory Usage: 15.3 MB, less than 13.39% of cpp online submissions.
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {

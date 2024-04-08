@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-15 submission
 // 149/149 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 79.43% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 79.43% of cpp online submissions.
 class Solution {
 public:
     int findComplement(int num) {
@@ -25,8 +25,8 @@ public:
 // @lc code=start
 // 2022-11-15 submission
 // 149/149 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 40.3% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 40.3% of cpp online submissions.
 class Solution {
 public:
     int findComplement(int num) {
@@ -40,8 +40,8 @@ public:
 // @lc code=start
 // 2022-11-15 submission
 // 149/149 cases passed
-// Runtime: 5 ms, faster than 18.29% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 79.43% of C++ online submissions.
+// Runtime: 5 ms, faster than 18.29% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 79.43% of cpp online submissions.
 class Solution {
 public:
     int findComplement(int num) {

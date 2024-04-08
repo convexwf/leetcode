@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-27 submission
 // 36/36 cases passed
-// Runtime: 28 ms, faster than 92.06% of C++ online submissions.
-// Memory Usage: 8.2 MB, less than 45.56% of C++ online submissions.
+// Runtime: 28 ms, faster than 92.06% of cpp online submissions.
+// Memory Usage: 8.2 MB, less than 45.56% of cpp online submissions.
 class Solution {
 public:
     int minCut(string s) {

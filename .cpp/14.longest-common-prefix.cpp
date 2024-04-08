@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-18 submission
 // 124/124 cases passed
-// Runtime: 3 ms, faster than 92.12% of C++ online submissions.
-// Memory Usage: 9.3 MB, less than 51.61% of C++ online submissions.
+// Runtime: 3 ms, faster than 92.12% of cpp online submissions.
+// Memory Usage: 9.3 MB, less than 51.61% of cpp online submissions.
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {

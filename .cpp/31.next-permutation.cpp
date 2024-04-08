@@ -8,8 +8,8 @@
 // 1. 两次遍历
 // 2022-08-01 submission
 // 265/265 cases passed
-// Runtime: 3 ms, faster than 90.13% of C++ online submissions.
-// Memory Usage: 12.1 MB, less than 36.5% of C++ online submissions.
+// Runtime: 3 ms, faster than 90.13% of cpp online submissions.
+// Memory Usage: 12.1 MB, less than 36.5% of cpp online submissions.
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {

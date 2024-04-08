@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-13 submission
 // 28/28 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 87.84% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 87.84% of cpp online submissions.
 class Solution {
 public:
     bool canMeasureWater(int x, int y, int z) {

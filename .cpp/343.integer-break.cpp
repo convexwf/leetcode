@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-27 submission
 // 50/50 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6 MB, less than 86.88% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6 MB, less than 86.88% of cpp online submissions.
 class Solution {
 public:
     int integerBreak(int n) {

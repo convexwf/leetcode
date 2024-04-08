@@ -61,8 +61,8 @@ public:
 // 3. 哈希表
 // 2022-05-30 submission
 // 57/57 cases passed
-// Runtime: 12 ms, faster than 83.93% of C++ online submissions.
-// Memory Usage: 10.9 MB, less than 29.71% of C++ online submissions.
+// Runtime: 12 ms, faster than 83.93% of cpp online submissions.
+// Memory Usage: 10.9 MB, less than 29.71% of cpp online submissions.
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-10 submission
 // 108/108 cases passed
-// Runtime: 7 ms, faster than 20.25% of C++ online submissions.
-// Memory Usage: 9.3 MB, less than 20.28% of C++ online submissions.
+// Runtime: 7 ms, faster than 20.25% of cpp online submissions.
+// Memory Usage: 9.3 MB, less than 20.28% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -37,8 +37,8 @@ public:
 // @lc code=start
 // 2023-02-10 submission
 // 108/108 cases passed
-// Runtime: 3 ms, faster than 61.48% of C++ online submissions.
-// Memory Usage: 9.4 MB, less than 18.14% of C++ online submissions.
+// Runtime: 3 ms, faster than 61.48% of cpp online submissions.
+// Memory Usage: 9.4 MB, less than 18.14% of cpp online submissions.
 class Solution {
 public:
     int sumNumbers(TreeNode* root) {
@@ -46,7 +46,8 @@ public:
         int res = 0;
         stack<TreeNode*> st{{root}};
         while (!st.empty()) {
-            TreeNode *t = st.top(); st.pop();
+            TreeNode* t = st.top();
+            st.pop();
             if (!t->left && !t->right) {
                 res += t->val;
             }

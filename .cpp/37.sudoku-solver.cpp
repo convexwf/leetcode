@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-07 submission
 // 6/6 cases passed
-// Runtime: 5 ms, faster than 97.74% of C++ online submissions.
-// Memory Usage: 6.4 MB, less than 49.84% of C++ online submissions.
+// Runtime: 5 ms, faster than 97.74% of cpp online submissions.
+// Memory Usage: 6.4 MB, less than 49.84% of cpp online submissions.
 class Solution {
 public:
     void solveSudoku(vector<vector<char>>& board) {

@@ -8,8 +8,8 @@
 // 1. 贪心算法
 // 2022-07-28 submission
 // 200/200 cases passed
-// Runtime: 17 ms, faster than 23.37% of C++ online submissions.
-// Memory Usage: 13.1 MB, less than 55.26% of C++ online submissions.
+// Runtime: 17 ms, faster than 23.37% of cpp online submissions.
+// Memory Usage: 13.1 MB, less than 55.26% of cpp online submissions.
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {

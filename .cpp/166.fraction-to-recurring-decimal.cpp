@@ -7,15 +7,15 @@
 // @lc code=start
 // 2023-01-14 submission
 // 39/39 cases passed
-// Runtime: 4 ms, faster than 41.79% of C++ online submissions.
-// Memory Usage: 6.4 MB, less than 37.02% of C++ online submissions.
+// Runtime: 4 ms, faster than 41.79% of cpp online submissions.
+// Memory Usage: 6.4 MB, less than 37.02% of cpp online submissions.
 class Solution {
 public:
     string fractionToDecimal(int numerator, int denominator) {
         int s1 = numerator >= 0 ? 1 : -1;
         int s2 = denominator >= 0 ? 1 : -1;
-        long long num = abs( (long long)numerator );
-        long long den = abs( (long long)denominator );
+        long long num = abs((long long)numerator);
+        long long den = abs((long long)denominator);
         long long out = num / den;
         long long rem = num % den;
         unordered_map<long long, int> m;

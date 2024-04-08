@@ -7,12 +7,12 @@
 // @lc code=start
 // 2023-01-14 submission
 // 18/18 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.3 MB, less than 95.33% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.3 MB, less than 95.33% of cpp online submissions.
 class Solution {
 public:
-    vector<vector<int> > combinationSum3(int k, int n) {
-        vector<vector<int> > res;
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> res;
         vector<int> out;
         combinationSum3DFS(k, n, 1, out, res);
         return res;

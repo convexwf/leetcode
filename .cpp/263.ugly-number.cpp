@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 1013/1013 cases passed
-// Runtime: 3 ms, faster than 58.82% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 69.21% of C++ online submissions.
+// Runtime: 3 ms, faster than 58.82% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 69.21% of cpp online submissions.
 class Solution {
 public:
     bool isUgly(int num) {

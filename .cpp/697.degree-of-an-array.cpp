@@ -7,8 +7,8 @@
 // @lc code=start
 // 2021-12-15 submission
 // 89/89 cases passed
-// Runtime: 44 ms, faster than 56.21% of C++ online submissions.
-// Memory Usage: 25.5 MB, less than 67.47% of C++ online submissions.
+// Runtime: 44 ms, faster than 56.21% of cpp online submissions.
+// Memory Usage: 25.5 MB, less than 67.47% of cpp online submissions.
 class Solution {
 public:
     int findShortestSubArray(vector<int>& nums) {
@@ -36,8 +36,8 @@ public:
 // @lc code=start
 // 2022-08-20 submission
 // 89/89 cases passed
-// Runtime: 51 ms, faster than 81.98% of C++ online submissions.
-// Memory Usage: 25.5 MB, less than 68.97% of C++ online submissions.
+// Runtime: 51 ms, faster than 81.98% of cpp online submissions.
+// Memory Usage: 25.5 MB, less than 68.97% of cpp online submissions.
 class Solution {
 public:
     int findShortestSubArray(vector<int>& nums) {

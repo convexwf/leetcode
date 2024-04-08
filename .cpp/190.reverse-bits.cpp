@@ -7,15 +7,15 @@
 // @lc code=start
 // 2022-07-30 submission
 // 600/600 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6 MB, less than 11.13% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6 MB, less than 11.13% of cpp online submissions.
 class Solution {
 public:
     uint32_t reverseBits(uint32_t n) {
         uint32_t ret = 0u;
-        for(int i = 0; i < 32; i++) {
+        for (int i = 0; i < 32; i++) {
             ret = ret << 1;
-            if(n & 1 == 1) ret += 1;
+            if (n & 1 == 1) ret += 1;
             n = n >> 1;
         }
         return ret;

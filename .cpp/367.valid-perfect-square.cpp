@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-22 submission
 // 70/70 cases passed
-// Runtime: 4 ms, faster than 20.34% of C++ online submissions.
-// Memory Usage: 6 MB, less than 39.61% of C++ online submissions.
+// Runtime: 4 ms, faster than 20.34% of cpp online submissions.
+// Memory Usage: 6 MB, less than 39.61% of cpp online submissions.
 class Solution {
 public:
     bool isPerfectSquare(int num) {
@@ -24,8 +24,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 70/70 cases passed
-// Runtime: 3 ms, faster than 43.85% of C++ online submissions.
-// Memory Usage: 6 MB, less than 39.61% of C++ online submissions.
+// Runtime: 3 ms, faster than 43.85% of cpp online submissions.
+// Memory Usage: 6 MB, less than 39.61% of cpp online submissions.
 class Solution {
 public:
     bool isPerfectSquare(int num) {
@@ -33,8 +33,10 @@ public:
         while (left <= right) {
             long mid = left + (right - left) / 2, t = mid * mid;
             if (t == num) return true;
-            if (t < num) left = mid + 1;
-            else right = mid - 1;
+            if (t < num)
+                left = mid + 1;
+            else
+                right = mid - 1;
         }
         return false;
     }
@@ -44,8 +46,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 70/70 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6 MB, less than 39.61% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6 MB, less than 39.61% of cpp online submissions.
 class Solution {
 public:
     bool isPerfectSquare(int num) {
@@ -62,8 +64,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 70/70 cases passed
-// Runtime: 3 ms, faster than 43.85% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 39.61% of C++ online submissions.
+// Runtime: 3 ms, faster than 43.85% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 39.61% of cpp online submissions.
 class Solution {
 public:
     bool isPerfectSquare(int num) {
@@ -79,8 +81,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 70/70 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 39.61% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 39.61% of cpp online submissions.
 class Solution {
 public:
     bool isPerfectSquare(int num) {
@@ -90,11 +92,13 @@ public:
     }
 
     int32_t floorSqrt(int32_t x) {
-        double y=x; int64_t i=0x5fe6eb50c7b537a9;
-        y = *(double*)&(i = i-(*(int64_t*)&y)/2);
+        double y = x;
+        int64_t i = 0x5fe6eb50c7b537a9;
+        y = *(double*)&(i = i - (*(int64_t*)&y) / 2);
         y = y * (3 - x * y * y) * 0.5;
         y = y * (3 - x * y * y) * 0.5;
-        i = x * y + 1; return i - (i * i > x);
+        i = x * y + 1;
+        return i - (i * i > x);
     }
 };
 // @lc code=end

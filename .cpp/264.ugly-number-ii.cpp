@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 596/596 cases passed
-// Runtime: 18 ms, faster than 54.78% of C++ online submissions.
-// Memory Usage: 9.6 MB, less than 31.45% of C++ online submissions.
+// Runtime: 18 ms, faster than 54.78% of cpp online submissions.
+// Memory Usage: 9.6 MB, less than 31.45% of cpp online submissions.
 class Solution {
 public:
     int nthUglyNumber(int n) {
@@ -31,8 +31,8 @@ public:
 // @lc code=start
 // 2022-08-26 submission
 // 596/596 cases passed
-// Runtime: 95 ms, faster than 28.02% of C++ online submissions.
-// Memory Usage: 10.6 MB, less than 27.13% of C++ online submissions.
+// Runtime: 95 ms, faster than 28.02% of cpp online submissions.
+// Memory Usage: 10.6 MB, less than 27.13% of cpp online submissions.
 class Solution {
 public:
     int nthUglyNumber(int n) {

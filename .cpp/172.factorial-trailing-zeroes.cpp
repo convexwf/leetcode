@@ -8,8 +8,8 @@
 // 1. 数学方法
 // 2023-01-14 submission
 // 500/500 cases passed
-// Runtime: 5 ms, faster than 26.38% of C++ online submissions.
-// Memory Usage: 6 MB, less than 8.85% of C++ online submissions.
+// Runtime: 5 ms, faster than 26.38% of cpp online submissions.
+// Memory Usage: 6 MB, less than 8.85% of cpp online submissions.
 class Solution {
 public:
     int trailingZeroes(int n) {
@@ -27,8 +27,8 @@ public:
 // 2. 数学方法+递归
 // 2023-01-14 submission
 // 500/500 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6 MB, less than 53.88% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6 MB, less than 53.88% of cpp online submissions.
 class Solution {
 public:
     int trailingZeroes(int n) {

@@ -7,12 +7,12 @@
 // @lc code=start
 // 2020-11-05 submission
 // 71/71 cases passed
-// Runtime: 151 ms, faster than 96.53% of C++ online submissions.
-// Memory Usage: 51.5 MB, less than 91.72% of C++ online submissions.
+// Runtime: 151 ms, faster than 96.53% of cpp online submissions.
+// Memory Usage: 51.5 MB, less than 91.72% of cpp online submissions.
 class Solution {
 public:
     vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
-        vector<vector<int> > graph(n, vector<int>{});
+        vector<vector<int>> graph(n, vector<int>{});
         vector<int> degree(n, 0);
         for (int i = 0; i < edges.size(); i++) {
             graph[edges[i][0]].push_back(edges[i][1]);
@@ -27,11 +27,12 @@ public:
             if (degree[node] <= 1) // < 是为了防止独立点(n=1)的情况
                 q.push(node);
         }
-        while(cnt > 2) {
+        while (cnt > 2) {
             int q_size = q.size();
             cnt -= q_size;
             for (int i = 0; i < q_size; i++) {
-                int node = q.front(); q.pop();
+                int node = q.front();
+                q.pop();
                 for (int adj : graph[node]) {
                     degree[adj]--;
                     if (degree[adj] == 1) q.push(adj);
@@ -40,7 +41,7 @@ public:
         }
 
         vector<int> res;
-        while(!q.empty()) {
+        while (!q.empty()) {
             res.push_back(q.front());
             q.pop();
         }

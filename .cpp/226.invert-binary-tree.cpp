@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 77/77 cases passed
-// Runtime: 3 ms, faster than 73.23% of C++ online submissions.
-// Memory Usage: 9.7 MB, less than 37.68% of C++ online submissions.
+// Runtime: 3 ms, faster than 73.23% of cpp online submissions.
+// Memory Usage: 9.7 MB, less than 37.68% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -36,8 +36,8 @@ public:
 // @lc code=start
 // 2022-11-14 submission
 // 77/77 cases passed
-// Runtime: 6 ms, faster than 32.33% of C++ online submissions.
-// Memory Usage: 9.8 MB, less than 5.31% of C++ online submissions.
+// Runtime: 6 ms, faster than 32.33% of cpp online submissions.
+// Memory Usage: 9.8 MB, less than 5.31% of cpp online submissions.
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
@@ -45,8 +45,9 @@ public:
         queue<TreeNode*> q;
         q.push(root);
         while (!q.empty()) {
-            TreeNode *node = q.front(); q.pop();
-            TreeNode *tmp = node->left;
+            TreeNode* node = q.front();
+            q.pop();
+            TreeNode* tmp = node->left;
             node->left = node->right;
             node->right = tmp;
             if (node->left) q.push(node->left);

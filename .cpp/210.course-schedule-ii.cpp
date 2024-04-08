@@ -7,13 +7,13 @@
 // @lc code=start
 // 2022-11-17 submission
 // 45/45 cases passed
-// Runtime: 25 ms, faster than 89.56% of C++ online submissions.
-// Memory Usage: 13.4 MB, less than 81.18% of C++ online submissions.
+// Runtime: 25 ms, faster than 89.56% of cpp online submissions.
+// Memory Usage: 13.4 MB, less than 81.18% of cpp online submissions.
 class Solution {
 public:
-    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+    vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites) {
         vector<int> res;
-        vector<vector<int> > graph(numCourses, vector<int>(0));
+        vector<vector<int>> graph(numCourses, vector<int>(0));
         vector<int> in(numCourses, 0);
         for (auto &a : prerequisites) {
             graph[a[1]].push_back(a[0]);

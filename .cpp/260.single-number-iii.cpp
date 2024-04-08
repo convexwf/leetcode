@@ -8,8 +8,8 @@
 // 1. 位操作
 // 2023-01-30 submission
 // 32/32 cases passed
-// Runtime: 9 ms, faster than 82.46% of C++ online submissions.
-// Memory Usage: 10 MB, less than 58.62% of C++ online submissions.
+// Runtime: 9 ms, faster than 82.46% of cpp online submissions.
+// Memory Usage: 10 MB, less than 58.62% of cpp online submissions.
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 22/22 cases passed
-// Runtime: 2 ms, faster than 58.11% of C++ online submissions.
-// Memory Usage: 7 MB, less than 20.25% of C++ online submissions.
+// Runtime: 2 ms, faster than 58.11% of cpp online submissions.
+// Memory Usage: 7 MB, less than 20.25% of cpp online submissions.
 class Solution {
 public:
     void gameOfLife(vector<vector<int>>& board) {

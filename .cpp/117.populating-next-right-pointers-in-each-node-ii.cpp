@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-11-09 submission
 // 55/55 cases passed
-// Runtime: 15 ms, faster than 89.57% of C++ online submissions.
-// Memory Usage: 17.6 MB, less than 18.64% of C++ online submissions.
+// Runtime: 15 ms, faster than 89.57% of cpp online submissions.
+// Memory Usage: 17.6 MB, less than 18.64% of cpp online submissions.
 /*
 // Definition for a Node.
 class Node {
@@ -32,10 +32,11 @@ public:
             int q_size = q.size();
             Node* cur = NULL;
             for (int i = 0; i < q_size; i++) {
-                cur = q.front(); q.pop();
+                cur = q.front();
+                q.pop();
                 if (cur->left) q.push(cur->left);
                 if (cur->right) q.push(cur->right);
-                cur->next = (i == q_size-1 ? NULL : q.front());
+                cur->next = (i == q_size - 1 ? NULL : q.front());
                 cur = cur->next;
             }
         }
@@ -47,27 +48,26 @@ public:
 // @lc code=start
 // 2020-11-09 submission
 // 55/55 cases passed
-// Runtime: 17 ms, faster than 84.28% of C++ online submissions.
-// Memory Usage: 17.3 MB, less than 94.92% of C++ online submissions.
+// Runtime: 17 ms, faster than 84.28% of cpp online submissions.
+// Memory Usage: 17.3 MB, less than 94.92% of cpp online submissions.
 class Solution {
 public:
-    Node* connect(Node *root)
-    {
-        if(!root) return NULL;
+    Node* connect(Node* root) {
+        if (!root) return NULL;
 
-        if(root->left) root->left->next = (root->right != nullptr ? root->right : findNext(root->next));
-        if(root->right) root->right->next = findNext(root->next);
+        if (root->left)
+            root->left->next = (root->right != nullptr ? root->right : findNext(root->next));
+        if (root->right) root->right->next = findNext(root->next);
 
         connect(root->right);
         connect(root->left);
         return root;
     }
 
-    Node* findNext(Node* curr)
-    {
-        if(!curr) return NULL;
-        if(curr->left) return curr->left;
-        if(curr->right) return curr->right;
+    Node* findNext(Node* curr) {
+        if (!curr) return NULL;
+        if (curr->left) return curr->left;
+        if (curr->right) return curr->right;
         return findNext(curr->next);
     }
 };
@@ -76,8 +76,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 55/55 cases passed
-// Runtime: 23 ms, faster than 68.31% of C++ online submissions.
-// Memory Usage: 17.4 MB, less than 83.64% of C++ online submissions.
+// Runtime: 23 ms, faster than 68.31% of cpp online submissions.
+// Memory Usage: 17.4 MB, less than 83.64% of cpp online submissions.
 // Non-recursion, constant space
 class Solution {
 public:

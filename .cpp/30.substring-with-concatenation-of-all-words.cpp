@@ -7,14 +7,14 @@
 // @lc code=start
 // 2020-07-06 submission
 // 178/178 cases passed
-// Runtime: 200 ms, faster than 73.28% of C++ online submissions.
-// Memory Usage: 16.9 MB, less than 90.37% of C++ online submissions.
+// Runtime: 200 ms, faster than 73.28% of cpp online submissions.
+// Memory Usage: 16.9 MB, less than 90.37% of cpp online submissions.
 class Solution {
 public:
     vector<int> findSubstring(string s, vector<string>& words) {
         if (s.length() == 0 || words.empty()) return {};
 
-        int count = words.size(); // Count of words
+        int count = words.size();  // Count of words
         int len = words[0].size(); // Length of word
         unordered_map<string, int> word_freq;
         for (string word : words) {
@@ -27,7 +27,7 @@ public:
             int left_pivot = i;
             for (int pivot = i; pivot < s.size(); pivot += len) {
                 string to_compare = s.substr(pivot, len);
-                if(word_freq.count(to_compare)) {
+                if (word_freq.count(to_compare)) {
                     check_freq[to_compare]++;
                     while (check_freq[to_compare] > word_freq[to_compare]) {
                         check_freq[s.substr(left_pivot, len)]--;
@@ -54,8 +54,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 178/178 cases passed
-// Runtime: 276 ms, faster than 64.36% of C++ online submissions.
-// Memory Usage: 24.6 MB, less than 70.8% of C++ online submissions.
+// Runtime: 276 ms, faster than 64.36% of cpp online submissions.
+// Memory Usage: 24.6 MB, less than 70.8% of cpp online submissions.
 class Solution {
 public:
     vector<int> findSubstring(string s, vector<string>& words) {
@@ -63,7 +63,7 @@ public:
         vector<int> res;
         int n = words.size(), len = words[0].size();
         unordered_map<string, int> wordCnt;
-        for (auto &word : words) ++wordCnt[word];
+        for (auto& word : words) ++wordCnt[word];
         for (int i = 0; i <= (int)s.size() - n * len; ++i) {
             unordered_map<string, int> strCnt;
             int j = 0;

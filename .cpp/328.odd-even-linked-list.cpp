@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-13 submission
 // 70/70 cases passed
-// Runtime: 15 ms, faster than 50.82% of C++ online submissions.
-// Memory Usage: 10.6 MB, less than 37.88% of C++ online submissions.
+// Runtime: 15 ms, faster than 50.82% of cpp online submissions.
+// Memory Usage: 10.6 MB, less than 37.88% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -25,7 +25,7 @@ public:
         if (!head || !head->next) return head;
         ListNode *pre = head, *cur = head->next;
         while (cur && cur->next) {
-            ListNode *tmp = pre->next;
+            ListNode* tmp = pre->next;
             pre->next = cur->next;
             cur->next = cur->next->next;
             pre->next->next = tmp;
@@ -40,8 +40,8 @@ public:
 // @lc code=start
 // 2023-02-13 submission
 // 70/70 cases passed
-// Runtime: 14 ms, faster than 60.38% of C++ online submissions.
-// Memory Usage: 10.3 MB, less than 97.85% of C++ online submissions.
+// Runtime: 14 ms, faster than 60.38% of cpp online submissions.
+// Memory Usage: 10.3 MB, less than 97.85% of cpp online submissions.
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {

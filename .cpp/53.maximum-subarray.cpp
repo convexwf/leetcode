@@ -5,10 +5,11 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2022-07-20 submission
 // 209/209 cases passed
-// Runtime: 167 ms, faster than 49.74% of C++ online submissions.
-// Memory Usage: 67.8 MB, less than 10.9% of C++ online submissions.
+// Runtime: 167 ms, faster than 49.74% of cpp online submissions.
+// Memory Usage: 67.8 MB, less than 10.9% of cpp online submissions.
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
@@ -26,34 +27,40 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 分治法
 // 2022-07-20 submission
 // 209/209 cases passed
-// Runtime: 273 ms, faster than 5.09% of C++ online submissions.
-// Memory Usage: 67.8 MB, less than 53.44% of C++ online submissions.
+// Runtime: 273 ms, faster than 5.09% of cpp online submissions.
+// Memory Usage: 67.8 MB, less than 53.44% of cpp online submissions.
 class Solution {
 public:
-
     int maxSubArray(vector<int>& nums) {
-        if (nums.empty()) return 0;
-        return helper(nums, 0, (int)nums.size() - 1);
+        return maxSubArray(nums, 0, nums.size() - 1);
     }
 
-    int helper(vector<int>& nums, int left, int right) {
-        if (left >= right) return nums[left];
+    int maxSubArray(vector<int>& nums, int left, int right) {
+        if (left == right) {
+            return nums[left];
+        }
+
         int mid = left + (right - left) / 2;
-        int lmax = helper(nums, left, mid - 1);
-        int rmax = helper(nums, mid + 1, right);
-        int mmax = nums[mid], t = mmax;
-        for (int i = mid - 1; i >= left; --i) {
-            t += nums[i];
-            mmax = max(mmax, t);
+        int leftMax = maxSubArray(nums, left, mid);
+        int rightMax = maxSubArray(nums, mid + 1, right);
+
+        int leftSum = INT_MIN, rightSum = INT_MIN;
+        int sum = 0;
+        for (int i = mid; i >= left; i--) {
+            sum += nums[i];
+            leftSum = max(leftSum, sum);
         }
-        t = mmax;
-        for (int i = mid + 1; i <= right; ++i) {
-            t += nums[i];
-            mmax = max(mmax, t);
+
+        sum = 0;
+        for (int i = mid + 1; i <= right; i++) {
+            sum += nums[i];
+            rightSum = max(rightSum, sum);
         }
-        return max(mmax, max(lmax, rmax));
+
+        return max(max(leftMax, rightMax), leftSum + rightSum);
     }
 };
 // @lc code=end

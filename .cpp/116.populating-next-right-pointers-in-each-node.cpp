@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-17 submission
 // 59/59 cases passed
-// Runtime: 37 ms, faster than 64.35% of C++ online submissions.
-// Memory Usage: 16.7 MB, less than 86.72% of C++ online submissions.
+// Runtime: 37 ms, faster than 64.35% of cpp online submissions.
+// Memory Usage: 16.7 MB, less than 86.72% of cpp online submissions.
 /*
 // Definition for a Node.
 class Node {
@@ -43,8 +43,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 59/59 cases passed
-// Runtime: 10 ms, faster than 99.82% of C++ online submissions.
-// Memory Usage: 16.8 MB, less than 86.72% of C++ online submissions.
+// Runtime: 10 ms, faster than 99.82% of cpp online submissions.
+// Memory Usage: 16.8 MB, less than 86.72% of cpp online submissions.
 class Solution {
 public:
     Node* connect(Node* root) {

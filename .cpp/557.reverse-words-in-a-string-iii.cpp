@@ -7,8 +7,8 @@
 // @lc code=start
 // 2021-12-23 submission
 // 29/29 cases passed
-// Runtime: 20 ms, faster than 31.6% of C++ online submissions.
-// Memory Usage: 10.9 MB, less than 33.39% of C++ online submissions.
+// Runtime: 20 ms, faster than 31.6% of cpp online submissions.
+// Memory Usage: 10.9 MB, less than 33.39% of cpp online submissions.
 class Solution {
 public:
     string reverseWords(string s) {
@@ -22,7 +22,8 @@ public:
                 }
                 res.append(1, ' ');
             }
-            else stk.push(c);
+            else
+                stk.push(c);
         }
         while (!stk.empty()) {
             res.append(1, stk.top());
@@ -36,8 +37,8 @@ public:
 // @lc code=start
 // 2021-12-23 submission
 // 29/29 cases passed
-// Runtime: 24 ms, faster than 20.99% of C++ online submissions.
-// Memory Usage: 11 MB, less than 31.29% of C++ online submissions.
+// Runtime: 24 ms, faster than 20.99% of cpp online submissions.
+// Memory Usage: 11 MB, less than 31.29% of cpp online submissions.
 class Solution {
 public:
     string reverseWords(string s) {

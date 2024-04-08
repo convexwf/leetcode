@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 66/66 cases passed
-// Runtime: 276 ms, faster than 53.59% of C++ online submissions.
-// Memory Usage: 10.4 MB, less than 28.18% of C++ online submissions.
+// Runtime: 276 ms, faster than 53.59% of cpp online submissions.
+// Memory Usage: 10.4 MB, less than 28.18% of cpp online submissions.
 class Solution {
 public:
     int countPrimes(int n) {

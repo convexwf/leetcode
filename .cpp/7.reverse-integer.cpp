@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 1032/1032 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 75.58% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 75.58% of cpp online submissions.
 class Solution {
 public:
     int reverse(int x) {

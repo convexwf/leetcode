@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-07-14 submission
 // 320/320 cases passed
-// Runtime: 4 ms, faster than 88.40% of C++ online submissions.
-// Memory Usage: 14.1 MB, less than 71.67% of C++ online submissions.
+// Runtime: 4 ms, faster than 88.40% of cpp online submissions.
+// Memory Usage: 14.1 MB, less than 71.67% of cpp online submissions.
 class Solution {
 public:
     int trap(vector<int>& height) {
@@ -22,7 +22,7 @@ public:
         }
 
         maxVal = 0;
-        for (int i = (int)vec.size()-1; i >= 0; i--) {
+        for (int i = (int)vec.size() - 1; i >= 0; i--) {
             maxVal = max(maxVal, height[i]);
             res += (min(maxVal, vec[i]) - height[i]);
         }
@@ -34,8 +34,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 322/322 cases passed
-// Runtime: 42 ms, faster than 26.88% of C++ online submissions.
-// Memory Usage: 19.7 MB, less than 82% of C++ online submissions.
+// Runtime: 42 ms, faster than 26.88% of cpp online submissions.
+// Memory Usage: 19.7 MB, less than 82% of cpp online submissions.
 class Solution {
 public:
     int trap(vector<int>& height) {
@@ -53,8 +53,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 322/322 cases passed
-// Runtime: 37 ms, faster than 42.75% of C++ online submissions.
-// Memory Usage: 20.3 MB, less than 46.03% of C++ online submissions.
+// Runtime: 37 ms, faster than 42.75% of cpp online submissions.
+// Memory Usage: 20.3 MB, less than 46.03% of cpp online submissions.
 class Solution {
 public:
     int trap(vector<int>& height) {
@@ -63,8 +63,10 @@ public:
         while (i < n) {
             if (st.empty() || height[i] <= height[st.top()]) {
                 st.push(i++);
-            } else {
-                int t = st.top(); st.pop();
+            }
+            else {
+                int t = st.top();
+                st.pop();
                 if (st.empty()) continue;
                 res += (min(height[i], height[st.top()]) - height[t]) * (i - st.top() - 1);
             }

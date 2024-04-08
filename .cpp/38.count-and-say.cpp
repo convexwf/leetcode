@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-07 submission
 // 30/30 cases passed
-// Runtime: 10 ms, faster than 68.15% of C++ online submissions.
-// Memory Usage: 6.6 MB, less than 78.34% of C++ online submissions.
+// Runtime: 10 ms, faster than 68.15% of cpp online submissions.
+// Memory Usage: 6.6 MB, less than 78.34% of cpp online submissions.
 class Solution {
 public:
     string countAndSay(int n) {

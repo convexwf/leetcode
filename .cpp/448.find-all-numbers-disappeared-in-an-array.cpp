@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 33/33 cases passed
-// Runtime: 62 ms, faster than 91.28% of C++ online submissions.
-// Memory Usage: 33.7 MB, less than 83.21% of C++ online submissions.
+// Runtime: 62 ms, faster than 91.28% of cpp online submissions.
+// Memory Usage: 33.7 MB, less than 83.21% of cpp online submissions.
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-20 submission
 // 39/39 cases passed
-// Runtime: 8 ms, faster than 44.66% of C++ online submissions.
-// Memory Usage: 8.2 MB, less than 99.8% of C++ online submissions.
+// Runtime: 8 ms, faster than 44.66% of cpp online submissions.
+// Memory Usage: 8.2 MB, less than 99.8% of cpp online submissions.
 class Solution {
 public:
     int calPoints(vector<string>& ops) {

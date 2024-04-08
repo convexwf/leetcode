@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-02 submission
 // 38/38 cases passed
-// Runtime: 3 ms, faster than 41.94% of C++ online submissions.
-// Memory Usage: 5.8 MB, less than 94.5% of C++ online submissions.
+// Runtime: 3 ms, faster than 41.94% of cpp online submissions.
+// Memory Usage: 5.8 MB, less than 94.5% of cpp online submissions.
 class Solution {
 public:
     int countDigitOne(int n) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-27 submission
 // 81/81 cases passed
-// Runtime: 11 ms, faster than 99.98% of C++ online submissions.
-// Memory Usage: 13.5 MB, less than 64.18% of C++ online submissions.
+// Runtime: 11 ms, faster than 99.98% of cpp online submissions.
+// Memory Usage: 13.5 MB, less than 64.18% of cpp online submissions.
 class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {
@@ -35,8 +35,8 @@ public:
 // @lc code=start
 // 2023-02-27 submission
 // 81/81 cases passed
-// Runtime: 25 ms, faster than 74.23% of C++ online submissions.
-// Memory Usage: 13.5 MB, less than 86.23% of C++ online submissions.
+// Runtime: 25 ms, faster than 74.23% of cpp online submissions.
+// Memory Usage: 13.5 MB, less than 86.23% of cpp online submissions.
 class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {
@@ -48,8 +48,7 @@ public:
         }
         return true;
     }
-    bool valid(vector<vector<int>>& graph, int color, int cur,
-               vector<int>& colors) {
+    bool valid(vector<vector<int>>& graph, int color, int cur, vector<int>& colors) {
         if (colors[cur] != 0) return colors[cur] == color;
         colors[cur] = color;
         for (int i : graph[cur]) {
@@ -65,8 +64,8 @@ public:
 // @lc code=start
 // 2023-02-27 submission
 // 81/81 cases passed
-// Runtime: 25 ms, faster than 74.23% of C++ online submissions.
-// Memory Usage: 13.8 MB, less than 20.15% of C++ online submissions.
+// Runtime: 25 ms, faster than 74.23% of cpp online submissions.
+// Memory Usage: 13.8 MB, less than 20.15% of cpp online submissions.
 class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {

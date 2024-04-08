@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 15/15 cases passed
-// Runtime: 25 ms, faster than 83.56% of C++ online submissions.
-// Memory Usage: 17.1 MB, less than 75.04% of C++ online submissions.
+// Runtime: 25 ms, faster than 83.56% of cpp online submissions.
+// Memory Usage: 17.1 MB, less than 75.04% of cpp online submissions.
 class NumArray {
 public:
     NumArray(vector<int> &nums) {

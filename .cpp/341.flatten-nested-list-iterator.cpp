@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-31 submission
 // 43/43 cases passed
-// Runtime: 28 ms, faster than 27.47% of C++ online submissions.
-// Memory Usage: 14.4 MB, less than 26.88% of C++ online submissions.
+// Runtime: 28 ms, faster than 27.47% of cpp online submissions.
+// Memory Usage: 14.4 MB, less than 26.88% of cpp online submissions.
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
@@ -36,7 +36,8 @@ public:
     }
 
     int next() {
-        NestedInteger t = s.top(); s.pop();
+        NestedInteger t = s.top();
+        s.pop();
         return t.getInteger();
     }
 
@@ -66,8 +67,8 @@ private:
 // @lc code=start
 // 2023-01-31 submission
 // 43/43 cases passed
-// Runtime: 45 ms, faster than 15.96% of C++ online submissions.
-// Memory Usage: 15.2 MB, less than 14.51% of C++ online submissions.
+// Runtime: 45 ms, faster than 15.96% of cpp online submissions.
+// Memory Usage: 15.2 MB, less than 14.51% of cpp online submissions.
 class NestedIterator {
 public:
     NestedIterator(vector<NestedInteger> &nestedList) {
@@ -77,7 +78,8 @@ public:
     }
 
     int next() {
-        NestedInteger t = d.front(); d.pop_front();
+        NestedInteger t = d.front();
+        d.pop_front();
         return t.getInteger();
     }
 

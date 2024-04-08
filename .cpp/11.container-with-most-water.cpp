@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-28 submission
 // 61/61 cases passed
-// Runtime: 97 ms, faster than 73.42% of C++ online submissions.
-// Memory Usage: 59.1 MB, less than 7.91% of C++ online submissions.
+// Runtime: 97 ms, faster than 73.42% of cpp online submissions.
+// Memory Usage: 59.1 MB, less than 7.91% of cpp online submissions.
 class Solution {
 public:
     int maxArea(vector<int>& height) {

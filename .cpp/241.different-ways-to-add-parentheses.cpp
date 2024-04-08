@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-17 submission
 // 25/25 cases passed
-// Runtime: 3 ms, faster than 83.11% of C++ online submissions.
-// Memory Usage: 11.3 MB, less than 47.72% of C++ online submissions.
+// Runtime: 3 ms, faster than 83.11% of cpp online submissions.
+// Memory Usage: 11.3 MB, less than 47.72% of cpp online submissions.
 class Solution {
 public:
     vector<int> diffWaysToCompute(string input) {
@@ -19,9 +19,12 @@ public:
                 vector<int> right = diffWaysToCompute(input.substr(i + 1));
                 for (int j = 0; j < left.size(); ++j) {
                     for (int k = 0; k < right.size(); ++k) {
-                        if (input[i] == '+') res.push_back(left[j] + right[k]);
-                        else if (input[i] == '-') res.push_back(left[j] - right[k]);
-                        else res.push_back(left[j] * right[k]);
+                        if (input[i] == '+')
+                            res.push_back(left[j] + right[k]);
+                        else if (input[i] == '-')
+                            res.push_back(left[j] - right[k]);
+                        else
+                            res.push_back(left[j] * right[k]);
                     }
                 }
             }
@@ -35,8 +38,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 25/25 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7.2 MB, less than 90.17% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7.2 MB, less than 90.17% of cpp online submissions.
 class Solution {
 public:
     unordered_map<string, vector<int>> memo;
@@ -49,9 +52,12 @@ public:
                 vector<int> right = diffWaysToCompute(input.substr(i + 1));
                 for (int j = 0; j < left.size(); ++j) {
                     for (int k = 0; k < right.size(); ++k) {
-                        if (input[i] == '+') res.push_back(left[j] + right[k]);
-                        else if (input[i] == '-') res.push_back(left[j] - right[k]);
-                        else res.push_back(left[j] * right[k]);
+                        if (input[i] == '+')
+                            res.push_back(left[j] + right[k]);
+                        else if (input[i] == '-')
+                            res.push_back(left[j] - right[k]);
+                        else
+                            res.push_back(left[j] * right[k]);
                     }
                 }
             }
@@ -66,8 +72,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 25/25 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.7 MB, less than 97.37% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.7 MB, less than 97.37% of cpp online submissions.
 class Solution {
 public:
     vector<int> diffWaysToCompute(string input) {
@@ -91,9 +97,12 @@ public:
                     string op = ops[j * 2 + 1];
                     for (int num1 : left) {
                         for (int num2 : right) {
-                            if (op == "+") dp[i][i + len].push_back(num1 + num2);
-                            else if (op == "-") dp[i][i + len].push_back(num1 - num2);
-                            else dp[i][i + len].push_back(num1 * num2);
+                            if (op == "+")
+                                dp[i][i + len].push_back(num1 + num2);
+                            else if (op == "-")
+                                dp[i][i + len].push_back(num1 - num2);
+                            else
+                                dp[i][i + len].push_back(num1 * num2);
                         }
                     }
                 }

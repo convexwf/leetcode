@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-13 submission
 // 241/241 cases passed
-// Runtime: 425 ms, faster than 21.84% of C++ online submissions.
-// Memory Usage: 13 MB, less than 11.25% of C++ online submissions.
+// Runtime: 425 ms, faster than 21.84% of cpp online submissions.
+// Memory Usage: 13 MB, less than 11.25% of cpp online submissions.
 class Solution {
 public:
     int triangleNumber(vector<int>& nums) {
@@ -19,8 +19,10 @@ public:
                 int sum = nums[i] + nums[j], left = j + 1, right = n;
                 while (left < right) {
                     int mid = left + (right - left) / 2;
-                    if (nums[mid] < sum) left = mid + 1;
-                    else right = mid;
+                    if (nums[mid] < sum)
+                        left = mid + 1;
+                    else
+                        right = mid;
                 }
                 res += right - 1 - j;
             }
@@ -33,8 +35,8 @@ public:
 // @lc code=start
 // 2023-02-13 submission
 // 241/241 cases passed
-// Runtime: 103 ms, faster than 83.01% of C++ online submissions.
-// Memory Usage: 13.1 MB, less than 11.25% of C++ online submissions.
+// Runtime: 103 ms, faster than 83.01% of cpp online submissions.
+// Memory Usage: 13.1 MB, less than 11.25% of cpp online submissions.
 class Solution {
 public:
     int triangleNumber(vector<int>& nums) {
@@ -46,7 +48,8 @@ public:
                 if (nums[left] + nums[right] > nums[i]) {
                     res += right - left;
                     --right;
-                } else {
+                }
+                else {
                     ++left;
                 }
             }

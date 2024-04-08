@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-30 submission
 // 8/8 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7.3 MB, less than 96.84% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7.3 MB, less than 96.84% of cpp online submissions.
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
@@ -33,13 +33,14 @@ public:
 // @lc code=start
 // 2023-01-30 submission
 // 8/8 cases passed
-// Runtime: 3 ms, faster than 83.32% of C++ online submissions.
-// Memory Usage: 7.6 MB, less than 95.62% of C++ online submissions.
+// Runtime: 3 ms, faster than 83.32% of cpp online submissions.
+// Memory Usage: 7.6 MB, less than 95.62% of cpp online submissions.
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
         unordered_set<string> st;
-        if (n == 0) st.insert("");
+        if (n == 0)
+            st.insert("");
         else {
             vector<string> pre = generateParenthesis(n - 1);
             for (string a : pre) {

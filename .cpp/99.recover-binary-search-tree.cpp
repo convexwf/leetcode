@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-23 submission
 // 1919/1919 cases passed
-// Runtime: 57 ms, faster than 43.77% of C++ online submissions.
-// Memory Usage: 59.1 MB, less than 9.32% of C++ online submissions.
+// Runtime: 57 ms, faster than 43.77% of cpp online submissions.
+// Memory Usage: 59.1 MB, less than 9.32% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -27,8 +27,8 @@ public:
         vector<int> vals;
         inorder(root, pointers, vals);
 
-        if(!vals.empty()) sort(vals.begin(), vals.end());
-        for(int i =0; i < pointers.size(); i++) {
+        if (!vals.empty()) sort(vals.begin(), vals.end());
+        for (int i = 0; i < pointers.size(); i++) {
             pointers[i]->val = vals[i];
         }
     }

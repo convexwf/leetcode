@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 601/601 cases passed
-// Runtime: 3 ms, faster than 81.91% of C++ online submissions.
-// Memory Usage: 7.4 MB, less than 22.04% of C++ online submissions.
+// Runtime: 3 ms, faster than 81.91% of cpp online submissions.
+// Memory Usage: 7.4 MB, less than 22.04% of cpp online submissions.
 class Solution {
 public:
     string numberToWords(int num) {
@@ -22,8 +22,12 @@ public:
         return res.empty() ? "Zero" : res;
     }
     string convertHundred(int num) {
-        vector<string> v1 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-        vector<string> v2 = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+        vector<string> v1 = {"",        "One",     "Two",       "Three",    "Four",
+                             "Five",    "Six",     "Seven",     "Eight",    "Nine",
+                             "Ten",     "Eleven",  "Twelve",    "Thirteen", "Fourteen",
+                             "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+        vector<string> v2 = {"",      "",      "Twenty",  "Thirty", "Forty",
+                             "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
         string res;
         int a = num / 100, b = num % 100, c = num % 10;
         res = b < 20 ? v1[b] : v2[b / 10] + (c ? " " + v1[c] : "");

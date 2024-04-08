@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 52/52 cases passed
-// Runtime: 26 ms, faster than 88.67% of C++ online submissions.
-// Memory Usage: 14 MB, less than 53.97% of C++ online submissions.
+// Runtime: 26 ms, faster than 88.67% of cpp online submissions.
+// Memory Usage: 14 MB, less than 53.97% of cpp online submissions.
 class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
@@ -23,7 +23,8 @@ public:
             if (in[i] == 0) q.push(i);
         }
         while (!q.empty()) {
-            int t = q.front(); q.pop();
+            int t = q.front();
+            q.pop();
             for (auto a : graph[t]) {
                 --in[a];
                 if (in[a] == 0) q.push(a);
@@ -40,8 +41,8 @@ public:
 // @lc code=start
 // 2022-11-14 submission
 // 52/52 cases passed
-// Runtime: 65 ms, faster than 13.84% of C++ online submissions.
-// Memory Usage: 14.6 MB, less than 26.95% of C++ online submissions.
+// Runtime: 65 ms, faster than 13.84% of cpp online submissions.
+// Memory Usage: 14.6 MB, less than 26.95% of cpp online submissions.
 class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {

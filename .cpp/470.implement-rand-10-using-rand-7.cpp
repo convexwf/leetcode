@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-19 submission
 // 12/12 cases passed
-// Runtime: 70 ms, faster than 78.6% of C++ online submissions.
-// Memory Usage: 7.5 MB, less than 17.27% of C++ online submissions.
+// Runtime: 70 ms, faster than 78.6% of cpp online submissions.
+// Memory Usage: 7.5 MB, less than 17.27% of cpp online submissions.
 
 // The rand7() API is already defined for you.
 // int rand7();
@@ -27,8 +27,8 @@ public:
 // @lc code=start
 // 2022-08-19 submission
 // 12/12 cases passed
-// Runtime: 136 ms, faster than 6.83% of C++ online submissions.
-// Memory Usage: 7.6 MB, less than 17.27% of C++ online submissions.
+// Runtime: 136 ms, faster than 6.83% of cpp online submissions.
+// Memory Usage: 7.6 MB, less than 17.27% of cpp online submissions.
 class Solution {
 public:
     int rand10() {
@@ -41,8 +41,8 @@ public:
 // @lc code=start
 // 2022-08-19 submission
 // 12/12 cases passed
-// Runtime: 103 ms, faster than 37.05% of C++ online submissions.
-// Memory Usage: 7.3 MB, less than 86.15% of C++ online submissions.
+// Runtime: 103 ms, faster than 37.05% of cpp online submissions.
+// Memory Usage: 7.3 MB, less than 86.15% of cpp online submissions.
 class Solution {
 public:
     int rand10() {

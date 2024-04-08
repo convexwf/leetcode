@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-14 submission
 // 32/32 cases passed
-// Runtime: 35 ms, faster than 59.3% of C++ online submissions.
-// Memory Usage: 28.4 MB, less than 64.93% of C++ online submissions.
+// Runtime: 35 ms, faster than 59.3% of cpp online submissions.
+// Memory Usage: 28.4 MB, less than 64.93% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -41,8 +41,8 @@ public:
         if (start->next == end) return new TreeNode(start->val);
 
         // Find the middle point
-        ListNode* fast=start, *middle=start;
-        while(fast!=end && fast->next!=end) {
+        ListNode *fast = start, *middle = start;
+        while (fast != end && fast->next != end) {
             fast = fast->next->next;
             middle = middle->next;
         }
@@ -55,11 +55,11 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 32/32 cases passed
-// Runtime: 25 ms, faster than 88.15% of C++ online submissions.
-// Memory Usage: 28.3 MB, less than 64.93% of C++ online submissions.
+// Runtime: 25 ms, faster than 88.15% of cpp online submissions.
+// Memory Usage: 28.3 MB, less than 64.93% of cpp online submissions.
 class Solution {
 public:
-    TreeNode *sortedListToBST(ListNode* head) {
+    TreeNode* sortedListToBST(ListNode* head) {
         if (!head) return NULL;
         if (!head->next) return new TreeNode(head->val);
         ListNode *slow = head, *fast = head, *last = slow;
@@ -70,7 +70,7 @@ public:
         }
         fast = slow->next;
         last->next = NULL;
-        TreeNode *cur = new TreeNode(slow->val);
+        TreeNode* cur = new TreeNode(slow->val);
         if (head != slow) cur->left = sortedListToBST(head);
         cur->right = sortedListToBST(fast);
         return cur;

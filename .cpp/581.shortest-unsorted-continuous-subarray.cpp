@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-15 submission
 // 307/307 cases passed
-// Runtime: 29 ms, faster than 96.69% of C++ online submissions.
-// Memory Usage: 26.6 MB, less than 65.27% of C++ online submissions.
+// Runtime: 29 ms, faster than 96.69% of cpp online submissions.
+// Memory Usage: 26.6 MB, less than 65.27% of cpp online submissions.
 class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {
@@ -16,7 +16,7 @@ public:
         int max_val = INT_MIN;
         int res = 0;
         for (int j = 1; j < nums.size(); j++) {
-            max_val = max(max_val, nums[j-1]);
+            max_val = max(max_val, nums[j - 1]);
             if (nums[j] < max_val) {
                 i = min(i, j - 1);
                 while (i >= 0 && nums[j] < nums[i]) --i;
@@ -31,8 +31,8 @@ public:
 // @lc code=start
 // 2022-11-15 submission
 // 307/307 cases passed
-// Runtime: 89 ms, faster than 23.17% of C++ online submissions.
-// Memory Usage: 26.3 MB, less than 98.49% of C++ online submissions.
+// Runtime: 89 ms, faster than 23.17% of cpp online submissions.
+// Memory Usage: 26.3 MB, less than 98.49% of cpp online submissions.
 class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {

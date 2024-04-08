@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-28 submission
 // 130/130 cases passed
-// Runtime: 17 ms, faster than 51.18% of C++ online submissions.
-// Memory Usage: 7.6 MB, less than 56.95% of C++ online submissions.
+// Runtime: 17 ms, faster than 51.18% of cpp online submissions.
+// Memory Usage: 7.6 MB, less than 56.95% of cpp online submissions.
 class Solution {
 public:
     int countSubstrings(string s) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2021-12-23 submission
 // 160/160 cases passed
-// Runtime: 38 ms, faster than 36.03% of C++ online submissions.
-// Memory Usage: 53.8 MB, less than 25.41% of C++ online submissions.
+// Runtime: 38 ms, faster than 36.03% of cpp online submissions.
+// Memory Usage: 53.8 MB, less than 25.41% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {

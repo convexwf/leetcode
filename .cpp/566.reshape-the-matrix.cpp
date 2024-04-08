@@ -7,8 +7,8 @@
 // @lc code=start
 // 2021-12-16 submission
 // 57/57 cases passed
-// Runtime: 8 ms, faster than 91.8% of C++ online submissions.
-// Memory Usage: 10.6 MB, less than 81.57% of C++ online submissions.
+// Runtime: 8 ms, faster than 91.8% of cpp online submissions.
+// Memory Usage: 10.6 MB, less than 81.57% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-20 submission
 // 200/200 cases passed
-// Runtime: 3 ms, faster than 59.97% of C++ online submissions.
-// Memory Usage: 6 MB, less than 80.63% of C++ online submissions.
+// Runtime: 3 ms, faster than 59.97% of cpp online submissions.
+// Memory Usage: 6 MB, less than 80.63% of cpp online submissions.
 class Solution {
 public:
     string getPermutation(int n, int k) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 43/43 cases passed
-// Runtime: 48 ms, faster than 37.56% of C++ online submissions.
-// Memory Usage: 19.5 MB, less than 92.32% of C++ online submissions.
+// Runtime: 48 ms, faster than 37.56% of cpp online submissions.
+// Memory Usage: 19.5 MB, less than 92.32% of cpp online submissions.
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
@@ -35,8 +35,8 @@ public:
 // @lc code=start
 // 2022-11-14 submission
 // 43/43 cases passed
-// Runtime: 81 ms, faster than 5.67% of C++ online submissions.
-// Memory Usage: 19.6 MB, less than 60.69% of C++ online submissions.
+// Runtime: 81 ms, faster than 5.67% of cpp online submissions.
+// Memory Usage: 19.6 MB, less than 60.69% of cpp online submissions.
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {

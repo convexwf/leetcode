@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-13 submission
 // 47/47 cases passed
-// Runtime: 258 ms, faster than 54.7% of C++ online submissions.
-// Memory Usage: 89 MB, less than 42.03% of C++ online submissions.
+// Runtime: 258 ms, faster than 54.7% of cpp online submissions.
+// Memory Usage: 89 MB, less than 42.03% of cpp online submissions.
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& T) {

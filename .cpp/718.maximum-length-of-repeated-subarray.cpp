@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-13 submission
 // 53/53 cases passed
-// Runtime: 321 ms, faster than 34.56% of C++ online submissions.
-// Memory Usage: 85.6 MB, less than 40.11% of C++ online submissions.
+// Runtime: 321 ms, faster than 34.56% of cpp online submissions.
+// Memory Usage: 85.6 MB, less than 40.11% of cpp online submissions.
 class Solution {
 public:
     int findLength(vector<int>& A, vector<int>& B) {

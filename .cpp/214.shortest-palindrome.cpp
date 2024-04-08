@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-06 submission
 // 121/121 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7.9 MB, less than 50% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7.9 MB, less than 50% of cpp online submissions.
 class Solution {
 public:
     string shortestPalindrome(string s) {

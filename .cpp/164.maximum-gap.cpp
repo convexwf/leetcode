@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-02 submission
 // 41/41 cases passed
-// Runtime: 183 ms, faster than 94.15% of C++ online submissions.
-// Memory Usage: 87 MB, less than 40.16% of C++ online submissions.
+// Runtime: 183 ms, faster than 94.15% of cpp online submissions.
+// Memory Usage: 87 MB, less than 40.16% of cpp online submissions.
 class Solution {
 public:
     int maximumGap(vector<int>& nums) {

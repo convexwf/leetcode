@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-28 submission
 // 166/166 cases passed
-// Runtime: 5 ms, faster than 92.15% of C++ online submissions.
-// Memory Usage: 11.1 MB, less than 58.16% of C++ online submissions.
+// Runtime: 5 ms, faster than 92.15% of cpp online submissions.
+// Memory Usage: 11.1 MB, less than 58.16% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -26,12 +26,14 @@ public:
         ListNode *dummy = new ListNode(-1), *pre = dummy;
         dummy->next = head;
         while (pre->next) {
-            ListNode *cur = pre->next;
+            ListNode* cur = pre->next;
             while (cur->next && cur->next->val == cur->val) {
                 cur = cur->next;
             }
-            if (cur != pre->next) pre->next = cur->next;
-            else pre = pre->next;
+            if (cur != pre->next)
+                pre->next = cur->next;
+            else
+                pre = pre->next;
         }
         return dummy->next;
     }
@@ -41,8 +43,8 @@ public:
 // @lc code=start
 // 2022-07-28 submission
 // 166/166 cases passed
-// Runtime: 9 ms, faster than 76.35% of C++ online submissions.
-// Memory Usage: 11 MB, less than 91.09% of C++ online submissions.
+// Runtime: 9 ms, faster than 76.35% of cpp online submissions.
+// Memory Usage: 11 MB, less than 91.09% of cpp online submissions.
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
@@ -52,8 +54,10 @@ public:
             head = head->next;
         }
         head->next = deleteDuplicates(head->next);
-        if (head != cur) return head->next;
-        else return head;
+        if (head != cur)
+            return head->next;
+        else
+            return head;
     }
 };
 // @lc code=end

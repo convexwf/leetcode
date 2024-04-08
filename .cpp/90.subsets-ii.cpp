@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 20/20 cases passed
-// Runtime: 6 ms, faster than 51.11% of C++ online submissions.
-// Memory Usage: 7.5 MB, less than 87.74% of C++ online submissions.
+// Runtime: 6 ms, faster than 51.11% of cpp online submissions.
+// Memory Usage: 7.5 MB, less than 87.74% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> subsetsWithDup(vector<int> &S) {
@@ -43,8 +43,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 20/20 cases passed
-// Runtime: 6 ms, faster than 51.11% of C++ online submissions.
-// Memory Usage: 7.3 MB, less than 95.58% of C++ online submissions.
+// Runtime: 6 ms, faster than 51.11% of cpp online submissions.
+// Memory Usage: 7.3 MB, less than 95.58% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> subsetsWithDup(vector<int> &S) {

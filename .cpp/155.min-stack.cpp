@@ -7,12 +7,13 @@
 // @lc code=start
 // 2023-01-14 submission
 // 31/31 cases passed
-// Runtime: 24 ms, faster than 78.28% of C++ online submissions.
-// Memory Usage: 16.4 MB, less than 65.11% of C++ online submissions.
+// Runtime: 24 ms, faster than 78.28% of cpp online submissions.
+// Memory Usage: 16.4 MB, less than 65.11% of cpp online submissions.
 class MinStack {
 public:
     /** initialize your data structure here. */
-    MinStack() {}
+    MinStack() {
+    }
 
     void push(int val) {
         base.push(val);
@@ -52,8 +53,8 @@ private:
 // @lc code=start
 // 2023-01-14 submission
 // 31/31 cases passed
-// Runtime: 25 ms, faster than 74.45% of C++ online submissions.
-// Memory Usage: 16.4 MB, less than 65.11% of C++ online submissions.
+// Runtime: 25 ms, faster than 74.45% of cpp online submissions.
+// Memory Usage: 16.4 MB, less than 65.11% of cpp online submissions.
 class MinStack {
 public:
     MinStack() {
@@ -67,9 +68,11 @@ public:
         st.push(x);
     }
     void pop() {
-        int t = st.top(); st.pop();
+        int t = st.top();
+        st.pop();
         if (t == min_val) {
-            min_val = st.top(); st.pop();
+            min_val = st.top();
+            st.pop();
         }
     }
     int top() {

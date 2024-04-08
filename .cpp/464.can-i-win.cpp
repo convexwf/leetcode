@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 58/58 cases passed
-// Runtime: 1081 ms, faster than 29.17% of C++ online submissions.
-// Memory Usage: 89.6 MB, less than 29.71% of C++ online submissions.
+// Runtime: 1081 ms, faster than 29.17% of cpp online submissions.
+// Memory Usage: 89.6 MB, less than 29.71% of cpp online submissions.
 class Solution {
 public:
     bool canIWin(int maxChoosableInteger, int desiredTotal) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-20 submission
 // 58/58 cases passed
-// Runtime: 27 ms, faster than 61.01% of C++ online submissions.
-// Memory Usage: 10 MB, less than 82.55% of C++ online submissions.
+// Runtime: 27 ms, faster than 61.01% of cpp online submissions.
+// Memory Usage: 10 MB, less than 82.55% of cpp online submissions.
 class Solution {
 public:
     void solve(vector<vector<char>>& board) {
@@ -16,10 +16,10 @@ public:
 
         int res = 0;
         int rows = board.size(), cols = board[0].size();
-        vector<vector<bool> > mask(rows, vector<bool>(cols, false));
+        vector<vector<bool>> mask(rows, vector<bool>(cols, false));
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (i == 0 || i == rows-1 || j == 0 || j == cols - 1) {
+                if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1) {
                     DFS(board, mask, i, j);
                 }
             }
@@ -34,10 +34,10 @@ public:
     void DFS(vector<vector<char>>& board, vector<vector<bool>>& mask, int i, int j) {
         if (board[i][j] != 'O' || mask[i][j]) return;
         mask[i][j] = true;
-        if (i > 0) DFS(board, mask, i-1, j);
-        if (i < board.size()-1) DFS(board, mask, i+1, j);
-        if (j > 0) DFS(board, mask, i, j-1);
-        if (j < board[0].size()-1) DFS(board, mask, i, j+1);
+        if (i > 0) DFS(board, mask, i - 1, j);
+        if (i < board.size() - 1) DFS(board, mask, i + 1, j);
+        if (j > 0) DFS(board, mask, i, j - 1);
+        if (j < board[0].size() - 1) DFS(board, mask, i, j + 1);
     }
 };
 // @lc code=end
@@ -45,8 +45,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 58/58 cases passed
-// Runtime: 58 ms, faster than 7.39% of C++ online submissions.
-// Memory Usage: 13.1 MB, less than 12.78% of C++ online submissions.
+// Runtime: 58 ms, faster than 7.39% of cpp online submissions.
+// Memory Usage: 13.1 MB, less than 12.78% of cpp online submissions.
 class Solution {
 public:
     void solve(vector<vector<char>>& board) {
@@ -55,7 +55,7 @@ public:
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {
-                    if (board[i][j] == 'O') dfs(board, i , j);
+                    if (board[i][j] == 'O') dfs(board, i, j);
                 }
             }
         }
@@ -66,9 +66,9 @@ public:
             }
         }
     }
-    void dfs(vector<vector<char>> &board, int x, int y) {
+    void dfs(vector<vector<char>>& board, int x, int y) {
         int m = board.size(), n = board[0].size();
-        vector<vector<int>> dir{{0,-1},{-1,0},{0,1},{1,0}};
+        vector<vector<int>> dir{{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
         board[x][y] = '$';
         for (int i = 0; i < dir.size(); ++i) {
             int dx = x + dir[i][0], dy = y + dir[i][1];
@@ -83,8 +83,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 58/58 cases passed
-// Runtime: 16 ms, faster than 84.21% of C++ online submissions.
-// Memory Usage: 10.4 MB, less than 39.2% of C++ online submissions.
+// Runtime: 16 ms, faster than 84.21% of cpp online submissions.
+// Memory Usage: 10.4 MB, less than 39.2% of cpp online submissions.
 class Solution {
 public:
     void solve(vector<vector<char>>& board) {
@@ -97,11 +97,24 @@ public:
                 board[i][j] = '$';
                 queue<int> q{{i * n + j}};
                 while (!q.empty()) {
-                    int t = q.front(), x = t / n, y = t % n; q.pop();
-                    if (x >= 1 && board[x - 1][y] == 'O') {board[x - 1][y] = '$'; q.push(t - n);}
-                    if (x < m - 1 && board[x + 1][y] == 'O') {board[x + 1][y] = '$'; q.push(t + n);}
-                    if (y >= 1 && board[x][y - 1] == 'O') {board[x][y - 1] = '$'; q.push(t - 1);}
-                    if (y < n - 1 && board[x][y + 1] == 'O') {board[x][y + 1] = '$'; q.push(t + 1);}
+                    int t = q.front(), x = t / n, y = t % n;
+                    q.pop();
+                    if (x >= 1 && board[x - 1][y] == 'O') {
+                        board[x - 1][y] = '$';
+                        q.push(t - n);
+                    }
+                    if (x < m - 1 && board[x + 1][y] == 'O') {
+                        board[x + 1][y] = '$';
+                        q.push(t + n);
+                    }
+                    if (y >= 1 && board[x][y - 1] == 'O') {
+                        board[x][y - 1] = '$';
+                        q.push(t - 1);
+                    }
+                    if (y < n - 1 && board[x][y + 1] == 'O') {
+                        board[x][y + 1] = '$';
+                        q.push(t + 1);
+                    }
                 }
             }
         }

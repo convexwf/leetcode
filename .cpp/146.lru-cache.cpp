@@ -7,20 +7,20 @@
 // @lc code=start
 // 2020-09-18 submission
 // 22/22 cases passed
-// Runtime: 483 ms, faster than 66.16% of C++ online submissions.
-// Memory Usage: 165 MB, less than 82.01% of C++ online submissions.
+// Runtime: 483 ms, faster than 66.16% of cpp online submissions.
+// Memory Usage: 165 MB, less than 82.01% of cpp online submissions.
 struct LinkedNode
 {
     int key;
     int value;
     struct LinkedNode* next;
     struct LinkedNode* prev;
-    explicit LinkedNode(int key, int value) : key(key), value(value), next(nullptr), prev(nullptr){}
+    explicit LinkedNode(int key, int value) : key(key), value(value), next(nullptr), prev(nullptr) {
+    }
 };
 
 class LRUCache {
 public:
-
     LRUCache(int capacity) {
         this->size = 0;
         this->capacity = capacity;
@@ -31,7 +31,8 @@ public:
     }
 
     int get(int key) {
-        if (!cache.count(key)) return -1;
+        if (!cache.count(key))
+            return -1;
         else {
             LinkedNode* node = cache[key];
             this->moveNodeToHead(node);

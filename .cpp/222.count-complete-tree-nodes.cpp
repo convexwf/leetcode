@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-11-04 submission (brute force)
 // 18/18 cases passed
-// Runtime: 44 ms, faster than 75.82% of C++ online submissions.
-// Memory Usage: 30.7 MB, less than 99.83% of C++ online submissions.
+// Runtime: 44 ms, faster than 75.82% of cpp online submissions.
+// Memory Usage: 30.7 MB, less than 99.83% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -32,8 +32,8 @@ public:
 // @lc code=start
 // 2020-11-04 submission (完美二叉树)
 // 18/18 cases passed
-// Runtime: 24 ms, faster than 99.37% of C++ online submissions.
-// Memory Usage: 31 MB, less than 8.43% of C++ online submissions.
+// Runtime: 24 ms, faster than 99.37% of cpp online submissions.
+// Memory Usage: 31 MB, less than 8.43% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -83,8 +83,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 18/18 cases passed
-// Runtime: 39 ms, faster than 85.04% of C++ online submissions.
-// Memory Usage: 30.8 MB, less than 93.87% of C++ online submissions.
+// Runtime: 39 ms, faster than 85.04% of cpp online submissions.
+// Memory Usage: 30.8 MB, less than 93.87% of cpp online submissions.
 class Solution {
 public:
     int countNodes(TreeNode* root) {

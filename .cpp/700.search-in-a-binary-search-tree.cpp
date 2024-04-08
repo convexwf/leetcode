@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-19 submission
 // 36/36 cases passed
-// Runtime: 60 ms, faster than 60.29% of C++ online submissions.
-// Memory Usage: 34.9 MB, less than 22.99% of C++ online submissions.
+// Runtime: 60 ms, faster than 60.29% of cpp online submissions.
+// Memory Usage: 34.9 MB, less than 22.99% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -33,8 +33,8 @@ public:
 // @lc code=start
 // 2022-08-19 submission
 // 36/36 cases passed
-// Runtime: 37 ms, faster than 98.03% of C++ online submissions.
-// Memory Usage: 34.8 MB, less than 22.99% of C++ online submissions.
+// Runtime: 37 ms, faster than 98.03% of cpp online submissions.
+// Memory Usage: 34.8 MB, less than 22.99% of cpp online submissions.
 class Solution {
 public:
     TreeNode* searchBST(TreeNode* root, int val) {

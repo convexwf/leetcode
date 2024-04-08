@@ -7,14 +7,14 @@
 // @lc code=start
 // 2022-11-14 submission
 // 15/15 cases passed
-// Runtime: 7 ms, faster than 79.87% of C++ online submissions.
-// Memory Usage: 8 MB, less than 48.64% of C++ online submissions.
+// Runtime: 7 ms, faster than 79.87% of cpp online submissions.
+// Memory Usage: 8 MB, less than 48.64% of cpp online submissions.
 class Solution {
 public:
     vector<int> countBits(int num) {
-        vector<int> dp(num+1, 0);
+        vector<int> dp(num + 1, 0);
         for (int i = 1; i <= num; i++) {
-            dp[i] = dp[i & (i-1)] + 1;
+            dp[i] = dp[i & (i - 1)] + 1;
         }
         return dp;
     }
@@ -24,13 +24,13 @@ public:
 // @lc code=start
 // 2022-11-14 submission
 // 15/15 cases passed
-// Runtime: 4 ms, faster than 92.76% of C++ online submissions.
-// Memory Usage: 7.8 MB, less than 88.2% of C++ online submissions.
+// Runtime: 4 ms, faster than 92.76% of cpp online submissions.
+// Memory Usage: 7.8 MB, less than 88.2% of cpp online submissions.
 class Solution {
 public:
     vector<int> countBits(int num) {
         vector<int> result(num + 1);
-        for(int i = 1; i < num + 1; ++i){
+        for (int i = 1; i < num + 1; ++i) {
             result[i] = bitset<32>(i).count();
         }
         return result;

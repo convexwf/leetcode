@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-20 submission
 // 141/141 cases passed
-// Runtime: 465 ms, faster than 18.89% of C++ online submissions.
-// Memory Usage: 35.2 MB, less than 28.95% of C++ online submissions.
+// Runtime: 465 ms, faster than 18.89% of cpp online submissions.
+// Memory Usage: 35.2 MB, less than 28.95% of cpp online submissions.
 class Solution {
 public:
     string longestPalindrome(string s) {
@@ -29,9 +29,9 @@ public:
                 // (1) len = 1
                 // (2) len = 2
 
-                if (dp[i][j] && len > res.length())
-                    res = s.substr(i, len);
-                ++i; ++j;
+                if (dp[i][j] && len > res.length()) res = s.substr(i, len);
+                ++i;
+                ++j;
             }
         }
         return res;

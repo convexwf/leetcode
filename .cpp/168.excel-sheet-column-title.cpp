@@ -8,8 +8,8 @@
 // 1. 进制转换
 // 2022-11-14 submission
 // 18/18 cases passed
-// Runtime: 3 ms, faster than 35.72% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 47.17% of C++ online submissions.
+// Runtime: 3 ms, faster than 35.72% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 47.17% of cpp online submissions.
 class Solution {
 public:
     string convertToTitle(int n) {

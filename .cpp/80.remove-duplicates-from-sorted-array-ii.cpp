@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-07 submission
 // 164/164 cases passed
-// Runtime: 19 ms, faster than 7.02% of C++ online submissions.
-// Memory Usage: 10.7 MB, less than 93.05% of C++ online submissions.
+// Runtime: 19 ms, faster than 7.02% of cpp online submissions.
+// Memory Usage: 10.7 MB, less than 93.05% of cpp online submissions.
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
@@ -34,8 +34,8 @@ public:
 // @lc code=start
 // 2022-08-07 submission
 // 164/164 cases passed
-// Runtime: 11 ms, faster than 43.14% of C++ online submissions.
-// Memory Usage: 10.9 MB, less than 75.43% of C++ online submissions.
+// Runtime: 11 ms, faster than 43.14% of cpp online submissions.
+// Memory Usage: 10.9 MB, less than 75.43% of cpp online submissions.
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {

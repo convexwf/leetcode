@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 30/30 cases passed
-// Runtime: 185 ms, faster than 97.67% of C++ online submissions.
-// Memory Usage: 53.4 MB, less than 56.17% of C++ online submissions.
+// Runtime: 185 ms, faster than 97.67% of cpp online submissions.
+// Memory Usage: 53.4 MB, less than 56.17% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -21,7 +21,6 @@
  */
 class Solution {
 public:
-
     ListNode* sortList(ListNode* head) {
         if (!head || !head->next) return head;
         ListNode *slow = head, *fast = head, *pre = head;
@@ -41,7 +40,8 @@ public:
         if (l1->val < l2->val) {
             l1->next = merge(l1->next, l2);
             return l1;
-        } else {
+        }
+        else {
             l2->next = merge(l1, l2->next);
             return l2;
         }
@@ -49,13 +49,14 @@ public:
 
     // merge 迭代实现
     ListNode* merge_iterate(ListNode* l1, ListNode* l2) {
-        ListNode *dummy = new ListNode(-1);
-        ListNode *cur = dummy;
+        ListNode* dummy = new ListNode(-1);
+        ListNode* cur = dummy;
         while (l1 && l2) {
             if (l1->val < l2->val) {
                 cur->next = l1;
                 l1 = l1->next;
-            } else {
+            }
+            else {
                 cur->next = l2;
                 l2 = l2->next;
             }

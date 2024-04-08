@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 1082/1082 cases passed
-// Runtime: 13 ms, faster than 12.24% of C++ online submissions.
-// Memory Usage: 7.2 MB, less than 12.34% of C++ online submissions.
+// Runtime: 13 ms, faster than 12.24% of cpp online submissions.
+// Memory Usage: 7.2 MB, less than 12.34% of cpp online submissions.
 class Solution {
 public:
     int myAtoi(string str) {

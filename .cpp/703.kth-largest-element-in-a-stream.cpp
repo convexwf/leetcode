@@ -7,14 +7,15 @@
 // @lc code=start
 // 2021-12-19 submission
 // 10/10 cases passed
-// Runtime: 27 ms, faster than 94.26% of C++ online submissions.
-// Memory Usage: 20 MB, less than 20.01% of C++ online submissions.
+// Runtime: 27 ms, faster than 94.26% of cpp online submissions.
+// Memory Usage: 20 MB, less than 20.01% of cpp online submissions.
 class KthLargest {
 private:
     // C++ STL默认的 priority_queue 是最大堆(less)
     // greater 是最小堆，less 是最大堆
     priority_queue<int, vector<int>, greater<int>> q;
     int k;
+
 public:
     KthLargest(int k, vector<int>& nums) {
         this->k = k;
@@ -25,18 +26,20 @@ public:
                     q.push(nums[i]);
                 }
             }
-            else q.push(nums[i]);
+            else
+                q.push(nums[i]);
         }
     }
 
     int add(int val) {
         if (q.size() >= k) {
             if (val > q.top()) {
-                    q.pop();
-                    q.push(val);
-                }
+                q.pop();
+                q.push(val);
             }
-            else q.push(val);
+        }
+        else
+            q.push(val);
         return q.top();
     }
 };

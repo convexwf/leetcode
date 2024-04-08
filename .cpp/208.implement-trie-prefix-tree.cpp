@@ -7,9 +7,9 @@
 // @lc code=start
 // 2022-11-14 submission
 // 16/16 cases passed
-// Runtime: 176 ms, faster than 24.53% of C++ online submissions.
-// Memory Usage: 44.9 MB, less than 70.49% of C++ online submissions.
-class Node{
+// Runtime: 176 ms, faster than 24.53% of cpp online submissions.
+// Memory Usage: 44.9 MB, less than 70.49% of cpp online submissions.
+class Node {
 public:
     Node* child[26];
     bool is_word;
@@ -34,10 +34,10 @@ public:
     void insert(string word) {
         Node* cur = root;
         for (int i = 0; i < word.length(); i++) {
-            if(!cur->child[word[i]-'a']) {
-                cur->child[word[i]-'a'] = new Node();
+            if (!cur->child[word[i] - 'a']) {
+                cur->child[word[i] - 'a'] = new Node();
             }
-            cur = cur->child[word[i]-'a'];
+            cur = cur->child[word[i] - 'a'];
         }
         cur->is_word = true;
     }
@@ -46,8 +46,8 @@ public:
     bool search(string word) {
         Node* cur = root;
         for (int i = 0; i < word.length(); i++) {
-            if(!cur->child[word[i]-'a']) return false;
-            cur = cur->child[word[i]-'a'];
+            if (!cur->child[word[i] - 'a']) return false;
+            cur = cur->child[word[i] - 'a'];
         }
         return cur->is_word;
     }
@@ -56,8 +56,8 @@ public:
     bool startsWith(string prefix) {
         Node* cur = root;
         for (int i = 0; i < prefix.length(); i++) {
-            if(!cur->child[prefix[i]-'a']) return false;
-            cur = cur->child[prefix[i]-'a'];
+            if (!cur->child[prefix[i] - 'a']) return false;
+            cur = cur->child[prefix[i] - 'a'];
         }
         return true;
     }

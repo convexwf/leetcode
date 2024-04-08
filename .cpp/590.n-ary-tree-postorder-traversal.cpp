@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-15 submission
 // 38/38 cases passed
-// Runtime: 59 ms, faster than 27.09% of C++ online submissions.
-// Memory Usage: 11.3 MB, less than 25.13% of C++ online submissions.
+// Runtime: 59 ms, faster than 27.09% of cpp online submissions.
+// Memory Usage: 11.3 MB, less than 25.13% of cpp online submissions.
 /*
 // Definition for a Node.
 class Node {
@@ -49,8 +49,8 @@ public:
 // @lc code=start
 // 2022-11-15 submission
 // 38/38 cases passed
-// Runtime: 69 ms, faster than 9.85% of C++ online submissions.
-// Memory Usage: 11.1 MB, less than 91.8% of C++ online submissions.
+// Runtime: 69 ms, faster than 9.85% of cpp online submissions.
+// Memory Usage: 11.1 MB, less than 91.8% of cpp online submissions.
 class Solution {
 public:
     vector<int> postorder(Node* root) {
@@ -58,7 +58,8 @@ public:
         vector<int> res;
         stack<Node*> st{{root}};
         while (!st.empty()) {
-            Node *t = st.top(); st.pop();
+            Node* t = st.top();
+            st.pop();
             res.insert(res.begin(), t->val);
             for (Node* child : t->children) {
                 if (child) st.push(child);

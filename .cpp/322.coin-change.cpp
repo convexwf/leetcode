@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-11-25 submission (动态规划)
 // 189/189 cases passed
-// Runtime: 141 ms, faster than 66.75% of C++ online submissions.
-// Memory Usage: 14.5 MB, less than 55.71% of C++ online submissions.
+// Runtime: 141 ms, faster than 66.75% of cpp online submissions.
+// Memory Usage: 14.5 MB, less than 55.71% of cpp online submissions.
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
@@ -17,7 +17,7 @@ public:
         for (int i = 1; i <= amount; i++) {
             for (int coin : coins) {
                 if (coin > i) continue;
-                dp[i] = min(dp[i], dp[i-coin] + 1);
+                dp[i] = min(dp[i], dp[i - coin] + 1);
             }
         }
         return dp[amount] > amount ? -1 : dp[amount];
@@ -28,8 +28,8 @@ public:
 // @lc code=start
 // 2020-11-25 submission (递归+记忆数组)
 // 189/189 cases passed
-// Runtime: 213 ms, faster than 35.97% of C++ online submissions.
-// Memory Usage: 15.5 MB, less than 39.04% of C++ online submissions.
+// Runtime: 213 ms, faster than 35.97% of cpp online submissions.
+// Memory Usage: 15.5 MB, less than 39.04% of cpp online submissions.
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
@@ -38,7 +38,7 @@ public:
         return coinChangeDFS(coins, amount, memo);
     }
     int coinChangeDFS(vector<int>& coins, int target, vector<int>& memo) {
-        if (target < 0) return - 1;
+        if (target < 0) return -1;
         if (memo[target] != INT_MAX) return memo[target];
         for (int i = 0; i < coins.size(); ++i) {
             int tmp = coinChangeDFS(coins, target - coins[i], memo);

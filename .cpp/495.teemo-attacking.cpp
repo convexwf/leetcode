@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 40/40 cases passed
-// Runtime: 46 ms, faster than 88.73% of C++ online submissions.
-// Memory Usage: 26 MB, less than 10.09% of C++ online submissions.
+// Runtime: 46 ms, faster than 88.73% of cpp online submissions.
+// Memory Usage: 26 MB, less than 10.09% of cpp online submissions.
 class Solution {
 public:
     int findPoisonedDuration(vector<int>& timeSeries, int duration) {

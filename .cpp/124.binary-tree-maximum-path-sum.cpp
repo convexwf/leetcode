@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-09 submission
 // 94/94 cases passed
-// Runtime: 33 ms, faster than 68.52% of C++ online submissions.
-// Memory Usage: 27.7 MB, less than 68.23% of C++ online submissions.
+// Runtime: 33 ms, faster than 68.52% of cpp online submissions.
+// Memory Usage: 27.7 MB, less than 68.23% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -29,10 +29,11 @@ public:
     }
 
     int helper(TreeNode* root, int& maxVal) {
-        if(!root) return 0;
+        if (!root) return 0;
         int left_sum = max(0, helper(root->left, maxVal));
         int right_sum = max(0, helper(root->right, maxVal));
-        // cout << "root: " << root->val << " path_sum: " << root->val + left_sum + right_sum << endl;
+        // cout << "root: " << root->val << " path_sum: " << root->val + left_sum + right_sum <<
+        // endl;
         maxVal = max(maxVal, root->val + left_sum + right_sum);
         return max(left_sum, right_sum) + root->val;
     }

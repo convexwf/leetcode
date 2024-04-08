@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 26/26 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7.5 MB, less than 28.54% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7.5 MB, less than 28.54% of cpp online submissions.
 class Solution {
 public:
     unordered_map<string, vector<string>> m;

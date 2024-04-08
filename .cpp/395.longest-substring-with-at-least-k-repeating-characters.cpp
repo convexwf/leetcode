@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-27 submission
 // 37/37 cases passed
-// Runtime: 34 ms, faster than 43.46% of C++ online submissions.
-// Memory Usage: 6.4 MB, less than 79.14% of C++ online submissions.
+// Runtime: 34 ms, faster than 43.46% of cpp online submissions.
+// Memory Usage: 6.4 MB, less than 79.14% of cpp online submissions.
 class Solution {
 public:
     int longestSubstring(string s, int k) {

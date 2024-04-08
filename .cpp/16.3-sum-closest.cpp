@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-28 submission
 // 98/98 cases passed
-// Runtime: 41 ms, faster than 93.95% of C++ online submissions.
-// Memory Usage: 10.2 MB, less than 85% of C++ online submissions.
+// Runtime: 41 ms, faster than 93.95% of cpp online submissions.
+// Memory Usage: 10.2 MB, less than 85% of cpp online submissions.
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {

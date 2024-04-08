@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 8268/8268 cases passed
-// Runtime: 24 ms, faster than 44.81% of C++ online submissions.
-// Memory Usage: 6 MB, less than 32.15% of C++ online submissions.
+// Runtime: 24 ms, faster than 44.81% of cpp online submissions.
+// Memory Usage: 6 MB, less than 32.15% of cpp online submissions.
 class Solution {
 public:
     int rangeBitwiseAnd(int m, int n) {

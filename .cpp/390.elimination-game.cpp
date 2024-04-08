@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-12-06 submission
 // 3377/3377 cases passed
-// Runtime: 3 ms, faster than 89.89% of C++ online submissions.
-// Memory Usage: 6 MB, less than 47.1% of C++ online submissions.
+// Runtime: 3 ms, faster than 89.89% of cpp online submissions.
+// Memory Usage: 6 MB, less than 47.1% of cpp online submissions.
 class Solution {
 public:
     int lastRemaining(int n) {
@@ -28,8 +28,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 3377/3377 cases passed
-// Runtime: 7 ms, faster than 60.05% of C++ online submissions.
-// Memory Usage: 6 MB, less than 7.77% of C++ online submissions.
+// Runtime: 7 ms, faster than 60.05% of cpp online submissions.
+// Memory Usage: 6 MB, less than 7.77% of cpp online submissions.
 class Solution {
 public:
     int lastRemaining(int n) {

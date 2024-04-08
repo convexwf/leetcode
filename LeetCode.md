@@ -507,35 +507,6 @@ public:
 };
 ```
 
-## 32. Longest Valid Parentheses
-
-解题思路
-
-1. 题目描述：求最长有效括号的长度
-2. 动态规划，每个位置存 包括当前位置的有效最长长度。如果当前位置是 ')'，检查前一位的最长长度 k，检查当前位置减去 k+1 的位置是否为 '('，当前位置为 k+2，并且还要加上减去 k+2 的位置的最长长度
-
-```C++
-// 2021-04-03 submission
-// ?/? cases passed
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions.
-// Memory Usage: 7.4 MB, less than 21.88% of C++ online submissions.
-class Solution {
-public:
-    int longestValidParentheses(string s) {
-        int res = 0;
-        vector<int> vec(s.length()+1, 0);
-        for(int i = 1; i <= s.length(); i++) {
-            if(s[i-1] == ')' && i-1-vec[i-1]-1 >= 0 && s[i-1-vec[i-1]-1] == '(') {
-                vec[i] = vec[i-1] + 2;
-                vec[i] += vec[i-vec[i]];
-                res = max(res, vec[i]);
-            }
-        }
-        return res;
-    }
-};
-```
-
 ## 42. Trapping Rain Water
 
 解题思路

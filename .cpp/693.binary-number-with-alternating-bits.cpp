@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-17 submission
 // 204/204 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 69.74% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 69.74% of cpp online submissions.
 class Solution {
 public:
     bool hasAlternatingBits(int n) {
@@ -25,8 +25,8 @@ public:
 // @lc code=start
 // 2021-12-23 submission
 // 204/204 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 62.97% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 62.97% of cpp online submissions.
 class Solution {
 public:
     bool hasAlternatingBits(int n) {
@@ -39,8 +39,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 204/204 cases passed
-// Runtime: 3 ms, faster than 39.85% of C++ online submissions.
-// Memory Usage: 6 MB, less than 28.41% of C++ online submissions.
+// Runtime: 3 ms, faster than 39.85% of cpp online submissions.
+// Memory Usage: 6 MB, less than 28.41% of cpp online submissions.
 class Solution {
 public:
     bool hasAlternatingBits(int n) {

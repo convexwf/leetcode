@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-10 submission
 // 20/20 cases passed
-// Runtime: 4 ms, faster than 98.71% of C++ online submissions.
-// Memory Usage: 11.9 MB, less than 89.14% of C++ online submissions.
+// Runtime: 4 ms, faster than 98.71% of cpp online submissions.
+// Memory Usage: 11.9 MB, less than 89.14% of cpp online submissions.
 class Solution {
 public:
     int evalRPN(vector<string>& tokens) {
@@ -18,12 +18,18 @@ public:
                 stk.push(stoi(token));
             }
             else {
-                int b = stk.top(); stk.pop();
-                int a = stk.top(); stk.pop();
-                if (token == "+") stk.push(a + b);
-                else if (token == "-") stk.push(a - b);
-                else if (token == "*") stk.push(a * b);
-                else stk.push(a / b);
+                int b = stk.top();
+                stk.pop();
+                int a = stk.top();
+                stk.pop();
+                if (token == "+")
+                    stk.push(a + b);
+                else if (token == "-")
+                    stk.push(a - b);
+                else if (token == "*")
+                    stk.push(a * b);
+                else
+                    stk.push(a / b);
             }
         }
         return stk.top();
@@ -34,8 +40,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 21/21 cases passed
-// Runtime: 14 ms, faster than 51.5% of C++ online submissions.
-// Memory Usage: 13.3 MB, less than 5.24% of C++ online submissions.
+// Runtime: 14 ms, faster than 51.5% of cpp online submissions.
+// Memory Usage: 13.3 MB, less than 5.24% of cpp online submissions.
 class Solution {
 public:
     int evalRPN(vector<string>& tokens) {

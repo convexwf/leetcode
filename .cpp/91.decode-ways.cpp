@@ -8,8 +8,8 @@
 // 1. 动态规划
 // 2023-02-02 submission
 // 269/269 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.2 MB, less than 77.39% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.2 MB, less than 77.39% of cpp online submissions.
 class Solution {
 public:
     int numDecodings(string s) {
@@ -31,8 +31,8 @@ public:
 // 2. 动态规划+优化空间
 // 2023-02-02 submission
 // 269/269 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.2 MB, less than 77.39% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.2 MB, less than 77.39% of cpp online submissions.
 class Solution {
 public:
     int numDecodings(string s) {

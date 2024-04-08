@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 22/22 cases passed
-// Runtime: 39 ms, faster than 53.37% of C++ online submissions.
-// Memory Usage: 24.1 MB, less than 51.99% of C++ online submissions.
+// Runtime: 39 ms, faster than 53.37% of cpp online submissions.
+// Memory Usage: 24.1 MB, less than 51.99% of cpp online submissions.
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {

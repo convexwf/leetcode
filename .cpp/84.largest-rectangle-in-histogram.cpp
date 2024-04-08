@@ -8,7 +8,7 @@
 // TLE
 class Solution {
 public:
-    int largestRectangleArea(vector<int> &height) {
+    int largestRectangleArea(vector<int>& height) {
         int res = 0;
         for (int i = 0; i < height.size(); ++i) {
             if (i + 1 < height.size() && height[i] <= height[i + 1]) {
@@ -29,8 +29,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 98/98 cases passed
-// Runtime: 302 ms, faster than 72.31% of C++ online submissions.
-// Memory Usage: 75.3 MB, less than 91.47% of C++ online submissions.
+// Runtime: 302 ms, faster than 72.31% of cpp online submissions.
+// Memory Usage: 75.3 MB, less than 91.47% of cpp online submissions.
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
@@ -39,7 +39,8 @@ public:
         heights.push_back(0);
         for (int i = 0; i < heights.size(); ++i) {
             while (!st.empty() && heights[st.top()] >= heights[i]) {
-                int cur = st.top(); st.pop();
+                int cur = st.top();
+                st.pop();
                 res = max(res, heights[cur] * (st.empty() ? i : (i - st.top() - 1)));
             }
             st.push(i);

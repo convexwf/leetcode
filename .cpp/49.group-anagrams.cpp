@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-21 submission
 // 117/117 cases passed
-// Runtime: 35 ms, faster than 92.92% of C++ online submissions.
-// Memory Usage: 18.3 MB, less than 95% of C++ online submissions.
+// Runtime: 35 ms, faster than 92.92% of cpp online submissions.
+// Memory Usage: 18.3 MB, less than 95% of cpp online submissions.
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
@@ -31,8 +31,8 @@ public:
 // @lc code=start
 // 2022-07-21 submission
 // 117/117 cases passed
-// Runtime: 106 ms, faster than 12.38% of C++ online submissions.
-// Memory Usage: 24.9 MB, less than 12.89% of C++ online submissions.
+// Runtime: 106 ms, faster than 12.38% of cpp online submissions.
+// Memory Usage: 24.9 MB, less than 12.89% of cpp online submissions.
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {

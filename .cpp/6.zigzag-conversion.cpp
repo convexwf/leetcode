@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 1157/1157 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 8.3 MB, less than 70.99% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 8.3 MB, less than 70.99% of cpp online submissions.
 class Solution {
 public:
     string convert(string s, int numRows) {

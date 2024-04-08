@@ -9,7 +9,7 @@
 // 2022-06-03 submission
 // 1568/1568 cases passed
 // Runtime: 15 ms, faster than 91.25% of cpp online submissions.
-// Memory Usage: 71.5 MB, less than 12.13% of C++ online submissions.
+// Memory Usage: 71.5 MB, less than 12.13% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {

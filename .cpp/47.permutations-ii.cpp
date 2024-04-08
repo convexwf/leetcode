@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-28 submission
 // 33/33 cases passed
-// Runtime: 6 ms, faster than 83.27% of C++ online submissions.
-// Memory Usage: 8.4 MB, less than 88.88% of C++ online submissions.
+// Runtime: 6 ms, faster than 83.27% of cpp online submissions.
+// Memory Usage: 8.4 MB, less than 88.88% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> permuteUnique(vector<int>& nums) {

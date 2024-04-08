@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-10-28 submission (位操作)
 // 58/58 cases passed
-// Runtime: 220 ms, faster than 29.66% of C++ online submissions.
-// Memory Usage: 61.4 MB, less than 34.96% of C++ online submissions.
+// Runtime: 220 ms, faster than 29.66% of cpp online submissions.
+// Memory Usage: 61.4 MB, less than 34.96% of cpp online submissions.
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
@@ -29,8 +29,8 @@ public:
 // @lc code=start
 // 2020-10-28 submission (快慢指针)
 // 58/58 cases passed
-// Runtime: 106 ms, faster than 93.04% of C++ online submissions.
-// Memory Usage: 61.3 MB, less than 68.19% of C++ online submissions.
+// Runtime: 106 ms, faster than 93.04% of cpp online submissions.
+// Memory Usage: 61.3 MB, less than 68.19% of cpp online submissions.
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {

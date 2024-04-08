@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-27 submission
 // 22/22 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7 MB, less than 57.21% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7 MB, less than 57.21% of cpp online submissions.
 class MyQueue {
 public:
     MyQueue() {

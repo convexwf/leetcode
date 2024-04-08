@@ -8,12 +8,13 @@
 // @lc code=start
 // 2022-08-26 submission
 // 21/21 cases passed
-// Runtime: 483 ms, faster than 61.29% of C++ online submissions.
-// Memory Usage: 117.1 MB, less than 65.81% of C++ online submissions.
+// Runtime: 483 ms, faster than 61.29% of cpp online submissions.
+// Memory Usage: 117.1 MB, less than 65.81% of cpp online submissions.
 class MedianFinder {
 public:
     /** initialize your data structure here. */
-    MedianFinder() {}
+    MedianFinder() {
+    }
 
     void addNum(int num) {
         if ((small.size() + big.size()) % 2 == 0) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-11-13 submission
 // 9/9 cases passed
-// Runtime: 3 ms, faster than 46.29% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 85.86% of C++ online submissions.
+// Runtime: 3 ms, faster than 46.29% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 85.86% of cpp online submissions.
 class Solution {
 public:
     int countNumbersWithUniqueDigits(int n) {
@@ -36,8 +36,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 9/9 cases passed
-// Runtime: 86 ms, faster than 5.47% of C++ online submissions.
-// Memory Usage: 6.2 MB, less than 15.85% of C++ online submissions.
+// Runtime: 86 ms, faster than 5.47% of cpp online submissions.
+// Memory Usage: 6.2 MB, less than 15.85% of cpp online submissions.
 class Solution {
 public:
     int countNumbersWithUniqueDigits(int n) {
@@ -51,8 +51,10 @@ public:
     }
     int search(int pre, int max, int used) {
         int res = 0;
-        if (pre < max) ++res;
-        else return res;
+        if (pre < max)
+            ++res;
+        else
+            return res;
         for (int i = 0; i < 10; ++i) {
             if (!(used & (1 << i))) {
                 used |= (1 << i);

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 39/39 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 93.88% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 93.88% of cpp online submissions.
 class Solution {
 public:
     int nextGreaterElement(int n) {

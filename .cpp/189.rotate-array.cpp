@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-17 submission
 // 38/38 cases passed
-// Runtime: 78 ms, faster than 38.13% of C++ online submissions.
-// Memory Usage: 25 MB, less than 84.71% of C++ online submissions.
+// Runtime: 78 ms, faster than 38.13% of cpp online submissions.
+// Memory Usage: 25 MB, less than 84.71% of cpp online submissions.
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
@@ -39,16 +39,16 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 38/38 cases passed
-// Runtime: 52 ms, faster than 70.88% of C++ online submissions.
-// Memory Usage: 25 MB, less than 84.71% of C++ online submissions.
+// Runtime: 52 ms, faster than 70.88% of cpp online submissions.
+// Memory Usage: 25 MB, less than 84.71% of cpp online submissions.
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
-        if(nums.empty()) return;
+        if (nums.empty()) return;
         int n = nums.size();
         k = k % n;
-        reverse(nums.begin(), nums.begin()+n-k);
-        reverse(nums.begin()+n-k, nums.end());
+        reverse(nums.begin(), nums.begin() + n - k);
+        reverse(nums.begin() + n - k, nums.end());
         reverse(nums.begin(), nums.end());
     }
 };
@@ -61,8 +61,8 @@ public:
 // @lc code=start
 // 2022-11-17 submission
 // 38/38 cases passed
-// Runtime: 100 ms, faster than 6.05% of C++ online submissions.
-// Memory Usage: 25.1 MB, less than 60.15% of C++ online submissions.
+// Runtime: 100 ms, faster than 6.05% of cpp online submissions.
+// Memory Usage: 25.1 MB, less than 60.15% of cpp online submissions.
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {

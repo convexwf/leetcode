@@ -7,8 +7,8 @@
 // @lc code=start
 // 2021-12-16 submission
 // 480/480 cases passed
-// Runtime: 8 ms, faster than 70.15% of C++ online submissions.
-// Memory Usage: 8 MB, less than 38.59% of C++ online submissions.
+// Runtime: 8 ms, faster than 70.15% of cpp online submissions.
+// Memory Usage: 8 MB, less than 38.59% of cpp online submissions.
 class Solution {
 public:
     string reverseVowels(string s) {

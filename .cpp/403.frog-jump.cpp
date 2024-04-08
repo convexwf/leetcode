@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-03-12 submission
 // 52/52 cases passed
-// Runtime: 161 ms, faster than 67.85% of C++ online submissions.
-// Memory Usage: 24.8 MB, less than 79.23% of C++ online submissions.
+// Runtime: 161 ms, faster than 67.85% of cpp online submissions.
+// Memory Usage: 24.8 MB, less than 79.23% of cpp online submissions.
 class Solution {
 public:
     unordered_map<string, bool> m;

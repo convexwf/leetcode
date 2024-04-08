@@ -7,8 +7,8 @@
 // @lc code=start
 // 2021-03-18 submission
 // 93/93 cases passed
-// Runtime: 18 ms, faster than 75.34% of C++ online submissions.
-// Memory Usage: 24.1 MB, less than 90.26% of C++ online submissions.
+// Runtime: 18 ms, faster than 75.34% of cpp online submissions.
+// Memory Usage: 24.1 MB, less than 90.26% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -39,15 +39,16 @@ public:
 // @lc code=start
 // 2023-02-10 submission
 // 93/93 cases passed
-// Runtime: 18 ms, faster than 75.34% of C++ online submissions.
-// Memory Usage: 24.2 MB, less than 66.94% of C++ online submissions.
+// Runtime: 18 ms, faster than 75.34% of cpp online submissions.
+// Memory Usage: 24.2 MB, less than 66.94% of cpp online submissions.
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
         int cnt = count(root->left);
         if (k <= cnt) {
             return kthSmallest(root->left, k);
-        } else if (k > cnt + 1) {
+        }
+        else if (k > cnt + 1) {
             return kthSmallest(root->right, k - cnt - 1);
         }
         return root->val;
@@ -63,21 +64,23 @@ public:
 // Follow up
 // 2023-02-10 submission
 // 93/93 cases passed
-// Runtime: 31 ms, faster than 18.9% of C++ online submissions.
-// Memory Usage: 27.2 MB, less than 5.96% of C++ online submissions.
+// Runtime: 31 ms, faster than 18.9% of cpp online submissions.
+// Memory Usage: 27.2 MB, less than 5.96% of cpp online submissions.
 class Solution {
 public:
-    struct MyTreeNode {
+    struct MyTreeNode
+    {
         int val;
         int count;
-        MyTreeNode *left;
-        MyTreeNode *right;
-        MyTreeNode(int x) : val(x), count(1), left(NULL), right(NULL) {}
+        MyTreeNode* left;
+        MyTreeNode* right;
+        MyTreeNode(int x) : val(x), count(1), left(NULL), right(NULL) {
+        }
     };
 
     MyTreeNode* build(TreeNode* root) {
         if (!root) return NULL;
-        MyTreeNode *node = new MyTreeNode(root->val);
+        MyTreeNode* node = new MyTreeNode(root->val);
         node->left = build(root->left);
         node->right = build(root->right);
         if (node->left) node->count += node->left->count;
@@ -86,7 +89,7 @@ public:
     }
 
     int kthSmallest(TreeNode* root, int k) {
-        MyTreeNode *node = build(root);
+        MyTreeNode* node = build(root);
         return helper(node, k);
     }
 
@@ -95,11 +98,13 @@ public:
             int cnt = node->left->count;
             if (k <= cnt) {
                 return helper(node->left, k);
-            } else if (k > cnt + 1) {
+            }
+            else if (k > cnt + 1) {
                 return helper(node->right, k - 1 - cnt);
             }
             return node->val;
-        } else {
+        }
+        else {
             if (k == 1) return node->val;
             return helper(node->right, k - 1);
         }

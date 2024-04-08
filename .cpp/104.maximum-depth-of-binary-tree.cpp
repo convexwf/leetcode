@@ -7,8 +7,8 @@
 // @lc code=start
 // 2018-07-21 submission
 // 39/39 cases passed
-// Runtime: 12 ms, faster than 62.87% of C++ online submissions.
-// Memory Usage: 18.9 MB, less than 60.49% of C++ online submissions.
+// Runtime: 12 ms, faster than 62.87% of cpp online submissions.
+// Memory Usage: 18.9 MB, less than 60.49% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -23,7 +23,7 @@
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        if(!root) return 0;
+        if (!root) return 0;
         return 1 + max(maxDepth(root->left), maxDepth(root->right));
     }
 };
@@ -32,8 +32,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 39/39 cases passed
-// Runtime: 16 ms, faster than 39.43% of C++ online submissions.
-// Memory Usage: 18.9 MB, less than 60.49% of C++ online submissions.
+// Runtime: 16 ms, faster than 39.43% of cpp online submissions.
+// Memory Usage: 18.9 MB, less than 60.49% of cpp online submissions.
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
@@ -43,7 +43,8 @@ public:
         while (!q.empty()) {
             ++res;
             for (int i = q.size(); i > 0; --i) {
-                TreeNode *t = q.front(); q.pop();
+                TreeNode* t = q.front();
+                q.pop();
                 if (t->left) q.push(t->left);
                 if (t->right) q.push(t->right);
             }

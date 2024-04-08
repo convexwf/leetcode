@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-27 submission
 // 45/45 cases passed
-// Runtime: 4 ms, faster than 22.52% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 83.64% of C++ online submissions.
+// Runtime: 4 ms, faster than 22.52% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 83.64% of cpp online submissions.
 class Solution {
 public:
     int climbStairs(int n) {

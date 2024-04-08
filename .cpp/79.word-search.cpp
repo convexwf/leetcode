@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-09 submission
 // 85/85 cases passed
-// Runtime: 1188 ms, faster than 19.42% of C++ online submissions.
-// Memory Usage: 8.1 MB, less than 23.51% of C++ online submissions.
+// Runtime: 1188 ms, faster than 19.42% of cpp online submissions.
+// Memory Usage: 8.1 MB, less than 23.51% of cpp online submissions.
 class Solution {
 public:
     bool exist(vector<vector<char>>& board, string word) {
@@ -22,15 +22,17 @@ public:
         }
         return false;
     }
-    bool search(vector<vector<char>>& board, string word, int idx, int i, int j, vector<vector<bool>>& visited) {
+    bool search(vector<vector<char>>& board, string word, int idx, int i, int j,
+                vector<vector<bool>>& visited) {
         if (idx == word.size()) return true;
         int m = board.size(), n = board[0].size();
-        if (i < 0 || j < 0 || i >= m || j >= n || visited[i][j] || board[i][j] != word[idx]) return false;
+        if (i < 0 || j < 0 || i >= m || j >= n || visited[i][j] || board[i][j] != word[idx])
+            return false;
         visited[i][j] = true;
-        bool res = search(board, word, idx + 1, i - 1, j, visited)
-                 || search(board, word, idx + 1, i + 1, j, visited)
-                 || search(board, word, idx + 1, i, j - 1, visited)
-                 || search(board, word, idx + 1, i, j + 1, visited);
+        bool res = search(board, word, idx + 1, i - 1, j, visited) ||
+                   search(board, word, idx + 1, i + 1, j, visited) ||
+                   search(board, word, idx + 1, i, j - 1, visited) ||
+                   search(board, word, idx + 1, i, j + 1, visited);
         visited[i][j] = false;
         return res;
     }

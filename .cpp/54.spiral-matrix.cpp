@@ -5,10 +5,11 @@
  */
 
 // @lc code=start
+// 1. 模拟-从外向内逐层打印
 // 2022-07-20 submission
 // 23/23 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 7 MB, less than 30.15% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7 MB, less than 30.15% of cpp online submissions.
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
@@ -40,10 +41,11 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 迷宫遍历-访问数组
 // 2022-07-20 submission
 // 23/23 cases passed
-// Runtime: 5 ms, faster than 15.91% of C++ online submissions.
-// Memory Usage: 7 MB, less than 30.15% of C++ online submissions.
+// Runtime: 5 ms, faster than 15.91% of cpp online submissions.
+// Memory Usage: 7 MB, less than 30.15% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> direction{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
@@ -70,10 +72,11 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 迷宫遍历优化
 // 2022-07-20 submission
 // 23/23 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.8 MB, less than 91.91% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.8 MB, less than 91.91% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> direction{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};

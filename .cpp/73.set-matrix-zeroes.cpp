@@ -38,8 +38,8 @@ public:
 // 2. 原地标记
 // 2022-07-28 submission
 // 164/164 cases passed
-// Runtime: 16 ms, faster than 82.83% of C++ online submissions.
-// Memory Usage: 13 MB, less than 99.92% of C++ online submissions.
+// Runtime: 16 ms, faster than 82.83% of cpp online submissions.
+// Memory Usage: 13 MB, less than 99.92% of cpp online submissions.
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {

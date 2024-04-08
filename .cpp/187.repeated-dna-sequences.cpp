@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-09-18 submission
 // 31/31 cases passed
-// Runtime: 99 ms, faster than 70.8% of C++ online submissions.
-// Memory Usage: 15.7 MB, less than 94.93% of C++ online submissions.
+// Runtime: 99 ms, faster than 70.8% of cpp online submissions.
+// Memory Usage: 15.7 MB, less than 94.93% of cpp online submissions.
 class Solution {
 public:
     vector<string> findRepeatedDnaSequences(string s) {
@@ -21,8 +21,10 @@ public:
         }
         for (int i = 9; i < s.length(); i++) {
             cur = (cur & 0x0003ffff) << 2 | dna[s[i]]; // 每次只保留 20-2=18 位，再加上后来的2位
-            if (hash_set.count(cur)) res.insert(s.substr(i-9, 10));
-            else hash_set.insert(cur);
+            if (hash_set.count(cur))
+                res.insert(s.substr(i - 9, 10));
+            else
+                hash_set.insert(cur);
         }
         return vector<string>(res.begin(), res.end());
     }

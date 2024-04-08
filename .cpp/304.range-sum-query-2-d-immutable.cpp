@@ -7,11 +7,11 @@
 // @lc code=start
 // 2023-01-14 submission
 // 22/22 cases passed
-// Runtime: 423 ms, faster than 84.52% of C++ online submissions.
-// Memory Usage: 142.6 MB, less than 22.14% of C++ online submissions.
+// Runtime: 423 ms, faster than 84.52% of cpp online submissions.
+// Memory Usage: 142.6 MB, less than 22.14% of cpp online submissions.
 class NumMatrix {
 public:
-    NumMatrix(vector<vector<int> > &matrix) {
+    NumMatrix(vector<vector<int>> &matrix) {
         if (matrix.empty() || matrix[0].empty()) return;
         dp.resize(matrix.size() + 1, vector<int>(matrix[0].size() + 1, 0));
         for (int i = 1; i <= matrix.size(); ++i) {
@@ -25,7 +25,7 @@ public:
     }
 
 private:
-    vector<vector<int> > dp;
+    vector<vector<int>> dp;
 };
 
 /**

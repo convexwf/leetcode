@@ -7,12 +7,12 @@
 // @lc code=start
 // 2020-07-17 submission
 // 267/267 cases passed
-// Runtime: 3 ms, faster than 99.69% of C++ online submissions.
-// Memory Usage: 7.8 MB, less than 95.59% of C++ online submissions.
+// Runtime: 3 ms, faster than 99.69% of cpp online submissions.
+// Memory Usage: 7.8 MB, less than 95.59% of cpp online submissions.
 class Solution {
 public:
     string minWindow(string s, string t) {
-        if(t.empty() || s.length() < t.length()) return "";
+        if (t.empty() || s.length() < t.length()) return "";
 
         int freq[256] = {0};
         for (char c : t) {

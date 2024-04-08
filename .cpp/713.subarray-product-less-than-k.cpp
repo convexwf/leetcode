@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-12 submission
 // 97/97 cases passed
-// Runtime: 141 ms, faster than 42.25% of C++ online submissions.
-// Memory Usage: 61.1 MB, less than 93.31% of C++ online submissions.
+// Runtime: 141 ms, faster than 42.25% of cpp online submissions.
+// Memory Usage: 61.1 MB, less than 93.31% of cpp online submissions.
 class Solution {
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {

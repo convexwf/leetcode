@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-09 submission
 // 69/69 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 8.4 MB, less than 80.1% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 8.4 MB, less than 80.1% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -40,21 +40,23 @@ public:
 // @lc code=start
 // 2023-02-09 submission
 // 69/69 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 8.4 MB, less than 50.42% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 8.4 MB, less than 50.42% of cpp online submissions.
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> res;
         stack<TreeNode*> st;
-        TreeNode *p = root;
+        TreeNode* p = root;
         while (!st.empty() || p) {
             if (p) {
                 st.push(p);
                 res.push_back(p->val);
                 p = p->left;
-            } else {
-                p = st.top(); st.pop();
+            }
+            else {
+                p = st.top();
+                st.pop();
                 p = p->right;
             }
         }
@@ -66,37 +68,31 @@ public:
 // @lc code=start
 // 2023-02-09 submission
 // 69/69 cases passed
-// Runtime: 6 ms, faster than 21.19% of C++ online submissions.
-// Memory Usage: 8.4 MB, less than 50.42% of C++ online submissions.
+// Runtime: 6 ms, faster than 21.19% of cpp online submissions.
+// Memory Usage: 8.4 MB, less than 50.42% of cpp online submissions.
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> data = {};
         TreeNode* cur = root;
         TreeNode* pre = NULL;
-        while (cur)
-        {
-            if (cur->left == NULL)
-            {
+        while (cur) {
+            if (cur->left == NULL) {
                 data.push_back(cur->val);
                 cur = cur->right;
             }
-            else
-            {
+            else {
                 // 寻找前驱结点
                 pre = cur->left;
-                while (pre->right != cur && pre->right)
-                {
+                while (pre->right != cur && pre->right) {
                     pre = pre->right;
                 }
-                if (pre->right == NULL)
-                {
+                if (pre->right == NULL) {
                     data.push_back(cur->val);
                     pre->right = cur;
                     cur = cur->left;
                 }
-                else
-                {
+                else {
                     cur = cur->right;
                     pre->right = NULL;
                 }

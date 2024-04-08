@@ -38,8 +38,8 @@ public:
 // 2. 快慢指针
 // 2022-08-02 submission
 // 21/21 cases passed
-// Runtime: 12 ms, faster than 78.06% of C++ online submissions.
-// Memory Usage: 8.1 MB, less than 17.02% of C++ online submissions.
+// Runtime: 12 ms, faster than 78.06% of cpp online submissions.
+// Memory Usage: 8.1 MB, less than 17.02% of cpp online submissions.
 class Solution {
 public:
     bool hasCycle(ListNode *head) {

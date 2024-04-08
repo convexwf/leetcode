@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-12-18 submission
 // 132/132 cases passed
-// Runtime: 304 ms, faster than 70.29% of C++ online submissions.
-// Memory Usage: 24.2 MB, less than 95.67% of C++ online submissions.
+// Runtime: 304 ms, faster than 70.29% of cpp online submissions.
+// Memory Usage: 24.2 MB, less than 95.67% of cpp online submissions.
 class Solution {
 public:
     int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {

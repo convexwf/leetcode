@@ -36,8 +36,8 @@ public:
 // 2. 两次遍历+优化
 // 2022-07-30 submission
 // 48/48 cases passed
-// Runtime: 37 ms, faster than 46.94% of C++ online submissions.
-// Memory Usage: 17.7 MB, less than 59.74% of C++ online submissions.
+// Runtime: 37 ms, faster than 46.94% of cpp online submissions.
+// Memory Usage: 17.7 MB, less than 59.74% of cpp online submissions.
 class Solution {
 public:
     int candy(vector<int>& ratings) {

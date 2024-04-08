@@ -7,11 +7,12 @@
 // @lc code=start
 // 2020-12-01 submission
 // 29/29 cases passed
-// Runtime: 889 ms, faster than 95.07% of C++ online submissions.
-// Memory Usage: 558.4 MB, less than 75.25% of C++ online submissions.
+// Runtime: 889 ms, faster than 95.07% of cpp online submissions.
+// Memory Usage: 558.4 MB, less than 75.25% of cpp online submissions.
 class WordDictionary {
 public:
-    struct TrieNode {
+    struct TrieNode
+    {
     public:
         TrieNode *child[26];
         bool isWord;
@@ -48,7 +49,8 @@ public:
                 if (a && searchWord(word, a, i + 1)) return true;
             }
             return false;
-        } else {
+        }
+        else {
             return p->child[word[i] - 'a'] && searchWord(word, p->child[word[i] - 'a'], i + 1);
         }
     }

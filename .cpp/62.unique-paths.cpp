@@ -8,8 +8,8 @@
 // 1. 动态规划
 // 2022-07-20 submission
 // 63/63 cases passed
-// Runtime: 4 ms, faster than 28.4% of C++ online submissions.
-// Memory Usage: 6.1 MB, less than 57.4% of C++ online submissions.
+// Runtime: 4 ms, faster than 28.4% of cpp online submissions.
+// Memory Usage: 6.1 MB, less than 57.4% of cpp online submissions.
 class Solution {
 public:
     int uniquePaths(int m, int n) {
@@ -28,8 +28,8 @@ public:
 // 2. 组合数学
 // 2022-07-20 submission
 // 63/63 cases passed
-// Runtime: 3 ms, faster than 44.06% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 90.25% of C++ online submissions.
+// Runtime: 3 ms, faster than 44.06% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 90.25% of cpp online submissions.
 class Solution {
 public:
     int uniquePaths(int m, int n) {

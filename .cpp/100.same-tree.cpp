@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-23 submission
 // 60/60 cases passed
-// Runtime: 3 ms, faster than 66.91% of C++ online submissions.
-// Memory Usage: 10 MB, less than 44.28% of C++ online submissions.
+// Runtime: 3 ms, faster than 66.91% of cpp online submissions.
+// Memory Usage: 10 MB, less than 44.28% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -22,7 +22,7 @@
  */
 class Solution {
 public:
-    bool isSameTree(TreeNode *p, TreeNode *q) {
+    bool isSameTree(TreeNode* p, TreeNode* q) {
         if (!p && !q) return true;
         if ((p && !q) || (!p && q) || (p->val != q->val)) return false;
         return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
@@ -33,8 +33,8 @@ public:
 // @lc code=start
 // 2022-07-23 submission
 // 60/60 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 10.1 MB, less than 7% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 10.1 MB, less than 7% of cpp online submissions.
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
@@ -61,8 +61,8 @@ public:
 // @lc code=start
 // 2022-07-23 submission
 // 60/60 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 10 MB, less than 78% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 10 MB, less than 78% of cpp online submissions.
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {

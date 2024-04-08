@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-19 submission
 // 124/124 cases passed
-// Runtime: 25 ms, faster than 64.34% of C++ online submissions.
-// Memory Usage: 20.3 MB, less than 69.14% of C++ online submissions.
+// Runtime: 25 ms, faster than 64.34% of cpp online submissions.
+// Memory Usage: 20.3 MB, less than 69.14% of cpp online submissions.
 class Solution {
 public:
     bool canPlaceFlowers(vector<int>& flowerbed, int n) {
@@ -17,7 +17,8 @@ public:
         if (flowerbed.back() == 0) flowerbed.push_back(0);
         int len = flowerbed.size(), cnt = 0, sum = 0;
         for (int i = 0; i <= len; ++i) {
-            if (i < len && flowerbed[i] == 0) ++cnt;
+            if (i < len && flowerbed[i] == 0)
+                ++cnt;
             else {
                 sum += (cnt - 1) / 2;
                 cnt = 0;
@@ -31,8 +32,8 @@ public:
 // @lc code=start
 // 2022-08-19 submission
 // 124/124 cases passed
-// Runtime: 29 ms, faster than 49.42% of C++ online submissions.
-// Memory Usage: 20.4 MB, less than 22.03% of C++ online submissions.
+// Runtime: 29 ms, faster than 49.42% of cpp online submissions.
+// Memory Usage: 20.4 MB, less than 22.03% of cpp online submissions.
 class Solution {
 public:
     bool canPlaceFlowers(vector<int>& flowerbed, int n) {

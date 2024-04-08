@@ -8,8 +8,8 @@
 // 1. 栈+字符串分割
 // 2022-07-27 submission
 // 257/257 cases passed
-// Runtime: 19 ms, faster than 11.64% of C++ online submissions.
-// Memory Usage: 9.6 MB, less than 60.38% of C++ online submissions.
+// Runtime: 19 ms, faster than 11.64% of cpp online submissions.
+// Memory Usage: 9.6 MB, less than 60.38% of cpp online submissions.
 class Solution {
 public:
     string simplifyPath(string path) {

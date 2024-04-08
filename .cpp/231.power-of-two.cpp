@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-27 submission
 // 1108/1108 cases passed
-// Runtime: 3 ms, faster than 59.97% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 26.88% of C++ online submissions.
+// Runtime: 3 ms, faster than 59.97% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 26.88% of cpp online submissions.
 class Solution {
 public:
     bool isPowerOfTwo(int n) {

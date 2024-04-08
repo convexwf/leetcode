@@ -8,8 +8,8 @@
 // 1. 栈
 // 2022-07-19 submission
 // 92/92 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.2 MB, less than 95.98% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.2 MB, less than 95.98% of cpp online submissions.
 class Solution {
 public:
     bool isValid(string s) {

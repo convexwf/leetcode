@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-07-14 submission
 // 156/156 cases passed
-// Runtime: 7 ms, faster than 99.44% of C++ online submissions.
-// Memory Usage: 17.1 MB, less than 78.6% of C++ online submissions.
+// Runtime: 7 ms, faster than 99.44% of cpp online submissions.
+// Memory Usage: 17.1 MB, less than 78.6% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
@@ -17,10 +17,11 @@ public:
 
         int cur = 0;
         int cnt = intervals.size();
-        while(cur < cnt) {
+        while (cur < cnt) {
             if (intervals[cur][1] < newInterval[0])
                 res.push_back(intervals[cur++]);
-            else break;
+            else
+                break;
         }
 
         vector<int> temp_interval(newInterval.begin(), newInterval.end());
@@ -35,7 +36,7 @@ public:
         }
         res.push_back(temp_interval);
 
-        while(cur < cnt) {
+        while (cur < cnt) {
             res.push_back(intervals[cur++]);
         }
         return res;
@@ -50,8 +51,8 @@ public:
 // @lc code=start
 // 2023-02-02 submission
 // 156/156 cases passed
-// Runtime: 12 ms, faster than 88.99% of C++ online submissions.
-// Memory Usage: 17.1 MB, less than 78.6% of C++ online submissions.
+// Runtime: 12 ms, faster than 88.99% of cpp online submissions.
+// Memory Usage: 17.1 MB, less than 78.6% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
@@ -61,9 +62,11 @@ public:
             if (intervals[i][1] < newInterval[0]) {
                 res.push_back(intervals[i]);
                 ++cur;
-            } else if (intervals[i][0] > newInterval[1]) {
+            }
+            else if (intervals[i][0] > newInterval[1]) {
                 res.push_back(intervals[i]);
-            } else {
+            }
+            else {
                 newInterval[0] = min(newInterval[0], intervals[i][0]);
                 newInterval[1] = max(newInterval[1], intervals[i][1]);
             }

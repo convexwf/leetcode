@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 46/46 cases passed
-// Runtime: 58 ms, faster than 89.55% of C++ online submissions.
-// Memory Usage: 19.1 MB, less than 7.69% of C++ online submissions.
+// Runtime: 58 ms, faster than 89.55% of cpp online submissions.
+// Memory Usage: 19.1 MB, less than 7.69% of cpp online submissions.
 class Solution {
 public:
     int totalHammingDistance(vector<int>& nums) {

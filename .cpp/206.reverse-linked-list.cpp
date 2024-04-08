@@ -8,8 +8,8 @@
 // 1. 迭代(头插法)
 // 2022-11-14 submission
 // 28/28 cases passed
-// Runtime: 12 ms, faster than 57.29% of C++ online submissions.
-// Memory Usage: 8.2 MB, less than 78.98% of C++ online submissions.
+// Runtime: 12 ms, faster than 57.29% of cpp online submissions.
+// Memory Usage: 8.2 MB, less than 78.98% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -39,8 +39,8 @@ public:
 // 2. 递归
 // 2022-11-14 submission
 // 28/28 cases passed
-// Runtime: 20 ms, faster than 9.16% of C++ online submissions.
-// Memory Usage: 8.4 MB, less than 18.47% of C++ online submissions.
+// Runtime: 20 ms, faster than 9.16% of cpp online submissions.
+// Memory Usage: 8.4 MB, less than 18.47% of cpp online submissions.
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-19 submission
 // 208/208 cases passed
-// Runtime: 10 ms, faster than 30.21% of C++ online submissions.
-// Memory Usage: 10.7 MB, less than 74.43% of C++ online submissions.
+// Runtime: 10 ms, faster than 30.21% of cpp online submissions.
+// Memory Usage: 10.7 MB, less than 74.43% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -26,11 +26,13 @@ public:
     }
 
     ListNode* helper(ListNode* curr, int& limit) {
-        if(!curr) return NULL;
+        if (!curr) return NULL;
         curr->next = helper(curr->next, limit);
         --limit;
-        if(limit != 0) return curr;
-        else return curr->next;
+        if (limit != 0)
+            return curr;
+        else
+            return curr->next;
     }
 };
 // @lc code=end
@@ -38,8 +40,8 @@ public:
 // @lc code=start
 // 2022-07-19 submission
 // 208/208 cases passed
-// Runtime: 14 ms, faster than 9.34% of C++ online submissions.
-// Memory Usage: 10.7 MB, less than 74.43% of C++ online submissions.
+// Runtime: 14 ms, faster than 9.34% of cpp online submissions.
+// Memory Usage: 10.7 MB, less than 74.43% of cpp online submissions.
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {

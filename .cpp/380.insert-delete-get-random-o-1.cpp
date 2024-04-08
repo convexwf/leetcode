@@ -7,11 +7,12 @@
 // @lc code=start
 // 2022-08-19 submission
 // 19/19 cases passed
-// Runtime: 344 ms, faster than 60.87% of C++ online submissions.
-// Memory Usage: 97.2 MB, less than 18.82% of C++ online submissions.
+// Runtime: 344 ms, faster than 60.87% of cpp online submissions.
+// Memory Usage: 97.2 MB, less than 18.82% of cpp online submissions.
 class RandomizedSet {
 public:
-    RandomizedSet() {}
+    RandomizedSet() {
+    }
     bool insert(int val) {
         if (m.count(val)) return false;
         nums.push_back(val);
@@ -30,6 +31,7 @@ public:
     int getRandom() {
         return nums[rand() % nums.size()];
     }
+
 private:
     vector<int> nums;
     unordered_map<int, int> m;

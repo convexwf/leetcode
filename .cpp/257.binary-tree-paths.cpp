@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 208/208 cases passed
-// Runtime: 7 ms, faster than 52.16% of C++ online submissions.
-// Memory Usage: 12.5 MB, less than 90.16% of C++ online submissions.
+// Runtime: 7 ms, faster than 52.16% of cpp online submissions.
+// Memory Usage: 12.5 MB, less than 90.16% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -38,8 +38,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 208/208 cases passed
-// Runtime: 8 ms, faster than 41.77% of C++ online submissions.
-// Memory Usage: 13.6 MB, less than 26.05% of C++ online submissions.
+// Runtime: 8 ms, faster than 41.77% of cpp online submissions.
+// Memory Usage: 13.6 MB, less than 26.05% of cpp online submissions.
 class Solution {
 public:
     vector<string> binaryTreePaths(TreeNode* root) {

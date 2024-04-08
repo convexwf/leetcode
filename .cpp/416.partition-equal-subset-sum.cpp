@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-13 submission
 // 141/141 cases passed
-// Runtime: 142 ms, faster than 87.8% of C++ online submissions.
-// Memory Usage: 9.8 MB, less than 89.85% of C++ online submissions.
+// Runtime: 142 ms, faster than 87.8% of cpp online submissions.
+// Memory Usage: 9.8 MB, less than 89.85% of cpp online submissions.
 class Solution {
 public:
     bool canPartition(vector<int>& nums) {
@@ -29,8 +29,8 @@ public:
 // @lc code=start
 // 2023-02-13 submission
 // 141/141 cases passed
-// Runtime: 16 ms, faster than 99.09% of C++ online submissions.
-// Memory Usage: 9.7 MB, less than 94.94% of C++ online submissions.
+// Runtime: 16 ms, faster than 99.09% of cpp online submissions.
+// Memory Usage: 9.7 MB, less than 94.94% of cpp online submissions.
 class Solution {
 public:
     bool canPartition(vector<int>& nums) {

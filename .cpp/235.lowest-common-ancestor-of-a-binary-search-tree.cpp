@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-26 submission
 // 28/28 cases passed
-// Runtime: 38 ms, faster than 72.28% of C++ online submissions.
-// Memory Usage: 23.3 MB, less than 13.83% of C++ online submissions.
+// Runtime: 38 ms, faster than 72.28% of cpp online submissions.
+// Memory Usage: 23.3 MB, less than 13.83% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -36,8 +36,8 @@ public:
 // @lc code=start
 // 2022-08-26 submission
 // 28/28 cases passed
-// Runtime: 70 ms, faster than 5.02% of C++ online submissions.
-// Memory Usage: 23.2 MB, less than 65.03% of C++ online submissions.
+// Runtime: 70 ms, faster than 5.02% of cpp online submissions.
+// Memory Usage: 23.2 MB, less than 65.03% of cpp online submissions.
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-12-11 submission
 // 100/100 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 13.4 MB, less than 48.73% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 13.4 MB, less than 48.73% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -37,8 +37,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 100/100 cases passed
-// Runtime: 4 ms, faster than 72.47% of C++ online submissions.
-// Memory Usage: 13.4 MB, less than 48.73% of C++ online submissions.
+// Runtime: 4 ms, faster than 72.47% of cpp online submissions.
+// Memory Usage: 13.4 MB, less than 48.73% of cpp online submissions.
 class Solution {
 public:
     int sumOfLeftLeaves(TreeNode* root) {

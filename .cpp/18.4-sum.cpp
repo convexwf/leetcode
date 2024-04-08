@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 292/292 cases passed
-// Runtime: 109 ms, faster than 55.02% of C++ online submissions.
-// Memory Usage: 13.3 MB, less than 69.93% of C++ online submissions.
+// Runtime: 109 ms, faster than 55.02% of cpp online submissions.
+// Memory Usage: 13.3 MB, less than 69.93% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
@@ -27,9 +27,13 @@ public:
                         res.push_back(out);
                         while (left < right && nums[left] == nums[left + 1]) ++left;
                         while (left < right && nums[right] == nums[right - 1]) --right;
-                        ++left; --right;
-                    } else if (sum < target) ++left;
-                    else --right;
+                        ++left;
+                        --right;
+                    }
+                    else if (sum < target)
+                        ++left;
+                    else
+                        --right;
                 }
             }
         }

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-07-04 submission
 // 994/994 cases passed
-// Runtime: 7 ms, faster than 32.77% of C++ online submissions.
-// Memory Usage: 6 MB, less than 6.93% of C++ online submissions.
+// Runtime: 7 ms, faster than 32.77% of cpp online submissions.
+// Memory Usage: 6 MB, less than 6.93% of cpp online submissions.
 class Solution {
 public:
     int divide(int dividend, int divisor) {
@@ -33,8 +33,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 994/994 cases passed
-// Runtime: 7 ms, faster than 32.77% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 49.63% of C++ online submissions.
+// Runtime: 7 ms, faster than 32.77% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 49.63% of cpp online submissions.
 class Solution {
 public:
     int divide(int dividend, int divisor) {

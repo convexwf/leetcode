@@ -8,8 +8,8 @@
 // 1. 递归
 // 2023-02-02 submission
 // 52/52 cases passed
-// Runtime: 286 ms, faster than 65.62% of C++ online submissions.
-// Memory Usage: 145 MB, less than 15.55% of C++ online submissions.
+// Runtime: 286 ms, faster than 65.62% of cpp online submissions.
+// Memory Usage: 145 MB, less than 15.55% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -36,8 +36,8 @@ public:
 // 2. 迭代(层序遍历)
 // 2023-02-02 submission
 // 52/52 cases passed
-// Runtime: 289 ms, faster than 60.45% of C++ online submissions.
-// Memory Usage: 144.7 MB, less than 54.33% of C++ online submissions.
+// Runtime: 289 ms, faster than 60.45% of cpp online submissions.
+// Memory Usage: 144.7 MB, less than 54.33% of cpp online submissions.
 class Solution {
 public:
     int minDepth(TreeNode* root) {

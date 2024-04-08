@@ -38,8 +38,8 @@ public:
 // 2. 递归回溯+空间优化
 // 2022-07-20 submission
 // 9/9 cases passed
-// Runtime: 3 ms, faster than 86.88% of C++ online submissions.
-// Memory Usage: 6.1 MB, less than 77.55% of C++ online submissions.
+// Runtime: 3 ms, faster than 86.88% of cpp online submissions.
+// Memory Usage: 6.1 MB, less than 77.55% of cpp online submissions.
 class Solution {
 public:
     int totalNQueens(int n) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-01 submission
 // 208/208 cases passed
-// Runtime: 13 ms, faster than 48.02% of C++ online submissions.
-// Memory Usage: 14.9 MB, less than 42.37% of C++ online submissions.
+// Runtime: 13 ms, faster than 48.02% of cpp online submissions.
+// Memory Usage: 14.9 MB, less than 42.37% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -27,7 +27,8 @@ public:
             if (l1->val < l2->val) {
                 cur->next = l1;
                 l1 = l1->next;
-            } else {
+            }
+            else {
                 cur->next = l2;
                 l2 = l2->next;
             }
@@ -42,8 +43,8 @@ public:
 // @lc code=start
 // 2022-08-01 submission
 // 208/208 cases passed
-// Runtime: 12 ms, faster than 56.69% of C++ online submissions.
-// Memory Usage: 14.8 MB, less than 81.4% of C++ online submissions.
+// Runtime: 12 ms, faster than 56.69% of cpp online submissions.
+// Memory Usage: 14.8 MB, less than 81.4% of cpp online submissions.
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
@@ -52,7 +53,8 @@ public:
         if (l1->val < l2->val) {
             l1->next = mergeTwoLists(l1->next, l2);
             return l1;
-        } else {
+        }
+        else {
             l2->next = mergeTwoLists(l1, l2->next);
             return l2;
         }

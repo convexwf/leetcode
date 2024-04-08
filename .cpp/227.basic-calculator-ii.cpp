@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 110/110 cases passed
-// Runtime: 22 ms, faster than 71.97% of C++ online submissions.
-// Memory Usage: 11.2 MB, less than 41.1% of C++ online submissions.
+// Runtime: 22 ms, faster than 71.97% of cpp online submissions.
+// Memory Usage: 11.2 MB, less than 41.1% of cpp online submissions.
 class Solution {
 public:
     int calculate(string s) {
@@ -43,8 +43,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 110/110 cases passed
-// Runtime: 13 ms, faster than 90.24% of C++ online submissions.
-// Memory Usage: 9.5 MB, less than 64.02% of C++ online submissions.
+// Runtime: 13 ms, faster than 90.24% of cpp online submissions.
+// Memory Usage: 9.5 MB, less than 64.02% of cpp online submissions.
 class Solution {
 public:
     int calculate(string s) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2018-09-19 submission
 // 37/37 cases passed
-// Runtime: 219 ms, faster than 26.03% of C++ online submissions.
-// Memory Usage: 69.4 MB, less than 88.54% of C++ online submissions.
+// Runtime: 219 ms, faster than 26.03% of cpp online submissions.
+// Memory Usage: 69.4 MB, less than 88.54% of cpp online submissions.
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2020-07-08 submission
 // 8/8 cases passed
-// Runtime: 23 ms, faster than 60.84% of C++ online submissions.
-// Memory Usage: 16.5 MB, less than 20.85% of C++ online submissions.
+// Runtime: 23 ms, faster than 60.84% of cpp online submissions.
+// Memory Usage: 16.5 MB, less than 20.85% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -30,12 +30,16 @@ public:
     vector<TreeNode*> helper(int left, int right) {
         vector<TreeNode*> res, left_res, right_res;
         for (int pivot = left; pivot <= right; pivot++) {
-            if (left == pivot) left_res = vector<TreeNode*>{nullptr};
-            else left_res = helper(left, pivot - 1);
-            if (right == pivot) right_res = vector<TreeNode*>{nullptr};
-            else right_res = helper(pivot + 1, right);
+            if (left == pivot)
+                left_res = vector<TreeNode*>{nullptr};
+            else
+                left_res = helper(left, pivot - 1);
+            if (right == pivot)
+                right_res = vector<TreeNode*>{nullptr};
+            else
+                right_res = helper(pivot + 1, right);
 
-            for (int i = 0; i < left_res.size()*right_res.size(); i++) {
+            for (int i = 0; i < left_res.size() * right_res.size(); i++) {
                 TreeNode* new_node = new TreeNode(pivot);
                 new_node->left = left_res[i % left_res.size()];
                 new_node->right = right_res[i / left_res.size()];
@@ -50,8 +54,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 8/8 cases passed
-// Runtime: 23 ms, faster than 60.84% of C++ online submissions.
-// Memory Usage: 12.5 MB, less than 95.51% of C++ online submissions.
+// Runtime: 23 ms, faster than 60.84% of cpp online submissions.
+// Memory Usage: 12.5 MB, less than 95.51% of cpp online submissions.
 class Solution {
 public:
     vector<TreeNode*> generateTrees(int n) {
@@ -67,7 +71,7 @@ public:
             auto left = helper(start, i - 1, memo), right = helper(i + 1, end, memo);
             for (auto a : left) {
                 for (auto b : right) {
-                    TreeNode *node = new TreeNode(i);
+                    TreeNode* node = new TreeNode(i);
                     node->left = a;
                     node->right = b;
                     res.push_back(node);

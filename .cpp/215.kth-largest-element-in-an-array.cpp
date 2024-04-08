@@ -7,12 +7,12 @@
 // @lc code=start
 // 2021-03-18 submission
 // 39/39 cases passed
-// Runtime: 120 ms, faster than 79.72% of C++ online submissions.
-// Memory Usage: 47.2 MB, less than 45.41% of C++ online submissions.
+// Runtime: 120 ms, faster than 79.72% of cpp online submissions.
+// Memory Usage: 47.2 MB, less than 45.41% of cpp online submissions.
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        priority_queue<int, vector<int>, greater<int> > q;
+        priority_queue<int, vector<int>, greater<int>> q;
         for (int i = 0; i < nums.size(); i++) {
             if (q.size() >= k) {
                 if (nums[i] > q.top()) {
@@ -20,7 +20,8 @@ public:
                     q.push(nums[i]);
                 }
             }
-            else q.push(nums[i]);
+            else
+                q.push(nums[i]);
         }
         return q.top();
     }
@@ -30,8 +31,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 39/39 cases passed
-// Runtime: 253 ms, faster than 31.73% of C++ online submissions.
-// Memory Usage: 45.4 MB, less than 88.84% of C++ online submissions.
+// Runtime: 253 ms, faster than 31.73% of cpp online submissions.
+// Memory Usage: 45.4 MB, less than 88.84% of cpp online submissions.
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
@@ -39,8 +40,10 @@ public:
         while (true) {
             int pos = partition(nums, left, right);
             if (pos == k - 1) return nums[pos];
-            if (pos > k - 1) right = pos - 1;
-            else left = pos + 1;
+            if (pos > k - 1)
+                right = pos - 1;
+            else
+                left = pos + 1;
         }
     }
     int partition(vector<int>& nums, int left, int right) {

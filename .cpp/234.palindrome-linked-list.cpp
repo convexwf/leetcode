@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 90/90 cases passed
-// Runtime: 267 ms, faster than 68.79% of C++ online submissions.
-// Memory Usage: 123.2 MB, less than 35.5% of C++ online submissions.
+// Runtime: 267 ms, faster than 68.79% of cpp online submissions.
+// Memory Usage: 123.2 MB, less than 35.5% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -22,14 +22,15 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        ListNode *cur = head;
+        ListNode* cur = head;
         stack<int> st;
         while (cur) {
             st.push(cur->val);
             cur = cur->next;
         }
         while (head) {
-            int t = st.top(); st.pop();
+            int t = st.top();
+            st.pop();
             if (head->val != t) return false;
             head = head->next;
         }
@@ -41,12 +42,12 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 90/90 cases passed
-// Runtime: 263 ms, faster than 72.06% of C++ online submissions.
-// Memory Usage: 121.2 MB, less than 39.81% of C++ online submissions.
+// Runtime: 263 ms, faster than 72.06% of cpp online submissions.
+// Memory Usage: 121.2 MB, less than 39.81% of cpp online submissions.
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        ListNode *cur = head;
+        ListNode* cur = head;
         return helper(head, cur);
     }
     bool helper(ListNode* node, ListNode*& cur) {
@@ -61,18 +62,20 @@ public:
 // @lc code=start
 // 2020-12-05 submission
 // 90/90 cases passed
-// Runtime: 247 ms, faster than 82.75% of C++ online submissions.
-// Memory Usage: 118.6 MB, less than 49.6% of C++ online submissions.
+// Runtime: 247 ms, faster than 82.75% of cpp online submissions.
+// Memory Usage: 118.6 MB, less than 49.6% of cpp online submissions.
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        ListNode* slow = head, *fast = head;
+        ListNode *slow = head, *fast = head;
         while (fast && fast->next) {
             fast = fast->next->next;
             slow = slow->next;
         }
-        if (fast) return helper(head, slow->next, slow);
-        else return helper(head, slow, slow);
+        if (fast)
+            return helper(head, slow->next, slow);
+        else
+            return helper(head, slow, slow);
     }
 
     bool helper(ListNode* head, ListNode*& after, ListNode* stop) {
@@ -87,8 +90,8 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 90/90 cases passed
-// Runtime: 280 ms, faster than 58.34% of C++ online submissions.
-// Memory Usage: 118.1 MB, less than 50.87% of C++ online submissions.
+// Runtime: 280 ms, faster than 58.34% of cpp online submissions.
+// Memory Usage: 118.1 MB, less than 50.87% of cpp online submissions.
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
@@ -100,7 +103,7 @@ public:
         }
         ListNode *last = slow->next, *pre = head;
         while (last->next) {
-            ListNode *tmp = last->next;
+            ListNode* tmp = last->next;
             last->next = tmp->next;
             tmp->next = slow->next;
             slow->next = tmp;

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-30 submission
 // 31/31 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 78.78% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 78.78% of cpp online submissions.
 class Solution {
 public:
     int fib(int n) {

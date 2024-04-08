@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 52/52 cases passed
-// Runtime: 131 ms, faster than 25.84% of C++ online submissions.
-// Memory Usage: 31.2 MB, less than 49.52% of C++ online submissions.
+// Runtime: 131 ms, faster than 25.84% of cpp online submissions.
+// Memory Usage: 31.2 MB, less than 49.52% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -34,8 +34,9 @@ public:
     }
 
 private:
-    void encode(TreeNode *root, ostringstream& out) {
-        if (!root) out << "# ";
+    void encode(TreeNode* root, ostringstream& out) {
+        if (!root)
+            out << "# ";
         else {
             out << to_string(root->val) << " ";
             encode(root->left, out);
@@ -43,7 +44,7 @@ private:
         }
     }
 
-    TreeNode *decode(istringstream& in) {
+    TreeNode* decode(istringstream& in) {
         string val;
         in >> val;
         if (val == "#") return nullptr;
@@ -62,8 +63,8 @@ private:
 // @lc code=start
 // 2022-11-14 submission
 // 52/52 cases passed
-// Runtime: 75 ms, faster than 77.16% of C++ online submissions.
-// Memory Usage: 29.2 MB, less than 67.39% of C++ online submissions.
+// Runtime: 75 ms, faster than 77.16% of cpp online submissions.
+// Memory Usage: 29.2 MB, less than 67.39% of cpp online submissions.
 class Codec {
 public:
     // Encodes a tree to a single string.
@@ -72,12 +73,14 @@ public:
         queue<TreeNode*> q;
         if (root) q.push(root);
         while (!q.empty()) {
-            TreeNode *t = q.front(); q.pop();
+            TreeNode* t = q.front();
+            q.pop();
             if (t) {
                 out << t->val << ' ';
                 q.push(t->left);
                 q.push(t->right);
-            } else {
+            }
+            else {
                 out << "# ";
             }
         }
@@ -94,7 +97,8 @@ public:
         TreeNode *res = new TreeNode(stoi(val)), *cur = res;
         q.push(cur);
         while (!q.empty()) {
-            TreeNode *t = q.front(); q.pop();
+            TreeNode* t = q.front();
+            q.pop();
             if (!(in >> val)) break;
             if (val != "#") {
                 cur = new TreeNode(stoi(val));

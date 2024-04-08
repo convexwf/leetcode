@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-08-01 submission
 // 11510/11510 cases passed
-// Runtime: 22 ms, faster than 54.64% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 31.85% of C++ online submissions.
+// Runtime: 22 ms, faster than 54.64% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 31.85% of cpp online submissions.
 class Solution {
 public:
     bool isPalindrome(int x) {
@@ -30,13 +30,12 @@ public:
 // @lc code=start
 // 2022-08-01 submission
 // 11510/11510 cases passed
-// Runtime: 15 ms, faster than 81.79% of C++ online submissions.
-// Memory Usage: 5.9 MB, less than 31.85% of C++ online submissions.
+// Runtime: 15 ms, faster than 81.79% of cpp online submissions.
+// Memory Usage: 5.9 MB, less than 31.85% of cpp online submissions.
 class Solution {
 public:
     bool isPalindrome(int x) {
-        if (x < 0 || (x != 0 && x % 10 == 0))
-            return false;
+        if (x < 0 || (x != 0 && x % 10 == 0)) return false;
 
         int reverted = 0;
         while (x > reverted) {
@@ -51,8 +50,8 @@ public:
 // @lc code=start
 // 2022-08-01 submission
 // 11510/11510 cases passed
-// Runtime: 11 ms, faster than 92.34% of C++ online submissions.
-// Memory Usage: 5.7 MB, less than 90.95% of C++ online submissions.
+// Runtime: 11 ms, faster than 92.34% of cpp online submissions.
+// Memory Usage: 5.7 MB, less than 90.95% of cpp online submissions.
 class Solution {
 public:
     bool isPalindrome(int x) {

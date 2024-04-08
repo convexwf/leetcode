@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 37/37 cases passed
-// Runtime: 3 ms, faster than 99.41% of C++ online submissions.
-// Memory Usage: 7.1 MB, less than 96.72% of C++ online submissions.
+// Runtime: 3 ms, faster than 99.41% of cpp online submissions.
+// Memory Usage: 7.1 MB, less than 96.72% of cpp online submissions.
 class Solution {
 public:
     bool isAnagram(string s, string t) {

@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-07-26 submission
 // 10/10 cases passed
-// Runtime: 7 ms, faster than 34.37% of C++ online submissions.
-// Memory Usage: 7.1 MB, less than 70.41% of C++ online submissions.
+// Runtime: 7 ms, faster than 34.37% of cpp online submissions.
+// Memory Usage: 7.1 MB, less than 70.41% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
@@ -28,8 +28,8 @@ public:
 // @lc code=start
 // 2022-07-26 submission
 // 10/10 cases passed
-// Runtime: 6 ms, faster than 39.17% of C++ online submissions.
-// Memory Usage: 7.1 MB, less than 70.41% of C++ online submissions.
+// Runtime: 6 ms, faster than 39.17% of cpp online submissions.
+// Memory Usage: 7.1 MB, less than 70.41% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
@@ -41,9 +41,9 @@ public:
 
     void DFS(vector<int>& candidates, vector<int>& curr, vector<vector<int>>& result, int pivot) {
         result.push_back(curr);
-        for(int i = pivot; i < candidates.size(); i++) {
+        for (int i = pivot; i < candidates.size(); i++) {
             curr.push_back(candidates[i]);
-            DFS(candidates, curr, result, i+1);
+            DFS(candidates, curr, result, i + 1);
             curr.pop_back();
         }
     }
@@ -53,8 +53,8 @@ public:
 // @lc code=start
 // 2022-07-26 submission
 // 10/10 cases passed
-// Runtime: 5 ms, faster than 43.24% of C++ online submissions.
-// Memory Usage: 7.2 MB, less than 70.41% of C++ online submissions.
+// Runtime: 5 ms, faster than 43.24% of cpp online submissions.
+// Memory Usage: 7.2 MB, less than 70.41% of cpp online submissions.
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {

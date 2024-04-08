@@ -7,11 +7,12 @@
 // @lc code=start
 // 2022-08-19 submission
 // 8/8 cases passed
-// Runtime: 80 ms, faster than 80.78% of C++ online submissions.
-// Memory Usage: 57 MB, less than 72.52% of C++ online submissions.
+// Runtime: 80 ms, faster than 80.78% of cpp online submissions.
+// Memory Usage: 57 MB, less than 72.52% of cpp online submissions.
 class Solution {
 public:
-    Solution(vector<int> nums): v(nums) {}
+    Solution(vector<int> nums) : v(nums) {
+    }
 
     /** Resets the array to its original configuration and return it. */
     vector<int> reset() {

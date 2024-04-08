@@ -7,8 +7,8 @@
 // @lc code=start
 // 2022-11-14 submission
 // 404/404 cases passed
-// Runtime: 0 ms, faster than 100% of C++ online submissions.
-// Memory Usage: 6.4 MB, less than 25.55% of C++ online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 6.4 MB, less than 25.55% of cpp online submissions.
 class Solution {
 public:
     bool isHappy(int n) {
@@ -31,8 +31,8 @@ public:
 // @lc code=start
 // 2022-11-14 submission
 // 404/404 cases passed
-// Runtime: 4 ms, faster than 46.27% of C++ online submissions.
-// Memory Usage: 5.8 MB, less than 94.12% of C++ online submissions.
+// Runtime: 4 ms, faster than 46.27% of cpp online submissions.
+// Memory Usage: 5.8 MB, less than 94.12% of cpp online submissions.
 class Solution {
 public:
     bool isHappy(int n) {
@@ -52,8 +52,8 @@ public:
 // @lc code=start
 // 2022-11-14 submission
 // 404/404 cases passed
-// Runtime: 4 ms, faster than 46.27% of C++ online submissions.
-// Memory Usage: 5.8 MB, less than 94.12% of C++ online submissions.
+// Runtime: 4 ms, faster than 46.27% of cpp online submissions.
+// Memory Usage: 5.8 MB, less than 94.12% of cpp online submissions.
 class Solution {
 public:
     bool isHappy(int n) {

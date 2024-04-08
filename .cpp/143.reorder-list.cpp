@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-01-14 submission
 // 12/12 cases passed
-// Runtime: 48 ms, faster than 67.1% of C++ online submissions.
-// Memory Usage: 17.7 MB, less than 76.61% of C++ online submissions.
+// Runtime: 48 ms, faster than 67.1% of cpp online submissions.
+// Memory Usage: 17.7 MB, less than 76.61% of cpp online submissions.
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -51,13 +51,13 @@ public:
 // @lc code=start
 // 2023-01-14 submission
 // 12/12 cases passed
-// Runtime: 40 ms, faster than 91.11% of C++ online submissions.
-// Memory Usage: 18.5 MB, less than 32.39% of C++ online submissions.
+// Runtime: 40 ms, faster than 91.11% of cpp online submissions.
+// Memory Usage: 18.5 MB, less than 32.39% of cpp online submissions.
 class Solution {
 public:
     void reorderList(ListNode *head) {
         if (!head || !head->next || !head->next->next) return;
-        stack<ListNode*> st;
+        stack<ListNode *> st;
         ListNode *cur = head;
         while (cur) {
             st.push(cur);
@@ -66,7 +66,8 @@ public:
         int cnt = ((int)st.size() - 1) / 2;
         cur = head;
         while (cnt-- > 0) {
-            auto t = st.top(); st.pop();
+            auto t = st.top();
+            st.pop();
             ListNode *next = cur->next;
             cur->next = t;
             t->next = next;

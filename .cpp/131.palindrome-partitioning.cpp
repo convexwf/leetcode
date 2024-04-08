@@ -7,8 +7,8 @@
 // @lc code=start
 // 2023-02-26 submission
 // 32/32 cases passed
-// Runtime: 94 ms, faster than 95.92% of C++ online submissions.
-// Memory Usage: 49.1 MB, less than 94.86% of C++ online submissions.
+// Runtime: 94 ms, faster than 95.92% of cpp online submissions.
+// Memory Usage: 49.1 MB, less than 94.86% of cpp online submissions.
 class Solution {
 public:
     vector<vector<string>> partition(string s) {
@@ -19,8 +19,7 @@ public:
         return res;
     }
 
-    void helper(vector<vector<string>>& res, vector<string>& candidate,
-                string& s, int idx) {
+    void helper(vector<vector<string>>& res, vector<string>& candidate, string& s, int idx) {
         if (idx == s.length()) {
             res.push_back(candidate);
             return;
@@ -46,8 +45,8 @@ public:
 // @lc code=start
 // 2023-02-26 submission
 // 32/32 cases passed
-// Runtime: 125 ms, faster than 72.79% of C++ online submissions.
-// Memory Usage: 53.3 MB, less than 67.03% of C++ online submissions.
+// Runtime: 125 ms, faster than 72.79% of cpp online submissions.
+// Memory Usage: 53.3 MB, less than 67.03% of cpp online submissions.
 class Solution {
 public:
     vector<vector<string>> partition(string s) {
@@ -65,8 +64,12 @@ public:
         helper(s, 0, dp, out, res);
         return res;
     }
-    void helper(string s, int start, vector<vector<bool>>& dp, vector<string>& out, vector<vector<string>>& res) {
-        if (start == s.size()) { res.push_back(out); return; }
+    void helper(string s, int start, vector<vector<bool>>& dp, vector<string>& out,
+                vector<vector<string>>& res) {
+        if (start == s.size()) {
+            res.push_back(out);
+            return;
+        }
         for (int i = start; i < s.size(); ++i) {
             if (!dp[start][i]) continue;
             out.push_back(s.substr(start, i - start + 1));
@@ -80,8 +83,8 @@ public:
 // @lc code=start
 // 2023-02-26 submission
 // 32/32 cases passed
-// Runtime: 264 ms, faster than 21.93% of C++ online submissions.
-// Memory Usage: 217.6 MB, less than 5.94% of C++ online submissions.
+// Runtime: 264 ms, faster than 21.93% of cpp online submissions.
+// Memory Usage: 217.6 MB, less than 5.94% of cpp online submissions.
 class Solution {
 public:
     vector<vector<string>> partition(string s) {
