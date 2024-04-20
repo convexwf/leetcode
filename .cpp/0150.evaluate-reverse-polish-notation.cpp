@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 栈
 // 2022-08-10 submission
 // 20/20 cases passed
 // Runtime: 4 ms, faster than 98.71% of cpp online submissions.

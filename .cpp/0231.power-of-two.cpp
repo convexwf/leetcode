@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 位操作
 // 2022-08-27 submission
 // 1108/1108 cases passed
 // Runtime: 3 ms, faster than 59.97% of cpp online submissions.

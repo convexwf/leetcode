@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. DFS
 // 2023-01-14 submission
 // 208/208 cases passed
 // Runtime: 7 ms, faster than 52.16% of cpp online submissions.
@@ -36,6 +37,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. DFS-另一种写法
 // 2023-01-14 submission
 // 208/208 cases passed
 // Runtime: 8 ms, faster than 41.77% of cpp online submissions.

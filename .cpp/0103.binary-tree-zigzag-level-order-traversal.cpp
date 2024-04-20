@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 先序遍历
 // 2023-01-31 submission
 // 33/33 cases passed
 // Runtime: 7 ms, faster than 31.59% of cpp online submissions.
@@ -30,14 +31,15 @@ public:
 
     void helper(TreeNode* node, int level, vector<vector<int>>& res) {
         if (!node) return;
-        if (res.size() <= level) {
+        if (res.size() == level) {
             res.push_back({});
         }
-        vector<int>& oneLevel = res[level];
-        if (level % 2 == 0)
-            oneLevel.push_back(node->val);
-        else
-            oneLevel.insert(oneLevel.begin(), node->val);
+        if (level % 2 == 0) {
+            res[level].push_back(node->val);
+        }
+        else {
+            res[level].insert(res[level].begin(), node->val);
+        }
         helper(node->left, level + 1, res);
         helper(node->right, level + 1, res);
     }
@@ -45,6 +47,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 层序遍历+队列
 // 2023-01-31 submission
 // 33/33 cases passed
 // Runtime: 3 ms, faster than 76.22% of cpp online submissions.
@@ -62,8 +65,12 @@ public:
             for (int i = 0; i < size; ++i) {
                 TreeNode* t = q.front();
                 q.pop();
-                int idx = leftToRight ? i : (size - 1 - i);
-                oneLevel[idx] = t->val;
+                if (leftToRight) {
+                    oneLevel[i] = t->val;
+                }
+                else {
+                    oneLevel[size - 1 - i] = t->val;
+                }
                 if (t->left) q.push(t->left);
                 if (t->right) q.push(t->right);
             }

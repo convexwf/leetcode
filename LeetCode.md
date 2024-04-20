@@ -1413,53 +1413,6 @@ public:
 };
 ```
 
-## 169. Majority Element
-
-解题思路
-
-1. 排序，取中位数即可
-2. 多数投票算法(Boyer-Moore Algorithm)：扫描两次数组，第一趟记录 candidate (初值可以为任何数)和 count (初值为0)，之后，对于数组中每一个元素，首先判断 count 是否为0，若为0，则把 candidate 设置为当前元素。之后判断 candidate 是否与当前元素相等，若相等则count+=1，否则count-=1。第二趟扫描来统计 candidate 出现的次数来判断其是否为多数元素。该算法无法找到一个序列的众数，除非众数出现的次数大于 ⌊n/2⌋ 次
-3. 位操作：检查每一个二进制位是否为1，如果是就累加 count， 如果count>n/2就置为1。
-
-```C++
-// 2020-10-26 submission (多数投票算法)
-// Runtime: 32 ms, faster than 97.99% of C++ online submissions.
-// Memory Usage: 20 MB, less than 99.97% of C++ online submissions.
-class Solution {
-public:
-    int majorityElement(vector<int>& nums) {
-        int candidate = 0;
-        int count = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            if (count == 0) candidate = nums[i];
-            if (candidate == nums[i]) count++;
-            else count--;
-        }
-        return candidate;
-    }
-};
-```
-
-```C++
-// 2020-10-26 submission (位操作)
-// Runtime: 56 ms, faster than 34.92% of C++ online submissions.
-// Memory Usage: 20.1 MB, less than 99.97% of C++ online submissions.
-class Solution {
-public:
-    int majorityElement(vector<int>& nums) {
-        int res = 0;
-        for (int i = 0; i < 32; i++) {
-            int count = 0;
-            for (int j = 0; j < nums.size(); j++) {
-                count += ((nums[j]>>i) & 1);
-            }
-            if (count > nums.size() / 2) res |= (1 << i);
-        }
-        return res;
-    }
-};
-```
-
 ## 188. Best Time to Buy and Sell Stock IV
 
 解题思路
@@ -1510,31 +1463,6 @@ public:
                 maxValue += (prices[i]-prices[i-1]);
         }
         return maxValue;
-    }
-};
-```
-
-## 190. Reverse Bits
-
-解题思路
-
-1. 位操作：反转
-
-```C++
-// 2018-07-25 submission
-// ?/? cases passed
-// Runtime: 4 ms, faster than 58.67% of C++ online submissions.
-// Memory Usage: 6.4 MB, less than 100.00% of C++ online submissions.
-class Solution {
-public:
-    uint32_t reverseBits(uint32_t n) {
-        uint32_t ret = 0u;
-        for(int i = 0; i < 32; i++) {
-            ret = ret << 1;
-            if(n & 1 == 1) ret += 1;
-            n = n >> 1;
-        }
-        return ret;
     }
 };
 ```

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. dfs
 // 2018-07-12 submission
 // 34/34 cases passed
 // Runtime: 4 ms, faster than 74.32% of cpp online submissions.
@@ -39,6 +40,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. bfs
 // 2023-01-14 submission
 // 34/34 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -58,7 +60,7 @@ public:
                 if (t->left) q.push(t->left);
                 if (t->right) q.push(t->right);
             }
-            res.push_back(oneLevel);
+            res.emplace_back(oneLevel);
         }
         return res;
     }

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划+哈希表
 // 2020-07-18 submission
 // 45/45 cases passed
 // Runtime: 14 ms, faster than 58.09% of cpp online submissions.
@@ -29,6 +30,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 记忆化搜索
 // 2023-01-14 submission
 // 45/45 cases passed
 // Runtime: 18 ms, faster than 50.6% of cpp online submissions.

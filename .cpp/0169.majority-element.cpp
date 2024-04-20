@@ -5,6 +5,22 @@
  */
 
 // @lc code=start
+// 1. 排序
+// 2024-04-19 submission
+// 51/51 cases passed
+// Runtime: 14 ms, faster than 82.32% of cpp online submissions.
+// Memory Usage: 27.6 MB, less than 33.67% of cpp online submissions.
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        return nums[nums.size() / 2];
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 多数投票算法(Boyer-Moore Algorithm)
 // 2022-11-14 submission
 // 43/43 cases passed
 // Runtime: 48 ms, faster than 37.56% of cpp online submissions.
@@ -33,6 +49,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 位操作
 // 2022-11-14 submission
 // 43/43 cases passed
 // Runtime: 81 ms, faster than 5.67% of cpp online submissions.

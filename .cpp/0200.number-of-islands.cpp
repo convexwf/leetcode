@@ -13,26 +13,26 @@ class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
         if (grid.empty() || grid[0].empty()) return 0;
-        int m = grid.size(), n = grid[0].size(), res = 0;
-        vector<vector<bool>> visited(m, vector<bool>(n));
+        int m = grid.size(), n = grid[0].size();
+        int res = 0;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
-                if (grid[i][j] == '0' || visited[i][j]) continue;
-                DFS(grid, visited, i, j);
-                ++res;
+                if (grid[i][j] == '1') {
+                    dfs(grid, i, j);
+                    ++res;
+                }
             }
         }
         return res;
     }
-    void DFS(vector<vector<char>>& grid, vector<vector<bool>>& visited, int x, int y) {
-        if (x < 0 || x >= grid.size() || y < 0 || y >= grid[0].size() || grid[x][y] == '0' ||
-            visited[x][y])
-            return;
-        visited[x][y] = true;
-        DFS(grid, visited, x - 1, y);
-        DFS(grid, visited, x + 1, y);
-        DFS(grid, visited, x, y - 1);
-        DFS(grid, visited, x, y + 1);
+    void dfs(vector<vector<char>>& grid, int i, int j) {
+        int m = grid.size(), n = grid[0].size();
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == '0') return;
+        grid[i][j] = '0';
+        dfs(grid, i + 1, j);
+        dfs(grid, i - 1, j);
+        dfs(grid, i, j + 1);
+        dfs(grid, i, j - 1);
     }
 };
 // @lc code=end

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 埃拉托斯特尼筛法(Sieve of Eratosthenes)
 // 2022-11-14 submission
 // 66/66 cases passed
 // Runtime: 276 ms, faster than 53.59% of cpp online submissions.

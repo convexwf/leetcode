@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 位操作-逐位颠倒
 // 2022-07-30 submission
 // 600/600 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -24,7 +25,11 @@ public:
 // @lc code=end
 
 // @lc code=start
-// forum
+// 2. 位操作-分治
+// 2024-04-16 submission
+// 600/600 cases passed
+// Runtime: 0 ms, faster than % of cpp online submissions.
+// Memory Usage: 7.1 MB, less than 66.98% of cpp online submissions.
 // https://leetcode.com/problems/reverse-bits/discuss/54741/O(1)-bit-operation-C++-solution-(8ms)
 class Solution {
 public:

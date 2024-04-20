@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 迭代
 // 2022-11-14 submission
 // 66/66 cases passed
 // Runtime: 50 ms, faster than 53.95% of cpp online submissions.
@@ -36,6 +37,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 递归
 // 2022-11-14 submission
 // 66/66 cases passed
 // Runtime: 36 ms, faster than 74.92% of cpp online submissions.
@@ -43,7 +45,7 @@ public:
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        if (!head) return NULL;
+        if (!head) return nullptr;
         head->next = removeElements(head->next, val);
         return head->val == val ? head->next : head;
     }
