@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表+dfs
 // 2020-11-11 submission
 // 22/22 cases passed
 // Runtime: 16 ms, faster than 26.07% of cpp online submissions.
@@ -50,6 +51,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 哈希表+bfs
 // 2022-11-17 submission
 // 22/22 cases passed
 // Runtime: 21 ms, faster than 5.24% of cpp online submissions.

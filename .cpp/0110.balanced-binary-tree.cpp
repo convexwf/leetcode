@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 深度计算
 // 2018-07-22 submission
 // 228/228 cases passed
 // Runtime: 15 ms, faster than 73.63% of cpp online submissions.
@@ -25,17 +26,13 @@ public:
     bool isBalanced(TreeNode *root) {
         return checkDepth(root) != -1;
     }
+
     int checkDepth(TreeNode *root) {
         if (!root) return 0;
         int left = checkDepth(root->left);
-        if (left == -1) return -1;
         int right = checkDepth(root->right);
-        if (right == -1) return -1;
-        int diff = abs(left - right);
-        if (diff > 1)
-            return -1;
-        else
-            return 1 + max(left, right);
+        if (left == -1 || right == -1 || abs(left - right) > 1) return -1;
+        return max(left, right) + 1;
     }
 };
 // @lc code=end

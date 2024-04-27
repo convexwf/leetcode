@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 快慢指针+递归
 // 2020-09-14 submission
 // 32/32 cases passed
 // Runtime: 35 ms, faster than 59.3% of cpp online submissions.
@@ -33,11 +34,11 @@
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
-        return helper(head, NULL);
+        return helper(head, nullptr);
     }
 
     TreeNode* helper(ListNode* start, ListNode* end) {
-        if (start == end) return NULL;
+        if (start == end) return nullptr;
         if (start->next == end) return new TreeNode(start->val);
 
         // Find the middle point
@@ -53,6 +54,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 快慢指针+递归+链表断开
 // 2023-01-14 submission
 // 32/32 cases passed
 // Runtime: 25 ms, faster than 88.15% of cpp online submissions.
@@ -60,7 +62,7 @@ public:
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
-        if (!head) return NULL;
+        if (!head) return nullptr;
         if (!head->next) return new TreeNode(head->val);
         ListNode *slow = head, *fast = head, *last = slow;
         while (fast->next && fast->next->next) {
@@ -69,7 +71,7 @@ public:
             fast = fast->next->next;
         }
         fast = slow->next;
-        last->next = NULL;
+        last->next = nullptr;
         TreeNode* cur = new TreeNode(slow->val);
         if (head != slow) cur->left = sortedListToBST(head);
         cur->right = sortedListToBST(fast);

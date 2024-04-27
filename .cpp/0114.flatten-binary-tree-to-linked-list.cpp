@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归+寻找前驱节点
 // 2020-09-16 submission
 // 225/225 cases passed
 // Runtime: 7 ms, faster than 86.43% of cpp online submissions.
@@ -29,14 +30,15 @@ public:
 
         TreeNode *right = root->right;
         root->right = root->left;
-        root->left = NULL;
-        while (root->right) root = root->right;
+        root->left = nullptr;
+        while (nullptr != root->right) root = root->right;
         root->right = right;
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 2. 迭代
 // 2022-11-17 submission
 // 225/225 cases passed
 // Runtime: 8 ms, faster than 76.6% of cpp online submissions.
@@ -51,7 +53,7 @@ public:
                 while (p->right) p = p->right;
                 p->right = cur->right;
                 cur->right = cur->left;
-                cur->left = NULL;
+                cur->left = nullptr;
             }
             cur = cur->right;
         }
