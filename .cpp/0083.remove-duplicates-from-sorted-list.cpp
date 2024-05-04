@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 迭代
 // 2022-07-28 submission
 // 166/166 cases passed
 // Runtime: 10 ms, faster than 88.01% of cpp online submissions.
@@ -22,11 +23,13 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        if (!head) return NULL;
+        if (!head) return nullptr;
         ListNode* cur = head;
-        while (cur) {
+        while (nullptr != cur) {
             while (cur->next && cur->val == cur->next->val) {
+                ListNode* tmp = cur->next;
                 cur->next = cur->next->next;
+                delete tmp;
             }
             cur = cur->next;
         }
@@ -36,6 +39,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 递归
 // 2022-07-28 submission
 // 166/166 cases passed
 // Runtime: 13 ms, faster than 73.89% of cpp online submissions.
@@ -43,7 +47,7 @@ public:
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        if (!head) return NULL;
+        if (!head) return nullptr;
         while (head->next && head->val == head->next->val) {
             head = head->next;
         }

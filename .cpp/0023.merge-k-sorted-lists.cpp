@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 最小堆+dummy节点
 // 2022-08-01 submission
 // 133/133 cases passed
 // Runtime: 20 ms, faster than 97.59% of cpp online submissions.
@@ -24,12 +25,18 @@ public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         auto cmp = [](ListNode*& a, ListNode*& b) { return a->val > b->val; };
         priority_queue<ListNode*, vector<ListNode*>, decltype(cmp)> q(cmp);
+        // priority_queue<ListNode*, vector<ListNode*>, function<bool(ListNode*, ListNode*)>>
+        // pq([](const ListNode*& a, const ListNode*& b) {
+        //     return a->val > b->val;
+        // });
         for (ListNode* node : lists) {
-            if (node) q.push(node);
+            if (node) {
+                q.push(node);
+            }
         }
         ListNode *dummy = new ListNode(-1), *cur = dummy;
         while (!q.empty()) {
-            auto t = q.top();
+            ListNode* t = q.top();
             q.pop();
             cur->next = t;
             cur = cur->next;
