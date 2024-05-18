@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 位操作
 // 2023-01-14 submission
 // 16/16 cases passed
 // Runtime: 16 ms, faster than 42.8% of cpp online submissions.
@@ -22,6 +23,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 镜面排列
 // 2023-01-14 submission
 // 16/16 cases passed
 // Runtime: 12 ms, faster than 63.91% of cpp online submissions.
@@ -42,6 +44,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 直接排列
 // 2023-01-14 submission
 // 16/16 cases passed
 // Runtime: 8 ms, faster than 83.1% of cpp online submissions.
@@ -76,6 +79,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 4. 哈希表
 // 2023-01-14 submission
 // 16/16 cases passed
 // Runtime: 60 ms, faster than 12.7% of cpp online submissions.

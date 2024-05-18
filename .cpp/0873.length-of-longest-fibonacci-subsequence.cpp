@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 动态规划
+// 1. 动态规划+哈希表
 // 2024-01-02 submission
 // 57/57 cases passed
 // Runtime: 681 ms, faster than 25.27% of cpp online submissions.

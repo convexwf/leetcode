@@ -374,30 +374,6 @@ private:
 };
 ```
 
-## 252. Meeting Rooms
-
-题目描述：给了一些会议的开始时间和结束时间，问能不能同时参见所有的会议，这实际上就是求区间是否有交集的问题。
-
-1. 排序
-   - 给所有区间排个序，用起始时间的先后来排
-   - 然后从第二个区间开始，如果开始时间早于前一个区间的结束时间，则说明会议时间有冲突，返回 false
-   - 遍历完成后没有冲突，则返回 true
-
-```cpp
-class Solution {
-public:
-    bool canAttendMeetings(vector<vector<int>>& intervals) {
-        sort(intervals.begin(), intervals.end(), [](const vector<int>& a, const vector<int>& b){return a[0] < b[0];});
-        for (int i = 1; i < intervals.size(); ++i) {
-            if (intervals[i][0] < intervals[i - 1][1]) {
-                return false;
-            }
-        }
-        return true;
-    }
-};
-```
-
 ## 253. Meeting Rooms II
 
 题目描述：给了一些会议的开始时间和结束时间，最少需要安排几个会议室，有时间冲突的会议需要安排在不同的会议室。
@@ -867,51 +843,6 @@ public:
     }
 };
 ```
-
-## 314. Binary Tree Vertical Order Traversal
-
-## 317. Shortest Distance from All Buildings
-## 320. Generalized Abbreviation
-## 323. Number of Connected Components in an Undirected Graph
-## 325. Maximum Size Subarray Sum Equals k
-## 333. Largest BST Subtree
-## 339. Nested List Weight Sum
-## 340. Longest Substring with At Most K Distinct Characters
-## 346. Moving Average from Data Stream
-## 348. Design Tic-Tac-Toe
-## 351. Android Unlock Patterns
-## 353. Design Snake Game
-## 356. Line Reflection
-## 358. Rearrange String k Distance Apart
-## 359. Logger Rate Limiter
-## 360. Sort Transformed Array
-## 361. Bomb Enemy
-## 362. Design Hit Counter
-## 364. Nested List Weight Sum II
-## 366. Find Leaves of Binary Tree
-## 369. Plus One Linked List
-## 370. Range Addition
-## 379. Design Phone Directory
-## 408. Valid Word Abbreviation
-## 411. Minimum Unique Word Abbreviation
-## 418. Sentence Screen Fitting
-## 422. Valid Word Square
-## 425. Word Squares
-## 426. Convert Binary Search Tree to Sorted Doubly Linked List
-## 428. Serialize and Deserialize N-ary Tree
-## 431. Encode N-ary Tree to Binary Tree
-## 439. Ternary Expression Parser
-## 444. Sequence Reconstruction
-## 465. Optimal Account Balancing
-## 469. Convex Polygon
-## 471. Encode String with Shortest Length
-## 484. Find Permutation
-## 487. Max Consecutive Ones II
-## 489. Robot Room Cleaner
-## 490. The Maze
-## 499. The Maze III
-## 505. The Maze II
-## 510. Inorder Successor in BST II
 
 ## 512. Game Play Analysis II
 

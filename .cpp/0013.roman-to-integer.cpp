@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表+模拟
 // 2023-01-14 submission
 // 3999/3999 cases passed
 // Runtime: 15 ms, faster than 61.68% of cpp online submissions.
@@ -17,10 +18,12 @@ public:
                                    {'C', 100}, {'D', 500}, {'M', 1000}};
         for (int i = 0; i < s.size(); ++i) {
             int val = m[s[i]];
-            if (i == s.size() - 1 || m[s[i + 1]] <= m[s[i]])
+            if (i == s.size() - 1 || m[s[i + 1]] <= m[s[i]]) {
                 res += val;
-            else
+            }
+            else {
                 res -= val;
+            }
         }
         return res;
     }
@@ -28,6 +31,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 1. 哈希表+模拟-另一种思路
 // 2023-01-14 submission
 // 3999/3999 cases passed
 // Runtime: 24 ms, faster than 33.74% of cpp online submissions.
