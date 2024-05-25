@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 多指针+动态规划
 // 2022-08-26 submission
 // 596/596 cases passed
 // Runtime: 18 ms, faster than 54.78% of cpp online submissions.
@@ -29,6 +30,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 最小堆
 // 2022-08-26 submission
 // 596/596 cases passed
 // Runtime: 95 ms, faster than 28.02% of cpp online submissions.

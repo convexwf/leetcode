@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2022-08-26 submission
 // 75/75 cases passed
 // Runtime: 3 ms, faster than 58.38% of cpp online submissions.
@@ -29,6 +30,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 动态规划-空间优化
 // 2022-08-26 submission
 // 75/75 cases passed
 // Runtime: 3 ms, faster than 58.38% of cpp online submissions.

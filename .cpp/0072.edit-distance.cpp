@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2023-02-06 submission
 // 1146/1146 cases passed
 // Runtime: 16 ms, faster than 59.27% of cpp online submissions.
@@ -32,6 +33,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 动态规划-空间优化
 // 2020-09-08 submission
 // 1146/1146 cases passed
 // Runtime: 10 ms, faster than 81.91% of cpp online submissions.
@@ -41,7 +43,7 @@ public:
     int minDistance(string word1, string word2) {
         int c1 = word1.length();
         int c2 = word2.length();
-        if (c1 == 0 or c2 == 0) return max(c1, c2);
+        if (c1 == 0 || c2 == 0) return max(c1, c2);
 
         vector<int> dist(c1 + 1, 0);
         for (int i = 1; i <= c1; i++) {

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 逐步旋转
 // 2022-07-21 submission
 // 21/21 cases passed
 // Runtime: 3 ms, faster than 63.72% of cpp online submissions.
@@ -28,6 +29,33 @@ public:
 // @lc code=end
 
 // @lc code=start
+// // 2. 矩阵转置-上下翻转再转置
+// 2024-05-21 submission
+// 21/21 cases passed
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 8.5 MB, less than 90.28% of cpp online submissions.
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        // 上下翻转
+        for (int i = 0; i < n / 2; ++i) {
+            for (int j = 0; j < n; ++j) {
+                swap(matrix[i][j], matrix[n-i-1][j]);
+            }
+        }
+        // 转置
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 矩阵转置-转置后再左右翻转
 // 2022-07-21 submission
 // 21/21 cases passed
 // Runtime: 3 ms, faster than 63.72% of cpp online submissions.

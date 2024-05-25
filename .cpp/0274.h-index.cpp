@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 降序排序
 // 2020-11-11 submission
 // 81/81 cases passed
 // Runtime: 3 ms, faster than 75.64% of cpp online submissions.
@@ -23,6 +24,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 计数排序
 // 2023-01-30 submission
 // 81/81 cases passed
 // Runtime: 7 ms, faster than 33.44% of cpp online submissions.

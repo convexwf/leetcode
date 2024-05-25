@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2022-07-27 submission
 // 45/45 cases passed
 // Runtime: 4 ms, faster than 22.52% of cpp online submissions.

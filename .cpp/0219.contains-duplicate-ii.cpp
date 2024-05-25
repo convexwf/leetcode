@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表
 // 2019-09-17 submission
 // 54/54 cases passed
 // Runtime: 166 ms, faster than 98.33% of cpp online submissions.
@@ -14,10 +15,12 @@ public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
         unordered_map<int, int> m;
         for (int i = 0; i < nums.size(); i++) {
-            if (m.count(nums[i]) && i - m[nums[i]] <= k)
+            if (m.count(nums[i]) && i - m[nums[i]] <= k) {
                 return true;
-            else
+            }
+            else {
                 m[nums[i]] = i;
+            }
         }
         return false;
     }

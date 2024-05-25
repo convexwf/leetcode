@@ -12,17 +12,18 @@
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        int len = s.length();
-        int validNum = 0;
-        int index = len - 1;
-        while (s[index] == ' ') index--;
-        for (; index >= 0; index--) {
-            if (isalpha(s[index]))
-                validNum++;
-            else
-                break;
+        int end = s.size() - 1;
+        while (end >= 0 && s[end] == ' ') {
+            end--;
         }
-        return validNum;
+        if (end < 0) {
+            return 0;
+        }
+        int start = end;
+        while (start >= 0 && s[start] != ' ') {
+            start--;
+        }
+        return end - start;
     }
 };
 // @lc code=end

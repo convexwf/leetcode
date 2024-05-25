@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 二分查找
 // 2023-01-30 submission
 // 83/83 cases passed
 // Runtime: 21 ms, faster than 68.88% of cpp online submissions.
@@ -17,10 +18,12 @@ public:
 
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (citations[mid] <= n - 1 - mid)
+            if (citations[mid] <= n - 1 - mid) {
                 left = mid + 1;
-            else
+            }
+            else {
                 right = mid;
+            }
         }
 
         return n - right;

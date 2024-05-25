@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. Brute Force
 // 2022-08-26 submission
 // 1013/1013 cases passed
 // Runtime: 3 ms, faster than 58.82% of cpp online submissions.

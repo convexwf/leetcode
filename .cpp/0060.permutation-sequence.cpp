@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 枚举+数学方法
 // 2022-07-20 submission
 // 200/200 cases passed
 // Runtime: 3 ms, faster than 59.97% of cpp online submissions.

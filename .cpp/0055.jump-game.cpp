@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 贪心算法
 // 2022-07-20 submission
 // 170/170 cases passed
 // Runtime: 91 ms, faster than 67.74% of cpp online submissions.
@@ -12,12 +13,13 @@
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        int maxIdx = 0;
+        int mx = 0;
         for (int i = 0; i < nums.size(); i++) {
-            if (i > maxIdx || maxIdx >= nums.size() - 1) break;
-            maxIdx = max(maxIdx, i + nums[i]);
+            if (i > mx) break;
+            mx = max(mx, i + nums[i]);
+            if (mx >= nums.size() - 1) return true;
         }
-        return maxIdx >= nums.size() - 1;
+        return false;
     }
 };
 // @lc code=end
