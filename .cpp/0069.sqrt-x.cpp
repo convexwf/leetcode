@@ -8,12 +8,18 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        int64_t res = x;
-        while (res * res > x) {
-            res = (res + x / res) / 2;
+        int left = 0, right = x, p = 0;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if ((long long)mid * mid <= x) {
+                p = mid;
+                left = mid + 1;
+            }
+            else {
+                right = mid;
+            }
         }
-        return res;
+        return p;
     }
 };
 // @lc code=end
-

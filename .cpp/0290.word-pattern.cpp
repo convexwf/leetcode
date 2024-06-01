@@ -5,6 +5,42 @@
  */
 
 // @lc code=start
+// 1. 哈希表
+// 2024-05-28 submission
+// 43/43 cases passed
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7.8 MB, less than 41.14% of cpp online submissions.
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        unordered_map<string, char> word2ch;
+        unordered_map<char, string> ch2word;
+        vector<string> words;
+        string word;
+        istringstream in(s);
+        while (in >> word) {
+            words.push_back(word);
+        }
+        if (pattern.size() != words.size()) {
+            return false;
+        }
+        for (int i = 0; i < pattern.size(); ++i) {
+            char ch = pattern[i];
+            string word = words[i];
+            if (word2ch.count(word) && word2ch[word] != ch ||
+                ch2word.count(ch) && ch2word[ch] != word) {
+                return false;
+            }
+            word2ch[word] = ch;
+            ch2word[ch] = word;
+        }
+        return true;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 1. 哈希表
 // 2022-11-14 submission
 // 37/37 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

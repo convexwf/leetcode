@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 进制转换
 // 2022-08-26 submission
 // 241/241 cases passed
 // Runtime: 3 ms, faster than 40.09% of cpp online submissions.
@@ -13,7 +14,7 @@ class Solution {
 public:
     string convertToBase7(int num) {
         if (num == 0) return "0";
-        string res = "", neg = "";
+        string res, neg;
         if (num < 0) neg = "-";
         num = abs(num);
         while (num > 0) {

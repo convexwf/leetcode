@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 数学方法
 // 2019-09-15 submission
 // 60/60 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

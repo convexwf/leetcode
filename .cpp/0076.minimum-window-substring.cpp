@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 滑动窗口+哈希表
 // 2020-07-17 submission
 // 267/267 cases passed
 // Runtime: 3 ms, faster than 99.69% of cpp online submissions.
@@ -12,27 +13,28 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        if (t.empty() || s.length() < t.length()) return "";
-
-        int freq[256] = {0};
+        vector<int> freq(128, 0);
         for (char c : t) {
-            ++freq[c];
+            freq[c]++;
         }
-
-        int left = 0, cnt = 0;
-        int minLeft = -1, minLen = s.length() + 1;
-        for (int pivot = 0; pivot < s.length(); ++pivot) {
-            if (--freq[s[pivot]] >= 0) ++cnt;
-            while (cnt == t.length()) {
-                if (minLen > pivot - left + 1) {
-                    minLen = pivot - left + 1;
-                    minLeft = left;
+        int left = 0, right = 0;
+        int count = 0;
+        int start = 0, len = INT_MAX;
+        for (; right < s.size(); right++) {
+            if (--freq[s[right]] >= 0) {
+                count++;
+            }
+            while (count == t.size()) {
+                if (right - left < len) {
+                    start = left;
+                    len = right - left;
                 }
-                if (++freq[s[left]] > 0) --cnt;
-                ++left;
+                if (++freq[s[left++]] > 0) {
+                    count--;
+                }
             }
         }
-        return minLeft == -1 ? "" : s.substr(minLeft, minLen);
+        return len == INT_MAX ? "" : s.substr(start, len + 1);
     }
 };
 // @lc code=end

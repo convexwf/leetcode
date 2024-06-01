@@ -5,34 +5,49 @@
  */
 
 // @lc code=start
-// 2023-01-14 submission
+// 1. 枚举
+// 2024-05-30 submission
 // 601/601 cases passed
-// Runtime: 3 ms, faster than 81.91% of cpp online submissions.
-// Memory Usage: 7.4 MB, less than 22.04% of cpp online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 11.5 MB, less than 56.93% of cpp online submissions.
 class Solution {
 public:
     string numberToWords(int num) {
-        string res = convertHundred(num % 1000);
-        vector<string> v = {"Thousand", "Million", "Billion"};
-        for (int i = 0; i < 3; ++i) {
-            num /= 1000;
-            res = (num % 1000 > 0) ? (convertHundred(num % 1000) + " " + v[i] + " " + res) : res;
+        if (num == 0) {
+            return "Zero";
         }
-        while (res.back() == ' ') res.pop_back();
-        return res.empty() ? "Zero" : res;
-    }
-    string convertHundred(int num) {
-        vector<string> v1 = {"",        "One",     "Two",       "Three",    "Four",
-                             "Five",    "Six",     "Seven",     "Eight",    "Nine",
-                             "Ten",     "Eleven",  "Twelve",    "Thirteen", "Fourteen",
-                             "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-        vector<string> v2 = {"",      "",      "Twenty",  "Thirty", "Forty",
-                             "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
-        string res;
-        int a = num / 100, b = num % 100, c = num % 10;
-        res = b < 20 ? v1[b] : v2[b / 10] + (c ? " " + v1[c] : "");
-        if (a > 0) res = v1[a] + " Hundred" + (b ? " " + res : "");
-        return res;
+        unordered_map<int, string> num2str = {
+            {1, "One"},      {2, "Two"},        {3, "Three"},     {4, "Four"},      {5, "Five"},
+            {6, "Six"},      {7, "Seven"},      {8, "Eight"},     {9, "Nine"},      {10, "Ten"},
+            {11, "Eleven"},  {12, "Twelve"},    {13, "Thirteen"}, {14, "Fourteen"}, {15, "Fifteen"},
+            {16, "Sixteen"}, {17, "Seventeen"}, {18, "Eighteen"}, {19, "Nineteen"}, {20, "Twenty"},
+            {30, "Thirty"},  {40, "Forty"},     {50, "Fifty"},    {60, "Sixty"},    {70, "Seventy"},
+            {80, "Eighty"},  {90, "Ninety"}};
+        vector<string> units = {"", "Thousand ", "Million ", "Billion "};
+        string res = "";
+        for (int i = 0; num > 0; ++i) {
+            int n = num % 1000;
+            num /= 1000;
+            if (n == 0) {
+                continue;
+            }
+            string s = "";
+            if (n / 100 > 0) {
+                s += num2str[n / 100] + " Hundred ";
+            }
+            n %= 100;
+            if (n > 0) {
+                if (n <= 20) {
+                    s += num2str[n] + " ";
+                }
+                else {
+                    s += num2str[n / 10 * 10] + " ";
+                    s += n % 10 > 0 ? num2str[n % 10] + " " : "";
+                }
+            }
+            res = s + units[i] + res;
+        }
+        return res.substr(0, res.size() - 1);
     }
 };
 // @lc code=end

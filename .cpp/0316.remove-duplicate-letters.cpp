@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 贪心算法
+// 1. 栈+哈希表
 // 2023-10-05 submission
 // 290/290 cases passed
 // Runtime: 2 ms, faster than 60.85% of cpp online submissions.
@@ -13,21 +13,22 @@
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-        vector<int> count(26, 0);
-        vector<bool> visited(26, false);
-        for (char c : s) {
-            count[c - 'a']++;
+        vector<int> last(26, 0);
+        for (int i = 0; i < s.size(); i++) {
+            last[s[i] - 'a'] = i;
         }
-        string res = "";
-        for (char c : s) {
-            count[c - 'a']--;
-            if (visited[c - 'a']) continue;
-            while (!res.empty() && res.back() > c && count[res.back() - 'a'] > 0) {
-                visited[res.back() - 'a'] = false;
+        string res;
+        int visited = 0;
+        for (int i = 0; i < s.size(); i++) {
+            if (visited & (1 << (s[i] - 'a'))) {
+                continue;
+            }
+            while (!res.empty() && res.back() > s[i] && last[res.back() - 'a'] > i) {
+                visited &= ~(1 << (res.back() - 'a'));
                 res.pop_back();
             }
-            res.push_back(c);
-            visited[c - 'a'] = true;
+            res.append(1, s[i]);
+            visited |= (1 << (s[i] - 'a'));
         }
         return res;
     }
