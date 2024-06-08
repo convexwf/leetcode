@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表+前缀和数组
 // 2021-03-17 submission
 // 93/93 cases passed
 // Runtime: 111 ms, faster than 51.29% of cpp online submissions.

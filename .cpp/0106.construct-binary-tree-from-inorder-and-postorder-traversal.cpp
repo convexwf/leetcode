@@ -5,10 +5,11 @@
  */
 
 // @lc code=start
+// 1. 分治法+哈希表
 // 2022-11-17 submission
 // 202/202 cases passed
-// Runtime: 70 ms, faster than 20.04% of cpp online submissions.
-// Memory Usage: 25.9 MB, less than 89.76% of cpp online submissions.
+// Runtime: 12 ms, faster than 58.3% of cpp online submissions.
+// Memory Usage: 26.3 MB, less than 28.29% of cpp online submissions.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -22,20 +23,28 @@
  */
 class Solution {
 public:
-    TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
-        return buildTree(inorder, 0, inorder.size() - 1, postorder, 0, postorder.size() - 1);
-    }
-    TreeNode *buildTree(vector<int> &inorder, int iLeft, int iRight, vector<int> &postorder,
-                        int pLeft, int pRight) {
-        if (iLeft > iRight || pLeft > pRight) return NULL;
-        TreeNode *cur = new TreeNode(postorder[pRight]);
-        int i = 0;
-        for (i = iLeft; i < inorder.size(); ++i) {
-            if (inorder[i] == cur->val) break;
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        unordered_map<int, int> index;
+        for (int i = 0; i < inorder.size(); i++) {
+            index[inorder[i]] = i;
         }
-        cur->left = buildTree(inorder, iLeft, i - 1, postorder, pLeft, pLeft + i - iLeft - 1);
-        cur->right = buildTree(inorder, i + 1, iRight, postorder, pLeft + i - iLeft, pRight - 1);
-        return cur;
+        return buildTree(inorder, postorder, 0, inorder.size() - 1, 0, postorder.size() - 1, index);
+    }
+
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder, int inLeft, int inRight,
+                        int postLeft, int postRight, unordered_map<int, int>& index) {
+        if (inLeft > inRight) {
+            return nullptr;
+        }
+        int rootVal = postorder[postRight];
+        TreeNode* root = new TreeNode(rootVal);
+        int rootIndex = index[rootVal];
+        int leftSize = rootIndex - inLeft;
+        root->left = buildTree(inorder, postorder, inLeft, rootIndex - 1, postLeft,
+                               postLeft + leftSize - 1, index);
+        root->right = buildTree(inorder, postorder, rootIndex + 1, inRight, postLeft + leftSize,
+                                postRight - 1, index);
+        return root;
     }
 };
 // @lc code=end

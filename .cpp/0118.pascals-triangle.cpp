@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 模拟
 // 2022-07-30 submission
 // 14/14 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -12,7 +13,7 @@
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int>> res(numRows, vector<int>());
+        vector<vector<int>> res(numRows);
         for (int i = 0; i < numRows; ++i) {
             res[i].resize(i + 1, 1);
             for (int j = 1; j < i; ++j) {

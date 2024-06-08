@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2022-08-11 submission
 // 188/188 cases passed
 // Runtime: 16 ms, faster than 29.27% of cpp online submissions.
@@ -27,6 +28,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 动态规划-空间优化
 // 2022-08-11 submission
 // 188/188 cases passed
 // Runtime: 4 ms, faster than 94.17% of cpp online submissions.
@@ -47,6 +49,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 累计乘积数组
 // 2022-08-11 submission
 // 188/188 cases passed
 // Runtime: 12 ms, faster than 53.36% of cpp online submissions.

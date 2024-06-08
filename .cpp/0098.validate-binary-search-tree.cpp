@@ -5,6 +5,33 @@
  */
 
 // @lc code=start
+// 1. 递归中序遍历+排序
+// 2023-02-09 submission
+// 82/82 cases passed
+// Runtime: 7 ms, faster than 96.34% of cpp online submissions.
+// Memory Usage: 21.7 MB, less than 54.7% of cpp online submissions.
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        if (!root) return true;
+        vector<int> vals;
+        inorder(root, vals);
+        for (int i = 0; i < vals.size() - 1; ++i) {
+            if (vals[i] >= vals[i + 1]) return false;
+        }
+        return true;
+    }
+    void inorder(TreeNode* root, vector<int>& vals) {
+        if (!root) return;
+        inorder(root->left, vals);
+        vals.push_back(root->val);
+        inorder(root->right, vals);
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 递归中序遍历+区间收缩
 // 2023-02-09 submission
 // 82/82 cases passed
 // Runtime: 14 ms, faster than 61.68% of cpp online submissions.
@@ -35,55 +62,36 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2023-02-09 submission
-// 82/82 cases passed
-// Runtime: 7 ms, faster than 96.34% of cpp online submissions.
-// Memory Usage: 21.7 MB, less than 54.7% of cpp online submissions.
+// 3. 递归中序遍历+前驱节点
+// 2024-06-05 submission
+// 85/85 cases passed
+// Runtime: 9 ms, faster than 47.94% of cpp online submissions.
+// Memory Usage: 20.1 MB, less than 88.44% of cpp online submissions.
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        if (!root) return true;
-        vector<int> vals;
-        inorder(root, vals);
-        for (int i = 0; i < vals.size() - 1; ++i) {
-            if (vals[i] >= vals[i + 1]) return false;
-        }
-        return true;
-    }
-    void inorder(TreeNode* root, vector<int>& vals) {
-        if (!root) return;
-        inorder(root->left, vals);
-        vals.push_back(root->val);
-        inorder(root->right, vals);
-    }
-};
-// @lc code=end
-
-// @lc code=start
-// 2023-02-09 submission
-// 82/82 cases passed
-// Runtime: 13 ms, faster than 66.09% of cpp online submissions.
-// Memory Usage: 21.9 MB, less than 22.58% of cpp online submissions.
-class Solution {
-public:
-    bool isValidBST(TreeNode* root) {
-        TreeNode* pre = NULL;
+        long pre = LONG_MIN;
         return inorder(root, pre);
     }
-    bool inorder(TreeNode* node, TreeNode*& pre) { // pre 表示当前节点的前缀节点
-        if (!node) return true;
-        bool res = inorder(node->left, pre);
-        if (!res) return false;
-        if (pre) {
-            if (node->val <= pre->val) return false;
+
+    bool inorder(TreeNode* root, long& pre) {
+        if (root == nullptr) {
+            return true;
         }
-        pre = node;
-        return inorder(node->right, pre);
+        if (!inorder(root->left, pre)) {
+            return false;
+        }
+        if (root->val <= pre) {
+            return false;
+        }
+        pre = root->val;
+        return inorder(root->right, pre);
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 4. Morris 遍历
 // 2023-02-09 submission
 // 82/82 cases passed
 // Runtime: 7 ms, faster than 96.34% of cpp online submissions.

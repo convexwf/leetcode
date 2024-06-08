@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. dfs+回溯
 // 2023-02-26 submission
 // 32/32 cases passed
 // Runtime: 94 ms, faster than 95.92% of cpp online submissions.
@@ -15,11 +16,11 @@ public:
         int n = s.length();
         vector<vector<string>> res;
         vector<string> candidate;
-        helper(res, candidate, s, 0);
+        dfs(res, candidate, s, 0);
         return res;
     }
 
-    void helper(vector<vector<string>>& res, vector<string>& candidate, string& s, int idx) {
+    void dfs(vector<vector<string>>& res, vector<string>& candidate, string& s, int idx) {
         if (idx == s.length()) {
             res.push_back(candidate);
             return;
@@ -27,7 +28,7 @@ public:
         for (int i = idx; i < s.length(); ++i) {
             if (isPalindrome(s, idx, i)) {
                 candidate.push_back(s.substr(idx, i - idx + 1));
-                helper(res, candidate, s, i + 1);
+                dfs(res, candidate, s, i + 1);
                 candidate.pop_back();
             }
         }
@@ -43,6 +44,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. dfs+回溯+剪枝
 // 2023-02-26 submission
 // 32/32 cases passed
 // Runtime: 125 ms, faster than 72.79% of cpp online submissions.
@@ -52,35 +54,36 @@ public:
     vector<vector<string>> partition(string s) {
         int n = s.size();
         vector<vector<string>> res;
-        vector<string> out;
-        vector<vector<bool>> dp(n, vector<bool>(n));
+        vector<string> path;
+        vector<vector<bool>> memo(n, vector<bool>(n, false));
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j <= i; ++j) {
-                if (s[i] == s[j] && (i - j <= 2 || dp[j + 1][i - 1])) {
-                    dp[j][i] = true;
+                if (s[i] == s[j] && (i - j <= 2 || memo[j + 1][i - 1])) {
+                    memo[j][i] = true;
                 }
             }
         }
-        helper(s, 0, dp, out, res);
+        function<void(int)> dfs = [&](int start) {
+            if (start == n) {
+                res.push_back(path);
+                return;
+            }
+            for (int i = start; i < n; ++i) {
+                if (memo[start][i]) {
+                    path.push_back(s.substr(start, i - start + 1));
+                    dfs(i + 1);
+                    path.pop_back();
+                }
+            }
+        };
+        dfs(0);
         return res;
-    }
-    void helper(string s, int start, vector<vector<bool>>& dp, vector<string>& out,
-                vector<vector<string>>& res) {
-        if (start == s.size()) {
-            res.push_back(out);
-            return;
-        }
-        for (int i = start; i < s.size(); ++i) {
-            if (!dp[start][i]) continue;
-            out.push_back(s.substr(start, i - start + 1));
-            helper(s, i + 1, dp, out, res);
-            out.pop_back();
-        }
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 3. 迭代
 // 2023-02-26 submission
 // 32/32 cases passed
 // Runtime: 264 ms, faster than 21.93% of cpp online submissions.

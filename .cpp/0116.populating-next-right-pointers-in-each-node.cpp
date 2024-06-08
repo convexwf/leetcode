@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. dfs+递归前序遍历
 // 2022-11-17 submission
 // 59/59 cases passed
 // Runtime: 37 ms, faster than 64.35% of cpp online submissions.
@@ -29,7 +30,7 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        if (!root) return NULL;
+        if (!root) return nullptr;
         if (root->left) root->left->next = root->right;
         if (root->right && root->next) root->right->next = root->next->left;
         // if (root->right) root->right->next = root->next? root->next->left : NULL;
@@ -41,6 +42,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. bfs+层序遍历
 // 2022-11-17 submission
 // 59/59 cases passed
 // Runtime: 10 ms, faster than 99.82% of cpp online submissions.
@@ -48,8 +50,8 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        if (!root) return NULL;
-        Node *start = root, *cur = NULL;
+        if (!root) return nullptr;
+        Node *start = root, *cur = nullptr;
         while (start->left) {
             cur = start;
             while (cur) {

@@ -33,10 +33,6 @@ private:
 };
 ```
 
-## 159. Longest Substring with At Most Two Distinct Characters
-
-题目描述：给定一个字符串，求最多有两个不同字符的最长子串。
-
 ## 163. Missing Ranges
 
 题目描述：求缺失区间。给了一个空间的范围 [lower upper]，缺失的区间的范围需要在给定的区间范围内。
@@ -59,59 +55,6 @@ public:
 };
 ```
 
-## 170. Two Sum III - Data structure design
-
-## 247. Strobogrammatic Number II
-
-题目描述：找出长度为 n 的所有的对称数。
-
-1. 递归：每个数字都在之前数字的左右增加了 [0 0]，[1 1], [6 9], [8 8], [9 6]。需要注意当加到了n层的时候，左右两边不能加 [0 0]，因为0不能出现在两位数及多位数的开头。
-2. 迭代：思路一样，加入了奇偶考虑。
-
-```C++
-// 递归
-class Solution {
-public:
-    vector<string> findStrobogrammatic(int n) {
-        return find(n, n);
-    }
-    vector<string> find(int m, int n) {
-        if (m == 0) return {""};
-        if (m == 1) return {"0", "1", "8"};
-        vector<string> t = find(m - 2, n), res;
-        for (auto a : t) {
-            if (m != n) res.push_back("0" + a + "0");
-            res.push_back("1" + a + "1");
-            res.push_back("6" + a + "9");
-            res.push_back("8" + a + "8");
-            res.push_back("9" + a + "6");
-        }
-        return res;
-    }
-};
-```
-
-```C++
-class Solution {
-public:
-    vector<string> findStrobogrammatic(int n) {
-        vector<string> one{"0", "1", "8"}, two{""}, res = two;
-        if (n % 2 == 1) res = one;
-        for (int i = (n % 2) + 2; i <= n; i += 2) {
-            vector<string> t;
-            for (auto a : res) {
-                if (i != n) t.push_back("0" + a + "0");
-                t.push_back("1" + a + "1");
-                t.push_back("6" + a + "9");
-                t.push_back("8" + a + "8");
-                t.push_back("9" + a + "6");
-            }
-            res = t;
-        }
-        return res;
-    }
-};
-```
 
 ## 248. Strobogrammatic Number III
 
@@ -336,31 +279,6 @@ public:
 
 ## 255. Verify Preorder Sequence in Binary Search Tree
 
-## 256. Paint House
-
-题目描述：有 n 个房子，每个房子可以用红绿蓝三种颜色刷，每个房子的用每种颜色刷的花费都不同，限制条件是相邻的房子不能用相同的颜色来刷，求刷完所有的房子的最低花费是多少。
-
-1. 动态规划： `dp[i][j]` 表示刷到房子 i 子用颜色 j 的最小花费，状态转移方程为: `dp[i][j] = dp[i][j] + min(dp[i - 1][(j + 1) % 3], dp[i - 1][(j + 2) % 3])`，当前房子用红色刷的最小花费就等于当前房子用红色刷的钱加上刷到上一个房子用绿色和刷到上一个房子用蓝色中的较小值。
-
-```cpp
-class Solution {
-public:
-    int minCost(vector<vector<int>>& costs) {
-        if (costs.empty() || costs[0].empty()) return 0;
-        vector<vector<int>> dp = costs;
-        for (int i = 1; i < dp.size(); ++i) {
-            for (int j = 0; j < 3; ++j) {
-                dp[i][j] += min(dp[i - 1][(j + 1) % 3], dp[i - 1][(j + 2) % 3]);
-                // dp[i][0] += min(dp[i - 1][1], dp[i - 1][2]);
-                // dp[i][1] += min(dp[i - 1][0], dp[i - 1][2]);
-                // dp[i][2] += min(dp[i - 1][0], dp[i - 1][1]);
-            }
-        }
-        return min(min(dp.back()[0], dp.back()[1]), dp.back()[2]);
-    }
-};
-```
-
 ## 259. 3Sum Smaller
 
 题目描述：给定一个长度为 n 的整数数组和一个目标值 target，寻找能够使条件 nums[i] + nums[j] + nums[k] < target 成立的三元组。
@@ -395,66 +313,12 @@ public:
 
 ## 261. Graph Valid Tree
 
-## 265. Paint House II
-
-题目描述：有 n 个房子，每个房子可以用 k 种颜色刷，每个房子的用每种颜色刷的花费都不同，限制条件是相邻的房子不能用相同的颜色来刷，求刷完所有的房子的最低花费是多少。
-
-1. 动态规划：参见 <256. Paint House>，刷房子 i 时，只需要保留花费最低的两种颜色。
-
-```cpp
-class Solution {
-public:
-    int minCostII(vector<vector<int>>& costs) {
-        if (costs.empty() || costs[0].empty()) return 0;
-        int min1 = 0, min2 = 0, idx1 = -1;
-        for (int i = 0; i < costs.size(); ++i) {
-            int m1 = INT_MAX, m2 = m1, id1 = -1;
-            for (int j = 0; j < costs[i].size(); ++j) {
-                int cost = costs[i][j] + (j == idx1 ? min2 : min1);
-                if (cost < m1) {
-                    m2 = m1; m1 = cost; id1 = j;
-                } else if (cost < m2) {
-                    m2 = cost;
-                }
-            }
-            min1 = m1; min2 = m2; idx1 = id1;
-        }
-        return min1;
-    }
-};
-```
-
 ## 266. Palindrome Permutation
 ## 267. Palindrome Permutation II
 ## 269. Alien Dictionary
 ## 270. Closest Binary Search Tree Value
 ## 271. Encode and Decode Strings
 ## 272. Closest Binary Search Tree Value II
-
-## 276. Paint Fence
-
-题目描述：粉刷篱笆，有 n 个部分需要刷，有 k 种颜色的油漆，规定了不能有超过连续两根柱子是一个颜色，也就意味着第三根柱子要么和第一个柱子不是一个颜色，要么和第二根柱子不是一个颜色，问总共有多少种刷法。
-
-1. 找规律
-   - n = 0，没有刷的部分，返回 0
-   - n = 1，有几种颜色，就有几种刷法，所以应该返回 k
-   - n > 1，分两种情况讨论，一种是相邻部分没有相同的，一种相同部分有相同的颜色，相邻部分不同情况中，对于下一个相邻的格子，由于不能相同，所以只有 k-1 种填法；相邻部分相同情况中，刷法和上一个格子的不同颜色刷法相同。
-
-```cpp
-class Solution {
-public:
-    int numWays(int n, int k) {
-        if (n == 0) return 0;
-        int same = 0, diff = k, res = same + diff;
-        for (int i = 2; i <= n; ++i) {
-            same = diff;
-            diff = res * (k - 1);
-            res = same + diff;
-        }
-        return res;
-    }
-};
-```
 
 
 ## 280. Wiggle Sort
@@ -510,41 +374,6 @@ public:
             }
         }
     }
-};
-```
-
-## 288. Unique Word Abbreviation
-
-题目描述：给定字典（字符串列表）和单词，求单词是否有唯一缩写形式。缩写定义为：除了首尾字母保留，计算剩下字母的个数。
-
-1. Hashmap：建立缩写形式和其对应的单词的映射
-   - 在遇到 HashMap 中没有当前缩写形式的时候，将该缩写形式和当前单词建立映射，如果该缩写形式应经存在，那么看如果映射的单词不是当前单词，将映射单词改为空字符串。
-
-**边界条件**
-
-1. 字典中有重复单词
-2. 目标单词不在字典中
-3. 只有两个字母的单词缩写为自己本身。
-
-```cpp
-class ValidWordAbbr {
-public:
-    ValidWordAbbr(vector<string>& dictionary) {
-        for (auto a : dictionary) {
-            string k = a;
-            if (a.length() > 2) k = a[0] + to_string(a.length() - 2) + a.back();
-            if (m.find(k) != m.end() && m[k] != a) m[k] = "";
-            else m[k] = a;
-        }
-    }
-    bool isUnique(string word) {
-        string k = word;
-        if (word.length() > 2) k = word[0] + to_string(word.length() - 2) + word.back();
-        return m.find(k) == m.end() || m[k] == word;
-    }
-
-private:
-    unordered_map<string, string> m;
 };
 ```
 
@@ -639,7 +468,6 @@ AS tmp
 WHERE rnk = 1;
 ```
 
-## 527. Word Abbreviation
 
 ## 533. Lonely Pixel II
 

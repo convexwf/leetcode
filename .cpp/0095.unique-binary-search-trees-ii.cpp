@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归
 // 2020-07-08 submission
 // 8/8 cases passed
 // Runtime: 23 ms, faster than 60.84% of cpp online submissions.
@@ -23,27 +24,27 @@
 class Solution {
 public:
     vector<TreeNode*> generateTrees(int n) {
-        if (n == 0) return {};
-        return helper(1, n);
+        if (n == 0) {
+            return {};
+        }
+        return generateTrees(1, n);
     }
 
-    vector<TreeNode*> helper(int left, int right) {
-        vector<TreeNode*> res, left_res, right_res;
-        for (int pivot = left; pivot <= right; pivot++) {
-            if (left == pivot)
-                left_res = vector<TreeNode*>{nullptr};
-            else
-                left_res = helper(left, pivot - 1);
-            if (right == pivot)
-                right_res = vector<TreeNode*>{nullptr};
-            else
-                right_res = helper(pivot + 1, right);
-
-            for (int i = 0; i < left_res.size() * right_res.size(); i++) {
-                TreeNode* new_node = new TreeNode(pivot);
-                new_node->left = left_res[i % left_res.size()];
-                new_node->right = right_res[i / left_res.size()];
-                res.push_back(new_node);
+    vector<TreeNode*> generateTrees(int start, int end) {
+        if (start > end) {
+            return {nullptr};
+        }
+        vector<TreeNode*> res;
+        for (int i = start; i <= end; ++i) {
+            vector<TreeNode*> left = generateTrees(start, i - 1);
+            vector<TreeNode*> right = generateTrees(i + 1, end);
+            for (TreeNode*& l : left) {
+                for (TreeNode*& r : right) {
+                    TreeNode* root = new TreeNode(i);
+                    root->left = l;
+                    root->right = r;
+                    res.push_back(root);
+                }
             }
         }
         return res;
@@ -52,6 +53,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 递归+记忆数组
 // 2023-01-14 submission
 // 8/8 cases passed
 // Runtime: 23 ms, faster than 60.84% of cpp online submissions.
@@ -59,26 +61,34 @@ public:
 class Solution {
 public:
     vector<TreeNode*> generateTrees(int n) {
-        if (n == 0) return {};
-        vector<vector<vector<TreeNode*>>> memo(n, vector<vector<TreeNode*>>(n));
-        return helper(1, n, memo);
+        if (n == 0) {
+            return {};
+        }
+        vector<vector<vector<TreeNode*>>> memo(n + 1, vector<vector<TreeNode*>>(n + 1));
+        return generateTrees(1, n, memo);
     }
-    vector<TreeNode*> helper(int start, int end, vector<vector<vector<TreeNode*>>>& memo) {
-        if (start > end) return {nullptr};
-        if (!memo[start - 1][end - 1].empty()) return memo[start - 1][end - 1];
+
+    vector<TreeNode*> generateTrees(int start, int end, vector<vector<vector<TreeNode*>>>& memo) {
+        if (start > end) {
+            return {nullptr};
+        }
+        if (!memo[start][end].empty()) {
+            return memo[start][end];
+        }
         vector<TreeNode*> res;
         for (int i = start; i <= end; ++i) {
-            auto left = helper(start, i - 1, memo), right = helper(i + 1, end, memo);
-            for (auto a : left) {
-                for (auto b : right) {
-                    TreeNode* node = new TreeNode(i);
-                    node->left = a;
-                    node->right = b;
-                    res.push_back(node);
+            vector<TreeNode*> left = generateTrees(start, i - 1, memo);
+            vector<TreeNode*> right = generateTrees(i + 1, end, memo);
+            for (auto& l : left) {
+                for (auto& r : right) {
+                    TreeNode* root = new TreeNode(i);
+                    root->left = l;
+                    root->right = r;
+                    res.push_back(root);
                 }
             }
         }
-        return memo[start - 1][end - 1] = res;
+        return memo[start][end] = res;
     }
 };
 // @lc code=end

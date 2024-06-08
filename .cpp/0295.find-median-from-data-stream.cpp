@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// @lc code=start
+// 1. 堆
 // 2022-08-26 submission
 // 21/21 cases passed
 // Runtime: 483 ms, faster than 61.29% of cpp online submissions.
@@ -17,7 +17,7 @@ public:
     }
 
     void addNum(int num) {
-        if ((small.size() + big.size()) % 2 == 0) {
+        if (small.size() == big.size()) {
             small.push(num);
             big.push(small.top());
             small.pop();

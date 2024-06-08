@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归
 // 2023-02-09 submission
 // 68/68 cases passed
 // Runtime: 6 ms, faster than 20.13% of cpp online submissions.
@@ -38,41 +39,44 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2023-02-09 submission
+// 2. 迭代+栈
+// 2024-06-05 submission
 // 68/68 cases passed
-// Runtime: 6 ms, faster than 20.13% of cpp online submissions.
-// Memory Usage: 8.5 MB, less than 73.21% of cpp online submissions.
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 9.7 MB, less than 88.97% of cpp online submissions.
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode *root) {
         vector<int> res;
-        stack<TreeNode *> s;
-        TreeNode *p = root;
-        while (!s.empty() || p) {
-            if (p) {
-                s.push(p);
-                res.insert(res.begin(), p->val);
-                p = p->right;
+        stack<TreeNode *> stk;
+        if (root) {
+            stk.push(root);
+        }
+        while (!stk.empty()) {
+            TreeNode *node = stk.top();
+            stk.pop();
+            res.push_back(node->val);
+            if (node->left) {
+                stk.push(node->left);
             }
-            else {
-                TreeNode *t = s.top();
-                s.pop();
-                p = t->left;
+            if (node->right) {
+                stk.push(node->right);
             }
         }
+        reverse(res.begin(), res.end());
         return res;
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 3. Morris遍历
 // 2023-02-09 submission
 // 68/68 cases passed
 // Runtime: 6 ms, faster than 20.13% of cpp online submissions.
 // Memory Usage: 8.2 MB, less than 98.65% of cpp online submissions.
 class Solution {
 public:
-    // addPath
     void addPath(vector<int> &vec, TreeNode *node) {
         int count = 0;
         while (node != nullptr) {

@@ -36,7 +36,7 @@ class Solution {
 public:
     int heightChecker(vector<int>& heights) {
         vector<int> cnt(101, 0);
-        for (auto h : heights) {
+        for (int h : heights) {
             cnt[h]++;
         }
         int res = 0;

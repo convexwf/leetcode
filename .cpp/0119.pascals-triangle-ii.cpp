@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 数学方法
 // 2022-07-30 submission
 // 34/34 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -12,11 +13,11 @@
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
-        vector<int> ret{1};
-        for (int num = 1; num < rowIndex + 1; num++) {
-            ret.push_back((int64_t)ret.back() * (rowIndex + 1 - num) / num);
+        vector<int> res(rowIndex + 1, 1);
+        for (int k = 1; k < rowIndex; ++k) {
+            res[k] = (long)res[k - 1] * (rowIndex - k + 1) / k;
         }
-        return ret;
+        return res;
     }
 };
 // @lc code=end

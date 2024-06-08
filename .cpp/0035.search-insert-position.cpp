@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 二分查找
 // 2022-11-17 submission
 // 64/64 cases passed
 // Runtime: 11 ms, faster than 47.12% of cpp online submissions.
@@ -16,10 +17,12 @@ public:
         int left = 0, right = nums.size();
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (nums[mid] < target)
+            if (nums[mid] < target) {
                 left = mid + 1;
-            else
+            }
+            else {
                 right = mid;
+            }
         }
         return right;
     }

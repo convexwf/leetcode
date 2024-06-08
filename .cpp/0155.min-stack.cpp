@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 使用两个栈实现
 // 2023-01-14 submission
 // 31/31 cases passed
 // Runtime: 24 ms, faster than 78.28% of cpp online submissions.
@@ -51,6 +52,7 @@ private:
 // @lc code=end
 
 // @lc code=start
+// 2. 使用一个栈实现
 // 2023-01-14 submission
 // 31/31 cases passed
 // Runtime: 25 ms, faster than 74.45% of cpp online submissions.
@@ -60,23 +62,26 @@ public:
     MinStack() {
         min_val = INT_MAX;
     }
+
     void push(int x) {
         if (x <= min_val) {
-            st.push(min_val);
+            stk.push(min_val);
             min_val = x;
         }
-        st.push(x);
+        stk.push(x);
     }
+
     void pop() {
-        int t = st.top();
-        st.pop();
+        int t = stk.top();
+        stk.pop();
         if (t == min_val) {
-            min_val = st.top();
-            st.pop();
+            min_val = stk.top();
+            stk.pop();
         }
     }
+
     int top() {
-        return st.top();
+        return stk.top();
     }
     int getMin() {
         return min_val;
@@ -84,6 +89,6 @@ public:
 
 private:
     int min_val;
-    stack<int> st;
+    stack<int> stk;
 };
 // @lc code=end

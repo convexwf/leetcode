@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. brute force
+// 1. 双指针
 // 2023-09-25 submission
 // 95/95 cases passed
 // Runtime: 3 ms, faster than 84.67% of cpp online submissions.
@@ -24,7 +24,7 @@ public:
                 res[i] = r--;
             }
         }
-        res[n] = l;
+        res[n] = l; // notice that S.size() == res.size() - 1
         return res;
     }
 };

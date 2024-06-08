@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归
 // 2023-02-09 submission
 // 70/70 cases passed
 // Runtime: 6 ms, faster than 20.68% of cpp online submissions.
@@ -37,6 +38,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 迭代+栈
 // 2023-02-09 submission
 // 70/70 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -63,6 +65,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. Morris遍历
 // 2023-02-09 submission
 // 70/70 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

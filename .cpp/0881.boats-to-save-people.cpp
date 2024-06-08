@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 双指针
+// 1. 贪心算法+双指针
 // 2023-07-03 submission
 // 78/78 cases passed
 // Runtime: 89 ms, faster than 80.3% of cpp online submissions.

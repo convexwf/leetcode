@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 链表拼接+双指针
 // 2022-11-14 submission
 // 39/39 cases passed
 // Runtime: 44 ms, faster than 97.66% of cpp online submissions.
@@ -21,17 +22,18 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if (!headA || !headB) return NULL;
-        ListNode *curA = headA, *curB = headB;
-        while (curA != curB) {
-            curA = curA ? curA->next : headB;
-            curB = curB ? curB->next : headA;
+        ListNode *pA = headA, *pB = headB;
+        while (pA != pB) {
+            pA = pA ? pA->next : headB;
+            pB = pB ? pB->next : headA;
         }
-        return curA;
+        return pA;
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 2. 链表长度求差值
 // 2022-11-14 submission
 // 39/39 cases passed
 // Runtime: 120 ms, faster than 29.32% of cpp online submissions.
@@ -39,19 +41,23 @@ public:
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if (!headA || !headB) return NULL;
+        if (!headA || !headB) return nullptr;
         int lenA = getLength(headA), lenB = getLength(headB);
         if (lenA < lenB) {
-            for (int i = 0; i < lenB - lenA; ++i) headB = headB->next;
+            for (int i = 0; i < lenB - lenA; ++i) {
+                headB = headB->next;
+            }
         }
         else {
-            for (int i = 0; i < lenA - lenB; ++i) headA = headA->next;
+            for (int i = 0; i < lenA - lenB; ++i) {
+                headA = headA->next;
+            }
         }
         while (headA && headB && headA != headB) {
             headA = headA->next;
             headB = headB->next;
         }
-        return (headA && headB) ? headA : NULL;
+        return (headA && headB) ? headA : nullptr;
     }
 
     int getLength(ListNode *head) {
