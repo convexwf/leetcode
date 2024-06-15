@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表
 // 2022-11-14 submission
 // 404/404 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -29,6 +30,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 直接模拟
 // 2022-11-14 submission
 // 404/404 cases passed
 // Runtime: 4 ms, faster than 46.27% of cpp online submissions.
@@ -50,6 +52,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 快慢指针
 // 2022-11-14 submission
 // 404/404 cases passed
 // Runtime: 4 ms, faster than 46.27% of cpp online submissions.

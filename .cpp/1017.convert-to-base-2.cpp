@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 直接计算
+// 1. 模拟
 // 2023-07-20 submission
 // 170/170 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

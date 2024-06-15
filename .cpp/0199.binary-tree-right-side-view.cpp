@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. bfs+层序遍历
 // 2023-01-14 submission
 // 216/216 cases passed
 // Runtime: 3 ms, faster than 82.91% of cpp online submissions.
@@ -43,6 +44,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 变形前序遍历
 // 2023-01-14 submission
 // 216/216 cases passed
 // Runtime: 7 ms, faster than 42.05% of cpp online submissions.

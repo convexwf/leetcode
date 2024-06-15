@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表+优先队列
 // 2023-11-03 submission
 // 16/16 cases passed
 // Runtime: 3 ms, faster than 41.42% of cpp online submissions.

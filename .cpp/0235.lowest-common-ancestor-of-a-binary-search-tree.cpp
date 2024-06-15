@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归
 // 2022-08-26 submission
 // 28/28 cases passed
 // Runtime: 38 ms, faster than 72.28% of cpp online submissions.
@@ -22,18 +23,20 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (!root) return NULL;
-        if (root->val > max(p->val, q->val))
+        if (!root) return nullptr;
+        if (root->val > max(p->val, q->val)) {
             return lowestCommonAncestor(root->left, p, q);
-        else if (root->val < min(p->val, q->val))
+        }
+        if (root->val < min(p->val, q->val)) {
             return lowestCommonAncestor(root->right, p, q);
-        else
-            return root;
+        }
+        return root;
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 2. 迭代
 // 2022-08-26 submission
 // 28/28 cases passed
 // Runtime: 70 ms, faster than 5.02% of cpp online submissions.
@@ -42,12 +45,15 @@ class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         while (true) {
-            if (root->val > max(p->val, q->val))
+            if (root->val > max(p->val, q->val)) {
                 root = root->left;
-            else if (root->val < min(p->val, q->val))
+            }
+            else if (root->val < min(p->val, q->val)) {
                 root = root->right;
-            else
+            }
+            else {
                 break;
+            }
         }
         return root;
     }

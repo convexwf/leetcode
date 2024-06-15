@@ -5,6 +5,28 @@
  */
 
 // @lc code=start
+// 1. 哈希表
+// 2024-06-14 submission
+// 31/31 cases passed
+// Runtime: 44 ms, faster than 61.83% of cpp online submissions.
+// Memory Usage: 26.9 MB, less than 47.27% of cpp online submissions.
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        unordered_map<string, int> hash;
+        vector<string> res;
+        for (int i = 0; i + 10 <= s.size(); i++) {
+            string sub = s.substr(i, 10);
+            if (++hash[sub] == 2) {
+                res.push_back(sub);
+            }
+        }
+        return res;
+    }
+};
+// @lc code=end
+
+// @lc code=start
 // 2020-09-18 submission
 // 31/31 cases passed
 // Runtime: 99 ms, faster than 70.8% of cpp online submissions.

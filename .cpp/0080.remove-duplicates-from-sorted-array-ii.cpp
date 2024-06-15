@@ -5,28 +5,28 @@
  */
 
 // @lc code=start
+// 1. 双指针
 // 2022-08-07 submission
 // 164/164 cases passed
-// Runtime: 19 ms, faster than 7.02% of cpp online submissions.
-// Memory Usage: 10.7 MB, less than 93.05% of cpp online submissions.
+// Runtime: 4 ms, faster than 66.21% of cpp online submissions.
+// Memory Usage: 13.4 MB, less than 75.52% of cpp online submissions.
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        int pre = 0;
-        int cnt = 1;
-        for (int i = 1; i < nums.size(); i++) {
+        int n = nums.size();
+        int j = 1, cnt = 1;
+        for (int i = 1; i < n; i++) {
             if (nums[i] == nums[i - 1]) {
-                ++cnt;
-                if (cnt <= 2) {
-                    nums[++pre] = nums[i];
-                }
+                cnt++;
             }
             else {
                 cnt = 1;
-                nums[++pre] = nums[i];
+            }
+            if (cnt <= 2) {
+                nums[j++] = nums[i];
             }
         }
-        return pre + 1;
+        return j;
     }
 };
 // @lc code=end

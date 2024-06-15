@@ -384,38 +384,6 @@ public:
 题目描述：给定只有 '+' 和 '-' 的字符串，一次操作后 '++' 可以转化 '--'，两个玩家先后进行操作，如果某个玩家无法再操作则游戏结束，对方取胜。给定字符串，判断先手玩家是否能赢。
 
 
-## 296. Best Meeting Point
-
-题目描述：求最佳的开会地点，该地点需要到每个为1的点的曼哈顿距离之和最小。
-
-1. 先从一维情况讨论：
-   - A_____P_______B_，只要开会为位置P在 [A, B] 区间内，不管在哪，距离之和都是A和B之间的距离，如果P不在 [A, B] 之间，那么距离之和就会大于 A 和 B 之间的距离
-   - C_____A_____P_______B______D，P 点的最佳位置就是在 [A, B] 区间内，这样和四个点的距离之和为 AB 距离加上 CD 距离，在其他任意一点的距离都会大于这个距离
-   - 只要给位置排好序，然后用最后一个坐标减去第一个坐标，即 CD 距离，倒数第二个坐标减去第二个坐标，即 AB 距离，以此类推，直到最中间停止
-   - 二维的情况就是两个一维相加即可
-
-```cpp
-class Solution {
-public:
-    int minTotalDistance(vector<vector<int>>& grid) {
-        vector<int> rows, cols;
-        for (int i = 0; i < grid.size(); ++i) {
-            for (int j = 0; j < grid[i].size(); ++j) {
-                if (grid[i][j] == 1) {
-                    rows.push_back(i);
-                    cols.push_back(j);
-                }
-            }
-        }
-        sort(rows.begin(), rows.end());
-        sort(cols.begin(), cols.end());
-        int res = 0, i = 0, j = rows.size() - 1;
-        while (i < j) res += (rows[j] - rows[i]) + (cols[j--] - cols[i++]);
-        return res;
-    }
-};
-```
-
 ## 298. Binary Tree Longest Consecutive Sequence
 ## 302. Smallest Rectangle Enclosing Black Pixels
 ## 305. Number of Islands II

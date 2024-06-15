@@ -25,11 +25,15 @@
 | [0027.Remove Element](.doc/0027.remove-element.md) | Easy (55.86%) | array, two-pointers, in-place-algorithm | [cpp](.cpp/0027.remove-element.cpp) |
 | [0031.Next Permutation](.doc/0031.next-permutation.md) | Medium (39.28%) | array, permutation | [cpp](.cpp/0031.next-permutation.cpp) |
 | [0032.Longest Valid Parentheses](.doc/0032.longest-valid-parentheses.md) | Hard (33.66%) | string, dynamic-programming, stack, parentheses, subarray | [cpp](.cpp/0032.longest-valid-parentheses.cpp) |
+| [0034.Find First and Last Position of Element in Sorted Array](.doc/0034.find-first-and-last-position-of-element-in-sorted-array.md) | Medium (43.83%) | array, binary-search | [cpp](.cpp/0034.find-first-and-last-position-of-element-in-sorted-array.cpp) |
 | [0035.Search Insert Position](.doc/0035.search-insert-position.md) | Easy (45.24%) | array, binary-search | [cpp](.cpp/0035.search-insert-position.cpp) |
 | [0036.Valid Sudoku](.doc/0036.valid-sudoku.md) | Medium (59.21%) | hash-table, bit-manipulation | [cpp](.cpp/0036.valid-sudoku.cpp) |
 | [0038.Count and Say](.doc/0038.count-and-say.md) | Medium (54.21%) | string, recursion | [cpp](.cpp/0038.count-and-say.cpp) |
 | [0039.Combination Sum](.doc/0039.combination-sum.md) | Medium (70.79%) | sort, backtracking, combination | [cpp](.cpp/0039.combination-sum.cpp) |
 | [0043.Multiply Strings](.doc/0043.multiply-strings.md) | Medium (39.94%) | string, arithmetic | [cpp](.cpp/0043.multiply-strings.cpp) |
+| [0045.Jump Game II](.doc/0045.jump-game-ii.md) | Medium (40.32%) | array, greedy | [cpp](.cpp/0045.jump-game-ii.cpp) |
+| [0046.Permutations](.doc/0046.permutations.md) | Medium (77.85%) | depth-first-search, backtracking | [cpp](.cpp/0046.permutations.cpp) |
+| [0047.Permutations II](.doc/0047.permutations-ii.md) | Medium (58.66%) | depth-first-search, backtracking, hash-table | [cpp](.cpp/0047.permutations-ii.cpp) |
 | [0048.Rotate Image](.doc/0048.rotate-image.md) | Medium (73.57%) | array, matrix | [cpp](.cpp/0048.rotate-image.cpp) |
 | [0050.Pow(x, n)](.doc/0050.pow-x-n.md) | Medium (34.35%) | math, divide-and-conquer, bit-manipulation | [cpp](.cpp/0050.pow-x-n.cpp) |
 | [0051.N-Queens](.doc/0051.n-queens.md) | Hard (67.37%) | backtracking | [cpp](.cpp/0051.n-queens.cpp) |
@@ -53,6 +57,8 @@
 | [0076.Minimum Window Substring](.doc/0076.minimum-window-substring.md) | Hard (41.74%) | hash-table, sliding-window, string | [cpp](.cpp/0076.minimum-window-substring.cpp) |
 | [0078.Subsets](.doc/0078.subsets.md) | Medium (76.91%) | array, backtracking, bit-manipulation, subset | [cpp](.cpp/0078.subsets.cpp) |
 | [0079.Word Search](.doc/0079.word-search.md) | Medium (41.24%) | matrix, backtracking, depth-first-search | [cpp](.cpp/0079.word-search.cpp) |
+| [0080.Remove Duplicates from Sorted Array II](.doc/0080.remove-duplicates-from-sorted-array-ii.md) | Medium (56.97%) | in-place algorithm, array | [cpp](.cpp/0080.remove-duplicates-from-sorted-array-ii.cpp) |
+| [0082.Remove Duplicates from Sorted List II](.doc/0082.remove-duplicates-from-sorted-list-ii.md) | Medium (47.01%) | linked-list | [cpp](.cpp/0082.remove-duplicates-from-sorted-list-ii.cpp) |
 | [0083.Remove Duplicates from Sorted List](.doc/0083.remove-duplicates-from-sorted-list.md) | Easy (52.03%) | linked-list, duplicate | [cpp](.cpp/0083.remove-duplicates-from-sorted-list.cpp) |
 | [0086.Partition List](.doc/0086.partition-list.md) | Medium (55.73%) | linked-list | [cpp](.cpp/0086.partition-list.cpp) |
 | [0088.Merge Sorted Array](.doc/0088.merge-sorted-array.md) | Easy (48.89%) | array, two-pointers | [cpp](.cpp/0088.merge-sorted-array.cpp) |
@@ -103,6 +109,7 @@
 | 0159.Longest Substring with At Most Two Distinct Characters 🔒 | | sliding-window, hash-table, string | [cpp](.cpp/0159.longest-substring-with-at-most-two-distinct-characters.cpp) |
 | [0160.Intersection of Two Linked Lists](.doc/0160.intersection-of-two-linked-lists.md) | Easy (56.77%) | linked-list, two-pointers | [cpp](.cpp/0160.intersection-of-two-linked-lists.cpp) |
 | 0161.One Edit Distance 🔒 | | string | [cpp](.cpp/0161.one-edit-distance.cpp) |
+| [0162.Find Peak Element](.doc/0162.find-peak-element.md) | Medium (45.84%) | array, binary-search | [cpp](.cpp/0162.find-peak-element.cpp) |
 | [0168.Excel Sheet Column Title](.doc/0168.excel-sheet-column-title.md) | Easy (40.14%) | math, string, easy | [cpp](.cpp/0168.excel-sheet-column-title.cpp) |
 | [0169.Majority Element](.doc/0169.majority-element.md) | Easy (63.95%) | sort, array, bit-manipulation, boyer-moore-voting-algorithm | [cpp](.cpp/0169.majority-element.cpp) |
 | 0170.Two Sum III - Data structure design 🔒 | | design, hash-table, target-sum | [cpp](.cpp/0170.two-sum-iii---data-structure-design.cpp) |
@@ -113,17 +120,22 @@
 | [0190.Reverse Bits](.doc/0190.reverse-bits.md) | Easy (57.46%) | bit-manipulation | [cpp](.cpp/0190.reverse-bits.cpp) |
 | [0191.Number of 1 Bits](.doc/0191.number-of-1-bits.md) | Easy (70.18%) | bit-manipulation | [cpp](.cpp/0191.number-of-1-bits.cpp) |
 | [0198.House Robber](.doc/0198.house-robber.md) | Medium (50.77%) | dynamic-programming, array | [cpp](.cpp/0198.house-robber.cpp) |
+| [0199.Binary Tree Right Side View](.doc/0199.binary-tree-right-side-view.md) | Medium (62.71%) | binary-tree | [cpp](.cpp/0199.binary-tree-right-side-view.cpp) |
 | [0201.Bitwise AND of Numbers Range](.doc/0201.bitwise-and-of-numbers-range.md) | Medium (43.02%) | bit-manipulation | [cpp](.cpp/0201.bitwise-and-of-numbers-range.cpp) |
+| [0202.Happy Number](.doc/0202.happy-number.md) | Easy (55.78%) | hash-table, math, fast-slow-pointers | [cpp](.cpp/0202.happy-number.cpp) |
 | [0203.Remove Linked List Elements](.doc/0203.remove-linked-list-elements.md) | Easy (48.12%) | linked-list | [cpp](.cpp/0203.remove-linked-list-elements.cpp) |
 | [0204.Count Primes](.doc/0204.count-primes.md) | Medium (33.42%) | math | [cpp](.cpp/0204.count-primes.cpp) |
 | [0206.Reverse Linked List](.doc/0206.reverse-linked-list.md) | Easy (75.53%) | linked-list | [cpp](.cpp/0206.reverse-linked-list.cpp) |
-| [0208.Implement Trie (Prefix Tree)](.doc/0208.implement-trie-prefix-tree.md) | Medium (64.56%) | design, trie, tree | [cpp](.cpp/0208.implement-trie-prefix-tree.cpp) |
+| [0208.Implement Trie (Prefix Tree)](.doc/0208.implement-trie-prefix-tree.md) | Medium (64.56%) | design, trie-tree | [cpp](.cpp/0208.implement-trie-prefix-tree.cpp) |
 | [0213.House Robber II](.doc/0213.house-robber-ii.md) | Medium (41.77%) | dynamic-programming | [cpp](.cpp/0213.house-robber-ii.cpp) |
 | [0217.Contains Duplicate](.doc/0217.contains-duplicate.md) | Easy (61.33%) | array, sort, hash-table, duplicate | [cpp](.cpp/0217.contains-duplicate.cpp) |
 | [0219.Contains Duplicate II](.doc/0219.contains-duplicate-ii.md) | Easy (44.43%) | array, hash-table, duplicate | [cpp](.cpp/0219.contains-duplicate-ii.cpp) |
 | [0220.Contains Duplicate III](.doc/0220.contains-duplicate-iii.md) | Hard (22.62%) | sliding-window, ordered-map, binary-search | [cpp](.cpp/0220.contains-duplicate-iii.cpp) |
 | [0223.Rectangle Area](.doc/0223.rectangle-area.md) | Medium (45.88%) | math, geometry | [cpp](.cpp/0223.rectangle-area.cpp) |
 | [0231.Power of Two](.doc/0231.power-of-two.md) | Easy (46.62%) | bit-manipulation | [cpp](.cpp/0231.power-of-two.cpp) |
+| [0234.Palindrome Linked List](.doc/0234.palindrome-linked-list.md) | Easy (51.59%) | linked-list, fast-slow-pointers, stack, recursion | [cpp](.cpp/0234.palindrome-linked-list.cpp) |
+| [0235.Lowest Common Ancestor of a Binary Search Tree](.doc/0235.lowest-common-ancestor-of-a-binary-search-tree.md) | Medium (64.04%) | binary-search-tree | [cpp](.cpp/0235.lowest-common-ancestor-of-a-binary-search-tree.cpp) |
+| [0236.Lowest Common Ancestor of a Binary Tree](.doc/0236.lowest-common-ancestor-of-a-binary-tree.md) | Medium (61.34%) | binary-tree | [cpp](.cpp/0236.lowest-common-ancestor-of-a-binary-tree.cpp) |
 | [0242.Valid Anagram](.doc/0242.valid-anagram.md) | Easy (64.16%) | hash-table | [cpp](.cpp/0242.valid-anagram.cpp) |
 | 0243.Shortest Word Distance 🔒 | | string, two-pointers | [cpp](.cpp/0243.shortest-word-distance.cpp) |
 | 0244.Shortest Word Distance II 🔒 | | design, hash-table, two-pointers | [cpp](.cpp/0244.shortest-word-distance-ii.cpp) |
@@ -153,8 +165,11 @@
 | [0292.Nim Game](.doc/0292.nim-game.md) | Easy (56.61%) | math, game-theory | [cpp](.cpp/0292.nim-game.cpp) |
 | 0293.Flip Game 🔒 | | string | [cpp](.cpp/0293.flip-game.cpp) |
 | [0295.Find Median from Data Stream](.doc/0295.find-median-from-data-stream.md) | Hard (51.75%) | design, heap | [cpp](.cpp/0295.find-median-from-data-stream.cpp) |
+| 0296.Best Meeting Point 🔒 | | math, sort | [cpp](.cpp/0296.best-meeting-point.cpp) |
 | [0313.Super Ugly Number](.doc/0313.super-ugly-number.md) | Medium (45.25%) | heap, math, dynamic-programming | [cpp](.cpp/0313.super-ugly-number.cpp) |
 | [0316.Remove Duplicate Letters](.doc/0316.remove-duplicate-letters.md) | Medium (48.80%) | stack, greedy, hash-table, string | [cpp](.cpp/0316.remove-duplicate-letters.cpp) |
+| [0355.Design Twitter](.doc/0355.design-twitter.md) | Medium (38.59%) | design, hash-table, heap | [cpp](.cpp/0355.design-twitter.cpp) |
+| [0383.Ransom Note](.doc/0383.ransom-note.md) | Easy (60.61%) | hash-table, string, easy | [cpp](.cpp/0383.ransom-note.cpp) |
 | [0495.Teemo Attacking](.doc/0495.teemo-attacking.md) | Easy (56.54%) | array | [cpp](.cpp/0495.teemo-attacking.cpp) |
 | [0498.Diagonal Traverse](.doc/0498.diagonal-traverse.md) | Medium (58.33%) | matrix | [cpp](.cpp/0498.diagonal-traverse.cpp) |
 | [0500.Keyboard Row](.doc/0500.keyboard-row.md) | Easy (70.36%) | hash-table | [cpp](.cpp/0500.keyboard-row.cpp) |
@@ -163,6 +178,7 @@
 | 0531.Lonely Pixel I 🔒 | | matrix | [cpp](.cpp/0531.lonely-pixel-i.cpp) |
 | [0560.Subarray Sum Equals K](.doc/0560.subarray-sum-equals-k.md) | Medium (43.35%) | array, hash-table, prefix-sum | [cpp](.cpp/0560.subarray-sum-equals-k.cpp) |
 | [0657.Robot Return to Origin](.doc/0657.robot-return-to-origin.md) | Easy (75.61%) | easy | [cpp](.cpp/0657.robot-return-to-origin.cpp) |
+| [0704.Binary Search](.doc/0704.binary-search.md) | Easy (56.83%) | binary-search | [cpp](.cpp/0704.binary-search.cpp) |
 | [0799.Champagne Tower](.doc/0799.champagne-tower.md) | Medium (58.04%) | array | [cpp](.cpp/0799.champagne-tower.cpp) |
 | [0867.Transpose Matrix](.doc/0867.transpose-matrix.md) | Easy (65.56%) | easy | [cpp](.cpp/0867.transpose-matrix.cpp) |
 | [0873.Length of Longest Fibonacci Subsequence](.doc/0873.length-of-longest-fibonacci-subsequence.md) | Medium (48.39%) | array, dynamic-programming, hash-table | [cpp](.cpp/0873.length-of-longest-fibonacci-subsequence.cpp) |
@@ -172,6 +188,8 @@
 | [0881.Boats to Save People](.doc/0881.boats-to-save-people.md) | Medium (55.90%) | greedy, two-pointers | [cpp](.cpp/0881.boats-to-save-people.cpp) |
 | [0942.DI String Match](.doc/0942.di-string-match.md) | Easy (77.88%) | two-pointers | [cpp](.cpp/0942.di-string-match.cpp) |
 | [0980.Unique Paths III](.doc/0980.unique-paths-iii.md) | Hard (81.76%) | depth-first-search | [cpp](.cpp/0980.unique-paths-iii.cpp) |
+| [1014.Best Sightseeing Pair](.doc/1014.best-sightseeing-pair.md) | Medium (59.34%) | array | [cpp](.cpp/1014.best-sightseeing-pair.cpp) |
+| [1017.Convert to Base -2](.doc/1017.convert-to-base-2.md) | Medium (60.56%) | math | [cpp](.cpp/1017.convert-to-base-2.cpp) |
 | [1025.Divisor Game](.doc/1025.divisor-game.md) | Easy (68.30%) | math, game-theory | [cpp](.cpp/1025.divisor-game.cpp) |
 | [1032.Stream of Characters](.doc/1032.stream-of-characters.md) | Hard (51.82%) | trie, design | [cpp](.cpp/1032.stream-of-characters.cpp) |
 | [1037.Valid Boomerang](.doc/1037.valid-boomerang.md) | Easy (36.82%) | math, geometry | [cpp](.cpp/1037.valid-boomerang.cpp) |
@@ -180,6 +198,7 @@
 | [1046.Last Stone Weight](.doc/1046.last-stone-weight.md) | Easy (65.15%) | heap | [cpp](.cpp/1046.last-stone-weight.cpp) |
 | [1047.Remove All Adjacent Duplicates In String](.doc/1047.remove-all-adjacent-duplicates-in-string.md) | Easy (69.13%) | stack, string | [cpp](.cpp/1047.remove-all-adjacent-duplicates-in-string.cpp) |
 | [1051.Height Checker](.doc/1051.height-checker.md) | Easy (76.02%) | sort, counting-sort, array | [cpp](.cpp/1051.height-checker.cpp) |
+| [1052.Grumpy Bookstore Owner](.doc/1052.grumpy-bookstore-owner.md) | Medium (57.13%) | prefix-sum | [cpp](.cpp/1052.grumpy-bookstore-owner.cpp) |
 | 1055.Shortest Way to Form String 🔒 | | string, two-pointers | [cpp](.cpp/1055.shortest-way-to-form-string.cpp) |
 | 1056.Confusing Number 🔒 | | math | [cpp](.cpp/1056.confusing-number.cpp) |
 | 1058.Minimize Rounding Error to Meet Target 🔒 | | math | [cpp](.cpp/1058.minimize-rounding-error-to-meet-target.cpp) |
