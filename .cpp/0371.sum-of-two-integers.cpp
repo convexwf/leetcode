@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 位操作
 // 2022-11-14 submission
 // 26/26 cases passed
 // Runtime: 2 ms, faster than 43.81% of cpp online submissions.
@@ -12,7 +13,12 @@
 class Solution {
 public:
     int getSum(int a, int b) {
-        return b == 0 ? a : getSum(a ^ b, (a & b & 0x7fffffff) << 1);
+        while (b != 0) {
+            unsigned int carry = (unsigned int)(a & b) << 1;
+            a = a ^ b;
+            b = carry;
+        }
+        return a;
     }
 };
 // @lc code=end

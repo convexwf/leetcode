@@ -16,13 +16,10 @@ public:
         vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
         for (int i = n - 1; i >= 1; --i) {
             for (int j = i + 1; j <= n; ++j) {
-                int min_cost = INT_MAX;
-                for (int x = i; x <= j; ++x) {
-                    int cost =
-                        x + max((x - 1 >= i ? dp[i][x - 1] : 0), (x + 1 <= j ? dp[x + 1][j] : 0));
-                    min_cost = min(min_cost, cost);
+                dp[i][j] = INT_MAX;
+                for (int k = i; k < j; ++k) {
+                    dp[i][j] = min(dp[i][j], k + max(dp[i][k - 1], dp[k + 1][j]));
                 }
-                dp[i][j] = min_cost;
             }
         }
         return dp[1][n];

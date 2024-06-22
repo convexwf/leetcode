@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归+标志位
 // 2020-12-11 submission
 // 100/100 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -35,6 +36,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 递归+父节点判断
 // 2023-01-14 submission
 // 100/100 cases passed
 // Runtime: 4 ms, faster than 72.47% of cpp online submissions.

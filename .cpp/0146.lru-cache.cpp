@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 双向链表+哈希表
 // 2020-09-18 submission
 // 22/22 cases passed
 // Runtime: 483 ms, faster than 66.16% of cpp online submissions.

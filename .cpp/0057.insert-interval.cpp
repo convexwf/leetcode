@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 排序+合并区间
 // 2020-07-14 submission
 // 156/156 cases passed
 // Runtime: 7 ms, faster than 99.44% of cpp online submissions.
@@ -49,6 +50,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 一次遍历
 // 2023-02-02 submission
 // 156/156 cases passed
 // Runtime: 12 ms, faster than 88.99% of cpp online submissions.
@@ -57,21 +59,28 @@ class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
         vector<vector<int>> res;
-        int n = intervals.size(), cur = 0;
-        for (int i = 0; i < n; ++i) {
-            if (intervals[i][1] < newInterval[0]) {
-                res.push_back(intervals[i]);
-                ++cur;
+        int new_start = newInterval[0], new_end = newInterval[1];
+        bool placed = false;
+        for (const vector<int>& interval : intervals) {
+            int start = interval[0], end = interval[1];
+            if (end < new_start) {
+                res.push_back(interval);
             }
-            else if (intervals[i][0] > newInterval[1]) {
-                res.push_back(intervals[i]);
+            else if (start > new_end) {
+                if (!placed) {
+                    res.push_back({new_start, new_end});
+                    placed = true;
+                }
+                res.push_back(interval);
             }
             else {
-                newInterval[0] = min(newInterval[0], intervals[i][0]);
-                newInterval[1] = max(newInterval[1], intervals[i][1]);
+                new_start = min(new_start, start);
+                new_end = max(new_end, end);
             }
         }
-        res.insert(res.begin() + cur, newInterval);
+        if (!placed) {
+            res.push_back({new_start, new_end});
+        }
         return res;
     }
 };

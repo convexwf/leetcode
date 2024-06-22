@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表+一维数组
 // 2022-08-19 submission
 // 32/32 cases passed
 // Runtime: 431 ms, faster than 40.35% of cpp online submissions.
@@ -50,6 +51,7 @@ private:
 // @lc code=end
 
 // @lc code=start
+// 2. 哈希表+二维数组
 // 2022-08-19 submission
 // 32/32 cases passed
 // Runtime: 286 ms, faster than 83.68% of cpp online submissions.
@@ -63,7 +65,7 @@ public:
     /** Inserts a value to the collection. Returns true if the collection did not already contain
      * the specified element. */
     bool insert(int val) {
-        auto result = m.find(val) == m.end();
+        bool result = !m[val].empty();
 
         m[val].push_back(nums.size());
         nums.push_back(pair<int, int>(val, m[val].size() - 1));

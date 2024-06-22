@@ -5,24 +5,20 @@
  */
 
 // @lc code=start
+// 1. 双指针
 // 2021-12-16 submission
 // 480/480 cases passed
-// Runtime: 8 ms, faster than 70.15% of cpp online submissions.
-// Memory Usage: 8 MB, less than 38.59% of cpp online submissions.
+// Runtime: 3 ms, faster than 96.05% of cpp online submissions.
+// Memory Usage: 8 MB, less than 14.12% of cpp online submissions.
 class Solution {
 public:
     string reverseVowels(string s) {
-        unordered_set<char> m{'a', 'i', 'u', 'e', 'o'};
-        int n = s.length();
-        int l = 0, r = n - 1;
+        unordered_set<char> m{'a', 'i', 'u', 'e', 'o', 'A', 'I', 'U', 'E', 'O'};
+        int l = 0, r = s.size() - 1;
         while (l < r) {
-            while (l < n && !m.count(tolower(s[l]))) ++l;
-            while (r >= 0 && !m.count(tolower(s[r]))) --r;
-            if (l < r) {
-                swap(s[l], s[r]);
-                ++l;
-                --r;
-            }
+            while (l < r && !m.count(s[l])) l++;
+            while (l < r && !m.count(s[r])) r--;
+            swap(s[l++], s[r--]);
         }
         return s;
     }

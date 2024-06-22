@@ -8,6 +8,7 @@
 | [0001.Two Sum](.doc/0001.two-sum.md) | Easy (49.85%) | array, hash-table, sort | [cpp](.cpp/0001.two-sum.cpp) |
 | [0002.Add Two Numbers](.doc/0002.add-two-numbers.md) | Medium (42.10%) | linked-list, arithmetic | [cpp](.cpp/0002.add-two-numbers.cpp) |
 | [0003.Longest Substring Without Repeating Characters](.doc/0003.longest-substring-without-repeating-characters.md) | Medium (34.43%) | hash-table, sliding-window | [cpp](.cpp/0003.longest-substring-without-repeating-characters.cpp) |
+| [0006.Zigzag Conversion](.doc/0006.zigzag-conversion.md) | Medium (47.12%) | string | [cpp](.cpp/0006.zigzag-conversion.cpp) |
 | [0011.Container With Most Water](.doc/0011.container-with-most-water.md) | Medium (54.73%) | array, two-pointers | [cpp](.cpp/0011.container-with-most-water.cpp) |
 | [0012.Integer to Roman](.doc/0012.integer-to-roman.md) | Medium (64.08%) | greedy | [cpp](.cpp/0012.integer-to-roman.cpp) |
 | [0013.Roman to Integer](.doc/0013.roman-to-integer.md) | Easy (60.50%) | hash-table, string | [cpp](.cpp/0013.roman-to-integer.cpp) |
@@ -41,11 +42,14 @@
 | [0053.Maximum Subarray](.doc/0053.maximum-subarray.md) | Medium (50.56%) | divide-and-conquer, dynamic-programming, array, subarray | [cpp](.cpp/0053.maximum-subarray.cpp) |
 | [0054.Spiral Matrix](.doc/0054.spiral-matrix.md) | Medium (48.63%) | matrix, array | [cpp](.cpp/0054.spiral-matrix.cpp) |
 | [0055.Jump Game](.doc/0055.jump-game.md) | Medium (38.53%) | array, greedy | [cpp](.cpp/0055.jump-game.cpp) |
+| [0056.Merge Intervals](.doc/0056.merge-intervals.md) | Medium (46.93%) | sort, interval | [cpp](.cpp/0056.merge-intervals.cpp) |
+| [0057.Insert Interval](.doc/0057.insert-interval.md) | Medium (39.84%) | sort, interval, array | [cpp](.cpp/0057.insert-interval.cpp) |
 | [0058.Length of Last Word](.doc/0058.length-of-last-word.md) | Easy (48.41%) | string, two-pointers | [cpp](.cpp/0058.length-of-last-word.cpp) |
 | [0059.Spiral Matrix II](.doc/0059.spiral-matrix-ii.md) | Medium (70.66%) | array, matrix | [cpp](.cpp/0059.spiral-matrix-ii.cpp) |
 | [0060.Permutation Sequence](.doc/0060.permutation-sequence.md) | Hard (46.25%) | math, permutation | [cpp](.cpp/0060.permutation-sequence.cpp) |
 | [0062.Unique Paths](.doc/0062.unique-paths.md) | Medium (64.00%) | dynamic-programming, math | [cpp](.cpp/0062.unique-paths.cpp) |
 | [0063.Unique Paths II](.doc/0063.unique-paths-ii.md) | Medium (41.26%) | dynamic-programming | [cpp](.cpp/0063.unique-paths-ii.cpp) |
+| [0064.Minimum Path Sum](.doc/0064.minimum-path-sum.md) | Medium (63.42%) | dynamic-programming | [cpp](.cpp/0064.minimum-path-sum.cpp) |
 | [0066.Plus One](.doc/0066.plus-one.md) | Easy (44.78%) | array | [cpp](.cpp/0066.plus-one.cpp) |
 | [0067.Add Binary](.doc/0067.add-binary.md) | Easy (53.13%) | string, math | [cpp](.cpp/0067.add-binary.cpp) |
 | [0070.Climbing Stairs](.doc/0070.climbing-stairs.md) | Easy (52.80%) | dynamic-programming, fibonacci-number | [cpp](.cpp/0070.climbing-stairs.cpp) |
@@ -101,6 +105,7 @@
 | [0139.Word Break](.doc/0139.word-break.md) | Medium (46.53%) | dynamic-programming, hash-table, string | [cpp](.cpp/0139.word-break.cpp) |
 | [0141.Linked List Cycle](.doc/0141.linked-list-cycle.md) | Easy (49.38%) | linked-list, two-pointers, hash-table, fast-slow-pointers | [cpp](.cpp/0141.linked-list-cycle.cpp) |
 | [0145.Binary Tree Postorder Traversal](.doc/0145.binary-tree-postorder-traversal.md) | Easy (70.31%) | binary-tree | [cpp](.cpp/0145.binary-tree-postorder-traversal.cpp) |
+| [0146.LRU Cache](.doc/0146.lru-cache.md) | Medium (42.07%) | design | [cpp](.cpp/0146.lru-cache.cpp) |
 | [0150.Evaluate Reverse Polish Notation](.doc/0150.evaluate-reverse-polish-notation.md) | Medium (50.68%) | stack | [cpp](.cpp/0150.evaluate-reverse-polish-notation.cpp) |
 | [0152.Maximum Product Subarray](.doc/0152.maximum-product-subarray.md) | Medium (34.93%) | array, dynamic-programming | [cpp](.cpp/0152.maximum-product-subarray.cpp) |
 | [0155.Min Stack](.doc/0155.min-stack.md) | Medium (53.69%) | stack, design | [cpp](.cpp/0155.min-stack.cpp) |
@@ -110,6 +115,7 @@
 | [0160.Intersection of Two Linked Lists](.doc/0160.intersection-of-two-linked-lists.md) | Easy (56.77%) | linked-list, two-pointers | [cpp](.cpp/0160.intersection-of-two-linked-lists.cpp) |
 | 0161.One Edit Distance 🔒 | | string | [cpp](.cpp/0161.one-edit-distance.cpp) |
 | [0162.Find Peak Element](.doc/0162.find-peak-element.md) | Medium (45.84%) | array, binary-search | [cpp](.cpp/0162.find-peak-element.cpp) |
+| [0167.Two Sum II - Input Array Is Sorted](.doc/0167.two-sum-ii-input-array-is-sorted.md) | Medium (60.83%) | array, two-pointers, binary-search | [cpp](.cpp/0167.two-sum-ii-input-array-is-sorted.cpp) |
 | [0168.Excel Sheet Column Title](.doc/0168.excel-sheet-column-title.md) | Easy (40.14%) | math, string, easy | [cpp](.cpp/0168.excel-sheet-column-title.cpp) |
 | [0169.Majority Element](.doc/0169.majority-element.md) | Easy (63.95%) | sort, array, bit-manipulation, boyer-moore-voting-algorithm | [cpp](.cpp/0169.majority-element.cpp) |
 | 0170.Two Sum III - Data structure design 🔒 | | design, hash-table, target-sum | [cpp](.cpp/0170.two-sum-iii---data-structure-design.cpp) |
@@ -117,6 +123,7 @@
 | [0172.Factorial Trailing Zeroes](.doc/0172.factorial-trailing-zeroes.md) | Medium (43.08%) | math | [cpp](.cpp/0172.factorial-trailing-zeroes.cpp) |
 | [0179.Largest Number](.doc/0179.largest-number.md) | Medium (35.71%) | sort, string | [cpp](.cpp/0179.largest-number.cpp) |
 | 0186.Reverse Words in a String II 🔒 | | string, two-pointers | [cpp](.cpp/0186.reverse-words-in-a-string-ii.cpp) |
+| [0187.Repeated DNA Sequences](.doc/0187.repeated-dna-sequences.md) | Medium (48.41%) | hash-table, bit-manipulation, string | [cpp](.cpp/0187.repeated-dna-sequences.cpp) |
 | [0190.Reverse Bits](.doc/0190.reverse-bits.md) | Easy (57.46%) | bit-manipulation | [cpp](.cpp/0190.reverse-bits.cpp) |
 | [0191.Number of 1 Bits](.doc/0191.number-of-1-bits.md) | Easy (70.18%) | bit-manipulation | [cpp](.cpp/0191.number-of-1-bits.cpp) |
 | [0198.House Robber](.doc/0198.house-robber.md) | Medium (50.77%) | dynamic-programming, array | [cpp](.cpp/0198.house-robber.cpp) |
@@ -142,10 +149,12 @@
 | 0245.Shortest Word Distance III 🔒 | | string, two-pointers | [cpp](.cpp/0245.shortest-word-distance-iii.cpp) |
 | 0246.Strobogrammatic Number 🔒 | | two-pointers | [cpp](.cpp/0246.strobogrammatic-number.cpp) |
 | 0247.Strobogrammatic Number II 🔒 | | recursion, string | [cpp](.cpp/0247.strobogrammatic-number-ii.cpp) |
+| 0251.Flatten 2D Vector 🔒 | | design, two-pointers | [cpp](.cpp/0251.flatten-2d-vector.cpp) |
 | 0252.Meeting Rooms 🔒 | | sort, interval | [cpp](.cpp/0252.meeting-rooms.cpp) |
 | 0256.Paint House 🔒 | | dynamic-programming | [cpp](.cpp/0256.paint-house.cpp) |
 | [0257.Binary Tree Paths](.doc/0257.binary-tree-paths.md) | Easy (63.13%) | binary-tree, depth-first-search | [cpp](.cpp/0257.binary-tree-paths.cpp) |
 | [0258.Add Digits](.doc/0258.add-digits.md) | Easy (66.28%) | math | [cpp](.cpp/0258.add-digits.cpp) |
+| 0259.3Sum Smaller 🔒 | | array, two-pointers, sort | [cpp](.cpp/0259.3sum-smaller.cpp) |
 | [0260.Single Number III](.doc/0260.single-number-iii.md) | Medium (68.20%) | bit-manipulation | [cpp](.cpp/0260.single-number-iii.cpp) |
 | [0263.Ugly Number](.doc/0263.ugly-number.md) | Easy (41.96%) | easy | [cpp](.cpp/0263.ugly-number.cpp) |
 | [0264.Ugly Number II](.doc/0264.ugly-number-ii.md) | Medium (46.16%) | heap, math, dynamic-programming | [cpp](.cpp/0264.ugly-number-ii.cpp) |
@@ -168,15 +177,35 @@
 | 0296.Best Meeting Point 🔒 | | math, sort | [cpp](.cpp/0296.best-meeting-point.cpp) |
 | [0313.Super Ugly Number](.doc/0313.super-ugly-number.md) | Medium (45.25%) | heap, math, dynamic-programming | [cpp](.cpp/0313.super-ugly-number.cpp) |
 | [0316.Remove Duplicate Letters](.doc/0316.remove-duplicate-letters.md) | Medium (48.80%) | stack, greedy, hash-table, string | [cpp](.cpp/0316.remove-duplicate-letters.cpp) |
+| [0344.Reverse String](.doc/0344.reverse-string.md) | Easy (77.54%) | two-pointers, string | [cpp](.cpp/0344.reverse-string.cpp) |
+| [0345.Reverse Vowels of a String](.doc/0345.reverse-vowels-of-a-string.md) | Easy (52.38%) | two-pointers, string | [cpp](.cpp/0345.reverse-vowels-of-a-string.cpp) |
+| 0346.Moving Average from Data Stream 🔒 | | queue, design | [cpp](.cpp/0346.moving-average-from-data-stream.cpp) |
 | [0355.Design Twitter](.doc/0355.design-twitter.md) | Medium (38.59%) | design, hash-table, heap | [cpp](.cpp/0355.design-twitter.cpp) |
+| [0371.Sum of Two Integers](.doc/0371.sum-of-two-integers.md) | Medium (51.51%) | bit-manipulation, arithmetic | [cpp](.cpp/0371.sum-of-two-integers.cpp) |
+| [0374.Guess Number Higher or Lower](.doc/0374.guess-number-higher-or-lower.md) | Easy (53.05%) | binary-search | [cpp](.cpp/0374.guess-number-higher-or-lower.cpp) |
+| [0375.Guess Number Higher or Lower II](.doc/0375.guess-number-higher-or-lower-ii.md) | Medium (47.17%) | dynamic-programming | [cpp](.cpp/0375.guess-number-higher-or-lower-ii.cpp) |
+| [0380.Insert Delete GetRandom O(1)](.doc/0380.insert-delete-get-random-o-1.md) | Medium (54.35%) | array, hash-table, design, random | [cpp](.cpp/0380.insert-delete-get-random-o-1.cpp) |
+| [0381.Insert Delete GetRandom O(1) - Duplicates allowed](.doc/0381.insert-delete-get-random-o-1-duplicates-allowed.md) | Hard (35.36%) | array, hash-table, design, random | [cpp](.cpp/0381.insert-delete-get-random-o-1-duplicates-allowed.cpp) |
 | [0383.Ransom Note](.doc/0383.ransom-note.md) | Easy (60.61%) | hash-table, string, easy | [cpp](.cpp/0383.ransom-note.cpp) |
+| [0384.Shuffle an Array](.doc/0384.shuffle-an-array.md) | Medium (58.13%) | random | [cpp](.cpp/0384.shuffle-an-array.cpp) |
+| [0387.First Unique Character in a String](.doc/0387.first-unique-character-in-a-string.md) | Easy (60.56%) | hash-table | [cpp](.cpp/0387.first-unique-character-in-a-string.cpp) |
+| [0388.Longest Absolute File Path](.doc/0388.longest-absolute-file-path.md) | Medium (46.70%) | stack, hash-table | [cpp](.cpp/0388.longest-absolute-file-path.cpp) |
+| [0389.Find the Difference](.doc/0389.find-the-difference.md) | Easy (59.65%) | hash-table | [cpp](.cpp/0389.find-the-difference.cpp) |
+| [0392.Is Subsequence](.doc/0392.is-subsequence.md) | Easy (47.94%) | string, two-pointers | [cpp](.cpp/0392.is-subsequence.cpp) |
+| [0393.UTF-8 Validation](.doc/0393.utf-8-validation.md) | Medium (45.04%) | bit-manipulation | [cpp](.cpp/0393.utf-8-validation.cpp) |
+| [0401.Binary Watch](.doc/0401.binary-watch.md) | Easy (53.67%) | bit-manipulation | [cpp](.cpp/0401.binary-watch.cpp) |
+| [0404.Sum of Left Leaves](.doc/0404.sum-of-left-leaves.md) | Easy (57.58%) | binary-tree | [cpp](.cpp/0404.sum-of-left-leaves.cpp) |
+| [0458.Poor Pigs](.doc/0458.poor-pigs.md) | Hard (60.20%) | math | [cpp](.cpp/0458.poor-pigs.cpp) |
+| [0460.LFU Cache](.doc/0460.lfu-cache.md) | Hard (43.67%) | design | [cpp](.cpp/0460.lfu-cache.cpp) |
 | [0495.Teemo Attacking](.doc/0495.teemo-attacking.md) | Easy (56.54%) | array | [cpp](.cpp/0495.teemo-attacking.cpp) |
 | [0498.Diagonal Traverse](.doc/0498.diagonal-traverse.md) | Medium (58.33%) | matrix | [cpp](.cpp/0498.diagonal-traverse.cpp) |
 | [0500.Keyboard Row](.doc/0500.keyboard-row.md) | Easy (70.36%) | hash-table | [cpp](.cpp/0500.keyboard-row.cpp) |
 | [0504.Base 7](.doc/0504.base-7.md) | Easy (49.60%) | math | [cpp](.cpp/0504.base-7.cpp) |
 | 0527.Word Abbreviation 🔒 | | trie, string | [cpp](.cpp/0527.word-abbreviation.cpp) |
 | 0531.Lonely Pixel I 🔒 | | matrix | [cpp](.cpp/0531.lonely-pixel-i.cpp) |
+| 0548.Split Array with Equal Sum 🔒 | | prefix-sum, hash-table | [cpp](.cpp/0548.split-array-with-equal-sum.cpp) |
 | [0560.Subarray Sum Equals K](.doc/0560.subarray-sum-equals-k.md) | Medium (43.35%) | array, hash-table, prefix-sum | [cpp](.cpp/0560.subarray-sum-equals-k.cpp) |
+| [0566.Reshape the Matrix](.doc/0566.reshape-the-matrix.md) | Easy (63.03%) | matrix | [cpp](.cpp/0566.reshape-the-matrix.cpp) |
 | [0657.Robot Return to Origin](.doc/0657.robot-return-to-origin.md) | Easy (75.61%) | easy | [cpp](.cpp/0657.robot-return-to-origin.cpp) |
 | [0704.Binary Search](.doc/0704.binary-search.md) | Easy (56.83%) | binary-search | [cpp](.cpp/0704.binary-search.cpp) |
 | [0799.Champagne Tower](.doc/0799.champagne-tower.md) | Medium (58.04%) | array | [cpp](.cpp/0799.champagne-tower.cpp) |

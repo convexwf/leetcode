@@ -27,6 +27,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 哈希表+位操作
 // 2020-09-18 submission
 // 31/31 cases passed
 // Runtime: 99 ms, faster than 70.8% of cpp online submissions.
@@ -34,21 +35,46 @@ public:
 class Solution {
 public:
     vector<string> findRepeatedDnaSequences(string s) {
-        unordered_set<string> res; // 用 set 替代 vector，因为可能出现多次重复
-        unordered_set<int> hash_set;
+        unordered_map<int, int> hash;
         unordered_map<char, int> dna{{'A', 0}, {'C', 1}, {'G', 2}, {'T', 3}};
         int cur = 0;
-        for (int i = 0; i < 9; i++) {
-            cur = cur << 2 | dna[s[i]];
+        vector<string> res;
+        for (int i = 0; i < s.size(); i++) {
+            cur = (cur << 2 | dna[s[i]]) & 0xfffff;
+            if (i < 9) continue;
+            if (hash[cur]++ == 1) {
+                res.push_back(s.substr(i - 9, 10));
+            }
         }
-        for (int i = 9; i < s.length(); i++) {
-            cur = (cur & 0x0003ffff) << 2 | dna[s[i]]; // 每次只保留 20-2=18 位，再加上后来的2位
-            if (hash_set.count(cur))
-                res.insert(s.substr(i - 9, 10));
-            else
-                hash_set.insert(cur);
+        return res;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 3. Rabin-Karp 字符串匹配算法
+// 2024-06-17 submission
+// 31/31 cases passed
+// Runtime: 31 ms, faster than 93.48% of cpp online submissions.
+// Memory Usage: 15.7 MB, less than 94.07% of cpp online submissions.
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        if (s.size() <= 10) return {};
+        unordered_map<char, int> to_int = {{'A', 0}, {'C', 1}, {'G', 2}, {'T', 3}};
+        int base = 4, mod = int(pow(4, 10 - 1)), hash = 0;
+
+        unordered_map<int, int> hash_map;
+        vector<string> res;
+        for (int i = 0; i < s.length(); ++i) {
+            hash = (hash * base + to_int[s[i]]);
+            if (i < 9) continue;
+            if (hash_map[hash]++ == 1) {
+                res.push_back(s.substr(i - 9, 10));
+            }
+            hash = (hash - mod * to_int[s[i - 9]]);
         }
-        return vector<string>(res.begin(), res.end());
+        return res;
     }
 };
 // @lc code=end

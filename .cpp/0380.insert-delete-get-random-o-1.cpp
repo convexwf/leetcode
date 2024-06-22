@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表+一维数组
 // 2022-08-19 submission
 // 19/19 cases passed
 // Runtime: 344 ms, faster than 60.87% of cpp online submissions.

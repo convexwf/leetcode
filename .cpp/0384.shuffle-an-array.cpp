@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 洗牌算法(Knuth-Durstenfeld Shuffle)
 // 2022-08-19 submission
 // 8/8 cases passed
 // Runtime: 80 ms, faster than 80.78% of cpp online submissions.

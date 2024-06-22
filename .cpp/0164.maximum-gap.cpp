@@ -34,3 +34,13 @@ public:
     }
 };
 // @lc code=end
+
+// @lc code=start
+class Solution {
+public:
+    int maximumGap(vector<int>& nums) {
+        if (nums.size() <= 1) return 0;
+        int mx = *max_element(nums.begin(), nums.end());
+        int mn = *min_element(nums.begin(), nums.end());
+    }
+};

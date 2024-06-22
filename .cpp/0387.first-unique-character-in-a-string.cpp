@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表
 // 2020-11-29 submission
 // 105/105 cases passed
 // Runtime: 21 ms, faster than 91.84% of cpp online submissions.

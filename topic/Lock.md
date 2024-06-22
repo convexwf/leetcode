@@ -98,62 +98,6 @@ public:
 ## 249. Group Shifted Strings
 ## 250. Count Univalue Subtrees
 
-## 251. Flatten 2D Vector
-
-压平一个二维向量数组，并且实现一个 iterator 的功能，包括 next 和 hasNext 函数。
-
-1. 维护两个变量 x 和 y，将 x 和 y 初始化为 0
-   - 对于 hasNext 函数，检查当前 x 是否小于总行数，y 是否和当前行的列数相同，如果相同，说明要转到下一行，则 x 自增 1，y 初始化为 0，若此时 x 还是小于总行数，说明下一个值可以被取出来，那么在 next 函数就可以直接取出行为 x，列为 y 的数字，并将 y 自增 1
-2. C++ iterator：将 x 定义为行的 iterator，再用个 end 指向二维数组的末尾，定义一个整型变量 y 来指向列位置，实现思路和上一种解法完全相同。
-
-**边界条件**
-
-1. 存在空行
-
-```cpp
-class Vector2D {
-public:
-    Vector2D(vector<vector<int>>& vec2d): data(vec2d), x(0), y(0) {}
-
-    int next() {
-        hasNext();
-        return data[x][y++];
-    }
-    bool hasNext() {
-        while (x < data.size() && y == data[x].size()) {
-            ++x;
-            y = 0;
-        }
-        return x < data.size();
-    }
-private:
-    vector<vector<int>> data;
-    int x, y;
-};
-```
-
-```cpp
-class Vector2D {
-public:
-    Vector2D(vector<vector<int>>& vec2d): x(vec2d.begin()), end(vec2d.end()) {}
-
-    int next() {
-        hasNext();
-        return (*x)[y++];
-    }
-    bool hasNext() {
-        while (x != end && y == (*x).size()) {
-            ++x;
-            y = 0;
-        }
-        return x != end;
-    }
-private:
-    vector<vector<int>>::iterator x, end;
-    int y = 0;
-};
-```
-
 ## 253. Meeting Rooms II
 
 题目描述：给了一些会议的开始时间和结束时间，最少需要安排几个会议室，有时间冲突的会议需要安排在不同的会议室。

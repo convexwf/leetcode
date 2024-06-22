@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 二分查找
 // 2022-11-14 submission
 // 25/25 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -17,21 +18,24 @@
  *               otherwise return 0
  * int guess(int num);
  */
-
 class Solution {
 public:
     int guessNumber(int n) {
-        if (guess(n) == 0) return n;
         int left = 1, right = n;
-        while (left < right) {
-            int mid = left + (right - left) / 2, t = guess(mid);
-            if (t == 0) return mid;
-            if (t == 1)
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int res = guess(mid);
+            if (res == 0) {
+                return mid;
+            }
+            else if (res == -1) {
+                right = mid - 1;
+            }
+            else {
                 left = mid + 1;
-            else
-                right = mid;
+            }
         }
-        return left;
+        return -1;
     }
 };
 // @lc code=end
