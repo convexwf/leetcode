@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 模拟
 // 2022-11-15 submission
 // 8/8 cases passed
 // Runtime: 3 ms, faster than 90.53% of cpp online submissions.
@@ -14,14 +15,18 @@ public:
     vector<string> fizzBuzz(int n) {
         vector<string> res;
         for (int i = 1; i <= n; i++) {
-            if (i % 15 == 0)
+            if (i % 15 == 0) {
                 res.push_back("FizzBuzz");
-            else if (i % 3 == 0)
+            }
+            else if (i % 3 == 0) {
                 res.push_back("Fizz");
-            else if (i % 5 == 0)
+            }
+            else if (i % 5 == 0) {
                 res.push_back("Buzz");
-            else
+            }
+            else {
                 res.push_back(to_string(i));
+            }
         }
         return res;
     }

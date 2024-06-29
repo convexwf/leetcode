@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 拓扑排序-bfs
 // 2022-11-14 submission
 // 52/52 cases passed
 // Runtime: 26 ms, faster than 88.67% of cpp online submissions.
@@ -39,6 +40,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 拓扑排序-dfs
 // 2022-11-14 submission
 // 52/52 cases passed
 // Runtime: 65 ms, faster than 13.84% of cpp online submissions.

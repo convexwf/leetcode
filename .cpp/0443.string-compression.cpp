@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 双指针法
+// 1. 双指针
 // 2023-05-29 submission
 // 75/75 cases passed
 // Runtime: 3 ms, faster than 90.72% of cpp online submissions.
@@ -17,32 +17,24 @@ public:
         if (n == 1) {
             return 1;
         }
-        // 双指针法
-        int count = 1;
-        int index = 0;
-        for (int i = 1; i < n; ++i) {
+        chars.push_back(' ');
+        int j = 0, count = 1;
+        for (int i = 1; i < n + 1; i++) {
             if (chars[i] == chars[i - 1]) {
-                ++count;
+                count++;
             }
             else {
-                chars[index++] = chars[i - 1];
+                chars[j++] = chars[i - 1];
                 if (count > 1) {
                     string s = to_string(count);
-                    for (int j = 0; j < s.size(); ++j) {
-                        chars[index++] = s[j];
+                    for (char c : s) {
+                        chars[j++] = c;
                     }
                 }
                 count = 1;
             }
         }
-        chars[index++] = chars[n - 1];
-        if (count > 1) {
-            string s = to_string(count);
-            for (int j = 0; j < s.size(); ++j) {
-                chars[index++] = s[j];
-            }
-        }
-        return index;
+        return j;
     }
 };
 // @lc code=end

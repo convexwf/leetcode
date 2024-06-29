@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 标记变量
 // 2023-02-13 submission
 // 78/78 cases passed
 // Runtime: 150 ms, faster than 49.78% of cpp online submissions.
@@ -14,12 +15,15 @@ public:
     bool increasingTriplet(vector<int>& nums) {
         int m1 = INT_MAX, m2 = INT_MAX;
         for (auto a : nums) {
-            if (m1 >= a)
+            if (m1 >= a) {
                 m1 = a;
-            else if (m2 >= a)
+            }
+            else if (m2 >= a) {
                 m2 = a;
-            else
+            }
+            else {
                 return true;
+            }
         }
         return false;
     }
@@ -27,6 +31,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 最大值和最小值数组
 // 2023-02-13 submission
 // 78/78 cases passed
 // Runtime: 178 ms, faster than 20.57% of cpp online submissions.

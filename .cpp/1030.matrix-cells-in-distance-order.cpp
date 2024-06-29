@@ -11,11 +11,6 @@
 // Runtime: 80 ms, faster than 31.06% of cpp online submissions.
 // Memory Usage: 23.5 MB, less than 37.87% of cpp online submissions.
 class Solution {
-private:
-    int manhattanDistance(int r1, int c1, int r2, int c2) {
-        return abs(r1 - r2) + abs(c1 - c2);
-    }
-
 public:
     vector<vector<int>> allCellsDistOrder(int R, int C, int r0, int c0) {
         std::vector<std::vector<int>> cells;
@@ -34,6 +29,11 @@ public:
         }
 
         return result;
+    }
+
+private:
+    int manhattanDistance(int r1, int c1, int r2, int c2) {
+        return abs(r1 - r2) + abs(c1 - c2);
     }
 };
 // @lc code=end

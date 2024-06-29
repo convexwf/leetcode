@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. dfs(flood fill)
 // 2020-09-20 submission
 // 49/49 cases passed
 // Runtime: 47 ms, faster than 60.9% of cpp online submissions.
@@ -38,6 +39,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. bfs(flood fill)
 // 2023-01-14 submission
 // 49/49 cases passed
 // Runtime: 57 ms, faster than 51.23% of cpp online submissions.

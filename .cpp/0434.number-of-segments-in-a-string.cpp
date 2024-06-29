@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 字符串遍历
 // 2022-08-26 submission
 // 28/28 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -24,6 +25,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 计数
 // 2022-08-26 submission
 // 28/28 cases passed
 // Runtime: 4 ms, faster than 20.92% of cpp online submissions.
@@ -43,6 +45,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// C++ 的 getline 函数
 // 2022-08-26 submission
 // 28/28 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -56,6 +59,26 @@ public:
         while (getline(is, t, ' ')) {
             if (t.empty()) continue;
             ++res;
+        }
+        return res;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 4. C++ 的 stringstream
+// 2024-06-26 submission
+// 28/28 cases passed
+// Runtime: 2 ms, faster than 47.92% of cpp online submissions.
+// Memory Usage: 7.4 MB, less than 5.13% of cpp online submissions.
+class Solution {
+public:
+    int countSegments(string s) {
+        stringstream ss(s);
+        string word;
+        int res = 0;
+        while (ss >> word) {
+            res++;
         }
         return res;
     }

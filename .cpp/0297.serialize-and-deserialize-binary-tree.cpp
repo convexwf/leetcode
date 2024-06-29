@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 先序遍历
 // 2022-11-14 submission
 // 52/52 cases passed
 // Runtime: 131 ms, faster than 25.84% of cpp online submissions.
@@ -61,6 +62,7 @@ private:
 // @lc code=end
 
 // @lc code=start
+// 2. 层序遍历
 // 2022-11-14 submission
 // 52/52 cases passed
 // Runtime: 75 ms, faster than 77.16% of cpp online submissions.
@@ -69,50 +71,49 @@ class Codec {
 public:
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-        ostringstream out;
+        if (!root) return "";
         queue<TreeNode*> q;
-        if (root) q.push(root);
+        q.push(root);
+        string res;
         while (!q.empty()) {
-            TreeNode* t = q.front();
+            TreeNode* node = q.front();
             q.pop();
-            if (t) {
-                out << t->val << ' ';
-                q.push(t->left);
-                q.push(t->right);
+            if (node) {
+                res += to_string(node->val) + " ";
+                q.push(node->left);
+                q.push(node->right);
             }
             else {
-                out << "# ";
+                res += "# ";
             }
         }
-        return out.str();
+        return res;
     }
 
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
         if (data.empty()) return nullptr;
-        istringstream in(data);
+        stringstream ss(data);
+        string str;
+        ss >> str;
+        TreeNode* root = new TreeNode(stoi(str));
         queue<TreeNode*> q;
-        string val;
-        in >> val;
-        TreeNode *res = new TreeNode(stoi(val)), *cur = res;
-        q.push(cur);
+        q.push(root);
         while (!q.empty()) {
-            TreeNode* t = q.front();
+            TreeNode* node = q.front();
             q.pop();
-            if (!(in >> val)) break;
-            if (val != "#") {
-                cur = new TreeNode(stoi(val));
-                q.push(cur);
-                t->left = cur;
+            if (!(ss >> str)) break;
+            if (str != "#") {
+                node->left = new TreeNode(stoi(str));
+                q.push(node->left);
             }
-            if (!(in >> val)) break;
-            if (val != "#") {
-                cur = new TreeNode(stoi(val));
-                q.push(cur);
-                t->right = cur;
+            if (!(ss >> str)) break;
+            if (str != "#") {
+                node->right = new TreeNode(stoi(str));
+                q.push(node->right);
             }
         }
-        return res;
+        return root;
     }
 };
 // @lc code=end

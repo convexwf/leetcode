@@ -29,7 +29,6 @@ public:
     }
 };
 */
-
 class Solution {
 public:
     vector<vector<int>> levelOrder(Node* root) {
@@ -44,7 +43,7 @@ public:
                 Node* node = q.front();
                 q.pop();
                 level.push_back(node->val);
-                for (auto child : node->children) {
+                for (Node* child : node->children) {
                     q.push(child);
                 }
             }
@@ -74,7 +73,7 @@ private:
         if (root == nullptr) return;
         if (res.size() <= level) res.resize(level + 1);
         res[level].push_back(root->val);
-        for (auto child : root->children) {
+        for (Node* child : root->children) {
             helper(child, level + 1, res);
         }
     }

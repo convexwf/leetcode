@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 哈希表+双向链表+哈希集合
+// 1. 哈希表+双向链表
 // 2023-11-14 submission
 // 18/18 cases passed
 // Runtime: 108 ms, faster than 100% of cpp online submissions.

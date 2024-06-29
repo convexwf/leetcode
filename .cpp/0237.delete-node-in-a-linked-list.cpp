@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 节点赋值
 // 2022-08-26 submission
 // 41/41 cases passed
 // Runtime: 19 ms, faster than 54.72% of cpp online submissions.
@@ -20,10 +21,11 @@
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        node->val = node->next->val;
-        ListNode* tmp = node->next;
-        node->next = tmp->next;
-        delete tmp;
+        if (nullptr == node || nullptr == node->next) return;
+        ListNode* next = node->next;
+        node->val = next->val;
+        node->next = next->next;
+        delete next;
     }
 };
 // @lc code=end

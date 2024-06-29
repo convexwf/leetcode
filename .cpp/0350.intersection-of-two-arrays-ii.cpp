@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表
 // 2023-01-31 submission
 // 56/56 cases passed
 // Runtime: 6 ms, faster than 70.8% of cpp online submissions.
@@ -24,6 +25,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 排序+双指针
 // 2023-01-31 submission
 // 56/56 cases passed
 // Runtime: 3 ms, faster than 94.57% of cpp online submissions.
