@@ -5,32 +5,7 @@
  */
 
 // @lc code=start
-// TLE
-class Solution {
-public:
-    bool isMatch(string s, string p) {
-        return helper(s, p, 0, 0);
-    }
-
-    bool helper(string& s, string& p, int sp, int pp) {
-        if (pp == p.length()) return sp == s.length();
-        if (pp + 1 == p.length()) {
-            return sp + 1 == s.length() && (p[pp] == '.' || p[pp] == s[sp]);
-        }
-        if (p[pp + 1] == '*') {
-            if (sp == s.length() && (p[pp] == '.' || p[pp] == s[sp]) && helper(s, p, sp + 1, pp))
-                return true;
-            return helper(s, p, sp, pp + 2);
-        }
-        if (sp < s.length() && (p[pp] == '.' || p[pp] == s[sp]))
-            return helper(s, p, sp + 1, pp + 1);
-        else
-            return false;
-    }
-};
-// @lc code=end
-
-// @lc code=start
+// 1. 动态规划
 // 2023-02-02 submission
 // 353/353 cases passed
 // Runtime: 10 ms, faster than 51.8% of cpp online submissions.
@@ -54,6 +29,35 @@ public:
             }
         }
         return dp[m][n];
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 记忆化搜索
+// 2024-07-02 submission
+// 356/356 cases passed
+// Runtime: 3 ms, faster than 70.27% of cpp online submissions.
+// Memory Usage: 9.9 MB, less than 17.42% of cpp online submissions.
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        int m = s.size(), n = p.size();
+        vector<vector<int>> memo(m + 1, vector<int>(n + 1, -1));
+        function<bool(int, int)> dfs = [&](int i, int j) -> bool {
+            if (j == n) return i == m;
+            if (memo[i][j] != -1) return memo[i][j];
+            bool firstMatch = i < m && (s[i] == p[j] || p[j] == '.');
+            bool ans;
+            if (j + 1 < n && p[j + 1] == '*') {
+                ans = dfs(i, j + 2) || (firstMatch && dfs(i + 1, j));
+            }
+            else {
+                ans = firstMatch && dfs(i + 1, j + 1);
+            }
+            return memo[i][j] = ans;
+        };
+        return dfs(0, 0);
     }
 };
 // @lc code=end

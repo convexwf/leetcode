@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 从两边向中间靠拢
 // 2022-08-01 submission
 // 11510/11510 cases passed
 // Runtime: 22 ms, faster than 54.64% of cpp online submissions.
@@ -28,6 +29,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 将数字从中间一分为二
 // 2022-08-01 submission
 // 11510/11510 cases passed
 // Runtime: 15 ms, faster than 81.79% of cpp online submissions.
@@ -48,6 +50,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 数字翻转后判断是否相等
 // 2022-08-01 submission
 // 11510/11510 cases passed
 // Runtime: 11 ms, faster than 92.34% of cpp online submissions.

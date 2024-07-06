@@ -5,10 +5,11 @@
  */
 
 // @lc code=start
-// 2022-11-14 submission
-// 1082/1082 cases passed
-// Runtime: 13 ms, faster than 12.24% of cpp online submissions.
-// Memory Usage: 7.2 MB, less than 12.34% of cpp online submissions.
+// 1. 字符串处理
+// 2024-07-01 submission
+// 1094/1094 cases passed
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 8.2 MB, less than 66.74% of cpp online submissions.
 class Solution {
 public:
     int myAtoi(string str) {

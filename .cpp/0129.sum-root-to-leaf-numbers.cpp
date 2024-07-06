@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. dfs
 // 2023-02-10 submission
 // 108/108 cases passed
 // Runtime: 7 ms, faster than 20.25% of cpp online submissions.
@@ -23,18 +24,20 @@
 class Solution {
 public:
     int sumNumbers(TreeNode* root) {
-        return sumNumbersDFS(root, 0);
+        return dfs(root, 0);
     }
-    int sumNumbersDFS(TreeNode* root, int sum) {
+
+    int dfs(TreeNode* root, int sum) {
         if (!root) return 0;
         sum = sum * 10 + root->val;
         if (!root->left && !root->right) return sum;
-        return sumNumbersDFS(root->left, sum) + sumNumbersDFS(root->right, sum);
+        return dfs(root->left, sum) + dfs(root->right, sum);
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 2. bfs
 // 2023-02-10 submission
 // 108/108 cases passed
 // Runtime: 3 ms, faster than 61.48% of cpp online submissions.

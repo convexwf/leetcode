@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2023-02-20 submission
 // 141/141 cases passed
 // Runtime: 465 ms, faster than 18.89% of cpp online submissions.
@@ -35,6 +36,42 @@ public:
             }
         }
         return res;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. Manacher 算法
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        string t = "^";
+        for (char c : s) {
+            t += "#" + c;
+        }
+        t += "#$";
+        int n = t.size();
+        vector<int> p(n);
+        int center = 0, right = 0;
+        for (int i = 1; i < n - 1; ++i) {
+            int j = 2 * center - i;
+            p[i] = right > i ? min(p[j], right - i) : 0;
+            while (t[i + p[i] + 1] == t[i - p[i] - 1]) {
+                ++p[i];
+            }
+            if (i + p[i] > right) {
+                center = i;
+                right = i + p[i];
+            }
+        }
+        int max_len = 0, start = 0;
+        for (int i = 1; i < n - 1; ++i) {
+            if (p[i] > max_len) {
+                max_len = p[i];
+                start = (i - p[i]) / 2;
+            }
+        }
+        return s.substr(start, max_len);
     }
 };
 // @lc code=end

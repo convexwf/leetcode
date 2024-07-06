@@ -8,7 +8,13 @@
 | [0001.Two Sum](.doc/0001.two-sum.md) | Easy (49.85%) | array, hash-table, sort | [cpp](.cpp/0001.two-sum.cpp) |
 | [0002.Add Two Numbers](.doc/0002.add-two-numbers.md) | Medium (42.10%) | linked-list, arithmetic | [cpp](.cpp/0002.add-two-numbers.cpp) |
 | [0003.Longest Substring Without Repeating Characters](.doc/0003.longest-substring-without-repeating-characters.md) | Medium (34.43%) | hash-table, sliding-window | [cpp](.cpp/0003.longest-substring-without-repeating-characters.cpp) |
+| [0004.Median of Two Sorted Arrays](.doc/0004.median-of-two-sorted-arrays.md) | Hard (40.11%) | array, binary-search, divide-and-conquer | [cpp](.cpp/0004.median-of-two-sorted-arrays.cpp) |
+| [0005.Longest Palindromic Substring](.doc/0005.longest-palindromic-substring.md) | Medium (33.54%) | string, dynamic-programming, palindrome | [cpp](.cpp/0005.longest-palindromic-substring.cpp) |
 | [0006.Zigzag Conversion](.doc/0006.zigzag-conversion.md) | Medium (47.12%) | string | [cpp](.cpp/0006.zigzag-conversion.cpp) |
+| [0007.Reverse Integer](.doc/0007.reverse-integer.md) | Medium (28.28%) | math | [cpp](.cpp/0007.reverse-integer.cpp) |
+| [0008.String to Integer (atoi)](.doc/0008.string-to-integer-atoi.md) | Medium (17.04%) | math, string | [cpp](.cpp/0008.string-to-integer-atoi.cpp) |
+| [0009.Palindrome Number](.doc/0009.palindrome-number.md) | Easy (55.48%) | math, palindrome | [cpp](.cpp/0009.palindrome-number.cpp) |
+| [0010.Regular Expression Matching](.doc/0010.regular-expression-matching.md) | Hard (28.05%) | dynamic-programming, backtracking, string | [cpp](.cpp/0010.regular-expression-matching.cpp) |
 | [0011.Container With Most Water](.doc/0011.container-with-most-water.md) | Medium (54.73%) | array, two-pointers | [cpp](.cpp/0011.container-with-most-water.cpp) |
 | [0012.Integer to Roman](.doc/0012.integer-to-roman.md) | Medium (64.08%) | greedy | [cpp](.cpp/0012.integer-to-roman.cpp) |
 | [0013.Roman to Integer](.doc/0013.roman-to-integer.md) | Easy (60.50%) | hash-table, string | [cpp](.cpp/0013.roman-to-integer.cpp) |
@@ -32,10 +38,12 @@
 | [0038.Count and Say](.doc/0038.count-and-say.md) | Medium (54.21%) | string, recursion | [cpp](.cpp/0038.count-and-say.cpp) |
 | [0039.Combination Sum](.doc/0039.combination-sum.md) | Medium (70.79%) | sort, backtracking, combination | [cpp](.cpp/0039.combination-sum.cpp) |
 | [0043.Multiply Strings](.doc/0043.multiply-strings.md) | Medium (39.94%) | string, arithmetic | [cpp](.cpp/0043.multiply-strings.cpp) |
+| [0044.Wildcard Matching](.doc/0044.wildcard-matching.md) | Hard (27.56%) | dynamic-programming, backtracking, string | [cpp](.cpp/0044.wildcard-matching.cpp) |
 | [0045.Jump Game II](.doc/0045.jump-game-ii.md) | Medium (40.32%) | array, greedy | [cpp](.cpp/0045.jump-game-ii.cpp) |
 | [0046.Permutations](.doc/0046.permutations.md) | Medium (77.85%) | depth-first-search, backtracking | [cpp](.cpp/0046.permutations.cpp) |
 | [0047.Permutations II](.doc/0047.permutations-ii.md) | Medium (58.66%) | depth-first-search, backtracking, hash-table | [cpp](.cpp/0047.permutations-ii.cpp) |
 | [0048.Rotate Image](.doc/0048.rotate-image.md) | Medium (73.57%) | array, matrix | [cpp](.cpp/0048.rotate-image.cpp) |
+| [0049.Group Anagrams](.doc/0049.group-anagrams.md) | Medium (67.54%) | hash-table, string, sort | [cpp](.cpp/0049.group-anagrams.cpp) |
 | [0050.Pow(x, n)](.doc/0050.pow-x-n.md) | Medium (34.35%) | math, divide-and-conquer, bit-manipulation | [cpp](.cpp/0050.pow-x-n.cpp) |
 | [0051.N-Queens](.doc/0051.n-queens.md) | Hard (67.37%) | backtracking | [cpp](.cpp/0051.n-queens.cpp) |
 | [0052.N-Queens II](.doc/0052.n-queens-ii.md) | Hard (73.29%) | backtracking | [cpp](.cpp/0052.n-queens-ii.cpp) |
@@ -47,6 +55,7 @@
 | [0058.Length of Last Word](.doc/0058.length-of-last-word.md) | Easy (48.41%) | string, two-pointers | [cpp](.cpp/0058.length-of-last-word.cpp) |
 | [0059.Spiral Matrix II](.doc/0059.spiral-matrix-ii.md) | Medium (70.66%) | array, matrix | [cpp](.cpp/0059.spiral-matrix-ii.cpp) |
 | [0060.Permutation Sequence](.doc/0060.permutation-sequence.md) | Hard (46.25%) | math, permutation | [cpp](.cpp/0060.permutation-sequence.cpp) |
+| [0061.Rotate List](.doc/0061.rotate-list.md) | Medium (37.29%) | linked-list, fast-slow-pointers | [cpp](.cpp/0061.rotate-list.cpp) |
 | [0062.Unique Paths](.doc/0062.unique-paths.md) | Medium (64.00%) | dynamic-programming, math | [cpp](.cpp/0062.unique-paths.cpp) |
 | [0063.Unique Paths II](.doc/0063.unique-paths-ii.md) | Medium (41.26%) | dynamic-programming | [cpp](.cpp/0063.unique-paths-ii.cpp) |
 | [0064.Minimum Path Sum](.doc/0064.minimum-path-sum.md) | Medium (63.42%) | dynamic-programming | [cpp](.cpp/0064.minimum-path-sum.cpp) |
@@ -67,6 +76,7 @@
 | [0086.Partition List](.doc/0086.partition-list.md) | Medium (55.73%) | linked-list | [cpp](.cpp/0086.partition-list.cpp) |
 | [0088.Merge Sorted Array](.doc/0088.merge-sorted-array.md) | Easy (48.89%) | array, two-pointers | [cpp](.cpp/0088.merge-sorted-array.cpp) |
 | [0089.Gray Code](.doc/0089.gray-code.md) | Medium (58.55%) | hash-table, backtracking, bit-manipulation | [cpp](.cpp/0089.gray-code.cpp) |
+| [0090.Subsets II](.doc/0090.subsets-ii.md) | Medium (56.91%) | array, backtracking, bit-manipulation | [cpp](.cpp/0090.subsets-ii.cpp) |
 | [0091.Decode Ways](.doc/0091.decode-ways.md) | Medium (34.58%) | string, dynamic-programming | [cpp](.cpp/0091.decode-ways.cpp) |
 | [0092.Reverse Linked List II](.doc/0092.reverse-linked-list-ii.md) | Medium (47.42%) | linked-list | [cpp](.cpp/0092.reverse-linked-list-ii.cpp) |
 | [0094.Binary Tree Inorder Traversal](.doc/0094.binary-tree-inorder-traversal.md) | Easy (75.71%) | stack, binary-tree | [cpp](.cpp/0094.binary-tree-inorder-traversal.cpp) |
@@ -95,6 +105,9 @@
 | [0125.Valid Palindrome](.doc/0125.valid-palindrome.md) | Easy (46.71%) | string, two-pointers | [cpp](.cpp/0125.valid-palindrome.cpp) |
 | [0126.Word Ladder II](.doc/0126.word-ladder-ii.md) | Hard (27.35%) | string, backtracking, breadth-first-search, depth-first-search | [cpp](.cpp/0126.word-ladder-ii.cpp) |
 | [0127.Word Ladder](.doc/0127.word-ladder.md) | Hard (38.62%) | breadth-first-search, hash-table | [cpp](.cpp/0127.word-ladder.cpp) |
+| [0128.Longest Consecutive Sequence](.doc/0128.longest-consecutive-sequence.md) | Medium (47.33%) | array, hash-table, sort | [cpp](.cpp/0128.longest-consecutive-sequence.cpp) |
+| [0129.Sum Root to Leaf Numbers](.doc/0129.sum-root-to-leaf-numbers.md) | Medium (63.00%) | binary-tree, depth-first-search, breadth-first-search | [cpp](.cpp/0129.sum-root-to-leaf-numbers.cpp) |
+| [0130.Surrounded Regions](.doc/0130.surrounded-regions.md) | Medium (38.80%) | depth-first-search, breadth-first-search, union-find, matrix | [cpp](.cpp/0130.surrounded-regions.cpp) |
 | [0131.Palindrome Partitioning](.doc/0131.palindrome-partitioning.md) | Medium (66.97%) | depth-first-search, backtracking, palindrome | [cpp](.cpp/0131.palindrome-partitioning.cpp) |
 | [0132.Palindrome Partitioning II](.doc/0132.palindrome-partitioning-ii.md) | Hard (33.72%) | dynamic-programming, palindrome, string | [cpp](.cpp/0132.palindrome-partitioning-ii.cpp) |
 | [0133.Clone Graph](.doc/0133.clone-graph.md) | Medium (56.23%) | hash-table, depth-first-search, breadth-first-search, graph, deep-copy | [cpp](.cpp/0133.clone-graph.cpp) |
@@ -236,10 +249,13 @@
 | [0504.Base 7](.doc/0504.base-7.md) | Easy (49.60%) | math | [cpp](.cpp/0504.base-7.cpp) |
 | 0527.Word Abbreviation 🔒 | | trie, string | [cpp](.cpp/0527.word-abbreviation.cpp) |
 | 0531.Lonely Pixel I 🔒 | | matrix | [cpp](.cpp/0531.lonely-pixel-i.cpp) |
+| [0535.Encode and Decode TinyURL](.doc/0535.encode-and-decode-tiny-url.md) | Medium (86.02%) | hash-table, design | [cpp](.cpp/0535.encode-and-decode-tiny-url.cpp) |
+| [0538.Convert BST to Greater Tree](.doc/0538.convert-bst-to-greater-tree.md) | Medium (68.01%) | binary-search-tree, binary-tree, stack | [cpp](.cpp/0538.convert-bst-to-greater-tree.cpp) |
 | 0548.Split Array with Equal Sum 🔒 | | prefix-sum, hash-table | [cpp](.cpp/0548.split-array-with-equal-sum.cpp) |
 | [0560.Subarray Sum Equals K](.doc/0560.subarray-sum-equals-k.md) | Medium (43.35%) | array, hash-table, prefix-sum | [cpp](.cpp/0560.subarray-sum-equals-k.cpp) |
 | [0566.Reshape the Matrix](.doc/0566.reshape-the-matrix.md) | Easy (63.03%) | matrix | [cpp](.cpp/0566.reshape-the-matrix.cpp) |
 | [0657.Robot Return to Origin](.doc/0657.robot-return-to-origin.md) | Easy (75.61%) | easy | [cpp](.cpp/0657.robot-return-to-origin.cpp) |
+| [0661.Image Smoother](.doc/0661.image-smoother.md) | Easy (67.05%) | matrix | [cpp](.cpp/0661.image-smoother.cpp) |
 | [0697.Degree of an Array](.doc/0697.degree-of-an-array.md) | Easy (56.36%) | array, hash-table | [cpp](.cpp/0697.degree-of-an-array.cpp) |
 | [0704.Binary Search](.doc/0704.binary-search.md) | Easy (56.83%) | binary-search | [cpp](.cpp/0704.binary-search.cpp) |
 | [0799.Champagne Tower](.doc/0799.champagne-tower.md) | Medium (58.04%) | array | [cpp](.cpp/0799.champagne-tower.cpp) |
@@ -250,6 +266,10 @@
 | [0877.Stone Game](.doc/0877.stone-game.md) | Medium (70.09%) | dynamic-programming, minmax, math | [cpp](.cpp/0877.stone-game.cpp) |
 | [0881.Boats to Save People](.doc/0881.boats-to-save-people.md) | Medium (55.90%) | greedy, two-pointers | [cpp](.cpp/0881.boats-to-save-people.cpp) |
 | [0942.DI String Match](.doc/0942.di-string-match.md) | Easy (77.88%) | two-pointers | [cpp](.cpp/0942.di-string-match.cpp) |
+| [0961.N-Repeated Element in Size 2N Array](.doc/0961.n-repeated-element-in-size-2-n-array.md) | Easy (76.34%) | hash-table, math | [cpp](.cpp/0961.n-repeated-element-in-size-2-n-array.cpp) |
+| [0963.Minimum Area Rectangle II](.doc/0963.minimum-area-rectangle-ii.md) | Medium (54.71%) | math, geometry, hash-table | [cpp](.cpp/0963.minimum-area-rectangle-ii.cpp) |
+| [0966.Vowel Spellchecker](.doc/0966.vowel-spellchecker.md) | Medium (51.25%) | hash-table, string | [cpp](.cpp/0966.vowel-spellchecker.cpp) |
+| [0968.Binary Tree Cameras](.doc/0968.binary-tree-cameras.md) | Hard (46.49%) | binary-tree, depth-first-search | [cpp](.cpp/0968.binary-tree-cameras.cpp) |
 | [0980.Unique Paths III](.doc/0980.unique-paths-iii.md) | Hard (81.76%) | depth-first-search | [cpp](.cpp/0980.unique-paths-iii.cpp) |
 | [1014.Best Sightseeing Pair](.doc/1014.best-sightseeing-pair.md) | Medium (59.34%) | array | [cpp](.cpp/1014.best-sightseeing-pair.cpp) |
 | [1017.Convert to Base -2](.doc/1017.convert-to-base-2.md) | Medium (60.56%) | math | [cpp](.cpp/1017.convert-to-base-2.cpp) |
@@ -260,12 +280,16 @@
 | [1032.Stream of Characters](.doc/1032.stream-of-characters.md) | Hard (51.82%) | trie, design | [cpp](.cpp/1032.stream-of-characters.cpp) |
 | [1035.Uncrossed Lines](.doc/1035.uncrossed-lines.md) | Medium (62.69%) | dynamic-programming | [cpp](.cpp/1035.uncrossed-lines.cpp) |
 | [1037.Valid Boomerang](.doc/1037.valid-boomerang.md) | Easy (36.82%) | math, geometry | [cpp](.cpp/1037.valid-boomerang.cpp) |
+| [1038.Binary Search Tree to Greater Sum Tree](.doc/1038.binary-search-tree-to-greater-sum-tree.md) | Medium (85.71%) | binary-search-tree, binary-tree | [cpp](.cpp/1038.binary-search-tree-to-greater-sum-tree.cpp) |
 | [1041.Robot Bounded In Circle](.doc/1041.robot-bounded-in-circle.md) | Medium (55.46%) | array | [cpp](.cpp/1041.robot-bounded-in-circle.cpp) |
 | [1042.Flower Planting With No Adjacent](.doc/1042.flower-planting-with-no-adjacent.md) | Medium (50.91%) | graph, greedy | [cpp](.cpp/1042.flower-planting-with-no-adjacent.cpp) |
 | [1046.Last Stone Weight](.doc/1046.last-stone-weight.md) | Easy (65.15%) | heap | [cpp](.cpp/1046.last-stone-weight.cpp) |
 | [1047.Remove All Adjacent Duplicates In String](.doc/1047.remove-all-adjacent-duplicates-in-string.md) | Easy (69.13%) | stack, string | [cpp](.cpp/1047.remove-all-adjacent-duplicates-in-string.cpp) |
+| [1048.Longest String Chain](.doc/1048.longest-string-chain.md) | Medium (60.84%) | hash-table, sort | [cpp](.cpp/1048.longest-string-chain.cpp) |
 | [1051.Height Checker](.doc/1051.height-checker.md) | Easy (76.02%) | sort, counting-sort, array | [cpp](.cpp/1051.height-checker.cpp) |
 | [1052.Grumpy Bookstore Owner](.doc/1052.grumpy-bookstore-owner.md) | Medium (57.13%) | prefix-sum | [cpp](.cpp/1052.grumpy-bookstore-owner.cpp) |
+| [1053.Previous Permutation With One Swap](.doc/1053.previous-permutation-with-one-swap.md) | Medium (49.95%) | math, permutation, greedy | [cpp](.cpp/1053.previous-permutation-with-one-swap.cpp) |
+| [1054.Distant Barcodes](.doc/1054.distant-barcodes.md) | Medium (46.16%) | hash-table, sort | [cpp](.cpp/1054.distant-barcodes.cpp) |
 | 1055.Shortest Way to Form String 🔒 | | string, two-pointers | [cpp](.cpp/1055.shortest-way-to-form-string.cpp) |
 | 1056.Confusing Number 🔒 | | math | [cpp](.cpp/1056.confusing-number.cpp) |
 | 1058.Minimize Rounding Error to Meet Target 🔒 | | math | [cpp](.cpp/1058.minimize-rounding-error-to-meet-target.cpp) |
@@ -273,14 +297,18 @@
 | [1072.Flip Columns For Maximum Number of Equal Rows](.doc/1072.flip-columns-for-maximum-number-of-equal-rows.md) | Medium (63.81%) | matrix, hash-table | [cpp](.cpp/1072.flip-columns-for-maximum-number-of-equal-rows.cpp) |
 | [1073.Adding Two Negabinary Numbers](.doc/1073.adding-two-negabinary-numbers.md) | Medium (36.66%) | arithmetic | [cpp](.cpp/1073.adding-two-negabinary-numbers.cpp) |
 | [1078.Occurrences After Bigram](.doc/1078.occurrences-after-bigram.md) | Easy (63.37%) | string | [cpp](.cpp/1078.occurrences-after-bigram.cpp) |
+| [1079.Letter Tile Possibilities](.doc/1079.letter-tile-possibilities.md) | Medium (76.12%) | hash-table, recursion, permutation, string | [cpp](.cpp/1079.letter-tile-possibilities.cpp) |
 | [1080.Insufficient Nodes in Root to Leaf Paths](.doc/1080.insufficient-nodes-in-root-to-leaf-paths.md) | Medium (54.38%) | binary-tree, depth-first-search | [cpp](.cpp/1080.insufficient-nodes-in-root-to-leaf-paths.cpp) |
 | [1143.Longest Common Subsequence](.doc/1143.longest-common-subsequence.md) | Medium (57.85%) | dynamic-programming, string | [cpp](.cpp/1143.longest-common-subsequence.cpp) |
 | [1201.Ugly Number III](.doc/1201.ugly-number-iii.md) | Medium (29.27%) | binary-search, math | [cpp](.cpp/1201.ugly-number-iii.cpp) |
 | [1276.Number of Burgers with No Waste of Ingredients](.doc/1276.number-of-burgers-with-no-waste-of-ingredients.md) | Medium (50.97%) | math | [cpp](.cpp/1276.number-of-burgers-with-no-waste-of-ingredients.cpp) |
 | [1290.Convert Binary Number in a Linked List to Integer](.doc/1290.convert-binary-number-in-a-linked-list-to-integer.md) | Easy (81.19%) | linked-list, easy | [cpp](.cpp/1290.convert-binary-number-in-a-linked-list-to-integer.cpp) |
+| [1312.Minimum Insertion Steps to Make a String Palindrome](.doc/1312.minimum-insertion-steps-to-make-a-string-palindrome.md) | Hard (70.00%) | string, dynamic-programming, depth-first-search, memoization, palindrome | [cpp](.cpp/1312.minimum-insertion-steps-to-make-a-string-palindrome.cpp) |
+| [1332.Remove Palindromic Subsequences](.doc/1332.remove-palindromic-subsequences.md) | Easy (76.32%) | string, palindrome, greedy | [cpp](.cpp/1332.remove-palindromic-subsequences.cpp) |
 | [1411.Number of Ways to Paint N × 3 Grid](.doc/1411.number-of-ways-to-paint-n-3-grid.md) | Hard (62.65%) | math | [cpp](.cpp/1411.number-of-ways-to-paint-n-3-grid.cpp) |
 | [1446.Consecutive Characters](.doc/1446.consecutive-characters.md) | Easy (60.44%) | string, easy | [cpp](.cpp/1446.consecutive-characters.cpp) |
 | [1600.Throne Inheritance](.doc/1600.throne-inheritance.md) | Medium (64.48%) | tree | [cpp](.cpp/1600.throne-inheritance.cpp) |
+| [1706.Where Will the Ball Fall](.doc/1706.where-will-the-ball-fall.md) | Medium (71.70%) | dynamic-programming, depth-first-search, memoization | [cpp](.cpp/1706.where-will-the-ball-fall.cpp) |
 | [1971.Find if Path Exists in Graph](.doc/1971.find-if-path-exists-in-graph.md) | Easy (51.56%) | graph, depth-first-search, breadth-first-search, union-find | [cpp](.cpp/1971.find-if-path-exists-in-graph.cpp) |
 | [2401.Longest Nice Subarray](.doc/2401.longest-nice-subarray.md) | Medium (50.52%) | bit-manipulation, sliding-window | [cpp](.cpp/2401.longest-nice-subarray.cpp) |
 | [2423.Remove Letter To Equalize Frequency](.doc/2423.remove-letter-to-equalize-frequency.md) | Easy (17.25%) | hash-table, string | [cpp](.cpp/2423.remove-letter-to-equalize-frequency.cpp) |
