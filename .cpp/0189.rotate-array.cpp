@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 数字替换
 // 2022-11-17 submission
 // 38/38 cases passed
 // Runtime: 78 ms, faster than 38.13% of cpp online submissions.
@@ -37,6 +38,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 三次翻转
 // 2022-11-17 submission
 // 38/38 cases passed
 // Runtime: 52 ms, faster than 70.88% of cpp online submissions.
@@ -59,6 +61,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 数组替换
 // 2022-11-17 submission
 // 38/38 cases passed
 // Runtime: 100 ms, faster than 6.05% of cpp online submissions.
@@ -68,7 +71,7 @@ public:
     void rotate(vector<int>& nums, int k) {
         if (nums.empty()) return;
         int n = nums.size(), start = 0;
-        while (n && (k %= n)) {
+        while (n > 0 && (k %= n)) {
             for (int i = 0; i < k; ++i) {
                 swap(nums[i + start], nums[n - k + i + start]);
             }

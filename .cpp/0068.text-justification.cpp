@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 模拟
 // 2020-09-29 submission
 // 27/27 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -13,39 +14,43 @@ class Solution {
 public:
     vector<string> fullJustify(vector<string>& words, int maxWidth) {
         vector<string> res;
-
-        vector<string> cur;
         int cur_len = 0;
-        for (int i = 0; i < words.size();) {
-            bool flag = (words[i].length() + cur_len <= maxWidth);
-            if (flag) {
-                cur_len += (words[i].length() + 1);
-                cur.push_back(words[i]);
-                i++;
+        vector<string> cur_words;
+        for (int i = 0; i < words.size(); ++i) {
+            if (cur_len + cur_words.size() + words[i].size() <= maxWidth) {
+                cur_len += words[i].size();
+                cur_words.push_back(words[i]);
             }
-            if (!flag && i < words.size()) {
-                cur_len = maxWidth - cur_len + cur.size();
-                string to_add = cur[0];
-                if (cur.size() == 1) to_add.append(cur_len, ' ');
-                for (int j = 1; j < cur.size(); j++) {
-                    to_add.append(cur_len / (cur.size() - 1) + (j <= cur_len % (cur.size() - 1)),
-                                  ' ');
-                    to_add.append(cur[j]);
+            else {
+                int space = maxWidth - cur_len;
+                int n = cur_words.size();
+                if (n == 1) {
+                    res.push_back(cur_words[0] + string(space, ' '));
                 }
-                res.push_back(to_add);
-                cur_len = 0;
-                cur.clear();
-            }
-            if (i == words.size()) {
-                string to_add = cur[0];
-                for (int j = 1; j < cur.size(); j++) {
-                    to_add.append(" ");
-                    to_add.append(cur[j]);
+                else {
+                    int avg_space = space / (n - 1);
+                    int extra_space = space % (n - 1);
+                    string line = cur_words[0];
+                    for (int j = 1; j < n; ++j) {
+                        line += string(avg_space, ' ');
+                        if (j <= extra_space) {
+                            line += ' ';
+                        }
+                        line += cur_words[j];
+                    }
+                    res.push_back(line);
                 }
-                to_add.append(maxWidth - to_add.length(), ' ');
-                res.push_back(to_add);
+                cur_len = words[i].size();
+                cur_words.clear();
+                cur_words.push_back(words[i]);
             }
         }
+        string line = cur_words[0];
+        for (int i = 1; i < cur_words.size(); ++i) {
+            line += ' ' + cur_words[i];
+        }
+        line += string(maxWidth - line.size(), ' ');
+        res.push_back(line);
         return res;
     }
 };

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 计数
 // 2022-11-15 submission
 // 42/42 cases passed
 // Runtime: 88 ms, faster than 48.57% of cpp online submissions.
@@ -14,10 +15,12 @@ public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
         int res = 0, cnt = 0;
         for (int num : nums) {
-            if (num == 0)
+            if (num == 0) {
                 cnt = 0;
-            else
+            }
+            else {
                 ++cnt;
+            }
             res = max(res, cnt);
         }
         return res;
@@ -26,6 +29,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 数学方法
 // 2022-11-15 submission
 // 42/42 cases passed
 // Runtime: 98 ms, faster than 30.28% of cpp online submissions.

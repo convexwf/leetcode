@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 边计算
 // 2022-11-15 submission
 // 5833/5833 cases passed
 // Runtime: 163 ms, faster than 79.08% of cpp online submissions.
@@ -29,6 +30,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 格子计算
 // 2022-11-15 submission
 // 5833/5833 cases passed
 // Runtime: 240 ms, faster than 39.91% of cpp online submissions.

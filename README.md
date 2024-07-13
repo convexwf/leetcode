@@ -61,6 +61,7 @@
 | [0064.Minimum Path Sum](.doc/0064.minimum-path-sum.md) | Medium (63.42%) | dynamic-programming | [cpp](.cpp/0064.minimum-path-sum.cpp) |
 | [0066.Plus One](.doc/0066.plus-one.md) | Easy (44.78%) | array | [cpp](.cpp/0066.plus-one.cpp) |
 | [0067.Add Binary](.doc/0067.add-binary.md) | Easy (53.13%) | string, math | [cpp](.cpp/0067.add-binary.cpp) |
+| [0068.Text Justification](.doc/0068.text-justification.md) | Hard (42.40%) | string, greedy | [cpp](.cpp/0068.text-justification.cpp) |
 | [0070.Climbing Stairs](.doc/0070.climbing-stairs.md) | Easy (52.80%) | dynamic-programming, fibonacci-number | [cpp](.cpp/0070.climbing-stairs.cpp) |
 | [0071.Simplify Path](.doc/0071.simplify-path.md) | Medium (41.69%) | string, stack | [cpp](.cpp/0071.simplify-path.cpp) |
 | [0072.Edit Distance](.doc/0072.edit-distance.md) | Medium (55.96%) | string, dynamic-programming | [cpp](.cpp/0072.edit-distance.cpp) |
@@ -137,6 +138,7 @@
 | [0179.Largest Number](.doc/0179.largest-number.md) | Medium (35.71%) | sort, string | [cpp](.cpp/0179.largest-number.cpp) |
 | 0186.Reverse Words in a String II 🔒 | | string, two-pointers | [cpp](.cpp/0186.reverse-words-in-a-string-ii.cpp) |
 | [0187.Repeated DNA Sequences](.doc/0187.repeated-dna-sequences.md) | Medium (48.41%) | hash-table, bit-manipulation, string | [cpp](.cpp/0187.repeated-dna-sequences.cpp) |
+| [0189.Rotate Array](.doc/0189.rotate-array.md) | Medium (40.23%) | array | [cpp](.cpp/0189.rotate-array.cpp) |
 | [0190.Reverse Bits](.doc/0190.reverse-bits.md) | Easy (57.46%) | bit-manipulation | [cpp](.cpp/0190.reverse-bits.cpp) |
 | [0191.Number of 1 Bits](.doc/0191.number-of-1-bits.md) | Easy (70.18%) | bit-manipulation | [cpp](.cpp/0191.number-of-1-bits.cpp) |
 | [0198.House Robber](.doc/0198.house-robber.md) | Medium (50.77%) | dynamic-programming, array | [cpp](.cpp/0198.house-robber.cpp) |
@@ -243,6 +245,10 @@
 | [0449.Serialize and Deserialize BST](.doc/0449.serialize-and-deserialize-bst.md) | Medium (57.11%) | binary-search-tree, binary-tree, design, monotonous-stack, serialization | [cpp](.cpp/0449.serialize-and-deserialize-bst.cpp) |
 | [0458.Poor Pigs](.doc/0458.poor-pigs.md) | Hard (60.20%) | math | [cpp](.cpp/0458.poor-pigs.cpp) |
 | [0460.LFU Cache](.doc/0460.lfu-cache.md) | Hard (43.67%) | design | [cpp](.cpp/0460.lfu-cache.cpp) |
+| [0461.Hamming Distance](.doc/0461.hamming-distance.md) | Easy (75.29%) | bit-manipulation | [cpp](.cpp/0461.hamming-distance.cpp) |
+| [0463.Island Perimeter](.doc/0463.island-perimeter.md) | Easy (70.19%) | geometry | [cpp](.cpp/0463.island-perimeter.cpp) |
+| [0485.Max Consecutive Ones](.doc/0485.max-consecutive-ones.md) | Easy (58.40%) | array | [cpp](.cpp/0485.max-consecutive-ones.cpp) |
+| [0492.Construct the Rectangle](.doc/0492.construct-the-rectangle.md) | Easy (56.87%) | math, geometry | [cpp](.cpp/0492.construct-the-rectangle.cpp) |
 | [0495.Teemo Attacking](.doc/0495.teemo-attacking.md) | Easy (56.54%) | array | [cpp](.cpp/0495.teemo-attacking.cpp) |
 | [0498.Diagonal Traverse](.doc/0498.diagonal-traverse.md) | Medium (58.33%) | matrix | [cpp](.cpp/0498.diagonal-traverse.cpp) |
 | [0500.Keyboard Row](.doc/0500.keyboard-row.md) | Easy (70.36%) | hash-table | [cpp](.cpp/0500.keyboard-row.cpp) |
