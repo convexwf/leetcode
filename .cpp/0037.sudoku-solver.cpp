@@ -5,6 +5,61 @@
  */
 
 // @lc code=start
+// 1. 位操作+回溯
+// 2024-07-19 submission
+// 6/6 cases passed
+// Runtime: 2 ms, faster than 98.17% of cpp online submissions.
+// Memory Usage: 7.9 MB, less than 23.27% of cpp online submissions.
+class Solution {
+public:
+    void solveSudoku(vector<vector<char>>& board) {
+        vector<int> row(9, 0), col(9, 0), block(9, 0);
+        vector<pair<int, int>> empty;
+        for (int i = 0; i < 9; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                if (board[i][j] == '.') {
+                    empty.push_back({i, j});
+                }
+                else {
+                    int k = board[i][j] - '1';
+                    row[i] |= (1 << k);
+                    col[j] |= (1 << k);
+                    block[(i / 3) * 3 + j / 3] |= (1 << k);
+                }
+            }
+        }
+        dfs(board, row, col, block, empty, 0);
+    }
+
+    bool dfs(vector<vector<char>>& board, vector<int>& row, vector<int>& col, vector<int>& block,
+             vector<pair<int, int>>& empty, int index) {
+        if (index == empty.size()) {
+            return true;
+        }
+        int i = empty[index].first, j = empty[index].second;
+        int m = (i / 3) * 3 + j / 3;
+        for (int k = 0; k < 9; ++k) {
+            if ((row[i] & (1 << k)) == 0 && (col[j] & (1 << k)) == 0 &&
+                (block[m] & (1 << k)) == 0) {
+                row[i] |= (1 << k);
+                col[j] |= (1 << k);
+                block[m] |= (1 << k);
+                board[i][j] = k + '1';
+                if (dfs(board, row, col, block, empty, index + 1)) {
+                    return true;
+                }
+                row[i] &= ~(1 << k);
+                col[j] &= ~(1 << k);
+                block[m] &= ~(1 << k);
+            }
+        }
+        return false;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 位操作+回溯+状态优化
 // 2022-08-07 submission
 // 6/6 cases passed
 // Runtime: 5 ms, faster than 97.74% of cpp online submissions.

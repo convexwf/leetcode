@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 迭代+dummy节点
 // 2023-01-14 submission
 // 62/62 cases passed
 // Runtime: 24 ms, faster than 48.6% of cpp online submissions.
@@ -43,6 +44,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 递归
 // 2023-01-14 submission
 // 62/62 cases passed
 // Runtime: 13 ms, faster than 92.72% of cpp online submissions.
@@ -59,6 +61,7 @@ public:
         head->next = reverseKGroup(cur, k);
         return new_head;
     }
+
     ListNode* reverse(ListNode* head, ListNode* tail) {
         ListNode* pre = tail;
         while (head != tail) {

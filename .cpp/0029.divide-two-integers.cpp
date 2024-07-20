@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 位操作
 // 2020-07-04 submission
 // 994/994 cases passed
 // Runtime: 7 ms, faster than 32.77% of cpp online submissions.
@@ -31,6 +32,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 位操作+递归
 // 2023-01-14 submission
 // 994/994 cases passed
 // Runtime: 7 ms, faster than 32.77% of cpp online submissions.
