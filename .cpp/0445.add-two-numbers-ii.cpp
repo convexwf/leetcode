@@ -5,7 +5,47 @@
  */
 
 // @lc code=start
-// 2020-11-08 submission (栈)
+// 1. 翻转链表
+// 2024-07-26 submission
+// 1563/1563 cases passed
+// Runtime: 37 ms, faster than 5.47% of cpp online submissions.
+// Memory Usage: 77.4 MB, less than 39.94% of cpp online submissions.
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        l1 = reverseList(l1);
+        l2 = reverseList(l2);
+        ListNode* dummy = new ListNode(0);
+        ListNode* p = dummy;
+        int carry = 0;
+        while (l1 || l2 || carry) {
+            int sum = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + carry;
+            carry = sum / 10;
+            p->next = new ListNode(sum % 10);
+            p = p->next;
+            if (l1) l1 = l1->next;
+            if (l2) l2 = l2->next;
+        }
+        return reverseList(dummy->next);
+    }
+
+    ListNode* reverseList(ListNode* head) {
+        ListNode* pre = nullptr;
+        ListNode* cur = head;
+        while (cur) {
+            ListNode* next = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 迭代+栈
+// 2020-11-08 submission
 // 1563/1563 cases passed
 // Runtime: 46 ms, faster than 42.32% of cpp online submissions.
 // Memory Usage: 73.8 MB, less than 20.44% of cpp online submissions.
@@ -54,7 +94,8 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2020-11-08 submission (递归)
+// 3. 递归
+// 2020-11-08 submission
 // 1563/1563 cases passed
 // Runtime: 36 ms, faster than 75.25% of cpp online submissions.
 // Memory Usage: 71.3 MB, less than 69.2% of cpp online submissions.
@@ -70,6 +111,7 @@ public:
         }
         return head->next;
     }
+
     int getLength(ListNode* head) {
         int cnt = 0;
         while (head) {
@@ -78,8 +120,9 @@ public:
         }
         return cnt;
     }
+
     ListNode* helper(ListNode* l1, ListNode* l2, int diff) {
-        if (!l1) return NULL;
+        if (!l1) return nullptr;
         ListNode* res = (diff == 0) ? new ListNode(l1->val + l2->val) : new ListNode(l1->val);
         ListNode* post =
             (diff == 0) ? helper(l1->next, l2->next, 0) : helper(l1->next, l2, diff - 1);

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归
 // 2020-09-09 submission
 // 94/94 cases passed
 // Runtime: 33 ms, faster than 68.52% of cpp online submissions.
@@ -32,8 +33,6 @@ public:
         if (!root) return 0;
         int left_sum = max(0, helper(root->left, maxVal));
         int right_sum = max(0, helper(root->right, maxVal));
-        // cout << "root: " << root->val << " path_sum: " << root->val + left_sum + right_sum <<
-        // endl;
         maxVal = max(maxVal, root->val + left_sum + right_sum);
         return max(left_sum, right_sum) + root->val;
     }

@@ -28,13 +28,17 @@
 | [0022.Generate Parentheses](.doc/0022.generate-parentheses.md) | Medium (74.06%) | string, backtracking, parentheses | [cpp](.cpp/0022.generate-parentheses.cpp) |
 | [0023.Merge k Sorted Lists](.doc/0023.merge-k-sorted-lists.md) | Hard (51.95%) | linked-list, heap | [cpp](.cpp/0023.merge-k-sorted-lists.cpp) |
 | [0024.Swap Nodes in Pairs](.doc/0024.swap-nodes-in-pairs.md) | Medium (63.79%) | linked-list, recursion | [cpp](.cpp/0024.swap-nodes-in-pairs.cpp) |
+| [0025.Reverse Nodes in k-Group](.doc/0025.reverse-nodes-in-k-group.md) | Hard (57.78%) | linked-list | [cpp](.cpp/0025.reverse-nodes-in-k-group.cpp) |
 | [0026.Remove Duplicates from Sorted Array](.doc/0026.remove-duplicates-from-sorted-array.md) | Easy (54.56%) | array, two-pointers, in-place-algorithm | [cpp](.cpp/0026.remove-duplicates-from-sorted-array.cpp) |
 | [0027.Remove Element](.doc/0027.remove-element.md) | Easy (55.86%) | array, two-pointers, in-place-algorithm | [cpp](.cpp/0027.remove-element.cpp) |
+| [0029.Divide Two Integers](.doc/0029.divide-two-integers.md) | Medium (17.23%) | math, arithmetic, bit-manipulation | [cpp](.cpp/0029.divide-two-integers.cpp) |
+| [0030.Substring with Concatenation of All Words](.doc/0030.substring-with-concatenation-of-all-words.md) | Hard (31.99%) | hash-table, sliding-window, string | [cpp](.cpp/0030.substring-with-concatenation-of-all-words.cpp) |
 | [0031.Next Permutation](.doc/0031.next-permutation.md) | Medium (39.28%) | array, permutation | [cpp](.cpp/0031.next-permutation.cpp) |
 | [0032.Longest Valid Parentheses](.doc/0032.longest-valid-parentheses.md) | Hard (33.66%) | string, dynamic-programming, stack, parentheses, subarray | [cpp](.cpp/0032.longest-valid-parentheses.cpp) |
 | [0034.Find First and Last Position of Element in Sorted Array](.doc/0034.find-first-and-last-position-of-element-in-sorted-array.md) | Medium (43.83%) | array, binary-search | [cpp](.cpp/0034.find-first-and-last-position-of-element-in-sorted-array.cpp) |
 | [0035.Search Insert Position](.doc/0035.search-insert-position.md) | Easy (45.24%) | array, binary-search | [cpp](.cpp/0035.search-insert-position.cpp) |
 | [0036.Valid Sudoku](.doc/0036.valid-sudoku.md) | Medium (59.21%) | hash-table, bit-manipulation | [cpp](.cpp/0036.valid-sudoku.cpp) |
+| [0037.Sudoku Solver](.doc/0037.sudoku-solver.md) | Hard (60.18%) | hash-table, backtracking, bit-manipulation | [cpp](.cpp/0037.sudoku-solver.cpp) |
 | [0038.Count and Say](.doc/0038.count-and-say.md) | Medium (54.21%) | string, recursion | [cpp](.cpp/0038.count-and-say.cpp) |
 | [0039.Combination Sum](.doc/0039.combination-sum.md) | Medium (70.79%) | sort, backtracking, combination | [cpp](.cpp/0039.combination-sum.cpp) |
 | [0043.Multiply Strings](.doc/0043.multiply-strings.md) | Medium (39.94%) | string, arithmetic | [cpp](.cpp/0043.multiply-strings.cpp) |
@@ -97,12 +101,14 @@
 | [0112.Path Sum](.doc/0112.path-sum.md) | Easy (49.80%) | binary-tree, path-sum | [cpp](.cpp/0112.path-sum.cpp) |
 | [0113.Path Sum II](.doc/0113.path-sum-ii.md) | Medium (58.10%) | binary-tree, path-sum | [cpp](.cpp/0113.path-sum-ii.cpp) |
 | [0114.Flatten Binary Tree to Linked List](.doc/0114.flatten-binary-tree-to-linked-list.md) | Medium (64.22%) | binary-tree, depth-first-search, linked-list | [cpp](.cpp/0114.flatten-binary-tree-to-linked-list.cpp) |
+| [0115.Distinct Subsequences](.doc/0115.distinct-subsequences.md) | Hard (46.24%) | dynamic-programming, string | [cpp](.cpp/0115.distinct-subsequences.cpp) |
 | [0116.Populating Next Right Pointers in Each Node](.doc/0116.populating-next-right-pointers-in-each-node.md) | Medium (62.14%) | binary-tree | [cpp](.cpp/0116.populating-next-right-pointers-in-each-node.cpp) |
 | [0117.Populating Next Right Pointers in Each Node II](.doc/0117.populating-next-right-pointers-in-each-node-ii.md) | Medium (51.90%) | binary-tree | [cpp](.cpp/0117.populating-next-right-pointers-in-each-node-ii.cpp) |
 | [0118.Pascal's Triangle](.doc/0118.pascals-triangle.md) | Easy (73.70%) | array | [cpp](.cpp/0118.pascals-triangle.cpp) |
 | [0119.Pascal's Triangle II](.doc/0119.pascals-triangle-ii.md) | Easy (63.61%) | array, math | [cpp](.cpp/0119.pascals-triangle-ii.cpp) |
 | [0121.Best Time to Buy and Sell Stock](.doc/0121.best-time-to-buy-and-sell-stock.md) | Easy (53.49%) | array, best-time-to-buy-and-sell-stock | [cpp](.cpp/0121.best-time-to-buy-and-sell-stock.cpp) |
 | [0122.Best Time to Buy and Sell Stock II](.doc/0122.best-time-to-buy-and-sell-stock-ii.md) | Medium (65.83%) | array, greedy, best-time-to-buy-and-sell-stock | [cpp](.cpp/0122.best-time-to-buy-and-sell-stock-ii.cpp) |
+| [0124.Binary Tree Maximum Path Sum](.doc/0124.binary-tree-maximum-path-sum.md) | Hard (39.83%) | binary-tree, depth-first-search | [cpp](.cpp/0124.binary-tree-maximum-path-sum.cpp) |
 | [0125.Valid Palindrome](.doc/0125.valid-palindrome.md) | Easy (46.71%) | string, two-pointers | [cpp](.cpp/0125.valid-palindrome.cpp) |
 | [0126.Word Ladder II](.doc/0126.word-ladder-ii.md) | Hard (27.35%) | string, backtracking, breadth-first-search, depth-first-search | [cpp](.cpp/0126.word-ladder-ii.cpp) |
 | [0127.Word Ladder](.doc/0127.word-ladder.md) | Hard (38.62%) | breadth-first-search, hash-table | [cpp](.cpp/0127.word-ladder.cpp) |
@@ -117,9 +123,13 @@
 | [0137.Single Number II](.doc/0137.single-number-ii.md) | Medium (62.09%) | bit-manipulation | [cpp](.cpp/0137.single-number-ii.cpp) |
 | [0138.Copy List with Random Pointer](.doc/0138.copy-list-with-random-pointer.md) | Medium (55.25%) | linked-list, hash-table, design, deep-copy | [cpp](.cpp/0138.copy-list-with-random-pointer.cpp) |
 | [0139.Word Break](.doc/0139.word-break.md) | Medium (46.53%) | dynamic-programming, hash-table, string | [cpp](.cpp/0139.word-break.cpp) |
+| [0140.Word Break II](.doc/0140.word-break-ii.md) | Hard (47.27%) | depth-first-search, memorization | [cpp](.cpp/0140.word-break-ii.cpp) |
 | [0141.Linked List Cycle](.doc/0141.linked-list-cycle.md) | Easy (49.38%) | linked-list, two-pointers, hash-table, fast-slow-pointers | [cpp](.cpp/0141.linked-list-cycle.cpp) |
+| [0142.Linked List Cycle II](.doc/0142.linked-list-cycle-ii.md) | Medium (50.69%) | linked-list, fast-slow-pointers | [cpp](.cpp/0142.linked-list-cycle-ii.cpp) |
+| [0144.Binary Tree Preorder Traversal](.doc/0144.binary-tree-preorder-traversal.md) | Easy (68.92%) | binary-tree, stack | [cpp](.cpp/0144.binary-tree-preorder-traversal.cpp) |
 | [0145.Binary Tree Postorder Traversal](.doc/0145.binary-tree-postorder-traversal.md) | Easy (70.31%) | binary-tree | [cpp](.cpp/0145.binary-tree-postorder-traversal.cpp) |
 | [0146.LRU Cache](.doc/0146.lru-cache.md) | Medium (42.07%) | design | [cpp](.cpp/0146.lru-cache.cpp) |
+| [0147.Insertion Sort List](.doc/0147.insertion-sort-list.md) | Medium (52.91%) | sort, linked-list | [cpp](.cpp/0147.insertion-sort-list.cpp) |
 | [0150.Evaluate Reverse Polish Notation](.doc/0150.evaluate-reverse-polish-notation.md) | Medium (50.68%) | stack | [cpp](.cpp/0150.evaluate-reverse-polish-notation.cpp) |
 | [0152.Maximum Product Subarray](.doc/0152.maximum-product-subarray.md) | Medium (34.93%) | array, dynamic-programming | [cpp](.cpp/0152.maximum-product-subarray.cpp) |
 | [0155.Min Stack](.doc/0155.min-stack.md) | Medium (53.69%) | stack, design | [cpp](.cpp/0155.min-stack.cpp) |
@@ -221,8 +231,11 @@
 | 0366.Find Leaves of Binary Tree 🔒 | | binary-tree, depth-first-search | [cpp](.cpp/0366.find-leaves-of-binary-tree.cpp) |
 | 0369.Plus One Linked List 🔒 | | linked-list, recursion | [cpp](.cpp/0369.plus-one-linked-list.cpp) |
 | [0371.Sum of Two Integers](.doc/0371.sum-of-two-integers.md) | Medium (51.51%) | bit-manipulation, arithmetic | [cpp](.cpp/0371.sum-of-two-integers.cpp) |
+| [0372.Super Pow](.doc/0372.super-pow.md) | Medium (35.10%) | math | [cpp](.cpp/0372.super-pow.cpp) |
+| [0373.Find K Pairs with Smallest Sums](.doc/0373.find-k-pairs-with-smallest-sums.md) | Medium (39.99%) | heap | [cpp](.cpp/0373.find-k-pairs-with-smallest-sums.cpp) |
 | [0374.Guess Number Higher or Lower](.doc/0374.guess-number-higher-or-lower.md) | Easy (53.05%) | binary-search | [cpp](.cpp/0374.guess-number-higher-or-lower.cpp) |
 | [0375.Guess Number Higher or Lower II](.doc/0375.guess-number-higher-or-lower-ii.md) | Medium (47.17%) | dynamic-programming | [cpp](.cpp/0375.guess-number-higher-or-lower-ii.cpp) |
+| [0376.Wiggle Subsequence](.doc/0376.wiggle-subsequence.md) | Medium (48.37%) | dynamic-programming, greedy | [cpp](.cpp/0376.wiggle-subsequence.cpp) |
 | [0380.Insert Delete GetRandom O(1)](.doc/0380.insert-delete-get-random-o-1.md) | Medium (54.35%) | array, hash-table, design, random | [cpp](.cpp/0380.insert-delete-get-random-o-1.cpp) |
 | [0381.Insert Delete GetRandom O(1) - Duplicates allowed](.doc/0381.insert-delete-get-random-o-1-duplicates-allowed.md) | Hard (35.36%) | array, hash-table, design, random | [cpp](.cpp/0381.insert-delete-get-random-o-1-duplicates-allowed.cpp) |
 | [0383.Ransom Note](.doc/0383.ransom-note.md) | Easy (60.61%) | hash-table, string, easy | [cpp](.cpp/0383.ransom-note.cpp) |
@@ -230,18 +243,30 @@
 | [0387.First Unique Character in a String](.doc/0387.first-unique-character-in-a-string.md) | Easy (60.56%) | hash-table | [cpp](.cpp/0387.first-unique-character-in-a-string.cpp) |
 | [0388.Longest Absolute File Path](.doc/0388.longest-absolute-file-path.md) | Medium (46.70%) | stack, hash-table | [cpp](.cpp/0388.longest-absolute-file-path.cpp) |
 | [0389.Find the Difference](.doc/0389.find-the-difference.md) | Easy (59.65%) | hash-table | [cpp](.cpp/0389.find-the-difference.cpp) |
+| [0390.Elimination Game](.doc/0390.elimination-game.md) | Medium (45.85%) | math | [cpp](.cpp/0390.elimination-game.cpp) |
 | [0392.Is Subsequence](.doc/0392.is-subsequence.md) | Easy (47.94%) | string, two-pointers | [cpp](.cpp/0392.is-subsequence.cpp) |
 | [0393.UTF-8 Validation](.doc/0393.utf-8-validation.md) | Medium (45.04%) | bit-manipulation | [cpp](.cpp/0393.utf-8-validation.cpp) |
+| [0394.Decode String](.doc/0394.decode-string.md) | Medium (58.87%) | stack, string | [cpp](.cpp/0394.decode-string.cpp) |
 | [0396.Rotate Function](.doc/0396.rotate-function.md) | Medium (42.69%) | math | [cpp](.cpp/0396.rotate-function.cpp) |
+| [0398.Random Pick Index](.doc/0398.random-pick-index.md) | Medium (62.58%) | random, hash-table, reservoir-sampling | [cpp](.cpp/0398.random-pick-index.cpp) |
+| [0400.Nth Digit](.doc/0400.nth-digit.md) | Medium (34.57%) | math | [cpp](.cpp/0400.nth-digit.cpp) |
 | [0401.Binary Watch](.doc/0401.binary-watch.md) | Easy (53.67%) | bit-manipulation | [cpp](.cpp/0401.binary-watch.cpp) |
+| [0402.Remove K Digits](.doc/0402.remove-k-digits.md) | Medium (33.71%) | stack, greedy | [cpp](.cpp/0402.remove-k-digits.cpp) |
 | [0404.Sum of Left Leaves](.doc/0404.sum-of-left-leaves.md) | Easy (57.58%) | binary-tree | [cpp](.cpp/0404.sum-of-left-leaves.cpp) |
+| [0406.Queue Reconstruction by Height](.doc/0406.queue-reconstruction-by-height.md) | Medium (73.20%) | sort | [cpp](.cpp/0406.queue-reconstruction-by-height.cpp) |
+| [0407.Trapping Rain Water II](.doc/0407.trapping-rain-water-ii.md) | Hard (47.56%) | heap, breadth-first-search | [cpp](.cpp/0407.trapping-rain-water-ii.cpp) |
+| 0408.Valid Word Abbreviation 🔒 | | string, two-pointers | [cpp](.cpp/0408.valid-word-abbreviation.cpp) |
 | [0412.Fizz Buzz](.doc/0412.fizz-buzz.md) | Easy (71.60%) | easy | [cpp](.cpp/0412.fizz-buzz.cpp) |
+| [0413.Arithmetic Slices](.doc/0413.arithmetic-slices.md) | Medium (65.07%) | math, dynamic-programming | [cpp](.cpp/0413.arithmetic-slices.cpp) |
+| [0414.Third Maximum Number](.doc/0414.third-maximum-number.md) | Easy (34.39%) | array | [cpp](.cpp/0414.third-maximum-number.cpp) |
+| [0415.Add Strings](.doc/0415.add-strings.md) | Easy (51.67%) | string, arithmetic, two-pointers | [cpp](.cpp/0415.add-strings.cpp) |
 | 0428.Serialize and Deserialize N-ary Tree 🔒 | | tree, depth-first-search, breadth-first-search, design, serialization | [cpp](.cpp/0428.serialize-and-deserialize-n-ary-tree.cpp) |
 | [0429.N-ary Tree Level Order Traversal](.doc/0429.n-ary-tree-level-order-traversal.md) | Medium (70.72%) | tree, breadth-first-search, depth-first-search | [cpp](.cpp/0429.n-ary-tree-level-order-traversal.cpp) |
 | [0432.All O`one Data Structure](.doc/0432.all-o-one-data-structure.md) | Hard (36.50%) | hash-table, design, linked-list | [cpp](.cpp/0432.all-o-one-data-structure.cpp) |
 | [0433.Minimum Genetic Mutation](.doc/0433.minimum-genetic-mutation.md) | Medium (52.49%) | breadth-first-search | [cpp](.cpp/0433.minimum-genetic-mutation.cpp) |
 | [0434.Number of Segments in a String](.doc/0434.number-of-segments-in-a-string.md) | Easy (36.46%) | string | [cpp](.cpp/0434.number-of-segments-in-a-string.cpp) |
 | [0443.String Compression](.doc/0443.string-compression.md) | Medium (52.45%) | two-pointers | [cpp](.cpp/0443.string-compression.cpp) |
+| [0445.Add Two Numbers II](.doc/0445.add-two-numbers-ii.md) | Medium (61.09%) | linked-list, arithmetic | [cpp](.cpp/0445.add-two-numbers-ii.cpp) |
 | [0449.Serialize and Deserialize BST](.doc/0449.serialize-and-deserialize-bst.md) | Medium (57.11%) | binary-search-tree, binary-tree, design, monotonous-stack, serialization | [cpp](.cpp/0449.serialize-and-deserialize-bst.cpp) |
 | [0458.Poor Pigs](.doc/0458.poor-pigs.md) | Hard (60.20%) | math | [cpp](.cpp/0458.poor-pigs.cpp) |
 | [0460.LFU Cache](.doc/0460.lfu-cache.md) | Hard (43.67%) | design | [cpp](.cpp/0460.lfu-cache.cpp) |

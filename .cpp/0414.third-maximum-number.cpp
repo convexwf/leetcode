@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 一次遍历
 // 2022-11-15 submission
 // 34/34 cases passed
 // Runtime: 13 ms, faster than 60.43% of cpp online submissions.
@@ -12,23 +13,22 @@
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-        long long A = LLONG_MIN, B = LLONG_MIN, C = LLONG_MIN;
+        long long m1 = LLONG_MIN, m2 = LLONG_MIN, m3 = LLONG_MIN;
         for (int num : nums) {
-            if (num > A) {
-                C = B;
-                B = A;
-                A = num;
+            if (num > m1) {
+                m3 = m2;
+                m2 = m1;
+                m1 = num;
             }
-            else if (A > num && num > B) {
-                C = B;
-                B = num;
+            else if (num < m1 && num > m2) {
+                m3 = m2;
+                m2 = num;
             }
-            else if (B > num && num > C) {
-                C = num;
+            else if (num < m2 && num > m3) {
+                m3 = num;
             }
-            // cout << A << " " << B << " " << C << endl;
         }
-        return C > LLONG_MIN ? C : A;
+        return m3 == LLONG_MIN ? m1 : m3;
     }
 };
 // @lc code=end

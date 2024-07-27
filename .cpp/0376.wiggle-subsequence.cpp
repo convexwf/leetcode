@@ -13,13 +13,17 @@
 class Solution {
 public:
     int wiggleMaxLength(vector<int>& nums) {
-        if (nums.size() < 2) return nums.size(); // 特判
-        int ans = 1, pre = 0;                    // 初始化长度为 1，前一步差值为 0
+        if (nums.size() < 2) return nums.size(); // 特例
+        // 初始化长度为 1，前一步差值为 0
+        int ans = 1, pre = 0;
         for (int i = 1; i < nums.size(); i++) {
-            int diff = nums[i] - nums[i - 1]; // 当前数与上一个数的差值
-            if ((diff > 0 && pre <= 0) || (diff < 0 && pre >= 0)) { // 如果当前差值符合摆动的条件
-                ans++;                                              // 长度加一
-                pre = diff;                                         // 更新前一步差值
+            // 当前数与上一个数的差值
+            int diff = nums[i] - nums[i - 1];
+            // 如果当前差值符合摆动的条件
+            if ((diff > 0 && pre <= 0) || (diff < 0 && pre >= 0)) {
+                // 长度加一 更新前一步差值
+                ans++;
+                pre = diff;
             }
         }
         return ans;

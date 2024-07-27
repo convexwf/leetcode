@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 快慢指针
 // 2022-08-02 submission
 // 16/16 cases passed
 // Runtime: 12 ms, faster than 63.02% of cpp online submissions.
@@ -26,7 +27,7 @@ public:
             fast = fast->next->next;
             if (slow == fast) break;
         }
-        if (!fast || !fast->next) return NULL;
+        if (!fast || !fast->next) return nullptr;
         slow = head;
         while (slow != fast) {
             slow = slow->next;

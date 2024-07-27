@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 栈
 // 2020-11-20 submission
 // 34/34 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -12,34 +13,35 @@
 class Solution {
 public:
     string decodeString(string s) {
-        s = "1[" + s + "]";
-        int len = s.length(), cur = 0;
-        stack<int> nums;
-        stack<string> stk;
-        while (cur < len) {
-            if (isdigit(s[cur])) {
-                int tail = cur;
-                while (isdigit(s[++tail]))
-                    ;
-                nums.push(stoi(s.substr(cur, tail - cur)));
-                cur = tail;
+        stack<int> numStack;
+        stack<string> strStack;
+        int num = 0;
+        string str;
+        for (char c : s) {
+            if (isdigit(c)) {
+                num = num * 10 + c - '0';
             }
-            else if (s[cur] == ']') {
-                string tmp = "", res = "";
-                while (stk.top() != "[") {
-                    tmp.insert(0, stk.top());
-                    stk.pop();
+            else if (isalpha(c)) {
+                str += c;
+            }
+            else if (c == '[') {
+                numStack.push(num);
+                strStack.push(str);
+                num = 0;
+                str.clear();
+            }
+            else if (c == ']') {
+                int k = numStack.top();
+                numStack.pop();
+                string t = strStack.top();
+                strStack.pop();
+                for (int i = 0; i < k; ++i) {
+                    t += str;
                 }
-                for (int i = 0; i < nums.top(); i++) res += tmp;
-                nums.pop();
-                stk.pop();
-                stk.push(res);
-                cur++; // 不能够在判断语句 s[cur++] == ']'，这样即使不满足条件也会 cur++
+                str = t;
             }
-            else
-                stk.push(string(1, s[cur++]));
         }
-        return stk.top();
+        return str;
     }
 };
 // @lc code=end

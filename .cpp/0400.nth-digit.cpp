@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 数学方法
 // 2023-01-14 submission
 // 71/71 cases passed
 // Runtime: 3 ms, faster than 36.1% of cpp online submissions.
@@ -12,7 +13,7 @@
 class Solution {
 public:
     int findNthDigit(int n) {
-        long long len = 1, cnt = 9, start = 1;
+        long len = 1, cnt = 9, start = 1;
         while (n > len * cnt) {
             n -= len * cnt;
             ++len;
