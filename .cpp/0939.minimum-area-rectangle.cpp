@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 哈希表+排序
+// 1. 有序集合+哈希表+排序
 // 2023-11-30 submission
 // 137/137 cases passed
 // Runtime: 464 ms, faster than 32.61% of cpp online submissions.

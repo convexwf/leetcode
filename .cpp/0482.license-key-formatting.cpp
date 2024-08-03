@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 模拟
 // 2021-12-17 submission
 // 38/38 cases passed
 // Runtime: 8 ms, faster than 80.96% of cpp online submissions.

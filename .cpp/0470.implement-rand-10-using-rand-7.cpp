@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 拒绝采样
 // 2022-08-19 submission
 // 12/12 cases passed
 // Runtime: 70 ms, faster than 78.6% of cpp online submissions.
@@ -25,6 +26,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 拒绝采样-递归
 // 2022-08-19 submission
 // 12/12 cases passed
 // Runtime: 136 ms, faster than 6.83% of cpp online submissions.
@@ -39,6 +41,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 拒绝采样-进一步优化
 // 2022-08-19 submission
 // 12/12 cases passed
 // Runtime: 103 ms, faster than 37.05% of cpp online submissions.

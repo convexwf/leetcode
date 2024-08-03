@@ -232,10 +232,11 @@
 | 0369.Plus One Linked List 🔒 | | linked-list, recursion | [cpp](.cpp/0369.plus-one-linked-list.cpp) |
 | [0371.Sum of Two Integers](.doc/0371.sum-of-two-integers.md) | Medium (51.51%) | bit-manipulation, arithmetic | [cpp](.cpp/0371.sum-of-two-integers.cpp) |
 | [0372.Super Pow](.doc/0372.super-pow.md) | Medium (35.10%) | math | [cpp](.cpp/0372.super-pow.cpp) |
-| [0373.Find K Pairs with Smallest Sums](.doc/0373.find-k-pairs-with-smallest-sums.md) | Medium (39.99%) | heap | [cpp](.cpp/0373.find-k-pairs-with-smallest-sums.cpp) |
 | [0374.Guess Number Higher or Lower](.doc/0374.guess-number-higher-or-lower.md) | Easy (53.05%) | binary-search | [cpp](.cpp/0374.guess-number-higher-or-lower.cpp) |
 | [0375.Guess Number Higher or Lower II](.doc/0375.guess-number-higher-or-lower-ii.md) | Medium (47.17%) | dynamic-programming | [cpp](.cpp/0375.guess-number-higher-or-lower-ii.cpp) |
 | [0376.Wiggle Subsequence](.doc/0376.wiggle-subsequence.md) | Medium (48.37%) | dynamic-programming, greedy | [cpp](.cpp/0376.wiggle-subsequence.cpp) |
+| [0378.Kth Smallest Element in a Sorted Matrix](.doc/0378.kth-smallest-element-in-a-sorted-matrix.md) | Medium (62.23%) | binary-search, matrix | [cpp](.cpp/0378.kth-smallest-element-in-a-sorted-matrix.cpp) |
+| 0379.Design Phone Directory 🔒 | | design, hash-table | [cpp](.cpp/0379.design-phone-directory.cpp) |
 | [0380.Insert Delete GetRandom O(1)](.doc/0380.insert-delete-get-random-o-1.md) | Medium (54.35%) | array, hash-table, design, random | [cpp](.cpp/0380.insert-delete-get-random-o-1.cpp) |
 | [0381.Insert Delete GetRandom O(1) - Duplicates allowed](.doc/0381.insert-delete-get-random-o-1-duplicates-allowed.md) | Hard (35.36%) | array, hash-table, design, random | [cpp](.cpp/0381.insert-delete-get-random-o-1-duplicates-allowed.cpp) |
 | [0383.Ransom Note](.doc/0383.ransom-note.md) | Easy (60.61%) | hash-table, string, easy | [cpp](.cpp/0383.ransom-note.cpp) |
@@ -260,24 +261,39 @@
 | [0413.Arithmetic Slices](.doc/0413.arithmetic-slices.md) | Medium (65.07%) | math, dynamic-programming | [cpp](.cpp/0413.arithmetic-slices.cpp) |
 | [0414.Third Maximum Number](.doc/0414.third-maximum-number.md) | Easy (34.39%) | array | [cpp](.cpp/0414.third-maximum-number.cpp) |
 | [0415.Add Strings](.doc/0415.add-strings.md) | Easy (51.67%) | string, arithmetic, two-pointers | [cpp](.cpp/0415.add-strings.cpp) |
+| 0418.Sentence Screen Fitting 🔒 | | greedy | [cpp](.cpp/0418.sentence-screen-fitting.cpp) |
+| 0422.Valid Word Square 🔒 | | matrix, string | [cpp](.cpp/0422.valid-word-square.cpp) |
 | 0428.Serialize and Deserialize N-ary Tree 🔒 | | tree, depth-first-search, breadth-first-search, design, serialization | [cpp](.cpp/0428.serialize-and-deserialize-n-ary-tree.cpp) |
 | [0429.N-ary Tree Level Order Traversal](.doc/0429.n-ary-tree-level-order-traversal.md) | Medium (70.72%) | tree, breadth-first-search, depth-first-search | [cpp](.cpp/0429.n-ary-tree-level-order-traversal.cpp) |
 | [0432.All O`one Data Structure](.doc/0432.all-o-one-data-structure.md) | Hard (36.50%) | hash-table, design, linked-list | [cpp](.cpp/0432.all-o-one-data-structure.cpp) |
 | [0433.Minimum Genetic Mutation](.doc/0433.minimum-genetic-mutation.md) | Medium (52.49%) | breadth-first-search | [cpp](.cpp/0433.minimum-genetic-mutation.cpp) |
 | [0434.Number of Segments in a String](.doc/0434.number-of-segments-in-a-string.md) | Easy (36.46%) | string | [cpp](.cpp/0434.number-of-segments-in-a-string.cpp) |
 | [0443.String Compression](.doc/0443.string-compression.md) | Medium (52.45%) | two-pointers | [cpp](.cpp/0443.string-compression.cpp) |
+| 0444.Sequence Reconstruction 🔒 | | graph, topological-sort | [cpp](.cpp/0444.sequence-reconstruction.cpp) |
 | [0445.Add Two Numbers II](.doc/0445.add-two-numbers-ii.md) | Medium (61.09%) | linked-list, arithmetic | [cpp](.cpp/0445.add-two-numbers-ii.cpp) |
 | [0449.Serialize and Deserialize BST](.doc/0449.serialize-and-deserialize-bst.md) | Medium (57.11%) | binary-search-tree, binary-tree, design, monotonous-stack, serialization | [cpp](.cpp/0449.serialize-and-deserialize-bst.cpp) |
 | [0458.Poor Pigs](.doc/0458.poor-pigs.md) | Hard (60.20%) | math | [cpp](.cpp/0458.poor-pigs.cpp) |
 | [0460.LFU Cache](.doc/0460.lfu-cache.md) | Hard (43.67%) | design | [cpp](.cpp/0460.lfu-cache.cpp) |
 | [0461.Hamming Distance](.doc/0461.hamming-distance.md) | Easy (75.29%) | bit-manipulation | [cpp](.cpp/0461.hamming-distance.cpp) |
+| [0462.Minimum Moves to Equal Array Elements II](.doc/0462.minimum-moves-to-equal-array-elements-ii.md) | Medium (60.00%) | sort, partition | [cpp](.cpp/0462.minimum-moves-to-equal-array-elements-ii.cpp) |
 | [0463.Island Perimeter](.doc/0463.island-perimeter.md) | Easy (70.19%) | geometry | [cpp](.cpp/0463.island-perimeter.cpp) |
+| [0467.Unique Substrings in Wraparound String](.doc/0467.unique-substrings-in-wraparound-string.md) | Medium (39.14%) | dynamic-programming | [cpp](.cpp/0467.unique-substrings-in-wraparound-string.cpp) |
+| [0470.Implement Rand10() Using Rand7()](.doc/0470.implement-rand-10-using-rand-7.md) | Medium (45.95%) | math, random | [cpp](.cpp/0470.implement-rand-10-using-rand-7.cpp) |
+| [0475.Heaters](.doc/0475.heaters.md) | Medium (36.61%) | binary-search, sort | [cpp](.cpp/0475.heaters.cpp) |
+| [0477.Total Hamming Distance](.doc/0477.total-hamming-distance.md) | Medium (52.39%) | bit-manipulation | [cpp](.cpp/0477.total-hamming-distance.cpp) |
+| [0481.Magical String](.doc/0481.magical-string.md) | Medium (50.80%) | math, string | [cpp](.cpp/0481.magical-string.cpp) |
+| [0482.License Key Formatting](.doc/0482.license-key-formatting.md) | Easy (43.56%) | string | [cpp](.cpp/0482.license-key-formatting.cpp) |
 | [0485.Max Consecutive Ones](.doc/0485.max-consecutive-ones.md) | Easy (58.40%) | array | [cpp](.cpp/0485.max-consecutive-ones.cpp) |
+| 0489.Robot Room Cleaner 🔒 | | depth-first-search | [cpp](.cpp/0489.robot-room-cleaner.cpp) |
+| 0490.The Maze 🔒 | | breadth-first-search | [cpp](.cpp/0490.the-maze.cpp) |
 | [0492.Construct the Rectangle](.doc/0492.construct-the-rectangle.md) | Easy (56.87%) | math, geometry | [cpp](.cpp/0492.construct-the-rectangle.cpp) |
 | [0495.Teemo Attacking](.doc/0495.teemo-attacking.md) | Easy (56.54%) | array | [cpp](.cpp/0495.teemo-attacking.cpp) |
 | [0498.Diagonal Traverse](.doc/0498.diagonal-traverse.md) | Medium (58.33%) | matrix | [cpp](.cpp/0498.diagonal-traverse.cpp) |
+| 0499.The Maze III 🔒 | | breadth-first-search | [cpp](.cpp/0499.the-maze-iii.cpp) |
 | [0500.Keyboard Row](.doc/0500.keyboard-row.md) | Easy (70.36%) | hash-table | [cpp](.cpp/0500.keyboard-row.cpp) |
 | [0504.Base 7](.doc/0504.base-7.md) | Easy (49.60%) | math | [cpp](.cpp/0504.base-7.cpp) |
+| 0505.The Maze II 🔒 | | breadth-first-search | [cpp](.cpp/0505.the-maze-ii.cpp) |
+| 0510.Inorder Successor in BST II 🔒 | | binary-tree, binary-search-tree | [cpp](.cpp/0510.inorder-successor-in-bst-ii.cpp) |
 | 0527.Word Abbreviation 🔒 | | trie, string | [cpp](.cpp/0527.word-abbreviation.cpp) |
 | 0531.Lonely Pixel I 🔒 | | matrix | [cpp](.cpp/0531.lonely-pixel-i.cpp) |
 | [0535.Encode and Decode TinyURL](.doc/0535.encode-and-decode-tiny-url.md) | Medium (86.02%) | hash-table, design | [cpp](.cpp/0535.encode-and-decode-tiny-url.cpp) |
@@ -296,7 +312,14 @@
 | [0876.Middle of the Linked List](.doc/0876.middle-of-the-linked-list.md) | Easy (76.31%) | linked-list, fast-slow-pointers | [cpp](.cpp/0876.middle-of-the-linked-list.cpp) |
 | [0877.Stone Game](.doc/0877.stone-game.md) | Medium (70.09%) | dynamic-programming, minmax, math | [cpp](.cpp/0877.stone-game.cpp) |
 | [0881.Boats to Save People](.doc/0881.boats-to-save-people.md) | Medium (55.90%) | greedy, two-pointers | [cpp](.cpp/0881.boats-to-save-people.cpp) |
+| [0939.Minimum Area Rectangle](.doc/0939.minimum-area-rectangle.md) | Medium (53.22%) | ordered-map, hash-table, sort | [cpp](.cpp/0939.minimum-area-rectangle.cpp) |
+| [0941.Valid Mountain Array](.doc/0941.valid-mountain-array.md) | Easy (33.52%) | array | [cpp](.cpp/0941.valid-mountain-array.cpp) |
 | [0942.DI String Match](.doc/0942.di-string-match.md) | Easy (77.88%) | two-pointers | [cpp](.cpp/0942.di-string-match.cpp) |
+| [0944.Delete Columns to Make Sorted](.doc/0944.delete-columns-to-make-sorted.md) | Easy (74.57%) | string, easy | [cpp](.cpp/0944.delete-columns-to-make-sorted.cpp) |
+| [0945.Minimum Increment to Make Array Unique](.doc/0945.minimum-increment-to-make-array-unique.md) | Medium (51.60%) | sort, greedy | [cpp](.cpp/0945.minimum-increment-to-make-array-unique.cpp) |
+| [0946.Validate Stack Sequences](.doc/0946.validate-stack-sequences.md) | Medium (69.39%) | stack | [cpp](.cpp/0946.validate-stack-sequences.cpp) |
+| [0948.Bag of Tokens](.doc/0948.bag-of-tokens.md) | Medium (52.17%) | greedy | [cpp](.cpp/0948.bag-of-tokens.cpp) |
+| [0949.Largest Time for Given Digits](.doc/0949.largest-time-for-given-digits.md) | Medium (35.14%) | easy | [cpp](.cpp/0949.largest-time-for-given-digits.cpp) |
 | [0961.N-Repeated Element in Size 2N Array](.doc/0961.n-repeated-element-in-size-2-n-array.md) | Easy (76.34%) | hash-table, math | [cpp](.cpp/0961.n-repeated-element-in-size-2-n-array.cpp) |
 | [0963.Minimum Area Rectangle II](.doc/0963.minimum-area-rectangle-ii.md) | Medium (54.71%) | math, geometry, hash-table | [cpp](.cpp/0963.minimum-area-rectangle-ii.cpp) |
 | [0966.Vowel Spellchecker](.doc/0966.vowel-spellchecker.md) | Medium (51.25%) | hash-table, string | [cpp](.cpp/0966.vowel-spellchecker.cpp) |

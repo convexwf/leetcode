@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 二分查找
 // 2023-02-13 submission
 // 86/86 cases passed
 // Runtime: 25 ms, faster than 95.68% of cpp online submissions.
@@ -19,10 +20,12 @@ public:
                 // 使用 upper_bound 函数可以查找第一个大于目标数的元素
                 cnt += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
             }
-            if (cnt < k)
+            if (cnt < k) {
                 left = mid + 1;
-            else
+            }
+            else {
                 right = mid;
+            }
         }
         return left;
     }
@@ -30,6 +33,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 二分查找优化
 // 2023-02-13 submission
 // 86/86 cases passed
 // Runtime: 30 ms, faster than 86.6% of cpp online submissions.
@@ -41,13 +45,16 @@ public:
         while (left < right) {
             int mid = left + (right - left) / 2;
             int cnt = search_less_equal(matrix, mid);
-            if (cnt < k)
+            if (cnt < k) {
                 left = mid + 1;
-            else
+            }
+            else {
                 right = mid;
+            }
         }
         return left;
     }
+
     int search_less_equal(vector<vector<int>>& matrix, int target) {
         int n = matrix.size(), i = n - 1, j = 0, res = 0;
         while (i >= 0 && j < n) {

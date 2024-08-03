@@ -29,21 +29,3 @@ public:
     }
 };
 // @lc code=end
-
-// @lc code=start
-class Solution {
-public:
-    int minIncrementForUnique(vector<int>& nums) {
-        unordered_map<int, int> m;
-        for (int num : nums) {
-            m[num]++;
-        }
-        int need = 0, res = 0;
-        for (auto& [num, count] : m) {
-            res += max(need - num, 0) * count + count * (count - 1) / 2;
-            need = max(need, num) + count;
-        }
-        return res;
-    }
-};
-// @lc code=end
