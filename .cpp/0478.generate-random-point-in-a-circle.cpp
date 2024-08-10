@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 拒绝采样+计算几何
 // 2022-08-19 submission
 // 8/8 cases passed
 // Runtime: 145 ms, faster than 45.21% of cpp online submissions.
@@ -39,6 +40,7 @@ private:
 // @lc code=end
 
 // @lc code=start
+// 2. 极坐标-计算几何
 // 2022-08-19 submission
 // 8/8 cases passed
 // Runtime: 106 ms, faster than 81.38% of cpp online submissions.

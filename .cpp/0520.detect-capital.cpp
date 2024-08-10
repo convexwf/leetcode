@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 状态机
 // 2021-12-21 submission
 // 551/551 cases passed
 // Runtime: 3 ms, faster than 33.99% of cpp online submissions.
@@ -25,6 +26,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 计数
 // 2023-01-31 submission
 // 551/551 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

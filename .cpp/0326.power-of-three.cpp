@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. Brute force
 // 2022-11-14 submission
 // 21040/21040 cases passed
 // Runtime: 41 ms, faster than 55.67% of cpp online submissions.
@@ -20,6 +21,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 数学方法-整数限制
 // 2022-11-14 submission
 // 21040/21040 cases passed
 // Runtime: 40 ms, faster than 58.38% of cpp online submissions.
@@ -33,6 +35,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 数学方法-换底公式
 // 2022-11-14 submission
 // 21040/21040 cases passed
 // Runtime: 40 ms, faster than 58.38% of cpp online submissions.

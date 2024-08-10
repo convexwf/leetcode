@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 位操作-标识位
 // 2022-11-15 submission
 // 149/149 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -23,6 +24,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 位操作-mask
 // 2022-11-15 submission
 // 149/149 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -38,6 +40,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 递归
 // 2022-11-15 submission
 // 149/149 cases passed
 // Runtime: 5 ms, faster than 18.29% of cpp online submissions.

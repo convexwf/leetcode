@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 最大公约数
+// 1. 数学方法
 // 2023-09-08 submission
 // 75/75 cases passed
 // Runtime: 16 ms, faster than 38.2% of cpp online submissions.

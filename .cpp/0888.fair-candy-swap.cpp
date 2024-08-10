@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 哈希集合
+// 1. 哈希表
 // 2023-07-03 submission
 // 75/75 cases passed
 // Runtime: 98 ms, faster than 81.71% of cpp online submissions.

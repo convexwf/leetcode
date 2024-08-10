@@ -5,6 +5,23 @@
  */
 
 // @lc code=start
+// 1. 递归
+// 2024-08-08 submission
+// 31/31 cases passed
+// Runtime: 15 ms, faster than 15.6% of cpp online submissions.
+// Memory Usage: 7.2 MB, less than 48.39% of cpp online submissions.
+class Solution {
+public:
+    int fib(int n) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        return fib(n - 1) + fib(n - 2);
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 动态规划
 // 2022-07-30 submission
 // 31/31 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

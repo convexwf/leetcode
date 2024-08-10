@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 双指针
 // 2023-02-13 submission
 // 70/70 cases passed
 // Runtime: 15 ms, faster than 50.82% of cpp online submissions.
@@ -38,6 +39,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 奇偶指针
 // 2023-02-13 submission
 // 70/70 cases passed
 // Runtime: 14 ms, faster than 60.38% of cpp online submissions.

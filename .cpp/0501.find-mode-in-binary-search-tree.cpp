@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 先序遍历+哈希表计数
 // 2021-12-21 submission
 // 23/23 cases passed
 // Runtime: 20 ms, faster than 64.74% of cpp online submissions.
@@ -43,6 +44,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 递归中序遍历
 // 2021-12-21 submission
 // 23/23 cases passed
 // Runtime: 24 ms, faster than 43.63% of cpp online submissions.
@@ -73,6 +75,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 迭代中序遍历
 // 2021-12-21 submission
 // 23/23 cases passed
 // Runtime: 28 ms, faster than 25.09% of cpp online submissions.

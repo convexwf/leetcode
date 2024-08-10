@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表
 // 2019-09-27 submission
 // 152/152 cases passed
 // Runtime: 4 ms, faster than 80.6% of cpp online submissions.
@@ -14,8 +15,9 @@ public:
     string getHint(string secret, string guess) {
         int m[256] = {0}, bulls = 0, cows = 0;
         for (int i = 0; i < secret.size(); ++i) {
-            if (secret[i] == guess[i])
+            if (secret[i] == guess[i]) {
                 ++bulls;
+            }
             else {
                 if (m[secret[i]]++ < 0) ++cows;
                 if (m[guess[i]]-- > 0) ++cows;
