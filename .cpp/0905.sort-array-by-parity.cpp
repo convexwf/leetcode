@@ -25,7 +25,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. partition
+// 2. 快速选择算法
 // 2023-07-14 submission
 // 285/285 cases passed
 // Runtime: 13 ms, faster than 52.34% of cpp online submissions.

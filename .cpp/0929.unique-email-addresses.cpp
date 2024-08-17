@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 字符串处理
+// 1. 字符串处理+哈希表
 class Solution {
 public:
     int numUniqueEmails(vector<string>& emails) {

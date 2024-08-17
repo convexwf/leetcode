@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. brute force
+// 1. 计数+三指针
 // 2023-07-13 submission
 // 121/121 cases passed
 // Runtime: 50 ms, faster than 59.42% of cpp online submissions.

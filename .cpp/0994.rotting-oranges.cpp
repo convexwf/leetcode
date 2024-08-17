@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. BFS
+// 1. bfs
 // 2023-07-11 submission
 // 306/306 cases passed
 // Runtime: 7 ms, faster than 73.05% of cpp online submissions.
@@ -28,6 +28,7 @@ public:
             }
         }
         int res = 0;
+        vector<int> dirs = {0, 1, 0, -1, 0};
         while (!q.empty() && fresh > 0) {
             int size = q.size();
             for (int i = 0; i < size; ++i) {
@@ -35,25 +36,14 @@ public:
                 q.pop();
                 int x = cur.first;
                 int y = cur.second;
-                if (x - 1 >= 0 && grid[x - 1][y] == 1) {
-                    grid[x - 1][y] = 2;
-                    q.push({x - 1, y});
-                    --fresh;
-                }
-                if (x + 1 < m && grid[x + 1][y] == 1) {
-                    grid[x + 1][y] = 2;
-                    q.push({x + 1, y});
-                    --fresh;
-                }
-                if (y - 1 >= 0 && grid[x][y - 1] == 1) {
-                    grid[x][y - 1] = 2;
-                    q.push({x, y - 1});
-                    --fresh;
-                }
-                if (y + 1 < n && grid[x][y + 1] == 1) {
-                    grid[x][y + 1] = 2;
-                    q.push({x, y + 1});
-                    --fresh;
+                for (int j = 0; j < 4; ++j) {
+                    int nx = x + dirs[j];
+                    int ny = y + dirs[j + 1];
+                    if (nx >= 0 && nx < m && ny >= 0 && ny < n && grid[nx][ny] == 1) {
+                        grid[nx][ny] = 2;
+                        q.push({nx, ny});
+                        --fresh;
+                    }
                 }
             }
             ++res;

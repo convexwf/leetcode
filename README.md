@@ -126,6 +126,7 @@
 | [0140.Word Break II](.doc/0140.word-break-ii.md) | Hard (47.27%) | depth-first-search, memorization | [cpp](.cpp/0140.word-break-ii.cpp) |
 | [0141.Linked List Cycle](.doc/0141.linked-list-cycle.md) | Easy (49.38%) | linked-list, two-pointers, hash-table, fast-slow-pointers | [cpp](.cpp/0141.linked-list-cycle.cpp) |
 | [0142.Linked List Cycle II](.doc/0142.linked-list-cycle-ii.md) | Medium (50.69%) | linked-list, fast-slow-pointers | [cpp](.cpp/0142.linked-list-cycle-ii.cpp) |
+| [0143.Reorder List](.doc/0143.reorder-list.md) | Medium (55.72%) | linked-list, fast-slow-pointers, stack | [cpp](.cpp/0143.reorder-list.cpp) |
 | [0144.Binary Tree Preorder Traversal](.doc/0144.binary-tree-preorder-traversal.md) | Easy (68.92%) | binary-tree, stack | [cpp](.cpp/0144.binary-tree-preorder-traversal.cpp) |
 | [0145.Binary Tree Postorder Traversal](.doc/0145.binary-tree-postorder-traversal.md) | Easy (70.31%) | binary-tree | [cpp](.cpp/0145.binary-tree-postorder-traversal.cpp) |
 | [0146.LRU Cache](.doc/0146.lru-cache.md) | Medium (42.07%) | design | [cpp](.cpp/0146.lru-cache.cpp) |
@@ -242,6 +243,7 @@
 | 0362.Design Hit Counter 🔒 | | design, binary-search | [cpp](.cpp/0362.design-hit-counter.cpp) |
 | 0366.Find Leaves of Binary Tree 🔒 | | binary-tree, depth-first-search | [cpp](.cpp/0366.find-leaves-of-binary-tree.cpp) |
 | 0369.Plus One Linked List 🔒 | | linked-list, recursion | [cpp](.cpp/0369.plus-one-linked-list.cpp) |
+| 0370.Range Addition 🔒 | | difference-array | [cpp](.cpp/0370.range-addition.cpp) |
 | [0371.Sum of Two Integers](.doc/0371.sum-of-two-integers.md) | Medium (51.51%) | bit-manipulation, arithmetic | [cpp](.cpp/0371.sum-of-two-integers.cpp) |
 | [0372.Super Pow](.doc/0372.super-pow.md) | Medium (35.10%) | math | [cpp](.cpp/0372.super-pow.cpp) |
 | [0374.Guess Number Higher or Lower](.doc/0374.guess-number-higher-or-lower.md) | Easy (53.05%) | binary-search | [cpp](.cpp/0374.guess-number-higher-or-lower.cpp) |
@@ -300,6 +302,7 @@
 | [0479.Largest Palindrome Product](.doc/0479.largest-palindrome-product.md) | Hard (32.54%) | math, palindrome | [cpp](.cpp/0479.largest-palindrome-product.cpp) |
 | [0481.Magical String](.doc/0481.magical-string.md) | Medium (50.80%) | math, string | [cpp](.cpp/0481.magical-string.cpp) |
 | [0482.License Key Formatting](.doc/0482.license-key-formatting.md) | Easy (43.56%) | string | [cpp](.cpp/0482.license-key-formatting.cpp) |
+| 0484.Find Permutation 🔒 | | string, permutation, greedy | [cpp](.cpp/0484.find-permutation.cpp) |
 | [0485.Max Consecutive Ones](.doc/0485.max-consecutive-ones.md) | Easy (58.40%) | array | [cpp](.cpp/0485.max-consecutive-ones.cpp) |
 | 0489.Robot Room Cleaner 🔒 | | depth-first-search | [cpp](.cpp/0489.robot-room-cleaner.cpp) |
 | 0490.The Maze 🔒 | | breadth-first-search | [cpp](.cpp/0490.the-maze.cpp) |
@@ -323,11 +326,18 @@
 | 0548.Split Array with Equal Sum 🔒 | | prefix-sum, hash-table | [cpp](.cpp/0548.split-array-with-equal-sum.cpp) |
 | [0560.Subarray Sum Equals K](.doc/0560.subarray-sum-equals-k.md) | Medium (43.35%) | array, hash-table, prefix-sum | [cpp](.cpp/0560.subarray-sum-equals-k.cpp) |
 | [0566.Reshape the Matrix](.doc/0566.reshape-the-matrix.md) | Easy (63.03%) | matrix | [cpp](.cpp/0566.reshape-the-matrix.cpp) |
+| 0582.Kill Process 🔒 | | tree, graph, depth-first-search | [cpp](.cpp/0582.kill-process.cpp) |
 | [0657.Robot Return to Origin](.doc/0657.robot-return-to-origin.md) | Easy (75.61%) | easy | [cpp](.cpp/0657.robot-return-to-origin.cpp) |
 | [0661.Image Smoother](.doc/0661.image-smoother.md) | Easy (67.05%) | matrix | [cpp](.cpp/0661.image-smoother.cpp) |
 | [0697.Degree of an Array](.doc/0697.degree-of-an-array.md) | Easy (56.36%) | array, hash-table | [cpp](.cpp/0697.degree-of-an-array.cpp) |
 | [0704.Binary Search](.doc/0704.binary-search.md) | Easy (56.83%) | binary-search | [cpp](.cpp/0704.binary-search.cpp) |
 | [0799.Champagne Tower](.doc/0799.champagne-tower.md) | Medium (58.04%) | array | [cpp](.cpp/0799.champagne-tower.cpp) |
+| [0851.Loud and Rich](.doc/0851.loud-and-rich.md) | Medium (58.75%) | graph, depth-first-search | [cpp](.cpp/0851.loud-and-rich.cpp) |
+| [0852.Peak Index in a Mountain Array](.doc/0852.peak-index-in-a-mountain-array.md) | Medium (69.10%) | array, binary-search | [cpp](.cpp/0852.peak-index-in-a-mountain-array.cpp) |
+| [0854.K-Similar Strings](.doc/0854.k-similar-strings.md) | Hard (39.79%) | breadth-first-search, string | [cpp](.cpp/0854.k-similar-strings.cpp) |
+| [0856.Score of Parentheses](.doc/0856.score-of-parentheses.md) | Medium (64.36%) | stack, string, parentheses | [cpp](.cpp/0856.score-of-parentheses.cpp) |
+| [0865.Smallest Subtree with all the Deepest Nodes](.doc/0865.smallest-subtree-with-all-the-deepest-nodes.md) | Medium (70.02%) | binary-tree | [cpp](.cpp/0865.smallest-subtree-with-all-the-deepest-nodes.cpp) |
+| [0866.Prime Palindrome](.doc/0866.prime-palindrome.md) | Medium (25.83%) | palindrome, prime, math | [cpp](.cpp/0866.prime-palindrome.cpp) |
 | [0867.Transpose Matrix](.doc/0867.transpose-matrix.md) | Easy (65.56%) | easy | [cpp](.cpp/0867.transpose-matrix.cpp) |
 | [0873.Length of Longest Fibonacci Subsequence](.doc/0873.length-of-longest-fibonacci-subsequence.md) | Medium (48.39%) | array, dynamic-programming, hash-table | [cpp](.cpp/0873.length-of-longest-fibonacci-subsequence.cpp) |
 | [0875.Koko Eating Bananas](.doc/0875.koko-eating-bananas.md) | Medium (50.62%) | binary-search | [cpp](.cpp/0875.koko-eating-bananas.cpp) |
@@ -339,6 +349,21 @@
 | [0891.Sum of Subsequence Widths](.doc/0891.sum-of-subsequence-widths.md) | Hard (37.37%) | math, sort | [cpp](.cpp/0891.sum-of-subsequence-widths.cpp) |
 | [0892.Surface Area of 3D Shapes](.doc/0892.surface-area-of-3-d-shapes.md) | Easy (64.87%) | geometry | [cpp](.cpp/0892.surface-area-of-3-d-shapes.cpp) |
 | [0893.Groups of Special-Equivalent Strings](.doc/0893.groups-of-special-equivalent-strings.md) | Medium (71.37%) | hash-table, string | [cpp](.cpp/0893.groups-of-special-equivalent-strings.cpp) |
+| [0894.All Possible Full Binary Trees](.doc/0894.all-possible-full-binary-trees.md) | Medium (82.73%) | binary-tree, hash-table, recursion | [cpp](.cpp/0894.all-possible-full-binary-trees.cpp) |
+| [0895.Maximum Frequency Stack](.doc/0895.maximum-frequency-stack.md) | Hard (66.47%) | heap, hash-table, design | [cpp](.cpp/0895.maximum-frequency-stack.cpp) |
+| [0896.Monotonic Array](.doc/0896.monotonic-array.md) | Easy (58.60%) | array, easy | [cpp](.cpp/0896.monotonic-array.cpp) |
+| [0897.Increasing Order Search Tree](.doc/0897.increasing-order-search-tree.md) | Easy (78.36%) | binary-tree, binary-search-tree | [cpp](.cpp/0897.increasing-order-search-tree.cpp) |
+| [0899.Orderly Queue](.doc/0899.orderly-queue.md) | Hard (65.98%) | math, string | [cpp](.cpp/0899.orderly-queue.cpp) |
+| [0900.RLE Iterator](.doc/0900.rle-iterator.md) | Medium (59.45%) | design, string | [cpp](.cpp/0900.rle-iterator.cpp) |
+| [0905.Sort Array By Parity](.doc/0905.sort-array-by-parity.md) | Easy (75.51%) | array, two-pointers, partition | [cpp](.cpp/0905.sort-array-by-parity.cpp) |
+| [0909.Snakes and Ladders](.doc/0909.snakes-and-ladders.md) | Medium (44.33%) | breadth-first-search | [cpp](.cpp/0909.snakes-and-ladders.cpp) |
+| [0910.Smallest Range II](.doc/0910.smallest-range-ii.md) | Medium (35.65%) | math, sort | [cpp](.cpp/0910.smallest-range-ii.cpp) |
+| [0914.X of a Kind in a Deck of Cards](.doc/0914.x-of-a-kind-in-a-deck-of-cards.md) | Easy (30.48%) | math | [cpp](.cpp/0914.x-of-a-kind-in-a-deck-of-cards.cpp) |
+| [0925.Long Pressed Name](.doc/0925.long-pressed-name.md) | Easy (32.65%) | string, two-pointers | [cpp](.cpp/0925.long-pressed-name.cpp) |
+| [0926.Flip String to Monotone Increasing](.doc/0926.flip-string-to-monotone-increasing.md) | Medium (61.42%) | string | [cpp](.cpp/0926.flip-string-to-monotone-increasing.cpp) |
+| [0927.Three Equal Parts](.doc/0927.three-equal-parts.md) | Hard (39.59%) | array, bit-manipulation, math | [cpp](.cpp/0927.three-equal-parts.cpp) |
+| [0929.Unique Email Addresses](.doc/0929.unique-email-addresses.md) | Easy (67.04%) | string, hash-table | [cpp](.cpp/0929.unique-email-addresses.cpp) |
+| [0931.Minimum Falling Path Sum](.doc/0931.minimum-falling-path-sum.md) | Medium (65.81%) | dynamic-programming | [cpp](.cpp/0931.minimum-falling-path-sum.cpp) |
 | [0933.Number of Recent Calls](.doc/0933.number-of-recent-calls.md) | Easy (73.26%) | queue, binary-search | [cpp](.cpp/0933.number-of-recent-calls.cpp) |
 | [0939.Minimum Area Rectangle](.doc/0939.minimum-area-rectangle.md) | Medium (53.22%) | ordered-map, hash-table, sort | [cpp](.cpp/0939.minimum-area-rectangle.cpp) |
 | [0941.Valid Mountain Array](.doc/0941.valid-mountain-array.md) | Easy (33.52%) | array | [cpp](.cpp/0941.valid-mountain-array.cpp) |
@@ -353,6 +378,14 @@
 | [0966.Vowel Spellchecker](.doc/0966.vowel-spellchecker.md) | Medium (51.25%) | hash-table, string | [cpp](.cpp/0966.vowel-spellchecker.cpp) |
 | [0968.Binary Tree Cameras](.doc/0968.binary-tree-cameras.md) | Hard (46.49%) | binary-tree, depth-first-search | [cpp](.cpp/0968.binary-tree-cameras.cpp) |
 | [0980.Unique Paths III](.doc/0980.unique-paths-iii.md) | Hard (81.76%) | depth-first-search | [cpp](.cpp/0980.unique-paths-iii.cpp) |
+| [0981.Time Based Key-Value Store](.doc/0981.time-based-key-value-store.md) | Medium (51.21%) | hash-table, binary-search, design, ordered-map | [cpp](.cpp/0981.time-based-key-value-store.cpp) |
+| [0982.Triples with Bitwise AND Equal To Zero](.doc/0982.triples-with-bitwise-and-equal-to-zero.md) | Hard (57.66%) | array, hash-table | [cpp](.cpp/0982.triples-with-bitwise-and-equal-to-zero.cpp) |
+| [0983.Minimum Cost For Tickets](.doc/0983.minimum-cost-for-tickets.md) | Medium (65.54%) | dynamic-programming | [cpp](.cpp/0983.minimum-cost-for-tickets.cpp) |
+| [0984.String Without AAA or BBB](.doc/0984.string-without-aaa-or-bbb.md) | Medium (43.57%) | greedy, string, recursion | [cpp](.cpp/0984.string-without-aaa-or-bbb.cpp) |
+| [0985.Sum of Even Numbers After Queries](.doc/0985.sum-of-even-numbers-after-queries.md) | Medium (68.03%) | array | [cpp](.cpp/0985.sum-of-even-numbers-after-queries.cpp) |
+| [0988.Smallest String Starting From Leaf](.doc/0988.smallest-string-starting-from-leaf.md) | Medium (50.92%) | binary-tree, depth-first-search | [cpp](.cpp/0988.smallest-string-starting-from-leaf.cpp) |
+| [0991.Broken Calculator](.doc/0991.broken-calculator.md) | Medium (54.25%) | math, greedy, recursion | [cpp](.cpp/0991.broken-calculator.cpp) |
+| [0994.Rotting Oranges](.doc/0994.rotting-oranges.md) | Medium (53.25%) | matrix, breadth-first-search | [cpp](.cpp/0994.rotting-oranges.cpp) |
 | [1014.Best Sightseeing Pair](.doc/1014.best-sightseeing-pair.md) | Medium (59.34%) | array | [cpp](.cpp/1014.best-sightseeing-pair.cpp) |
 | [1017.Convert to Base -2](.doc/1017.convert-to-base-2.md) | Medium (60.56%) | math | [cpp](.cpp/1017.convert-to-base-2.cpp) |
 | [1025.Divisor Game](.doc/1025.divisor-game.md) | Easy (68.30%) | math, game-theory | [cpp](.cpp/1025.divisor-game.cpp) |

@@ -11,22 +11,27 @@
 // Memory Usage: 8.7 MB, less than 6.94% of cpp online submissions.
 class RLEIterator {
 public:
-    RLEIterator(vector<int>& A) : nums(A), cur(0) {
+    RLEIterator(vector<int>& encoding) : encoding(encoding), i(0), j(0) {
     }
 
     int next(int n) {
-        while (cur < nums.size() && n > nums[cur]) {
-            n -= nums[cur];
-            cur += 2;
+        while (i < encoding.size()) {
+            if (encoding[i] - j >= n) {
+                j += n;
+                return encoding[i + 1];
+            }
+            else {
+                n -= encoding[i] - j;
+                i += 2;
+                j = 0;
+            }
         }
-        if (cur >= nums.size()) return -1;
-        nums[cur] -= n;
-        return nums[cur + 1];
+        return -1;
     }
 
 private:
-    int cur;
-    vector<int> nums;
+    vector<int> encoding;
+    int i, j;
 };
 
 /**

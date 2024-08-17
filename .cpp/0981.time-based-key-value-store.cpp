@@ -67,7 +67,7 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 2. 哈希表+map
+// 2. 哈希表+有序字典
 // 2023-07-21 submission
 // 50/50 cases passed
 // Runtime: 383 ms, faster than 34.96% of cpp online submissions.

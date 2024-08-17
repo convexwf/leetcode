@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 快慢指针+链表反转
 // 2023-01-14 submission
 // 12/12 cases passed
 // Runtime: 48 ms, faster than 67.1% of cpp online submissions.
@@ -29,15 +30,15 @@ public:
             fast = fast->next->next;
         }
         ListNode *mid = slow->next;
-        slow->next = NULL;
-        ListNode *last = mid, *pre = NULL;
-        while (last) {
+        slow->next = nullptr;
+        ListNode *last = mid, *pre = nullptr;
+        while (last != nullptr) {
             ListNode *next = last->next;
             last->next = pre;
             pre = last;
             last = next;
         }
-        while (head && pre) {
+        while (head != nullptr && pre != nullptr) {
             ListNode *next = head->next;
             head->next = pre;
             pre = pre->next;
@@ -49,6 +50,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 栈
 // 2023-01-14 submission
 // 12/12 cases passed
 // Runtime: 40 ms, faster than 91.11% of cpp online submissions.
@@ -66,14 +68,14 @@ public:
         int cnt = ((int)st.size() - 1) / 2;
         cur = head;
         while (cnt-- > 0) {
-            auto t = st.top();
+            ListNode *t = st.top();
             st.pop();
             ListNode *next = cur->next;
             cur->next = t;
             t->next = next;
             cur = next;
         }
-        st.top()->next = NULL;
+        st.top()->next = nullptr;
     }
 };
 // @lc code=end
