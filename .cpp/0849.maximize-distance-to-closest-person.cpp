@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 统计连续 0 的个数
+// 1. 一次遍历
 // 2020-10-30 submission
 // 81/81 cases passed
 // Runtime: 8 ms, faster than 92.96% of cpp online submissions.

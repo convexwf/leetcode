@@ -41,6 +41,10 @@ def find(x):
 if find(a) != find(b):
     size[find(b)] += size[find(a)]
     p[find(a)] = find(b)
+
+# 也可以通过检查每个节点和祖宗节点是否相等，来判断是否是祖宗节点
+# 有多少个祖宗节点就说明有多少个集合
+count = sum(1 for i in range(n) if p[i] == i)
 ```
 
 模板 3——维护到祖宗节点距离的并查集：

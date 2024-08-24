@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 数学方法
 // 2023-02-13 submission
 // 28/28 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -14,6 +15,7 @@ public:
     bool canMeasureWater(int x, int y, int z) {
         return z == 0 || (x + y >= z && z % gcd(x, y) == 0);
     }
+
     int gcd(int x, int y) {
         return y == 0 ? x : gcd(y, x % y);
     }

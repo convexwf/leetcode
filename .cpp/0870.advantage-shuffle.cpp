@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 排序+贪心
+// 1. 排序+贪心算法
 // 2023-08-01 submission
 // 67/67 cases passed
 // Runtime: 135 ms, faster than 97.95% of cpp online submissions.
@@ -17,14 +17,18 @@ public:
         vector<int> res(n);
         sort(A.begin(), A.end());
         priority_queue<pair<int, int>> q;
-        for (int i = 0; i < n; ++i) q.push({B[i], i});
+        for (int i = 0; i < n; ++i) {
+            q.push({B[i], i});
+        }
         while (!q.empty()) {
             int val = q.top().first, idx = q.top().second;
             q.pop();
-            if (A[right] > val)
+            if (A[right] > val) {
                 res[idx] = A[right--];
-            else
+            }
+            else {
                 res[idx] = A[left++];
+            }
         }
         return res;
     }

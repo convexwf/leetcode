@@ -190,6 +190,7 @@
 | [0258.Add Digits](.doc/0258.add-digits.md) | Easy (66.28%) | math | [cpp](.cpp/0258.add-digits.cpp) |
 | 0259.3Sum Smaller 🔒 | | array, two-pointers, sort | [cpp](.cpp/0259.3sum-smaller.cpp) |
 | [0260.Single Number III](.doc/0260.single-number-iii.md) | Medium (68.20%) | bit-manipulation | [cpp](.cpp/0260.single-number-iii.cpp) |
+| 0261.Graph Valid Tree 🔒 | | tree, graph, union-find | [cpp](.cpp/0261.graph-valid-tree.cpp) |
 | [0263.Ugly Number](.doc/0263.ugly-number.md) | Easy (41.96%) | easy | [cpp](.cpp/0263.ugly-number.cpp) |
 | [0264.Ugly Number II](.doc/0264.ugly-number-ii.md) | Medium (46.16%) | heap, math, dynamic-programming | [cpp](.cpp/0264.ugly-number-ii.cpp) |
 | 0265.Paint House II 🔒 | | dynamic-programming | [cpp](.cpp/0265.paint-house-ii.cpp) |
@@ -211,6 +212,7 @@
 | 0296.Best Meeting Point 🔒 | | math, sort | [cpp](.cpp/0296.best-meeting-point.cpp) |
 | [0297.Serialize and Deserialize Binary Tree](.doc/0297.serialize-and-deserialize-binary-tree.md) | Hard (56.39%) | binary-tree, design, serialization | [cpp](.cpp/0297.serialize-and-deserialize-binary-tree.cpp) |
 | [0299.Bulls and Cows](.doc/0299.bulls-and-cows.md) | Medium (50.07%) | hash-table | [cpp](.cpp/0299.bulls-and-cows.cpp) |
+| 0305.Number of Islands II 🔒 | | union-find | [cpp](.cpp/0305.number-of-islands-ii.cpp) |
 | [0313.Super Ugly Number](.doc/0313.super-ugly-number.md) | Medium (45.25%) | heap, math, dynamic-programming | [cpp](.cpp/0313.super-ugly-number.cpp) |
 | 0314.Binary Tree Vertical Order Traversal 🔒 | | binary-tree, breadth-first-search, depth-first-search | [cpp](.cpp/0314.binary-tree-vertical-order-traversal.cpp) |
 | [0316.Remove Duplicate Letters](.doc/0316.remove-duplicate-letters.md) | Medium (48.80%) | stack, greedy, hash-table, string | [cpp](.cpp/0316.remove-duplicate-letters.cpp) |
@@ -241,7 +243,9 @@
 | 0360.Sort Transformed Array 🔒 | | math, two-pointers | [cpp](.cpp/0360.sort-transformed-array.cpp) |
 | 0361.Bomb Enemy 🔒 | | matrix | [cpp](.cpp/0361.bomb-enemy.cpp) |
 | 0362.Design Hit Counter 🔒 | | design, binary-search | [cpp](.cpp/0362.design-hit-counter.cpp) |
+| [0365.Water and Jug Problem](.doc/0365.water-and-jug-problem.md) | Medium (39.69%) | math | [cpp](.cpp/0365.water-and-jug-problem.cpp) |
 | 0366.Find Leaves of Binary Tree 🔒 | | binary-tree, depth-first-search | [cpp](.cpp/0366.find-leaves-of-binary-tree.cpp) |
+| [0368.Largest Divisible Subset](.doc/0368.largest-divisible-subset.md) | Medium (41.61%) | math, dynamic-programming | [cpp](.cpp/0368.largest-divisible-subset.cpp) |
 | 0369.Plus One Linked List 🔒 | | linked-list, recursion | [cpp](.cpp/0369.plus-one-linked-list.cpp) |
 | 0370.Range Addition 🔒 | | difference-array | [cpp](.cpp/0370.range-addition.cpp) |
 | [0371.Sum of Two Integers](.doc/0371.sum-of-two-integers.md) | Medium (51.51%) | bit-manipulation, arithmetic | [cpp](.cpp/0371.sum-of-two-integers.cpp) |
@@ -323,15 +327,25 @@
 | 0531.Lonely Pixel I 🔒 | | matrix | [cpp](.cpp/0531.lonely-pixel-i.cpp) |
 | [0535.Encode and Decode TinyURL](.doc/0535.encode-and-decode-tiny-url.md) | Medium (86.02%) | hash-table, design | [cpp](.cpp/0535.encode-and-decode-tiny-url.cpp) |
 | [0538.Convert BST to Greater Tree](.doc/0538.convert-bst-to-greater-tree.md) | Medium (68.01%) | binary-search-tree, binary-tree, stack | [cpp](.cpp/0538.convert-bst-to-greater-tree.cpp) |
+| [0540.Single Element in a Sorted Array](.doc/0540.single-element-in-a-sorted-array.md) | Medium (59.08%) | binary-search, bit-manipulation, duplicate | [cpp](.cpp/0540.single-element-in-a-sorted-array.cpp) |
+| [0541.Reverse String II](.doc/0541.reverse-string-ii.md) | Easy (50.43%) | string | [cpp](.cpp/0541.reverse-string-ii.cpp) |
+| [0547.Number of Provinces](.doc/0547.number-of-provinces.md) | Medium (65.81%) | graph, union-find | [cpp](.cpp/0547.number-of-provinces.cpp) |
 | 0548.Split Array with Equal Sum 🔒 | | prefix-sum, hash-table | [cpp](.cpp/0548.split-array-with-equal-sum.cpp) |
 | [0560.Subarray Sum Equals K](.doc/0560.subarray-sum-equals-k.md) | Medium (43.35%) | array, hash-table, prefix-sum | [cpp](.cpp/0560.subarray-sum-equals-k.cpp) |
 | [0566.Reshape the Matrix](.doc/0566.reshape-the-matrix.md) | Easy (63.03%) | matrix | [cpp](.cpp/0566.reshape-the-matrix.cpp) |
 | 0582.Kill Process 🔒 | | tree, graph, depth-first-search | [cpp](.cpp/0582.kill-process.cpp) |
+| 0588.Design In-Memory File System 🔒 | | design, hash-table, trie | [cpp](.cpp/0588.design-in-memory-file-system.cpp) |
 | [0657.Robot Return to Origin](.doc/0657.robot-return-to-origin.md) | Easy (75.61%) | easy | [cpp](.cpp/0657.robot-return-to-origin.cpp) |
 | [0661.Image Smoother](.doc/0661.image-smoother.md) | Easy (67.05%) | matrix | [cpp](.cpp/0661.image-smoother.cpp) |
 | [0697.Degree of an Array](.doc/0697.degree-of-an-array.md) | Easy (56.36%) | array, hash-table | [cpp](.cpp/0697.degree-of-an-array.cpp) |
 | [0704.Binary Search](.doc/0704.binary-search.md) | Easy (56.83%) | binary-search | [cpp](.cpp/0704.binary-search.cpp) |
+| [0766.Toeplitz Matrix](.doc/0766.toeplitz-matrix.md) | Easy (68.45%) | matrix | [cpp](.cpp/0766.toeplitz-matrix.cpp) |
+| [0767.Reorganize String](.doc/0767.reorganize-string.md) | Medium (53.03%) | greedy, hash-table | [cpp](.cpp/0767.reorganize-string.cpp) |
 | [0799.Champagne Tower](.doc/0799.champagne-tower.md) | Medium (58.04%) | array | [cpp](.cpp/0799.champagne-tower.cpp) |
+| [0845.Longest Mountain in Array](.doc/0845.longest-mountain-in-array.md) | Medium (40.18%) | array | [cpp](.cpp/0845.longest-mountain-in-array.cpp) |
+| [0846.Hand of Straights](.doc/0846.hand-of-straights.md) | Medium (56.01%) | ordered-map, array | [cpp](.cpp/0846.hand-of-straights.cpp) |
+| [0848.Shifting Letters](.doc/0848.shifting-letters.md) | Medium (44.90%) | prefix-sum | [cpp](.cpp/0848.shifting-letters.cpp) |
+| [0849.Maximize Distance to Closest Person](.doc/0849.maximize-distance-to-closest-person.md) | Medium (47.63%) | array | [cpp](.cpp/0849.maximize-distance-to-closest-person.cpp) |
 | [0851.Loud and Rich](.doc/0851.loud-and-rich.md) | Medium (58.75%) | graph, depth-first-search | [cpp](.cpp/0851.loud-and-rich.cpp) |
 | [0852.Peak Index in a Mountain Array](.doc/0852.peak-index-in-a-mountain-array.md) | Medium (69.10%) | array, binary-search | [cpp](.cpp/0852.peak-index-in-a-mountain-array.cpp) |
 | [0854.K-Similar Strings](.doc/0854.k-similar-strings.md) | Hard (39.79%) | breadth-first-search, string | [cpp](.cpp/0854.k-similar-strings.cpp) |
@@ -339,7 +353,13 @@
 | [0865.Smallest Subtree with all the Deepest Nodes](.doc/0865.smallest-subtree-with-all-the-deepest-nodes.md) | Medium (70.02%) | binary-tree | [cpp](.cpp/0865.smallest-subtree-with-all-the-deepest-nodes.cpp) |
 | [0866.Prime Palindrome](.doc/0866.prime-palindrome.md) | Medium (25.83%) | palindrome, prime, math | [cpp](.cpp/0866.prime-palindrome.cpp) |
 | [0867.Transpose Matrix](.doc/0867.transpose-matrix.md) | Easy (65.56%) | easy | [cpp](.cpp/0867.transpose-matrix.cpp) |
+| [0868.Binary Gap](.doc/0868.binary-gap.md) | Easy (62.30%) | bit-manipulation | [cpp](.cpp/0868.binary-gap.cpp) |
+| [0869.Reordered Power of 2](.doc/0869.reordered-power-of-2.md) | Medium (63.21%) | math | [cpp](.cpp/0869.reordered-power-of-2.cpp) |
+| [0870.Advantage Shuffle](.doc/0870.advantage-shuffle.md) | Medium (51.98%) | array, sort, greedy, heap | [cpp](.cpp/0870.advantage-shuffle.cpp) |
+| [0871.Minimum Number of Refueling Stops](.doc/0871.minimum-number-of-refueling-stops.md) | Hard (39.86%) | dynamic-programming, heap | [cpp](.cpp/0871.minimum-number-of-refueling-stops.cpp) |
+| [0872.Leaf-Similar Trees](.doc/0872.leaf-similar-trees.md) | Easy (67.68%) | binary-tree, depth-first-search | [cpp](.cpp/0872.leaf-similar-trees.cpp) |
 | [0873.Length of Longest Fibonacci Subsequence](.doc/0873.length-of-longest-fibonacci-subsequence.md) | Medium (48.39%) | array, dynamic-programming, hash-table | [cpp](.cpp/0873.length-of-longest-fibonacci-subsequence.cpp) |
+| [0874.Walking Robot Simulation](.doc/0874.walking-robot-simulation.md) | Medium (39.73%) | hash-table | [cpp](.cpp/0874.walking-robot-simulation.cpp) |
 | [0875.Koko Eating Bananas](.doc/0875.koko-eating-bananas.md) | Medium (50.62%) | binary-search | [cpp](.cpp/0875.koko-eating-bananas.cpp) |
 | [0876.Middle of the Linked List](.doc/0876.middle-of-the-linked-list.md) | Easy (76.31%) | linked-list, fast-slow-pointers | [cpp](.cpp/0876.middle-of-the-linked-list.cpp) |
 | [0877.Stone Game](.doc/0877.stone-game.md) | Medium (70.09%) | dynamic-programming, minmax, math | [cpp](.cpp/0877.stone-game.cpp) |
@@ -384,6 +404,7 @@
 | [0984.String Without AAA or BBB](.doc/0984.string-without-aaa-or-bbb.md) | Medium (43.57%) | greedy, string, recursion | [cpp](.cpp/0984.string-without-aaa-or-bbb.cpp) |
 | [0985.Sum of Even Numbers After Queries](.doc/0985.sum-of-even-numbers-after-queries.md) | Medium (68.03%) | array | [cpp](.cpp/0985.sum-of-even-numbers-after-queries.cpp) |
 | [0988.Smallest String Starting From Leaf](.doc/0988.smallest-string-starting-from-leaf.md) | Medium (50.92%) | binary-tree, depth-first-search | [cpp](.cpp/0988.smallest-string-starting-from-leaf.cpp) |
+| [0989.Add to Array-Form of Integer](.doc/0989.add-to-array-form-of-integer.md) | Easy (46.43%) | array, arithmetic | [cpp](.cpp/0989.add-to-array-form-of-integer.cpp) |
 | [0991.Broken Calculator](.doc/0991.broken-calculator.md) | Medium (54.25%) | math, greedy, recursion | [cpp](.cpp/0991.broken-calculator.cpp) |
 | [0994.Rotting Oranges](.doc/0994.rotting-oranges.md) | Medium (53.25%) | matrix, breadth-first-search | [cpp](.cpp/0994.rotting-oranges.cpp) |
 | [1014.Best Sightseeing Pair](.doc/1014.best-sightseeing-pair.md) | Medium (59.34%) | array | [cpp](.cpp/1014.best-sightseeing-pair.cpp) |

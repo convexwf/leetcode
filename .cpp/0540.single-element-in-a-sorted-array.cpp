@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. brute force
+// 1. 数组遍历
 // 2023-06-13 submission
 // 15/15 cases passed
 // Runtime: 36 ms, faster than 18.83% of cpp online submissions.
@@ -54,10 +54,12 @@ public:
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (mid % 2 == 1) mid--; // 保证left、right、mid都是偶数
-            if (nums[mid] == nums[mid + 1])
+            if (nums[mid] == nums[mid + 1]) {
                 left = mid + 2;
-            else
+            }
+            else {
                 right = mid;
+            }
         }
         return nums[left];
     }

@@ -16,8 +16,8 @@ public:
         int res = 0, pre = -1;
         while (n > 0) {
             int t = (int)log2(n & -n);
-            n &= n - 1;
             if (pre != -1) res = max(res, t - pre);
+            n &= n - 1;
             pre = t;
         }
         return res;

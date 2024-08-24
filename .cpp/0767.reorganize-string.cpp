@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 哈希表+贪心
+// 1. 哈希表+贪心算法
 // 2023-08-10 submission
 // 70/70 cases passed
 // Runtime: 3 ms, faster than 52.32% of cpp online submissions.

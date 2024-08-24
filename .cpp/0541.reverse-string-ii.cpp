@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 按顺序翻转子串
+// 1. 双指针
 // 2023-05-22 submission
 // 60/60 cases passed
 // Runtime: 4 ms, faster than 67.11% of cpp online submissions.
@@ -15,10 +15,7 @@ public:
     string reverseStr(string s, int k) {
         int n = s.size();
         for (int i = 0; i < n; i += 2 * k) {
-            int l = i, r = min(i + k - 1, n - 1);
-            while (l < r) {
-                swap(s[l++], s[r--]);
-            }
+            reverse(s.begin() + i, s.begin() + min(i + k, n));
         }
         return s;
     }

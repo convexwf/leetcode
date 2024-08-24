@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 并查集
 // 2023-02-13 submission
 // 113/113 cases passed
 // Runtime: 21 ms, faster than 89.62% of cpp online submissions.
@@ -14,12 +15,14 @@ public:
     int findCircleNum(vector<vector<int>>& M) {
         int n = M.size(), res = n;
         vector<int> root(n);
-        for (int i = 0; i < n; ++i) root[i] = i;
+        for (int i = 0; i < n; ++i) {
+            root[i] = i;
+        }
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
                 if (M[i][j] == 1) {
-                    int p1 = getRoot(root, i);
-                    int p2 = getRoot(root, j);
+                    int p1 = _find(root, i);
+                    int p2 = _find(root, j);
                     if (p1 != p2) {
                         --res;
                         root[p2] = p1;
@@ -29,12 +32,12 @@ public:
         }
         return res;
     }
-    int getRoot(vector<int>& root, int i) {
-        while (i != root[i]) {
-            root[i] = root[root[i]];
-            i = root[i];
+
+    int _find(vector<int>& parent, int x) {
+        if (parent[x] != x) {
+            parent[x] = _find(parent, parent[x]);
         }
-        return i;
+        return parent[x];
     }
 };
 // @lc code=end

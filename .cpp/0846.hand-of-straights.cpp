@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. map
+// 1. 有序字典
 // 2023-09-14 submission
 // 84/84 cases passed
 // Runtime: 54 ms, faster than 86.18% of cpp online submissions.
@@ -29,7 +29,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. map 优化
+// 2. 有序字典-优化
 // 2023-09-14 submission
 // 84/84 cases passed
 // Runtime: 78 ms, faster than 32.75% of cpp online submissions.
