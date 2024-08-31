@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 贪心算法+优先队列
+// 1. 贪心算法+最大堆
 // 2024-01-02 submission
 // 97/97 cases passed
 // Runtime: 299 ms, faster than 20.82% of cpp online submissions.

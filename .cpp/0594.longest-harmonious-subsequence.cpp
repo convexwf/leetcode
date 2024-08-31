@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 有序字典
 // 2022-08-19 submission
 // 206/206 cases passed
 // Runtime: 206 ms, faster than 19.15% of cpp online submissions.
@@ -15,11 +16,12 @@ public:
         if (nums.empty()) return 0;
         int res = 0;
         map<int, int> m;
-        for (int num : nums) ++m[num];
-        for (auto it = next(m.begin()); it != m.end(); ++it) {
-            auto pre = prev(it);
-            if (it->first == pre->first + 1) {
-                res = max(res, it->second + pre->second);
+        for (int num : nums) {
+            ++m[num];
+        }
+        for (auto it = m.begin(); it != prev(m.end()); ++it) {
+            if (next(it)->first - it->first == 1) {
+                res = max(res, it->second + next(it)->second);
             }
         }
         return res;
@@ -28,6 +30,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 哈希表
 // 2022-08-19 submission
 // 206/206 cases passed
 // Runtime: 95 ms, faster than 85.98% of cpp online submissions.
@@ -49,6 +52,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 哈希表
 // 2022-08-19 submission
 // 206/206 cases passed
 // Runtime: 162 ms, faster than 36.92% of cpp online submissions.
@@ -73,6 +77,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 排序+滑动窗口
 // 2022-08-19 submission
 // 206/206 cases passed
 // Runtime: 73 ms, faster than 97.04% of cpp online submissions.

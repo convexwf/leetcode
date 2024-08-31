@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归
 // 2022-11-15 submission
 // 38/38 cases passed
 // Runtime: 59 ms, faster than 27.09% of cpp online submissions.
@@ -47,6 +48,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 迭代+栈
 // 2022-11-15 submission
 // 38/38 cases passed
 // Runtime: 69 ms, faster than 9.85% of cpp online submissions.

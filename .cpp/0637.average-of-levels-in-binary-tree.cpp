@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. bfs+层序遍历
 // 2021-12-21 submission
 // 66/66 cases passed
 // Runtime: 19 ms, faster than 61.5% of cpp online submissions.
@@ -43,6 +44,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. dfs+先序遍历
 // 2023-01-31 submission
 // 66/66 cases passed
 // Runtime: 21 ms, faster than 48.74% of cpp online submissions.

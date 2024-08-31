@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 排序+分类讨论
 // 2021-12-17 submission
 // 92/92 cases passed
 // Runtime: 61 ms, faster than 16.89% of cpp online submissions.
@@ -22,6 +23,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 一次遍历
 // 2021-12-17 submission
 // 92/92 cases passed
 // Runtime: 44 ms, faster than 62.61% of cpp online submissions.

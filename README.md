@@ -335,6 +335,32 @@
 | [0566.Reshape the Matrix](.doc/0566.reshape-the-matrix.md) | Easy (63.03%) | matrix | [cpp](.cpp/0566.reshape-the-matrix.cpp) |
 | 0582.Kill Process 🔒 | | tree, graph, depth-first-search | [cpp](.cpp/0582.kill-process.cpp) |
 | 0588.Design In-Memory File System 🔒 | | design, hash-table, trie | [cpp](.cpp/0588.design-in-memory-file-system.cpp) |
+| [0589.N-ary Tree Preorder Traversal](.doc/0589.n-ary-tree-preorder-traversal.md) | Easy (75.35%) | stack, tree | [cpp](.cpp/0589.n-ary-tree-preorder-traversal.cpp) |
+| [0590.N-ary Tree Postorder Traversal](.doc/0590.n-ary-tree-postorder-traversal.md) | Easy (77.73%) | stack, tree | [cpp](.cpp/0590.n-ary-tree-postorder-traversal.cpp) |
+| [0592.Fraction Addition and Subtraction](.doc/0592.fraction-addition-and-subtraction.md) | Medium (52.57%) | math, string, arithmetic, greatest-common-divisor | [cpp](.cpp/0592.fraction-addition-and-subtraction.cpp) |
+| [0593.Valid Square](.doc/0593.valid-square.md) | Medium (43.96%) | math, hash-table, geometry | [cpp](.cpp/0593.valid-square.cpp) |
+| [0594.Longest Harmonious Subsequence](.doc/0594.longest-harmonious-subsequence.md) | Easy (54.31%) | hash-table, array, ordered-map, sliding-window, sort | [cpp](.cpp/0594.longest-harmonious-subsequence.cpp) |
+| [0599.Minimum Index Sum of Two Lists](.doc/0599.minimum-index-sum-of-two-lists.md) | Easy (53.73%) | hash-table, string | [cpp](.cpp/0599.minimum-index-sum-of-two-lists.cpp) |
+| [0605.Can Place Flowers](.doc/0605.can-place-flowers.md) | Easy (29.51%) | array, greedy | [cpp](.cpp/0605.can-place-flowers.cpp) |
+| [0606.Construct String from Binary Tree](.doc/0606.construct-string-from-binary-tree.md) | Medium (68.98%) | binary-tree, string | [cpp](.cpp/0606.construct-string-from-binary-tree.cpp) |
+| [0621.Task Scheduler](.doc/0621.task-scheduler.md) | Medium (57.85%) | array, hash-table, greedy | [cpp](.cpp/0621.task-scheduler.cpp) |
+| [0622.Design Circular Queue](.doc/0622.design-circular-queue.md) | Medium (51.33%) | design, queue, linked-list, array | [cpp](.cpp/0622.design-circular-queue.cpp) |
+| [0623.Add One Row to Tree](.doc/0623.add-one-row-to-tree.md) | Medium (59.45%) | binary-tree, depth-first-search, breadth-first-search | [cpp](.cpp/0623.add-one-row-to-tree.cpp) |
+| [0624.Maximum Distance in Arrays](.doc/0624.maximum-distance-in-arrays.md) | Medium (45.89%) | array | [cpp](.cpp/0624.maximum-distance-in-arrays.cpp) |
+| [0628.Maximum Product of Three Numbers](.doc/0628.maximum-product-of-three-numbers.md) | Easy (45.18%) | sort, math, array, greedy | [cpp](.cpp/0628.maximum-product-of-three-numbers.cpp) |
+| [0630.Course Schedule III](.doc/0630.course-schedule-iii.md) | Hard (40.12%) | greedy, heap | [cpp](.cpp/0630.course-schedule-iii.cpp) |
+| 0631.Design Excel Sum Formula 🔒 | | design, matrix | [cpp](.cpp/0631.design-excel-sum-formula.cpp) |
+| [0632.Smallest Range Covering Elements from K Lists](.doc/0632.smallest-range-covering-elements-from-k-lists.md) | Hard (62.19%) | heap, hash-table, sort, sliding-window | [cpp](.cpp/0632.smallest-range-covering-elements-from-k-lists.cpp) |
+| [0633.Sum of Square Numbers](.doc/0633.sum-of-square-numbers.md) | Medium (34.20%) | math, two-pointers | [cpp](.cpp/0633.sum-of-square-numbers.cpp) |
+| 0634.Find the Derangement of An Array 🔒 | | dynamic-programming | [cpp](.cpp/0634.find-the-derangement-of-an-array.cpp) |
+| 0635.Design Log Storage System 🔒 | | string, design, ordered-map, binary-search | [cpp](.cpp/0635.design-log-storage-system.cpp) |
+| [0636.Exclusive Time of Functions](.doc/0636.exclusive-time-of-functions.md) | Medium (61.30%) | stack | [cpp](.cpp/0636.exclusive-time-of-functions.cpp) |
+| [0637.Average of Levels in Binary Tree](.doc/0637.average-of-levels-in-binary-tree.md) | Easy (72.24%) | binary-tree | [cpp](.cpp/0637.average-of-levels-in-binary-tree.cpp) |
+| [0638.Shopping Offers](.doc/0638.shopping-offers.md) | Medium (52.93%) | memorization, recursion | [cpp](.cpp/0638.shopping-offers.cpp) |
+| [0639.Decode Ways II](.doc/0639.decode-ways-ii.md) | Hard (30.62%) | dynamic-programming | [cpp](.cpp/0639.decode-ways-ii.cpp) |
+| [0640.Solve the Equation](.doc/0640.solve-the-equation.md) | Medium (43.60%) | math, string | [cpp](.cpp/0640.solve-the-equation.cpp) |
+| [0641.Design Circular Deque](.doc/0641.design-circular-deque.md) | Medium (56.75%) | design, queue, linked-list, array | [cpp](.cpp/0641.design-circular-deque.cpp) |
+| [0643.Maximum Average Subarray I](.doc/0643.maximum-average-subarray-i.md) | Easy (43.36%) | array, sliding-window, prefix-sum | [cpp](.cpp/0643.maximum-average-subarray-i.cpp) |
 | [0657.Robot Return to Origin](.doc/0657.robot-return-to-origin.md) | Easy (75.61%) | easy | [cpp](.cpp/0657.robot-return-to-origin.cpp) |
 | [0661.Image Smoother](.doc/0661.image-smoother.md) | Easy (67.05%) | matrix | [cpp](.cpp/0661.image-smoother.cpp) |
 | [0697.Degree of an Array](.doc/0697.degree-of-an-array.md) | Easy (56.36%) | array, hash-table | [cpp](.cpp/0697.degree-of-an-array.cpp) |
