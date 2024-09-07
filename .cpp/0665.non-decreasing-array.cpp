@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. brute force
+// 1. 贪心算法
 // 2023-08-29 submission
 // 335/335 cases passed
 // Runtime: 18 ms, faster than 85.04% of cpp online submissions.

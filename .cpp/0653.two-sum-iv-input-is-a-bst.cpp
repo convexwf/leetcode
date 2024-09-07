@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 前序遍历+哈希表
 // 2022-08-19 submission
 // 422/422 cases passed
 // Runtime: 102 ms, faster than 10.82% of cpp online submissions.

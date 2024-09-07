@@ -287,6 +287,7 @@
 | [0432.All O`one Data Structure](.doc/0432.all-o-one-data-structure.md) | Hard (36.50%) | hash-table, design, linked-list | [cpp](.cpp/0432.all-o-one-data-structure.cpp) |
 | [0433.Minimum Genetic Mutation](.doc/0433.minimum-genetic-mutation.md) | Medium (52.49%) | breadth-first-search | [cpp](.cpp/0433.minimum-genetic-mutation.cpp) |
 | [0434.Number of Segments in a String](.doc/0434.number-of-segments-in-a-string.md) | Easy (36.46%) | string | [cpp](.cpp/0434.number-of-segments-in-a-string.cpp) |
+| [0437.Path Sum III](.doc/0437.path-sum-iii.md) | Medium (47.01%) | binary-tree, hash-table, depth-first-search, prefix-sum | [cpp](.cpp/0437.path-sum-iii.cpp) |
 | [0443.String Compression](.doc/0443.string-compression.md) | Medium (52.45%) | two-pointers | [cpp](.cpp/0443.string-compression.cpp) |
 | 0444.Sequence Reconstruction 🔒 | | graph, topological-sort | [cpp](.cpp/0444.sequence-reconstruction.cpp) |
 | [0445.Add Two Numbers II](.doc/0445.add-two-numbers-ii.md) | Medium (61.09%) | linked-list, arithmetic | [cpp](.cpp/0445.add-two-numbers-ii.cpp) |
@@ -326,13 +327,18 @@
 | 0527.Word Abbreviation 🔒 | | trie, string | [cpp](.cpp/0527.word-abbreviation.cpp) |
 | 0531.Lonely Pixel I 🔒 | | matrix | [cpp](.cpp/0531.lonely-pixel-i.cpp) |
 | [0535.Encode and Decode TinyURL](.doc/0535.encode-and-decode-tiny-url.md) | Medium (86.02%) | hash-table, design | [cpp](.cpp/0535.encode-and-decode-tiny-url.cpp) |
+| 0536.Construct Binary Tree from String 🔒 | | binary-tree, string, recursion | [cpp](.cpp/0536.construct-binary-tree-from-string.cpp) |
 | [0538.Convert BST to Greater Tree](.doc/0538.convert-bst-to-greater-tree.md) | Medium (68.01%) | binary-search-tree, binary-tree, stack | [cpp](.cpp/0538.convert-bst-to-greater-tree.cpp) |
 | [0540.Single Element in a Sorted Array](.doc/0540.single-element-in-a-sorted-array.md) | Medium (59.08%) | binary-search, bit-manipulation, duplicate | [cpp](.cpp/0540.single-element-in-a-sorted-array.cpp) |
 | [0541.Reverse String II](.doc/0541.reverse-string-ii.md) | Easy (50.43%) | string | [cpp](.cpp/0541.reverse-string-ii.cpp) |
 | [0547.Number of Provinces](.doc/0547.number-of-provinces.md) | Medium (65.81%) | graph, union-find | [cpp](.cpp/0547.number-of-provinces.cpp) |
 | 0548.Split Array with Equal Sum 🔒 | | prefix-sum, hash-table | [cpp](.cpp/0548.split-array-with-equal-sum.cpp) |
+| [0552.Student Attendance Record II](.doc/0552.student-attendance-record-ii.md) | Hard (42.38%) | depth-first-search, memoization | [cpp](.cpp/0552.student-attendance-record-ii.cpp) |
+| [0553.Optimal Division](.doc/0553.optimal-division.md) | Medium (60.41%) | math | [cpp](.cpp/0553.optimal-division.cpp) |
+| [0556.Next Greater Element III](.doc/0556.next-greater-element-iii.md) | Medium (33.92%) | permutation, string | [cpp](.cpp/0556.next-greater-element-iii.cpp) |
 | [0560.Subarray Sum Equals K](.doc/0560.subarray-sum-equals-k.md) | Medium (43.35%) | array, hash-table, prefix-sum | [cpp](.cpp/0560.subarray-sum-equals-k.cpp) |
 | [0566.Reshape the Matrix](.doc/0566.reshape-the-matrix.md) | Easy (63.03%) | matrix | [cpp](.cpp/0566.reshape-the-matrix.cpp) |
+| 0573.Squirrel Simulation 🔒 | | planning, greedy | [cpp](.cpp/0573.squirrel-simulation.cpp) |
 | 0582.Kill Process 🔒 | | tree, graph, depth-first-search | [cpp](.cpp/0582.kill-process.cpp) |
 | 0588.Design In-Memory File System 🔒 | | design, hash-table, trie | [cpp](.cpp/0588.design-in-memory-file-system.cpp) |
 | [0589.N-ary Tree Preorder Traversal](.doc/0589.n-ary-tree-preorder-traversal.md) | Easy (75.35%) | stack, tree | [cpp](.cpp/0589.n-ary-tree-preorder-traversal.cpp) |
@@ -360,9 +366,30 @@
 | [0639.Decode Ways II](.doc/0639.decode-ways-ii.md) | Hard (30.62%) | dynamic-programming | [cpp](.cpp/0639.decode-ways-ii.cpp) |
 | [0640.Solve the Equation](.doc/0640.solve-the-equation.md) | Medium (43.60%) | math, string | [cpp](.cpp/0640.solve-the-equation.cpp) |
 | [0641.Design Circular Deque](.doc/0641.design-circular-deque.md) | Medium (56.75%) | design, queue, linked-list, array | [cpp](.cpp/0641.design-circular-deque.cpp) |
+| 0642.Design Search Autocomplete System 🔒 | | trie, string, design, sort | [cpp](.cpp/0642.design-search-autocomplete-system.cpp) |
 | [0643.Maximum Average Subarray I](.doc/0643.maximum-average-subarray-i.md) | Easy (43.36%) | array, sliding-window, prefix-sum | [cpp](.cpp/0643.maximum-average-subarray-i.cpp) |
+| 0644.Maximum Average Subarray II 🔒 | | binary-search, array, prefix-sum | [cpp](.cpp/0644.maximum-average-subarray-ii.cpp) |
+| [0645.Set Mismatch](.doc/0645.set-mismatch.md) | Easy (42.54%) | hash-table, math, in-place | [cpp](.cpp/0645.set-mismatch.cpp) |
+| [0646.Maximum Length of Pair Chain](.doc/0646.maximum-length-of-pair-chain.md) | Medium (59.65%) | dynamic-programming, greedy, sort | [cpp](.cpp/0646.maximum-length-of-pair-chain.cpp) |
+| [0647.Palindromic Substrings](.doc/0647.palindromic-substrings.md) | Medium (68.35%) | string, dynamic-programming, palindrome, manacher | [cpp](.cpp/0647.palindromic-substrings.cpp) |
+| [0648.Replace Words](.doc/0648.replace-words.md) | Medium (62.69%) | hash-table, trie, sort | [cpp](.cpp/0648.replace-words.cpp) |
+| [0649.Dota2 Senate](.doc/0649.dota-2-senate.md) | Medium (47.80%) | greedy, queue | [cpp](.cpp/0649.dota-2-senate.cpp) |
+| [0650.2 Keys Keyboard](.doc/0650.2-keys-keyboard.md) | Medium (53.58%) | dynamic-programming, math | [cpp](.cpp/0650.2-keys-keyboard.cpp) |
+| 0651.4 Keys Keyboard 🔒 | | dynamic-programming | [cpp](.cpp/0651.4-keys-keyboard.cpp) |
+| [0652.Find Duplicate Subtrees](.doc/0652.find-duplicate-subtrees.md) | Medium (59.15%) | binary-tree, serialization | [cpp](.cpp/0652.find-duplicate-subtrees.cpp) |
+| [0653.Two Sum IV - Input is a BST](.doc/0653.two-sum-iv-input-is-a-bst.md) | Easy (61.16%) | binary-search-tree, binary-tree, hash-table | [cpp](.cpp/0653.two-sum-iv-input-is-a-bst.cpp) |
+| [0655.Print Binary Tree](.doc/0655.print-binary-tree.md) | Medium (62.29%) | binary-tree,  | [cpp](.cpp/0655.print-binary-tree.cpp) |
 | [0657.Robot Return to Origin](.doc/0657.robot-return-to-origin.md) | Easy (75.61%) | easy | [cpp](.cpp/0657.robot-return-to-origin.cpp) |
+| [0658.Find K Closest Elements](.doc/0658.find-k-closest-elements.md) | Medium (46.90%) | binary-search, two-pointers | [cpp](.cpp/0658.find-k-closest-elements.cpp) |
 | [0661.Image Smoother](.doc/0661.image-smoother.md) | Easy (67.05%) | matrix | [cpp](.cpp/0661.image-smoother.cpp) |
+| [0662.Maximum Width of Binary Tree](.doc/0662.maximum-width-of-binary-tree.md) | Medium (42.64%) | binary-tree | [cpp](.cpp/0662.maximum-width-of-binary-tree.cpp) |
+| [0664.Strange Printer](.doc/0664.strange-printer.md) | Hard (55.13%) | dynamic-programming, depth-first-search, memoization | [cpp](.cpp/0664.strange-printer.cpp) |
+| [0665.Non-decreasing Array](.doc/0665.non-decreasing-array.md) | Medium (24.40%) | array | [cpp](.cpp/0665.non-decreasing-array.cpp) |
+| 0666.Path Sum IV 🔒 | | binary-tree, hash-table | [cpp](.cpp/0666.path-sum-iv.cpp) |
+| [0667.Beautiful Arrangement II](.doc/0667.beautiful-arrangement-ii.md) | Medium (60.04%) | array, greedy, math, brainteaser | [cpp](.cpp/0667.beautiful-arrangement-ii.cpp) |
+| [0668.Kth Smallest Number in Multiplication Table](.doc/0668.kth-smallest-number-in-multiplication-table.md) | Hard (51.54%) | matrix, binary-search | [cpp](.cpp/0668.kth-smallest-number-in-multiplication-table.cpp) |
+| [0669.Trim a Binary Search Tree](.doc/0669.trim-a-binary-search-tree.md) | Medium (66.28%) | binary-search-tree, binary-tree, depth-first-search | [cpp](.cpp/0669.trim-a-binary-search-tree.cpp) |
+| [0670.Maximum Swap](.doc/0670.maximum-swap.md) | Medium (47.86%) | math, greedy | [cpp](.cpp/0670.maximum-swap.cpp) |
 | [0697.Degree of an Array](.doc/0697.degree-of-an-array.md) | Easy (56.36%) | array, hash-table | [cpp](.cpp/0697.degree-of-an-array.cpp) |
 | [0704.Binary Search](.doc/0704.binary-search.md) | Easy (56.83%) | binary-search | [cpp](.cpp/0704.binary-search.cpp) |
 | [0766.Toeplitz Matrix](.doc/0766.toeplitz-matrix.md) | Easy (68.45%) | matrix | [cpp](.cpp/0766.toeplitz-matrix.cpp) |

@@ -36,7 +36,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. 深度优先搜索+记忆化数组
+// 2. 记忆化搜索
 // 2023-08-29 submission
 // 200/200 cases passed
 // Runtime: 27 ms, faster than 61.11% of cpp online submissions.

@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. Trie 树
+// 1. 前缀树
 // 2023-06-28 submission
 // 127/127 cases passed
 // Runtime: 106 ms, faster than 67.08% of cpp online submissions.
@@ -83,7 +83,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. 哈希集合
+// 2. 哈希表
 // 2023-06-28 submission
 // 127/127 cases passed
 // Runtime: 905 ms, faster than 19.3% of cpp online submissions.

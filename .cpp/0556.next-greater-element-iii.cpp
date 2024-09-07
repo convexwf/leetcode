@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 字符串处理+两次遍历
 // 2022-08-26 submission
 // 39/39 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
