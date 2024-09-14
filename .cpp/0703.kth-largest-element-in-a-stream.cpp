@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 最小堆
 // 2021-12-19 submission
 // 10/10 cases passed
 // Runtime: 27 ms, faster than 94.26% of cpp online submissions.
@@ -26,8 +27,9 @@ public:
                     q.push(nums[i]);
                 }
             }
-            else
+            else {
                 q.push(nums[i]);
+            }
         }
     }
 
@@ -38,8 +40,9 @@ public:
                 q.push(val);
             }
         }
-        else
+        else {
             q.push(val);
+        }
         return q.top();
     }
 };

@@ -13,34 +13,32 @@
 class Solution {
 public:
     string shortestCompletingWord(string licensePlate, vector<string>& words) {
-        unordered_map<char, int> license;
-        int count = 0;
-        for (auto c : licensePlate) {
+        unordered_map<char, int> plate;
+        for (char c : licensePlate) {
             if (isalpha(c)) {
-                license[tolower(c)]++;
-                count++;
+                plate[tolower(c)]++;
             }
         }
-        map<int, vector<string>> wordMap;
-        for (auto word : words) {
-            wordMap[word.size()].push_back(word);
-        }
-        for (auto& [_, wordList] : wordMap) {
-            for (string& word : wordList) {
-                unordered_map<char, int> wordCount = license;
-                int wordCountSize = 0;
-                for (char c : word) {
-                    if (wordCount[tolower(c)] > 0) {
-                        wordCountSize++;
-                    }
-                    --wordCount[tolower(c)];
+        string res;
+        for (string& word : words) {
+            unordered_map<char, int> wordMap;
+            for (char c : word) {
+                wordMap[c]++;
+            }
+            bool flag = true;
+            for (auto& p : plate) {
+                if (wordMap[p.first] < p.second) {
+                    flag = false;
+                    break;
                 }
-                if (wordCountSize == count) {
-                    return word;
+            }
+            if (flag) {
+                if (res.empty() || word.size() < res.size()) {
+                    res = word;
                 }
             }
         }
-        return "";
+        return res;
     }
 };
 // @lc code=end

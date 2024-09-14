@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. BFS
+// 1. bfs
 // 2023-05-31 submission
 // 48/48 cases passed
 // Runtime: 182 ms, faster than 68.04% of cpp online submissions.
@@ -60,7 +60,7 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 2. 双向 BFS
+// 2. 双向bfs
 // 2023-05-31 submission
 // 48/48 cases passed
 // Runtime: 1194 ms, faster than 5.07% of cpp online submissions.

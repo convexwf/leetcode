@@ -44,7 +44,37 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 2. 数组+链表
+// 3. bitmap
+// 2023-06-21 submission
+// 33/33 cases passed
+// Runtime: 79 ms, faster than 96.27% of cpp online submissions.
+// Memory Usage: 43.5 MB, less than 66.43% of cpp online submissions.
+class MyHashSet {
+private:
+    bitset<1000001> bits;
+
+public:
+    /** Initialize your data structure here. */
+    MyHashSet() {
+    }
+
+    void add(int key) {
+        bits.set(key);
+    }
+
+    void remove(int key) {
+        bits.reset(key);
+    }
+
+    /** Returns true if this set contains the specified element */
+    bool contains(int key) {
+        return bits.test(key);
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 数组+链表(链地址法)
 // 2023-06-21 submission
 // 33/33 cases passed
 // Runtime: 92 ms, faster than 76.87% of cpp online submissions.
@@ -92,36 +122,6 @@ public:
             }
         }
         return false;
-    }
-};
-// @lc code=end
-
-// @lc code=start
-// 3. bitmap
-// 2023-06-21 submission
-// 33/33 cases passed
-// Runtime: 79 ms, faster than 96.27% of cpp online submissions.
-// Memory Usage: 43.5 MB, less than 66.43% of cpp online submissions.
-class MyHashSet {
-private:
-    bitset<1000001> bits;
-
-public:
-    /** Initialize your data structure here. */
-    MyHashSet() {
-    }
-
-    void add(int key) {
-        bits.set(key);
-    }
-
-    void remove(int key) {
-        bits.reset(key);
-    }
-
-    /** Returns true if this set contains the specified element */
-    bool contains(int key) {
-        return bits.test(key);
     }
 };
 // @lc code=end

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 数组
 // 2020-09-19 submission
 // 61/61 cases passed
 // Runtime: 33 ms, faster than 73.42% of cpp online submissions.
@@ -57,6 +58,7 @@ private:
 // @lc code=end
 
 // @lc code=start
+// 2. 栈
 // 2023-01-14 submission
 // 61/61 cases passed
 // Runtime: 36 ms, faster than 61.38% of cpp online submissions.

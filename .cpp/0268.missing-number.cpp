@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 数学方法
 // 2022-08-26 submission
 // 122/122 cases passed
 // Runtime: 21 ms, faster than 87.75% of cpp online submissions.
@@ -22,6 +23,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 位操作
 // 2022-08-26 submission
 // 122/122 cases passed
 // Runtime: 38 ms, faster than 32.58% of cpp online submissions.
@@ -39,6 +41,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 二分查找
 // 2022-08-26 submission
 // 122/122 cases passed
 // Runtime: 43 ms, faster than 21.03% of cpp online submissions.
@@ -50,10 +53,12 @@ public:
         int left = 0, right = nums.size();
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (nums[mid] > mid)
+            if (nums[mid] > mid) {
                 right = mid;
-            else
+            }
+            else {
                 left = mid + 1;
+            }
         }
         return right;
     }

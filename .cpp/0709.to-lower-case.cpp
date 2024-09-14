@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 模拟
 // 2021-12-16 submission
 // 114/114 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -14,10 +15,12 @@ public:
     string toLowerCase(string s) {
         string res;
         for (char c : s) {
-            if ('A' <= c && c <= 'Z')
+            if ('A' <= c && c <= 'Z') {
                 res.append(1, c + ('a' - 'A'));
-            else
+            }
+            else {
                 res.append(1, c);
+            }
         }
         return res;
     }

@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. brute force
+// 1. 模拟
 // 2023-08-22 submission
 // 43/43 cases passed
 // Runtime: 3 ms, faster than 96.59% of cpp online submissions.

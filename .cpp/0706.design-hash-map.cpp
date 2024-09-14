@@ -47,7 +47,7 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 2. 开链法
+// 2. 数组+链表(链地址法)
 // 2023-06-21 submission
 // 36/36 cases passed
 // Runtime: 282 ms, faster than 11.76% of cpp online submissions.

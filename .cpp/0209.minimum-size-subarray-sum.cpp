@@ -5,7 +5,8 @@
  */
 
 // @lc code=start
-// 2020-11-04 submission (滑动窗口)
+// 1. 滑动窗口
+// 2020-11-04 submission
 // 20/20 cases passed
 // Runtime: 38 ms, faster than 88.21% of cpp online submissions.
 // Memory Usage: 28.3 MB, less than 12.43% of cpp online submissions.
@@ -29,7 +30,8 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2020-11-04 submission (二分搜索)
+// 2. 二分查找
+// 2020-11-04 submission
 // 20/20 cases passed
 // Runtime: 45 ms, faster than 68.19% of cpp online submissions.
 // Memory Usage: 29 MB, less than 8.36% of cpp online submissions.
@@ -43,10 +45,12 @@ public:
             int left = i + 1, right = n, t = sums[i] + s;
             while (left <= right) {
                 int mid = left + (right - left) / 2;
-                if (sums[mid] < t)
+                if (sums[mid] < t) {
                     left = mid + 1;
-                else
+                }
+                else {
                     right = mid - 1;
+                }
             }
             if (left == n + 1) break;
             res = min(res, left - i);
