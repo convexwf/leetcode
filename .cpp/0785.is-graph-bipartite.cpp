@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 并查集
 // 2023-02-27 submission
 // 81/81 cases passed
 // Runtime: 11 ms, faster than 99.98% of cpp online submissions.
@@ -13,7 +14,9 @@ class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {
         vector<int> root(graph.size());
-        for (int i = 0; i < graph.size(); ++i) root[i] = i;
+        for (int i = 0; i < graph.size(); ++i) {
+            root[i] = i;
+        }
         for (int i = 0; i < graph.size(); ++i) {
             if (graph[i].empty()) continue;
             int x = find(root, i), y = find(root, graph[i][0]);
@@ -26,13 +29,18 @@ public:
         }
         return true;
     }
+
     int find(vector<int>& root, int i) {
-        return root[i] == i ? i : find(root, root[i]);
+        if (root[i] != i) {
+            root[i] = find(root, root[i]);
+        }
+        return root[i];
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 2. dfs 染色
 // 2023-02-27 submission
 // 81/81 cases passed
 // Runtime: 25 ms, faster than 74.23% of cpp online submissions.
@@ -48,6 +56,7 @@ public:
         }
         return true;
     }
+
     bool valid(vector<vector<int>>& graph, int color, int cur, vector<int>& colors) {
         if (colors[cur] != 0) return colors[cur] == color;
         colors[cur] = color;
@@ -62,6 +71,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. bfs 染色
 // 2023-02-27 submission
 // 81/81 cases passed
 // Runtime: 25 ms, faster than 74.23% of cpp online submissions.

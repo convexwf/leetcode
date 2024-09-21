@@ -64,6 +64,7 @@
 | [0062.Unique Paths](.doc/0062.unique-paths.md) | Medium (64.00%) | dynamic-programming, math | [cpp](.cpp/0062.unique-paths.cpp) |
 | [0063.Unique Paths II](.doc/0063.unique-paths-ii.md) | Medium (41.26%) | dynamic-programming | [cpp](.cpp/0063.unique-paths-ii.cpp) |
 | [0064.Minimum Path Sum](.doc/0064.minimum-path-sum.md) | Medium (63.42%) | dynamic-programming | [cpp](.cpp/0064.minimum-path-sum.cpp) |
+| [0065.Valid Number](.doc/0065.valid-number.md) | Hard (19.37%) | string, finite-automata | [cpp](.cpp/0065.valid-number.cpp) |
 | [0066.Plus One](.doc/0066.plus-one.md) | Easy (44.78%) | array | [cpp](.cpp/0066.plus-one.cpp) |
 | [0067.Add Binary](.doc/0067.add-binary.md) | Easy (53.13%) | string, math | [cpp](.cpp/0067.add-binary.cpp) |
 | [0068.Text Justification](.doc/0068.text-justification.md) | Hard (42.40%) | string, greedy | [cpp](.cpp/0068.text-justification.cpp) |
@@ -398,6 +399,13 @@
 | [0668.Kth Smallest Number in Multiplication Table](.doc/0668.kth-smallest-number-in-multiplication-table.md) | Hard (51.54%) | matrix, binary-search | [cpp](.cpp/0668.kth-smallest-number-in-multiplication-table.cpp) |
 | [0669.Trim a Binary Search Tree](.doc/0669.trim-a-binary-search-tree.md) | Medium (66.28%) | binary-search-tree, binary-tree, depth-first-search | [cpp](.cpp/0669.trim-a-binary-search-tree.cpp) |
 | [0670.Maximum Swap](.doc/0670.maximum-swap.md) | Medium (47.86%) | math, greedy | [cpp](.cpp/0670.maximum-swap.cpp) |
+| [0671.Second Minimum Node In a Binary Tree](.doc/0671.second-minimum-node-in-a-binary-tree.md) | Easy (44.16%) | binary-tree, depth-first-search | [cpp](.cpp/0671.second-minimum-node-in-a-binary-tree.cpp) |
+| [0672.Bulb Switcher II](.doc/0672.bulb-switcher-ii.md) | Medium (50.32%) | math, bit-manipulation | [cpp](.cpp/0672.bulb-switcher-ii.cpp) |
+| [0674.Longest Continuous Increasing Subsequence](.doc/0674.longest-continuous-increasing-subsequence.md) | Easy (49.98%) | array | [cpp](.cpp/0674.longest-continuous-increasing-subsequence.cpp) |
+| [0676.Implement Magic Dictionary](.doc/0676.implement-magic-dictionary.md) | Medium (56.99%) | hash-table, string, trie, design, depth-first-search | [cpp](.cpp/0676.implement-magic-dictionary.cpp) |
+| [0678.Valid Parenthesis String](.doc/0678.valid-parenthesis-string.md) | Medium (34.46%) | string, dynamic-programming, greedy | [cpp](.cpp/0678.valid-parenthesis-string.cpp) |
+| [0680.Valid Palindrome II](.doc/0680.valid-palindrome-ii.md) | Easy (40.19%) | string, palindrome, two-pointers | [cpp](.cpp/0680.valid-palindrome-ii.cpp) |
+| [0682.Baseball Game](.doc/0682.baseball-game.md) | Easy (75.66%) | stack | [cpp](.cpp/0682.baseball-game.cpp) |
 | [0697.Degree of an Array](.doc/0697.degree-of-an-array.md) | Easy (56.36%) | array, hash-table | [cpp](.cpp/0697.degree-of-an-array.cpp) |
 | [0700.Search in a Binary Search Tree](.doc/0700.search-in-a-binary-search-tree.md) | Easy (79.23%) | binary-search-tree, binary-tree, recursion | [cpp](.cpp/0700.search-in-a-binary-search-tree.cpp) |
 | [0701.Insert into a Binary Search Tree](.doc/0701.insert-into-a-binary-search-tree.md) | Medium (73.86%) | binary-search-tree, binary-tree, recursion | [cpp](.cpp/0701.insert-into-a-binary-search-tree.cpp) |
@@ -420,8 +428,10 @@
 | [0748.Shortest Completing Word](.doc/0748.shortest-completing-word.md) | Easy (59.27%) | hash-table, string | [cpp](.cpp/0748.shortest-completing-word.cpp) |
 | [0752.Open the Lock](.doc/0752.open-the-lock.md) | Medium (55.69%) | breadth-first-search, hash-table | [cpp](.cpp/0752.open-the-lock.cpp) |
 | [0753.Cracking the Safe](.doc/0753.cracking-the-safe.md) | Hard (56.48%) | hash-table, graph, greedy | [cpp](.cpp/0753.cracking-the-safe.cpp) |
+| 0759.Employee Free Time 🔒 | | sort, array, interval | [cpp](.cpp/0759.employee-free-time.cpp) |
 | [0766.Toeplitz Matrix](.doc/0766.toeplitz-matrix.md) | Easy (68.45%) | matrix | [cpp](.cpp/0766.toeplitz-matrix.cpp) |
 | [0767.Reorganize String](.doc/0767.reorganize-string.md) | Medium (53.03%) | greedy, hash-table | [cpp](.cpp/0767.reorganize-string.cpp) |
+| [0785.Is Graph Bipartite?](.doc/0785.is-graph-bipartite.md) | Medium (55.32%) | graph, breadth-first-search, depth-first-search, union-find | [cpp](.cpp/0785.is-graph-bipartite.cpp) |
 | [0791.Custom Sort String](.doc/0791.custom-sort-string.md) | Medium (68.90%) | string, hash-table, sort | [cpp](.cpp/0791.custom-sort-string.cpp) |
 | [0792.Number of Matching Subsequences](.doc/0792.number-of-matching-subsequences.md) | Medium (51.26%) | binary-search, hash-table, string | [cpp](.cpp/0792.number-of-matching-subsequences.cpp) |
 | [0794.Valid Tic-Tac-Toe State](.doc/0794.valid-tic-tac-toe-state.md) | Medium (34.91%) | array | [cpp](.cpp/0794.valid-tic-tac-toe-state.cpp) |
@@ -438,6 +448,11 @@
 | [0852.Peak Index in a Mountain Array](.doc/0852.peak-index-in-a-mountain-array.md) | Medium (69.10%) | array, binary-search | [cpp](.cpp/0852.peak-index-in-a-mountain-array.cpp) |
 | [0854.K-Similar Strings](.doc/0854.k-similar-strings.md) | Hard (39.79%) | breadth-first-search, string | [cpp](.cpp/0854.k-similar-strings.cpp) |
 | [0856.Score of Parentheses](.doc/0856.score-of-parentheses.md) | Medium (64.36%) | stack, string, parentheses | [cpp](.cpp/0856.score-of-parentheses.cpp) |
+| [0857.Minimum Cost to Hire K Workers](.doc/0857.minimum-cost-to-hire-k-workers.md) | Hard (52.84%) | array, heap, greedy | [cpp](.cpp/0857.minimum-cost-to-hire-k-workers.cpp) |
+| [0858.Mirror Reflection](.doc/0858.mirror-reflection.md) | Medium (62.42%) | math, greatest-common-divisor | [cpp](.cpp/0858.mirror-reflection.cpp) |
+| [0859.Buddy Strings](.doc/0859.buddy-strings.md) | Easy (32.90%) | string | [cpp](.cpp/0859.buddy-strings.cpp) |
+| [0860.Lemonade Change](.doc/0860.lemonade-change.md) | Easy (52.98%) | greedy | [cpp](.cpp/0860.lemonade-change.cpp) |
+| [0861.Score After Flipping Matrix](.doc/0861.score-after-flipping-matrix.md) | Medium (74.91%) | greedy | [cpp](.cpp/0861.score-after-flipping-matrix.cpp) |
 | [0865.Smallest Subtree with all the Deepest Nodes](.doc/0865.smallest-subtree-with-all-the-deepest-nodes.md) | Medium (70.02%) | binary-tree | [cpp](.cpp/0865.smallest-subtree-with-all-the-deepest-nodes.cpp) |
 | [0866.Prime Palindrome](.doc/0866.prime-palindrome.md) | Medium (25.83%) | palindrome, prime, math | [cpp](.cpp/0866.prime-palindrome.cpp) |
 | [0867.Transpose Matrix](.doc/0867.transpose-matrix.md) | Easy (65.56%) | easy | [cpp](.cpp/0867.transpose-matrix.cpp) |
@@ -452,6 +467,7 @@
 | [0876.Middle of the Linked List](.doc/0876.middle-of-the-linked-list.md) | Easy (76.31%) | linked-list, fast-slow-pointers | [cpp](.cpp/0876.middle-of-the-linked-list.cpp) |
 | [0877.Stone Game](.doc/0877.stone-game.md) | Medium (70.09%) | dynamic-programming, minmax, math | [cpp](.cpp/0877.stone-game.cpp) |
 | [0881.Boats to Save People](.doc/0881.boats-to-save-people.md) | Medium (55.90%) | greedy, two-pointers | [cpp](.cpp/0881.boats-to-save-people.cpp) |
+| [0886.Possible Bipartition](.doc/0886.possible-bipartition.md) | Medium (50.44%) | graph, union-find | [cpp](.cpp/0886.possible-bipartition.cpp) |
 | [0888.Fair Candy Swap](.doc/0888.fair-candy-swap.md) | Easy (60.83%) | hash-table | [cpp](.cpp/0888.fair-candy-swap.cpp) |
 | [0890.Find and Replace Pattern](.doc/0890.find-and-replace-pattern.md) | Medium (77.07%) | hash-table, string | [cpp](.cpp/0890.find-and-replace-pattern.cpp) |
 | [0891.Sum of Subsequence Widths](.doc/0891.sum-of-subsequence-widths.md) | Hard (37.37%) | math, sort | [cpp](.cpp/0891.sum-of-subsequence-widths.cpp) |
@@ -463,7 +479,9 @@
 | [0897.Increasing Order Search Tree](.doc/0897.increasing-order-search-tree.md) | Easy (78.36%) | binary-tree, binary-search-tree | [cpp](.cpp/0897.increasing-order-search-tree.cpp) |
 | [0899.Orderly Queue](.doc/0899.orderly-queue.md) | Hard (65.98%) | math, string | [cpp](.cpp/0899.orderly-queue.cpp) |
 | [0900.RLE Iterator](.doc/0900.rle-iterator.md) | Medium (59.45%) | design, string | [cpp](.cpp/0900.rle-iterator.cpp) |
+| [0904.Fruit Into Baskets](.doc/0904.fruit-into-baskets.md) | Medium (43.76%) | hash-table, sliding-window | [cpp](.cpp/0904.fruit-into-baskets.cpp) |
 | [0905.Sort Array By Parity](.doc/0905.sort-array-by-parity.md) | Easy (75.51%) | array, two-pointers, partition | [cpp](.cpp/0905.sort-array-by-parity.cpp) |
+| [0908.Smallest Range I](.doc/0908.smallest-range-i.md) | Easy (68.84%) | math | [cpp](.cpp/0908.smallest-range-i.cpp) |
 | [0909.Snakes and Ladders](.doc/0909.snakes-and-ladders.md) | Medium (44.33%) | breadth-first-search | [cpp](.cpp/0909.snakes-and-ladders.cpp) |
 | [0910.Smallest Range II](.doc/0910.smallest-range-ii.md) | Medium (35.65%) | math, sort | [cpp](.cpp/0910.smallest-range-ii.cpp) |
 | [0914.X of a Kind in a Deck of Cards](.doc/0914.x-of-a-kind-in-a-deck-of-cards.md) | Easy (30.48%) | math | [cpp](.cpp/0914.x-of-a-kind-in-a-deck-of-cards.cpp) |

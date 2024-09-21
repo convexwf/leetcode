@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 状态机
 // 2020-07-14 submission
 // 1490/1490 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -27,24 +28,31 @@ public:
         int cur = 0;
         for (int i = 0; i < s.length(); i++) {
             if (s[i] == ' ') {
-                if (cur == 0 || cur == 8)
+                if (cur == 0 || cur == 8) {
                     continue;
-                else if (cur == 2 || cur == 4 || cur == 7)
+                }
+                else if (cur == 2 || cur == 4 || cur == 7) {
                     cur = 8;
-                else
+                }
+                else {
                     cur = -1;
-                ;
+                }
             }
-            else if (s[i] >= '0' && s[i] <= '9')
+            else if (s[i] >= '0' && s[i] <= '9') {
                 cur = trans[cur][0];
-            else if (s[i] == 'e' || s[i] == 'E')
+            }
+            else if (s[i] == 'e' || s[i] == 'E') {
                 cur = trans[cur][1];
-            else if (s[i] == '+' || s[i] == '-')
+            }
+            else if (s[i] == '+' || s[i] == '-') {
                 cur = trans[cur][2];
-            else if (s[i] == '.')
+            }
+            else if (s[i] == '.') {
                 cur = trans[cur][3];
-            else
+            }
+            else {
                 cur = -1;
+            }
             if (cur == -1) return false;
         }
         return cur == 8;

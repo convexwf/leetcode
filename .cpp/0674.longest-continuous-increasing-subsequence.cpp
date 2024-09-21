@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 一次遍历
 // 2022-11-15 submission
 // 35/35 cases passed
 // Runtime: 25 ms, faster than 41.59% of cpp online submissions.
@@ -15,10 +16,12 @@ public:
         if (nums.empty()) return 0;
         int res = 1, cnt = 1, n = nums.size();
         for (int i = 1; i < n; ++i) {
-            if (nums[i - 1] < nums[i])
+            if (nums[i - 1] < nums[i]) {
                 res = max(res, ++cnt);
-            else
+            }
+            else {
                 cnt = 1;
+            }
         }
         return res;
     }

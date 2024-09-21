@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. Brute Force
+// 1. 暴力搜索
 // 2023-07-10 submission
 // 83/83 cases passed
 // Runtime: 44 ms, faster than 86.89% of cpp online submissions.
@@ -20,7 +20,7 @@ public:
     }
 
     bool search(string searchWord) {
-        for (auto& word : dict) {
+        for (const string& word : dict) {
             if (word.size() != searchWord.size()) continue;
             int cnt = 0;
             for (int i = 0; i < word.size(); ++i) {
@@ -52,6 +52,7 @@ private:
 class MagicDictionary {
 private:
     unordered_map<string, unordered_set<string>> dict;
+
     void replace(string& word, int i) {
         string temp = word;
         temp[i] = '*';
@@ -82,6 +83,65 @@ public:
             }
         }
         return false;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 3. 前缀树+dfs
+// 2024-09-20 submission
+// 83/83 cases passed
+// Runtime: 50 ms, faster than 78.13% of cpp online submissions.
+// Memory Usage: 100.5 MB, less than 44.37% of cpp online submissions.
+class TrieNode {
+public:
+    TrieNode* next[26];
+    bool isEnd;
+    TrieNode() {
+        memset(next, 0, sizeof(next));
+        isEnd = false;
+    }
+};
+
+class MagicDictionary {
+private:
+    TrieNode* root;
+
+    void insert(string word) {
+        TrieNode* node = root;
+        for (char c : word) {
+            if (node->next[c - 'a'] == nullptr) {
+                node->next[c - 'a'] = new TrieNode();
+            }
+            node = node->next[c - 'a'];
+        }
+        node->isEnd = true;
+    }
+
+    bool dfs(TrieNode* node, string& word, int i, int cnt) {
+        if (node == nullptr) return false;
+        if (i == word.size()) return node->isEnd && cnt == 1;
+        if (cnt > 1) return false;
+        for (int j = 0; j < 26; ++j) {
+            if (node->next[j] == nullptr) continue;
+            if (dfs(node->next[j], word, i + 1, cnt + (j != word[i] - 'a'))) return true;
+        }
+        return false;
+    }
+
+public:
+    MagicDictionary() {
+        root = new TrieNode();
+    }
+
+    void buildDict(vector<string> dictionary) {
+        for (string word : dictionary) {
+            insert(word);
+        }
+    }
+
+    bool search(string searchWord) {
+        return dfs(root, searchWord, 0, 0);
     }
 };
 // @lc code=end
