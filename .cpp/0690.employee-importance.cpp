@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 建图+dfs+哈希表
 // 2022-08-26 submission
 // 102/102 cases passed
 // Runtime: 58 ms, faster than 40.52% of cpp online submissions.
@@ -22,9 +23,10 @@ class Solution {
 public:
     int getImportance(vector<Employee*> employees, int id) {
         unordered_map<int, Employee*> m;
-        for (auto e : employees) m[e->id] = e;
+        for (Employee* e : employees) m[e->id] = e;
         return DFS(id, m);
     }
+
     int DFS(int id, unordered_map<int, Employee*>& m) {
         int res = m[id]->importance;
         for (int num : m[id]->subordinates) {
@@ -36,6 +38,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 建图+bfs+哈希表
 // 2022-08-26 submission
 // 102/102 cases passed
 // Runtime: 61 ms, faster than 35.09% of cpp online submissions.
@@ -46,7 +49,7 @@ public:
         int res = 0;
         queue<int> q{{id}};
         unordered_map<int, Employee*> m;
-        for (auto e : employees) m[e->id] = e;
+        for (Employee* e : employees) m[e->id] = e;
         while (!q.empty()) {
             auto t = q.front();
             q.pop();

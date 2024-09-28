@@ -24,7 +24,7 @@
 class Solution {
 public:
     TreeNode* deleteNode(TreeNode* root, int key) {
-        if (!root) return NULL;
+        if (!root) return nullptr;
         if (root->val > key) {
             root->left = deleteNode(root->left, key);
         }
@@ -61,16 +61,20 @@ public:
         while (cur) {
             if (cur->val == key) break;
             pre = cur;
-            if (cur->val > key)
+            if (cur->val > key) {
                 cur = cur->left;
-            else
+            }
+            else {
                 cur = cur->right;
+            }
         }
         if (!pre) return del(cur);
-        if (pre->left && pre->left->val == key)
+        if (pre->left && pre->left->val == key) {
             pre->left = del(cur);
-        else
+        }
+        else {
             pre->right = del(cur);
+        }
         return root;
     }
 
@@ -101,10 +105,11 @@ public:
 class Solution {
 public:
     TreeNode* deleteNode(TreeNode* root, int key) {
-        if (!root) return NULL;
+        if (!root) return nullptr;
         if (root->val == key) {
-            if (!root->right)
+            if (!root->right) {
                 return root->left;
+            }
             else {
                 TreeNode* cur = root->right;
                 while (cur->left) cur = cur->left;

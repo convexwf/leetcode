@@ -37,7 +37,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 1. 动态规划
+// 2. 动态规划优化
 // 2023-12-14 submission
 // 51/51 cases passed
 // Runtime: 13 ms, faster than 48.44% of cpp online submissions.

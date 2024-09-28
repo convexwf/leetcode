@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 动态规划
+// 1. 计数
 // 2023-07-17 submission
 // 56/56 cases passed
 // Runtime: 324 ms, faster than 71.34% of cpp online submissions.

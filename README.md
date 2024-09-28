@@ -225,6 +225,7 @@
 | [0313.Super Ugly Number](.doc/0313.super-ugly-number.md) | Medium (45.25%) | heap, math, dynamic-programming | [cpp](.cpp/0313.super-ugly-number.cpp) |
 | 0314.Binary Tree Vertical Order Traversal 🔒 | | binary-tree, breadth-first-search, depth-first-search | [cpp](.cpp/0314.binary-tree-vertical-order-traversal.cpp) |
 | [0316.Remove Duplicate Letters](.doc/0316.remove-duplicate-letters.md) | Medium (48.80%) | stack, greedy, hash-table, string | [cpp](.cpp/0316.remove-duplicate-letters.cpp) |
+| 0317.Shortest Distance from All Buildings 🔒 | | breadth-first-search | [cpp](.cpp/0317.shortest-distance-from-all-buildings.cpp) |
 | [0318.Maximum Product of Word Lengths](.doc/0318.maximum-product-of-word-lengths.md) | Medium (60.08%) | bit-manipulation | [cpp](.cpp/0318.maximum-product-of-word-lengths.cpp) |
 | [0319.Bulb Switcher](.doc/0319.bulb-switcher.md) | Medium (52.97%) | math, brainteaser | [cpp](.cpp/0319.bulb-switcher.cpp) |
 | 0320.Generalized Abbreviation 🔒 | | string, depth-first-search | [cpp](.cpp/0320.generalized-abbreviation.cpp) |
@@ -301,6 +302,10 @@
 | 0444.Sequence Reconstruction 🔒 | | graph, topological-sort | [cpp](.cpp/0444.sequence-reconstruction.cpp) |
 | [0445.Add Two Numbers II](.doc/0445.add-two-numbers-ii.md) | Medium (61.09%) | linked-list, arithmetic | [cpp](.cpp/0445.add-two-numbers-ii.cpp) |
 | [0449.Serialize and Deserialize BST](.doc/0449.serialize-and-deserialize-bst.md) | Medium (57.11%) | binary-search-tree, binary-tree, design, monotonous-stack, serialization | [cpp](.cpp/0449.serialize-and-deserialize-bst.cpp) |
+| [0450.Delete Node in a BST](.doc/0450.delete-node-in-a-bst.md) | Medium (50.50%) | binary-search-tree, binary-tree, recursion | [cpp](.cpp/0450.delete-node-in-a-bst.cpp) |
+| [0451.Sort Characters By Frequency](.doc/0451.sort-characters-by-frequency.md) | Medium (70.15%) | hash-table, heap, sort, string, bucket-sort | [cpp](.cpp/0451.sort-characters-by-frequency.cpp) |
+| [0452.Minimum Number of Arrows to Burst Balloons](.doc/0452.minimum-number-of-arrows-to-burst-balloons.md) | Medium (55.31%) | interval, greedy, sort | [cpp](.cpp/0452.minimum-number-of-arrows-to-burst-balloons.cpp) |
+| [0453.Minimum Moves to Equal Array Elements](.doc/0453.minimum-moves-to-equal-array-elements.md) | Medium (56.02%) | array, math | [cpp](.cpp/0453.minimum-moves-to-equal-array-elements.cpp) |
 | [0455.Assign Cookies](.doc/0455.assign-cookies.md) | Easy (52.73%) | greedy | [cpp](.cpp/0455.assign-cookies.cpp) |
 | [0458.Poor Pigs](.doc/0458.poor-pigs.md) | Hard (60.20%) | math | [cpp](.cpp/0458.poor-pigs.cpp) |
 | [0460.LFU Cache](.doc/0460.lfu-cache.md) | Hard (43.67%) | design | [cpp](.cpp/0460.lfu-cache.cpp) |
@@ -332,6 +337,7 @@
 | [0507.Perfect Number](.doc/0507.perfect-number.md) | Easy (39.51%) | math | [cpp](.cpp/0507.perfect-number.cpp) |
 | [0509.Fibonacci Number](.doc/0509.fibonacci-number.md) | Easy (70.69%) | fibonacci, dynamic-programming | [cpp](.cpp/0509.fibonacci-number.cpp) |
 | 0510.Inorder Successor in BST II 🔒 | | binary-tree, binary-search-tree | [cpp](.cpp/0510.inorder-successor-in-bst-ii.cpp) |
+| [0519.Random Flip Matrix](.doc/0519.random-flip-matrix.md) | Medium (40.40%) | random, design, array | [cpp](.cpp/0519.random-flip-matrix.cpp) |
 | [0520.Detect Capital](.doc/0520.detect-capital.md) | Easy (56.59%) | string | [cpp](.cpp/0520.detect-capital.cpp) |
 | 0527.Word Abbreviation 🔒 | | trie, string | [cpp](.cpp/0527.word-abbreviation.cpp) |
 | 0531.Lonely Pixel I 🔒 | | matrix | [cpp](.cpp/0531.lonely-pixel-i.cpp) |
@@ -406,6 +412,13 @@
 | [0678.Valid Parenthesis String](.doc/0678.valid-parenthesis-string.md) | Medium (34.46%) | string, dynamic-programming, greedy | [cpp](.cpp/0678.valid-parenthesis-string.cpp) |
 | [0680.Valid Palindrome II](.doc/0680.valid-palindrome-ii.md) | Easy (40.19%) | string, palindrome, two-pointers | [cpp](.cpp/0680.valid-palindrome-ii.cpp) |
 | [0682.Baseball Game](.doc/0682.baseball-game.md) | Easy (75.66%) | stack | [cpp](.cpp/0682.baseball-game.cpp) |
+| [0684.Redundant Connection](.doc/0684.redundant-connection.md) | Medium (62.34%) | graph, tree, union-find, breadth-first-search, depth-first-search | [cpp](.cpp/0684.redundant-connection.cpp) |
+| [0688.Knight Probability in Chessboard](.doc/0688.knight-probability-in-chessboard.md) | Medium (56.17%) | dynamic-programming, depth-first-search, memoization | [cpp](.cpp/0688.knight-probability-in-chessboard.cpp) |
+| [0690.Employee Importance](.doc/0690.employee-importance.md) | Medium (66.44%) | hash-table, depth-first-search, breadth-first-search, graph | [cpp](.cpp/0690.employee-importance.cpp) |
+| [0692.Top K Frequent Words](.doc/0692.top-k-frequent-words.md) | Medium (57.57%) | hash-table, heap, ordered-set, sort, bucket-sort | [cpp](.cpp/0692.top-k-frequent-words.cpp) |
+| [0693.Binary Number with Alternating Bits](.doc/0693.binary-number-with-alternating-bits.md) | Easy (62.12%) | bit-manipulation | [cpp](.cpp/0693.binary-number-with-alternating-bits.cpp) |
+| [0695.Max Area of Island](.doc/0695.max-area-of-island.md) | Medium (71.87%) | matrix, depth-first-search | [cpp](.cpp/0695.max-area-of-island.cpp) |
+| [0696.Count Binary Substrings](.doc/0696.count-binary-substrings.md) | Easy (65.54%) | string, dynamic-programming | [cpp](.cpp/0696.count-binary-substrings.cpp) |
 | [0697.Degree of an Array](.doc/0697.degree-of-an-array.md) | Easy (56.36%) | array, hash-table | [cpp](.cpp/0697.degree-of-an-array.cpp) |
 | [0700.Search in a Binary Search Tree](.doc/0700.search-in-a-binary-search-tree.md) | Easy (79.23%) | binary-search-tree, binary-tree, recursion | [cpp](.cpp/0700.search-in-a-binary-search-tree.cpp) |
 | [0701.Insert into a Binary Search Tree](.doc/0701.insert-into-a-binary-search-tree.md) | Medium (73.86%) | binary-search-tree, binary-tree, recursion | [cpp](.cpp/0701.insert-into-a-binary-search-tree.cpp) |
@@ -425,10 +438,20 @@
 | [0725.Split Linked List in Parts](.doc/0725.split-linked-list-in-parts.md) | Medium (57.55%) | linked-list | [cpp](.cpp/0725.split-linked-list-in-parts.cpp) |
 | [0726.Number of Atoms](.doc/0726.number-of-atoms.md) | Hard (52.42%) | hash-table, stack | [cpp](.cpp/0726.number-of-atoms.cpp) |
 | [0728.Self Dividing Numbers](.doc/0728.self-dividing-numbers.md) | Easy (78.05%) | math, easy | [cpp](.cpp/0728.self-dividing-numbers.cpp) |
+| [0733.Flood Fill](.doc/0733.flood-fill.md) | Easy (62.84%) | matrix, depth-first-search | [cpp](.cpp/0733.flood-fill.cpp) |
+| 0734.Sentence Similarity 🔒 | | array, hash-table, string | [cpp](.cpp/0734.sentence-similarity.cpp) |
+| [0735.Asteroid Collision](.doc/0735.asteroid-collision.md) | Medium (45.27%) | stack,  | [cpp](.cpp/0735.asteroid-collision.cpp) |
+| [0738.Monotone Increasing Digits](.doc/0738.monotone-increasing-digits.md) | Medium (47.35%) | greedy, string | [cpp](.cpp/0738.monotone-increasing-digits.cpp) |
+| [0739.Daily Temperatures](.doc/0739.daily-temperatures.md) | Medium (66.00%) | array, stack, monotonic-stack | [cpp](.cpp/0739.daily-temperatures.cpp) |
+| [0740.Delete and Earn](.doc/0740.delete-and-earn.md) | Medium (56.55%) | dynamic-programming | [cpp](.cpp/0740.delete-and-earn.cpp) |
+| 0742.Closest Leaf in a Binary Tree 🔒 | | graph, binary-tree, breadth-first-search, depth-first-search | [cpp](.cpp/0742.closest-leaf-in-a-binary-tree.cpp) |
+| [0747.Largest Number At Least Twice of Others](.doc/0747.largest-number-at-least-twice-of-others.md) | Easy (47.72%) | array | [cpp](.cpp/0747.largest-number-at-least-twice-of-others.cpp) |
 | [0748.Shortest Completing Word](.doc/0748.shortest-completing-word.md) | Easy (59.27%) | hash-table, string | [cpp](.cpp/0748.shortest-completing-word.cpp) |
 | [0752.Open the Lock](.doc/0752.open-the-lock.md) | Medium (55.69%) | breadth-first-search, hash-table | [cpp](.cpp/0752.open-the-lock.cpp) |
 | [0753.Cracking the Safe](.doc/0753.cracking-the-safe.md) | Hard (56.48%) | hash-table, graph, greedy | [cpp](.cpp/0753.cracking-the-safe.cpp) |
 | 0759.Employee Free Time 🔒 | | sort, array, interval | [cpp](.cpp/0759.employee-free-time.cpp) |
+| [0761.Special Binary String](.doc/0761.special-binary-string.md) | Hard (60.92%) | sort, recursion | [cpp](.cpp/0761.special-binary-string.cpp) |
+| [0764.Largest Plus Sign](.doc/0764.largest-plus-sign.md) | Medium (48.20%) | matrix | [cpp](.cpp/0764.largest-plus-sign.cpp) |
 | [0766.Toeplitz Matrix](.doc/0766.toeplitz-matrix.md) | Easy (68.45%) | matrix | [cpp](.cpp/0766.toeplitz-matrix.cpp) |
 | [0767.Reorganize String](.doc/0767.reorganize-string.md) | Medium (53.03%) | greedy, hash-table | [cpp](.cpp/0767.reorganize-string.cpp) |
 | [0785.Is Graph Bipartite?](.doc/0785.is-graph-bipartite.md) | Medium (55.32%) | graph, breadth-first-search, depth-first-search, union-find | [cpp](.cpp/0785.is-graph-bipartite.cpp) |
@@ -467,6 +490,8 @@
 | [0876.Middle of the Linked List](.doc/0876.middle-of-the-linked-list.md) | Easy (76.31%) | linked-list, fast-slow-pointers | [cpp](.cpp/0876.middle-of-the-linked-list.cpp) |
 | [0877.Stone Game](.doc/0877.stone-game.md) | Medium (70.09%) | dynamic-programming, minmax, math | [cpp](.cpp/0877.stone-game.cpp) |
 | [0881.Boats to Save People](.doc/0881.boats-to-save-people.md) | Medium (55.90%) | greedy, two-pointers | [cpp](.cpp/0881.boats-to-save-people.cpp) |
+| [0883.Projection Area of 3D Shapes](.doc/0883.projection-area-of-3-d-shapes.md) | Easy (71.41%) | geometry, math | [cpp](.cpp/0883.projection-area-of-3-d-shapes.cpp) |
+| [0884.Uncommon Words from Two Sentences](.doc/0884.uncommon-words-from-two-sentences.md) | Easy (66.41%) | hash-table, string | [cpp](.cpp/0884.uncommon-words-from-two-sentences.cpp) |
 | [0886.Possible Bipartition](.doc/0886.possible-bipartition.md) | Medium (50.44%) | graph, union-find | [cpp](.cpp/0886.possible-bipartition.cpp) |
 | [0888.Fair Candy Swap](.doc/0888.fair-candy-swap.md) | Easy (60.83%) | hash-table | [cpp](.cpp/0888.fair-candy-swap.cpp) |
 | [0890.Find and Replace Pattern](.doc/0890.find-and-replace-pattern.md) | Medium (77.07%) | hash-table, string | [cpp](.cpp/0890.find-and-replace-pattern.cpp) |
@@ -485,12 +510,21 @@
 | [0909.Snakes and Ladders](.doc/0909.snakes-and-ladders.md) | Medium (44.33%) | breadth-first-search | [cpp](.cpp/0909.snakes-and-ladders.cpp) |
 | [0910.Smallest Range II](.doc/0910.smallest-range-ii.md) | Medium (35.65%) | math, sort | [cpp](.cpp/0910.smallest-range-ii.cpp) |
 | [0914.X of a Kind in a Deck of Cards](.doc/0914.x-of-a-kind-in-a-deck-of-cards.md) | Easy (30.48%) | math | [cpp](.cpp/0914.x-of-a-kind-in-a-deck-of-cards.cpp) |
+| [0920.Number of Music Playlists](.doc/0920.number-of-music-playlists.md) | Hard (60.77%) | dynamic-programming | [cpp](.cpp/0920.number-of-music-playlists.cpp) |
+| [0921.Minimum Add to Make Parentheses Valid](.doc/0921.minimum-add-to-make-parentheses-valid.md) | Medium (75.06%) | string, parentheses, stack, greedy | [cpp](.cpp/0921.minimum-add-to-make-parentheses-valid.cpp) |
+| [0922.Sort Array By Parity II](.doc/0922.sort-array-by-parity-ii.md) | Easy (70.66%) | array, two-pointers | [cpp](.cpp/0922.sort-array-by-parity-ii.cpp) |
+| [0923.3Sum With Multiplicity](.doc/0923.3-sum-with-multiplicity.md) | Medium (45.27%) | math, sort, two-pointers, hash-table, dynamic-programming | [cpp](.cpp/0923.3-sum-with-multiplicity.cpp) |
+| [0924.Minimize Malware Spread](.doc/0924.minimize-malware-spread.md) | Hard (41.96%) | breadth-first-search, union-find, graph | [cpp](.cpp/0924.minimize-malware-spread.cpp) |
 | [0925.Long Pressed Name](.doc/0925.long-pressed-name.md) | Easy (32.65%) | string, two-pointers | [cpp](.cpp/0925.long-pressed-name.cpp) |
 | [0926.Flip String to Monotone Increasing](.doc/0926.flip-string-to-monotone-increasing.md) | Medium (61.42%) | string | [cpp](.cpp/0926.flip-string-to-monotone-increasing.cpp) |
 | [0927.Three Equal Parts](.doc/0927.three-equal-parts.md) | Hard (39.59%) | array, bit-manipulation, math | [cpp](.cpp/0927.three-equal-parts.cpp) |
+| [0928.Minimize Malware Spread II](.doc/0928.minimize-malware-spread-ii.md) | Hard (42.97%) | union-find, graph, breadth-first-search | [cpp](.cpp/0928.minimize-malware-spread-ii.cpp) |
 | [0929.Unique Email Addresses](.doc/0929.unique-email-addresses.md) | Easy (67.04%) | string, hash-table | [cpp](.cpp/0929.unique-email-addresses.cpp) |
+| [0930.Binary Subarrays With Sum](.doc/0930.binary-subarrays-with-sum.md) | Medium (54.68%) | array, prefix-sum, hash-table, sliding-window | [cpp](.cpp/0930.binary-subarrays-with-sum.cpp) |
 | [0931.Minimum Falling Path Sum](.doc/0931.minimum-falling-path-sum.md) | Medium (65.81%) | dynamic-programming | [cpp](.cpp/0931.minimum-falling-path-sum.cpp) |
 | [0933.Number of Recent Calls](.doc/0933.number-of-recent-calls.md) | Easy (73.26%) | queue, binary-search | [cpp](.cpp/0933.number-of-recent-calls.cpp) |
+| [0934.Shortest Bridge](.doc/0934.shortest-bridge.md) | Medium (57.73%) | depth-first-search, breadth-first-search | [cpp](.cpp/0934.shortest-bridge.cpp) |
+| [0937.Reorder Data in Log Files](.doc/0937.reorder-data-in-log-files.md) | Medium (56.35%) | string, sort | [cpp](.cpp/0937.reorder-data-in-log-files.cpp) |
 | [0939.Minimum Area Rectangle](.doc/0939.minimum-area-rectangle.md) | Medium (53.22%) | ordered-map, hash-table, sort | [cpp](.cpp/0939.minimum-area-rectangle.cpp) |
 | [0941.Valid Mountain Array](.doc/0941.valid-mountain-array.md) | Easy (33.52%) | array | [cpp](.cpp/0941.valid-mountain-array.cpp) |
 | [0942.DI String Match](.doc/0942.di-string-match.md) | Easy (77.88%) | two-pointers | [cpp](.cpp/0942.di-string-match.cpp) |
@@ -513,12 +547,20 @@
 | [0989.Add to Array-Form of Integer](.doc/0989.add-to-array-form-of-integer.md) | Easy (46.43%) | array, arithmetic | [cpp](.cpp/0989.add-to-array-form-of-integer.cpp) |
 | [0991.Broken Calculator](.doc/0991.broken-calculator.md) | Medium (54.25%) | math, greedy, recursion | [cpp](.cpp/0991.broken-calculator.cpp) |
 | [0994.Rotting Oranges](.doc/0994.rotting-oranges.md) | Medium (53.25%) | matrix, breadth-first-search | [cpp](.cpp/0994.rotting-oranges.cpp) |
+| [1006.Clumsy Factorial](.doc/1006.clumsy-factorial.md) | Medium (56.52%) | stack, math | [cpp](.cpp/1006.clumsy-factorial.cpp) |
+| [1007.Minimum Domino Rotations For Equal Row](.doc/1007.minimum-domino-rotations-for-equal-row.md) | Medium (52.23%) | array, greedy | [cpp](.cpp/1007.minimum-domino-rotations-for-equal-row.cpp) |
+| [1008.Construct Binary Search Tree from Preorder Traversal](.doc/1008.construct-binary-search-tree-from-preorder-traversal.md) | Medium (81.77%) | binary-tree, binary-search-tree, depth-first-search | [cpp](.cpp/1008.construct-binary-search-tree-from-preorder-traversal.cpp) |
+| [1009.Complement of Base 10 Integer](.doc/1009.complement-of-base-10-integer.md) | Easy (60.82%) | bit-manipulation | [cpp](.cpp/1009.complement-of-base-10-integer.cpp) |
+| [1010.Pairs of Songs With Total Durations Divisible by 60](.doc/1010.pairs-of-songs-with-total-durations-divisible-by-60.md) | Medium (52.68%) | array, hash-table | [cpp](.cpp/1010.pairs-of-songs-with-total-durations-divisible-by-60.cpp) |
+| [1011.Capacity To Ship Packages Within D Days](.doc/1011.capacity-to-ship-packages-within-d-days.md) | Medium (68.53%) | array, binary-search | [cpp](.cpp/1011.capacity-to-ship-packages-within-d-days.cpp) |
+| [1013.Partition Array Into Three Parts With Equal Sum](.doc/1013.partition-array-into-three-parts-with-equal-sum.md) | Easy (42.12%) | array, prefix-sum | [cpp](.cpp/1013.partition-array-into-three-parts-with-equal-sum.cpp) |
 | [1014.Best Sightseeing Pair](.doc/1014.best-sightseeing-pair.md) | Medium (59.34%) | array | [cpp](.cpp/1014.best-sightseeing-pair.cpp) |
 | [1017.Convert to Base -2](.doc/1017.convert-to-base-2.md) | Medium (60.56%) | math | [cpp](.cpp/1017.convert-to-base-2.cpp) |
 | [1025.Divisor Game](.doc/1025.divisor-game.md) | Easy (68.30%) | math, game-theory | [cpp](.cpp/1025.divisor-game.cpp) |
 | [1027.Longest Arithmetic Subsequence](.doc/1027.longest-arithmetic-subsequence.md) | Medium (49.01%) | dynamic-programming | [cpp](.cpp/1027.longest-arithmetic-subsequence.cpp) |
 | [1029.Two City Scheduling](.doc/1029.two-city-scheduling.md) | Medium (65.68%) | greedy | [cpp](.cpp/1029.two-city-scheduling.cpp) |
 | [1030.Matrix Cells in Distance Order](.doc/1030.matrix-cells-in-distance-order.md) | Easy (69.88%) | breadth-first-search, sort | [cpp](.cpp/1030.matrix-cells-in-distance-order.cpp) |
+| [1031.Maximum Sum of Two Non-Overlapping Subarrays](.doc/1031.maximum-sum-of-two-non-overlapping-subarrays.md) | Medium (59.73%) | array, prefix-sum | [cpp](.cpp/1031.maximum-sum-of-two-non-overlapping-subarrays.cpp) |
 | [1032.Stream of Characters](.doc/1032.stream-of-characters.md) | Hard (51.82%) | trie, design | [cpp](.cpp/1032.stream-of-characters.cpp) |
 | [1035.Uncrossed Lines](.doc/1035.uncrossed-lines.md) | Medium (62.69%) | dynamic-programming | [cpp](.cpp/1035.uncrossed-lines.cpp) |
 | [1037.Valid Boomerang](.doc/1037.valid-boomerang.md) | Easy (36.82%) | math, geometry | [cpp](.cpp/1037.valid-boomerang.cpp) |

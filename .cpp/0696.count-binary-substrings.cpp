@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2021-12-22 submission
 // 91/91 cases passed
 // Runtime: 30 ms, faster than 35.41% of cpp online submissions.
@@ -17,11 +18,11 @@ public:
         for (int i = 1; i < s.length(); i++) {
             if (s[i] != s[i - 1]) {
                 dp[i] = 2;
-                res += 1;
+                res++;
             }
             else if (i - dp[i - 1] - 1 >= 0 && s[i - dp[i - 1] - 1] != s[i]) {
                 dp[i] = dp[i - 1] + 2;
-                res += 1;
+                res++;
             }
         }
         return res;

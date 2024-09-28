@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 两次遍历
+// 1. 两次遍历+前缀和
 // 2023-12-01 submission
 // 72/72 cases passed
 // Runtime: 38 ms, faster than 54.2% of cpp online submissions.

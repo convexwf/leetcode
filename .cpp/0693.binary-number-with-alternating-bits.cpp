@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 位运算-逐位检测
 // 2022-11-17 submission
 // 204/204 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -23,6 +24,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 位运算-错位相加
 // 2021-12-23 submission
 // 204/204 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -37,6 +39,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 位运算-错位相异或
 // 2022-11-17 submission
 // 204/204 cases passed
 // Runtime: 3 ms, faster than 39.85% of cpp online submissions.

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表+最小堆+自定义排序
 // 2023-11-08 submission
 // 110/110 cases passed
 // Runtime: 7 ms, faster than 91.14% of cpp online submissions.

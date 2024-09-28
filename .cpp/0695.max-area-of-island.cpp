@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. DFS
+// 1. dfs
 // 2023-11-22 submission
 // 728/728 cases passed
 // Runtime: 15 ms, faster than 63.24% of cpp online submissions.
