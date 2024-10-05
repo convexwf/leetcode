@@ -171,11 +171,15 @@
 | [0208.Implement Trie (Prefix Tree)](.doc/0208.implement-trie-prefix-tree.md) | Medium (64.56%) | design, trie-tree | [cpp](.cpp/0208.implement-trie-prefix-tree.cpp) |
 | [0209.Minimum Size Subarray Sum](.doc/0209.minimum-size-subarray-sum.md) | Medium (46.75%) | array, sliding-window, binary-search, prefix-sum | [cpp](.cpp/0209.minimum-size-subarray-sum.cpp) |
 | [0210.Course Schedule II](.doc/0210.course-schedule-ii.md) | Medium (49.93%) | graph, topological-sort | [cpp](.cpp/0210.course-schedule-ii.cpp) |
+| [0211.Design Add and Search Words Data Structure](.doc/0211.design-add-and-search-words-data-structure.md) | Medium (44.84%) | trie, backtracking, design, depth-first-search | [cpp](.cpp/0211.design-add-and-search-words-data-structure.cpp) |
+| [0212.Word Search II](.doc/0212.word-search-ii.md) | Hard (36.21%) | trie, depth-first-search, backtracking, matrix | [cpp](.cpp/0212.word-search-ii.cpp) |
 | [0213.House Robber II](.doc/0213.house-robber-ii.md) | Medium (41.77%) | dynamic-programming | [cpp](.cpp/0213.house-robber-ii.cpp) |
 | [0217.Contains Duplicate](.doc/0217.contains-duplicate.md) | Easy (61.33%) | array, sort, hash-table, duplicate | [cpp](.cpp/0217.contains-duplicate.cpp) |
 | [0219.Contains Duplicate II](.doc/0219.contains-duplicate-ii.md) | Easy (44.43%) | array, hash-table, duplicate | [cpp](.cpp/0219.contains-duplicate-ii.cpp) |
 | [0220.Contains Duplicate III](.doc/0220.contains-duplicate-iii.md) | Hard (22.62%) | sliding-window, ordered-map, binary-search | [cpp](.cpp/0220.contains-duplicate-iii.cpp) |
 | [0223.Rectangle Area](.doc/0223.rectangle-area.md) | Medium (45.88%) | math, geometry | [cpp](.cpp/0223.rectangle-area.cpp) |
+| [0226.Invert Binary Tree](.doc/0226.invert-binary-tree.md) | Easy (76.47%) | binary-tree, recursion | [cpp](.cpp/0226.invert-binary-tree.cpp) |
+| [0228.Summary Ranges](.doc/0228.summary-ranges.md) | Easy (50.15%) | array | [cpp](.cpp/0228.summary-ranges.cpp) |
 | [0231.Power of Two](.doc/0231.power-of-two.md) | Easy (46.62%) | bit-manipulation | [cpp](.cpp/0231.power-of-two.cpp) |
 | [0234.Palindrome Linked List](.doc/0234.palindrome-linked-list.md) | Easy (51.59%) | linked-list, fast-slow-pointers, stack, recursion | [cpp](.cpp/0234.palindrome-linked-list.cpp) |
 | [0235.Lowest Common Ancestor of a Binary Search Tree](.doc/0235.lowest-common-ancestor-of-a-binary-search-tree.md) | Medium (64.04%) | binary-search-tree | [cpp](.cpp/0235.lowest-common-ancestor-of-a-binary-search-tree.cpp) |
@@ -327,6 +331,7 @@
 | 0490.The Maze 🔒 | | breadth-first-search | [cpp](.cpp/0490.the-maze.cpp) |
 | [0492.Construct the Rectangle](.doc/0492.construct-the-rectangle.md) | Easy (56.87%) | math, geometry | [cpp](.cpp/0492.construct-the-rectangle.cpp) |
 | [0495.Teemo Attacking](.doc/0495.teemo-attacking.md) | Easy (56.54%) | array | [cpp](.cpp/0495.teemo-attacking.cpp) |
+| [0496.Next Greater Element I](.doc/0496.next-greater-element-i.md) | Easy (71.96%) | array, stack, monotonic-stack, hash-table | [cpp](.cpp/0496.next-greater-element-i.cpp) |
 | [0498.Diagonal Traverse](.doc/0498.diagonal-traverse.md) | Medium (58.33%) | matrix | [cpp](.cpp/0498.diagonal-traverse.cpp) |
 | 0499.The Maze III 🔒 | | breadth-first-search | [cpp](.cpp/0499.the-maze-iii.cpp) |
 | [0500.Keyboard Row](.doc/0500.keyboard-row.md) | Easy (70.36%) | hash-table | [cpp](.cpp/0500.keyboard-row.cpp) |
@@ -534,6 +539,7 @@
 | [0948.Bag of Tokens](.doc/0948.bag-of-tokens.md) | Medium (52.17%) | greedy | [cpp](.cpp/0948.bag-of-tokens.cpp) |
 | [0949.Largest Time for Given Digits](.doc/0949.largest-time-for-given-digits.md) | Medium (35.14%) | easy | [cpp](.cpp/0949.largest-time-for-given-digits.cpp) |
 | [0961.N-Repeated Element in Size 2N Array](.doc/0961.n-repeated-element-in-size-2-n-array.md) | Easy (76.34%) | hash-table, math | [cpp](.cpp/0961.n-repeated-element-in-size-2-n-array.cpp) |
+| [0962.Maximum Width Ramp](.doc/0962.maximum-width-ramp.md) | Medium (49.33%) | array, stack, monotonic-stack | [cpp](.cpp/0962.maximum-width-ramp.cpp) |
 | [0963.Minimum Area Rectangle II](.doc/0963.minimum-area-rectangle-ii.md) | Medium (54.71%) | math, geometry, hash-table | [cpp](.cpp/0963.minimum-area-rectangle-ii.cpp) |
 | [0966.Vowel Spellchecker](.doc/0966.vowel-spellchecker.md) | Medium (51.25%) | hash-table, string | [cpp](.cpp/0966.vowel-spellchecker.cpp) |
 | [0968.Binary Tree Cameras](.doc/0968.binary-tree-cameras.md) | Hard (46.49%) | binary-tree, depth-first-search | [cpp](.cpp/0968.binary-tree-cameras.cpp) |
@@ -546,6 +552,7 @@
 | [0988.Smallest String Starting From Leaf](.doc/0988.smallest-string-starting-from-leaf.md) | Medium (50.92%) | binary-tree, depth-first-search | [cpp](.cpp/0988.smallest-string-starting-from-leaf.cpp) |
 | [0989.Add to Array-Form of Integer](.doc/0989.add-to-array-form-of-integer.md) | Easy (46.43%) | array, arithmetic | [cpp](.cpp/0989.add-to-array-form-of-integer.cpp) |
 | [0991.Broken Calculator](.doc/0991.broken-calculator.md) | Medium (54.25%) | math, greedy, recursion | [cpp](.cpp/0991.broken-calculator.cpp) |
+| [0993.Cousins in Binary Tree](.doc/0993.cousins-in-binary-tree.md) | Easy (55.14%) | binary-tree, breadth-first-search, depth-first-search | [cpp](.cpp/0993.cousins-in-binary-tree.cpp) |
 | [0994.Rotting Oranges](.doc/0994.rotting-oranges.md) | Medium (53.25%) | matrix, breadth-first-search | [cpp](.cpp/0994.rotting-oranges.cpp) |
 | [1006.Clumsy Factorial](.doc/1006.clumsy-factorial.md) | Medium (56.52%) | stack, math | [cpp](.cpp/1006.clumsy-factorial.cpp) |
 | [1007.Minimum Domino Rotations For Equal Row](.doc/1007.minimum-domino-rotations-for-equal-row.md) | Medium (52.23%) | array, greedy | [cpp](.cpp/1007.minimum-domino-rotations-for-equal-row.cpp) |
@@ -556,6 +563,7 @@
 | [1013.Partition Array Into Three Parts With Equal Sum](.doc/1013.partition-array-into-three-parts-with-equal-sum.md) | Easy (42.12%) | array, prefix-sum | [cpp](.cpp/1013.partition-array-into-three-parts-with-equal-sum.cpp) |
 | [1014.Best Sightseeing Pair](.doc/1014.best-sightseeing-pair.md) | Medium (59.34%) | array | [cpp](.cpp/1014.best-sightseeing-pair.cpp) |
 | [1017.Convert to Base -2](.doc/1017.convert-to-base-2.md) | Medium (60.56%) | math | [cpp](.cpp/1017.convert-to-base-2.cpp) |
+| [1019.Next Greater Node In Linked List](.doc/1019.next-greater-node-in-linked-list.md) | Medium (60.15%) | linked-list, stack, monotonic-stack | [cpp](.cpp/1019.next-greater-node-in-linked-list.cpp) |
 | [1025.Divisor Game](.doc/1025.divisor-game.md) | Easy (68.30%) | math, game-theory | [cpp](.cpp/1025.divisor-game.cpp) |
 | [1027.Longest Arithmetic Subsequence](.doc/1027.longest-arithmetic-subsequence.md) | Medium (49.01%) | dynamic-programming | [cpp](.cpp/1027.longest-arithmetic-subsequence.cpp) |
 | [1029.Two City Scheduling](.doc/1029.two-city-scheduling.md) | Medium (65.68%) | greedy | [cpp](.cpp/1029.two-city-scheduling.cpp) |

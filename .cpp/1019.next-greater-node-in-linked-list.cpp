@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 单调栈
+// 1. 单调递减栈
 // 2023-10-19 submission
 // 76/76 cases passed
 // Runtime: 72 ms, faster than 55.15% of cpp online submissions.

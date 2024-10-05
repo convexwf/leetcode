@@ -24,28 +24,42 @@
 class Solution {
 public:
     bool isCousins(TreeNode* root, int x, int y) {
-        if (root == nullptr) return false;
+        if (root == nullptr) {
+            return false;
+        }
         queue<TreeNode*> q;
         q.push(root);
-        bool x_exist = false, y_exist = false;
         while (!q.empty()) {
             int size = q.size();
-            for (int i = 0; i < size; ++i) {
+            bool xExist = false, yExist = false;
+            for (int i = 0; i < size; i++) {
                 TreeNode* node = q.front();
                 q.pop();
-                if (node->val == x) x_exist = true;
-                if (node->val == y) y_exist = true;
                 if (node->left != nullptr && node->right != nullptr) {
-                    if (node->left->val == x && node->right->val == y) return false;
-                    if (node->left->val == y && node->right->val == x) return false;
+                    if ((node->left->val == x && node->right->val == y) ||
+                        (node->left->val == y && node->right->val == x)) {
+                        return false;
+                    }
                 }
-                if (node->left != nullptr) q.push(node->left);
-                if (node->right != nullptr) q.push(node->right);
+                if (node->val == x) {
+                    xExist = true;
+                }
+                if (node->val == y) {
+                    yExist = true;
+                }
+                if (node->left != nullptr) {
+                    q.push(node->left);
+                }
+                if (node->right != nullptr) {
+                    q.push(node->right);
+                }
             }
-            if (x_exist && y_exist)
+            if (xExist && yExist) {
                 return true;
-            else if (x_exist || y_exist)
+            }
+            else if (xExist || yExist) {
                 return false;
+            }
         }
         return false;
     }
@@ -53,7 +67,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. 先序遍历
+// 2. 前序遍历
 // 2023-09-11 submission
 // 105/105 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

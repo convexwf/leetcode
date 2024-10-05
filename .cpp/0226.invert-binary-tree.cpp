@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归
 // 2022-11-14 submission
 // 77/77 cases passed
 // Runtime: 3 ms, faster than 73.23% of cpp online submissions.
@@ -34,6 +35,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 迭代
 // 2022-11-14 submission
 // 77/77 cases passed
 // Runtime: 6 ms, faster than 32.33% of cpp online submissions.
@@ -41,7 +43,7 @@ public:
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if (!root) return NULL;
+        if (!root) return nullptr;
         queue<TreeNode*> q;
         q.push(root);
         while (!q.empty()) {

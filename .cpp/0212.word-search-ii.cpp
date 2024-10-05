@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 前缀树+dfs
 // 2020-12-13 submission
 // 64/64 cases passed
 // Runtime: 907 ms, faster than 60.46% of cpp online submissions.
@@ -18,7 +19,7 @@ private:
         TrieNode() {
             word = "";
             for (TrieNode*& ptr : child) {
-                ptr = NULL;
+                ptr = nullptr;
             }
         }
     };
@@ -31,7 +32,9 @@ private:
         void insert(string word) {
             TrieNode* cur = root;
             for (char c : word) {
-                if (!cur->child[c - 'a']) cur->child[c - 'a'] = new TrieNode();
+                if (!cur->child[c - 'a']) {
+                    cur->child[c - 'a'] = new TrieNode();
+                }
                 cur = cur->child[c - 'a'];
             }
             cur->word = word;
