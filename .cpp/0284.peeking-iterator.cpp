@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 局部变量
 // 2023-01-30 submission
 // 14/14 cases passed
 // Runtime: 4 ms, faster than 56.29% of cpp online submissions.
@@ -54,6 +55,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 私有变量
 // 2023-01-30 submission
 // 14/14 cases passed
 // Runtime: 3 ms, faster than 78.53% of cpp online submissions.
@@ -61,27 +63,31 @@ public:
 class PeekingIterator : public Iterator {
 public:
     PeekingIterator(const vector<int>& nums) : Iterator(nums) {
-        _flag = false;
+        hasPeeked = false;
     }
 
     int peek() {
-        if (!_flag) _value = Iterator::next();
-        _flag = true;
-        return _value;
+        if (!hasPeeked) {
+            peekedElement = Iterator::next();
+            hasPeeked = true;
+        }
+        return peekedElement;
     }
 
     int next() {
-        if (!_flag) return Iterator::next();
-        _flag = false;
-        return _value;
+        if (!hasPeeked) {
+            return Iterator::next();
+        }
+        hasPeeked = false;
+        return peekedElement;
     }
 
     bool hasNext() const {
-        return _flag || Iterator::hasNext();
+        return hasPeeked || Iterator::hasNext();
     }
 
 private:
-    int _value;
-    bool _flag;
+    bool hasPeeked;
+    int peekedElement;
 };
 // @lc code=end

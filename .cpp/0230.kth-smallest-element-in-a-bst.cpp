@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 中序遍历
 // 2021-03-18 submission
 // 93/93 cases passed
 // Runtime: 18 ms, faster than 75.34% of cpp online submissions.
@@ -37,6 +38,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 分治法
 // 2023-02-10 submission
 // 93/93 cases passed
 // Runtime: 18 ms, faster than 75.34% of cpp online submissions.

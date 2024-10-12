@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 拓扑排序
 // 2020-11-05 submission
 // 71/71 cases passed
 // Runtime: 151 ms, faster than 96.53% of cpp online submissions.
@@ -24,8 +25,10 @@ public:
         queue<int> q;
         int cnt = n;
         for (int node = 0; node < n; node++) {
-            if (degree[node] <= 1) // < 是为了防止独立点(n=1)的情况
+            // < 是为了防止出现孤立点(n=1)的情况
+            if (degree[node] <= 1) {
                 q.push(node);
+            }
         }
         while (cnt > 2) {
             int q_size = q.size();
@@ -35,7 +38,9 @@ public:
                 q.pop();
                 for (int adj : graph[node]) {
                     degree[adj]--;
-                    if (degree[adj] == 1) q.push(adj);
+                    if (degree[adj] == 1) {
+                        q.push(adj);
+                    }
                 }
             }
         }

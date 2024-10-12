@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 两个栈
 // 2022-08-27 submission
 // 22/22 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -59,4 +60,64 @@ private:
  * int param_3 = obj->peek();
  * bool param_4 = obj->empty();
  */
+// @lc code=end
+
+// @lc code=start
+// 2. 单个栈
+// 2024-10-09 submission
+// 22/22 cases passed
+// Runtime: 0 ms, faster than % of cpp online submissions.
+// Memory Usage: 8.8 MB, less than 22.01% of cpp online submissions.
+class MyQueue {
+public:
+    stack<int> stk;
+
+    /** Initialize your data structure here. */
+    MyQueue() {
+    }
+
+    /** Push element x to the back of queue. */
+    void push(int x) {
+        stk.push(x);
+    }
+
+    /** Removes the element from in front of queue and returns that element. */
+    int pop() {
+        stackToTmp();
+        int res = tmp.top();
+        tmp.pop();
+        tmpToStack();
+        return res;
+    }
+
+    /** Get the front element. */
+    int peek() {
+        stackToTmp();
+        int res = tmp.top();
+        tmpToStack();
+        return res;
+    }
+
+    /** Returns whether the queue is empty. */
+    bool empty() {
+        return stk.empty();
+    }
+
+private:
+    stack<int> tmp;
+
+    void stackToTmp() {
+        while (!stk.empty()) {
+            tmp.push(stk.top());
+            stk.pop();
+        }
+    }
+
+    void tmpToStack() {
+        while (!tmp.empty()) {
+            stk.push(tmp.top());
+            tmp.pop();
+        }
+    }
+};
 // @lc code=end

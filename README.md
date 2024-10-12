@@ -178,9 +178,13 @@
 | [0219.Contains Duplicate II](.doc/0219.contains-duplicate-ii.md) | Easy (44.43%) | array, hash-table, duplicate | [cpp](.cpp/0219.contains-duplicate-ii.cpp) |
 | [0220.Contains Duplicate III](.doc/0220.contains-duplicate-iii.md) | Hard (22.62%) | sliding-window, ordered-map, binary-search | [cpp](.cpp/0220.contains-duplicate-iii.cpp) |
 | [0223.Rectangle Area](.doc/0223.rectangle-area.md) | Medium (45.88%) | math, geometry | [cpp](.cpp/0223.rectangle-area.cpp) |
+| [0225.Implement Stack using Queues](.doc/0225.implement-stack-using-queues.md) | Easy (63.03%) | stack, queue, design | [cpp](.cpp/0225.implement-stack-using-queues.cpp) |
 | [0226.Invert Binary Tree](.doc/0226.invert-binary-tree.md) | Easy (76.47%) | binary-tree, recursion | [cpp](.cpp/0226.invert-binary-tree.cpp) |
 | [0228.Summary Ranges](.doc/0228.summary-ranges.md) | Easy (50.15%) | array | [cpp](.cpp/0228.summary-ranges.cpp) |
+| [0229.Majority Element II](.doc/0229.majority-element-ii.md) | Medium (50.91%) | array, boyer-moore-voting-algorithm | [cpp](.cpp/0229.majority-element-ii.cpp) |
+| [0230.Kth Smallest Element in a BST](.doc/0230.kth-smallest-element-in-a-bst.md) | Medium (71.99%) | binary-tree, binary-search-tree, divide-and-conquer | [cpp](.cpp/0230.kth-smallest-element-in-a-bst.cpp) |
 | [0231.Power of Two](.doc/0231.power-of-two.md) | Easy (46.62%) | bit-manipulation | [cpp](.cpp/0231.power-of-two.cpp) |
+| [0232.Implement Queue using Stacks](.doc/0232.implement-queue-using-stacks.md) | Easy (65.92%) | stack, queue, design | [cpp](.cpp/0232.implement-queue-using-stacks.cpp) |
 | [0234.Palindrome Linked List](.doc/0234.palindrome-linked-list.md) | Easy (51.59%) | linked-list, fast-slow-pointers, stack, recursion | [cpp](.cpp/0234.palindrome-linked-list.cpp) |
 | [0235.Lowest Common Ancestor of a Binary Search Tree](.doc/0235.lowest-common-ancestor-of-a-binary-search-tree.md) | Medium (64.04%) | binary-search-tree | [cpp](.cpp/0235.lowest-common-ancestor-of-a-binary-search-tree.cpp) |
 | [0236.Lowest Common Ancestor of a Binary Tree](.doc/0236.lowest-common-ancestor-of-a-binary-tree.md) | Medium (61.34%) | binary-tree | [cpp](.cpp/0236.lowest-common-ancestor-of-a-binary-tree.cpp) |
@@ -215,17 +219,29 @@
 | 0276.Paint Fence 🔒 | | dynamic-programming | [cpp](.cpp/0276.paint-fence.cpp) |
 | 0277.Find the Celebrity 🔒 | | array, graph | [cpp](.cpp/0277.find-the-celebrity.cpp) |
 | [0278.First Bad Version](.doc/0278.first-bad-version.md) | Easy (44.11%) | binary-search | [cpp](.cpp/0278.first-bad-version.cpp) |
+| 0280.Wiggle Sort 🔒 | | sort, array | [cpp](.cpp/0280.wiggle-sort.cpp) |
+| 0281.Zigzag Iterator 🔒 | | design | [cpp](.cpp/0281.zigzag-iterator.cpp) |
+| [0283.Move Zeroes](.doc/0283.move-zeroes.md) | Easy (61.56%) | array, two-pointers, in-place-algorithm | [cpp](.cpp/0283.move-zeroes.cpp) |
+| [0284.Peeking Iterator](.doc/0284.peeking-iterator.md) | Medium (59.24%) | design | [cpp](.cpp/0284.peeking-iterator.cpp) |
+| 0285.Inorder Successor in BST 🔒 | | binary-search-tree, binary-tree, stack, recursion | [cpp](.cpp/0285.inorder-successor-in-bst.cpp) |
 | 0286.Walls and Gates 🔒 | | breadth-first-search | [cpp](.cpp/0286.walls-and-gates.cpp) |
+| [0287.Find the Duplicate Number](.doc/0287.find-the-duplicate-number.md) | Medium (59.40%) | array, duplicate, binary-search, bit-manipulation, fast-slow-pointers | [cpp](.cpp/0287.find-the-duplicate-number.cpp) |
 | 0288.Unique Word Abbreviation 🔒 | | hash-table, string | [cpp](.cpp/0288.unique-word-abbreviation.cpp) |
 | [0289.Game of Life](.doc/0289.game-of-life.md) | Medium (68.69%) | matrix, bit-manipulation, in-place-algorithm | [cpp](.cpp/0289.game-of-life.cpp) |
 | [0290.Word Pattern](.doc/0290.word-pattern.md) | Easy (41.83%) | hash-table, string | [cpp](.cpp/0290.word-pattern.cpp) |
+| 0291.Word Pattern II 🔒 | | backtracking, string, hash-table | [cpp](.cpp/0291.word-pattern-ii.cpp) |
 | [0292.Nim Game](.doc/0292.nim-game.md) | Easy (56.61%) | math, game-theory | [cpp](.cpp/0292.nim-game.cpp) |
 | 0293.Flip Game 🔒 | | string | [cpp](.cpp/0293.flip-game.cpp) |
+| 0294.Flip Game II 🔒 | | game, backtracking | [cpp](.cpp/0294.flip-game-ii.cpp) |
 | [0295.Find Median from Data Stream](.doc/0295.find-median-from-data-stream.md) | Hard (51.75%) | design, heap | [cpp](.cpp/0295.find-median-from-data-stream.cpp) |
 | 0296.Best Meeting Point 🔒 | | math, sort | [cpp](.cpp/0296.best-meeting-point.cpp) |
 | [0297.Serialize and Deserialize Binary Tree](.doc/0297.serialize-and-deserialize-binary-tree.md) | Hard (56.39%) | binary-tree, design, serialization | [cpp](.cpp/0297.serialize-and-deserialize-binary-tree.cpp) |
+| 0298.Binary Tree Longest Consecutive Sequence 🔒 | | binary-tree, depth-first-search | [cpp](.cpp/0298.binary-tree-longest-consecutive-sequence.cpp) |
 | [0299.Bulls and Cows](.doc/0299.bulls-and-cows.md) | Medium (50.07%) | hash-table | [cpp](.cpp/0299.bulls-and-cows.cpp) |
+| 0302.Smallest Rectangle Enclosing Black Pixels 🔒 | | binary-search, matrix, geometry | [cpp](.cpp/0302.smallest-rectangle-enclosing-black-pixels.cpp) |
 | 0305.Number of Islands II 🔒 | | union-find | [cpp](.cpp/0305.number-of-islands-ii.cpp) |
+| [0310.Minimum Height Trees](.doc/0310.minimum-height-trees.md) | Medium (38.80%) | tree, graph, topological-sort | [cpp](.cpp/0310.minimum-height-trees.cpp) |
+| 0311.Sparse Matrix Multiplication 🔒 | | math, matrix | [cpp](.cpp/0311.sparse-matrix-multiplication.cpp) |
 | [0313.Super Ugly Number](.doc/0313.super-ugly-number.md) | Medium (45.25%) | heap, math, dynamic-programming | [cpp](.cpp/0313.super-ugly-number.cpp) |
 | 0314.Binary Tree Vertical Order Traversal 🔒 | | binary-tree, breadth-first-search, depth-first-search | [cpp](.cpp/0314.binary-tree-vertical-order-traversal.cpp) |
 | [0316.Remove Duplicate Letters](.doc/0316.remove-duplicate-letters.md) | Medium (48.80%) | stack, greedy, hash-table, string | [cpp](.cpp/0316.remove-duplicate-letters.cpp) |

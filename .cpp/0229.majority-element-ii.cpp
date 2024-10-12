@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 多数投票算法(Boyer-Moore Algorithm)
 // 2022-11-14 submission
 // 87/87 cases passed
 // Runtime: 37 ms, faster than 21.31% of cpp online submissions.
@@ -15,10 +16,12 @@ public:
         vector<int> res;
         int a = 0, b = 0, cnt1 = 0, cnt2 = 0, n = nums.size();
         for (int num : nums) {
-            if (num == a)
+            if (num == a) {
                 ++cnt1;
-            else if (num == b)
+            }
+            else if (num == b) {
                 ++cnt2;
+            }
             else if (cnt1 == 0) {
                 a = num;
                 cnt1 = 1;
@@ -32,12 +35,15 @@ public:
                 --cnt2;
             }
         }
-        cnt1 = cnt2 = 0;
+        cnt1 = 0;
+        cnt2 = 0;
         for (int num : nums) {
-            if (num == a)
+            if (num == a) {
                 ++cnt1;
-            else if (num == b)
+            }
+            else if (num == b) {
                 ++cnt2;
+            }
         }
         if (cnt1 > n / 3) res.push_back(a);
         if (cnt2 > n / 3) res.push_back(b);
