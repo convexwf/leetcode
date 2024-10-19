@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. brute force
+// 1. 暴力枚举
 // 2023-09-15 submission
 // 93/93 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

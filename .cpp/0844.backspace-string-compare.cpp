@@ -32,7 +32,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. 倒序遍历
+// 2. 双指针+逆序遍历
 // 2023-09-15 submission
 // 114/114 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

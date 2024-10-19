@@ -239,7 +239,10 @@
 | 0298.Binary Tree Longest Consecutive Sequence 🔒 | | binary-tree, depth-first-search | [cpp](.cpp/0298.binary-tree-longest-consecutive-sequence.cpp) |
 | [0299.Bulls and Cows](.doc/0299.bulls-and-cows.md) | Medium (50.07%) | hash-table | [cpp](.cpp/0299.bulls-and-cows.cpp) |
 | 0302.Smallest Rectangle Enclosing Black Pixels 🔒 | | binary-search, matrix, geometry | [cpp](.cpp/0302.smallest-rectangle-enclosing-black-pixels.cpp) |
+| [0303.Range Sum Query - Immutable](.doc/0303.range-sum-query-immutable.md) | Easy (62.44%) | prefix-sum, math, array, interval | [cpp](.cpp/0303.range-sum-query-immutable.cpp) |
+| [0304.Range Sum Query 2D - Immutable](.doc/0304.range-sum-query-2-d-immutable.md) | Medium (54.09%) | prefix-sum, math, matrix, interval | [cpp](.cpp/0304.range-sum-query-2-d-immutable.cpp) |
 | 0305.Number of Islands II 🔒 | | union-find | [cpp](.cpp/0305.number-of-islands-ii.cpp) |
+| [0307.Range Sum Query - Mutable](.doc/0307.range-sum-query-mutable.md) | Medium (40.83%) | array, interval, binary-indexed-tree | [cpp](.cpp/0307.range-sum-query-mutable.cpp) |
 | [0310.Minimum Height Trees](.doc/0310.minimum-height-trees.md) | Medium (38.80%) | tree, graph, topological-sort | [cpp](.cpp/0310.minimum-height-trees.cpp) |
 | 0311.Sparse Matrix Multiplication 🔒 | | math, matrix | [cpp](.cpp/0311.sparse-matrix-multiplication.cpp) |
 | [0313.Super Ugly Number](.doc/0313.super-ugly-number.md) | Medium (45.25%) | heap, math, dynamic-programming | [cpp](.cpp/0313.super-ugly-number.cpp) |
@@ -484,6 +487,31 @@
 | [0797.All Paths From Source to Target](.doc/0797.all-paths-from-source-to-target.md) | Medium (82.40%) | graph, breadth-first-search, depth-first-search | [cpp](.cpp/0797.all-paths-from-source-to-target.cpp) |
 | [0799.Champagne Tower](.doc/0799.champagne-tower.md) | Medium (58.04%) | array | [cpp](.cpp/0799.champagne-tower.cpp) |
 | 0800.Similar RGB Color 🔒 | | string | [cpp](.cpp/0800.similar-rgb-color.cpp) |
+| [0802.Find Eventual Safe States](.doc/0802.find-eventual-safe-states.md) | Medium (61.69%) | depth-first-search, graph, topological-sort | [cpp](.cpp/0802.find-eventual-safe-states.cpp) |
+| [0804.Unique Morse Code Words](.doc/0804.unique-morse-code-words.md) | Easy (83.02%) | string, hash-table, easy | [cpp](.cpp/0804.unique-morse-code-words.cpp) |
+| [0806.Number of Lines To Write String](.doc/0806.number-of-lines-to-write-string.md) | Easy (67.05%) | string, easy | [cpp](.cpp/0806.number-of-lines-to-write-string.cpp) |
+| [0807.Max Increase to Keep City Skyline](.doc/0807.max-increase-to-keep-city-skyline.md) | Medium (86.01%) | geometry | [cpp](.cpp/0807.max-increase-to-keep-city-skyline.cpp) |
+| [0808.Soup Servings](.doc/0808.soup-servings.md) | Medium (55.31%) | dynamic-programming, depth-first-search, memoization | [cpp](.cpp/0808.soup-servings.cpp) |
+| [0809.Expressive Words](.doc/0809.expressive-words.md) | Medium (46.14%) | two-pointers, string | [cpp](.cpp/0809.expressive-words.cpp) |
+| [0811.Subdomain Visit Count](.doc/0811.subdomain-visit-count.md) | Medium (75.81%) | hash-table, string | [cpp](.cpp/0811.subdomain-visit-count.cpp) |
+| [0812.Largest Triangle Area](.doc/0812.largest-triangle-area.md) | Easy (59.92%) | math, geometry | [cpp](.cpp/0812.largest-triangle-area.cpp) |
+| [0813.Largest Sum of Averages](.doc/0813.largest-sum-of-averages.md) | Medium (52.94%) | dynamic-programming, recursion, memoization, array | [cpp](.cpp/0813.largest-sum-of-averages.cpp) |
+| [0814.Binary Tree Pruning](.doc/0814.binary-tree-pruning.md) | Medium (72.29%) | binary-tree, depth-first-search | [cpp](.cpp/0814.binary-tree-pruning.cpp) |
+| [0816.Ambiguous Coordinates](.doc/0816.ambiguous-coordinates.md) | Medium (56.44%) | string | [cpp](.cpp/0816.ambiguous-coordinates.cpp) |
+| [0817.Linked List Components](.doc/0817.linked-list-components.md) | Medium (57.25%) | hash-table, linked-list | [cpp](.cpp/0817.linked-list-components.cpp) |
+| [0819.Most Common Word](.doc/0819.most-common-word.md) | Easy (44.54%) | hash-table, string | [cpp](.cpp/0819.most-common-word.cpp) |
+| [0821.Shortest Distance to a Character](.doc/0821.shortest-distance-to-a-character.md) | Easy (71.31%) | array | [cpp](.cpp/0821.shortest-distance-to-a-character.cpp) |
+| [0822.Card Flipping Game](.doc/0822.card-flipping-game.md) | Medium (46.12%) | hash-table, array | [cpp](.cpp/0822.card-flipping-game.cpp) |
+| [0824.Goat Latin](.doc/0824.goat-latin.md) | Easy (67.84%) | string | [cpp](.cpp/0824.goat-latin.cpp) |
+| [0825.Friends Of Appropriate Ages](.doc/0825.friends-of-appropriate-ages.md) | Medium (46.35%) | array, prefix-sum | [cpp](.cpp/0825.friends-of-appropriate-ages.cpp) |
+| [0827.Making A Large Island](.doc/0827.making-a-large-island.md) | Hard (46.26%) | matrix, union-find | [cpp](.cpp/0827.making-a-large-island.cpp) |
+| [0833.Find And Replace in String](.doc/0833.find-and-replace-in-string.md) | Medium (53.76%) | string, hash-table | [cpp](.cpp/0833.find-and-replace-in-string.cpp) |
+| [0835.Image Overlap](.doc/0835.image-overlap.md) | Medium (63.73%) | matrix, hash-table | [cpp](.cpp/0835.image-overlap.cpp) |
+| [0839.Similar String Groups](.doc/0839.similar-string-groups.md) | Hard (54.68%) | string, union-find | [cpp](.cpp/0839.similar-string-groups.cpp) |
+| [0840.Magic Squares In Grid](.doc/0840.magic-squares-in-grid.md) | Medium (38.73%) | matrix | [cpp](.cpp/0840.magic-squares-in-grid.cpp) |
+| [0841.Keys and Rooms](.doc/0841.keys-and-rooms.md) | Medium (72.11%) | graph, depth-first-search, breadth-first-search | [cpp](.cpp/0841.keys-and-rooms.cpp) |
+| [0843.Guess the Word](.doc/0843.guess-the-word.md) | Hard (38.51%) | game | [cpp](.cpp/0843.guess-the-word.cpp) |
+| [0844.Backspace String Compare](.doc/0844.backspace-string-compare.md) | Easy (48.08%) | stack, string, two-pointers | [cpp](.cpp/0844.backspace-string-compare.cpp) |
 | [0845.Longest Mountain in Array](.doc/0845.longest-mountain-in-array.md) | Medium (40.18%) | array | [cpp](.cpp/0845.longest-mountain-in-array.cpp) |
 | [0846.Hand of Straights](.doc/0846.hand-of-straights.md) | Medium (56.01%) | ordered-map, array | [cpp](.cpp/0846.hand-of-straights.cpp) |
 | [0848.Shifting Letters](.doc/0848.shifting-letters.md) | Medium (44.90%) | prefix-sum | [cpp](.cpp/0848.shifting-letters.cpp) |

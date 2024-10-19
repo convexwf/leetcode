@@ -12,29 +12,28 @@
 // Memory Usage: 7.7 MB, less than 43.21% of cpp online submissions.
 class Solution {
 public:
-    string mostCommonWord(string paragraph, vector<string> &banned) {
-        unordered_map<string, int> hash;
-        for (auto &c : banned) {
-            hash[c] = -1;
-        }
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        unordered_set<string> bannedSet(banned.begin(), banned.end());
+        unordered_map<string, int> wordCount;
         string word;
-        paragraph.append(" ");
-        for (char &c : paragraph) {
+        paragraph += ".";
+        for (char& c : paragraph) {
             if (isalpha(c)) {
                 word += tolower(c);
             }
-            else if (word != "") {
-                if (hash[word] != -1) hash[word]++;
-                word = "";
+            else if (!word.empty()) {
+                if (!bannedSet.count(word)) {
+                    wordCount[word]++;
+                }
+                word.clear();
             }
         }
-        int max_count = 0;
         string res;
-        for (auto [k, v] : hash) {
-            // cout << k << " " << v << endl;
-            if (v > max_count) {
-                max_count = v;
-                res = k;
+        int maxCount = 0;
+        for (auto& [w, c] : wordCount) {
+            if (c > maxCount) {
+                maxCount = c;
+                res = w;
             }
         }
         return res;

@@ -16,13 +16,19 @@ public:
         int res = INT_MAX, n = fronts.size();
         unordered_set<int> same;
         for (int i = 0; i < n; ++i) {
-            if (fronts[i] == backs[i]) same.insert(fronts[i]);
+            if (fronts[i] == backs[i]) {
+                same.insert(fronts[i]);
+            }
         }
         for (int front : fronts) {
-            if (!same.count(front)) res = min(res, front);
+            if (!same.count(front)) {
+                res = min(res, front);
+            }
         }
         for (int back : backs) {
-            if (!same.count(back)) res = min(res, back);
+            if (!same.count(back)) {
+                res = min(res, back);
+            }
         }
         return (res == INT_MAX) ? 0 : res;
     }
