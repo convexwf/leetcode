@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 字符串比较法
+// 1. 字符串比较
 // 2023-05-23 submission
 // 41/41 cases passed
 // Runtime: 0 ms, faster than % of cpp online submissions.

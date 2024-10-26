@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 遍历二维数组
+// 1. 模拟
 // 2023-05-25 submission
 // 27/27 cases passed
 // Runtime: 8 ms, faster than 76.75% of cpp online submissions.

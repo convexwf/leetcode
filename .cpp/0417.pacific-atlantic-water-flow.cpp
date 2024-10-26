@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. DFS
+// 1. dfs
 // 2023-05-25 submission
 // 113/113 cases passed
 // Runtime: 47 ms, faster than 60.09% of cpp online submissions.
@@ -37,9 +37,11 @@ public:
         return res;
     }
 
-    void dfs(vector<vector<int>>& heights, vector<vector<int>>& visited, int mark, int pre, int i, int j) {
+    void dfs(vector<vector<int>>& heights, vector<vector<int>>& visited, int mark, int pre, int i,
+             int j) {
         int m = heights.size(), n = heights[0].size();
-        if (i < 0 || i >= m || j < 0 || j >= n || (visited[i][j] & mark) || heights[i][j] < pre) return;
+        if (i < 0 || i >= m || j < 0 || j >= n || (visited[i][j] & mark) || heights[i][j] < pre)
+            return;
         visited[i][j] += mark;
         dfs(heights, visited, mark, heights[i][j], i + 1, j);
         dfs(heights, visited, mark, heights[i][j], i - 1, j);
@@ -50,7 +52,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. BFS
+// 2. bfs
 // 2023-05-25 submission
 // 113/113 cases passed
 // Runtime: 93 ms, faster than 17.76% of cpp online submissions.
@@ -94,7 +96,8 @@ public:
             q.pop();
             for (auto dir : dirs) {
                 int x = t.first + dir[0], y = t.second + dir[1];
-                if (x < 0 || x >= m || y < 0 || y >= n || visited[x][y] || matrix[x][y] < matrix[t.first][t.second])
+                if (x < 0 || x >= m || y < 0 || y >= n || visited[x][y] ||
+                    matrix[x][y] < matrix[t.first][t.second])
                     continue;
                 visited[x][y] = true;
                 q.push({x, y});

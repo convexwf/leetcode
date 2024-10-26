@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 排序 + 剪枝 + 双指针
+// 1. 排序+剪枝+双指针
 // 2023-05-23 submission
 // 100/100 cases passed
 // Runtime: 3 ms, faster than 72.82% of cpp online submissions.
@@ -13,8 +13,9 @@
 class Solution {
 public:
     int findLUSlength(vector<string>& strs) {
-        sort(strs.begin(), strs.end(),
-             [](const string& a, const string& b) { return a.size() > b.size() || (a.size() == b.size() && a < b); });
+        sort(strs.begin(), strs.end(), [](const string& a, const string& b) {
+            return a.size() > b.size() || (a.size() == b.size() && a < b);
+        });
         for (int i = 0; i < strs.size(); ++i) {
             bool flag = true;
             for (int j = 0; j < strs.size(); ++j) {

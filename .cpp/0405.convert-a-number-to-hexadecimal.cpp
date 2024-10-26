@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 位运算
+// 1. 位操作
 // 2023-05-18 submission
 // 100/100 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

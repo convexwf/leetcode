@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. DFS
+// 1. dfs
 // 2023-06-16 submission
 // 78/78 cases passed
 // Runtime: 4 ms, faster than 98.24% of cpp online submissions.
@@ -42,7 +42,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. BFS
+// 2. bfs
 // 2023-06-16 submission
 // 78/78 cases passed
 // Runtime: 12 ms, faster than 72.76% of cpp online submissions.

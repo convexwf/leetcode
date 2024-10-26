@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 双指针
 // 2020-09-19 submission
 // 58/58 cases passed
 // Runtime: 8 ms, faster than 63.19% of cpp online submissions.
@@ -12,34 +13,26 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        string res_s;
-        if (s.length() == 0) return res_s;
-        vector<string> res;
-
-        bool word = false;
-        int begin = -1;
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] != ' ' && !word) {
-                word = true;
+        string res;
+        int i = -1, j = 0;
+        for (; j < s.size(); ++j) {
+            if (s[j] == ' ') {
+                if (j > i + 1) {
+                    res = s.substr(i + 1, j - i - 1) + " " + res;
+                }
+                i = j;
             }
-            if (s[i] == ' ') {
-                if (word) res.push_back(s.substr(begin + 1, i - begin - 1));
-                begin = i;
-                word = false;
+            else if (j == s.size() - 1) {
+                res = s.substr(i + 1, j - i) + " " + res;
             }
         }
-        if (s[s.length() - 1] != ' ') res.push_back(s.substr(begin + 1));
-
-        for (int i = res.size() - 1; i >= 0; i--) {
-            res_s.append(res[i]);
-            res_s.append(" ");
-        }
-        return res_s.substr(0, res_s.length() - 1);
+        return res.substr(0, res.size() - 1);
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 2. 字符串流类 stringstream
 // 2023-01-14 submission
 // 58/58 cases passed
 // Runtime: 14 ms, faster than 37.09% of cpp online submissions.
@@ -47,17 +40,18 @@ public:
 class Solution {
 public:
     string reverseWords(string s) {
-        istringstream is(s);
-        string tmp;
-        is >> s;
-        while (is >> tmp) s = tmp + " " + s;
-        if (!s.empty() && s[0] == ' ') s = "";
-        return s;
+        stringstream ss(s);
+        string t, res;
+        while (ss >> t) {
+            res = t + " " + res;
+        }
+        return res.empty() ? "" : res.substr(0, res.size() - 1);
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 3. stringstream + getline
 // 2023-01-14 submission
 // 58/58 cases passed
 // Runtime: 10 ms, faster than 52.11% of cpp online submissions.

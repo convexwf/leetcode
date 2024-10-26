@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2023-02-20 submission
 // 86/86 cases passed
 // Runtime: 106 ms, faster than 78.85% of cpp online submissions.
@@ -12,18 +13,17 @@
 class Solution {
 public:
     int longestPalindromeSubseq(string s) {
-        int n = s.length();
-        vector<vector<int>> dp(n, vector<int>(n, 1));
-        for (int len = 2; len <= n; ++len) {
-            for (int i = 0, j = i + len - 1; j < n; ++i, ++j) {
-                if (s[i] != s[j]) {
-                    dp[i][j] = max(dp[i][j - 1], dp[i + 1][j]);
-                }
-                else if (i + 1 <= j - 1) {
+        int n = s.size();
+        vector<vector<int>> dp(n, vector<int>(n, 0));
+        for (int i = n - 1; i >= 0; i--) {
+            dp[i][i] = 1;
+            for (int j = i + 1; j < n; j++) {
+                if (s[i] == s[j]) {
                     dp[i][j] = dp[i + 1][j - 1] + 2;
                 }
-                else
-                    dp[i][j] = 2;
+                else {
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1]);
+                }
             }
         }
         return dp[0][n - 1];

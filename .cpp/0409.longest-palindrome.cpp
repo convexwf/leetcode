@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 计数+哈希表
 // 2021-12-23 submission
 // 95/95 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -16,16 +17,11 @@ public:
         for (char c : s) {
             ++m[c];
         }
-        int odd_cnt = 0, even_cnt = 0;
-        for (auto it = m.begin(); it != m.end(); ++it) {
-            if (it->second % 2 == 0)
-                even_cnt += it->second;
-            else {
-                even_cnt += (it->second - 1);
-                odd_cnt = 1;
-            }
+        int count = 0;
+        for (auto& [_, v] : m) {
+            count += v / 2 * 2;
         }
-        return odd_cnt + even_cnt;
+        return count < s.size() ? count + 1 : count;
     }
 };
 // @lc code=end

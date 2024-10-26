@@ -97,6 +97,8 @@
 | [0104.Maximum Depth of Binary Tree](.doc/0104.maximum-depth-of-binary-tree.md) | Easy (74.98%) | binary-tree, depth-first-search, breadth-first-search | [cpp](.cpp/0104.maximum-depth-of-binary-tree.cpp) |
 | [0105.Construct Binary Tree from Preorder and Inorder Traversal](.doc/0105.construct-binary-tree-from-preorder-and-inorder-traversal.md) | Medium (63.33%) | binary-tree, hash-table | [cpp](.cpp/0105.construct-binary-tree-from-preorder-and-inorder-traversal.cpp) |
 | [0106.Construct Binary Tree from Inorder and Postorder Traversal](.doc/0106.construct-binary-tree-from-inorder-and-postorder-traversal.md) | Medium (62.15%) | binary-tree, hash-table | [cpp](.cpp/0106.construct-binary-tree-from-inorder-and-postorder-traversal.cpp) |
+| [0107.Binary Tree Level Order Traversal II](.doc/0107.binary-tree-level-order-traversal-ii.md) | Medium (62.86%) | binary-tree, breadth-first-search, depth-first-search | [cpp](.cpp/0107.binary-tree-level-order-traversal-ii.cpp) |
+| [0108.Convert Sorted Array to Binary Search Tree](.doc/0108.convert-sorted-array-to-binary-search-tree.md) | Easy (71.25%) | binary-tree, array, depth-first-search | [cpp](.cpp/0108.convert-sorted-array-to-binary-search-tree.cpp) |
 | [0109.Convert Sorted List to Binary Search Tree](.doc/0109.convert-sorted-list-to-binary-search-tree.md) | Medium (61.45%) | linked-list, binary-search-tree, fast-slow-pointers | [cpp](.cpp/0109.convert-sorted-list-to-binary-search-tree.cpp) |
 | [0110.Balanced Binary Tree](.doc/0110.balanced-binary-tree.md) | Easy (51.35%) | binary-tree, depth-first-search | [cpp](.cpp/0110.balanced-binary-tree.cpp) |
 | [0111.Minimum Depth of Binary Tree](.doc/0111.minimum-depth-of-binary-tree.md) | Easy (47.32%) | binary-tree, depth-first-search, breadth-first-search | [cpp](.cpp/0111.minimum-depth-of-binary-tree.cpp) |
@@ -135,6 +137,7 @@
 | [0146.LRU Cache](.doc/0146.lru-cache.md) | Medium (42.07%) | design | [cpp](.cpp/0146.lru-cache.cpp) |
 | [0147.Insertion Sort List](.doc/0147.insertion-sort-list.md) | Medium (52.91%) | sort, linked-list | [cpp](.cpp/0147.insertion-sort-list.cpp) |
 | [0150.Evaluate Reverse Polish Notation](.doc/0150.evaluate-reverse-polish-notation.md) | Medium (50.68%) | stack | [cpp](.cpp/0150.evaluate-reverse-polish-notation.cpp) |
+| [0151.Reverse Words in a String](.doc/0151.reverse-words-in-a-string.md) | Medium (40.05%) | string, two-pointers | [cpp](.cpp/0151.reverse-words-in-a-string.cpp) |
 | [0152.Maximum Product Subarray](.doc/0152.maximum-product-subarray.md) | Medium (34.93%) | array, dynamic-programming | [cpp](.cpp/0152.maximum-product-subarray.cpp) |
 | [0155.Min Stack](.doc/0155.min-stack.md) | Medium (53.69%) | stack, design | [cpp](.cpp/0155.min-stack.cpp) |
 | 0156.Binary Tree Upside Down 🔒 | | binary-tree | [cpp](.cpp/0156.binary-tree-upside-down.cpp) |
@@ -243,6 +246,7 @@
 | [0304.Range Sum Query 2D - Immutable](.doc/0304.range-sum-query-2-d-immutable.md) | Medium (54.09%) | prefix-sum, math, matrix, interval | [cpp](.cpp/0304.range-sum-query-2-d-immutable.cpp) |
 | 0305.Number of Islands II 🔒 | | union-find | [cpp](.cpp/0305.number-of-islands-ii.cpp) |
 | [0307.Range Sum Query - Mutable](.doc/0307.range-sum-query-mutable.md) | Medium (40.83%) | array, interval, binary-indexed-tree | [cpp](.cpp/0307.range-sum-query-mutable.cpp) |
+| 0308.Range Sum Query 2D - Mutable 🔒 | | matrix, interval, binary-indexed-tree |  |
 | [0310.Minimum Height Trees](.doc/0310.minimum-height-trees.md) | Medium (38.80%) | tree, graph, topological-sort | [cpp](.cpp/0310.minimum-height-trees.cpp) |
 | 0311.Sparse Matrix Multiplication 🔒 | | math, matrix | [cpp](.cpp/0311.sparse-matrix-multiplication.cpp) |
 | [0313.Super Ugly Number](.doc/0313.super-ugly-number.md) | Medium (45.25%) | heap, math, dynamic-programming | [cpp](.cpp/0313.super-ugly-number.cpp) |
@@ -253,6 +257,7 @@
 | [0319.Bulb Switcher](.doc/0319.bulb-switcher.md) | Medium (52.97%) | math, brainteaser | [cpp](.cpp/0319.bulb-switcher.cpp) |
 | 0320.Generalized Abbreviation 🔒 | | string, depth-first-search | [cpp](.cpp/0320.generalized-abbreviation.cpp) |
 | [0321.Create Maximum Number](.doc/0321.create-maximum-number.md) | Hard (29.47%) | greedy | [cpp](.cpp/0321.create-maximum-number.cpp) |
+| 0323.Number of Connected Components in an Undirected Graph 🔒 | | graph, depth-first-search, union-find | [cpp](.cpp/0323.number-of-connected-components-in-an-undirected-graph.cpp) |
 | 0325.Maximum Size Subarray Sum Equals k 🔒 | | hash-table, prefix-sum | [cpp](.cpp/0325.maximum-size-subarray-sum-equals-k.cpp) |
 | [0326.Power of Three](.doc/0326.power-of-three.md) | Easy (46.25%) | math | [cpp](.cpp/0326.power-of-three.cpp) |
 | [0328.Odd Even Linked List](.doc/0328.odd-even-linked-list.md) | Medium (61.38%) | linked-list | [cpp](.cpp/0328.odd-even-linked-list.cpp) |
@@ -306,15 +311,23 @@
 | [0401.Binary Watch](.doc/0401.binary-watch.md) | Easy (53.67%) | bit-manipulation | [cpp](.cpp/0401.binary-watch.cpp) |
 | [0402.Remove K Digits](.doc/0402.remove-k-digits.md) | Medium (33.71%) | stack, greedy | [cpp](.cpp/0402.remove-k-digits.cpp) |
 | [0404.Sum of Left Leaves](.doc/0404.sum-of-left-leaves.md) | Easy (57.58%) | binary-tree | [cpp](.cpp/0404.sum-of-left-leaves.cpp) |
+| [0405.Convert a Number to Hexadecimal](.doc/0405.convert-a-number-to-hexadecimal.md) | Easy (46.85%) | bit-manipulation | [cpp](.cpp/0405.convert-a-number-to-hexadecimal.cpp) |
 | [0406.Queue Reconstruction by Height](.doc/0406.queue-reconstruction-by-height.md) | Medium (73.20%) | sort | [cpp](.cpp/0406.queue-reconstruction-by-height.cpp) |
 | [0407.Trapping Rain Water II](.doc/0407.trapping-rain-water-ii.md) | Hard (47.56%) | heap, breadth-first-search | [cpp](.cpp/0407.trapping-rain-water-ii.cpp) |
 | 0408.Valid Word Abbreviation 🔒 | | string, two-pointers | [cpp](.cpp/0408.valid-word-abbreviation.cpp) |
+| [0409.Longest Palindrome](.doc/0409.longest-palindrome.md) | Easy (53.88%) | hash-table, string, palindrome | [cpp](.cpp/0409.longest-palindrome.cpp) |
 | [0412.Fizz Buzz](.doc/0412.fizz-buzz.md) | Easy (71.60%) | easy | [cpp](.cpp/0412.fizz-buzz.cpp) |
 | [0413.Arithmetic Slices](.doc/0413.arithmetic-slices.md) | Medium (65.07%) | math, dynamic-programming | [cpp](.cpp/0413.arithmetic-slices.cpp) |
 | [0414.Third Maximum Number](.doc/0414.third-maximum-number.md) | Easy (34.39%) | array | [cpp](.cpp/0414.third-maximum-number.cpp) |
 | [0415.Add Strings](.doc/0415.add-strings.md) | Easy (51.67%) | string, arithmetic, two-pointers | [cpp](.cpp/0415.add-strings.cpp) |
+| [0416.Partition Equal Subset Sum](.doc/0416.partition-equal-subset-sum.md) | Medium (46.22%) | dynamic-programming, bit-manipulation, array, target-sum | [cpp](.cpp/0416.partition-equal-subset-sum.cpp) |
+| [0417.Pacific Atlantic Water Flow](.doc/0417.pacific-atlantic-water-flow.md) | Medium (54.53%) | depth-first-search, breadth-first-search, matrix | [cpp](.cpp/0417.pacific-atlantic-water-flow.cpp) |
 | 0418.Sentence Screen Fitting 🔒 | | greedy | [cpp](.cpp/0418.sentence-screen-fitting.cpp) |
+| [0419.Battleships in a Board](.doc/0419.battleships-in-a-board.md) | Medium (74.89%) | matrix | [cpp](.cpp/0419.battleships-in-a-board.cpp) |
 | 0422.Valid Word Square 🔒 | | matrix, string | [cpp](.cpp/0422.valid-word-square.cpp) |
+| [0423.Reconstruct Original Digits from English](.doc/0423.reconstruct-original-digits-from-english.md) | Medium (51.13%) | string, math | [cpp](.cpp/0423.reconstruct-original-digits-from-english.cpp) |
+| [0424.Longest Repeating Character Replacement](.doc/0424.longest-repeating-character-replacement.md) | Medium (52.72%) | string, sliding-window | [cpp](.cpp/0424.longest-repeating-character-replacement.cpp) |
+| [0427.Construct Quad Tree](.doc/0427.construct-quad-tree.md) | Medium (74.88%) | matrix, depth-first-search | [cpp](.cpp/0427.construct-quad-tree.cpp) |
 | 0428.Serialize and Deserialize N-ary Tree 🔒 | | tree, depth-first-search, breadth-first-search, design, serialization | [cpp](.cpp/0428.serialize-and-deserialize-n-ary-tree.cpp) |
 | [0429.N-ary Tree Level Order Traversal](.doc/0429.n-ary-tree-level-order-traversal.md) | Medium (70.72%) | tree, breadth-first-search, depth-first-search | [cpp](.cpp/0429.n-ary-tree-level-order-traversal.cpp) |
 | [0432.All O`one Data Structure](.doc/0432.all-o-one-data-structure.md) | Hard (36.50%) | hash-table, design, linked-list | [cpp](.cpp/0432.all-o-one-data-structure.cpp) |
@@ -361,8 +374,13 @@
 | [0507.Perfect Number](.doc/0507.perfect-number.md) | Easy (39.51%) | math | [cpp](.cpp/0507.perfect-number.cpp) |
 | [0509.Fibonacci Number](.doc/0509.fibonacci-number.md) | Easy (70.69%) | fibonacci, dynamic-programming | [cpp](.cpp/0509.fibonacci-number.cpp) |
 | 0510.Inorder Successor in BST II 🔒 | | binary-tree, binary-search-tree | [cpp](.cpp/0510.inorder-successor-in-bst-ii.cpp) |
+| [0513.Find Bottom Left Tree Value](.doc/0513.find-bottom-left-tree-value.md) | Medium (67.04%) | binary-tree, depth-first-search, breadth-first-search | [cpp](.cpp/0513.find-bottom-left-tree-value.cpp) |
+| [0515.Find Largest Value in Each Tree Row](.doc/0515.find-largest-value-in-each-tree-row.md) | Medium (64.53%) | binary-tree, depth-first-search, breadth-first-search | [cpp](.cpp/0515.find-largest-value-in-each-tree-row.cpp) |
+| [0516.Longest Palindromic Subsequence](.doc/0516.longest-palindromic-subsequence.md) | Medium (62.40%) | dynamic-programming, palindrome | [cpp](.cpp/0516.longest-palindromic-subsequence.cpp) |
 | [0519.Random Flip Matrix](.doc/0519.random-flip-matrix.md) | Medium (40.40%) | random, design, array | [cpp](.cpp/0519.random-flip-matrix.cpp) |
 | [0520.Detect Capital](.doc/0520.detect-capital.md) | Easy (56.59%) | string | [cpp](.cpp/0520.detect-capital.cpp) |
+| [0521.Longest Uncommon Subsequence I](.doc/0521.longest-uncommon-subsequence-i.md) | Easy (60.30%) | string | [cpp](.cpp/0521.longest-uncommon-subsequence-i.cpp) |
+| [0522.Longest Uncommon Subsequence II](.doc/0522.longest-uncommon-subsequence-ii.md) | Medium (40.59%) | string, sort, two-pointers | [cpp](.cpp/0522.longest-uncommon-subsequence-ii.cpp) |
 | 0527.Word Abbreviation 🔒 | | trie, string | [cpp](.cpp/0527.word-abbreviation.cpp) |
 | 0531.Lonely Pixel I 🔒 | | matrix | [cpp](.cpp/0531.lonely-pixel-i.cpp) |
 | [0535.Encode and Decode TinyURL](.doc/0535.encode-and-decode-tiny-url.md) | Medium (86.02%) | hash-table, design | [cpp](.cpp/0535.encode-and-decode-tiny-url.cpp) |
@@ -598,6 +616,9 @@
 | [0991.Broken Calculator](.doc/0991.broken-calculator.md) | Medium (54.25%) | math, greedy, recursion | [cpp](.cpp/0991.broken-calculator.cpp) |
 | [0993.Cousins in Binary Tree](.doc/0993.cousins-in-binary-tree.md) | Easy (55.14%) | binary-tree, breadth-first-search, depth-first-search | [cpp](.cpp/0993.cousins-in-binary-tree.cpp) |
 | [0994.Rotting Oranges](.doc/0994.rotting-oranges.md) | Medium (53.25%) | matrix, breadth-first-search | [cpp](.cpp/0994.rotting-oranges.cpp) |
+| [0997.Find the Town Judge](.doc/0997.find-the-town-judge.md) | Easy (49.40%) | graph | [cpp](.cpp/0997.find-the-town-judge.cpp) |
+| [0998.Maximum Binary Tree II](.doc/0998.maximum-binary-tree-ii.md) | Medium (67.81%) | binary-tree, recursion | [cpp](.cpp/0998.maximum-binary-tree-ii.cpp) |
+| [0999.Available Captures for Rook](.doc/0999.available-captures-for-rook.md) | Easy (68.36%) | depth-first-search, matrix | [cpp](.cpp/0999.available-captures-for-rook.cpp) |
 | [1006.Clumsy Factorial](.doc/1006.clumsy-factorial.md) | Medium (56.52%) | stack, math | [cpp](.cpp/1006.clumsy-factorial.cpp) |
 | [1007.Minimum Domino Rotations For Equal Row](.doc/1007.minimum-domino-rotations-for-equal-row.md) | Medium (52.23%) | array, greedy | [cpp](.cpp/1007.minimum-domino-rotations-for-equal-row.cpp) |
 | [1008.Construct Binary Search Tree from Preorder Traversal](.doc/1008.construct-binary-search-tree-from-preorder-traversal.md) | Medium (81.77%) | binary-tree, binary-search-tree, depth-first-search | [cpp](.cpp/1008.construct-binary-search-tree-from-preorder-traversal.cpp) |

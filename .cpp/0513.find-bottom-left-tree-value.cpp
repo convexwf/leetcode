@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 层序遍历
+// 1. bfs+层序遍历
 // 2023-06-06 submission
 // 77/77 cases passed
 // Runtime: 3 ms, faster than 99.51% of cpp online submissions.
@@ -44,7 +44,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. DFS
+// 2. dfs+前序遍历
 // 2023-06-06 submission
 // 77/77 cases passed
 // Runtime: 11 ms, faster than 80.49% of cpp online submissions.
@@ -72,7 +72,7 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 3. 层序遍历（从右往左遍历）
+// 3. bfs+层序遍历（从右往左遍历）
 // 2023-06-06 submission
 // 77/77 cases passed
 // Runtime: 15 ms, faster than 50.6% of cpp online submissions.

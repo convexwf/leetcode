@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. dfs
 // 2023-01-14 submission
 // 34/34 cases passed
 // Runtime: 8 ms, faster than 44.52% of cpp online submissions.
@@ -41,6 +42,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. bfs
 // 2023-01-14 submission
 // 34/34 cases passed
 // Runtime: 29 ms, faster than 5.09% of cpp online submissions.
@@ -57,8 +59,12 @@ public:
                 TreeNode* t = q.front();
                 q.pop();
                 oneLevel.push_back(t->val);
-                if (t->left) q.push(t->left);
-                if (t->right) q.push(t->right);
+                if (t->left) {
+                    q.push(t->left);
+                }
+                if (t->right) {
+                    q.push(t->right);
+                }
             }
             res.insert(res.begin(), oneLevel);
         }

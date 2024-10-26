@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 出入度计算
+// 1. 计数
 // 2023-07-11 submission
 // 92/92 cases passed
 // Runtime: 174 ms, faster than 94.63% of cpp online submissions.
