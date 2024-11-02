@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. BFS
+// 1. bfs+哈希表
 // 2023-12-12 submission
 // 55/55 cases passed
 // Runtime: 492 ms, faster than 30.53% of cpp online submissions.

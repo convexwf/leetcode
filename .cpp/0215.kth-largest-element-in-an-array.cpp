@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 最大堆
 // 2021-03-18 submission
 // 39/39 cases passed
 // Runtime: 120 ms, faster than 79.72% of cpp online submissions.
@@ -12,18 +13,19 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        priority_queue<int, vector<int>, greater<int>> q;
-        for (int i = 0; i < nums.size(); i++) {
-            if (q.size() >= k) {
-                if (nums[i] > q.top()) {
-                    q.pop();
-                    q.push(nums[i]);
+        priority_queue<int> pq;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (pq.size() < k) {
+                pq.push(nums[i]);
+            }
+            else {
+                if (nums[i] > pq.top()) {
+                    pq.pop();
+                    pq.push(nums[i]);
                 }
             }
-            else
-                q.push(nums[i]);
         }
-        return q.top();
+        return pq.top();
     }
 };
 // @lc code=end

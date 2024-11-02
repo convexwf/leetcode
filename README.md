@@ -1,5 +1,14 @@
 # Leetcode Solution
 
+<!-- Summary Start -->
+Only count the problems in the range of `[1, 1080]` .
+
+**Accepted / Total** : **565 / 870**
+
+🔒 **Accepted / Total Lock** : **101 / 152**
+
+<!-- Summary End -->
+
 ## Table of Leetcode Solution
 
 <!-- Table Start -->
@@ -146,6 +155,7 @@
 | [0160.Intersection of Two Linked Lists](.doc/0160.intersection-of-two-linked-lists.md) | Easy (56.77%) | linked-list, two-pointers | [cpp](.cpp/0160.intersection-of-two-linked-lists.cpp) |
 | 0161.One Edit Distance 🔒 | | string | [cpp](.cpp/0161.one-edit-distance.cpp) |
 | [0162.Find Peak Element](.doc/0162.find-peak-element.md) | Medium (45.84%) | array, binary-search | [cpp](.cpp/0162.find-peak-element.cpp) |
+| 0163.Missing Ranges 🔒 | | array, interval | [cpp](.cpp/0163.missing-ranges.cpp) |
 | [0167.Two Sum II - Input Array Is Sorted](.doc/0167.two-sum-ii-input-array-is-sorted.md) | Medium (60.83%) | array, two-pointers, binary-search | [cpp](.cpp/0167.two-sum-ii-input-array-is-sorted.cpp) |
 | [0168.Excel Sheet Column Title](.doc/0168.excel-sheet-column-title.md) | Easy (40.14%) | math, string, easy | [cpp](.cpp/0168.excel-sheet-column-title.cpp) |
 | [0169.Majority Element](.doc/0169.majority-element.md) | Easy (63.95%) | sort, array, bit-manipulation, boyer-moore-voting-algorithm | [cpp](.cpp/0169.majority-element.cpp) |
@@ -200,10 +210,12 @@
 | 0245.Shortest Word Distance III 🔒 | | string, two-pointers | [cpp](.cpp/0245.shortest-word-distance-iii.cpp) |
 | 0246.Strobogrammatic Number 🔒 | | two-pointers | [cpp](.cpp/0246.strobogrammatic-number.cpp) |
 | 0247.Strobogrammatic Number II 🔒 | | recursion, string | [cpp](.cpp/0247.strobogrammatic-number-ii.cpp) |
+| 0248.Strobogrammatic Number III 🔒 | | string, recursion | [cpp](.cpp/0248.strobogrammatic-number-iii.cpp) |
 | 0249.Group Shifted Strings 🔒 | | hash-table, string | [cpp](.cpp/0249.group-shifted-strings.cpp) |
 | 0250.Count Univalue Subtrees 🔒 | | binary-tree, depth-first-search | [cpp](.cpp/0250.count-univalue-subtrees.cpp) |
 | 0251.Flatten 2D Vector 🔒 | | design, two-pointers | [cpp](.cpp/0251.flatten-2d-vector.cpp) |
 | 0252.Meeting Rooms 🔒 | | sort, interval | [cpp](.cpp/0252.meeting-rooms.cpp) |
+| 0253.Meeting Rooms II 🔒 | | array, difference-array, interval | [cpp](.cpp/0253.meeting-rooms-ii.cpp) |
 | 0256.Paint House 🔒 | | dynamic-programming | [cpp](.cpp/0256.paint-house.cpp) |
 | [0257.Binary Tree Paths](.doc/0257.binary-tree-paths.md) | Easy (63.13%) | binary-tree, depth-first-search | [cpp](.cpp/0257.binary-tree-paths.cpp) |
 | [0258.Add Digits](.doc/0258.add-digits.md) | Easy (66.28%) | math | [cpp](.cpp/0258.add-digits.cpp) |
@@ -215,6 +227,7 @@
 | 0265.Paint House II 🔒 | | dynamic-programming | [cpp](.cpp/0265.paint-house-ii.cpp) |
 | 0266.Palindrome Permutation 🔒 | | string, hash-table, palindrome, permutation | [cpp](.cpp/0266.palindrome-permutation.cpp) |
 | [0268.Missing Number](.doc/0268.missing-number.md) | Easy (64.97%) | math, array, bit-manipulation, binary-search | [cpp](.cpp/0268.missing-number.cpp) |
+| 0270.Closest Binary Search Tree Value 🔒 | | binary-search-tree, binary-tree, recursion | [cpp](.cpp/0270.closest-binary-search-tree-value.cpp) |
 | 0271.Encode and Decode Strings 🔒 | | string, design | [cpp](.cpp/0271.encode-and-decode-strings.cpp) |
 | [0273.Integer to English Words](.doc/0273.integer-to-english-words.md) | Hard (30.43%) | math, string, hash-table | [cpp](.cpp/0273.integer-to-english-words.cpp) |
 | [0274.H-Index](.doc/0274.h-index.md) | Medium (38.72%) | sort, array, hash-table | [cpp](.cpp/0274.h-index.cpp) |
@@ -265,6 +278,7 @@
 | [0330.Patching Array](.doc/0330.patching-array.md) | Hard (40.76%) | greedy | [cpp](.cpp/0330.patching-array.cpp) |
 | [0331.Verify Preorder Serialization of a Binary Tree](.doc/0331.verify-preorder-serialization-of-a-binary-tree.md) | Medium (44.82%) | stack | [cpp](.cpp/0331.verify-preorder-serialization-of-a-binary-tree.cpp) |
 | [0334.Increasing Triplet Subsequence](.doc/0334.increasing-triplet-subsequence.md) | Medium (40.37%) | array | [cpp](.cpp/0334.increasing-triplet-subsequence.cpp) |
+| 0339.Nested List Weight Sum 🔒 | | depth-first-search, breadth-first-search | [cpp](.cpp/0339.nested-list-weight-sum.cpp) |
 | [0342.Power of Four](.doc/0342.power-of-four.md) | Easy (47.73%) | bit-manipulation, math | [cpp](.cpp/0342.power-of-four.cpp) |
 | [0344.Reverse String](.doc/0344.reverse-string.md) | Easy (77.54%) | two-pointers, string | [cpp](.cpp/0344.reverse-string.cpp) |
 | [0345.Reverse Vowels of a String](.doc/0345.reverse-vowels-of-a-string.md) | Easy (52.38%) | two-pointers, string | [cpp](.cpp/0345.reverse-vowels-of-a-string.cpp) |
@@ -281,6 +295,7 @@
 | 0360.Sort Transformed Array 🔒 | | math, two-pointers | [cpp](.cpp/0360.sort-transformed-array.cpp) |
 | 0361.Bomb Enemy 🔒 | | matrix | [cpp](.cpp/0361.bomb-enemy.cpp) |
 | 0362.Design Hit Counter 🔒 | | design, binary-search | [cpp](.cpp/0362.design-hit-counter.cpp) |
+| 0364.Nested List Weight Sum II 🔒 | | depth-first-search | [cpp](.cpp/0364.nested-list-weight-sum-ii.cpp) |
 | [0365.Water and Jug Problem](.doc/0365.water-and-jug-problem.md) | Medium (39.69%) | math | [cpp](.cpp/0365.water-and-jug-problem.cpp) |
 | 0366.Find Leaves of Binary Tree 🔒 | | binary-tree, depth-first-search | [cpp](.cpp/0366.find-leaves-of-binary-tree.cpp) |
 | [0368.Largest Divisible Subset](.doc/0368.largest-divisible-subset.md) | Medium (41.61%) | math, dynamic-programming | [cpp](.cpp/0368.largest-divisible-subset.cpp) |
@@ -388,12 +403,14 @@
 | [0538.Convert BST to Greater Tree](.doc/0538.convert-bst-to-greater-tree.md) | Medium (68.01%) | binary-search-tree, binary-tree, stack | [cpp](.cpp/0538.convert-bst-to-greater-tree.cpp) |
 | [0540.Single Element in a Sorted Array](.doc/0540.single-element-in-a-sorted-array.md) | Medium (59.08%) | binary-search, bit-manipulation, duplicate | [cpp](.cpp/0540.single-element-in-a-sorted-array.cpp) |
 | [0541.Reverse String II](.doc/0541.reverse-string-ii.md) | Easy (50.43%) | string | [cpp](.cpp/0541.reverse-string-ii.cpp) |
+| 0544.Output Contest Matches 🔒 | | array | [cpp](.cpp/0544.output-contest-matches.cpp) |
 | [0547.Number of Provinces](.doc/0547.number-of-provinces.md) | Medium (65.81%) | graph, union-find | [cpp](.cpp/0547.number-of-provinces.cpp) |
 | 0548.Split Array with Equal Sum 🔒 | | prefix-sum, hash-table | [cpp](.cpp/0548.split-array-with-equal-sum.cpp) |
 | [0552.Student Attendance Record II](.doc/0552.student-attendance-record-ii.md) | Hard (42.38%) | depth-first-search, memoization | [cpp](.cpp/0552.student-attendance-record-ii.cpp) |
 | [0553.Optimal Division](.doc/0553.optimal-division.md) | Medium (60.41%) | math | [cpp](.cpp/0553.optimal-division.cpp) |
 | [0556.Next Greater Element III](.doc/0556.next-greater-element-iii.md) | Medium (33.92%) | permutation, string | [cpp](.cpp/0556.next-greater-element-iii.cpp) |
 | [0560.Subarray Sum Equals K](.doc/0560.subarray-sum-equals-k.md) | Medium (43.35%) | array, hash-table, prefix-sum | [cpp](.cpp/0560.subarray-sum-equals-k.cpp) |
+| 0562.Longest Line of Consecutive One in Matrix 🔒 | | dynamic-programming, matrix | [cpp](.cpp/0562.longest-line-of-consecutive-one-in-matrix.cpp) |
 | [0566.Reshape the Matrix](.doc/0566.reshape-the-matrix.md) | Easy (63.03%) | matrix | [cpp](.cpp/0566.reshape-the-matrix.cpp) |
 | 0573.Squirrel Simulation 🔒 | | planning, greedy | [cpp](.cpp/0573.squirrel-simulation.cpp) |
 | 0582.Kill Process 🔒 | | tree, graph, depth-first-search | [cpp](.cpp/0582.kill-process.cpp) |
@@ -406,6 +423,7 @@
 | [0599.Minimum Index Sum of Two Lists](.doc/0599.minimum-index-sum-of-two-lists.md) | Easy (53.73%) | hash-table, string | [cpp](.cpp/0599.minimum-index-sum-of-two-lists.cpp) |
 | [0605.Can Place Flowers](.doc/0605.can-place-flowers.md) | Easy (29.51%) | array, greedy | [cpp](.cpp/0605.can-place-flowers.cpp) |
 | [0606.Construct String from Binary Tree](.doc/0606.construct-string-from-binary-tree.md) | Medium (68.98%) | binary-tree, string | [cpp](.cpp/0606.construct-string-from-binary-tree.cpp) |
+| 0616.Add Bold Tag in String 🔒 | | string, trie | [cpp](.cpp/0616.add-bold-tag-in-string.cpp) |
 | [0621.Task Scheduler](.doc/0621.task-scheduler.md) | Medium (57.85%) | array, hash-table, greedy | [cpp](.cpp/0621.task-scheduler.cpp) |
 | [0622.Design Circular Queue](.doc/0622.design-circular-queue.md) | Medium (51.33%) | design, queue, linked-list, array | [cpp](.cpp/0622.design-circular-queue.cpp) |
 | [0623.Add One Row to Tree](.doc/0623.add-one-row-to-tree.md) | Medium (59.45%) | binary-tree, depth-first-search, breadth-first-search | [cpp](.cpp/0623.add-one-row-to-tree.cpp) |
@@ -455,6 +473,7 @@
 | [0680.Valid Palindrome II](.doc/0680.valid-palindrome-ii.md) | Easy (40.19%) | string, palindrome, two-pointers | [cpp](.cpp/0680.valid-palindrome-ii.cpp) |
 | [0682.Baseball Game](.doc/0682.baseball-game.md) | Easy (75.66%) | stack | [cpp](.cpp/0682.baseball-game.cpp) |
 | [0684.Redundant Connection](.doc/0684.redundant-connection.md) | Medium (62.34%) | graph, tree, union-find, breadth-first-search, depth-first-search | [cpp](.cpp/0684.redundant-connection.cpp) |
+| [0687.Longest Univalue Path](.doc/0687.longest-univalue-path.md) | Medium (40.61%) | binary-tree, recursion | [cpp](.cpp/0687.longest-univalue-path.cpp) |
 | [0688.Knight Probability in Chessboard](.doc/0688.knight-probability-in-chessboard.md) | Medium (56.17%) | dynamic-programming, depth-first-search, memoization | [cpp](.cpp/0688.knight-probability-in-chessboard.cpp) |
 | [0690.Employee Importance](.doc/0690.employee-importance.md) | Medium (66.44%) | hash-table, depth-first-search, breadth-first-search, graph | [cpp](.cpp/0690.employee-importance.cpp) |
 | [0692.Top K Frequent Words](.doc/0692.top-k-frequent-words.md) | Medium (57.57%) | hash-table, heap, ordered-set, sort, bucket-sort | [cpp](.cpp/0692.top-k-frequent-words.cpp) |
@@ -491,11 +510,15 @@
 | [0748.Shortest Completing Word](.doc/0748.shortest-completing-word.md) | Easy (59.27%) | hash-table, string | [cpp](.cpp/0748.shortest-completing-word.cpp) |
 | [0752.Open the Lock](.doc/0752.open-the-lock.md) | Medium (55.69%) | breadth-first-search, hash-table | [cpp](.cpp/0752.open-the-lock.cpp) |
 | [0753.Cracking the Safe](.doc/0753.cracking-the-safe.md) | Hard (56.48%) | hash-table, graph, greedy | [cpp](.cpp/0753.cracking-the-safe.cpp) |
+| 0758.Bold Words in String 🔒 | | string, trie | [cpp](.cpp/0758.bold-words-in-string.cpp) |
 | 0759.Employee Free Time 🔒 | | sort, array, interval | [cpp](.cpp/0759.employee-free-time.cpp) |
+| 0760.Find Anagram Mappings 🔒 | | array | [cpp](.cpp/0760.find-anagram-mappings.cpp) |
 | [0761.Special Binary String](.doc/0761.special-binary-string.md) | Hard (60.92%) | sort, recursion | [cpp](.cpp/0761.special-binary-string.cpp) |
 | [0764.Largest Plus Sign](.doc/0764.largest-plus-sign.md) | Medium (48.20%) | matrix | [cpp](.cpp/0764.largest-plus-sign.cpp) |
 | [0766.Toeplitz Matrix](.doc/0766.toeplitz-matrix.md) | Easy (68.45%) | matrix | [cpp](.cpp/0766.toeplitz-matrix.cpp) |
 | [0767.Reorganize String](.doc/0767.reorganize-string.md) | Medium (53.03%) | greedy, hash-table | [cpp](.cpp/0767.reorganize-string.cpp) |
+| [0771.Jewels and Stones](.doc/0771.jewels-and-stones.md) | Easy (88.28%) | hash-table | [cpp](.cpp/0771.jewels-and-stones.cpp) |
+| 0776.Split BST 🔒 | | binary-search-tree, binary-tree | [cpp](.cpp/0776.split-bst.cpp) |
 | [0785.Is Graph Bipartite?](.doc/0785.is-graph-bipartite.md) | Medium (55.32%) | graph, breadth-first-search, depth-first-search, union-find | [cpp](.cpp/0785.is-graph-bipartite.cpp) |
 | [0791.Custom Sort String](.doc/0791.custom-sort-string.md) | Medium (68.90%) | string, hash-table, sort | [cpp](.cpp/0791.custom-sort-string.cpp) |
 | [0792.Number of Matching Subsequences](.doc/0792.number-of-matching-subsequences.md) | Medium (51.26%) | binary-search, hash-table, string | [cpp](.cpp/0792.number-of-matching-subsequences.cpp) |
@@ -650,6 +673,7 @@
 | 1055.Shortest Way to Form String 🔒 | | string, two-pointers | [cpp](.cpp/1055.shortest-way-to-form-string.cpp) |
 | 1056.Confusing Number 🔒 | | math | [cpp](.cpp/1056.confusing-number.cpp) |
 | 1058.Minimize Rounding Error to Meet Target 🔒 | | math | [cpp](.cpp/1058.minimize-rounding-error-to-meet-target.cpp) |
+| 1065.Index Pairs of a String 🔒 | | string, trie | [cpp](.cpp/1065.index-pairs-of-a-string.cpp) |
 | [1071.Greatest Common Divisor of Strings](.doc/1071.greatest-common-divisor-of-strings.md) | Easy (52.07%) | string | [cpp](.cpp/1071.greatest-common-divisor-of-strings.cpp) |
 | [1072.Flip Columns For Maximum Number of Equal Rows](.doc/1072.flip-columns-for-maximum-number-of-equal-rows.md) | Medium (63.81%) | matrix, hash-table | [cpp](.cpp/1072.flip-columns-for-maximum-number-of-equal-rows.cpp) |
 | [1073.Adding Two Negabinary Numbers](.doc/1073.adding-two-negabinary-numbers.md) | Medium (36.66%) | arithmetic | [cpp](.cpp/1073.adding-two-negabinary-numbers.cpp) |
@@ -670,6 +694,362 @@
 | [2401.Longest Nice Subarray](.doc/2401.longest-nice-subarray.md) | Medium (50.52%) | bit-manipulation, sliding-window | [cpp](.cpp/2401.longest-nice-subarray.cpp) |
 | [2423.Remove Letter To Equalize Frequency](.doc/2423.remove-letter-to-equalize-frequency.md) | Easy (17.25%) | hash-table, string | [cpp](.cpp/2423.remove-letter-to-equalize-frequency.cpp) |
 | [2511.Maximum Enemy Forts That Can Be Captured](.doc/2511.maximum-enemy-forts-that-can-be-captured.md) | Easy (37.75%) | array, two-pointers | [cpp](.cpp/2511.maximum-enemy-forts-that-can-be-captured.cpp) |
+<!-- 0028.Find the Index of the First Occurrence in a String | Easy | Two Pointers, String, String Matching | -->
+<!-- 0033.Search in Rotated Sorted Array | Medium | Array, Binary Search | -->
+<!-- 0040.Combination Sum II | Medium | Array, Backtracking | -->
+<!-- 0041.First Missing Positive | Hard | Array, Hash Table | -->
+<!-- 0042.Trapping Rain Water | Hard | Stack, Array, Two Pointers, Dynamic Programming, Monotonic Stack | -->
+<!-- 0069.Sqrt(x) | Easy | Math, Binary Search | -->
+<!-- 0077.Combinations | Medium | Backtracking | -->
+<!-- 0081.Search in Rotated Sorted Array II | Medium | Array, Binary Search | -->
+<!-- 0084.Largest Rectangle in Histogram | Hard | Stack, Array, Monotonic Stack | -->
+<!-- 0085.Maximal Rectangle | Hard | Stack, Array, Dynamic Programming, Matrix, Monotonic Stack | -->
+<!-- 0087.Scramble String | Hard | String, Dynamic Programming | -->
+<!-- 0093.Restore IP Addresses | Medium | String, Backtracking | -->
+<!-- 0097.Interleaving String | Medium | String, Dynamic Programming | -->
+<!-- 0099.Recover Binary Search Tree | Medium | Tree, Depth-First Search, Binary Search Tree, Binary Tree | -->
+<!-- 0120.Triangle | Medium | Array, Dynamic Programming | -->
+<!-- 0134.Gas Station | Medium | Greedy, Array | -->
+<!-- 0148.Sort List | Medium | Linked List, Two Pointers, Divide and Conquer, Sorting, Merge Sort | -->
+<!-- 0149.Max Points on a Line | Hard | Geometry, Array, Hash Table, Math | -->
+<!-- 0153.Find Minimum in Rotated Sorted Array | Medium | Array, Binary Search | -->
+<!-- 0154.Find Minimum in Rotated Sorted Array II | Hard | Array, Binary Search | -->
+<!-- 0158.Read N Characters Given read4 II - Call Multiple Times 🔒 | Hard | Array, Interactive, Simulation | -->
+<!-- 0164.Maximum Gap | Medium | Array, Bucket Sort, Radix Sort, Sorting | -->
+<!-- 0165.Compare Version Numbers | Medium | Two Pointers, String | -->
+<!-- 0166.Fraction to Recurring Decimal | Medium | Hash Table, Math, String | -->
+<!-- 0214.Shortest Palindrome | Hard | String, String Matching, Hash Function, Rolling Hash | -->
+<!-- 0215.Kth Largest Element in an Array | Medium | Array, Divide and Conquer, Quickselect, Sorting, Heap (Priority Queue) | -->
+<!-- 0216.Combination Sum III | Medium | Array, Backtracking | -->
+<!-- 0218.The Skyline Problem | Hard | Binary Indexed Tree, Segment Tree, Array, Divide and Conquer, Ordered Set, Line Sweep, Heap (Priority Queue) | -->
+<!-- 0221.Maximal Square | Medium | Array, Dynamic Programming, Matrix | -->
+<!-- 0222.Count Complete Tree Nodes | Easy | Bit Manipulation, Tree, Binary Search, Binary Tree | -->
+<!-- 0224.Basic Calculator | Hard | Stack, Recursion, Math, String | -->
+<!-- 0227.Basic Calculator II | Medium | Stack, Math, String | -->
+<!-- 0233.Number of Digit One | Hard | Recursion, Math, Dynamic Programming | -->
+<!-- 0239.Sliding Window Maximum | Hard | Queue, Array, Sliding Window, Monotonic Queue, Heap (Priority Queue) | -->
+<!-- 0241.Different Ways to Add Parentheses | Medium | Recursion, Memoization, Math, String, Dynamic Programming | -->
+<!-- 0254.Factor Combinations 🔒 | Medium | Backtracking | -->
+<!-- 0255.Verify Preorder Sequence in Binary Search Tree 🔒 | Medium | Stack, Tree, Binary Search Tree, Recursion, Array, Binary Tree, Monotonic Stack | -->
+<!-- 0267.Palindrome Permutation II 🔒 | Medium | Hash Table, String, Backtracking | -->
+<!-- 0269.Alien Dictionary 🔒 | Hard | Depth-First Search, Breadth-First Search, Graph, Topological Sort, Array, String | -->
+<!-- 0272.Closest Binary Search Tree Value II 🔒 | Hard | Stack, Tree, Depth-First Search, Binary Search Tree, Two Pointers, Binary Tree, Heap (Priority Queue) | -->
+<!-- 0279.Perfect Squares | Medium | Breadth-First Search, Math, Dynamic Programming | -->
+<!-- 0282.Expression Add Operators | Hard | Math, String, Backtracking | -->
+<!-- 0300.Longest Increasing Subsequence | Medium | Array, Binary Search, Dynamic Programming | -->
+<!-- 0301.Remove Invalid Parentheses | Hard | Breadth-First Search, String, Backtracking | -->
+<!-- 0306.Additive Number | Medium | String, Backtracking | -->
+<!-- 0309.Best Time to Buy and Sell Stock with Cooldown | Medium | Array, Dynamic Programming | -->
+<!-- 0312.Burst Balloons | Hard | Array, Dynamic Programming | -->
+<!-- 0315.Count of Smaller Numbers After Self | Hard | Binary Indexed Tree, Segment Tree, Array, Binary Search, Divide and Conquer, Ordered Set, Merge Sort | -->
+<!-- 0322.Coin Change | Medium | Breadth-First Search, Array, Dynamic Programming | -->
+<!-- 0324.Wiggle Sort II | Medium | Array, Divide and Conquer, Quickselect, Sorting | -->
+<!-- 0327.Count of Range Sum | Hard | Binary Indexed Tree, Segment Tree, Array, Binary Search, Divide and Conquer, Ordered Set, Merge Sort | -->
+<!-- 0332.Reconstruct Itinerary | Hard | Depth-First Search, Graph, Eulerian Circuit | -->
+<!-- 0333.Largest BST Subtree 🔒 | Medium | Tree, Depth-First Search, Binary Search Tree, Dynamic Programming, Binary Tree | -->
+<!-- 0335.Self Crossing | Hard | Geometry, Array, Math | -->
+<!-- 0336.Palindrome Pairs | Hard | Trie, Array, Hash Table, String | -->
+<!-- 0337.House Robber III | Medium | Tree, Depth-First Search, Dynamic Programming, Binary Tree | -->
+<!-- 0338.Counting Bits | Easy | Bit Manipulation, Dynamic Programming | -->
+<!-- 0340.Longest Substring with At Most K Distinct Characters 🔒 | Medium | Hash Table, String, Sliding Window | -->
+<!-- 0341.Flatten Nested List Iterator | Medium | Stack, Tree, Depth-First Search, Design, Queue, Iterator | -->
+<!-- 0343.Integer Break | Medium | Math, Dynamic Programming | -->
+<!-- 0352.Data Stream as Disjoint Intervals | Hard | Design, Binary Search, Ordered Set | -->
+<!-- 0354.Russian Doll Envelopes | Hard | Array, Binary Search, Dynamic Programming, Sorting | -->
+<!-- 0357.Count Numbers with Unique Digits | Medium | Math, Dynamic Programming, Backtracking | -->
+<!-- 0358.Rearrange String k Distance Apart 🔒 | Hard | Greedy, Hash Table, String, Counting, Sorting, Heap (Priority Queue) | -->
+<!-- 0363.Max Sum of Rectangle No Larger Than K | Hard | Array, Binary Search, Matrix, Ordered Set, Prefix Sum | -->
+<!-- 0367.Valid Perfect Square | Easy | Math, Binary Search | -->
+<!-- 0373.Find K Pairs with Smallest Sums | Medium | Array, Heap (Priority Queue) | -->
+<!-- 0377.Combination Sum IV | Medium | Array, Dynamic Programming | -->
+<!-- 0382.Linked List Random Node | Medium | Reservoir Sampling, Linked List, Math, Randomized | -->
+<!-- 0386.Lexicographical Numbers | Medium | Depth-First Search, Trie | -->
+<!-- 0391.Perfect Rectangle | Hard | Array, Line Sweep | -->
+<!-- 0395.Longest Substring with At Least K Repeating Characters | Medium | Hash Table, String, Divide and Conquer, Sliding Window | -->
+<!-- 0397.Integer Replacement | Medium | Greedy, Bit Manipulation, Memoization, Dynamic Programming | -->
+<!-- 0399.Evaluate Division | Medium | Depth-First Search, Breadth-First Search, Union Find, Graph, Array, Shortest Path | -->
+<!-- 0403.Frog Jump | Hard | Array, Dynamic Programming | -->
+<!-- 0410.Split Array Largest Sum | Hard | Greedy, Array, Binary Search, Dynamic Programming, Prefix Sum | -->
+<!-- 0411.Minimum Unique Word Abbreviation 🔒 | Hard | Bit Manipulation, String, Backtracking | -->
+<!-- 0420.Strong Password Checker | Hard | Greedy, String, Heap (Priority Queue) | -->
+<!-- 0421.Maximum XOR of Two Numbers in an Array | Medium | Bit Manipulation, Trie, Array, Hash Table | -->
+<!-- 0425.Word Squares 🔒 | Hard | Trie, Array, String, Backtracking | -->
+<!-- 0426.Convert Binary Search Tree to Sorted Doubly Linked List 🔒 | Medium | Stack, Tree, Depth-First Search, Binary Search Tree, Linked List, Binary Tree, Doubly-Linked List | -->
+<!-- 0430.Flatten a Multilevel Doubly Linked List | Medium | Depth-First Search, Linked List, Doubly-Linked List | -->
+<!-- 0431.Encode N-ary Tree to Binary Tree 🔒 | Hard | Tree, Depth-First Search, Breadth-First Search, Design, Binary Tree | -->
+<!-- 0435.Non-overlapping Intervals | Medium | Greedy, Array, Dynamic Programming, Sorting | -->
+<!-- 0436.Find Right Interval | Medium | Array, Binary Search, Sorting | -->
+<!-- 0438.Find All Anagrams in a String | Medium | Hash Table, String, Sliding Window | -->
+<!-- 0439.Ternary Expression Parser 🔒 | Medium | Stack, Recursion, String | -->
+<!-- 0440.K-th Smallest in Lexicographical Order | Hard | Trie | -->
+<!-- 0441.Arranging Coins | Easy | Math, Binary Search | -->
+<!-- 0442.Find All Duplicates in an Array | Medium | Array, Hash Table | -->
+<!-- 0446.Arithmetic Slices II - Subsequence | Hard | Array, Dynamic Programming | -->
+<!-- 0447.Number of Boomerangs | Medium | Array, Hash Table, Math | -->
+<!-- 0448.Find All Numbers Disappeared in an Array | Easy | Array, Hash Table | -->
+<!-- 0454.4Sum II | Medium | Array, Hash Table | -->
+<!-- 0456.132 Pattern | Medium | Stack, Array, Binary Search, Ordered Set, Monotonic Stack | -->
+<!-- 0457.Circular Array Loop | Medium | Array, Hash Table, Two Pointers | -->
+<!-- 0459.Repeated Substring Pattern | Easy | String, String Matching | -->
+<!-- 0464.Can I Win | Medium | Bit Manipulation, Memoization, Math, Dynamic Programming, Bitmask, Game Theory | -->
+<!-- 0465.Optimal Account Balancing 🔒 | Hard | Bit Manipulation, Array, Dynamic Programming, Backtracking, Bitmask | -->
+<!-- 0466.Count The Repetitions | Hard | String, Dynamic Programming | -->
+<!-- 0468.Validate IP Address | Medium | String | -->
+<!-- 0469.Convex Polygon 🔒 | Medium | Geometry, Math | -->
+<!-- 0471.Encode String with Shortest Length 🔒 | Hard | String, Dynamic Programming | -->
+<!-- 0472.Concatenated Words | Hard | Depth-First Search, Trie, Array, String, Dynamic Programming | -->
+<!-- 0473.Matchsticks to Square | Medium | Bit Manipulation, Array, Dynamic Programming, Backtracking, Bitmask | -->
+<!-- 0474.Ones and Zeroes | Medium | Array, String, Dynamic Programming | -->
+<!-- 0480.Sliding Window Median | Hard | Array, Hash Table, Sliding Window, Heap (Priority Queue) | -->
+<!-- 0483.Smallest Good Base | Hard | Math, Binary Search | -->
+<!-- 0486.Predict the Winner | Medium | Recursion, Array, Math, Dynamic Programming, Game Theory | -->
+<!-- 0487.Max Consecutive Ones II 🔒 | Medium | Array, Dynamic Programming, Sliding Window | -->
+<!-- 0488.Zuma Game | Hard | Stack, Breadth-First Search, Memoization, String, Dynamic Programming | -->
+<!-- 0491.Non-decreasing Subsequences | Medium | Bit Manipulation, Array, Hash Table, Backtracking | -->
+<!-- 0493.Reverse Pairs | Hard | Binary Indexed Tree, Segment Tree, Array, Binary Search, Divide and Conquer, Ordered Set, Merge Sort | -->
+<!-- 0494.Target Sum | Medium | Array, Dynamic Programming, Backtracking | -->
+<!-- 0497.Random Point in Non-overlapping Rectangles | Medium | Reservoir Sampling, Array, Math, Binary Search, Ordered Set, Prefix Sum, Randomized | -->
+<!-- 0502.IPO | Hard | Greedy, Array, Sorting, Heap (Priority Queue) | -->
+<!-- 0503.Next Greater Element II | Medium | Stack, Array, Monotonic Stack | -->
+<!-- 0508.Most Frequent Subtree Sum | Medium | Tree, Depth-First Search, Hash Table, Binary Tree | -->
+<!-- 0514.Freedom Trail | Hard | Depth-First Search, Breadth-First Search, String, Dynamic Programming | -->
+<!-- 0517.Super Washing Machines | Hard | Greedy, Array | -->
+<!-- 0518.Coin Change II | Medium | Array, Dynamic Programming | -->
+<!-- 0523.Continuous Subarray Sum | Medium | Array, Hash Table, Math, Prefix Sum | -->
+<!-- 0524.Longest Word in Dictionary through Deleting | Medium | Array, Two Pointers, String, Sorting | -->
+<!-- 0525.Contiguous Array | Medium | Array, Hash Table, Prefix Sum | -->
+<!-- 0526.Beautiful Arrangement | Medium | Bit Manipulation, Array, Dynamic Programming, Backtracking, Bitmask | -->
+<!-- 0528.Random Pick with Weight | Medium | Array, Math, Binary Search, Prefix Sum, Randomized | -->
+<!-- 0529.Minesweeper | Medium | Depth-First Search, Breadth-First Search, Array, Matrix | -->
+<!-- 0530.Minimum Absolute Difference in BST | Easy | Tree, Depth-First Search, Breadth-First Search, Binary Search Tree, Binary Tree | -->
+<!-- 0532.K-diff Pairs in an Array | Medium | Array, Hash Table, Two Pointers, Binary Search, Sorting | -->
+<!-- 0533.Lonely Pixel II 🔒 | Medium | Array, Hash Table, Matrix | -->
+<!-- 0537.Complex Number Multiplication | Medium | Math, String, Simulation | -->
+<!-- 0539.Minimum Time Difference | Medium | Array, Math, String, Sorting | -->
+<!-- 0542.01 Matrix | Medium | Breadth-First Search, Array, Dynamic Programming, Matrix | -->
+<!-- 0543.Diameter of Binary Tree | Easy | Tree, Depth-First Search, Binary Tree | -->
+<!-- 0545.Boundary of Binary Tree 🔒 | Medium | Tree, Depth-First Search, Binary Tree | -->
+<!-- 0546.Remove Boxes | Hard | Memoization, Array, Dynamic Programming | -->
+<!-- 0549.Binary Tree Longest Consecutive Sequence II 🔒 | Medium | Tree, Depth-First Search, Binary Tree | -->
+<!-- 0551.Student Attendance Record I | Easy | String | -->
+<!-- 0554.Brick Wall | Medium | Array, Hash Table | -->
+<!-- 0555.Split Concatenated Strings 🔒 | Medium | Greedy, Array, String | -->
+<!-- 0557.Reverse Words in a String III | Easy | Two Pointers, String | -->
+<!-- 0558.Logical OR of Two Binary Grids Represented as Quad-Trees | Medium | Tree, Divide and Conquer | -->
+<!-- 0559.Maximum Depth of N-ary Tree | Easy | Tree, Depth-First Search, Breadth-First Search | -->
+<!-- 0561.Array Partition | Easy | Greedy, Array, Counting Sort, Sorting | -->
+<!-- 0563.Binary Tree Tilt | Easy | Tree, Depth-First Search, Binary Tree | -->
+<!-- 0564.Find the Closest Palindrome | Hard | Math, String | -->
+<!-- 0565.Array Nesting | Medium | Depth-First Search, Array | -->
+<!-- 0567.Permutation in String | Medium | Hash Table, Two Pointers, String, Sliding Window | -->
+<!-- 0568.Maximum Vacation Days 🔒 | Hard | Array, Dynamic Programming, Matrix | -->
+<!-- 0572.Subtree of Another Tree | Easy | Tree, Depth-First Search, Binary Tree, String Matching, Hash Function | -->
+<!-- 0575.Distribute Candies | Easy | Array, Hash Table | -->
+<!-- 0576.Out of Boundary Paths | Medium | Dynamic Programming | -->
+<!-- 0581.Shortest Unsorted Continuous Subarray | Medium | Stack, Greedy, Array, Two Pointers, Sorting, Monotonic Stack | -->
+<!-- 0583.Delete Operation for Two Strings | Medium | String, Dynamic Programming | -->
+<!-- 0587.Erect the Fence | Hard | Geometry, Array, Math | -->
+<!-- 0591.Tag Validator | Hard | Stack, String | -->
+<!-- 0598.Range Addition II | Easy | Array, Math | -->
+<!-- 0600.Non-negative Integers without Consecutive Ones | Hard | Dynamic Programming | -->
+<!-- 0604.Design Compressed String Iterator 🔒 | Easy | Design, Array, String, Iterator | -->
+<!-- 0609.Find Duplicate File in System | Medium | Array, Hash Table, String | -->
+<!-- 0611.Valid Triangle Number | Medium | Greedy, Array, Two Pointers, Binary Search, Sorting | -->
+<!-- 0617.Merge Two Binary Trees | Easy | Tree, Depth-First Search, Breadth-First Search, Binary Tree | -->
+<!-- 0625.Minimum Factorization 🔒 | Medium | Greedy, Math | -->
+<!-- 0629.K Inverse Pairs Array | Hard | Dynamic Programming | -->
+<!-- 0654.Maximum Binary Tree | Medium | Stack, Tree, Array, Divide and Conquer, Binary Tree, Monotonic Stack | -->
+<!-- 0656.Coin Path 🔒 | Hard | Array, Dynamic Programming | -->
+<!-- 0659.Split Array into Consecutive Subsequences | Medium | Greedy, Array, Hash Table, Heap (Priority Queue) | -->
+<!-- 0660.Remove 9 🔒 | Hard | Math | -->
+<!-- 0663.Equal Tree Partition 🔒 | Medium | Tree, Depth-First Search, Binary Tree | -->
+<!-- 0673.Number of Longest Increasing Subsequence | Medium | Binary Indexed Tree, Segment Tree, Array, Dynamic Programming | -->
+<!-- 0675.Cut Off Trees for Golf Event | Hard | Breadth-First Search, Array, Matrix, Heap (Priority Queue) | -->
+<!-- 0677.Map Sum Pairs | Medium | Design, Trie, Hash Table, String | -->
+<!-- 0679.24 Game | Hard | Array, Math, Backtracking | -->
+<!-- 0681.Next Closest Time 🔒 | Medium | String, Enumeration | -->
+<!-- 0683.K Empty Slots 🔒 | Hard | Binary Indexed Tree, Array, Ordered Set, Sliding Window | -->
+<!-- 0685.Redundant Connection II | Hard | Depth-First Search, Breadth-First Search, Union Find, Graph | -->
+<!-- 0686.Repeated String Match | Medium | String, String Matching | -->
+<!-- 0689.Maximum Sum of 3 Non-Overlapping Subarrays | Hard | Array, Dynamic Programming | -->
+<!-- 0691.Stickers to Spell Word | Hard | Bit Manipulation, Array, String, Dynamic Programming, Backtracking, Bitmask | -->
+<!-- 0694.Number of Distinct Islands 🔒 | Medium | Depth-First Search, Breadth-First Search, Union Find, Hash Table, Hash Function | -->
+<!-- 0698.Partition to K Equal Sum Subsets | Medium | Bit Manipulation, Memoization, Array, Dynamic Programming, Backtracking, Bitmask | -->
+<!-- 0699.Falling Squares | Hard | Segment Tree, Array, Ordered Set | -->
+<!-- 0702.Search in a Sorted Array of Unknown Size 🔒 | Medium | Array, Binary Search, Interactive | -->
+<!-- 0708.Insert into a Sorted Circular Linked List 🔒 | Medium | Linked List | -->
+<!-- 0711.Number of Distinct Islands II 🔒 | Hard | Depth-First Search, Breadth-First Search, Union Find, Hash Table, Hash Function | -->
+<!-- 0715.Range Module | Hard | Design, Segment Tree, Ordered Set | -->
+<!-- 0716.Max Stack 🔒 | Hard | Stack, Design, Linked List, Doubly-Linked List, Ordered Set | -->
+<!-- 0717.1-bit and 2-bit Characters | Easy | Array | -->
+<!-- 0719.Find K-th Smallest Pair Distance | Hard | Array, Two Pointers, Binary Search, Sorting | -->
+<!-- 0720.Longest Word in Dictionary | Medium | Trie, Array, Hash Table, String, Sorting | -->
+<!-- 0721.Accounts Merge | Medium | Depth-First Search, Breadth-First Search, Union Find, Array, Hash Table, String, Sorting | -->
+<!-- 0723.Candy Crush 🔒 | Medium | Array, Two Pointers, Matrix, Simulation | -->
+<!-- 0727.Minimum Window Subsequence 🔒 | Hard | String, Dynamic Programming, Sliding Window | -->
+<!-- 0729.My Calendar I | Medium | Design, Segment Tree, Binary Search, Ordered Set | -->
+<!-- 0730.Count Different Palindromic Subsequences | Hard | String, Dynamic Programming | -->
+<!-- 0731.My Calendar II | Medium | Design, Segment Tree, Binary Search, Ordered Set | -->
+<!-- 0732.My Calendar III | Hard | Design, Segment Tree, Binary Search, Ordered Set | -->
+<!-- 0736.Parse Lisp Expression | Hard | Stack, Recursion, Hash Table, String | -->
+<!-- 0737.Sentence Similarity II 🔒 | Medium | Depth-First Search, Breadth-First Search, Union Find, Array, Hash Table, String | -->
+<!-- 0741.Cherry Pickup | Hard | Array, Dynamic Programming, Matrix | -->
+<!-- 0743.Network Delay Time | Medium | Depth-First Search, Breadth-First Search, Graph, Shortest Path, Heap (Priority Queue) | -->
+<!-- 0744.Find Smallest Letter Greater Than Target | Easy | Array, Binary Search | -->
+<!-- 0745.Prefix and Suffix Search | Hard | Design, Trie, Hash Table, String | -->
+<!-- 0746.Min Cost Climbing Stairs | Easy | Array, Dynamic Programming | -->
+<!-- 0749.Contain Virus | Hard | Depth-First Search, Breadth-First Search, Array, Matrix, Simulation | -->
+<!-- 0750.Number Of Corner Rectangles 🔒 | Medium | Array, Math, Dynamic Programming, Matrix | -->
+<!-- 0751.IP to CIDR 🔒 | Medium | Bit Manipulation, String | -->
+<!-- 0754.Reach a Number | Medium | Math, Binary Search | -->
+<!-- 0755.Pour Water 🔒 | Medium | Array, Simulation | -->
+<!-- 0756.Pyramid Transition Matrix | Medium | Bit Manipulation, Depth-First Search, Breadth-First Search | -->
+<!-- 0757.Set Intersection Size At Least Two | Hard | Greedy, Array, Sorting | -->
+<!-- 0762.Prime Number of Set Bits in Binary Representation | Easy | Bit Manipulation, Math | -->
+<!-- 0763.Partition Labels | Medium | Greedy, Hash Table, Two Pointers, String | -->
+<!-- 0765.Couples Holding Hands | Hard | Greedy, Depth-First Search, Breadth-First Search, Union Find, Graph | -->
+<!-- 0768.Max Chunks To Make Sorted II | Hard | Stack, Greedy, Array, Sorting, Monotonic Stack | -->
+<!-- 0769.Max Chunks To Make Sorted | Medium | Stack, Greedy, Array, Sorting, Monotonic Stack | -->
+<!-- 0770.Basic Calculator IV | Hard | Stack, Recursion, Hash Table, Math, String | -->
+<!-- 0772.Basic Calculator III 🔒 | Hard | Stack, Recursion, Math, String | -->
+<!-- 0773.Sliding Puzzle | Hard | Breadth-First Search, Array, Matrix | -->
+<!-- 0774.Minimize Max Distance to Gas Station 🔒 | Hard | Array, Binary Search | -->
+<!-- 0775.Global and Local Inversions | Medium | Array, Math | -->
+<!-- 0777.Swap Adjacent in LR String | Medium | Two Pointers, String | -->
+<!-- 0778.Swim in Rising Water | Hard | Depth-First Search, Breadth-First Search, Union Find, Array, Binary Search, Matrix, Heap (Priority Queue) | -->
+<!-- 0779.K-th Symbol in Grammar | Medium | Bit Manipulation, Recursion, Math | -->
+<!-- 0780.Reaching Points | Hard | Math | -->
+<!-- 0781.Rabbits in Forest | Medium | Greedy, Array, Hash Table, Math | -->
+<!-- 0782.Transform to Chessboard | Hard | Bit Manipulation, Array, Math, Matrix | -->
+<!-- 0783.Minimum Distance Between BST Nodes | Easy | Tree, Depth-First Search, Breadth-First Search, Binary Search Tree, Binary Tree | -->
+<!-- 0784.Letter Case Permutation | Medium | Bit Manipulation, String, Backtracking | -->
+<!-- 0786.K-th Smallest Prime Fraction | Medium | Array, Binary Search, Sorting, Heap (Priority Queue) | -->
+<!-- 0787.Cheapest Flights Within K Stops | Medium | Depth-First Search, Breadth-First Search, Graph, Dynamic Programming, Shortest Path, Heap (Priority Queue) | -->
+<!-- 0788.Rotated Digits | Medium | Math, Dynamic Programming | -->
+<!-- 0789.Escape The Ghosts | Medium | Array, Math | -->
+<!-- 0790.Domino and Tromino Tiling | Medium | Dynamic Programming | -->
+<!-- 0793.Preimage Size of Factorial Zeroes Function | Hard | Math, Binary Search | -->
+<!-- 0798.Smallest Rotation with Highest Score | Hard | Array, Prefix Sum | -->
+<!-- 0801.Minimum Swaps To Make Sequences Increasing | Hard | Array, Dynamic Programming | -->
+<!-- 0803.Bricks Falling When Hit | Hard | Union Find, Array, Matrix | -->
+<!-- 0805.Split Array With Same Average | Hard | Bit Manipulation, Array, Math, Dynamic Programming, Bitmask | -->
+<!-- 0810.Chalkboard XOR Game | Hard | Bit Manipulation, Brainteaser, Array, Math, Game Theory | -->
+<!-- 0815.Bus Routes | Hard | Breadth-First Search, Array, Hash Table | -->
+<!-- 0818.Race Car | Hard | Dynamic Programming | -->
+<!-- 0820.Short Encoding of Words | Medium | Trie, Array, Hash Table, String | -->
+<!-- 0823.Binary Trees With Factors | Medium | Array, Hash Table, Dynamic Programming, Sorting | -->
+<!-- 0826.Most Profit Assigning Work | Medium | Greedy, Array, Two Pointers, Binary Search, Sorting | -->
+<!-- 0828.Count Unique Characters of All Substrings of a Given String | Hard | Hash Table, String, Dynamic Programming | -->
+<!-- 0829.Consecutive Numbers Sum | Hard | Math, Enumeration | -->
+<!-- 0830.Positions of Large Groups | Easy | String | -->
+<!-- 0831.Masking Personal Information | Medium | String | -->
+<!-- 0832.Flipping an Image | Easy | Bit Manipulation, Array, Two Pointers, Matrix, Simulation | -->
+<!-- 0834.Sum of Distances in Tree | Hard | Tree, Depth-First Search, Graph, Dynamic Programming | -->
+<!-- 0836.Rectangle Overlap | Easy | Geometry, Math | -->
+<!-- 0837.New 21 Game | Medium | Math, Dynamic Programming, Sliding Window, Probability and Statistics | -->
+<!-- 0838.Push Dominoes | Medium | Two Pointers, String, Dynamic Programming | -->
+<!-- 0842.Split Array into Fibonacci Sequence | Medium | String, Backtracking | -->
+<!-- 0847.Shortest Path Visiting All Nodes | Hard | Bit Manipulation, Breadth-First Search, Graph, Dynamic Programming, Bitmask | -->
+<!-- 0850.Rectangle Area II | Hard | Segment Tree, Array, Ordered Set, Line Sweep | -->
+<!-- 0853.Car Fleet | Medium | Stack, Array, Sorting, Monotonic Stack | -->
+<!-- 0855.Exam Room | Medium | Design, Ordered Set, Heap (Priority Queue) | -->
+<!-- 0862.Shortest Subarray with Sum at Least K | Hard | Queue, Array, Binary Search, Prefix Sum, Sliding Window, Monotonic Queue, Heap (Priority Queue) | -->
+<!-- 0863.All Nodes Distance K in Binary Tree | Medium | Tree, Depth-First Search, Breadth-First Search, Binary Tree | -->
+<!-- 0864.Shortest Path to Get All Keys | Hard | Bit Manipulation, Breadth-First Search, Array, Matrix | -->
+<!-- 0878.Nth Magical Number | Hard | Math, Binary Search | -->
+<!-- 0879.Profitable Schemes | Hard | Array, Dynamic Programming | -->
+<!-- 0880.Decoded String at Index | Medium | Stack, String | -->
+<!-- 0882.Reachable Nodes In Subdivided Graph | Hard | Graph, Shortest Path, Heap (Priority Queue) | -->
+<!-- 0885.Spiral Matrix III | Medium | Array, Matrix, Simulation | -->
+<!-- 0887.Super Egg Drop | Hard | Math, Binary Search, Dynamic Programming | -->
+<!-- 0889.Construct Binary Tree from Preorder and Postorder Traversal | Medium | Tree, Array, Hash Table, Divide and Conquer, Binary Tree | -->
+<!-- 0898.Bitwise ORs of Subarrays | Medium | Bit Manipulation, Array, Dynamic Programming | -->
+<!-- 0901.Online Stock Span | Medium | Stack, Design, Data Stream, Monotonic Stack | -->
+<!-- 0902.Numbers At Most N Given Digit Set | Hard | Array, Math, String, Binary Search, Dynamic Programming | -->
+<!-- 0903.Valid Permutations for DI Sequence | Hard | String, Dynamic Programming, Prefix Sum | -->
+<!-- 0906.Super Palindromes | Hard | Math, Enumeration | -->
+<!-- 0907.Sum of Subarray Minimums | Medium | Stack, Array, Dynamic Programming, Monotonic Stack | -->
+<!-- 0911.Online Election | Medium | Design, Array, Hash Table, Binary Search | -->
+<!-- 0912.Sort an Array | Medium | Array, Divide and Conquer, Bucket Sort, Counting Sort, Radix Sort, Sorting, Heap (Priority Queue), Merge Sort | -->
+<!-- 0913.Cat and Mouse | Hard | Graph, Topological Sort, Memoization, Math, Dynamic Programming, Game Theory | -->
+<!-- 0915.Partition Array into Disjoint Intervals | Medium | Array | -->
+<!-- 0916.Word Subsets | Medium | Array, Hash Table, String | -->
+<!-- 0917.Reverse Only Letters | Easy | Two Pointers, String | -->
+<!-- 0918.Maximum Sum Circular Subarray | Medium | Queue, Array, Divide and Conquer, Dynamic Programming, Monotonic Queue | -->
+<!-- 0919.Complete Binary Tree Inserter | Medium | Tree, Breadth-First Search, Design, Binary Tree | -->
+<!-- 0932.Beautiful Array | Medium | Array, Math, Divide and Conquer | -->
+<!-- 0935.Knight Dialer | Medium | Dynamic Programming | -->
+<!-- 0936.Stamping The Sequence | Hard | Stack, Greedy, Queue, String | -->
+<!-- 0938.Range Sum of BST | Easy | Tree, Depth-First Search, Binary Search Tree, Binary Tree | -->
+<!-- 0940.Distinct Subsequences II | Hard | String, Dynamic Programming | -->
+<!-- 0943.Find the Shortest Superstring | Hard | Bit Manipulation, Array, String, Dynamic Programming, Bitmask | -->
+<!-- 0947.Most Stones Removed with Same Row or Column | Medium | Depth-First Search, Union Find, Graph, Hash Table | -->
+<!-- 0950.Reveal Cards In Increasing Order | Medium | Queue, Array, Sorting, Simulation | -->
+<!-- 0951.Flip Equivalent Binary Trees | Medium | Tree, Depth-First Search, Binary Tree | -->
+<!-- 0952.Largest Component Size by Common Factor | Hard | Union Find, Array, Hash Table, Math, Number Theory | -->
+<!-- 0953.Verifying an Alien Dictionary | Easy | Array, Hash Table, String | -->
+<!-- 0954.Array of Doubled Pairs | Medium | Greedy, Array, Hash Table, Sorting | -->
+<!-- 0955.Delete Columns to Make Sorted II | Medium | Greedy, Array, String | -->
+<!-- 0956.Tallest Billboard | Hard | Array, Dynamic Programming | -->
+<!-- 0957.Prison Cells After N Days | Medium | Bit Manipulation, Array, Hash Table, Math | -->
+<!-- 0958.Check Completeness of a Binary Tree | Medium | Tree, Breadth-First Search, Binary Tree | -->
+<!-- 0959.Regions Cut By Slashes | Medium | Depth-First Search, Breadth-First Search, Union Find, Array, Hash Table, Matrix | -->
+<!-- 0960.Delete Columns to Make Sorted III | Hard | Array, String, Dynamic Programming | -->
+<!-- 0964.Least Operators to Express Number | Hard | Memoization, Math, Dynamic Programming | -->
+<!-- 0965.Univalued Binary Tree | Easy | Tree, Depth-First Search, Breadth-First Search, Binary Tree | -->
+<!-- 0967.Numbers With Same Consecutive Differences | Medium | Breadth-First Search, Backtracking | -->
+<!-- 0969.Pancake Sorting | Medium | Greedy, Array, Two Pointers, Sorting | -->
+<!-- 0970.Powerful Integers | Medium | Hash Table, Math, Enumeration | -->
+<!-- 0971.Flip Binary Tree To Match Preorder Traversal | Medium | Tree, Depth-First Search, Binary Tree | -->
+<!-- 0972.Equal Rational Numbers | Hard | Math, String | -->
+<!-- 0973.K Closest Points to Origin | Medium | Geometry, Array, Math, Divide and Conquer, Quickselect, Sorting, Heap (Priority Queue) | -->
+<!-- 0974.Subarray Sums Divisible by K | Medium | Array, Hash Table, Prefix Sum | -->
+<!-- 0975.Odd Even Jump | Hard | Stack, Array, Dynamic Programming, Ordered Set, Monotonic Stack | -->
+<!-- 0976.Largest Perimeter Triangle | Easy | Greedy, Array, Math, Sorting | -->
+<!-- 0977.Squares of a Sorted Array | Easy | Array, Two Pointers, Sorting | -->
+<!-- 0978.Longest Turbulent Subarray | Medium | Array, Dynamic Programming, Sliding Window | -->
+<!-- 0979.Distribute Coins in Binary Tree | Medium | Tree, Depth-First Search, Binary Tree | -->
+<!-- 0986.Interval List Intersections | Medium | Array, Two Pointers | -->
+<!-- 0987.Vertical Order Traversal of a Binary Tree | Hard | Tree, Depth-First Search, Breadth-First Search, Hash Table, Binary Tree | -->
+<!-- 0990.Satisfiability of Equality Equations | Medium | Union Find, Graph, Array, String | -->
+<!-- 0992.Subarrays with K Different Integers | Hard | Array, Hash Table, Counting, Sliding Window | -->
+<!-- 0995.Minimum Number of K Consecutive Bit Flips | Hard | Bit Manipulation, Queue, Array, Prefix Sum, Sliding Window | -->
+<!-- 0996.Number of Squareful Arrays | Hard | Bit Manipulation, Array, Math, Dynamic Programming, Backtracking, Bitmask | -->
+<!-- 1000.Minimum Cost to Merge Stones | Hard | Array, Dynamic Programming, Prefix Sum | -->
+<!-- 1001.Grid Illumination | Hard | Array, Hash Table | -->
+<!-- 1002.Find Common Characters | Easy | Array, Hash Table, String | -->
+<!-- 1003.Check If Word Is Valid After Substitutions | Medium | Stack, String | -->
+<!-- 1004.Max Consecutive Ones III | Medium | Array, Binary Search, Prefix Sum, Sliding Window | -->
+<!-- 1005.Maximize Sum Of Array After K Negations | Easy | Greedy, Array, Sorting | -->
+<!-- 1012.Numbers With Repeated Digits | Hard | Math, Dynamic Programming | -->
+<!-- 1015.Smallest Integer Divisible by K | Medium | Hash Table, Math | -->
+<!-- 1016.Binary String With Substrings Representing 1 To N | Medium | String | -->
+<!-- 1018.Binary Prefix Divisible By 5 | Easy | Bit Manipulation, Array | -->
+<!-- 1020.Number of Enclaves | Medium | Depth-First Search, Breadth-First Search, Union Find, Array, Matrix | -->
+<!-- 1021.Remove Outermost Parentheses | Easy | Stack, String | -->
+<!-- 1022.Sum of Root To Leaf Binary Numbers | Easy | Tree, Depth-First Search, Binary Tree | -->
+<!-- 1023.Camelcase Matching | Medium | Trie, Array, Two Pointers, String, String Matching | -->
+<!-- 1024.Video Stitching | Medium | Greedy, Array, Dynamic Programming | -->
+<!-- 1026.Maximum Difference Between Node and Ancestor | Medium | Tree, Depth-First Search, Binary Tree | -->
+<!-- 1028.Recover a Tree From Preorder Traversal | Hard | Tree, Depth-First Search, String, Binary Tree | -->
+<!-- 1033.Moving Stones Until Consecutive | Medium | Brainteaser, Math | -->
+<!-- 1034.Coloring A Border | Medium | Depth-First Search, Breadth-First Search, Array, Matrix | -->
+<!-- 1036.Escape a Large Maze | Hard | Depth-First Search, Breadth-First Search, Array, Hash Table | -->
+<!-- 1039.Minimum Score Triangulation of Polygon | Medium | Array, Dynamic Programming | -->
+<!-- 1040.Moving Stones Until Consecutive II | Medium | Array, Math, Two Pointers, Sorting | -->
+<!-- 1043.Partition Array for Maximum Sum | Medium | Array, Dynamic Programming | -->
+<!-- 1044.Longest Duplicate Substring | Hard | String, Binary Search, Suffix Array, Sliding Window, Hash Function, Rolling Hash | -->
+<!-- 1049.Last Stone Weight II | Medium | Array, Dynamic Programming | -->
+<!-- 1057.Campus Bikes 🔒 | Medium | Greedy, Array, Sorting | -->
+<!-- 1059.All Paths from Source Lead to Destination 🔒 | Medium | Depth-First Search, Graph | -->
+<!-- 1060.Missing Element in Sorted Array 🔒 | Medium | Array, Binary Search | -->
+<!-- 1061.Lexicographically Smallest Equivalent String | Medium | Union Find, String | -->
+<!-- 1062.Longest Repeating Substring 🔒 | Medium | String, Binary Search, Dynamic Programming, Suffix Array, Hash Function, Rolling Hash | -->
+<!-- 1063.Number of Valid Subarrays 🔒 | Hard | Stack, Array, Monotonic Stack | -->
+<!-- 1064.Fixed Point 🔒 | Easy | Array, Binary Search | -->
+<!-- 1066.Campus Bikes II 🔒 | Medium | Bit Manipulation, Array, Dynamic Programming, Backtracking, Bitmask | -->
+<!-- 1067.Digit Count in Range 🔒 | Hard | Math, Dynamic Programming | -->
+<!-- 1074.Number of Submatrices That Sum to Target | Hard | Array, Hash Table, Matrix, Prefix Sum | -->
 <!-- Table End -->
 
 ## Reference
