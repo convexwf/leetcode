@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. brute force
+// 1. 字符串处理
 // 2023-06-14 submission
 // 55/55 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -32,7 +32,7 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 2. 优化：find_last_of
+// 2. 字符串处理优化：find_last_of
 // 2023-06-14 submission
 // 55/55 cases passed
 // Runtime: 3 ms, faster than 38.91% of cpp online submissions.
@@ -52,7 +52,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 3. 优化：istringstream
+// 3. 字符串处理优化：istringstream
 // 2023-06-14 submission
 // 55/55 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

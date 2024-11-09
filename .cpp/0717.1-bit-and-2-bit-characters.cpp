@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2021-12-16 submission
 // 93/93 cases passed
 // Runtime: 3 ms, faster than 71.94% of cpp online submissions.
@@ -18,10 +19,12 @@ public:
         vector<bool> dp(n, true);
         if (bits[n - 2] == 1) dp[n - 2] = false;
         for (int i = n - 3; i >= 0; i--) {
-            if (bits[i] == 1)
+            if (bits[i] == 1) {
                 dp[i] = dp[i + 2];
-            else
+            }
+            else {
                 dp[i] = dp[i + 1];
+            }
         }
         return dp[0];
     }

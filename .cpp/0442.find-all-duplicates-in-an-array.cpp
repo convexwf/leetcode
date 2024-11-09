@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 取负法
 // 2021-03-19 submission
 // 28/28 cases passed
 // Runtime: 71 ms, faster than 76.13% of cpp online submissions.
@@ -17,10 +18,12 @@ public:
         vector<int> res;
         for (int i = 0; i < nums.size(); i++) {
             dst = nums[i] > 0 ? nums[i] : nums[i] + (n + 1);
-            if (nums[dst - 1] >= 0)
+            if (nums[dst - 1] >= 0) {
                 nums[dst - 1] -= (n + 1);
-            else
+            }
+            else {
                 res.push_back(dst);
+            }
         }
         return res;
     }
@@ -38,6 +41,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 替换法
 // 2023-01-14 submission
 // 28/28 cases passed
 // Runtime: 76 ms, faster than 71.78% of cpp online submissions.
@@ -53,7 +57,9 @@ public:
             }
         }
         for (int i = 0; i < nums.size(); ++i) {
-            if (nums[i] != i + 1) res.push_back(nums[i]);
+            if (nums[i] != i + 1) {
+                res.push_back(nums[i]);
+            }
         }
         return res;
     }

@@ -16,7 +16,7 @@ public:
     }
 
     bool book(int start, int end) {
-        for (auto &p : books) {
+        for (const pair<int, int> &p : books) {
             if (max(p.first, start) < min(p.second, end)) {
                 return false;
             }
@@ -51,12 +51,15 @@ public:
         int l = 0, r = books.size();
         while (l < r) {
             int m = l + (r - l) / 2;
-            if (books[m].first >= end)
+            if (books[m].first >= end) {
                 r = m;
-            else if (books[m].second <= start)
+            }
+            else if (books[m].second <= start) {
                 l = m + 1;
-            else
+            }
+            else {
                 return false;
+            }
         }
         books.insert(books.begin() + l, {start, end});
         return true;
@@ -68,7 +71,7 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 3. map
+// 3. 有序集合
 // 2023-08-24 submission
 // 107/107 cases passed
 // Runtime: 81 ms, faster than 81.21% of cpp online submissions.

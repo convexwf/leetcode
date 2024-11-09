@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 动态规划+最长公共子序列
+// 1. 动态规划-最长公共子序列
 // 2023-06-09 submission
 // 1306/1306 cases passed
 // Runtime: 33 ms, faster than 29.88% of cpp online submissions.
@@ -31,7 +31,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. 动态规划+编辑距离
+// 2. 动态规划-编辑距离
 // 2023-06-09 submission
 // 1306/1306 cases passed
 // Runtime: 28 ms, faster than 50.07% of cpp online submissions.
@@ -57,7 +57,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 3. 动态规划+最长公共子序列+滚动数组
+// 3. 动态规划-最长公共子序列+滚动数组
 // 2023-06-09 submission
 // 1306/1306 cases passed
 // Runtime: 27 ms, faster than 54.99% of cpp online submissions.

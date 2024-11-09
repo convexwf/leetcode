@@ -17,12 +17,15 @@ public:
         while (left <= right) {
             long long mid = left + (right - left) / 2;
             long long sum = mid * (mid + 1) / 2;
-            if (sum == n)
+            if (sum == n) {
                 return mid;
-            else if (sum < n)
+            }
+            else if (sum < n) {
                 left = mid + 1;
-            else
+            }
+            else {
                 right = mid - 1;
+            }
         }
         return right;
     }
