@@ -17,7 +17,9 @@ public:
             vector<int> v(matrix[i].size(), 0);
             for (int j = i; j < matrix.size(); ++j) {
                 for (int k = 0; k < matrix[j].size(); ++k) {
-                    if (matrix[j][k] == '1') ++v[k];
+                    if (matrix[j][k] == '1') {
+                        ++v[k];
+                    }
                 }
                 res = max(res, getSquareArea(v, j - i + 1));
             }
@@ -29,10 +31,12 @@ public:
         if (v.size() < k) return 0;
         int count = 0;
         for (int i = 0; i < v.size(); ++i) {
-            if (v[i] != k)
+            if (v[i] != k) {
                 count = 0;
-            else
+            }
+            else {
                 ++count;
+            }
             if (count == k) return k * k;
         }
         return 0;

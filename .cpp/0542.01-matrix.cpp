@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. BFS
+// 1. bfs
 // 2023-06-07 submission
 // 50/50 cases passed
 // Runtime: 115 ms, faster than 18.29% of cpp online submissions.
@@ -45,6 +45,7 @@ public:
 
         return dist;
     }
+
 private:
     vector<vector<int>> dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 };

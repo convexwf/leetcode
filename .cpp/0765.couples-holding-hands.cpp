@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 贪婪算法
+// 1. 贪心算法
 // 2024-01-17 submission
 // 56/56 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 哈希集合
+// 1. 哈希表
 // 2023-10-18 submission
 // 83/83 cases passed
 // Runtime: 1084 ms, faster than 53.01% of cpp online submissions.
@@ -19,9 +19,13 @@ public:
         unordered_set<int> res, cur, tmp;
         for (int i : arr) {
             tmp = {i}; // 新数字加入到之前的所有子数组中
-            for (int j : cur) tmp.insert(i | j);
+            for (int j : cur) {
+                tmp.insert(i | j);
+            }
             cur = tmp;
-            for (int j : cur) res.insert(j);
+            for (int j : cur) {
+                res.insert(j);
+            }
         }
         return res.size();
     }

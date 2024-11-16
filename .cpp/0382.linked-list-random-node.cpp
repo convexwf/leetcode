@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 水塘抽样
 // 2022-08-19 submission
 // 8/8 cases passed
 // Runtime: 46 ms, faster than 22.4% of cpp online submissions.
@@ -30,7 +31,9 @@ public:
         ListNode *cur = head;
         while (cur) {
             int j = rand() % cnt;
-            if (j == 0) res = cur->val;
+            if (j == 0) {
+                res = cur->val;
+            }
             ++cnt;
             cur = cur->next;
         }

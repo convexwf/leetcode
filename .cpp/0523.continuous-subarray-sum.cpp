@@ -22,13 +22,14 @@ public:
             remainder = (remainder + nums[i]) % k;
             if (mp.count(remainder)) {
                 int prevIndex = mp[remainder];
-                if (i - prevIndex >= 2) return true; // 子数组长度至少为 2
+                if (i - prevIndex >= 2) {
+                    return true; // 子数组长度至少为 2}
+                }
+                else {
+                    mp[remainder] = i;
+                }
             }
-            else {
-                mp[remainder] = i;
-            }
+            return false;
         }
-        return false;
-    }
-};
-// @lc code=end
+    };
+    // @lc code=end

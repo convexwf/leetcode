@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. DFS
+// 1. dfs
 // 2023-06-06 submission
 // 26/26 cases passed
 // Runtime: 14 ms, faster than 56.39% of cpp online submissions.
@@ -47,9 +47,13 @@ public:
                 cur *= 10;
             }
             else {
-                if (cur >= n) cur /= 10;
+                if (cur >= n) {
+                    cur /= 10;
+                }
                 cur += 1;
-                while (cur % 10 == 0) cur /= 10;
+                while (cur % 10 == 0) {
+                    cur /= 10;
+                }
             }
         }
         return res;

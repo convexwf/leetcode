@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 回溯
+// 1. 回溯-大数加法和比较
 // 2023-10-04 submission
 // 45/45 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
