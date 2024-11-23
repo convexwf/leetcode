@@ -5,6 +5,45 @@
  */
 
 // @lc code=start
+// 1. 递归
+// 2024-11-21 submission
+// 43/43 cases passed
+// Runtime: 7 ms, faster than 53.9% of cpp online submissions.
+// Memory Usage: 16.1 MB, less than 89.08% of cpp online submissions.
+class NestedIterator {
+public:
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        flatten(nestedList);
+        it = flattenList.begin();
+    }
+
+    int next() {
+        return *it++;
+    }
+
+    bool hasNext() {
+        return it != flattenList.end();
+    }
+
+private:
+    vector<int> flattenList;
+    vector<int>::iterator it;
+
+    void flatten(const vector<NestedInteger> &nestedList) {
+        for (const auto &nestedInteger : nestedList) {
+            if (nestedInteger.isInteger()) {
+                flattenList.push_back(nestedInteger.getInteger());
+            }
+            else {
+                flatten(nestedInteger.getList());
+            }
+        }
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 栈
 // 2023-01-31 submission
 // 43/43 cases passed
 // Runtime: 28 ms, faster than 27.47% of cpp online submissions.
@@ -65,6 +104,7 @@ private:
 // @lc code=end
 
 // @lc code=start
+// 3. 双向队列
 // 2023-01-31 submission
 // 43/43 cases passed
 // Runtime: 45 ms, faster than 15.96% of cpp online submissions.

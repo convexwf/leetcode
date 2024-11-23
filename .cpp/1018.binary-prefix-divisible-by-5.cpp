@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 直接计算
+// 1. 数学方法-同余定理
 // 2023-07-20 submission
 // 24/24 cases passed
 // Runtime: 13 ms, faster than 43.71% of cpp online submissions.

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 找规律
 // 2020-11-13 submission
 // 9/9 cases passed
 // Runtime: 3 ms, faster than 46.29% of cpp online submissions.
@@ -34,6 +35,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 回溯+位操作
 // 2023-01-14 submission
 // 9/9 cases passed
 // Runtime: 86 ms, faster than 5.47% of cpp online submissions.
@@ -49,12 +51,15 @@ public:
         }
         return res;
     }
+
     int search(int pre, int max, int used) {
         int res = 0;
-        if (pre < max)
+        if (pre < max) {
             ++res;
-        else
+        }
+        else {
             return res;
+        }
         for (int i = 0; i < 10; ++i) {
             if (!(used & (1 << i))) {
                 used |= (1 << i);

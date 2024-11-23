@@ -19,9 +19,9 @@ public:
             right += num;                // 右边界为所有元素之和
         }
         while (left <= right) {
-            long mid = left + (right - left) / 2; // 中间值
-            int cnt = 1;                          // 子数组数量
-            long sum = 0;                         // 当前子数组的和
+            long mid = left + (right - left) / 2;
+            int cnt = 1;  // 子数组数量
+            long sum = 0; // 当前子数组的和
             for (int num : nums) {
                 if (sum + num > mid) { // 分割出新的子数组
                     cnt++;

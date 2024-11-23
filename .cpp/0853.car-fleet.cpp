@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 排序+贪心
+// 1. 排序+贪心算法
 // 2023-07-27 submission
 // 48/48 cases passed
 // Runtime: 238 ms, faster than 51.12% of cpp online submissions.
@@ -33,7 +33,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. map
+// 2. 有序字典
 // 2023-07-27 submission
 // 48/48 cases passed
 // Runtime: 353 ms, faster than 16.67% of cpp online submissions.
