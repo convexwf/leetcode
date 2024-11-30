@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 自定义排序+Trie树
+// 1. 自定义排序+前缀树
 // 2023-08-25 submission
 // 59/59 cases passed
 // Runtime: 24 ms, faster than 99.54% of cpp online submissions.
@@ -64,7 +64,7 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 2. 哈希表+BFS
+// 2. 哈希表+bfs
 // 2023-08-25 submission
 // 59/59 cases passed
 // Runtime: 199 ms, faster than 10.4% of cpp online submissions.
@@ -105,7 +105,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 3. 哈希表+DFS
+// 3. 哈希表+dfs
 // 2023-08-25 submission
 // 59/59 cases passed
 // Runtime: 70 ms, faster than 41.83% of cpp online submissions.
@@ -139,7 +139,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 4. 哈希表+贪心
+// 4. 哈希表+贪心算法
 // 2023-08-25 submission
 // 59/59 cases passed
 // Runtime: 40 ms, faster than 84.91% of cpp online submissions.

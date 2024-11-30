@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 计算曼哈顿距离
+// 1. 模拟
 // 2023-07-05 submission
 // 77/77 cases passed
 // Runtime: 8 ms, faster than 53.47% of cpp online submissions.

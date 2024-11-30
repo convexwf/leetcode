@@ -16,10 +16,12 @@ public:
         int left = 0, right = letters.size();
         while (left < right) {
             int mid = (left + right) / 2;
-            if (letters[mid] <= target)
+            if (letters[mid] <= target) {
                 left = mid + 1;
-            else
+            }
+            else {
                 right = mid;
+            }
         }
         return letters[left % letters.size()];
     }

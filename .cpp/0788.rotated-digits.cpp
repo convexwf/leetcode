@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. brute force
+// 1. 模拟
 // 2023-06-02 submission
 // 50/50 cases passed
 // Runtime: 28 ms, faster than 26.74% of cpp online submissions.
@@ -25,8 +25,12 @@ private:
         string str = to_string(n);
         bool flag = false;
         for (char c : str) {
-            if (c == '3' || c == '4' || c == '7') return false;
-            if (c == '2' || c == '5' || c == '6' || c == '9') flag = true;
+            if (c == '3' || c == '4' || c == '7') {
+                return false;
+            }
+            if (c == '2' || c == '5' || c == '6' || c == '9') {
+                flag = true;
+            }
         }
         return flag;
     }

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 栈
 // 2021-12-23 submission
 // 29/29 cases passed
 // Runtime: 20 ms, faster than 31.6% of cpp online submissions.
@@ -35,6 +36,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 双指针
 // 2021-12-23 submission
 // 29/29 cases passed
 // Runtime: 24 ms, faster than 20.99% of cpp online submissions.
