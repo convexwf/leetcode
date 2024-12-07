@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 哈希表
+// 1. 哈希表+数学方法
 // 2023-06-01 submission
 // 32/32 cases passed
 // Runtime: 591 ms, faster than 61.48% of cpp online submissions.

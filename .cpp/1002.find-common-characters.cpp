@@ -14,10 +14,9 @@ class Solution {
 public:
     vector<string> commonChars(vector<string>& words) {
         vector<int> hash(26, INT_MAX);
-        vector<int> temp(26, 0);
-        for (auto word : words) {
-            fill(temp.begin(), temp.end(), 0);
-            for (auto c : word) {
+        for (const string& word : words) {
+            vector<int> temp(26, 0);
+            for (const char& c : word) {
                 temp[c - 'a']++;
             }
             for (int i = 0; i < 26; i++) {

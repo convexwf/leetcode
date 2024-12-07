@@ -103,16 +103,16 @@ public:
     vector<vector<string>> findDuplicate(vector<string>& paths) {
         unordered_map<string, vector<string>> hashMap;
 
-        // 遍历文件路径
+        // traverse all paths
         for (const string& path : paths) {
             stringstream ss(path);
             string directory, file;
             string content;
 
-            // 提取目录路径
+            // get directory
             getline(ss, directory, ' ');
 
-            // 提取文件和内容
+            // extract file name and content
             while (getline(ss, file, ' ')) {
                 size_t leftParenthesis = file.find('(');
                 size_t rightParenthesis = file.find(')');
@@ -121,13 +121,13 @@ public:
                 string fileContent =
                     file.substr(leftParenthesis + 1, rightParenthesis - leftParenthesis - 1);
 
-                // 构建完整的文件路径
+                // get full path
                 string fullPath = directory + '/' + fileName;
 
-                // 计算文件内容的哈希值
+                // calculate file hash
                 string fileHash = getFileHash(fullPath);
 
-                // 将哈希值作为键，将路径添加到对应的值中
+                // store file path
                 hashMap[fileHash].push_back(fullPath);
             }
         }

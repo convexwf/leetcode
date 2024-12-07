@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 像素化
+// 1. dfs
 // 2023-09-12 submission
 // 137/137 cases passed
 // Runtime: 18 ms, faster than 34.46% of cpp online submissions.

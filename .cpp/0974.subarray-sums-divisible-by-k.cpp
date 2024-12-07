@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 前缀和+哈希表
+// 1. 前缀和+哈希表+数学方法
 // 2023-10-10 submission
 // 73/73 cases passed
 // Runtime: 45 ms, faster than 50.33% of cpp online submissions.

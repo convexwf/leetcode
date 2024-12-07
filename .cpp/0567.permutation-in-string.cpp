@@ -10,32 +10,32 @@
 // 108/108 cases passed
 // Runtime: 11 ms, faster than 51.34% of cpp online submissions.
 // Memory Usage: 7.3 MB, less than 69.17% of cpp online submissions.
+// 1. 滑动窗口+哈希表
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
-        int n = s1.size(), m = s2.size();
-        if (n > m) return false;
-        vector<int> cnt(26);
-        for (int i = 0; i < n; ++i) {
-            ++cnt[s1[i] - 'a'];
-        } 
-        int l = 0, r = 0;
-        while (r < m) {
-            if (cnt[s2[r] - 'a'] > 0) {
-                --cnt[s2[r] - 'a'];
-                ++r;
-            } else {
-                ++cnt[s2[l] - 'a'];
-                ++l;
-            }
-            if (r - l == n) return true;
+        vector<int> cnt(26, 0);
+        for (char c : s1) {
+            cnt[c - 'a']++;
         }
-        // Another way to write the while loop
-        // for (int r = 0; r < m; ++r) {
-        //     if (--cnt[s2[r] - 'a'] < 0) {
-        //         while (++m[s2[l++] - 'a'] != 0);
-        //     } else if (r - l + 1 == n) return true;
-        // }
+        int n = s2.size();
+        int m = s1.size();
+        int total = m;
+        for (int i = 0; i < n; i++) {
+            cnt[s2[i] - 'a']--;
+            if (cnt[s2[i] - 'a'] >= 0) {
+                total--;
+            }
+            if (i >= m) {
+                cnt[s2[i - m] - 'a']++;
+                if (cnt[s2[i - m] - 'a'] > 0) {
+                    total++;
+                }
+            }
+            if (total == 0) {
+                return true;
+            }
+        }
         return false;
     }
 };

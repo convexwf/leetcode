@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表
 // 2022-11-15 submission
 // 206/206 cases passed
 // Runtime: 637 ms, faster than 43.94% of cpp online submissions.
@@ -13,7 +14,9 @@ class Solution {
 public:
     int distributeCandies(vector<int>& candies) {
         unordered_set<int> s;
-        for (int candy : candies) s.insert(candy);
+        for (int candy : candies) {
+            s.insert(candy);
+        }
         return min(s.size(), candies.size() / 2);
     }
 };
