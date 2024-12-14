@@ -47,3 +47,30 @@ public:
     }
 };
 // @lc code=end
+
+// @lc code=start
+// 2. 动态规划
+// 2024-12-11 submission
+// 55/55 cases passed
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 9.5 MB, less than 69.03% of cpp online submissions.
+class Solution {
+public:
+    int racecar(int target) {
+        vector<int> dp(target + 1);
+        for (int i = 1; i <= target; ++i) {
+            // __builtin_clz(i) 返回 i 的二进制表示中前导 0 的个数
+            int k = 32 - __builtin_clz(i);
+            if (i == (1 << k) - 1) {
+                dp[i] = k;
+                continue;
+            }
+            dp[i] = dp[(1 << k) - 1 - i] + k + 1;
+            for (int j = 0; j < k; ++j) {
+                dp[i] = min(dp[i], dp[i - (1 << (k - 1)) + (1 << j)] + k - 1 + j + 2);
+            }
+        }
+        return dp[target];
+    }
+};
+// @lc code=end

@@ -10,7 +10,6 @@
 // 108/108 cases passed
 // Runtime: 11 ms, faster than 51.34% of cpp online submissions.
 // Memory Usage: 7.3 MB, less than 69.17% of cpp online submissions.
-// 1. 滑动窗口+哈希表
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {

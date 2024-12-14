@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 自定义排序+字符串遍历
+// 1. 自定义排序+双指针
 // 2023-09-12 submission
 // 31/31 cases passed
 // Runtime: 44 ms, faster than 84.06% of cpp online submissions.
@@ -41,7 +41,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. 字符串遍历
+// 2. 直接遍历+双指针
 // 2023-09-12 submission
 // 31/31 cases passed
 // Runtime: 45 ms, faster than 81.82% of cpp online submissions.

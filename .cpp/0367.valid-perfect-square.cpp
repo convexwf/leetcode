@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 穷举法
 // 2020-09-22 submission
 // 70/70 cases passed
 // Runtime: 4 ms, faster than 20.34% of cpp online submissions.
@@ -22,6 +23,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 二分查找
 // 2023-01-14 submission
 // 70/70 cases passed
 // Runtime: 3 ms, faster than 43.85% of cpp online submissions.
@@ -33,10 +35,12 @@ public:
         while (left <= right) {
             long mid = left + (right - left) / 2, t = mid * mid;
             if (t == num) return true;
-            if (t < num)
+            if (t < num) {
                 left = mid + 1;
-            else
+            }
+            else {
                 right = mid - 1;
+            }
         }
         return false;
     }
@@ -44,6 +48,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 数学方法
 // 2023-01-14 submission
 // 70/70 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -62,6 +67,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 4. 牛顿迭代法
 // 2023-01-14 submission
 // 70/70 cases passed
 // Runtime: 3 ms, faster than 43.85% of cpp online submissions.
@@ -79,6 +85,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 5. Q_rsqrt 算法
 // 2023-01-14 submission
 // 70/70 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

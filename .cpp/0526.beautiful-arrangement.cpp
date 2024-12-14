@@ -14,7 +14,9 @@ class Solution {
 public:
     int countArrangement(int N) {
         vector<int> nums(N);
-        for (int i = 0; i < N; ++i) nums[i] = i + 1;
+        for (int i = 0; i < N; ++i) {
+            nums[i] = i + 1;
+        }
         return helper(N, nums);
     }
 

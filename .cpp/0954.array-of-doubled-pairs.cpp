@@ -34,7 +34,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. map
+// 2. 有序字典
 // 2023-08-23 submission
 // 102/102 cases passed
 // Runtime: 69 ms, faster than 95.23% of cpp online submissions.

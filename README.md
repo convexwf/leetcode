@@ -3,9 +3,9 @@
 <!-- Summary Start -->
 Only count the problems in the range of `[1, 1080]` .
 
-**Accepted / Total** : **650 / 870**
+**Accepted / Total** : **668 / 870**
 
-🔒 **Accepted / Total Lock** : **114 / 152**
+🔒 **Accepted / Total Lock** : **116 / 152**
 
 <!-- Summary End -->
 
@@ -191,6 +191,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [0217.Contains Duplicate](.doc/0217.contains-duplicate.md) | Easy (61.33%) | array, sort, hash-table, duplicate | [cpp](.cpp/0217.contains-duplicate.cpp) |
 | [0219.Contains Duplicate II](.doc/0219.contains-duplicate-ii.md) | Easy (44.43%) | array, hash-table, duplicate | [cpp](.cpp/0219.contains-duplicate-ii.cpp) |
 | [0220.Contains Duplicate III](.doc/0220.contains-duplicate-iii.md) | Hard (22.62%) | sliding-window, ordered-map, binary-search | [cpp](.cpp/0220.contains-duplicate-iii.cpp) |
+| [0222.Count Complete Tree Nodes](.doc/0222.count-complete-tree-nodes.md) | Easy (64.11%) | binary-tree, recursion | [cpp](.cpp/0222.count-complete-tree-nodes.cpp) |
 | [0223.Rectangle Area](.doc/0223.rectangle-area.md) | Medium (45.88%) | math, geometry | [cpp](.cpp/0223.rectangle-area.cpp) |
 | [0225.Implement Stack using Queues](.doc/0225.implement-stack-using-queues.md) | Easy (63.03%) | stack, queue, design | [cpp](.cpp/0225.implement-stack-using-queues.cpp) |
 | [0226.Invert Binary Tree](.doc/0226.invert-binary-tree.md) | Easy (76.47%) | binary-tree, recursion | [cpp](.cpp/0226.invert-binary-tree.cpp) |
@@ -304,6 +305,7 @@ Only count the problems in the range of `[1, 1080]` .
 | 0364.Nested List Weight Sum II 🔒 | | depth-first-search | [cpp](.cpp/0364.nested-list-weight-sum-ii.cpp) |
 | [0365.Water and Jug Problem](.doc/0365.water-and-jug-problem.md) | Medium (39.69%) | math | [cpp](.cpp/0365.water-and-jug-problem.cpp) |
 | 0366.Find Leaves of Binary Tree 🔒 | | binary-tree, depth-first-search | [cpp](.cpp/0366.find-leaves-of-binary-tree.cpp) |
+| [0367.Valid Perfect Square](.doc/0367.valid-perfect-square.md) | Easy (43.54%) | math, binary-search | [cpp](.cpp/0367.valid-perfect-square.cpp) |
 | [0368.Largest Divisible Subset](.doc/0368.largest-divisible-subset.md) | Medium (41.61%) | math, dynamic-programming | [cpp](.cpp/0368.largest-divisible-subset.cpp) |
 | 0369.Plus One Linked List 🔒 | | linked-list, recursion | [cpp](.cpp/0369.plus-one-linked-list.cpp) |
 | 0370.Range Addition 🔒 | | difference-array | [cpp](.cpp/0370.range-addition.cpp) |
@@ -330,6 +332,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [0394.Decode String](.doc/0394.decode-string.md) | Medium (58.87%) | stack, string | [cpp](.cpp/0394.decode-string.cpp) |
 | [0396.Rotate Function](.doc/0396.rotate-function.md) | Medium (42.69%) | math | [cpp](.cpp/0396.rotate-function.cpp) |
 | [0398.Random Pick Index](.doc/0398.random-pick-index.md) | Medium (62.58%) | random, hash-table, reservoir-sampling | [cpp](.cpp/0398.random-pick-index.cpp) |
+| [0399.Evaluate Division](.doc/0399.evaluate-division.md) | Medium (61.31%) | union-find, graph, depth-first-search | [cpp](.cpp/0399.evaluate-division.cpp) |
 | [0400.Nth Digit](.doc/0400.nth-digit.md) | Medium (34.57%) | math | [cpp](.cpp/0400.nth-digit.cpp) |
 | [0401.Binary Watch](.doc/0401.binary-watch.md) | Easy (53.67%) | bit-manipulation | [cpp](.cpp/0401.binary-watch.cpp) |
 | [0402.Remove K Digits](.doc/0402.remove-k-digits.md) | Medium (33.71%) | stack, greedy | [cpp](.cpp/0402.remove-k-digits.cpp) |
@@ -360,8 +363,11 @@ Only count the problems in the range of `[1, 1080]` .
 | [0432.All O`one Data Structure](.doc/0432.all-o-one-data-structure.md) | Hard (36.50%) | hash-table, design, linked-list | [cpp](.cpp/0432.all-o-one-data-structure.cpp) |
 | [0433.Minimum Genetic Mutation](.doc/0433.minimum-genetic-mutation.md) | Medium (52.49%) | breadth-first-search | [cpp](.cpp/0433.minimum-genetic-mutation.cpp) |
 | [0434.Number of Segments in a String](.doc/0434.number-of-segments-in-a-string.md) | Easy (36.46%) | string | [cpp](.cpp/0434.number-of-segments-in-a-string.cpp) |
+| [0436.Find Right Interval](.doc/0436.find-right-interval.md) | Medium (50.99%) | sort, array, binary-search, interval | [cpp](.cpp/0436.find-right-interval.cpp) |
 | [0437.Path Sum III](.doc/0437.path-sum-iii.md) | Medium (47.01%) | binary-tree, hash-table, depth-first-search, prefix-sum | [cpp](.cpp/0437.path-sum-iii.cpp) |
+| [0438.Find All Anagrams in a String](.doc/0438.find-all-anagrams-in-a-string.md) | Medium (50.70%) | sliding-window, hash-table | [cpp](.cpp/0438.find-all-anagrams-in-a-string.cpp) |
 | 0439.Ternary Expression Parser 🔒 | | stack, string | [cpp](.cpp/0439.ternary-expression-parser.cpp) |
+| [0440.K-th Smallest in Lexicographical Order](.doc/0440.k-th-smallest-in-lexicographical-order.md) | Hard (31.71%) | tree, depth-first-search | [cpp](.cpp/0440.k-th-smallest-in-lexicographical-order.cpp) |
 | [0441.Arranging Coins](.doc/0441.arranging-coins.md) | Easy (46.26%) | math, binary-search | [cpp](.cpp/0441.arranging-coins.cpp) |
 | [0442.Find All Duplicates in an Array](.doc/0442.find-all-duplicates-in-an-array.md) | Medium (73.60%) | array, duplicate | [cpp](.cpp/0442.find-all-duplicates-in-an-array.cpp) |
 | [0443.String Compression](.doc/0443.string-compression.md) | Medium (52.45%) | two-pointers | [cpp](.cpp/0443.string-compression.cpp) |
@@ -418,10 +424,13 @@ Only count the problems in the range of `[1, 1080]` .
 | [0521.Longest Uncommon Subsequence I](.doc/0521.longest-uncommon-subsequence-i.md) | Easy (60.30%) | string | [cpp](.cpp/0521.longest-uncommon-subsequence-i.cpp) |
 | [0522.Longest Uncommon Subsequence II](.doc/0522.longest-uncommon-subsequence-ii.md) | Medium (40.59%) | string, sort, two-pointers | [cpp](.cpp/0522.longest-uncommon-subsequence-ii.cpp) |
 | [0523.Continuous Subarray Sum](.doc/0523.continuous-subarray-sum.md) | Medium (28.50%) | prefix-sum, hash-table | [cpp](.cpp/0523.continuous-subarray-sum.cpp) |
+| [0524.Longest Word in Dictionary through Deleting](.doc/0524.longest-word-in-dictionary-through-deleting.md) | Medium (51.04%) | two-pointers, sort, string | [cpp](.cpp/0524.longest-word-in-dictionary-through-deleting.cpp) |
 | [0525.Contiguous Array](.doc/0525.contiguous-array.md) | Medium (46.84%) | hash-table, array, prefix-sum | [cpp](.cpp/0525.contiguous-array.cpp) |
+| [0526.Beautiful Arrangement](.doc/0526.beautiful-arrangement.md) | Medium (64.29%) | permutation, recursion | [cpp](.cpp/0526.beautiful-arrangement.cpp) |
 | 0527.Word Abbreviation 🔒 | | trie, string | [cpp](.cpp/0527.word-abbreviation.cpp) |
 | [0530.Minimum Absolute Difference in BST](.doc/0530.minimum-absolute-difference-in-bst.md) | Easy (58.74%) | binary-search-tree, binary-tree | [cpp](.cpp/0530.minimum-absolute-difference-in-bst.cpp) |
 | 0531.Lonely Pixel I 🔒 | | matrix | [cpp](.cpp/0531.lonely-pixel-i.cpp) |
+| 0533.Lonely Pixel II 🔒 | | matrix, array | [cpp](.cpp/0533.lonely-pixel-ii.cpp) |
 | [0535.Encode and Decode TinyURL](.doc/0535.encode-and-decode-tiny-url.md) | Medium (86.02%) | hash-table, design | [cpp](.cpp/0535.encode-and-decode-tiny-url.cpp) |
 | 0536.Construct Binary Tree from String 🔒 | | binary-tree, string, recursion | [cpp](.cpp/0536.construct-binary-tree-from-string.cpp) |
 | [0537.Complex Number Multiplication](.doc/0537.complex-number-multiplication.md) | Medium (71.46%) | math, string, arithmetic | [cpp](.cpp/0537.complex-number-multiplication.cpp) |
@@ -448,7 +457,9 @@ Only count the problems in the range of `[1, 1080]` .
 | [0564.Find the Closest Palindrome](.doc/0564.find-the-closest-palindrome.md) | Hard (22.00%) | palindrome, string | [cpp](.cpp/0564.find-the-closest-palindrome.cpp) |
 | [0565.Array Nesting](.doc/0565.array-nesting.md) | Medium (56.35%) | array | [cpp](.cpp/0565.array-nesting.cpp) |
 | [0566.Reshape the Matrix](.doc/0566.reshape-the-matrix.md) | Easy (63.03%) | matrix | [cpp](.cpp/0566.reshape-the-matrix.cpp) |
+| [0567.Permutation in String](.doc/0567.permutation-in-string.md) | Medium (44.26%) | sliding-window, hash-table, string | [cpp](.cpp/0567.permutation-in-string.cpp) |
 | 0568.Maximum Vacation Days 🔒 | | dynamic-programming | [cpp](.cpp/0568.maximum-vacation-days.cpp) |
+| [0572.Subtree of Another Tree](.doc/0572.subtree-of-another-tree.md) | Easy (46.93%) | binary-tree, depth-first-search | [cpp](.cpp/0572.subtree-of-another-tree.cpp) |
 | 0573.Squirrel Simulation 🔒 | | planning, greedy | [cpp](.cpp/0573.squirrel-simulation.cpp) |
 | [0575.Distribute Candies](.doc/0575.distribute-candies.md) | Easy (67.31%) | hash-table | [cpp](.cpp/0575.distribute-candies.cpp) |
 | 0582.Kill Process 🔒 | | tree, graph, depth-first-search | [cpp](.cpp/0582.kill-process.cpp) |
@@ -459,6 +470,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [0592.Fraction Addition and Subtraction](.doc/0592.fraction-addition-and-subtraction.md) | Medium (52.57%) | math, string, arithmetic, greatest-common-divisor | [cpp](.cpp/0592.fraction-addition-and-subtraction.cpp) |
 | [0593.Valid Square](.doc/0593.valid-square.md) | Medium (43.96%) | math, hash-table, geometry | [cpp](.cpp/0593.valid-square.cpp) |
 | [0594.Longest Harmonious Subsequence](.doc/0594.longest-harmonious-subsequence.md) | Easy (54.31%) | hash-table, array, ordered-map, sliding-window, sort | [cpp](.cpp/0594.longest-harmonious-subsequence.cpp) |
+| [0598.Range Addition II](.doc/0598.range-addition-ii.md) | Easy (56.72%) | math, matrix | [cpp](.cpp/0598.range-addition-ii.cpp) |
 | [0599.Minimum Index Sum of Two Lists](.doc/0599.minimum-index-sum-of-two-lists.md) | Easy (53.73%) | hash-table, string | [cpp](.cpp/0599.minimum-index-sum-of-two-lists.cpp) |
 | 0604.Design Compressed String Iterator 🔒 | | design, string | [cpp](.cpp/0604.design-compressed-string-iterator.cpp) |
 | [0605.Can Place Flowers](.doc/0605.can-place-flowers.md) | Easy (29.51%) | array, greedy | [cpp](.cpp/0605.can-place-flowers.cpp) |
@@ -499,6 +511,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [0655.Print Binary Tree](.doc/0655.print-binary-tree.md) | Medium (62.29%) | binary-tree,  | [cpp](.cpp/0655.print-binary-tree.cpp) |
 | [0657.Robot Return to Origin](.doc/0657.robot-return-to-origin.md) | Easy (75.61%) | easy | [cpp](.cpp/0657.robot-return-to-origin.cpp) |
 | [0658.Find K Closest Elements](.doc/0658.find-k-closest-elements.md) | Medium (46.90%) | binary-search, two-pointers | [cpp](.cpp/0658.find-k-closest-elements.cpp) |
+| 0660.Remove 9 🔒 | | math | [cpp](.cpp/0660.remove-9.cpp) |
 | [0661.Image Smoother](.doc/0661.image-smoother.md) | Easy (67.05%) | matrix | [cpp](.cpp/0661.image-smoother.cpp) |
 | [0662.Maximum Width of Binary Tree](.doc/0662.maximum-width-of-binary-tree.md) | Medium (42.64%) | binary-tree | [cpp](.cpp/0662.maximum-width-of-binary-tree.cpp) |
 | [0664.Strange Printer](.doc/0664.strange-printer.md) | Hard (55.13%) | dynamic-programming, depth-first-search, memoization | [cpp](.cpp/0664.strange-printer.cpp) |
@@ -603,6 +616,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [0814.Binary Tree Pruning](.doc/0814.binary-tree-pruning.md) | Medium (72.29%) | binary-tree, depth-first-search | [cpp](.cpp/0814.binary-tree-pruning.cpp) |
 | [0816.Ambiguous Coordinates](.doc/0816.ambiguous-coordinates.md) | Medium (56.44%) | string | [cpp](.cpp/0816.ambiguous-coordinates.cpp) |
 | [0817.Linked List Components](.doc/0817.linked-list-components.md) | Medium (57.25%) | hash-table, linked-list | [cpp](.cpp/0817.linked-list-components.cpp) |
+| [0818.Race Car](.doc/0818.race-car.md) | Hard (43.47%) | math, bit-manipulation, breadth-first-search, dynamic-programming, hash-table | [cpp](.cpp/0818.race-car.cpp) |
 | [0819.Most Common Word](.doc/0819.most-common-word.md) | Easy (44.54%) | hash-table, string | [cpp](.cpp/0819.most-common-word.cpp) |
 | [0821.Shortest Distance to a Character](.doc/0821.shortest-distance-to-a-character.md) | Easy (71.31%) | array | [cpp](.cpp/0821.shortest-distance-to-a-character.cpp) |
 | [0822.Card Flipping Game](.doc/0822.card-flipping-game.md) | Medium (46.12%) | hash-table, array | [cpp](.cpp/0822.card-flipping-game.cpp) |
@@ -656,6 +670,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [0885.Spiral Matrix III](.doc/0885.spiral-matrix-iii.md) | Medium (84.64%) | matrix | [cpp](.cpp/0885.spiral-matrix-iii.cpp) |
 | [0886.Possible Bipartition](.doc/0886.possible-bipartition.md) | Medium (50.44%) | graph, union-find | [cpp](.cpp/0886.possible-bipartition.cpp) |
 | [0888.Fair Candy Swap](.doc/0888.fair-candy-swap.md) | Easy (60.83%) | hash-table | [cpp](.cpp/0888.fair-candy-swap.cpp) |
+| [0889.Construct Binary Tree from Preorder and Postorder Traversal](.doc/0889.construct-binary-tree-from-preorder-and-postorder-traversal.md) | Medium (71.28%) | binary-tree, hash-table, recursion | [cpp](.cpp/0889.construct-binary-tree-from-preorder-and-postorder-traversal.cpp) |
 | [0890.Find and Replace Pattern](.doc/0890.find-and-replace-pattern.md) | Medium (77.07%) | hash-table, string | [cpp](.cpp/0890.find-and-replace-pattern.cpp) |
 | [0891.Sum of Subsequence Widths](.doc/0891.sum-of-subsequence-widths.md) | Hard (37.37%) | math, sort | [cpp](.cpp/0891.sum-of-subsequence-widths.cpp) |
 | [0892.Surface Area of 3D Shapes](.doc/0892.surface-area-of-3-d-shapes.md) | Easy (64.87%) | geometry | [cpp](.cpp/0892.surface-area-of-3-d-shapes.cpp) |
@@ -674,7 +689,9 @@ Only count the problems in the range of `[1, 1080]` .
 | [0909.Snakes and Ladders](.doc/0909.snakes-and-ladders.md) | Medium (44.33%) | breadth-first-search | [cpp](.cpp/0909.snakes-and-ladders.cpp) |
 | [0910.Smallest Range II](.doc/0910.smallest-range-ii.md) | Medium (35.65%) | math, sort | [cpp](.cpp/0910.smallest-range-ii.cpp) |
 | [0914.X of a Kind in a Deck of Cards](.doc/0914.x-of-a-kind-in-a-deck-of-cards.md) | Easy (30.48%) | math | [cpp](.cpp/0914.x-of-a-kind-in-a-deck-of-cards.cpp) |
+| [0916.Word Subsets](.doc/0916.word-subsets.md) | Medium (52.95%) | hash-table, string | [cpp](.cpp/0916.word-subsets.cpp) |
 | [0917.Reverse Only Letters](.doc/0917.reverse-only-letters.md) | Easy (63.01%) | string, two-pointers | [cpp](.cpp/0917.reverse-only-letters.cpp) |
+| [0919.Complete Binary Tree Inserter](.doc/0919.complete-binary-tree-inserter.md) | Medium (64.73%) | queue, array, binary-tree, design | [cpp](.cpp/0919.complete-binary-tree-inserter.cpp) |
 | [0920.Number of Music Playlists](.doc/0920.number-of-music-playlists.md) | Hard (60.77%) | dynamic-programming | [cpp](.cpp/0920.number-of-music-playlists.cpp) |
 | [0921.Minimum Add to Make Parentheses Valid](.doc/0921.minimum-add-to-make-parentheses-valid.md) | Medium (75.06%) | string, parentheses, stack, greedy | [cpp](.cpp/0921.minimum-add-to-make-parentheses-valid.cpp) |
 | [0922.Sort Array By Parity II](.doc/0922.sort-array-by-parity-ii.md) | Easy (70.66%) | array, two-pointers | [cpp](.cpp/0922.sort-array-by-parity-ii.cpp) |
@@ -697,10 +714,12 @@ Only count the problems in the range of `[1, 1080]` .
 | [0944.Delete Columns to Make Sorted](.doc/0944.delete-columns-to-make-sorted.md) | Easy (74.57%) | string, easy | [cpp](.cpp/0944.delete-columns-to-make-sorted.cpp) |
 | [0945.Minimum Increment to Make Array Unique](.doc/0945.minimum-increment-to-make-array-unique.md) | Medium (51.60%) | sort, greedy | [cpp](.cpp/0945.minimum-increment-to-make-array-unique.cpp) |
 | [0946.Validate Stack Sequences](.doc/0946.validate-stack-sequences.md) | Medium (69.39%) | stack | [cpp](.cpp/0946.validate-stack-sequences.cpp) |
+| [0947.Most Stones Removed with Same Row or Column](.doc/0947.most-stones-removed-with-same-row-or-column.md) | Medium (58.88%) | union-find | [cpp](.cpp/0947.most-stones-removed-with-same-row-or-column.cpp) |
 | [0948.Bag of Tokens](.doc/0948.bag-of-tokens.md) | Medium (52.17%) | greedy | [cpp](.cpp/0948.bag-of-tokens.cpp) |
 | [0949.Largest Time for Given Digits](.doc/0949.largest-time-for-given-digits.md) | Medium (35.14%) | easy | [cpp](.cpp/0949.largest-time-for-given-digits.cpp) |
 | [0950.Reveal Cards In Increasing Order](.doc/0950.reveal-cards-in-increasing-order.md) | Medium (78.00%) | sort, array, queue | [cpp](.cpp/0950.reveal-cards-in-increasing-order.cpp) |
 | [0953.Verifying an Alien Dictionary](.doc/0953.verifying-an-alien-dictionary.md) | Easy (54.61%) | string, hash-table | [cpp](.cpp/0953.verifying-an-alien-dictionary.cpp) |
+| [0954.Array of Doubled Pairs](.doc/0954.array-of-doubled-pairs.md) | Medium (39.07%) | sort, hash-table, ordered-map | [cpp](.cpp/0954.array-of-doubled-pairs.cpp) |
 | [0959.Regions Cut By Slashes](.doc/0959.regions-cut-by-slashes.md) | Medium (69.27%) | depth-first-search | [cpp](.cpp/0959.regions-cut-by-slashes.cpp) |
 | [0961.N-Repeated Element in Size 2N Array](.doc/0961.n-repeated-element-in-size-2-n-array.md) | Easy (76.34%) | hash-table, math | [cpp](.cpp/0961.n-repeated-element-in-size-2-n-array.cpp) |
 | [0962.Maximum Width Ramp](.doc/0962.maximum-width-ramp.md) | Medium (49.33%) | array, stack, monotonic-stack | [cpp](.cpp/0962.maximum-width-ramp.cpp) |
@@ -748,6 +767,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [1022.Sum of Root To Leaf Binary Numbers](.doc/1022.sum-of-root-to-leaf-binary-numbers.md) | Easy (73.35%) | binary-tree, depth-first-search | [cpp](.cpp/1022.sum-of-root-to-leaf-binary-numbers.cpp) |
 | [1023.Camelcase Matching](.doc/1023.camelcase-matching.md) | Medium (61.41%) | string | [cpp](.cpp/1023.camelcase-matching.cpp) |
 | [1025.Divisor Game](.doc/1025.divisor-game.md) | Easy (68.30%) | math, game-theory | [cpp](.cpp/1025.divisor-game.cpp) |
+| [1026.Maximum Difference Between Node and Ancestor](.doc/1026.maximum-difference-between-node-and-ancestor.md) | Medium (78.06%) | binary-tree, depth-first-search | [cpp](.cpp/1026.maximum-difference-between-node-and-ancestor.cpp) |
 | [1027.Longest Arithmetic Subsequence](.doc/1027.longest-arithmetic-subsequence.md) | Medium (49.01%) | dynamic-programming | [cpp](.cpp/1027.longest-arithmetic-subsequence.cpp) |
 | [1029.Two City Scheduling](.doc/1029.two-city-scheduling.md) | Medium (65.68%) | greedy | [cpp](.cpp/1029.two-city-scheduling.cpp) |
 | [1030.Matrix Cells in Distance Order](.doc/1030.matrix-cells-in-distance-order.md) | Easy (69.88%) | breadth-first-search, sort | [cpp](.cpp/1030.matrix-cells-in-distance-order.cpp) |
@@ -820,7 +840,6 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 0216.Combination Sum III | Medium | Array, Backtracking | -->
 <!-- 0218.The Skyline Problem | Hard | Binary Indexed Tree, Segment Tree, Array, Divide and Conquer, Ordered Set, Line Sweep, Heap (Priority Queue) | -->
 <!-- 0221.Maximal Square | Medium | Array, Dynamic Programming, Matrix | -->
-<!-- 0222.Count Complete Tree Nodes | Easy | Bit Manipulation, Tree, Binary Search, Binary Tree | -->
 <!-- 0224.Basic Calculator | Hard | Stack, Recursion, Math, String | -->
 <!-- 0227.Basic Calculator II | Medium | Stack, Math, String | -->
 <!-- 0233.Number of Digit One | Hard | Recursion, Math, Dynamic Programming | -->
@@ -851,22 +870,17 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 0354.Russian Doll Envelopes | Hard | Array, Binary Search, Dynamic Programming, Sorting | -->
 <!-- 0358.Rearrange String k Distance Apart 🔒 | Hard | Greedy, Hash Table, String, Counting, Sorting, Heap (Priority Queue) | -->
 <!-- 0363.Max Sum of Rectangle No Larger Than K | Hard | Array, Binary Search, Matrix, Ordered Set, Prefix Sum | -->
-<!-- 0367.Valid Perfect Square | Easy | Math, Binary Search | -->
 <!-- 0373.Find K Pairs with Smallest Sums | Medium | Array, Heap (Priority Queue) | -->
 <!-- 0377.Combination Sum IV | Medium | Array, Dynamic Programming | -->
 <!-- 0391.Perfect Rectangle | Hard | Array, Line Sweep | -->
 <!-- 0395.Longest Substring with At Least K Repeating Characters | Medium | Hash Table, String, Divide and Conquer, Sliding Window | -->
 <!-- 0397.Integer Replacement | Medium | Greedy, Bit Manipulation, Memoization, Dynamic Programming | -->
-<!-- 0399.Evaluate Division | Medium | Depth-First Search, Breadth-First Search, Union Find, Graph, Array, Shortest Path | -->
 <!-- 0403.Frog Jump | Hard | Array, Dynamic Programming | -->
 <!-- 0411.Minimum Unique Word Abbreviation 🔒 | Hard | Bit Manipulation, String, Backtracking | -->
 <!-- 0420.Strong Password Checker | Hard | Greedy, String, Heap (Priority Queue) | -->
 <!-- 0425.Word Squares 🔒 | Hard | Trie, Array, String, Backtracking | -->
 <!-- 0431.Encode N-ary Tree to Binary Tree 🔒 | Hard | Tree, Depth-First Search, Breadth-First Search, Design, Binary Tree | -->
 <!-- 0435.Non-overlapping Intervals | Medium | Greedy, Array, Dynamic Programming, Sorting | -->
-<!-- 0436.Find Right Interval | Medium | Array, Binary Search, Sorting | -->
-<!-- 0438.Find All Anagrams in a String | Medium | Hash Table, String, Sliding Window | -->
-<!-- 0440.K-th Smallest in Lexicographical Order | Hard | Trie | -->
 <!-- 0446.Arithmetic Slices II - Subsequence | Hard | Array, Dynamic Programming | -->
 <!-- 0456.132 Pattern | Medium | Stack, Array, Binary Search, Ordered Set, Monotonic Stack | -->
 <!-- 0457.Circular Array Loop | Medium | Array, Hash Table, Two Pointers | -->
@@ -892,31 +906,24 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 0514.Freedom Trail | Hard | Depth-First Search, Breadth-First Search, String, Dynamic Programming | -->
 <!-- 0517.Super Washing Machines | Hard | Greedy, Array | -->
 <!-- 0518.Coin Change II | Medium | Array, Dynamic Programming | -->
-<!-- 0524.Longest Word in Dictionary through Deleting | Medium | Array, Two Pointers, String, Sorting | -->
-<!-- 0526.Beautiful Arrangement | Medium | Bit Manipulation, Array, Dynamic Programming, Backtracking, Bitmask | -->
 <!-- 0528.Random Pick with Weight | Medium | Array, Math, Binary Search, Prefix Sum, Randomized | -->
 <!-- 0529.Minesweeper | Medium | Depth-First Search, Breadth-First Search, Array, Matrix | -->
 <!-- 0532.K-diff Pairs in an Array | Medium | Array, Hash Table, Two Pointers, Binary Search, Sorting | -->
-<!-- 0533.Lonely Pixel II 🔒 | Medium | Array, Hash Table, Matrix | -->
 <!-- 0543.Diameter of Binary Tree | Easy | Tree, Depth-First Search, Binary Tree | -->
 <!-- 0545.Boundary of Binary Tree 🔒 | Medium | Tree, Depth-First Search, Binary Tree | -->
 <!-- 0546.Remove Boxes | Hard | Memoization, Array, Dynamic Programming | -->
 <!-- 0549.Binary Tree Longest Consecutive Sequence II 🔒 | Medium | Tree, Depth-First Search, Binary Tree | -->
 <!-- 0555.Split Concatenated Strings 🔒 | Medium | Greedy, Array, String | -->
-<!-- 0567.Permutation in String | Medium | Hash Table, Two Pointers, String, Sliding Window | -->
-<!-- 0572.Subtree of Another Tree | Easy | Tree, Depth-First Search, Binary Tree, String Matching, Hash Function | -->
 <!-- 0576.Out of Boundary Paths | Medium | Dynamic Programming | -->
 <!-- 0581.Shortest Unsorted Continuous Subarray | Medium | Stack, Greedy, Array, Two Pointers, Sorting, Monotonic Stack | -->
 <!-- 0587.Erect the Fence | Hard | Geometry, Array, Math | -->
 <!-- 0591.Tag Validator | Hard | Stack, String | -->
-<!-- 0598.Range Addition II | Easy | Array, Math | -->
 <!-- 0600.Non-negative Integers without Consecutive Ones | Hard | Dynamic Programming | -->
 <!-- 0611.Valid Triangle Number | Medium | Greedy, Array, Two Pointers, Binary Search, Sorting | -->
 <!-- 0629.K Inverse Pairs Array | Hard | Dynamic Programming | -->
 <!-- 0654.Maximum Binary Tree | Medium | Stack, Tree, Array, Divide and Conquer, Binary Tree, Monotonic Stack | -->
 <!-- 0656.Coin Path 🔒 | Hard | Array, Dynamic Programming | -->
 <!-- 0659.Split Array into Consecutive Subsequences | Medium | Greedy, Array, Hash Table, Heap (Priority Queue) | -->
-<!-- 0660.Remove 9 🔒 | Hard | Math | -->
 <!-- 0663.Equal Tree Partition 🔒 | Medium | Tree, Depth-First Search, Binary Tree | -->
 <!-- 0673.Number of Longest Increasing Subsequence | Medium | Binary Indexed Tree, Segment Tree, Array, Dynamic Programming | -->
 <!-- 0675.Cut Off Trees for Golf Event | Hard | Breadth-First Search, Array, Matrix, Heap (Priority Queue) | -->
@@ -970,7 +977,6 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 0805.Split Array With Same Average | Hard | Bit Manipulation, Array, Math, Dynamic Programming, Bitmask | -->
 <!-- 0810.Chalkboard XOR Game | Hard | Bit Manipulation, Brainteaser, Array, Math, Game Theory | -->
 <!-- 0815.Bus Routes | Hard | Breadth-First Search, Array, Hash Table | -->
-<!-- 0818.Race Car | Hard | Dynamic Programming | -->
 <!-- 0820.Short Encoding of Words | Medium | Trie, Array, Hash Table, String | -->
 <!-- 0826.Most Profit Assigning Work | Medium | Greedy, Array, Two Pointers, Binary Search, Sorting | -->
 <!-- 0828.Count Unique Characters of All Substrings of a Given String | Hard | Hash Table, String, Dynamic Programming | -->
@@ -988,7 +994,6 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 0880.Decoded String at Index | Medium | Stack, String | -->
 <!-- 0882.Reachable Nodes In Subdivided Graph | Hard | Graph, Shortest Path, Heap (Priority Queue) | -->
 <!-- 0887.Super Egg Drop | Hard | Math, Binary Search, Dynamic Programming | -->
-<!-- 0889.Construct Binary Tree from Preorder and Postorder Traversal | Medium | Tree, Array, Hash Table, Divide and Conquer, Binary Tree | -->
 <!-- 0901.Online Stock Span | Medium | Stack, Design, Data Stream, Monotonic Stack | -->
 <!-- 0902.Numbers At Most N Given Digit Set | Hard | Array, Math, String, Binary Search, Dynamic Programming | -->
 <!-- 0903.Valid Permutations for DI Sequence | Hard | String, Dynamic Programming, Prefix Sum | -->
@@ -997,18 +1002,14 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 0912.Sort an Array | Medium | Array, Divide and Conquer, Bucket Sort, Counting Sort, Radix Sort, Sorting, Heap (Priority Queue), Merge Sort | -->
 <!-- 0913.Cat and Mouse | Hard | Graph, Topological Sort, Memoization, Math, Dynamic Programming, Game Theory | -->
 <!-- 0915.Partition Array into Disjoint Intervals | Medium | Array | -->
-<!-- 0916.Word Subsets | Medium | Array, Hash Table, String | -->
 <!-- 0918.Maximum Sum Circular Subarray | Medium | Queue, Array, Divide and Conquer, Dynamic Programming, Monotonic Queue | -->
-<!-- 0919.Complete Binary Tree Inserter | Medium | Tree, Breadth-First Search, Design, Binary Tree | -->
 <!-- 0932.Beautiful Array | Medium | Array, Math, Divide and Conquer | -->
 <!-- 0935.Knight Dialer | Medium | Dynamic Programming | -->
 <!-- 0936.Stamping The Sequence | Hard | Stack, Greedy, Queue, String | -->
 <!-- 0940.Distinct Subsequences II | Hard | String, Dynamic Programming | -->
 <!-- 0943.Find the Shortest Superstring | Hard | Bit Manipulation, Array, String, Dynamic Programming, Bitmask | -->
-<!-- 0947.Most Stones Removed with Same Row or Column | Medium | Depth-First Search, Union Find, Graph, Hash Table | -->
 <!-- 0951.Flip Equivalent Binary Trees | Medium | Tree, Depth-First Search, Binary Tree | -->
 <!-- 0952.Largest Component Size by Common Factor | Hard | Union Find, Array, Hash Table, Math, Number Theory | -->
-<!-- 0954.Array of Doubled Pairs | Medium | Greedy, Array, Hash Table, Sorting | -->
 <!-- 0955.Delete Columns to Make Sorted II | Medium | Greedy, Array, String | -->
 <!-- 0956.Tallest Billboard | Hard | Array, Dynamic Programming | -->
 <!-- 0957.Prison Cells After N Days | Medium | Bit Manipulation, Array, Hash Table, Math | -->
@@ -1033,7 +1034,6 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 1015.Smallest Integer Divisible by K | Medium | Hash Table, Math | -->
 <!-- 1020.Number of Enclaves | Medium | Depth-First Search, Breadth-First Search, Union Find, Array, Matrix | -->
 <!-- 1024.Video Stitching | Medium | Greedy, Array, Dynamic Programming | -->
-<!-- 1026.Maximum Difference Between Node and Ancestor | Medium | Tree, Depth-First Search, Binary Tree | -->
 <!-- 1028.Recover a Tree From Preorder Traversal | Hard | Tree, Depth-First Search, String, Binary Tree | -->
 <!-- 1033.Moving Stones Until Consecutive | Medium | Brainteaser, Math | -->
 <!-- 1034.Coloring A Border | Medium | Depth-First Search, Breadth-First Search, Array, Matrix | -->

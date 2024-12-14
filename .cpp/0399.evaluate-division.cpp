@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 图+DFS
+// 1. dfs
 // 2023-06-20 submission
 // 27/27 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -16,7 +16,6 @@ public:
                                 vector<vector<string>>& queries) {
         unordered_map<string, int> var2id;
         int id = 0;
-        // 将变量转换为id
         for (const auto& equation : equations) {
             for (const auto& var : equation) {
                 if (!var2id.count(var)) {
@@ -76,7 +75,6 @@ public:
     vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values,
                                 vector<vector<string>>& queries) {
         int n = equations.size();
-        // 初始化并查集
         for (int i = 0; i < n; i++) {
             string a = equations[i][0], b = equations[i][1];
             if (!parent.count(a)) {
@@ -87,7 +85,6 @@ public:
                 parent[b] = b;
                 weight[b] = 1.0;
             }
-            // 合并
             merge(a, b, values[i]);
         }
         // 查询

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 滑动窗口+哈希表
 // 2021-03-18 submission
 // 64/64 cases passed
 // Runtime: 8 ms, faster than 97.04% of cpp online submissions.
@@ -12,18 +13,30 @@
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
-        int m[256] = {0}; // 数据类型不能用char！！！
-        int len = p.length();
-        for (char c : p) {
-            ++m[c];
-        }
-
-        int l = -1;
         vector<int> res;
-        for (int i = 0; i < s.length(); i++) {
-            --m[s[i]];
-            while (m[s[i]] < 0) ++m[s[++l]];
-            if (i - l == len) res.push_back(l + 1);
+        vector<int> need(256, 0);
+        for (char c : p) {
+            need[c]++;
+        }
+        int left = 0, right = 0;
+        int valid = 0;
+        for (; right < s.size(); ++right) {
+            char c = s[right];
+            --need[c];
+            if (need[c] >= 0) {
+                ++valid;
+            }
+            if (right - left + 1 > p.size()) {
+                char d = s[left];
+                ++left;
+                if (need[d] >= 0) {
+                    --valid;
+                }
+                ++need[d];
+            }
+            if (valid == p.size()) {
+                res.push_back(left);
+            }
         }
         return res;
     }
