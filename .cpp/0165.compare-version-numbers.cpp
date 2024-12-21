@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 双指针
 // 2021-03-18 submission
 // 83/83 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -26,10 +27,12 @@ public:
                 ++p2;
             }
 
-            if (x1 < x2)
+            if (x1 < x2) {
                 return -1;
-            else if (x1 > x2)
+            }
+            else if (x1 > x2) {
                 return 1;
+            }
             ++p1;
             ++p2;
         }
@@ -39,6 +42,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. stringstream
 // 2023-01-15 submission
 // 83/83 cases passed
 // Runtime: 4 ms, faster than 25.42% of cpp online submissions.
@@ -52,10 +56,12 @@ public:
         while (v1.good() || v2.good()) {
             if (v1.good()) v1 >> d1 >> dot;
             if (v2.good()) v2 >> d2 >> dot;
-            if (d1 > d2)
+            if (d1 > d2) {
                 return 1;
-            else if (d1 < d2)
+            }
+            else if (d1 < d2) {
                 return -1;
+            }
             d1 = d2 = 0;
         }
         return 0;

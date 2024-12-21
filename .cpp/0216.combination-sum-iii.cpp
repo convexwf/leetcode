@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 回溯
 // 2023-01-14 submission
 // 18/18 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -14,15 +15,23 @@ public:
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int>> res;
         vector<int> out;
-        combinationSum3DFS(k, n, 1, out, res);
+        dfs(res, out, k, n, 1);
         return res;
     }
-    void combinationSum3DFS(int k, int n, int level, vector<int> &out, vector<vector<int>> &res) {
-        if (n < 0) return;
-        if (n == 0 && out.size() == k) res.push_back(out);
-        for (int i = level; i <= 9; ++i) {
+
+    void dfs(vector<vector<int>>& res, vector<int>& out, int k, int n, int start) {
+        if (n < 0) {
+            return;
+        }
+        if (out.size() == k) {
+            if (n == 0) {
+                res.push_back(out);
+            }
+            return;
+        }
+        for (int i = start; i <= 9; ++i) {
             out.push_back(i);
-            combinationSum3DFS(k, n - i, i + 1, out, res);
+            dfs(res, out, k, n - i, i + 1);
             out.pop_back();
         }
     }

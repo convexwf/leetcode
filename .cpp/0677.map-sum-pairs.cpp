@@ -92,7 +92,7 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 3. map+二分查找
+// 3. 有序字典+二分查找
 // 2023-11-09 submission
 // 35/35 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.

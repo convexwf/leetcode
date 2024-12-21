@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 记忆化搜索
 // 2023-01-14 submission
 // 58/58 cases passed
 // Runtime: 1081 ms, faster than 29.17% of cpp online submissions.
@@ -12,23 +13,28 @@
 class Solution {
 public:
     bool canIWin(int maxChoosableInteger, int desiredTotal) {
-        if (maxChoosableInteger >= desiredTotal) return true;
-        if (maxChoosableInteger * (maxChoosableInteger + 1) / 2 < desiredTotal) return false;
-        unordered_map<int, bool> m;
-        return canWin(maxChoosableInteger, desiredTotal, 0, m);
+        if (maxChoosableInteger * (maxChoosableInteger + 1) / 2 < desiredTotal) {
+            return false;
+        }
+        unordered_map<int, bool> memo;
+        return dfs(maxChoosableInteger, desiredTotal, 0, memo);
     }
-    bool canWin(int length, int total, int used, unordered_map<int, bool>& m) {
-        if (m.count(used)) return m[used];
-        for (int i = 0; i < length; ++i) {
-            int cur = (1 << i);
-            if ((cur & used) == 0) {
-                if (total <= i + 1 || !canWin(length, total - (i + 1), cur | used, m)) {
-                    m[used] = true;
+
+    bool dfs(int maxChoosableInteger, int desiredTotal, int masks, unordered_map<int, bool>& memo) {
+        if (memo.count(masks)) {
+            return memo[masks];
+        }
+        for (int i = 1; i <= maxChoosableInteger; ++i) {
+            int mask = 1 << i;
+            if ((masks & mask) == 0) {
+                if (i >= desiredTotal ||
+                    !dfs(maxChoosableInteger, desiredTotal - i, masks | mask, memo)) {
+                    memo[masks] = true;
                     return true;
                 }
             }
         }
-        m[used] = false;
+        memo[masks] = false;
         return false;
     }
 };
