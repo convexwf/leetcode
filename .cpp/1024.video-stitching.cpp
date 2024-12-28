@@ -47,7 +47,7 @@ public:
         vector<int> dp(time + 1, time + 1);
         dp[0] = 0;
         for (int i = 1; i <= time; ++i) {
-            for (auto& clip : clips) {
+            for (const vector<int>& clip : clips) {
                 if (clip[0] <= i && i <= clip[1]) {
                     dp[i] = min(dp[i], dp[clip[0]] + 1);
                 }

@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. BFS
+// 1. bfs
 // 2024-01-25 submission
 // 32/32 cases passed
 // Runtime: 9 ms, faster than 67.77% of cpp online submissions.

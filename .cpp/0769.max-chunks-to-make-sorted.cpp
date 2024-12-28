@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 贪心算法
 // 2023-02-22 submission
 // 52/52 cases passed
 // Runtime: 4 ms, faster than 29.59% of cpp online submissions.
@@ -12,10 +13,14 @@
 class Solution {
 public:
     int maxChunksToSorted(vector<int>& arr) {
-        int last = -1, res = 0;
-        for (int i = 0; i < arr.size(); ++i) {
-            if (i > last) ++res;
-            last = max(last, arr[i]);
+        int n = arr.size();
+        int res = 0;
+        int max_val = 0;
+        for (int i = 0; i < n; i++) {
+            max_val = max(max_val, arr[i]);
+            if (max_val == i) {
+                res++;
+            }
         }
         return res;
     }
