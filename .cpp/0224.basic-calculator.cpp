@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 栈
 // 2023-01-14 submission
 // 44/44 cases passed
 // Runtime: 5 ms, faster than 94.08% of cpp online submissions.
@@ -12,31 +13,41 @@
 class Solution {
 public:
     int calculate(string s) {
-        int res = 0, num = 0, sign = 1, n = s.size();
-        stack<int> st;
-        for (int i = 0; i < n; ++i) {
+        stack<int> stk;
+        int res = 0, sign = 1, num = 0;
+        for (int i = 0; i < s.size(); i++) {
             char c = s[i];
-            if (c >= '0') {
-                num = 10 * num + (c - '0');
+            if (c == ' ') {
+                continue;
             }
-            else if (c == '+' || c == '-') {
+            if (isdigit(c)) {
+                num = num * 10 + (c - '0');
+            }
+            else {
                 res += sign * num;
+            }
+            if (c == '+') {
+                sign = 1;
                 num = 0;
-                sign = (c == '+') ? 1 : -1;
+            }
+            else if (c == '-') {
+                sign = -1;
+                num = 0;
             }
             else if (c == '(') {
-                st.push(res);
-                st.push(sign);
+                stk.push(res);
+                stk.push(sign);
                 res = 0;
                 sign = 1;
+                num = 0;
             }
             else if (c == ')') {
-                res += sign * num;
+                res *= stk.top();
+                stk.pop();
+                res += stk.top();
+                stk.pop();
+                sign = 1;
                 num = 0;
-                res *= st.top();
-                st.pop();
-                res += st.top();
-                st.pop();
             }
         }
         res += sign * num;
@@ -46,6 +57,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 递归
 // 2023-01-14 submission
 // 44/44 cases passed
 // Runtime: 110 ms, faster than 5.44% of cpp online submissions.

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 栈
 // 2023-01-14 submission
 // 110/110 cases passed
 // Runtime: 22 ms, faster than 71.97% of cpp online submissions.
@@ -12,28 +13,40 @@
 class Solution {
 public:
     int calculate(string s) {
-        long res = 0, num = 0, n = s.size();
+        s += '+';
+        stack<int> nums;
+        int num = 0;
         char op = '+';
-        stack<int> st;
-        for (int i = 0; i < n; ++i) {
-            if (s[i] >= '0') {
-                num = num * 10 + s[i] - '0';
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == ' ') continue;
+            if (isdigit(s[i])) {
+                num = num * 10 + (s[i] - '0');
             }
-            if ((s[i] < '0' && s[i] != ' ') || i == n - 1) {
-                if (op == '+') st.push(num);
-                if (op == '-') st.push(-num);
-                if (op == '*' || op == '/') {
-                    int tmp = (op == '*') ? st.top() * num : st.top() / num;
-                    st.pop();
-                    st.push(tmp);
+            else {
+                if (op == '+') {
+                    nums.push(num);
                 }
-                op = s[i];
+                else if (op == '-') {
+                    nums.push(-num);
+                }
+                else if (op == '*') {
+                    int tmp = nums.top();
+                    nums.pop();
+                    nums.push(tmp * num);
+                }
+                else if (op == '/') {
+                    int tmp = nums.top();
+                    nums.pop();
+                    nums.push(tmp / num);
+                }
                 num = 0;
+                op = s[i];
             }
         }
-        while (!st.empty()) {
-            res += st.top();
-            st.pop();
+        int res = 0;
+        while (!nums.empty()) {
+            res += nums.top();
+            nums.pop();
         }
         return res;
     }
@@ -41,6 +54,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 栈-优化
 // 2023-01-14 submission
 // 110/110 cases passed
 // Runtime: 13 ms, faster than 90.24% of cpp online submissions.
@@ -48,33 +62,32 @@ public:
 class Solution {
 public:
     int calculate(string s) {
-        long res = 0, curRes = 0, num = 0, n = s.size();
+        s += '+';
+        int res = 0, cur = 0, num = 0;
         char op = '+';
-        for (int i = 0; i < n; ++i) {
-            char c = s[i];
-            if (c >= '0' && c <= '9') {
-                num = num * 10 + c - '0';
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == ' ') continue;
+            if (isdigit(s[i])) {
+                num = num * 10 + (s[i] - '0');
             }
-            if (c == '+' || c == '-' || c == '*' || c == '/' || i == n - 1) {
-                switch (op) {
-                    case '+':
-                        curRes += num;
-                        break;
-                    case '-':
-                        curRes -= num;
-                        break;
-                    case '*':
-                        curRes *= num;
-                        break;
-                    case '/':
-                        curRes /= num;
-                        break;
+            else {
+                if (op == '+') {
+                    cur += num;
                 }
-                if (c == '+' || c == '-' || i == n - 1) {
-                    res += curRes;
-                    curRes = 0;
+                else if (op == '-') {
+                    cur -= num;
                 }
-                op = c;
+                else if (op == '*') {
+                    cur *= num;
+                }
+                else if (op == '/') {
+                    cur /= num;
+                }
+                if (s[i] == '+' || s[i] == '-') {
+                    res += cur;
+                    cur = 0;
+                }
+                op = s[i];
                 num = 0;
             }
         }
