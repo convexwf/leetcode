@@ -14,7 +14,7 @@ class Solution {
 public:
     vector<int> gridIllumination(int N, vector<vector<int>>& lamps, vector<vector<int>>& queries) {
         this->N = N;
-        for (auto& lamp : lamps) {
+        for (const vector<int>& lamp : lamps) {
             int x = lamp[0], y = lamp[1];
             // in case of duplicate lamps
             if (turning_on.insert((long)x * N + y).second) {
@@ -23,7 +23,7 @@ public:
         }
 
         vector<int> res;
-        for (auto& query : queries) {
+        for (const vector<int>& query : queries) {
             int x = query[0], y = query[1];
             res.push_back(judge(x, y));
             turn_off(x, y);
@@ -35,7 +35,7 @@ private:
     void turn_off(int x, int y) {
         vector<pair<int, int>> dirs{{0, 0}, {0, 1},  {0, -1}, {1, 0},  {-1, 0},
                                     {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
-        for (auto& dir : dirs) {
+        for (const pair<int, int>& dir : dirs) {
             int nx = x + dir.first, ny = y + dir.second;
             if (nx >= 0 && nx < N && ny >= 0 && ny < N && turning_on.count((long)nx * N + ny)) {
                 row[nx]--, col[ny]--, diag[nx - ny]--, anti_diag[nx + ny]--;

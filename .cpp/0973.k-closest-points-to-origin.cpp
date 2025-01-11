@@ -22,7 +22,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. 优先队列(最大堆)
+// 2. 最大堆
 // 2023-09-11 submission
 // 87/87 cases passed
 // Runtime: 165 ms, faster than 82.98% of cpp online submissions.

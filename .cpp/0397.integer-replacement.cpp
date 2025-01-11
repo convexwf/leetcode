@@ -24,6 +24,7 @@ public:
             int b = integerReplacement(n / 2 + 1) + 2;
             return min(a, b);
         }
+        return -1;
     }
 };
 // @lc code=end
@@ -43,8 +44,8 @@ public:
             if ((num & 1) == 0) { // 偶数
                 num >>= 1;        // 等价于 num /= 2;
             }
-            // 情况①：最后两位为01；
-            // 情况②：最后一位为1且倒数第二位为0
+            // 情况①：最后两位为 01；
+            // 情况②：最后一位为 1 且倒数第二位为 0
             else if (num == 3 || ((num >> 1) & 1) == 0) {
                 num--;
             }
