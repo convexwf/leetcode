@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 累计和数组
+// 1. 累计和数组+二分查找
 // 2023-09-18 submission
 // 57/57 cases passed
 // Runtime: 58 ms, faster than 97.96% of cpp online submissions.

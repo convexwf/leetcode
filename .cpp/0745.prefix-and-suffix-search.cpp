@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. Brute Force
+// 1. 哈希表
 // 2023-12-25 submission
 // 17/17 cases passed
 // Runtime: 1882 ms, faster than 6.34% of cpp online submissions.

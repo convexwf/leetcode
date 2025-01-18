@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 二分搜索
+// 1. 哈希表+二分查找
 // 2023-12-25 submission
 // 98/98 cases passed
 // Runtime: 217 ms, faster than 44.87% of cpp online submissions.
