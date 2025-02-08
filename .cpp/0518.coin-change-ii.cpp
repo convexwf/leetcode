@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 动态规划
+// 1. 动态规划-完全背包问题
 // 2024-01-18 submission
 // 28/28 cases passed
 // Runtime: 37 ms, faster than 31.98% of cpp online submissions.

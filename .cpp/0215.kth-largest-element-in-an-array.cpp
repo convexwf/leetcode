@@ -31,6 +31,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 快速选择算法
 // 2023-01-14 submission
 // 39/39 cases passed
 // Runtime: 253 ms, faster than 31.73% of cpp online submissions.
@@ -41,12 +42,17 @@ public:
         int left = 0, right = nums.size() - 1;
         while (true) {
             int pos = partition(nums, left, right);
-            if (pos == k - 1) return nums[pos];
-            if (pos > k - 1)
+            if (pos == k - 1) {
+                return nums[pos];
+            }
+            if (pos > k - 1) {
                 right = pos - 1;
-            else
+            }
+            else {
                 left = pos + 1;
+            }
         }
+        return -1;
     }
     int partition(vector<int>& nums, int left, int right) {
         int pivot = nums[left], l = left + 1, r = right;
@@ -54,8 +60,12 @@ public:
             if (nums[l] < pivot && nums[r] > pivot) {
                 swap(nums[l++], nums[r--]);
             }
-            if (nums[l] >= pivot) ++l;
-            if (nums[r] <= pivot) --r;
+            if (nums[l] >= pivot) {
+                ++l;
+            }
+            if (nums[r] <= pivot) {
+                --r;
+            }
         }
         swap(nums[left], nums[r]);
         return r;

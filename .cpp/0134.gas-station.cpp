@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 贪心算法
 // 2018-09-19 submission
 // 37/37 cases passed
 // Runtime: 219 ms, faster than 26.03% of cpp online submissions.

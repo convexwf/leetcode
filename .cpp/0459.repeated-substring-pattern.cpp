@@ -24,24 +24,24 @@ public:
 // 2024-01-18 submission
 // 129/129 cases passed
 // Runtime: 16 ms, faster than 81.12% of cpp online submissions.
-// Memory Usage:  MB, less than 77.55% of cpp online submissions.
+// Memory Usage: 12 MB, less than 77.55% of cpp online submissions.
 class Solution {
 public:
     bool repeatedSubstringPattern(string str) {
         int i = 1, j = 0, n = str.size();
-        vector<int> dp(n + 1, 0);
+        vector<int> lps(n + 1, 0);
         while (i < n) {
             if (str[i] == str[j]) {
-                dp[++i] = ++j;
+                lps[++i] = ++j;
             }
             else if (j == 0) {
                 ++i;
             }
             else {
-                j = dp[j];
+                j = lps[j];
             }
         }
-        return dp[n] && (dp[n] % (n - dp[n]) == 0);
+        return lps[n] && (lps[n] % (n - lps[n]) == 0);
     }
 };
 // @lc code=end

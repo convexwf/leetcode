@@ -5,14 +5,15 @@
  */
 
 // @lc code=start
-// 2020-11-25 submission (动态规划)
+// 1. 动态规划
+// 2020-11-25 submission
 // 189/189 cases passed
 // Runtime: 141 ms, faster than 66.75% of cpp online submissions.
 // Memory Usage: 14.5 MB, less than 55.71% of cpp online submissions.
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
-        vector<int> dp(amount + 1, amount + 1); // dp[i] 表示amount为i时所需最少找零数，显然dp[i]<=i
+        vector<int> dp(amount + 1, amount + 1);
         dp[0] = 0;
         for (int i = 1; i <= amount; i++) {
             for (int coin : coins) {
@@ -26,50 +27,32 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2020-11-25 submission (递归+记忆数组)
+// 2. 记忆化搜索
+// 2020-11-25 submission
 // 189/189 cases passed
 // Runtime: 213 ms, faster than 35.97% of cpp online submissions.
 // Memory Usage: 15.5 MB, less than 39.04% of cpp online submissions.
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
-        vector<int> memo(amount + 1, INT_MAX);
-        memo[0] = 0;
-        return coinChangeDFS(coins, amount, memo);
+        vector<int> memo(amount + 1, 0);
+        return dfs(coins, amount, memo);
     }
-    int coinChangeDFS(vector<int>& coins, int target, vector<int>& memo) {
-        if (target < 0) return -1;
-        if (memo[target] != INT_MAX) return memo[target];
-        for (int i = 0; i < coins.size(); ++i) {
-            int tmp = coinChangeDFS(coins, target - coins[i], memo);
-            if (tmp >= 0) memo[target] = min(memo[target], tmp + 1);
-        }
-        return memo[target] = (memo[target] == INT_MAX) ? -1 : memo[target];
-    }
-};
-// @lc code=end
 
-// @lc code=start
-// 2020-11-25 submission (暴力搜索+剪枝)
-// TLE
-class Solution {
-public:
-    int coinChange(vector<int>& coins, int amount) {
-        int res = INT_MAX, n = coins.size();
-        sort(coins.begin(), coins.end());
-        helper(coins, n - 1, amount, 0, res);
-        return (res == INT_MAX) ? -1 : res;
-    }
-    void helper(vector<int>& coins, int start, int target, int cur, int& res) {
-        if (start < 0) return;
-        if (target % coins[start] == 0) {
-            res = min(res, cur + target / coins[start]);
-            return;
+    int dfs(vector<int>& coins, int amount, vector<int>& memo) {
+        if (amount < 0) return -1;
+        if (amount == 0) return 0;
+        if (memo[amount] != 0) {
+            return memo[amount];
         }
-        for (int i = target / coins[start]; i >= 0; --i) {
-            if (cur + i >= res - 1) break;
-            helper(coins, start - 1, target - i * coins[start], cur + i, res);
+        int res = INT_MAX;
+        for (int j = 0; j < coins.size(); ++j) {
+            int sub = dfs(coins, amount - coins[j], memo);
+            if (sub == -1) continue;
+            res = min(res, sub + 1);
         }
+        memo[amount] = res == INT_MAX ? -1 : res;
+        return memo[amount];
     }
 };
 // @lc code=end
