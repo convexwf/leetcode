@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. DFS + multiset
+// 1. 排序+dfs
 // 2023-10-04 submission
 // 81/81 cases passed
 // Runtime: 22 ms, faster than 30.64% of cpp online submissions.
@@ -13,30 +13,29 @@
 class Solution {
 public:
     vector<string> findItinerary(vector<vector<string>>& tickets) {
-        unordered_map<string, multiset<string>> targets;
-        vector<string> route;
-        for (auto& t : tickets) {
-            targets[t[0]].insert(t[1]);
+        sort(tickets.begin(), tickets.end(), greater<vector<string>>());
+        unordered_map<string, vector<string>> graph;
+        for (const vector<string>& ticket : tickets) {
+            graph[ticket[0]].push_back(ticket[1]);
         }
-        visit(targets, "JFK", route);
-        return vector<string>(route.rbegin(), route.rend());
-    }
-
-private:
-    void visit(unordered_map<string, multiset<string>>& targets, string airport,
-               vector<string>& route) {
-        while (targets[airport].size()) {
-            string next = *targets[airport].begin();
-            targets[airport].erase(targets[airport].begin());
-            visit(targets, next, route);
-        }
-        route.push_back(airport);
+        vector<string> ans;
+        function<void(const string&)> dfs = [&](const string& node) {
+            while (graph[node].size() > 0) {
+                string next = graph[node].back();
+                graph[node].pop_back();
+                dfs(next);
+            }
+            ans.push_back(node);
+        };
+        dfs("JFK");
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
 // @lc code=end
 
 // @lc code=start
-// 2. 栈 + multiset
+// 2. 排序+栈
 // 2023-10-04 submission
 // 81/81 cases passed
 // Runtime: 18 ms, faster than 58.65% of cpp online submissions.
@@ -44,10 +43,12 @@ private:
 class Solution {
 public:
     vector<string> findItinerary(vector<vector<string>>& tickets) {
-        unordered_map<string, multiset<string>> graph;
-        for (auto& ticket : tickets) {
-            graph[ticket[0]].insert(ticket[1]);
+        sort(tickets.begin(), tickets.end(), greater<vector<string>>());
+        unordered_map<string, vector<string>> graph;
+        for (const vector<string>& ticket : tickets) {
+            graph[ticket[0]].push_back(ticket[1]);
         }
+
         vector<string> ans;
         stack<string> stk;
         stk.push("JFK");
@@ -58,9 +59,8 @@ public:
                 stk.pop();
             }
             else {
-                auto to = graph[from].begin();
-                stk.push(*to);
-                graph[from].erase(to);
+                stk.push(graph[from].back());
+                graph[from].pop_back();
             }
         }
         reverse(ans.begin(), ans.end());

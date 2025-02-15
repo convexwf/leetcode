@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. BFS+位运算
+// 1. bfs+位运算
 // 2024-02-01 submission
 // 35/35 cases passed
 // Runtime: 16 ms, faster than 98.26% of cpp online submissions.

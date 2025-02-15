@@ -3251,58 +3251,6 @@ public:
 ```
 
 
-## 87. Scramble String
-
-使用下面描述的算法可以扰乱字符串 s 得到字符串 t ：
-
-- 如果字符串的长度为 1 ，算法停止
-- 如果字符串的长度 > 1 ，执行下述步骤：
-  - 在一个随机下标处将字符串分割成两个非空的子字符串。即，如果已知字符串 s ，则可以将其分成两个子字符串 x 和 y ，且满足 s = x + y 。
-  - 随机 决定是要「交换两个子字符串」还是要「保持这两个子字符串的顺序不变」。即，在执行这一步骤之后，s 可能是 s = x + y 或者 s = y + x 。
-  - 在 x 和 y 这两个子字符串上继续从步骤 1 开始递归执行此算法。
-  - 给定两个 长度相等 的字符串 s1 和 s2，判断 s2 是否是 s1 的扰乱字符串。如果是，返回 true ；否则，返回 false 。
-
-s1 和 s2 是 scramble 的话，那么必然存在一个在 s1 上的长度 l1，将 s1 分成 s11 和 s12 两段，同样有 s21 和 s22，那么要么 s11 和 s21 是 scramble 的并且 s12 和 s22 是 scramble 的；要么 s11 和 s22 是 scramble 的并且 s12 和 s21 是 scramble 的。
-
-1. 递归
-   - 将字符串按照不同长度进行切割，然后让子递归函数判断是否成立。注意一个词和它自身是 scramble 的。
-   - 为了减少复杂度，每次切割前可以采用排序或者统计字母频率等。
-
-TODO：https://github.com/grandyang/leetcode/issues/87
-
-```cpp
-// 2020-07-16 submission
-class Solution {
-public:
-    bool isScramble(string s1, string s2) {
-        if (s1.size() != s2.size()) return false;
-        if(s1 == s2) return true;
-        int len = s1.length();
-
-        int freq[26] = {0};
-        for (int i = 0; i < len; i++) {
-            ++freq[s1[i]-'a'];
-            --freq[s2[i]-'a'];
-        }
-        for (int i = 0; i < 26; i++) {
-            if (freq[i] != 0) return false;
-        }
-
-        for (int i = 1; i < len; i++) {
-            string s11 = s1.substr(0, i);
-            string s12 = s1.substr(i);
-            string s21 = s2.substr(0, i);
-            string s22 = s2.substr(i);
-            if (isScramble(s11, s21) && isScramble(s12, s22)) return true;
-
-            s21 = s2.substr(0, len - i);
-            s22 = s2.substr(len - i);
-            if (isScramble(s11, s22) && isScramble(s12, s21)) return true;
-        }
-        return false;
-    }
-};
-```
 
 ## 327. Count of Range Sum
 

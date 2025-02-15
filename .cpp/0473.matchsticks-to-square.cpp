@@ -14,7 +14,9 @@ class Solution {
 public:
     bool makesquare(vector<int>& matchsticks) {
         int sum = accumulate(matchsticks.begin(), matchsticks.end(), 0);
-        if (sum % 4 != 0) return false;
+        if (sum % 4 != 0) {
+            return false;
+        }
         int side = sum / 4;
         sort(matchsticks.begin(), matchsticks.end(), greater<int>());
         vector<int> sides(4, 0);

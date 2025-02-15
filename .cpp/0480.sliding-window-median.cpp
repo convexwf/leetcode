@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 双 multiset
+// 1. 多重有序集合
 // 2023-11-17 submission
 // 43/43 cases passed
 // Runtime: 125 ms, faster than 47.28% of cpp online submissions.
@@ -56,4 +56,9 @@ public:
         return res;
     }
 };
+// @lc code=end
+
+// @lc code=start
+// 2. 最大堆+最小堆
+
 // @lc code=end

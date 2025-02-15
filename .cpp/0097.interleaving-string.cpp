@@ -5,6 +5,43 @@
  */
 
 // @lc code=start
+// 1. 动态规划
+// 2025-02-13 submission
+// 106/106 cases passed
+// Runtime: 2 ms, faster than 67.17% of cpp online submissions.
+// Memory Usage: 9.4 MB, less than 55.14% of cpp online submissions.
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        int n = s1.length(), m = s2.length(), t = s3.length();
+        if (n + m != t) {
+            return false;
+        }
+        vector<vector<bool>> dp(n + 1, vector<bool>(m + 1, false));
+        dp[0][0] = true;
+        for (int i = 1; i <= n; ++i) {
+            dp[i][0] = dp[i - 1][0] && s1[i - 1] == s3[i - 1];
+        }
+        for (int j = 1; j <= m; ++j) {
+            dp[0][j] = dp[0][j - 1] && s2[j - 1] == s3[j - 1];
+        }
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j <= m; ++j) {
+                if (s1[i - 1] == s3[i + j - 1]) {
+                    dp[i][j] = dp[i - 1][j];
+                }
+                if (s2[j - 1] == s3[i + j - 1]) {
+                    dp[i][j] = dp[i][j] || dp[i][j - 1];
+                }
+            }
+        }
+        return dp[n][m];
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 动态规划-空间优化
 // 2020-09-14 submission
 // 106/106 cases passed
 // Runtime: 6 ms, faster than 56.57% of cpp online submissions.
@@ -12,28 +49,28 @@
 class Solution {
 public:
     bool isInterleave(string s1, string s2, string s3) {
-        int c1 = s1.length(), c2 = s2.length();
-        if (c1 + c2 != s3.length()) return false;
-        vector<bool> dp(c1 + 1, true);
-
-        for (int i = 1; i <= c1; i++) {
-            dp[i] = (s1.substr(0, i) == s3.substr(0, i));
+        if (s1.length() + s2.length() != s3.length()) {
+            return false;
         }
-        for (int i = 1; i <= c2; i++) {
-            dp[0] = (s2.substr(0, i) == s3.substr(0, i));
-            for (int j = 1; j <= c1; j++) {
-                dp[j] = (dp[j - 1] && s1[j - 1] == s3[i + j - 1]) ||
-                        (dp[j] && s2[i - 1] == s3[i + j - 1]);
-                // cout << s1[j-1] << " " << s2[i-1] << endl;
+        vector<bool> dp(s2.length() + 1, false);
+        dp[0] = true;
+        for (int i = 0; i <= s1.length(); ++i) {
+            for (int j = 0; j <= s2.length(); ++j) {
+                if (i > 0) {
+                    dp[j] = dp[j] && s1[i - 1] == s3[i + j - 1];
+                }
+                if (j > 0) {
+                    dp[j] = dp[j] || (dp[j - 1] && s2[j - 1] == s3[i + j - 1]);
+                }
             }
         }
-
-        return dp[c1];
+        return dp[s2.length()];
     }
 };
 // @lc code=end
 
 // @lc code=start
+// 3. 记忆化搜索
 // 2023-02-02 submission
 // 106/106 cases passed
 // Runtime: 3 ms, faster than 82.88% of cpp online submissions.
@@ -41,20 +78,31 @@ public:
 class Solution {
 public:
     bool isInterleave(string s1, string s2, string s3) {
-        if (s1.length() + s2.length() != s3.length()) return false;
-        unordered_set<int> s;
-        return helper(s1, 0, s2, 0, s3, 0, s);
-    }
-    bool helper(string& s1, int i, string& s2, int j, string& s3, int k, unordered_set<int>& s) {
-        int key = i * s3.length() + j;
-        if (s.count(key)) return false;
-        if (i == s1.length()) return s2.substr(j) == s3.substr(k);
-        if (j == s2.length()) return s1.substr(i) == s3.substr(k);
-        if ((s1[i] == s3[k] && helper(s1, i + 1, s2, j, s3, k + 1, s)) ||
-            (s2[j] == s3[k] && helper(s1, i, s2, j + 1, s3, k + 1, s)))
-            return true;
-        s.insert(key);
-        return false;
+        int n = s1.length(), m = s2.length(), t = s3.length();
+        if (n + m != t) {
+            return false;
+        }
+        unordered_set<int> visited;
+        function<bool(int, int, int)> dfs = [&](int i, int j, int k) {
+            if (visited.count(i * t + j)) {
+                return false;
+            }
+            if (i == n) {
+                return s2.substr(j) == s3.substr(k);
+            }
+            if (j == m) {
+                return s1.substr(i) == s3.substr(k);
+            }
+            if (s1[i] == s3[k] && dfs(i + 1, j, k + 1)) {
+                return true;
+            }
+            if (s2[j] == s3[k] && dfs(i, j + 1, k + 1)) {
+                return true;
+            }
+            visited.insert(i * t + j);
+            return false;
+        };
+        return dfs(0, 0, 0);
     }
 };
 // @lc code=end

@@ -5,47 +5,54 @@
  */
 
 // @lc code=start
+// 1. 记忆化搜索+二分查找
 // 2023-03-12 submission
 // 52/52 cases passed
 // Runtime: 161 ms, faster than 67.85% of cpp online submissions.
 // Memory Usage: 24.8 MB, less than 79.23% of cpp online submissions.
 class Solution {
 public:
-    unordered_map<string, bool> m;
-
     bool canCross(vector<int>& stones) {
-        return DFS(stones, 0, 0);
-    }
+        int n = stones.size();
 
-    bool DFS(vector<int>& stones, int pos, int step) {
-        // cout << "pos: " << pos << " step: " << step << endl;
-        if (pos == stones.back()) return true;
-
-        string key = to_string(pos) + "_" + to_string(step);
-        if (m.count(key)) return m[key];
-
-        for (int nextStep : vector<int>{step - 1, step, step + 1}) {
-            if (nextStep <= 0) continue;
-            int nextPos = pos + nextStep;
-            if (findPos(stones, nextPos) > 0 && DFS(stones, nextPos, nextStep)) {
-                return m[key] = true;
+        function<int(int)> checkPos = [&](int pos) {
+            int left = 0, right = n - 1;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                if (stones[mid] == pos) {
+                    return mid;
+                }
+                else if (stones[mid] < pos) {
+                    left = mid + 1;
+                }
+                else {
+                    right = mid - 1;
+                }
             }
-        }
-        return m[key] = false;
-    }
+            return -1;
+        };
 
-    int findPos(vector<int>& stones, int target) {
-        int l = 0, r = stones.size(), mid = 0;
-        while (l < r) {
-            mid = l + (r - l) / 2;
-            if (stones[mid] == target)
-                return mid;
-            else if (stones[mid] < target)
-                l = mid + 1;
-            else
-                r = mid;
-        }
-        return -1;
+        unordered_map<int, unordered_map<int, bool>> memo;
+        function<bool(int, int)> dfs = [&](int pos, int k) {
+            if (pos == stones[n - 1]) {
+                return true;
+            }
+            if (memo.count(pos) && memo[pos].count(k)) {
+                return memo[pos][k];
+            }
+            for (int i = k - 1; i <= k + 1; ++i) {
+                if (i > 0) {
+                    int nextPos = pos + i;
+                    int nextIndex = checkPos(nextPos);
+                    if (nextIndex != -1 && dfs(stones[nextIndex], i)) {
+                        memo[pos][k] = true;
+                        return true;
+                    }
+                }
+            }
+            return memo[pos][k] = false;
+        };
+        return dfs(stones[0], 0);
     }
 };
 // @lc code=end

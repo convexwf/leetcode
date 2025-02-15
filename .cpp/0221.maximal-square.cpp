@@ -12,6 +12,21 @@
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
+        int n = matrix.size(), m = matrix[0].size();
+
+        for (int i = 0; i < n; ++i) {
+            for (int j = i; j < n; ++j) {
+                for (int k = 0; k < m; ++k) {
+                    if (matrix[j][k] == '0') {
+                        break;
+                    }
+                    if (k == m - 1) {
+                        return (j - i + 1) * (j - i + 1);
+                    }
+                }
+            }
+        }
+
         int res = 0;
         for (int i = 0; i < matrix.size(); ++i) {
             vector<int> v(matrix[i].size(), 0);
