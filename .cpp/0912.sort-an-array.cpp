@@ -46,6 +46,44 @@ public:
 // @lc code=end
 
 // @lc code=start
+// merge sort
+// 2025-02-20 submission
+// 21/21 cases passed
+// Runtime: 259 ms, faster than 49.3% of cpp online submissions.
+// Memory Usage:  MB, less than 37.41% of cpp online submissions.
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        if (nums.empty()) {
+            return {};
+        }
+        int n = nums.size();
+
+        function<void(int, int)> mergeSort = [&](int left, int right) {
+            if (left >= right) {
+                return;
+            }
+            int mid = left + (right - left) / 2;
+            mergeSort(left, mid);
+            mergeSort(mid + 1, right);
+
+            vector<int> cache(right - left + 1);
+            int t = mid + 1;
+            for (int l = left, r = 0; l <= mid; ++l, ++r) {
+                while (t <= right && nums[t] < nums[l]) {
+                    cache[r++] = nums[t++];
+                }
+                cache[r] = nums[l];
+            }
+            copy(cache.begin(), cache.begin() + t - left, nums.begin() + left);
+        };
+        mergeSort(0, n - 1);
+        return nums;
+    }
+};
+// @lc code=end
+
+// @lc code=start
 // 2023-02-18 submission (heap sort)
 // 19/19 cases passed
 // Runtime: 224 ms, faster than 52.41% of cpp online submissions.

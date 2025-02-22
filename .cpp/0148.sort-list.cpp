@@ -52,84 +52,135 @@ public:
 
 // @lc code=start
 // 冒泡排序
+// Time Limit Exceeded
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
-        if (head == nullptr) {
+        if (!head || !head->next) return head;
+
+        bool swapped;
+        do {
+            swapped = false;
+            ListNode* current = head;
+            while (current->next) {
+                if (current->val > current->next->val) {
+                    // 交换节点的值
+                    std::swap(current->val, current->next->val);
+                    swapped = true;
+                }
+                current = current->next;
+            }
+        } while (swapped);
+
+        return head;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 选择排序
+// Time Limit Exceeded
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        if (!head || !head->next) return head;
+
+        for (ListNode* i = head; i != nullptr; i = i->next) {
+            ListNode* minNode = i;
+            for (ListNode* j = i->next; j != nullptr; j = j->next) {
+                if (j->val < minNode->val) {
+                    minNode = j;
+                }
+            }
+            if (minNode != i) {
+                std::swap(i->val, minNode->val);
+            }
+        }
+
+        return head;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 归并排序
+// 2023-01-14 submission
+// 30/30 cases passed
+// Runtime: 185 ms, faster than 97.67% of cpp online submissions.
+// Memory Usage: 53.4 MB, less than 56.17% of cpp online submissions.
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) {
             return head;
         }
-        ListNode* dummy = new ListNode(0);
-        dummy->next = head;
-        ListNode* p = dummy;
-        while (p->next != nullptr) {
-            ListNode* q = p->next;
-            while (q->next != nullptr) {
-                if (q->val > q->next->val) {
-                    ListNode* tmp = q->next;
-                    q->next = tmp->next;
-                    tmp->next = p->next;
-                    p->next = tmp;
-                }
-                q = q->next;
-            }
-            p = p->next;
+
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
         }
+
+        ListNode* right = sortList(slow->next);
+        slow->next = nullptr;
+        ListNode* left = sortList(head);
+
+        return merge(left, right);
+    }
+
+    ListNode* merge(ListNode* left, ListNode* right) {
+        ListNode* dummy = new ListNode(0);
+        ListNode* cur = dummy;
+        while (left != nullptr && right != nullptr) {
+            if (left->val < right->val) {
+                cur->next = left;
+                left = left->next;
+            }
+            else {
+                cur->next = right;
+                right = right->next;
+            }
+            cur = cur->next;
+        }
+        cur->next = (left != nullptr) ? left : right;
         return dummy->next;
     }
 };
 // @lc code=end
 
 // @lc code=start
-// 2023-01-14 submission
-// 30/30 cases passed
-// Runtime: 185 ms, faster than 97.67% of cpp online submissions.
-// Memory Usage: 53.4 MB, less than 56.17% of cpp online submissions.
-
+// 快速排序
+// Time Limit Exceeded
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
-        if (!head || !head->next) return head;
-        ListNode *slow = head, *fast = head, *pre = head;
-        while (fast && fast->next) {
-            pre = slow;
-            slow = slow->next;
-            fast = fast->next->next;
+        if (head == nullptr) {
+            return nullptr;
         }
-        pre->next = NULL;
-        return merge(sortList(head), sortList(slow));
+        quickSort(head, nullptr);
+        return head;
     }
 
-    // merge 递归实现
-    ListNode* merge(ListNode* l1, ListNode* l2) {
-        if (!l1) return l2;
-        if (!l2) return l1;
-        if (l1->val < l2->val) {
-            l1->next = merge(l1->next, l2);
-            return l1;
+    void quickSort(ListNode* head, ListNode* tail) {
+        if (head == tail || head->next == tail) {
+            return;
         }
-        else {
-            l2->next = merge(l1, l2->next);
-            return l2;
-        }
-    }
 
-    // merge 迭代实现
-    ListNode* merge_iterate(ListNode* l1, ListNode* l2) {
-        ListNode* dummy = new ListNode(-1);
-        ListNode* cur = dummy;
-        while (l1 && l2) {
-            if (l1->val < l2->val) {
-                cur->next = l1;
-                l1 = l1->next;
+        ListNode* pivot = head;
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while (fast != tail) {
+            if (fast->val < pivot->val) {
+                slow = slow->next;
+                swap(slow->val, fast->val);
             }
-            else {
-                cur->next = l2;
-                l2 = l2->next;
-            }
-            cur = cur->next;
+            fast = fast->next;
         }
-        if (l1) cur->next = l1;
-        if (l2) cur->next = l2;
-        return dummy->next;
+        swap(pivot->val, slow->val);
+
+        quickSort(head, slow);
+        quickSort(slow->next, tail);
     }
 };
+// @lc code=end

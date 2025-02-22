@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 滑动窗口
 // 2023-02-27 submission
 // 37/37 cases passed
 // Runtime: 34 ms, faster than 43.46% of cpp online submissions.
@@ -17,15 +18,27 @@ public:
             int start = 0, i = 0, uniqueCnt = 0;
             vector<int> charCnt(26);
             while (i < n) {
-                bool valid = true;
-                if (charCnt[s[i++] - 'a']++ == 0) ++uniqueCnt;
+                if (charCnt[s[i++] - 'a']++ == 0) {
+                    ++uniqueCnt;
+                }
                 while (uniqueCnt > cnt) {
-                    if (--charCnt[s[start++] - 'a'] == 0) --uniqueCnt;
+                    if (--charCnt[s[start++] - 'a'] == 0) {
+                        --uniqueCnt;
+                    }
                 }
+                if (uniqueCnt != cnt) {
+                    continue;
+                }
+                bool valid = true;
                 for (int j = 0; j < 26; ++j) {
-                    if (charCnt[j] > 0 && charCnt[j] < k) valid = false;
+                    if (charCnt[j] > 0 && charCnt[j] < k) {
+                        valid = false;
+                        break;
+                    }
                 }
-                if (valid) res = max(res, i - start);
+                if (valid) {
+                    res = max(res, i - start);
+                }
             }
         }
         return res;

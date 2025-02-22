@@ -5,6 +5,11 @@
  */
 
 // @lc code=start
+// 1. 动态规划+哈希表
+// 2025-02-21 submission
+// 101/101 cases passed
+// Runtime: 967 ms, faster than 28.22% of cpp online submissions.
+// Memory Usage: 289.3 MB, less than 10.92% of cpp online submissions.
 class Solution {
 public:
     int numberOfArithmeticSlices(vector<int>& nums) {

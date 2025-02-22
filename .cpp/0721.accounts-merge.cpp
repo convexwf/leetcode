@@ -23,10 +23,9 @@ public:
     }
 
     int find(int index) {
-        if (index == parent[index]) {
-            return index;
+        if (parent[index] != index) {
+            parent[index] = find(parent[index]);
         }
-        parent[index] = find(parent[index]);
         return parent[index];
     }
 
@@ -40,43 +39,40 @@ public:
         unordered_map<string, string> emailToName;
         unordered_map<string, int> emailToIndex;
         int emailsCount = 0;
-        for (auto& account : accounts) {
-            string& name = account[0];
-            int size = account.size();
-            for (int i = 1; i < size; i++) {
-                string& email = account[i];
+        for (const vector<string>& account : accounts) {
+            const string& name = account[0];
+            for (int i = 1; i < account.size(); i++) {
+                const string& email = account[i];
                 if (!emailToName.count(email)) {
                     emailToName[email] = name;
                     emailToIndex[email] = emailsCount++;
                 }
             }
         }
+
+        // Merge emails
         UnionFind uf(emailsCount);
-        for (auto& account : accounts) {
-            string& firstEmail = account[1];
-            int firstIndex = emailToIndex[firstEmail];
-            int size = account.size();
-            for (int i = 2; i < size; i++) {
-                string& nextEmail = account[i];
-                int nextIndex = emailToIndex[nextEmail];
-                uf.unite(firstIndex, nextIndex);
+        for (const vector<string>& account : accounts) {
+            const string& firstEmail = account[1];
+            for (int i = 2; i < account.size(); i++) {
+                const string& nextEmail = account[i];
+                uf.unite(emailToIndex[firstEmail], emailToIndex[nextEmail]);
             }
         }
+        // Collect emails
         unordered_map<int, vector<string>> indexToEmails;
-        for (auto& [email, _] : emailToName) {
+        for (const auto& [email, _] : emailToName) {
             int index = uf.find(emailToIndex[email]);
-            vector<string>& account = indexToEmails[index];
-            account.emplace_back(email);
+
+            indexToEmails[index].emplace_back(email);
         }
+        // Format output
         vector<vector<string>> merged;
         for (auto& [_, emails] : indexToEmails) {
             sort(emails.begin(), emails.end());
-            string& name = emailToName[emails[0]];
             vector<string> account;
-            account.emplace_back(name);
-            for (auto& email : emails) {
-                account.emplace_back(email);
-            }
+            account.emplace_back(emailToName[emails[0]]);
+            account.insert(account.end(), emails.begin(), emails.end());
             merged.emplace_back(account);
         }
         return merged;
@@ -85,50 +81,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. 并查集-简化
-// 2023-07-05 submission
-// 50/50 cases passed
-// Runtime: 434 ms, faster than 5.01% of cpp online submissions.
-// Memory Usage: 54.7 MB, less than 5.04% of cpp online submissions.
-class Solution {
-public:
-    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
-        vector<vector<string>> res;
-        unordered_map<string, string> root;
-        unordered_map<string, string> owner;
-        unordered_map<string, set<string>> m;
-        for (auto account : accounts) {
-            for (int i = 1; i < account.size(); ++i) {
-                root[account[i]] = account[i];
-                owner[account[i]] = account[0];
-            }
-        }
-        for (auto account : accounts) {
-            string p = find(account[1], root);
-            for (int i = 2; i < account.size(); ++i) {
-                root[find(account[i], root)] = p;
-            }
-        }
-        for (auto account : accounts) {
-            for (int i = 1; i < account.size(); ++i) {
-                m[find(account[i], root)].insert(account[i]);
-            }
-        }
-        for (auto a : m) {
-            vector<string> v(a.second.begin(), a.second.end());
-            v.insert(v.begin(), owner[a.first]);
-            res.push_back(v);
-        }
-        return res;
-    }
-    string find(string s, unordered_map<string, string>& root) {
-        return root[s] == s ? s : find(root[s], root);
-    }
-};
-// @lc code=end
-
-// @lc code=start
-// 3. BFS
+// 2. bfs
 // 2023-07-05 submission
 // 50/50 cases passed
 // Runtime: 128 ms, faster than 25.73% of cpp online submissions.

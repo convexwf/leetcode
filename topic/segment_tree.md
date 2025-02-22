@@ -131,10 +131,237 @@ for (int i = 1; i <= n; ++i) {
 - `query(l, r)`：查询区间 $[l, r]$ 的和，其中 $0 \leq l \leq r \leq n-1$
 - `update(i, v)`：将 $A[i]$ 的值更新为 $v$，其中 $0 \leq i \leq n-1$
 
-如果使用一维数组实现
-
-
 树状数组主要用于单点更新和区间查询，而线段树可以支持区间更新和区间查询。
+
+线段树的 `query` 和 `update` 操作的时间复杂度均为 $O(\log n)$ 。
+
+对于大小为 $n$ 的数组
+
+- 如果 $n$ 是 $2$ 的幂次方，表示线段树最后一层的叶子结点存储的是数组元素本身，最后一层的叶子结点的个数为 $n$ ，由于线段树是完全二叉树，所以总结点数为 $2n-1$ 。
+- 如果 $n$ 不是 $2$ 的幂次方，那么线段树最后一层的叶子节点有一部分是空的，最坏情况下就是 $n = 2^k + 1$ ，最后一层只有一个非空节点，倒数第二层一共有 $n-1$ 个节点，总结点数为 $4n-5$ 。
+
+如果线段树基于数组实现，那么数组的大小应该是 $4n$ 。
+
+```cpp
+class SegmentTree {
+private:
+    vector<int> tree;
+    vector<int> data;
+    int n;
+
+    void merge(int node) {
+        tree[node] = tree[node * 2 + 1] + tree[node * 2 + 2];
+    }
+
+    void build(int node, int l, int r) {
+        if (l == r) {
+            tree[node] = data[l];
+            return;
+        }
+        int mid = l + (r - l) / 2;
+        build(node * 2 + 1, l, mid);
+        build(node * 2 + 2, mid + 1, r);
+        merge(node);
+    }
+
+    int query(int node, int l, int r, int ql, int qr) {
+        if (l >= ql && r <= qr) {
+            return tree[node];
+        }
+        if (r < ql || l > qr) {
+            return 0;
+        }
+        int mid = l + (r - l) / 2;
+        return query(node * 2 + 1, l, mid, ql, qr) + query(node * 2 + 2, mid + 1, r, ql, qr);
+    }
+
+    void update(int node, int l, int r, int index, int value) {
+        if (l == r) {
+            tree[node] = value;
+            return;
+        }
+        int mid = l + (r - l) / 2;
+        if (index <= mid) {
+            update(node * 2 + 1, l, mid, index, value);
+        } else {
+            update(node * 2 + 2, mid + 1, r, index, value);
+        }
+        merge(node);
+    }
+
+public:
+
+    SegmentTree(vector<int>& nums) {
+        n = nums.size();
+        data = nums;
+        tree.resize(4 * n, 0);
+        build(0, 0, n - 1);
+    }
+
+    void update(int i, int val) {
+        update(0, 0, n - 1, i, val);
+    }
+
+    int query(int i, int j) {
+        return query(0, 0, n - 1, i, j);
+    }
+};
+```
+
+基于动态开点的实现方式：
+
+```cpp
+class SegmentTree {
+private:
+    struct Node {
+        int l, r;
+        int sum;
+        Node *left, *right;
+        Node(int l, int r) : l(l), r(r), sum(0), left(nullptr), right(nullptr) {}
+    };
+
+    Node* root;
+
+    Node* build(int l, int r) {
+        if (l > r) {
+            return nullptr;
+        }
+        Node* node = new Node(l, r);
+        if (l == r) {
+            return node;
+        }
+        int mid = l + (r - l) / 2;
+        node->left = build(l, mid);
+        node->right = build(mid + 1, r);
+        return node;
+    }
+
+    int query(Node* node, int l, int r) {
+        if (node == nullptr || node->r < l || node->l > r) {
+            return 0;
+        }
+        if (node->l >= l && node->r <= r) {
+            return node->sum;
+        }
+        return query(node->left, l, r) + query(node->right, l, r);
+    }
+
+    void update(Node* node, int index, int value) {
+        if (node == nullptr || node->l > index || node->r < index) {
+            return;
+        }
+        if (node->l == index && node->r == index) {
+            node->sum = value;
+            return;
+        }
+        update(node->left, index, value);
+        update(node->right, index, value);
+        node->sum = node->left->sum + node->right->sum;
+    }
+
+public:
+    SegmentTree(vector<int>& nums) {
+        root = build(0, nums.size() - 1);
+        for (int i = 0; i < nums.size(); ++i) {
+            update(root, i, nums[i]);
+        }
+    }
+
+    void update(int i, int val) {
+        update(root, i, val);
+    }
+
+    int query(int i, int j) {
+        return query(root, i, j);
+    }
+};
+```
+
+基于动态开点的实现方式可以支持区间修改操作。
+
+```cpp
+class SegmentTree {
+private:
+    struct Node {
+        int l, r;
+        int sum, lazy;
+        Node *left, *right;
+        Node(int l, int r) : l(l), r(r), sum(0), lazy(0), left(nullptr), right(nullptr) {}
+    };
+
+    Node* root;
+
+    Node* build(int l, int r) {
+        if (l > r) {
+            return nullptr;
+        }
+        Node* node = new Node(l, r);
+        if (l == r) {
+            return node;
+        }
+        int mid = l + (r - l) / 2;
+        node->left = build(l, mid);
+        node->right = build(mid + 1, r);
+        return node;
+    }
+
+    void push_down(Node* node) {
+        if (node->lazy) {
+            node->sum += (node->r - node->l + 1) * node->lazy;
+            if (node->l < node->r) {
+                node->left->lazy += node->lazy;
+                node->right->lazy += node->lazy;
+            }
+            node->lazy = 0;
+        }
+    }
+
+    int query(Node* node, int l, int r) {
+        if (node == nullptr || node->r < l || node->l > r) {
+            return 0;
+        }
+        push_down(node);
+        if (node->l >= l && node->r <= r) {
+            return node->sum;
+        }
+        return query(node->left, l, r) + query(node->right, l, r);
+    }
+
+    void update(Node* node, int l, int r, int value) {
+        if (node == nullptr || node->r < l || node->l > r) {
+            return;
+        }
+        if (node->l >= l && node->r <= r) {
+            node->lazy += value;
+            return;
+        }
+        push_down(node);
+        update(node->left, l, r, value);
+        update(node->right, l, r, value);
+        node->sum = node->left->sum + node->right->sum;
+    }
+
+public:
+    SegmentTree(vector<int>& nums) {
+        root = build(0, nums.size() - 1);
+        for (int i = 0; i < nums.size(); ++i) {
+            update(root, i, i, nums[i]);
+        }
+    }
+
+    void update(int i, int val) {
+        update(root, i, i, val);
+    }
+
+    void update(int l, int r, int val) {
+        update(root, l, r, val);
+    }
+
+    int query(int i, int j) {
+        return query(root, i, j);
+    }
+};
+```
 
 
 ## Reference

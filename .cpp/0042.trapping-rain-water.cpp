@@ -12,19 +12,23 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
-        vector<int> vec(height.size(), 0);
-        long long res = 0;
-
-        int maxVal = 0;
-        for (int i = 0; i < (int)height.size(); i++) {
-            maxVal = max(maxVal, height[i]);
-            vec[i] = maxVal;
+        int n = height.size();
+        if (n < 3) {
+            return 0;
         }
-
-        maxVal = 0;
-        for (int i = (int)vec.size() - 1; i >= 0; i--) {
-            maxVal = max(maxVal, height[i]);
-            res += (min(maxVal, vec[i]) - height[i]);
+        vector<int> left(n, 0);
+        vector<int> right(n, 0);
+        left[0] = height[0];
+        for (int i = 1; i < n; i++) {
+            left[i] = max(left[i - 1], height[i]);
+        }
+        right[n - 1] = height[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            right[i] = max(right[i + 1], height[i]);
+        }
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            res += min(left[i], right[i]) - height[i];
         }
         return res;
     }
