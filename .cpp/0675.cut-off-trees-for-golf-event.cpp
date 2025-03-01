@@ -26,7 +26,7 @@ public:
         }
         sort(trees.begin(), trees.end());
         int ans = 0, x = 0, y = 0;
-        for (auto& tree : trees) {
+        for (const vector<int>& tree : trees) {
             int step = bfs(forest, x, y, tree[1], tree[2]);
             if (step == -1) {
                 return -1;
@@ -55,7 +55,7 @@ public:
                 if (x == tx && y == ty) {
                     return step;
                 }
-                for (auto& dir : dirs) {
+                for (const vector<int>& dir : dirs) {
                     int nx = x + dir[0];
                     int ny = y + dir[1];
                     if (nx < 0 || nx >= m || ny < 0 || ny >= n || visited[nx][ny] ||

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 排序+二分查找
 // 2023-02-13 submission
 // 241/241 cases passed
 // Runtime: 425 ms, faster than 21.84% of cpp online submissions.
@@ -12,17 +13,21 @@
 class Solution {
 public:
     int triangleNumber(vector<int>& nums) {
-        int res = 0, n = nums.size();
         sort(nums.begin(), nums.end());
-        for (int i = 0; i < n; ++i) {
-            for (int j = i + 1; j < n; ++j) {
-                int sum = nums[i] + nums[j], left = j + 1, right = n;
+        int n = nums.size();
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int sum = nums[i] + nums[j];
+                int left = j + 1, right = n;
                 while (left < right) {
                     int mid = left + (right - left) / 2;
-                    if (nums[mid] < sum)
+                    if (nums[mid] < sum) {
                         left = mid + 1;
-                    else
+                    }
+                    else {
                         right = mid;
+                    }
                 }
                 res += right - 1 - j;
             }
@@ -33,6 +38,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 排序+双指针
 // 2023-02-13 submission
 // 241/241 cases passed
 // Runtime: 103 ms, faster than 83.01% of cpp online submissions.

@@ -43,13 +43,17 @@ public:
 // Memory Usage: 55.6 MB, less than 21.87% of cpp online submissions.
 class Solution {
 public:
-    int longestOnes(vector<int>& A, int K) {
-        int n = A.size(), i = 0, j = 0;
-        for (; j < n; ++j) {
-            if (A[j] == 0) --K;
-            if (K < 0 && A[i++] == 0) ++K;
+    int longestOnes(vector<int>& nums, int k) {
+        int n = nums.size(), l = 0, r = 0;
+        for (; r < n; ++r) {
+            if (nums[r] == 0) {
+                --k;
+            }
+            if (k < 0 && nums[l++] == 0) {
+                ++k;
+            }
         }
-        return j - i;
+        return r - l;
     }
 };
 // @lc code=end

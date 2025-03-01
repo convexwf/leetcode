@@ -12,23 +12,21 @@
 // Memory Usage:  MB, less than 22.65% of cpp online submissions.
 class Solution {
 public:
-    int findPaths(int m, int n, int N, int i, int j) {
-        const int mod = 1e9 + 7;
-        vector<vector<vector<int>>> f(m + 2, vector<vector<int>>(n + 2, vector<int>(N + 1, 0)));
-        for (int k = 1; k <= N; k++) {
-            for (int x = 1; x <= m; x++) {
-                for (int y = 1; y <= n; y++) {
-                    if (x == 1) f[x][y][k]++; // 左边界
-                    if (x == m) f[x][y][k]++; // 右边界
-                    if (y == 1) f[x][y][k]++; // 上边界
-                    if (y == n) f[x][y][k]++; // 下边界
-                    f[x][y][k] = ((f[x - 1][y][k - 1] + f[x + 1][y][k - 1]) % mod +
-                                  (f[x][y - 1][k - 1] + f[x][y + 1][k - 1]) % mod + f[x][y][k]) %
-                                 mod;
+    int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
+        const int MOD = 1e9 + 7;
+        vector<vector<vector<int>>> dp(m, vector<vector<int>>(n, vector<int>(maxMove + 1)));
+        for (int k = 1; k <= maxMove; ++k) {
+            for (int i = 0; i < m; ++i) {
+                for (int j = 0; j < n; ++j) {
+                    int left = (j == 0) ? 1 : dp[i][j - 1][k - 1];
+                    int right = (j == n - 1) ? 1 : dp[i][j + 1][k - 1];
+                    int up = (i == 0) ? 1 : dp[i - 1][j][k - 1];
+                    int down = (i == m - 1) ? 1 : dp[i + 1][j][k - 1];
+                    dp[i][j][k] = ((left + right) % MOD + (up + down) % MOD) % MOD;
                 }
             }
         }
-        return f[i + 1][j + 1][N];
+        return dp[startRow][startColumn][maxMove];
     }
 };
 // @lc code=end
@@ -52,9 +50,15 @@ private:
     int dy[4] = {0, 0, 1, -1};
 
     int dfs(int i, int j, int k, int m, int n, vector<vector<vector<int>>>& memo) {
-        if (i < 0 || i >= m || j < 0 || j >= n) return 1;
-        if (k == 0) return 0;
-        if (memo[k][i][j] != -1) return memo[k][i][j];
+        if (i < 0 || i >= m || j < 0 || j >= n) {
+            return 1;
+        }
+        if (k == 0) {
+            return 0;
+        }
+        if (memo[k][i][j] != -1) {
+            return memo[k][i][j];
+        }
 
         int count = 0;
         for (int d = 0; d < 4; ++d) {

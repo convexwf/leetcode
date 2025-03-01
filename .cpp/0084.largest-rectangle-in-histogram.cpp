@@ -5,20 +5,21 @@
  */
 
 // @lc code=start
-// TLE
+// 1. 局部峰值查找
+// Time Limit Exceeded
 class Solution {
 public:
-    int largestRectangleArea(vector<int>& height) {
+    int largestRectangleArea(vector<int>& heights) {
+        int n = heights.size();
         int res = 0;
-        for (int i = 0; i < height.size(); ++i) {
-            if (i + 1 < height.size() && height[i] <= height[i + 1]) {
+        for (int i = 0; i < n; ++i) {
+            if (i + 1 < n && heights[i] <= heights[i + 1]) {
                 continue;
             }
-            int minH = height[i];
+            int minHeight = heights[i];
             for (int j = i; j >= 0; --j) {
-                minH = min(minH, height[j]);
-                int area = minH * (i - j + 1);
-                res = max(res, area);
+                minHeight = min(minHeight, heights[j]);
+                res = max(res, minHeight * (i - j + 1));
             }
         }
         return res;
@@ -27,6 +28,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 单调递增栈
 // 2022-11-17 submission
 // 98/98 cases passed
 // Runtime: 302 ms, faster than 72.31% of cpp online submissions.

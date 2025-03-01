@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2022-11-17 submission
 // 54/54 cases passed
 // Runtime: 714 ms, faster than 30.77% of cpp online submissions.
@@ -28,6 +29,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 贪心算法+二分查找
 // 2022-11-18 submission
 // 54/54 cases passed
 // Runtime: 9 ms, faster than 96.56% of cpp online submissions.
@@ -35,48 +37,16 @@ public:
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
         vector<int> dp;
-        for (int i = 0; i < nums.size(); ++i) {
-            int left = 0, right = dp.size();
-            while (left < right) {
-                int mid = left + (right - left) / 2;
-                if (dp[mid] < nums[i])
-                    left = mid + 1;
-                else
-                    right = mid;
-            }
-            if (right >= dp.size())
+        for (int i = 0; i < n; i++) {
+            auto it = lower_bound(dp.begin(), dp.end(), nums[i]);
+            if (it == dp.end()) {
                 dp.push_back(nums[i]);
-            else
-                dp[right] = nums[i];
-        }
-        return dp.size();
-    }
-};
-// @lc code=end
-
-// @lc code=start
-// 2022-11-17 submission
-// 54/54 cases passed
-// Runtime: 16 ms, faster than 87.99% of cpp online submissions.
-// Memory Usage: 10.3 MB, less than 98.38% of cpp online submissions.
-class Solution {
-public:
-    int lengthOfLIS(vector<int>& nums) {
-        vector<int> dp;
-        for (int i = 0; i < nums.size(); ++i) {
-            int left = 0, right = dp.size();
-            while (left < right) {
-                int mid = left + (right - left) / 2;
-                if (dp[mid] < nums[i])
-                    left = mid + 1;
-                else
-                    right = mid;
             }
-            if (right >= dp.size())
-                dp.push_back(nums[i]);
-            else
-                dp[right] = nums[i];
+            else {
+                *it = nums[i];
+            }
         }
         return dp.size();
     }

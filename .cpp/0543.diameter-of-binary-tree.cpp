@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 递归
 // 2021-03-17 submission
 // 104/104 cases passed
 // Runtime: 12 ms, faster than 62.53% of cpp online submissions.
@@ -28,9 +29,14 @@ public:
         maxDepth(root, res, m);
         return res;
     }
+
     int maxDepth(TreeNode* node, int& res, unordered_map<TreeNode*, int>& m) {
-        if (!node) return 0;
-        if (m.count(node)) return m[node];
+        if (!node) {
+            return 0;
+        }
+        if (m.count(node)) {
+            return m[node];
+        }
         int left = maxDepth(node->left, res, m);
         int right = maxDepth(node->right, res, m);
         res = max(res, left + right);

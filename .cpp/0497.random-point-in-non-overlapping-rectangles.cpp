@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 面积计算
+// 1. 面积计算+前缀和+二分查找
 // 2023-05-24 submission
 // 35/35 cases passed
 // Runtime: 97 ms, faster than 54.2% of cpp online submissions.
@@ -15,7 +15,7 @@ public:
     Solution(vector<vector<int>>& rects) {
         this->rects = rects;
         int area = 0;
-        for (auto& rect : rects) {
+        for (const vector<int>& rect : rects) {
             area += (rect[2] - rect[0] + 1) * (rect[3] - rect[1] + 1);
             areas.push_back(area);
         }
@@ -24,7 +24,7 @@ public:
     vector<int> pick() {
         int area = rand() % areas.back();
         int idx = upper_bound(areas.begin(), areas.end(), area) - areas.begin();
-        auto& rect = rects[idx];
+        const vector<int>& rect = rects[idx];
         int x = rand() % (rect[2] - rect[0] + 1) + rect[0];
         int y = rand() % (rect[3] - rect[1] + 1) + rect[1];
         return {x, y};

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 单调递减栈+两次遍历
 // 2022-08-26 submission
 // 223/223 cases passed
 // Runtime: 49 ms, faster than 68.06% of cpp online submissions.
@@ -14,14 +15,15 @@ public:
     vector<int> nextGreaterElements(vector<int>& nums) {
         int n = nums.size();
         vector<int> res(n, -1);
-        stack<int> st;
-        for (int i = 0; i < 2 * n; ++i) {
-            int num = nums[i % n];
-            while (!st.empty() && nums[st.top()] < num) {
-                res[st.top()] = num;
-                st.pop();
+        stack<int> stk;
+        for (int i = 0; i < 2 * n; i++) {
+            while (!stk.empty() && nums[i % n] > nums[stk.top()]) {
+                res[stk.top()] = nums[i % n];
+                stk.pop();
             }
-            if (i < n) st.push(i);
+            if (i < n) {
+                stk.push(i);
+            }
         }
         return res;
     }
