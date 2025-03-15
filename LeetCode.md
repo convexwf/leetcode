@@ -1,25 +1,6 @@
 # Leetcode
 
-## 9. Palindrome Number
-
-```C++
-class Solution {
-public:
-    bool isPalindrome(int x) {
-        if (x < 0) return false;
-        int div = 1;
-        while (x / div >= 10) div *= 10;
-        while (x > 0) {
-            int left = x / div;
-            int right = x % 10;
-            if (left != right) return false;
-            x = (x % div) / 10;
-            div /= 100;
-        }
-        return true;
-    }
-};
-```
+[Leetcode面试高频题分类刷题总结 - 知乎](https://zhuanlan.zhihu.com/p/349940945)
 
 ## 14. Longest Common Prefix
 
@@ -38,34 +19,6 @@ public:
         int i = 0, len = min(strs[0].size(), strs.back().size());
         while (i < len && strs[0][i] == strs.back()[i]) ++i;
         return strs[0].substr(0, i);
-    }
-};
-```
-
-## 15. 3Sum
-
-```C++
-// Runtime: 76 ms, faster than 66.86% of C++ online submissions.
-// Memory Usage: 20 MB, less than 58.46% of C++ online submissions.
-class Solution {
-public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>> res;
-        if(nums.size() <= 0) return res;
-        sort(nums.begin(), nums.end());
-        int l_val = 0, r_val = 0, sum = 0;
-        for(int i = 0; i < (int)nums.size()-2; i++) {
-            if(nums[i] > 0) break;
-            if(i > 0 && nums[i] == nums[i-1]) continue;
-            for(int l=i+1, r=(int)nums.size()-1; l < r;) {
-                l_val = nums[l]; r_val = nums[r];
-                sum = nums[l] + nums[r] + nums[i];
-                if(sum == 0) res.push_back({nums[i], nums[l], nums[r]});
-                if(sum >= 0)  while(l < r && nums[--r] == r_val);
-                if(sum <= 0)  while(l < r && nums[++l] == l_val);
-            }
-        }
-        return res;
     }
 };
 ```
@@ -1021,33 +974,6 @@ public:
 };
 ```
 
-## 120. Triangle
-
-三角形从上到下最小路径和
-
-解题思路
-
-1. 复制三角形最后一行，作为用来更新的一位数组。然后逐个遍历这个DP数组，对于每个数字，和它之后的元素比较选择较小的再加上面一行相邻位置的元素做为新的元素，然后一层一层的向上扫描
-
-```C++
-// 2021-09-01 submission
-// ?/? cases passed
-// Runtime: 8 ms, faster than 32.16% of C++ online submissions.
-// Memory Usage: 8.5 MB, less than 49.67% of C++ online submissions.
-class Solution {
-public:
-    int minimumTotal(vector<vector<int>>& triangle) {
-        vector<int> dp(triangle.back().begin(), triangle.back().end());
-        for (int k = dp.size()-2; k >= 0; k--) {
-            for (int i = 0; i <= k; i++) {
-                dp[i] = min(dp[i], dp[i+1]) + triangle[k][i];
-            }
-        }
-        return dp[0];
-    }
-};
-```
-
 ## 142. Linked List Cycle II
 
 解题思路
@@ -1400,43 +1326,6 @@ public:
  */
 ```
 
-## 313. Super Ugly Number
-
-解题思路
-
-1. 参见 ##264 做法，其实就是把 (2, 3, 5) 扩展到多个数字。
-2. 使用一个下标数组存储每个质因数的当前下标，然后找到最小值后更新所有下标。
-
-TODO
-
-1. 使用小顶堆或者优先队列
-
-```C++
-// 2020-09-21 submission
-// ?/? cases passed
-// Runtime: 96 ms, faster than 75.60% of C++ online submissions.
-// Memory Usage: 9 MB, less than 64.69% of C++ online submissions.
-class Solution {
-public:
-    int nthSuperUglyNumber(int n, vector<int>& primes) {
-        vector<int> res(n, 1);
-        vector<int> idx(primes.size(), 0);
-
-        for (int i = 1; i < n; i++) {
-            int min_val = INT_MAX;
-            for (int j = 0; j < primes.size(); j++) {
-                min_val = min(primes[j]*res[idx[j]], min_val);
-            }
-            for (int j = 0; j < primes.size(); j++) {
-                if (min_val == primes[j]*res[idx[j]]) idx[j]++;
-            }
-            res[i] = min_val;
-            // cout << min_val << endl;
-        }
-        return res[n-1];
-    }
-};
-```
 
 ## 322. Coin Change (2020-11-25)
 
@@ -1865,25 +1754,6 @@ public:
             head = t;
         }
         return dummy->next;
-    }
-};
-```
-
-## 1217. Minimum Cost to Move Chips to The Same Position (2020-11-06)
-
-```C++
-// 2020-11-06 submission
-// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Minimum Cost to Move Chips to The Same Position.
-// Memory Usage: 7.8 MB, less than 77.54% of C++ online submissions for Minimum Cost to Move Chips to The Same Position.
-class Solution {
-public:
-    int minCostToMoveChips(vector<int>& position) {
-        int odd = 0, even = 0;
-        for (int i = 0; i < position.size(); i++) {
-            if (position[i] % 2 == 0) even++;
-            else odd++;
-        }
-        return min(odd, even);
     }
 };
 ```
@@ -3472,10 +3342,6 @@ public:
     }
 };
 ```
-
-## 115 (溢出存疑)
-
-## 398 (TLE)
 
 ## 332. Reconstruct Itinerary
 

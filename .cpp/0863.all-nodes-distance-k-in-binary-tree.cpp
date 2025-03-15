@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. DFS+哈希表
+// 1. dfs+哈希表
 // 2024-02-05 submission
 // 57/57 cases passed
 // Runtime: 7 ms, faster than 40.04% of cpp online submissions.
@@ -59,7 +59,7 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2. BFS+哈希表
+// 2. dfs+哈希表+bfs
 // 2024-02-05 submission
 // 57/57 cases passed
 // Runtime: 4 ms, faster than 66.69% of cpp online submissions.

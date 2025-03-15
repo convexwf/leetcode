@@ -5,52 +5,74 @@
  */
 
 // @lc code=start
-// 2023-02-19 submission (merge sort)
-// 19/19 cases passed
-// Runtime: 288 ms, faster than 41.08% of cpp online submissions.
-// Memory Usage: 63.2 MB, less than 47.83% of cpp online submissions.
+// 插入排序
 class Solution {
 public:
-    vector<int> vec;
-
     vector<int> sortArray(vector<int>& nums) {
-        if (nums.empty()) return {};
         int n = nums.size();
-        vec.resize(n);
-        mergeSort(nums, 0, n - 1);
-        return vec;
-    }
-
-    void mergeSort(vector<int>& nums, int l, int r) {
-        if (l >= r) return;
-        int mid = l + (r - l) / 2;
-        mergeSort(nums, l, mid);
-        mergeSort(nums, mid + 1, r);
-
-        int lp = l, rp = mid + 1, idx = l;
-        while (lp <= mid && rp <= r) {
-            if (nums[lp] <= nums[rp]) {
-                vec[idx++] = nums[lp++];
+        for (int i = 1; i < n; i++) {
+            int key = nums[i];
+            int j = i - 1;
+            while (j >= 0 && nums[j] > key) {
+                nums[j + 1] = nums[j];
+                j--;
             }
-            else {
-                vec[idx++] = nums[rp++];
-            }
+            nums[j + 1] = key;
         }
-        while (lp <= mid) vec[idx++] = nums[lp++];
-        while (rp <= r) vec[idx++] = nums[rp++];
-        for (int i = l; i <= r; i++) {
-            nums[i] = vec[i];
-        }
+        return nums;
     }
 };
 // @lc code=end
 
 // @lc code=start
-// merge sort
-// 2025-02-20 submission
+// 冒泡排序
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        if (nums.empty()) return {};
+        int n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            bool isSorted = true;
+            for (int j = 0; j < n - i - 1; ++j) {
+                if (nums[j] > nums[j + 1]) {
+                    swap(nums[j], nums[j + 1]);
+                    isSorted = false;
+                }
+            }
+            if (isSorted) break;
+        }
+        return nums;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 选择排序
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        if (nums.empty()) return {};
+        int n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            int minIdx = i;
+            for (int j = i + 1; j < n; ++j) {
+                if (nums[j] < nums[minIdx]) {
+                    minIdx = j;
+                }
+            }
+            swap(nums[i], nums[minIdx]);
+        }
+        return nums;
+    }
+};
+// @lc code=end
+
+// @lc code=start
+// 归并排序
+// 2023-02-19 submission
 // 21/21 cases passed
-// Runtime: 259 ms, faster than 49.3% of cpp online submissions.
-// Memory Usage:  MB, less than 37.41% of cpp online submissions.
+// Runtime: 249 ms, faster than 50.19% of cpp online submissions.
+// Memory Usage: 147.9 MB, less than 36.02% of cpp online submissions.
 class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
@@ -84,21 +106,26 @@ public:
 // @lc code=end
 
 // @lc code=start
-// 2023-02-18 submission (heap sort)
-// 19/19 cases passed
-// Runtime: 224 ms, faster than 52.41% of cpp online submissions.
-// Memory Usage: 61.3 MB, less than 53.71% of cpp online submissions.
+// 堆排序
+// 2023-02-18 submission
+// 21/21 cases passed
+// Runtime: 44 ms, faster than 75.22% of cpp online submissions.
+// Memory Usage:  MB, less than 83.45% of cpp online submissions.
 class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
-        if (nums.empty()) return {};
+        if (nums.empty()) {
+            return {};
+        }
         int n = nums.size();
+        // Build heap
         for (int i = n / 2 - 1; i >= 0; --i) {
             siftDown(nums, n, i);
         }
-        while (--n > 0) {
-            swap(nums[0], nums[n]);
-            siftDown(nums, n, 0);
+        // Heap sort
+        for (int i = n - 1; i > 0; --i) {
+            swap(nums[0], nums[i]);
+            siftDown(nums, i, 0);
         }
         return nums;
     }
@@ -108,7 +135,9 @@ public:
         int child = 2 * parent + 1;
         int pval = nums[i];
         while (child < n) {
-            if (child + 1 < n && nums[child] < nums[child + 1]) child = child + 1;
+            if (child + 1 < n && nums[child] < nums[child + 1]) {
+                child = child + 1;
+            }
             if (pval > nums[child]) break;
             nums[parent] = nums[child];
             parent = child;
@@ -120,6 +149,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 快速排序
 class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
