@@ -6,6 +6,10 @@
 
 // @lc code=start
 // 1. 栈
+// 2025-03-18 submission
+// 73/73 cases passed
+// Runtime: 84 ms, faster than 17.44% of cpp online submissions.
+// Memory Usage: 95.26 MB, less than 20.61% of cpp online submissions.
 class BrowserHistory {
 public:
     BrowserHistory(string homepage) {

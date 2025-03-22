@@ -5,22 +5,65 @@
  */
 
 // @lc code=start
-struct DoublyLinkedNode
-{
-    char val;
-    DoublyLinkedNode *prev;
-    DoublyLinkedNode *next;
-    DoublyLinkedNode(char _val) : val(_val), prev(nullptr), next(nullptr) {
-    }
-};
-
+// 1. 栈/字符串
+// 2025-03-18 submission
+// 45/45 cases passed
+// Runtime: 52 ms, faster than 87.22% of cpp online submissions.
+// Memory Usage: 124.2 MB, less than 49.32% of cpp online submissions.
 class TextEditor {
-private:
-    DoublyLinkedNode *dummyHead;
-    DoublyLinkedNode *dummyTail;
-    DoublyLinkedNode *cursor;
-    int size;
+public:
+    TextEditor() {
+        left = right = "";
+    }
 
+    void addText(string text) {
+        left += text;
+    }
+
+    int deleteText(int k) {
+        int n = left.size();
+        k = min(k, n);
+        left.resize(n - k);
+        return k;
+    }
+
+    string cursorLeft(int k) {
+        int n = left.size();
+        k = min(k, n);
+        for (int i = 0; i < k; i++) {
+            right += left.back();
+            left.pop_back();
+        }
+        return seekLeft(10);
+    }
+
+    string cursorRight(int k) {
+        int n = right.size();
+        k = min(k, n);
+        for (int i = 0; i < k; i++) {
+            left += right.back();
+            right.pop_back();
+        }
+        return seekLeft(10);
+    }
+
+    string seekLeft(int k) {
+        int n = left.size();
+        return left.substr(max(0, n - k));
+    }
+
+private:
+    string left, right;
+};
+// @lc code=end
+
+// @lc code=start
+// 2. 双向链表
+// 2025-03-18 submission
+// 45/45 cases passed
+// Runtime: 415 ms, faster than 13.70% of cpp online submissions.
+// Memory Usage: 289.78 MB, less than 28.77% of cpp online submissions.
+class TextEditor {
 public:
     TextEditor() {
         dummyHead = new DoublyLinkedNode('#');
@@ -83,6 +126,20 @@ public:
         }
         return seekLeft(10);
     }
+
+private:
+    struct DoublyLinkedNode
+    {
+        char val;
+        DoublyLinkedNode *prev;
+        DoublyLinkedNode *next;
+        DoublyLinkedNode(char _val) : val(_val), prev(nullptr), next(nullptr) {
+        }
+    };
+    DoublyLinkedNode *dummyHead;
+    DoublyLinkedNode *dummyTail;
+    DoublyLinkedNode *cursor;
+    int size;
 };
 
 /**
@@ -93,44 +150,4 @@ public:
  * string param_3 = obj->cursorLeft(k);
  * string param_4 = obj->cursorRight(k);
  */
-// @lc code=end
-
-// @lc code=start
-// 2. 栈/字符串
-class TextEditor {
-public:
-    TextEditor() {
-        left = right = "";
-    }
-
-    void addText(string text) {
-        left += text;
-    }
-
-    int deleteText(int k) {
-        int n = left.size();
-        k = min(k, n);
-        left = left.substr(0, n - k);
-        return k;
-    }
-
-    string cursorLeft(int k) {
-        int n = left.size();
-        k = min(k, n);
-        right = left.substr(n - k) + right;
-        left = left.substr(0, n - k);
-        return left.substr(max(0, n - 10));
-    }
-
-    string cursorRight(int k) {
-        int n = right.size();
-        k = min(k, n);
-        left += right.substr(0, k);
-        right = right.substr(k);
-        return left.substr(max(0, n - 10));
-    }
-
-private:
-    string left, right;
-};
 // @lc code=end
