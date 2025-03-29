@@ -3,7 +3,7 @@
 <!-- Summary Start -->
 Only count the problems in the range of `[1, 1080]` .
 
-**Accepted / Total** : **804 / 870**
+**Accepted / Total** : **806 / 870**
 
 🔒 **Accepted / Total Lock** : **147 / 152**
 
@@ -678,6 +678,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [0739.Daily Temperatures](.doc/0739.daily-temperatures.md) | Medium (66.00%) | array, stack, monotonic-stack | [cpp](.cpp/0739.daily-temperatures.cpp) |
 | [0740.Delete and Earn](.doc/0740.delete-and-earn.md) | Medium (56.55%) | dynamic-programming | [cpp](.cpp/0740.delete-and-earn.cpp) |
 | 0742.Closest Leaf in a Binary Tree 🔒 | | graph, binary-tree, breadth-first-search, depth-first-search | [cpp](.cpp/0742.closest-leaf-in-a-binary-tree.cpp) |
+| [0743.Network Delay Time](.doc/0743.network-delay-time.md) | Medium (55.15%) | graph, dijkstra, heap, shortest-path | [cpp](.cpp/0743.network-delay-time.cpp) |
 | [0744.Find Smallest Letter Greater Than Target](.doc/0744.find-smallest-letter-greater-than-target.md) | Easy (50.97%) | binary-search | [cpp](.cpp/0744.find-smallest-letter-greater-than-target.cpp) |
 | [0745.Prefix and Suffix Search](.doc/0745.prefix-and-suffix-search.md) | Hard (41.02%) | hash-table, string | [cpp](.cpp/0745.prefix-and-suffix-search.cpp) |
 | [0746.Min Cost Climbing Stairs](.doc/0746.min-cost-climbing-stairs.md) | Easy (66.29%) | dynamic-programming, memoization, depth-first-search | [cpp](.cpp/0746.min-cost-climbing-stairs.cpp) |
@@ -888,6 +889,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [0984.String Without AAA or BBB](.doc/0984.string-without-aaa-or-bbb.md) | Medium (43.57%) | greedy, string, recursion | [cpp](.cpp/0984.string-without-aaa-or-bbb.cpp) |
 | [0985.Sum of Even Numbers After Queries](.doc/0985.sum-of-even-numbers-after-queries.md) | Medium (68.03%) | array | [cpp](.cpp/0985.sum-of-even-numbers-after-queries.cpp) |
 | [0986.Interval List Intersections](.doc/0986.interval-list-intersections.md) | Medium (71.28%) | two-pointers, interval | [cpp](.cpp/0986.interval-list-intersections.cpp) |
+| [0987.Vertical Order Traversal of a Binary Tree](.doc/0987.vertical-order-traversal-of-a-binary-tree.md) | Hard (50.35%) | depth-first-search, sort, binary-tree | [cpp](.cpp/0987.vertical-order-traversal-of-a-binary-tree.cpp) |
 | [0988.Smallest String Starting From Leaf](.doc/0988.smallest-string-starting-from-leaf.md) | Medium (50.92%) | binary-tree, depth-first-search | [cpp](.cpp/0988.smallest-string-starting-from-leaf.cpp) |
 | [0989.Add to Array-Form of Integer](.doc/0989.add-to-array-form-of-integer.md) | Easy (46.43%) | array, arithmetic | [cpp](.cpp/0989.add-to-array-form-of-integer.cpp) |
 | [0990.Satisfiability of Equality Equations](.doc/0990.satisfiability-of-equality-equations.md) | Medium (50.49%) | depth-first-search, union-find, graph, math | [cpp](.cpp/0990.satisfiability-of-equality-equations.cpp) |
@@ -966,6 +968,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [1079.Letter Tile Possibilities](.doc/1079.letter-tile-possibilities.md) | Medium (76.12%) | hash-table, recursion, permutation, string | [cpp](.cpp/1079.letter-tile-possibilities.cpp) |
 | [1080.Insufficient Nodes in Root to Leaf Paths](.doc/1080.insufficient-nodes-in-root-to-leaf-paths.md) | Medium (54.38%) | binary-tree, depth-first-search | [cpp](.cpp/1080.insufficient-nodes-in-root-to-leaf-paths.cpp) |
 | [1091.Shortest Path in Binary Matrix](.doc/1091.shortest-path-in-binary-matrix.md) | Medium (49.24%) | breadth-first-search, matrix | [cpp](.cpp/1091.shortest-path-in-binary-matrix.cpp) |
+| [1140.Stone Game II](.doc/1140.stone-game-ii.md) | Medium (73.04%) | depth-first-search, memoization, minimax, game-theory, prefix-sum | [cpp](.cpp/1140.stone-game-ii.cpp) |
 | [1143.Longest Common Subsequence](.doc/1143.longest-common-subsequence.md) | Medium (57.85%) | dynamic-programming, string | [cpp](.cpp/1143.longest-common-subsequence.cpp) |
 | [1201.Ugly Number III](.doc/1201.ugly-number-iii.md) | Medium (29.27%) | binary-search, math | [cpp](.cpp/1201.ugly-number-iii.cpp) |
 | [1217.Minimum Cost to Move Chips to The Same Position](.doc/1217.minimum-cost-to-move-chips-to-the-same-position.md) | Easy (72.08%) | math | [cpp](.cpp/1217.minimum-cost-to-move-chips-to-the-same-position.cpp) |
@@ -973,8 +976,11 @@ Only count the problems in the range of `[1, 1080]` .
 | [1290.Convert Binary Number in a Linked List to Integer](.doc/1290.convert-binary-number-in-a-linked-list-to-integer.md) | Easy (81.19%) | linked-list, easy | [cpp](.cpp/1290.convert-binary-number-in-a-linked-list-to-integer.cpp) |
 | [1312.Minimum Insertion Steps to Make a String Palindrome](.doc/1312.minimum-insertion-steps-to-make-a-string-palindrome.md) | Hard (70.00%) | string, dynamic-programming, depth-first-search, memoization, palindrome | [cpp](.cpp/1312.minimum-insertion-steps-to-make-a-string-palindrome.cpp) |
 | [1332.Remove Palindromic Subsequences](.doc/1332.remove-palindromic-subsequences.md) | Easy (76.32%) | string, palindrome, greedy | [cpp](.cpp/1332.remove-palindromic-subsequences.cpp) |
+| [1340.Jump Game V](.doc/1340.jump-game-v.md) | Hard (63.11%) | depth-first-search, memoization, array | [cpp](.cpp/1340.jump-game-v.cpp) |
+| [1345.Jump Game IV](.doc/1345.jump-game-iv.md) | Hard (46.35%) | hash-table, breadth-first-search, array | [cpp](.cpp/1345.jump-game-iv.cpp) |
 | [1376.Time Needed to Inform All Employees](.doc/1376.time-needed-to-inform-all-employees.md) | Medium (60.17%) | graph, tree, depth-first-search | [cpp](.cpp/1376.time-needed-to-inform-all-employees.cpp) |
 | [1411.Number of Ways to Paint N × 3 Grid](.doc/1411.number-of-ways-to-paint-n-3-grid.md) | Hard (62.65%) | math | [cpp](.cpp/1411.number-of-ways-to-paint-n-3-grid.cpp) |
+| [1423.Maximum Points You Can Obtain from Cards](.doc/1423.maximum-points-you-can-obtain-from-cards.md) | Medium (54.99%) | sliding-window, array | [cpp](.cpp/1423.maximum-points-you-can-obtain-from-cards.cpp) |
 | 1429.First Unique Number 🔒 | | queue, hash-table, design | [cpp](.cpp/1429.first-unique-number.cpp) |
 | [1446.Consecutive Characters](.doc/1446.consecutive-characters.md) | Easy (60.44%) | string, easy | [cpp](.cpp/1446.consecutive-characters.cpp) |
 | [1472.Design Browser History](.doc/1472.design-browser-history.md) | Medium (77.95%) | stack, design | [cpp](.cpp/1472.design-browser-history.cpp) |
@@ -1014,7 +1020,6 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 0730.Count Different Palindromic Subsequences | Hard | String, Dynamic Programming | -->
 <!-- 0736.Parse Lisp Expression | Hard | Stack, Recursion, Hash Table, String | -->
 <!-- 0741.Cherry Pickup | Hard | Array, Dynamic Programming, Matrix | -->
-<!-- 0743.Network Delay Time | Medium | Depth-First Search, Breadth-First Search, Graph, Shortest Path, Heap (Priority Queue) | -->
 <!-- 0749.Contain Virus | Hard | Depth-First Search, Breadth-First Search, Array, Matrix, Simulation | -->
 <!-- 0750.Number Of Corner Rectangles 🔒 | Medium | Array, Math, Dynamic Programming, Matrix | -->
 <!-- 0757.Set Intersection Size At Least Two | Hard | Greedy, Array, Sorting | -->
@@ -1048,7 +1053,6 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 0956.Tallest Billboard | Hard | Array, Dynamic Programming | -->
 <!-- 0964.Least Operators to Express Number | Hard | Memoization, Math, Dynamic Programming | -->
 <!-- 0971.Flip Binary Tree To Match Preorder Traversal | Medium | Tree, Depth-First Search, Binary Tree | -->
-<!-- 0987.Vertical Order Traversal of a Binary Tree | Hard | Tree, Depth-First Search, Breadth-First Search, Hash Table, Binary Tree | -->
 <!-- 0995.Minimum Number of K Consecutive Bit Flips | Hard | Bit Manipulation, Queue, Array, Prefix Sum, Sliding Window | -->
 <!-- 0996.Number of Squareful Arrays | Hard | Bit Manipulation, Array, Math, Dynamic Programming, Backtracking, Bitmask | -->
 <!-- 1000.Minimum Cost to Merge Stones | Hard | Array, Dynamic Programming, Prefix Sum | -->

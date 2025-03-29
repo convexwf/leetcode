@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 哈希表+bfs
 // 2023-02-26 submission
 // 33/33 cases passed
 // Runtime: 210 ms, faster than 81.23% of cpp online submissions.
@@ -12,45 +13,42 @@
 class Solution {
 public:
     int minJumps(vector<int>& arr) {
-        if (arr.size() <= 1) return 0;
-
-        vector<int> nums;
-        unordered_map<int, vector<int>> m;
-        int n = 0;
-        for (int i = 0; i < arr.size(); ++i) {
-            if (i == 0 || i == arr.size() - 1 || arr[i] != arr[i - 1] || arr[i] != arr[i + 1]) {
-                m[arr[i]].push_back(n++);
-            }
+        int n = arr.size();
+        if (n == 1) {
+            return 0;
         }
-
-        vector<bool> visited(n, false);
-        visited[0] = true;
+        unordered_map<int, vector<int>> mp;
+        for (int i = 0; i < n; ++i) {
+            mp[arr[i]].push_back(i);
+        }
         queue<int> q;
+        vector<bool> visited(n, false);
         q.push(0);
+        visited[0] = true;
         int step = 0;
         while (!q.empty()) {
             int qsize = q.size();
-            while (qsize-- > 0) {
+            for (int i = 0; i < qsize; ++i) {
                 int idx = q.front();
                 q.pop();
-
-                for (int neighbor : vector<int>{idx - 1, idx + 1}) {
-                    if (neighbor == n - 1) return ++step;
-                    if (0 <= neighbor && neighbor < n && !visited[neighbor]) {
-                        q.push(neighbor);
-                        visited[neighbor] = true;
+                if (idx == n - 1) {
+                    return step;
+                }
+                if (idx + 1 < n && !visited[idx + 1]) {
+                    q.push(idx + 1);
+                    visited[idx + 1] = true;
+                }
+                if (idx - 1 >= 0 && !visited[idx - 1]) {
+                    q.push(idx - 1);
+                    visited[idx - 1] = true;
+                }
+                for (int j : mp[arr[idx]]) {
+                    if (!visited[j]) {
+                        q.push(j);
+                        visited[j] = true;
                     }
                 }
-
-                vector<int>& neighbors = m[arr[idx]];
-                for (int i = (int)neighbors.size() - 1; i >= 0; --i) {
-                    if (neighbors[i] == n - 1) return ++step;
-                    if (!visited[neighbors[i]]) {
-                        visited[neighbors[i]] = true;
-                        q.push(neighbors[i]);
-                    }
-                }
-                neighbors.clear(); // key operation
+                mp[arr[idx]].clear();
             }
             ++step;
         }
