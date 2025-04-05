@@ -14,7 +14,7 @@ class Solution {
 public:
     bool winnerSquareGame(int n) {
         vector<bool> dp(n + 1, false);
-        for (int i = 0; i < n ; i++) {
+        for (int i = 0; i < n; i++) {
             if (dp[i]) continue;
             for (int step = 1; i + step * step <= n; step++) {
                 dp[i + step * step] = true;
@@ -25,3 +25,30 @@ public:
 };
 // @lc code=end
 
+// @lc code=start
+// Time Limit Exceeded
+// 2. 记忆化搜索
+class Solution {
+public:
+    bool winnerSquareGame(int n) {
+        vector<int> memo(n + 1, -1);
+        function<bool(int)> dfs = [&](int i) {
+            if (i == 0) {
+                return false;
+            }
+            if (memo[i] != -1) {
+                return memo[i] == 1;
+            }
+            for (int step = 1; step * step <= i; ++step) {
+                if (!dfs(i - step * step)) {
+                    memo[i] = 1;
+                    return true;
+                }
+            }
+            memo[i] = 0;
+            return false;
+        };
+        return dfs(n);
+    }
+};
+// @lc code=end

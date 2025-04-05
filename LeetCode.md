@@ -1758,34 +1758,6 @@ public:
 };
 ```
 
-## 1283. Find the Smallest Divisor Given a Threshold (2020-11-07)
-
-解题思路
-
-1. 二分搜索：除数越小商越大，所以在 sum 小于等于 threshold 的前提下，进行二分搜索找到最大的除数。
-
-```C++
-// 2020-11-07 submission
-// Runtime: 60 ms, faster than 91.69% of C++ online submissions for Find the Smallest Divisor Given a Threshold.
-// Memory Usage: 20.4 MB, less than 5.65% of C++ online submissions for Find the Smallest Divisor Given a Threshold.
-class Solution {
-public:
-    int smallestDivisor(vector<int>& nums, int threshold) {
-        int left = 1, right = *max_element(nums.begin(), nums.end());
-        int middle = 0, sum = 0;
-        while (left < right) {
-            middle = left + (right - left) / 2;
-            sum = 0;
-            for (int num : nums)
-                sum += (num+middle-1) / middle;
-            if (sum > threshold) left = middle + 1;
-            else right = middle;
-        }
-        return left;
-    }
-};
-```
-
 ## 1026. Maximum Difference Between Node and Ancestor (2020-11-10)
 
 解题思路
