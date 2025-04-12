@@ -5,7 +5,7 @@ Only count the problems in the range of `[1, 1080]` .
 
 **Accepted / Total** : **807 / 870**
 
-🔒 **Accepted / Total Lock** : **148 / 152**
+🔒 **Accepted / Total Lock** : **149 / 152**
 
 <!-- Summary End -->
 
@@ -685,6 +685,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [0746.Min Cost Climbing Stairs](.doc/0746.min-cost-climbing-stairs.md) | Easy (66.29%) | dynamic-programming, memoization, depth-first-search | [cpp](.cpp/0746.min-cost-climbing-stairs.cpp) |
 | [0747.Largest Number At Least Twice of Others](.doc/0747.largest-number-at-least-twice-of-others.md) | Easy (47.72%) | array | [cpp](.cpp/0747.largest-number-at-least-twice-of-others.cpp) |
 | [0748.Shortest Completing Word](.doc/0748.shortest-completing-word.md) | Easy (59.27%) | hash-table, string | [cpp](.cpp/0748.shortest-completing-word.cpp) |
+| 0750.Number Of Corner Rectangles 🔒 | | hash-table, matrix | [cpp](.cpp/0750.number-of-corner-rectangles.cpp) |
 | 0751.IP to CIDR 🔒 | | bit-manipulation, greedy | [cpp](.cpp/0751.ip-to-cidr.cpp) |
 | [0752.Open the Lock](.doc/0752.open-the-lock.md) | Medium (55.69%) | breadth-first-search, hash-table | [cpp](.cpp/0752.open-the-lock.cpp) |
 | [0753.Cracking the Safe](.doc/0753.cracking-the-safe.md) | Hard (56.48%) | hash-table, graph, greedy | [cpp](.cpp/0753.cracking-the-safe.cpp) |
@@ -969,17 +970,21 @@ Only count the problems in the range of `[1, 1080]` .
 | [1078.Occurrences After Bigram](.doc/1078.occurrences-after-bigram.md) | Easy (63.37%) | string | [cpp](.cpp/1078.occurrences-after-bigram.cpp) |
 | [1079.Letter Tile Possibilities](.doc/1079.letter-tile-possibilities.md) | Medium (76.12%) | hash-table, recursion, permutation, string | [cpp](.cpp/1079.letter-tile-possibilities.cpp) |
 | [1080.Insufficient Nodes in Root to Leaf Paths](.doc/1080.insufficient-nodes-in-root-to-leaf-paths.md) | Medium (54.38%) | binary-tree, depth-first-search | [cpp](.cpp/1080.insufficient-nodes-in-root-to-leaf-paths.cpp) |
+| 1086.High Five 🔒 | | array, sort | [cpp](.cpp/1086.high-five.cpp) |
 | [1091.Shortest Path in Binary Matrix](.doc/1091.shortest-path-in-binary-matrix.md) | Medium (49.24%) | breadth-first-search, matrix | [cpp](.cpp/1091.shortest-path-in-binary-matrix.cpp) |
 | [1140.Stone Game II](.doc/1140.stone-game-ii.md) | Medium (73.04%) | depth-first-search, memoization, minimax, game-theory, prefix-sum | [cpp](.cpp/1140.stone-game-ii.cpp) |
 | [1143.Longest Common Subsequence](.doc/1143.longest-common-subsequence.md) | Medium (57.85%) | dynamic-programming, string | [cpp](.cpp/1143.longest-common-subsequence.cpp) |
 | [1201.Ugly Number III](.doc/1201.ugly-number-iii.md) | Medium (29.27%) | binary-search, math | [cpp](.cpp/1201.ugly-number-iii.cpp) |
+| [1209.Remove All Adjacent Duplicates in String II](.doc/1209.remove-all-adjacent-duplicates-in-string-ii.md) | Medium (59.26%) | stack, string | [cpp](.cpp/1209.remove-all-adjacent-duplicates-in-string-ii.cpp) |
 | [1217.Minimum Cost to Move Chips to The Same Position](.doc/1217.minimum-cost-to-move-chips-to-the-same-position.md) | Easy (72.08%) | math | [cpp](.cpp/1217.minimum-cost-to-move-chips-to-the-same-position.cpp) |
 | [1268.Search Suggestions System](.doc/1268.search-suggestions-system.md) | Medium (65.01%) | sort, trie, design | [cpp](.cpp/1268.search-suggestions-system.cpp) |
 | [1276.Number of Burgers with No Waste of Ingredients](.doc/1276.number-of-burgers-with-no-waste-of-ingredients.md) | Medium (50.97%) | math | [cpp](.cpp/1276.number-of-burgers-with-no-waste-of-ingredients.cpp) |
+| [1277.Count Square Submatrices with All Ones](.doc/1277.count-square-submatrices-with-all-ones.md) | Medium (78.53%) | dynamic-programming, matrix | [cpp](.cpp/1277.count-square-submatrices-with-all-ones.cpp) |
 | [1283.Find the Smallest Divisor Given a Threshold](.doc/1283.find-the-smallest-divisor-given-a-threshold.md) | Medium (62.88%) | binary-search, array | [cpp](.cpp/1283.find-the-smallest-divisor-given-a-threshold.cpp) |
 | [1290.Convert Binary Number in a Linked List to Integer](.doc/1290.convert-binary-number-in-a-linked-list-to-integer.md) | Easy (81.19%) | linked-list, easy | [cpp](.cpp/1290.convert-binary-number-in-a-linked-list-to-integer.cpp) |
 | [1312.Minimum Insertion Steps to Make a String Palindrome](.doc/1312.minimum-insertion-steps-to-make-a-string-palindrome.md) | Hard (70.00%) | string, dynamic-programming, depth-first-search, memoization, palindrome | [cpp](.cpp/1312.minimum-insertion-steps-to-make-a-string-palindrome.cpp) |
 | [1332.Remove Palindromic Subsequences](.doc/1332.remove-palindromic-subsequences.md) | Easy (76.32%) | string, palindrome, greedy | [cpp](.cpp/1332.remove-palindromic-subsequences.cpp) |
+| [1334.Find the City With the Smallest Number of Neighbors at a Threshold Distance](.doc/1334.find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.md) | Medium (58.55%) | graph, dijkstra, shortest-path | [cpp](.cpp/1334.find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.cpp) |
 | [1340.Jump Game V](.doc/1340.jump-game-v.md) | Hard (63.11%) | depth-first-search, memoization, array | [cpp](.cpp/1340.jump-game-v.cpp) |
 | [1345.Jump Game IV](.doc/1345.jump-game-iv.md) | Hard (46.35%) | hash-table, breadth-first-search, array | [cpp](.cpp/1345.jump-game-iv.cpp) |
 | [1376.Time Needed to Inform All Employees](.doc/1376.time-needed-to-inform-all-employees.md) | Medium (60.17%) | graph, tree, depth-first-search | [cpp](.cpp/1376.time-needed-to-inform-all-employees.cpp) |
@@ -991,6 +996,7 @@ Only count the problems in the range of `[1, 1080]` .
 | [1472.Design Browser History](.doc/1472.design-browser-history.md) | Medium (77.95%) | stack, design | [cpp](.cpp/1472.design-browser-history.cpp) |
 | [1510. Stone Game IV](.doc/1510.stone-game-iv.md) | Hard (60.12%) | dynamic-programming, game-theory | [cpp](.cpp/1510.stone-game-iv.cpp) |
 | [1600.Throne Inheritance](.doc/1600.throne-inheritance.md) | Medium (64.48%) | tree | [cpp](.cpp/1600.throne-inheritance.cpp) |
+| [1658.Minimum Operations to Reduce X to Zero](.doc/1658.minimum-operations-to-reduce-x-to-zero.md) | Medium (39.98%) | array, hash-table, prefix-sum | [cpp](.cpp/1658.minimum-operations-to-reduce-x-to-zero.cpp) |
 | [1706.Where Will the Ball Fall](.doc/1706.where-will-the-ball-fall.md) | Medium (71.70%) | dynamic-programming, depth-first-search, memoization | [cpp](.cpp/1706.where-will-the-ball-fall.cpp) |
 | [1971.Find if Path Exists in Graph](.doc/1971.find-if-path-exists-in-graph.md) | Easy (51.56%) | graph, depth-first-search, breadth-first-search, union-find | [cpp](.cpp/1971.find-if-path-exists-in-graph.cpp) |
 | [2296.Design a Text Editor](.doc/2296.design-a-text-editor.md) | Hard (44.05%) | stack, string, design, linked-list | [cpp](.cpp/2296.design-a-text-editor.cpp) |
@@ -1026,7 +1032,6 @@ Only count the problems in the range of `[1, 1080]` .
 <!-- 0736.Parse Lisp Expression | Hard | Stack, Recursion, Hash Table, String | -->
 <!-- 0741.Cherry Pickup | Hard | Array, Dynamic Programming, Matrix | -->
 <!-- 0749.Contain Virus | Hard | Depth-First Search, Breadth-First Search, Array, Matrix, Simulation | -->
-<!-- 0750.Number Of Corner Rectangles 🔒 | Medium | Array, Math, Dynamic Programming, Matrix | -->
 <!-- 0757.Set Intersection Size At Least Two | Hard | Greedy, Array, Sorting | -->
 <!-- 0768.Max Chunks To Make Sorted II | Hard | Stack, Greedy, Array, Sorting, Monotonic Stack | -->
 <!-- 0778.Swim in Rising Water | Hard | Depth-First Search, Breadth-First Search, Union Find, Array, Binary Search, Matrix, Heap (Priority Queue) | -->
