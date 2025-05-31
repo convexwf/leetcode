@@ -17,7 +17,8 @@ public:
         for (const char& c : hand) {
             ballCount[c]++;
         }
-        return minMoves(board, hand, memo);
+        int result = minMoves(board, hand, memo);
+        return result == INT_MAX ? -1 : result;
     }
 
 private:
@@ -26,13 +27,11 @@ private:
             return 0;
         }
         if (hand.empty()) {
-            return -1;
+            return INT_MAX;
         }
 
         string state = board + "#" + hand;
-        if (memo.count(state)) {
-            return memo[state];
-        }
+        if (memo.count(state)) return memo[state];
 
         int minSteps = INT_MAX;
         int boardSize = board.size();
@@ -48,7 +47,7 @@ private:
                 string newBoard = insertAndReduce(board, j, ball);
                 int nextMove = minMoves(newBoard, newHand, memo);
 
-                if (nextMove != -1) {
+                if (nextMove != INT_MAX) {
                     minSteps = min(minSteps, 1 + nextMove);
                 }
             }
@@ -96,6 +95,7 @@ private:
         return board;
     }
 
+private:
     unordered_map<int, int> ballCount;
 };
 // @lc code=end

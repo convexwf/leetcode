@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. bfs
+// 1. bfs+哈希表
 // 2025-02-25 submission
 // 129/129 cases passed
 // Runtime: 55 ms, faster than 69.76% of cpp online submissions.
@@ -16,9 +16,10 @@ public:
         vector<string> res;
         queue<string> q;
         unordered_set<string> visited;
-        bool found = false;
         q.push(s);
         visited.insert(s);
+
+        bool found = false;
         while (!q.empty()) {
             string cur = q.front();
             q.pop();
@@ -42,9 +43,15 @@ public:
     bool isValid(string s) {
         int cnt = 0;
         for (char c : s) {
-            if (c == '(') cnt++;
-            if (c == ')') cnt--;
-            if (cnt < 0) return false;
+            if (c == '(') {
+                cnt++;
+            }
+            if (c == ')') {
+                cnt--;
+            }
+            if (cnt < 0) {
+                return false;
+            }
         }
         return cnt == 0;
     }
@@ -52,6 +59,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 双向扫描
 // 2025-02-25 submission
 // 129/129 cases passed
 // Runtime: 0 ms, faster than 100% of cpp online submissions.
@@ -67,10 +75,12 @@ public:
     void helper(string s, int last_i, int last_j, vector<char> p, vector<string>& res) {
         int cnt = 0;
         for (int i = last_i; i < s.size(); ++i) {
-            if (s[i] == p[0])
+            if (s[i] == p[0]) {
                 ++cnt;
-            else if (s[i] == p[1])
+            }
+            else if (s[i] == p[1]) {
                 --cnt;
+            }
             if (cnt >= 0) continue;
             for (int j = last_j; j <= i; ++j) {
                 if (s[j] == p[1] && (j == last_j || s[j] != s[j - 1])) {
@@ -80,10 +90,12 @@ public:
             return;
         }
         string rev = string(s.rbegin(), s.rend());
-        if (p[0] == '(')
+        if (p[0] == '(') {
             helper(rev, 0, 0, {')', '('}, res);
-        else
+        }
+        else {
             res.push_back(rev);
+        }
     }
 };
 // @lc code=end
