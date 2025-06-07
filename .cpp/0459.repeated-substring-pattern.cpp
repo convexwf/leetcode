@@ -41,7 +41,7 @@ public:
                 j = lps[j];
             }
         }
-        return lps[n] && (lps[n] % (n - lps[n]) == 0);
+        return lps[n] != 0 && (lps[n] % (n - lps[n]) == 0);
     }
 };
 // @lc code=end

@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-// 1. 单调栈
+// 1. 单调递减栈
 // 2023-08-11 submission
 // 99/99 cases passed
 // Runtime: 187 ms, faster than 92.04% of cpp online submissions.
@@ -37,7 +37,7 @@ private:
 // @lc code=end
 
 // @lc code=start
-// 2. 动态规划
+// 2. 数组记录
 // 2023-08-11 submission
 // 99/99 cases passed
 // Runtime: 189 ms, faster than 90.91% of cpp online submissions.

@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 极值统计
 // 2020-07-14 submission
 // 320/320 cases passed
 // Runtime: 4 ms, faster than 88.40% of cpp online submissions.
@@ -36,6 +37,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 双指针
 // 2022-11-17 submission
 // 322/322 cases passed
 // Runtime: 42 ms, faster than 26.88% of cpp online submissions.
@@ -55,6 +57,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 单调递减栈
 // 2022-11-17 submission
 // 322/322 cases passed
 // Runtime: 37 ms, faster than 42.75% of cpp online submissions.

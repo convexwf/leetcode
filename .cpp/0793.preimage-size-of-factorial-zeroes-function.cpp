@@ -5,12 +5,21 @@
  */
 
 // @lc code=start
+// 1. 数学方法+二分查找
+// 2025-06-04 submission
+// 44/44 cases passed
+// Runtime: 0 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 7.7 MB, less than 71.07% of cpp online submissions.
 class Solution {
 public:
     int preimageSizeFZF(int k) {
-        long left = 0, right = 5L * k + 5;
+        return g(k + 1) - g(k);
+    }
+
+    int g(int k) {
+        long left = 0, right = 1l * 5 * k;
         while (left < right) {
-            long mid = left + (right - left) / 2;
+            long mid = (left + right) >> 1;
             if (f(mid) >= k) {
                 right = mid;
             }
@@ -18,18 +27,14 @@ public:
                 left = mid + 1;
             }
         }
-        if (f(left) != k) {
-            return 0;
-        }
-        return (right + 1) - left;
+        return (int)left;
     }
 
-private:
-    long f(long x) {
-        long res = 0;
+    int f(long x) {
+        int res = 0;
         while (x) {
-            res += x / 5;
             x /= 5;
+            res += x;
         }
         return res;
     }

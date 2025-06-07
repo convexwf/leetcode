@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 暴力搜索
 // 2023-01-14 submission
 // 78/78 cases passed
 // Runtime: 936 ms, faster than 5.03% of cpp online submissions.
@@ -13,20 +14,6 @@ class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
         int n = matrix.size(), m = matrix[0].size();
-
-        for (int i = 0; i < n; ++i) {
-            for (int j = i; j < n; ++j) {
-                for (int k = 0; k < m; ++k) {
-                    if (matrix[j][k] == '0') {
-                        break;
-                    }
-                    if (k == m - 1) {
-                        return (j - i + 1) * (j - i + 1);
-                    }
-                }
-            }
-        }
-
         int res = 0;
         for (int i = 0; i < matrix.size(); ++i) {
             vector<int> v(matrix[i].size(), 0);
@@ -43,7 +30,9 @@ public:
     }
 
     int getSquareArea(vector<int>& v, int k) {
-        if (v.size() < k) return 0;
+        if (v.size() < k) {
+            return 0;
+        }
         int count = 0;
         for (int i = 0; i < v.size(); ++i) {
             if (v[i] != k) {
@@ -52,7 +41,9 @@ public:
             else {
                 ++count;
             }
-            if (count == k) return k * k;
+            if (count == k) {
+                return k * k;
+            }
         }
         return 0;
     }
@@ -60,6 +51,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 前缀和数组
 // 2023-01-14 submission
 // 78/78 cases passed
 // Runtime: 1191 ms, faster than 5.03% of cpp online submissions.
@@ -67,23 +59,39 @@ public:
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
-        if (matrix.empty() || matrix[0].empty()) return 0;
+        if (matrix.empty() || matrix[0].empty()) {
+            return 0;
+        }
         int m = matrix.size(), n = matrix[0].size(), res = 0;
         vector<vector<int>> sum(m, vector<int>(n, 0));
         for (int i = 0; i < matrix.size(); ++i) {
             for (int j = 0; j < matrix[i].size(); ++j) {
                 int t = matrix[i][j] - '0';
-                if (i > 0) t += sum[i - 1][j];
-                if (j > 0) t += sum[i][j - 1];
-                if (i > 0 && j > 0) t -= sum[i - 1][j - 1];
+                if (i > 0) {
+                    t += sum[i - 1][j];
+                }
+                if (j > 0) {
+                    t += sum[i][j - 1];
+                }
+                if (i > 0 && j > 0) {
+                    t -= sum[i - 1][j - 1];
+                }
                 sum[i][j] = t;
                 int cnt = 1;
                 for (int k = min(i, j); k >= 0; --k) {
                     int d = sum[i][j];
-                    if (i - cnt >= 0) d -= sum[i - cnt][j];
-                    if (j - cnt >= 0) d -= sum[i][j - cnt];
-                    if (i - cnt >= 0 && j - cnt >= 0) d += sum[i - cnt][j - cnt];
-                    if (d == cnt * cnt) res = max(res, d);
+                    if (i - cnt >= 0) {
+                        d -= sum[i - cnt][j];
+                    }
+                    if (j - cnt >= 0) {
+                        d -= sum[i][j - cnt];
+                    }
+                    if (i - cnt >= 0 && j - cnt >= 0) {
+                        d += sum[i - cnt][j - cnt];
+                    }
+                    if (d == cnt * cnt) {
+                        res = max(res, d);
+                    }
                     ++cnt;
                 }
             }
@@ -94,6 +102,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 3. 动态规划
 // 2023-01-14 submission
 // 78/78 cases passed
 // Runtime: 86 ms, faster than 90.74% of cpp online submissions.
@@ -101,13 +110,16 @@ public:
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
-        if (matrix.empty() || matrix[0].empty()) return 0;
+        if (matrix.empty() || matrix[0].empty()) {
+            return 0;
+        }
         int m = matrix.size(), n = matrix[0].size(), res = 0;
         vector<vector<int>> dp(m, vector<int>(n, 0));
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
-                if (i == 0 || j == 0)
+                if (i == 0 || j == 0) {
                     dp[i][j] = matrix[i][j] - '0';
+                }
                 else if (matrix[i][j] == '1') {
                     dp[i][j] = min(dp[i - 1][j - 1], min(dp[i][j - 1], dp[i - 1][j])) + 1;
                 }
@@ -120,6 +132,7 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 4. 动态规划+空间优化
 // 2023-01-14 submission
 // 78/78 cases passed
 // Runtime: 76 ms, faster than 98.28% of cpp online submissions.
@@ -127,7 +140,9 @@ public:
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
-        if (matrix.empty() || matrix[0].empty()) return 0;
+        if (matrix.empty() || matrix[0].empty()) {
+            return 0;
+        }
         int m = matrix.size(), n = matrix[0].size(), res = 0, pre = 0;
         vector<int> dp(m + 1, 0);
         for (int j = 0; j < n; ++j) {

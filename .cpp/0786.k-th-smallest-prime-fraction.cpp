@@ -58,12 +58,15 @@ public:
                     q = arr[j];
                 }
             }
-            if (cnt == k)
+            if (cnt == k) {
                 return {p, q};
-            else if (cnt < k)
+            }
+            else if (cnt < k) {
                 l = mid;
-            else
+            }
+            else {
                 r = mid;
+            }
         }
         return {};
     }

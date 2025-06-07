@@ -5,26 +5,43 @@
  */
 
 // @lc code=start
+// 1. 动态规划
+// 2025-06-04 submission
+// 80/80 cases passed
+// Runtime: 34 ms, faster than 77.94% of cpp online submissions.
+// Memory Usage: 30.8 MB, less than 60.9% of cpp online submissions.
 class Solution {
 public:
     int tallestBillboard(vector<int>& rods) {
         int n = rods.size();
-        unordered_map<int, int> memo;
-        return dfs(0, 0, 0, rods, memo);
-    }
+        int sum = accumulate(rods.begin(), rods.end(), 0);
+        vector<vector<int>> dp(n + 1, vector<int>(sum + 1));
 
-    int dfs(int i, int s1, int s2, vector<int>& rods, unordered_map<int, int>& memo) {
-        if (i == rods.size()) {
-            return s1 == s2 ? s1 : 0;
+        for (int i = 0; i <= sum; ++i) {
+            dp[0][i] = INT_MIN; // Initialize to a very small value
         }
-        int key = i * 1000 + s1;
-        if (memo.count(key)) {
-            return memo[key];
+        dp[0][0] = 0;
+
+        for (int i = 1; i <= n; ++i) {
+            int rod = rods[i - 1];
+            for (int j = 0; j <= sum; ++j) {
+                dp[i][j] = dp[i - 1][j]; // default case: not using the current rod
+                if (j - rod >= 0) {
+                    // case 1 : add to right side
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j - rod] + rod);
+                }
+                else {
+                    // case 2 : add to left side, if left side is still less than or equal to right
+                    // side
+                    dp[i][j] = max(dp[i][j], dp[i - 1][rod - j] + j); // add to left side
+                }
+                if (j + rod <= sum) {
+                    // case 3 : add to left side, if left side becomes greater than right side
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j + rod]);
+                }
+            }
         }
-        int res = max({dfs(i + 1, s1 + rods[i], s2, rods, memo),
-                       dfs(i + 1, s1, s2 + rods[i], rods, memo), dfs(i + 1, s1, s2, rods, memo)});
-        memo[key] = res;
-        return res;
+        return dp[n][0];
     }
 };
 // @lc code=end

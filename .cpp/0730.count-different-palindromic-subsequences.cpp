@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 动态规划
 // 2024-12-16 submission
 // 367/367 cases passed
 // Runtime: 67 ms, faster than 61.35% of cpp online submissions.

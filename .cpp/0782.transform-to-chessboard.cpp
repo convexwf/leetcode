@@ -27,11 +27,19 @@ public:
             rowDiff += (board[i][0] == i % 2);
             colDiff += (board[0][i] == i % 2);
         }
-        if (n / 2 > rowSum || rowSum > (n + 1) / 2) return -1;
-        if (n / 2 > colSum || colSum > (n + 1) / 2) return -1;
+        if (n / 2 > rowSum || rowSum > (n + 1) / 2) {
+            return -1;
+        }
+        if (n / 2 > colSum || colSum > (n + 1) / 2) {
+            return -1;
+        }
         if (n % 2) {
-            if (rowDiff % 2) rowDiff = n - rowDiff;
-            if (colDiff % 2) colDiff = n - colDiff;
+            if (rowDiff % 2) {
+                rowDiff = n - rowDiff;
+            }
+            if (colDiff % 2) {
+                colDiff = n - colDiff;
+            }
         }
         else {
             rowDiff = min(n - rowDiff, rowDiff);
