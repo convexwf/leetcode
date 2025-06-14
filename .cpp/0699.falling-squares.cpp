@@ -115,27 +115,43 @@ public:
 // @lc code=end
 
 // @lc code=start
+// 2. 有序字典
+// 2025-06-09 submission
+// 48/48 cases passed
+// Runtime: 15 ms, faster than 100% of cpp online submissions.
+// Memory Usage: 19.3 MB, less than 29.29% of cpp online submissions.
 class Solution {
 public:
-    vector<int> fallingSquares(vector<pair<int, int>>& positions) {
+    vector<int> fallingSquares(vector<vector<int>>& positions) {
         vector<int> res;
         map<pair<int, int>, int> m;
-        int curMax = 0;
-        for (auto& pos : positions) {
-            vector<vector<int>> t;
-            int len = pos.second, start = pos.first, end = start + len, h = 0;
-            auto it = m.upper_bound({start, start});
-            if (it != m.begin() && (--it)->first.second <= start) ++it;
-            while (it != m.end() && it->first.first < end) {
-                if (start > it->first.first) t.push_back({it->first.first, start, it->second});
-                if (end < it->first.second) t.push_back({end, it->first.second, it->second});
-                h = max(h, it->second);
+        int maxHeight = 0;
+        for (const vector<int>& position : positions) {
+            int left = position[0], len = position[1];
+            int right = left + len;
+            auto it = m.upper_bound({left, left});
+            if (it != m.begin() && (--it)->first.second <= left) {
+                ++it;
+            }
+
+            int height = 0;
+            vector<vector<int>> toAdd;
+            while (it != m.end() && it->first.first < right) {
+                if (left > it->first.first) {
+                    toAdd.push_back({it->first.first, left, it->second});
+                }
+                if (right < it->first.second) {
+                    toAdd.push_back({right, it->first.second, it->second});
+                }
+                height = max(height, it->second);
                 it = m.erase(it);
             }
-            m[{start, end}] = h + len;
-            for (auto& a : t) m[{a[0], a[1]}] = a[2];
-            curMax = max(curMax, h + len);
-            res.push_back(curMax);
+            m[{left, right}] = height + len;
+            for (const vector<int>& a : toAdd) {
+                m[{a[0], a[1]}] = a[2];
+            }
+            maxHeight = max(maxHeight, height + len);
+            res.push_back(maxHeight);
         }
         return res;
     }

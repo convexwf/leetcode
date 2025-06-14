@@ -5,84 +5,175 @@
  */
 
 // @lc code=start
-// 1. 线段树
+// 1. 有序字典
+// 2025-06-09 submission
+// 56/56 cases passed
+// Runtime: 25 ms, faster than 79.97% of cpp online submissions.
+// Memory Usage: 77.7 MB, less than 78.55% of cpp online submissions.
 class RangeModule {
 public:
     RangeModule() {
-        root = std::make_shared<SegmentTreeNode>(0, 1e9, 0);
     }
 
     void addRange(int left, int right) {
-        update(root, left, right - 1, 1);
+        auto x = find(left, right);
+        m[x.first] = x.second;
     }
 
     bool queryRange(int left, int right) {
-        return query(root, left, right - 1) > 0;
+        auto it = m.upper_bound(left);
+        return it != m.begin() && (--it)->second >= right;
     }
 
     void removeRange(int left, int right) {
-        update(root, left, right - 1, -1);
+        auto x = find(left, right);
+        if (left > x.first) {
+            m[x.first] = left;
+        }
+        if (x.second > right) {
+            m[right] = x.second;
+        }
     }
 
 private:
-    struct SegmentTreeNode
-    {
-        int start, end, value, lazy;
-        std::shared_ptr<SegmentTreeNode> left, right;
-        SegmentTreeNode(int s, int e, int v)
-            : start(s),
-              end(e),
-              value(v),
-              lazy(0),
-              left(nullptr),
-              right(nullptr) {
-        }
-    };
+    map<int, int> m;
 
-    std::shared_ptr<SegmentTreeNode> root;
+    pair<int, int> find(int left, int right) {
+        auto l = m.upper_bound(left), r = m.upper_bound(right);
+        if (l != m.begin() && (--l)->second < left) {
+            ++l;
+        }
+        if (l == r) {
+            return {left, right};
+        }
+        int i = min(left, l->first), j = max(right, (--r)->second);
+        m.erase(l, ++r);
+        return {i, j};
+    }
+};
+/**
+ * Your RangeModule object will be instantiated and called as such:
+ * RangeModule* obj = new RangeModule();
+ * obj->addRange(left,right);
+ * bool param_2 = obj->queryRange(left,right);
+ * obj->removeRange(left,right);
+ */
+// @lc code=end
 
-    void push_down(std::shared_ptr<SegmentTreeNode> node) {
-        if (!node->left) {
-            node->left = std::make_shared<SegmentTreeNode>(
-                node->start, node->start + (node->end - node->start) / 2, 0);
-        }
-        if (!node->right) {
-            node->right = std::make_shared<SegmentTreeNode>(
-                node->start + (node->end - node->start) / 2 + 1, node->end, 0);
-        }
-        if (node->lazy != 0) {
-            node->left->value = node->lazy;
-            node->left->lazy = node->lazy;
-            node->right->value = node->lazy;
-            node->right->lazy = node->lazy;
-            node->lazy = 0;
-        }
+// @lc code=start
+// 2. 线段树+懒标记
+// 2025-06-09 submission
+// 56/56 cases passed
+// Runtime: 622 ms, faster than 13.82% of cpp online submissions.
+// Memory Usage: 367.6 MB, less than 14.08% of cpp online submissions.
+class Node {
+public:
+    bool included;
+    Node* left_node;
+    Node* right_node;
+    int left;
+    int right;
+    Node(int left, int right, bool included) {
+        this->left = left;
+        this->right = right;
+        this->included = included;
+        this->left_node = nullptr;
+        this->right_node = nullptr;
+    }
+};
+
+class SegmentTree {
+public:
+    Node* root;
+
+    SegmentTree(int left, int right, bool included) {
+        root = new Node(left, right, included);
     }
 
-    int query(std::shared_ptr<SegmentTreeNode> node, int ql, int qr) {
-        if (ql > qr) {
-            return 0;
+    void updateTree(Node* root, int left, int right, bool include) {
+        // base case: exact match
+        if (root->left == left && root->right == right) {
+            root->left_node = nullptr;
+            root->right_node = nullptr;
+            root->included = include;
+            return;
         }
-        if (ql <= node->start && node->end <= qr) {
-            return node->value;
-        }
-        push_down(node);
 
-        int result = 0;
-        if (ql <= node->start + (node->end - node->start) / 2) {
-            result = std::max(result, query(node->left, ql, qr));
+        int mid = root->left + (root->right - root->left) / 2;
+
+        // Lazy creation
+        if (!root->left_node) {
+            root->left_node = new Node(root->left, mid, root->included);
+            root->right_node = new Node(mid + 1, root->right, root->included);
         }
-        if (qr > node->start + (node->end - node->start) / 2) {
-            result = std::max(result, query(node->right, ql, qr));
+
+        if (right <= mid) {
+            updateTree(root->left_node, left, right, include);
         }
-        return result;
+        else if (left > mid) {
+            updateTree(root->right_node, left, right, include);
+        }
+        else {
+            updateTree(root->left_node, left, mid, include);
+            updateTree(root->right_node, mid + 1, right, include);
+        }
+
+        // Recalculate inclusion
+        root->included = root->left_node->included && root->right_node->included;
     }
 
-    /**
-     * Your RangeModule object will be instantiated and called as such:
-     * RangeModule* obj = new RangeModule();
-     * obj->addRange(left,right);
-     * bool param_2 = obj->queryRange(left,right);
-     * obj->removeRange(left,right);
-     */
-    // @lc code=end
+    bool queryTree(Node* root, int left, int right) {
+        // leaf node: no further children
+        if (!root->left_node) {
+            return root->included;
+        }
+
+        // exact match
+        if (root->left == left && root->right == right) {
+            return root->included;
+        }
+
+        int mid = root->left + (root->right - root->left) / 2;
+        bool a = false;
+        if (right <= mid) {
+            a = a || queryTree(root->left_node, left, right);
+        }
+        else if (left > mid) {
+            a = a || queryTree(root->right_node, left, right);
+        }
+        else {
+            a = a || (queryTree(root->left_node, left, mid) &&
+                      queryTree(root->right_node, mid + 1, right));
+        }
+        return a;
+    }
+};
+
+class RangeModule {
+public:
+    SegmentTree seg;
+
+    RangeModule() : seg(0, 1e9, false) {
+    }
+
+    void addRange(int left, int right) {
+        seg.updateTree(seg.root, left, right - 1, true);
+    }
+
+    bool queryRange(int left, int right) {
+        return seg.queryTree(seg.root, left, right - 1);
+    }
+
+    void removeRange(int left, int right) {
+        seg.updateTree(seg.root, left, right - 1, false);
+    }
+};
+
+/**
+ * Your RangeModule object will be instantiated and called as such:
+ * RangeModule* obj = new RangeModule();
+ * obj->addRange(left,right);
+ * bool param_2 = obj->queryRange(left,right);
+ * obj->removeRange(left,right);
+ */
+// @lc code=end

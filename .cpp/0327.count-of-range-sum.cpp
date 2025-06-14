@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+// 1. 前缀和+归并排序
 // 2025-02-20 submission
 // 67/67 cases passed
 // Runtime: 348 ms, faster than 56.43% of cpp online submissions.
@@ -51,10 +52,10 @@ public:
 
 // @lc code=start
 // 2. 前缀和+树状数组
-// 2025-02-20 submission
+// 2025-06-09 submission
 // 67/67 cases passed
-// Runtime: 933 ms, faster than 26.57% of cpp online submissions.
-// Memory Usage: 302.9 MB, less than 14.59% of cpp online submissions.
+// Runtime: 1022 ms, faster than 22.35% of cpp online submissions.
+// Memory Usage: 307.3 MB, less than 27.06% of cpp online submissions.
 class Solution {
 public:
     int countRangeSum(vector<int>& nums, int lower, int upper) {
@@ -63,26 +64,26 @@ public:
             sums[i + 1] = sums[i] + nums[i];
         }
 
-        unordered_set<long> alls;
+        set<long> uniqueSums;
         for (long sum : sums) {
-            alls.insert(sum);
-            alls.insert(sum - lower);
-            alls.insert(sum - upper);
-        }
-        vector<long> sortedSums(alls.begin(), alls.end());
-        sort(sortedSums.begin(), sortedSums.end());
-
-        unordered_map<long, int> m;
-        for (int i = 0; i < sortedSums.size(); ++i) {
-            m[sortedSums[i]] = i;
+            uniqueSums.insert(sum - lower);
+            uniqueSums.insert(sum);
+            uniqueSums.insert(sum - upper);
         }
 
-        vector<int> tree(m.size() + 5, 0);
+        unordered_map<long, int> indexMap;
+        int index = 1;
+        for (long sum : uniqueSums) {
+            indexMap[sum] = index++;
+        }
+
         int res = 0;
-        for (int i = 0; i < sums.size(); ++i) {
-            int left = m[sums[i] - upper], right = m[sums[i] - lower];
-            res += query(tree, right + 1) - query(tree, left);
-            update(tree, m[sums[i]], 1);
+        vector<int> tree(index + 1, 0);
+        for (long sum : sums) {
+            int left = indexMap[sum - upper];
+            int right = indexMap[sum - lower];
+            res += query(tree, right) - query(tree, left - 1);
+            update(tree, indexMap[sum], 1);
         }
         return res;
     }
@@ -109,66 +110,4 @@ private:
     }
 };
 // @lc code=end
-
-// @lc code=start
-// 2025-02-20 submission
-// 67/67 cases passed
-// Runtime: 1000 ms, faster than 25.22% of cpp online submissions.
-// Memory Usage: 313.7 MB, less than 14.01% of cpp online submissions.
-#define ll long long
-class Solution {
-public:
-    vector<int> tree;
-    int n;
-    int lowbits(int x) {
-        return x & (-x);
-    }
-    void update(int x) {
-        while (x <= n) {
-            tree[x] += 1;
-            x += lowbits(x);
-        }
-    }
-    int query(int x) {
-        int res = 0;
-        while (x) {
-            res += tree[x];
-            x -= lowbits(x);
-        }
-        return res;
-    }
-    int countRangeSum(vector<int>& nums, int lower, int upper) {
-        ll sums = 0;
-        vector<ll> preSum = {0};
-        for (int x : nums) {
-            sums += x;
-            preSum.emplace_back(sums);
-        }
-
-        set<ll> st;
-        for (auto x : preSum) {
-            st.insert(x - lower);
-            st.insert(x);
-            st.insert(x - upper);
-        }
-
-        // 离散化
-        unordered_map<ll, int> p;
-        int c = 0;
-        for (auto x : st) p[x] = c++;
-
-        int res = 0;
-        n = p.size();
-        tree = vector<int>(n + 5, 0);
-        // cout << n << endl;
-        for (auto x : preSum) {
-            int left = p[x - upper], right = p[x - lower];
-            res += query(right + 1) - query(left);
-            // cout << x << " " << right << " " << query(right+1) << " " << left << " " <<
-            // query(left) << endl;
-            update(p[x] + 1);
-        }
-        return res;
-    }
-};
 // @lc code=end

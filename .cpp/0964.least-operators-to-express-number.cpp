@@ -5,42 +5,35 @@
  */
 
 // @lc code=start
+// 1. 分类讨论
+// 2025-06-08 submission
+// 162/162 cases passed
+// Runtime: 12 ms, faster than 16.13% of cpp online submissions.
+// Memory Usage: 7.8 MB, less than 85.48% of cpp online submissions.
 class Solution {
 public:
     int leastOpsExpressTarget(int x, int target) {
-        if (target == 0) return 0;
-        if (target == 1) return 1;
-
-        unordered_map<int, int> memo;
-        return dfs(x, target, memo);
-    }
-
-    int dfs(int x, int target, unordered_map<int, int>& memo) {
-        if (target < 0) return INT_MAX; // 不可能的情况
-        if (target == 0) return 0;      // 完全匹配
-        if (target == 1) return 1;      // 只需要一个操作
-
-        if (memo.count(target)) return memo[target];
-
-        int minOps = INT_MAX;
-
-        // 尝试加法和减法
-        for (int i = 1; i <= target / x + 1; ++i) {
-            int addOps = i + dfs(x, target - i * x, memo);
-            int subOps = i + dfs(x, target + i * x, memo);
-            minOps = min({minOps, addOps, subOps});
+        if (x == target) {
+            return 0;
         }
-
-        // 尝试乘法
-        for (int i = 2; i <= target / x + 1; ++i) {
-            if (target % i == 0) {
-                int mulOps = i - 1 + dfs(x, target / i, memo);
-                minOps = min(minOps, mulOps);
-            }
+        if (x > target) {
+            return min(target * 2 - 1, (x - target) * 2);
         }
-
-        memo[target] = minOps;
-        return minOps;
+        long sum = x;
+        int cnt = 0;
+        while (sum < target) {
+            sum *= x;
+            ++cnt;
+        }
+        if (sum == target) {
+            return cnt;
+        }
+        int res1 = INT_MAX, res2 = INT_MAX;
+        if (sum - target < target) {
+            res1 = leastOpsExpressTarget(x, sum - target) + cnt;
+        }
+        res2 = leastOpsExpressTarget(x, target - (sum / x)) + cnt - 1;
+        return min(res1, res2) + 1;
     }
 };
 // @lc code=end
