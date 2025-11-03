@@ -28,8 +28,12 @@ public:
         ListNode* cur = dummy;
         int carry = 0;
         while (l1 || l2 || carry != 0) {
-            if (l1) carry += l1->val;
-            if (l2) carry += l2->val;
+            if (nullptr != l1) {
+                carry += l1->val;
+            }
+            if (nullptr != l2) {
+                carry += l2->val;
+            }
             cur->next = new ListNode(carry % 10);
             carry /= 10;
             l1 = l1 ? l1->next : l1;
