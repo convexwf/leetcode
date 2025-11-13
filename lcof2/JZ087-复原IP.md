@@ -57,7 +57,63 @@
 </ul>
 
 <p>&nbsp;</p>
+<p><meta charset="UTF-8" />注意：本题与主站 93&nbsp;题相同：<a href="https://leetcode.cn/problems/restore-ip-addresses/">https://leetcode.cn/problems/restore-ip-addresses/</a></p>
 
+<!-- description:end -->
+
+## Code
+
+1. 使用回溯算法，IP地址由四个整数组成，需要分成四段。
+2. 对于每一段，长度可以是 1、2 或 3，但需要检查是否合法：
+   - 不能有前导零（除非就是 "0" 本身）。
+   - 数值必须在 0-255 之间。
+3. 回溯过程中，记录当前分段数和当前位置，当分成四段且用完所有字符时，记录结果。
+4. 剪枝优化：剩余字符数必须在剩余段数的合理范围内。
+5. 时间复杂度 $O(3^4)$，因为每段有最多 3 种长度选择。
+
+```cpp
+class Solution {
+public:
+    vector<string> restoreIpAddresses(string s) {
+        vector<string> result;
+        vector<string> path;
+        backtrack(s, 0, path, result);
+        return result;
+    }
+    
+private:
+    void backtrack(const string& s, int start, vector<string>& path, vector<string>& result) {
+        if (path.size() == 4) {
+            if (start == s.size()) {
+                result.push_back(path[0] + "." + path[1] + "." + path[2] + "." + path[3]);
+            }
+            return;
+        }
+        
+        int remaining = s.size() - start;
+        int segmentsLeft = 4 - path.size();
+        if (remaining < segmentsLeft || remaining > segmentsLeft * 3) {
+            return;
+        }
+        
+        for (int len = 1; len <= 3 && start + len <= s.size(); ++len) {
+            string segment = s.substr(start, len);
+            if (isValid(segment)) {
+                path.push_back(segment);
+                backtrack(s, start + len, path, result);
+                path.pop_back();
+            }
+        }
+    }
+    
+    bool isValid(const string& segment) {
+        if (segment.empty() || segment.size() > 3) return false;
+        if (segment[0] == '0' && segment.size() > 1) return false;
+        int num = stoi(segment);
+        return num >= 0 && num <= 255;
+    }
+};
+```
 <p><meta charset="UTF-8" />注意：本题与主站 93&nbsp;题相同：<a href="https://leetcode.cn/problems/restore-ip-addresses/">https://leetcode.cn/problems/restore-ip-addresses/</a>&nbsp;</p>
 
 <!-- description:end -->
